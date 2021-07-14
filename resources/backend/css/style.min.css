@@ -160,8 +160,8 @@ ol {
 .input-group-text:focus,
 .custom-select:focus,
 .custom-file-label:focus {
-    background-color: #ab95cb;
-    border-color: #6e4e9e
+    background-color: #ececec;
+    border-color: rgb(194, 194, 194);
 }
 
 .input-group-text,
