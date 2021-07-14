@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Ceo
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Ceo
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role && strtolower(Auth::user()->role->slug) == "ceo") {
+        if (Auth::check() && Auth::user()->role && strtolower(Auth::user()->role->slug) == "admin") {
             return $next($request);
         } else {
             abort(404);

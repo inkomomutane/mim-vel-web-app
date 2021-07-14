@@ -4155,9 +4155,9 @@ body.dark-mode.layout-4 .main-sidebar .sidebar-menu li.menu-header {
 }
 
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a::before {
-    content: '--';
+    content: none;
     position: absolute;
-    left: 25px
+    left: 0px
 }
 
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a:hover {
@@ -6382,4 +6382,22 @@ body:not(.sidebar-mini) .sidebar-style-3 .sidebar-menu li.active ul.dropdown-men
     color: #fff;
     text-align: center;
     background: #00000094;
+}
+body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li ul.dropdown-menu li a {
+    padding-left: 0px;
+    padding: 20px;
+}
+body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li ul.dropdown-menu li.active a  {
+    padding-left: 0px;
+    background-color: #fafbfc;
+    padding: 20px;
+}
+body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-menu li a {
+    padding-left: 0px;
+    padding: 20px;
+}
+body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-menu li.active a  {
+    padding-left: 0px;
+    background-color: #d0e4f9;
+    padding: 20px;
 }
