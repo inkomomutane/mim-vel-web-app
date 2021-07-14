@@ -826,7 +826,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .card .card-header .btn:hover {
-    box-shadow: none
+
 }
 
 .card .card-header .form-control {

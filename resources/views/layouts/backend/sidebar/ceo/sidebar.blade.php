@@ -37,7 +37,7 @@
         </ul>
         <ul class="sidebar-menu">
             <li class="menu-header">Definições</li>
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-map-marker-alt"></i>
+            <li class="@if (Route::is('bairro.index')) active @endif"><a class="nav-link" href="{{ route('bairro.index') }}"><i class="fas fa-map-marker-alt"></i>
                     <span>Bairro</span></a></li>
         </ul>
         <ul class="sidebar-menu">

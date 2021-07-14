@@ -21,9 +21,6 @@
                                     <th>Id</th>
                                     <th>Nome</th>
                                     <th>Slug</th>
-                                    <th>Visualizar</th>
-                                    <th>Editar</th>
-                                    <th>Deletar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,10 +32,7 @@
                                         <td>{{ ucfirst($permission->id) }}</td>
                                         <td>{{ ucfirst($permission->nome) }}</td>
                                         <td>{{ ucfirst($permission->slug) }}</td>
-                                        <td><a href="#" class="btn btn-info"><i class="fa fa-eye"></a></i></td>
-                                        <td><a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a></td>
-                                        <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
-                                    </tr>
+                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -47,6 +41,8 @@
             </div>
         </div>
     </div>
+    <!-- Modal de formulario para view de Permisssion -->
+
 
 @endsection
 @push('css')
@@ -54,11 +50,16 @@
     <link rel="stylesheet" href="{{ asset('backend/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
 @endpush
+@push('cssLibs')
+    <link rel="stylesheet" href="{{ asset('backend/prism/prism.css') }}">
+@endpush
 @push('jsLibs')
     <script src="{{ asset('backend/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('backend/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('backend/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('backend/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('backend/prism/prism.js') }}"></script>
+
 @endpush
 @push('js')
     <script>

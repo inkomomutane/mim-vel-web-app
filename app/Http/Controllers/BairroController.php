@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Bairro\Add;
 use App\Models\Bairro;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class BairroController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.bairro')->with('bairros',Bairro::all());
     }
 
     /**
@@ -30,12 +31,13 @@ class BairroController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Bairro\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Add $request)
     {
-        //
+        session()->flash('success','Addicionado na carrinha com sucesso');
+        return redirect()->route('bairro.index');
     }
 
     /**

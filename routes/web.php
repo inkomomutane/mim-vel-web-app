@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BairroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/permission', 'RoleController@index')->name('permissions');
+Route::resource('bairro', 'BairroController');
 
 
 Route::middleware(['auth', 'ceo'])->group(function () {

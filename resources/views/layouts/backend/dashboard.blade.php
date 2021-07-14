@@ -36,6 +36,7 @@
             <!-- Start app Footer part -->
             @include('layouts.backend.footer.footer')
         </div>
+        @yield('modals')
     </div>
     <!-- General JS Scripts -->
     <script src="{{ asset('backend/js/bundle.js') }}"></script>
