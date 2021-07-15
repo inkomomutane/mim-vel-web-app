@@ -41,15 +41,15 @@
                     <span>Bairro</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-city"></i>
+            <li class="@if (Route::is('cidade.index')) active @endif"><a class="nav-link" href="{{ route('cidade.index') }}"><i class="fas fa-city"></i>
                     <span>Cidade</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-check-double"></i>
+            <li class="c"><a class="nav-link" href="{{ route('status.index') }}"><i class="fas fa-check-double"></i>
                     <span>Status</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-tasks"></i> <span>Tipos de
+            <li class="@if (Route::is('tipodeimovel.index')) active @endif"><a class="nav-link" href="{{ route('tipodeimovel.index') }}"><i class="fas fa-tasks"></i> <span>Tipos de
                         imóvel</span></a></li>
         </ul>
         <ul class="sidebar-menu">

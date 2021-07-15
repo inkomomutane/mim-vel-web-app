@@ -25,7 +25,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/permission', 'RoleController@index')->name('permissions');
 Route::resource('bairro', 'BairroController');
-
+Route::resource('cidade', 'CidadeController');
+Route::resource('status', 'StatusController');
+Route::resource('tipodeimovel', 'TipoDeImovelController');
 
 Route::middleware(['auth', 'ceo'])->group(function () {
 

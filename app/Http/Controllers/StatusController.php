@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Status\Add;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.status')->with('statuses', Status::all());
     }
 
     /**
@@ -30,12 +31,19 @@ class StatusController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Status\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Add $request)
     {
-        //
+        try {
+            Status::create($request->all());
+            session()->flash('success', 'Status criado com sucesso.');
+            return redirect()->route('status.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação do status.');
+            return redirect()->route('status.index');
+        }
     }
 
     /**
@@ -67,9 +75,16 @@ class StatusController extends Controller
      * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Status $status)
+    public function update(Add $request, Status $status)
     {
-        //
+        try {
+            $status->update($request->all());
+            session()->flash('success', 'Status actualizado com sucesso.');
+            return redirect()->route('status.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do status.');
+            return redirect()->route('status.index');
+        }
     }
 
     /**
@@ -80,6 +95,20 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
+
+
+        if ($status && $status->imovels->count() == 0) {
+            try {
+                $status->delete();
+                session()->flash('success', 'Status deletado com sucesso.');
+                return redirect()->route('status.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar status.');
+                return redirect()->route('status.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O status esta sendo usado em um imóvel."');
+            return redirect()->route('status.index');
+        }
     }
 }

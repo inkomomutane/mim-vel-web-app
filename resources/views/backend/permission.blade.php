@@ -65,7 +65,7 @@
     <script>
         $("#permissions").dataTable({
             "lengthChange": false,
-            "pageLength": 10,
+            "pageLength": 5,
             "info": false,
             "language": {
                 'sSearch': 'Pesquisar Permissão',

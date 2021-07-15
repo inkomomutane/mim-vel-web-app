@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Cidade\Add;
 use App\Models\Cidade;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CidadeController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.cidade')->with('cidades', Cidade::all());
     }
 
     /**
@@ -30,18 +31,25 @@ class CidadeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Cidade\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Add $request)
     {
-        //
+        try {
+            Cidade::create($request->all());
+            session()->flash('success', 'Cidade criada com sucesso.');
+            return redirect()->route('cidade.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação da cidade.');
+            return redirect()->route('cidade.index');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cidade  $cidade
+     * @param  \App\Models\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
     public function show(Cidade $cidade)
@@ -52,7 +60,7 @@ class CidadeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cidade  $cidade
+     * @param  \App\Models\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
     public function edit(Cidade $cidade)
@@ -64,22 +72,43 @@ class CidadeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cidade  $cidade
+     * @param  \App\Models\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cidade $cidade)
+    public function update(Add $request, Cidade $cidade)
     {
-        //
+        try {
+            $cidade->update($request->all());
+            session()->flash('success', 'Cidade actualizada com sucesso.');
+            return redirect()->route('cidade.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização da cidade.');
+            return redirect()->route('cidade.index');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cidade  $cidade
+     * @param  \App\Models\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cidade $cidade)
     {
-        //
+
+
+        if ($cidade && $cidade->imovels->count() == 0) {
+            try {
+                $cidade->delete();
+                session()->flash('success', 'Cidade deletada com sucesso.');
+                return redirect()->route('cidade.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar cidade.');
+                return redirect()->route('cidade.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O cidade esta sendo usada em um imóvel."');
+            return redirect()->route('cidade.index');
+        }
     }
 }
