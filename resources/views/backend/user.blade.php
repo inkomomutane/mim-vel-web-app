@@ -106,10 +106,29 @@
                     @csrf
                     <div class="modal-body">
                         <div class="container form-group row">
-
-                            <div class="col-md-12">
+                          <div class="col-md-12">
                                 <input id="nome" type="text" class="form-control" name="name"
                                     placeholder="Digite nome do usuário" required autocomplete="name" autofocus>
+                            </div>
+                            <div class="py-2 col-md-12">
+                                <input id="email" type="email" class="form-control" name="email"
+                                    placeholder="Digite o email do usuário" required autocomplete="email" autofocus>
+                            </div>
+                            <div class="py-2 col-md-12">
+                                <input id="password" type="password" class="form-control" name="password"
+                                    placeholder="Digite o password do usuário" required autocomplete="new-password" autofocus>
+                            </div>
+                            <div class="py-2 col-md-12">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                                    placeholder="Confirme o password do usuário" required autocomplete="new-password" autofocus>
+                            </div>
+                            <div class="col-md-12" >
+                                <label for="role_id" class="py-1 col-md-12">Permissões</label>
+                                <select class="form-control" name="role_id">
+                                    @foreach ($roles as $role)
+                                        <option value="{{$role->id}}">{{$role->nome}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -182,6 +201,10 @@
 @endpush
 @push('cssLibs')
     <link rel="stylesheet" href="{{ asset('backend/prism/prism.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/cropper/cropper.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/jquery-selectric/selectric.css') }}">
+
 @endpush
 @push('jsLibs')
     <script src="{{ asset('backend/datatables/datatables.min.js') }}"></script>
@@ -189,6 +212,9 @@
     <script src="{{ asset('backend/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('backend/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('backend/prism/prism.js') }}"></script>
+    <script src="{{ asset('backend/cropper/cropper.js') }}"></script>
+    <script src="{{ asset('backend/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('backend/jquery-selectric/jquery.selectric.min.js') }}"></script>
 
 @endpush
 @push('js')
@@ -225,7 +251,6 @@
                 var modal = $(this);
                 var form = modal.find('#delete_form');
                 form.attr('action', '{!! route('user.index') !!}' + '/' + code.id);
-
             });
         });
     </script>

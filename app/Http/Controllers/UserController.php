@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\Create;
+use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.user')->with('users', User::all());
+        return view('backend.user')->with(['users'=> User::all(),'roles'=> Role::all()]);
     }
 
     /**
