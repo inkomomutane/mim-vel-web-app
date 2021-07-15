@@ -3,8 +3,9 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class Create extends FormRequest
+class Delete extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,10 @@ class Create extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (strtolower(Auth::user()->role->slug) == strtolower("ceo") || strtolower(Auth::user()->role->slug) == strtolower("admin")) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -24,10 +28,7 @@ class Create extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role_id' =>  'required|integer',
+            //
         ];
     }
 }

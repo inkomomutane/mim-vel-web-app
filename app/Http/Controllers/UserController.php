@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\Create;
+use App\Http\Requests\User\Delete;
+use App\Http\Requests\User\Update;
 use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -72,17 +75,30 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\Update  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Create $request, User $user)
+    public function update(Update $request, User $user)
     {
+      $data = $request->all();
+
+      $dataUpdate  = array();
+      foreach ($data as $key => $value) {
+          if($key == "password" && $value ){
+              $value = Hash::make($value);
+          }
+         if ($value) {
+            $dataUpdate[$key] = $value;
+         }
+      }
+   // dd($dataUpdate);
         try {
-            $user->update($request->all());
+            $user->update($dataUpdate);
             session()->flash('success', 'User actualizado com sucesso.');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
+            dd($e);
             session()->flash('error', 'Erro na actualização do user.');
             return redirect()->route('user.index');
         }
@@ -94,21 +110,20 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Delete $request,User $user)
     {
 
-
-        if ($user && $user->imovels->count() == 0) {
+        if ($user && $user->imovels->count() == 0 && $user->role && strtolower($user->role->slug) != strtolower("ceo")) {
             try {
                 $user->delete();
-                session()->flash('success', 'User deletado com sucesso.');
+                session()->flash('success', 'Usuário deletado com sucesso.');
                 return redirect()->route('user.index');
             } catch (\Throwable $e) {
                 session()->flash('error', 'Erro ao deletar user.');
                 return redirect()->route('user.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " O user esta sendo usado em um imóvel."');
+            session()->flash('error', 'Erro ao deletar: " O usuário esta sendo usado em um imóvel ou contacte o administrador do sistema."');
             return redirect()->route('user.index');
         }
     }

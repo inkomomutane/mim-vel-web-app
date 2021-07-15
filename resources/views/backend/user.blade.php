@@ -108,11 +108,11 @@
                         <div class="container form-group row">
                           <div class="col-md-12">
                                 <input id="nome" type="text" class="form-control" name="name"
-                                    placeholder="Digite nome do usuário" required autocomplete="name" autofocus>
+                                    placeholder="Digite nome do usuário" required autocomplete="name" autofocus value="{{ old('name') }}">
                             </div>
                             <div class="py-2 col-md-12">
                                 <input id="email" type="email" class="form-control" name="email"
-                                    placeholder="Digite o email do usuário" required autocomplete="email" autofocus>
+                                    placeholder="Digite o email do usuário" required autocomplete="email" autofocus value="{{ old('email') }}">
                             </div>
                             <div class="py-2 col-md-12">
                                 <input id="password" type="password" class="form-control" name="password"
@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-md-12" >
                                 <label for="role_id" class="py-1 col-md-12">Permissões</label>
-                                <select class="form-control" name="role_id">
+                                <select class="form-control selectric" name="role_id" value="{{ old('role_id') }}">
                                     @foreach ($roles as $role)
                                         <option value="{{$role->id}}">{{$role->nome}}</option>
                                     @endforeach
@@ -162,6 +162,26 @@
                             <div class="py-2 col-md-12">
                                 <input id="nome_edit" type="text" class="form-control" name="name"
                                     placeholder="Digite nome do usuário" required autocomplete="name" autofocus>
+                            </div>
+                            <div class="py-2 col-md-12">
+                                <input id="email_edit" type="email" class="form-control" name="email"
+                                    placeholder="Digite o email do usuário" required autocomplete="email" autofocus value="{{ old('email') }}">
+                            </div>
+                            <div class="py-2 col-md-12">
+                                <input id="password_edit" type="password" class="form-control" name="password"
+                                    placeholder="Digite o password do usuário"  autocomplete="new-password" autofocus>
+                            </div>
+                            <div class="py-2 col-md-12">
+                                <input id="password-confirm_edit" type="password" class="form-control" name="password_confirmation"
+                                    placeholder="Confirme o password do usuário"  autocomplete="new-password" autofocus>
+                            </div>
+                            <div class="col-md-12" >
+                                <label for="role_id" class="py-1 col-md-12">Permissões</label>
+                                <select class="form-control " name="role_id" value="{{ old('role_id') }}" id="role_id_edit">
+                                    @foreach ($roles as $role)
+                                        <option value="{{$role->id}}">{{$role->nome}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -204,7 +224,6 @@
     <link rel="stylesheet" href="{{ asset('backend/cropper/cropper.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/jquery-selectric/selectric.css') }}">
-
 @endpush
 @push('jsLibs')
     <script src="{{ asset('backend/datatables/datatables.min.js') }}"></script>
@@ -242,6 +261,16 @@
                 form.attr('action', '{!! route('user.index') !!}' + '/' + code.id);
                 modal.find('#id_edit').val(code.id);
                 modal.find('#nome_edit').val(code.name);
+                modal.find('#email_edit').val(code.email);
+
+                var select = modal.find('select');
+                var array = select[0].options;
+                for (let index = 0; index < array.length; index++) {
+                    if (array[index].value == (''+ code.role_id +'')) {
+                        array[index].selected = true;
+                    }
+                }
+
             });
         });
         $(function() {
@@ -252,6 +281,9 @@
                 var form = modal.find('#delete_form');
                 form.attr('action', '{!! route('user.index') !!}' + '/' + code.id);
             });
+        });
+        $(function(){
+          // $('select').selectric();
         });
     </script>
 @endpush
