@@ -32,7 +32,7 @@
                     <span>Estatísticas</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-users"></i>
+            <li class="@if (Route::is('user.index')) active @endif"><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i>
                     <span>Usuarios</span></a></li>
         </ul>
         <ul class="sidebar-menu">

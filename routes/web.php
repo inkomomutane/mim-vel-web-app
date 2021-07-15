@@ -28,6 +28,7 @@ Route::resource('bairro', 'BairroController');
 Route::resource('cidade', 'CidadeController');
 Route::resource('status', 'StatusController');
 Route::resource('tipodeimovel', 'TipoDeImovelController');
+Route::resource('user', 'UserController');
 
 Route::middleware(['auth', 'ceo'])->group(function () {
 
