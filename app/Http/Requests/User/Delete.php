@@ -14,10 +14,7 @@ class Delete extends FormRequest
      */
     public function authorize()
     {
-        if (strtolower(Auth::user()->role->slug) == strtolower("ceo") || strtolower(Auth::user()->role->slug) == strtolower("admin")) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**

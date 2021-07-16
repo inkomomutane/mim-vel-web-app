@@ -4,7 +4,6 @@ namespace App;
 
 use App\Models\Agenda;
 use App\Models\Imovel;
-use App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,10 +13,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
 
     protected $table = 'users';
-
-	protected $casts = [
-		'role_id' => 'int'
-	];
 
 	protected $dates = [
 		'email_verified_at'
@@ -34,14 +29,9 @@ class User extends Authenticatable implements MustVerifyEmail
 		'email_verified_at',
 		'password',
 		'remember_token',
-		'role_id',
-		'image_url'
+		'image_url',
+		'profile_url'
 	];
-
-    public function role()
-	{
-		return $this->belongsTo(Role::class);
-	}
 
 	public function agendas()
 	{
