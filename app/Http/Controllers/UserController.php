@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\Create;
 use App\Http\Requests\User\Delete;
 use App\Http\Requests\User\Update;
-use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -15,11 +15,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('backend.user')->with(['users'=> User::all(),'roles'=> Role::all()]);
+            $users = User::all();
+
+            return view('backend.user')->with(['users' => $users]);
+
     }
 
     /**
@@ -58,7 +62,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        if ($user->id == Auth::user()->id) {
+            return $user;
+        }else{
+            return abort(404);
+        }
+
     }
 
     /**
@@ -81,18 +90,17 @@ class UserController extends Controller
      */
     public function update(Update $request, User $user)
     {
-      $data = $request->all();
+        $data = $request->all();
 
-      $dataUpdate  = array();
-      foreach ($data as $key => $value) {
-          if($key == "password" && $value ){
-              $value = Hash::make($value);
-          }
-         if ($value) {
-            $dataUpdate[$key] = $value;
-         }
-      }
-   // dd($dataUpdate);
+        $dataUpdate  = array();
+        foreach ($data as $key => $value) {
+            if ($key == "password" && $value) {
+                $value = Hash::make($value);
+            }
+            if ($value) {
+                $dataUpdate[$key] = $value;
+            }
+        }
         try {
             $user->update($dataUpdate);
             session()->flash('success', 'User actualizado com sucesso.');
@@ -110,10 +118,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Delete $request,User $user)
+    public function destroy(Delete $request, User $user)
     {
 
-        if ($user && $user->imovels->count() == 0 && $user->role && strtolower($user->role->slug) != strtolower("ceo")) {
+        if ($user && $user->imovels->count() == 0 ) {
             try {
                 $user->delete();
                 session()->flash('success', 'Usuário deletado com sucesso.');

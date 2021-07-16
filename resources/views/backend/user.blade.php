@@ -31,9 +31,6 @@
                 @error('email')
                     <strong>{{ $message }}</strong><br>
                 @enderror
-                @error('role_id')
-                    <strong>{{ $message }}</strong><br>
-                @enderror
             </div>
         </div>
     @endif
@@ -122,14 +119,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                                     placeholder="Confirme o password do usuário" required autocomplete="new-password" autofocus>
                             </div>
-                            <div class="col-md-12" >
-                                <label for="role_id" class="py-1 col-md-12">Permissões</label>
-                                <select class="form-control selectric" name="role_id" value="{{ old('role_id') }}">
-                                    @foreach ($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->nome}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
@@ -175,14 +165,7 @@
                                 <input id="password-confirm_edit" type="password" class="form-control" name="password_confirmation"
                                     placeholder="Confirme o password do usuário"  autocomplete="new-password" autofocus>
                             </div>
-                            <div class="col-md-12" >
-                                <label for="role_id" class="py-1 col-md-12">Permissões</label>
-                                <select class="form-control " name="role_id" value="{{ old('role_id') }}" id="role_id_edit">
-                                    @foreach ($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->nome}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
@@ -263,13 +246,7 @@
                 modal.find('#nome_edit').val(code.name);
                 modal.find('#email_edit').val(code.email);
 
-                var select = modal.find('select');
-                var array = select[0].options;
-                for (let index = 0; index < array.length; index++) {
-                    if (array[index].value == (''+ code.role_id +'')) {
-                        array[index].selected = true;
-                    }
-                }
+
 
             });
         });
