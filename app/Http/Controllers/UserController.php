@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\Create;
 use App\Http\Requests\User\Delete;
 use App\Http\Requests\User\Update;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

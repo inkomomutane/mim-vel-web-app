@@ -6,13 +6,12 @@
 
 namespace App\Models;
 
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Agenda
- *
+ * 
  * @property int $id
  * @property string|null $nome_cliente
  * @property string|null $contacto
@@ -21,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property int|null $corretor_id
- *
+ * 
  * @property User|null $user
  *
  * @package App\Models
