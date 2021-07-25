@@ -28,6 +28,7 @@ Route::resource('bairro', 'BairroController')->middleware('verified');
 Route::resource('cidade', 'CidadeController')->middleware('verified');
 Route::resource('status', 'StatusController')->middleware('verified');
 Route::resource('tipodeimovel', 'TipoDeImovelController')->middleware('verified');
+Route::resource('imovel', 'ImovelController')->middleware('verified');
 Route::resource('user', 'UserController');
 
 Route::middleware(['auth', 'ceo'])->group(function () {

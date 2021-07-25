@@ -30,8 +30,8 @@
                                             <i class="fas fa-th"></i>
                                         </td>
                                         <td>{{ ucfirst($permission->id) }}</td>
-                                        <td>{{ ucfirst($permission->nome) }}</td>
-                                        <td>{{ ucfirst($permission->slug) }}</td>
+                                        <td>{{ ucfirst($permission->name) }}</td>
+                                        <td>{{ ucfirst($permission->guard_name) }}</td>
                                      </tr>
                                 @endforeach
                             </tbody>

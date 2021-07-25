@@ -14,7 +14,7 @@ class ImovelController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.imovel')->with('imoveis',Imovel::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class ImovelController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.imovelCreate');
     }
 
     /**

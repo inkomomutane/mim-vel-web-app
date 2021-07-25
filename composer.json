@@ -26,7 +26,8 @@
         "mpociot/laravel-test-factory-helper": "^2.1",
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5",
-        "reliese/laravel": "^1.1"
+        "reliese/laravel": "^1.1",
+        "thedoctor0/laravel-factory-generator": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,

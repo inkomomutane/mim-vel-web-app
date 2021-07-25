@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
     {
             $users = User::all();
 
-            return view('backend.user')->with(['users' => $users]);
+            return view('backend.user')->with(['users' => $users,'roles'=>Role::all()]);
 
     }
 
@@ -45,7 +46,19 @@ class UserController extends Controller
     public function store(Create $request)
     {
         try {
-            User::create($request->all());
+            $data = $request->all();
+
+            $dataCreate  = array();
+            foreach ($data as $key => $value) {
+                if ($key == "password"  || $key == "password_confirmation" && $value) {
+                    $value = Hash::make($value);
+                }
+                if ($value && $key!='roles') {
+                    $dataCreate[$key] = $value;
+                }
+            }
+            $user = User::create($dataCreate);
+            $user->syncRoles([$request->roles]);
             session()->flash('success', 'User criado com sucesso.');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {

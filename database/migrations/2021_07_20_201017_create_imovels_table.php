@@ -17,7 +17,7 @@ class CreateImovelsTable extends Migration
             $table->bigIncrements('id');
             $table->text('descricao')->nullable();
             $table->double('preco')->nullable();
-            $table->year('ano')->nullable();
+            $table->timestamp('ano')->nullable();
             $table->integer('andar')->nullable();
             $table->double('area')->nullable();
             $table->integer('quartos')->nullable();

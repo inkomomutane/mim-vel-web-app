@@ -120,6 +120,15 @@
                                     placeholder="Confirme o password do usuário" required autocomplete="new-password" autofocus>
                             </div>
 
+                            <div class="py-2 col-md-12">
+                                <label for="roles">Permissões</label>
+                                <select name="roles" id="create_roles" class="form-control">
+                                    @foreach ($roles as $role)
+                                        <option value="{{$role->name}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
@@ -165,6 +174,7 @@
                                 <input id="password-confirm_edit" type="password" class="form-control" name="password_confirmation"
                                     placeholder="Confirme o password do usuário"  autocomplete="new-password" autofocus>
                             </div>
+
 
                         </div>
                     </div>
@@ -245,9 +255,6 @@
                 modal.find('#id_edit').val(code.id);
                 modal.find('#nome_edit').val(code.name);
                 modal.find('#email_edit').val(code.email);
-
-
-
             });
         });
         $(function() {

@@ -8,11 +8,13 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Painel Administrativo</li>
-            <li class="@if (Route::is('home')) active @endif"><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-th-large"></i>
-                    <span>Dashboard</span></a></li>
+            <li class="@if (Route::is('home')) active @endif"><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-chart-line"></i>
+                <span>Estatísticas</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>
+            <li class="
+            @if (Route::is('imovel.*')) active @endif
+            "><a class="nav-link" href="{{ route('imovel.index') }}"><i class="fas fa-home"></i>
                     <span>Imóveis</span></a></li>
         </ul>
         <ul class="sidebar-menu">
@@ -27,10 +29,7 @@
             <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-comments"></i>
                     <span>Mensagens</span></a></li>
         </ul>
-        <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-chart-line"></i>
-                    <span>Estatísticas</span></a></li>
-        </ul>
+
         <ul class="sidebar-menu">
             <li class="@if (Route::is('user.index')) active @endif"><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i>
                     <span>Usuarios</span></a></li>
@@ -45,7 +44,7 @@
                     <span>Cidade</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class="c"><a class="nav-link" href="{{ route('status.index') }}"><i class="fas fa-check-double"></i>
+            <li class="@if (Route::is('status.index')) active @endif"><a class="nav-link" href="{{ route('status.index') }}"><i class="fas fa-check-double"></i>
                     <span>Status</span></a></li>
         </ul>
         <ul class="sidebar-menu">
