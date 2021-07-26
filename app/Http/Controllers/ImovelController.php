@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bairro;
+use App\Models\Cidade;
 use App\Models\Imovel;
+use App\Models\Status;
+use App\Models\TipoDeImovel;
 use Illuminate\Http\Request;
 
 class ImovelController extends Controller
@@ -24,7 +28,14 @@ class ImovelController extends Controller
      */
     public function create()
     {
-        return view('backend.imovelCreate');
+
+        return view('backend.imovelCreatEdit')->with([
+            'cidades' => Cidade::all(),
+            'bairros' => Bairro::all(),
+            'tipoDeImoveis' =>TipoDeImovel::all(),
+            'statuses' =>Status::all()
+
+        ]);
     }
 
     /**
@@ -57,7 +68,14 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
-        //
+        return view('backend.imovelCreatEdit')->with([
+            'cidades' => Cidade::all(),
+            'bairros' => Bairro::all(),
+            'tipoDeImoveis' =>TipoDeImovel::all(),
+            'statuses' =>Status::all(),
+            'imovel'=>$imovel
+
+        ]);
     }
 
     /**
