@@ -7,11 +7,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -29,13 +29,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @property Collection|Agenda[] $agendas
  * @property Collection|Imovel[] $imovels
- * @property Collection|UsersRating[] $users_ratings
  *
  * @package App\Models
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable,HasRoles;
+
 	protected $table = 'users';
 
 	protected $dates = [
@@ -65,10 +65,5 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function imovels()
 	{
 		return $this->hasMany(Imovel::class, 'postado_por');
-	}
-
-	public function users_ratings()
-	{
-		return $this->hasMany(UsersRating::class, 'users_id');
 	}
 }

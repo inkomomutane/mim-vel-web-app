@@ -15,6 +15,7 @@ class CreateImovelsTable extends Migration
     {
         Schema::create('imovels', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('titulo')->nullable();
             $table->text('descricao')->nullable();
             $table->double('preco')->nullable();
             $table->timestamp('ano')->nullable();
@@ -23,9 +24,11 @@ class CreateImovelsTable extends Migration
             $table->integer('quartos')->nullable();
             $table->integer('suites')->nullable();
             $table->integer('garagens')->nullable();
-            $table->integer('pcinas')->nullable();
+            $table->integer('piscinas')->nullable();
             $table->text('endereco')->nullable();
             $table->text('mapa')->nullable();
+            $table->boolean('published')->nullable()->default(0);
+            $table->text('default_image_link')->nullable();
             $table->unsignedBigInteger('condicao_id')->nullable()->index('fk_imovel_condicao1_idx');
             $table->unsignedBigInteger('bairro_id')->nullable()->index('fk_imovel_bairro2_idx');
             $table->unsignedBigInteger('cidade_id')->nullable()->index('fk_imovel_cidade1_idx');

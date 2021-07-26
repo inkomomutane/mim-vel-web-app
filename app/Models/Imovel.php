@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Imovel
  * 
  * @property int $id
+ * @property string|null $titulo
  * @property string|null $descricao
  * @property float|null $preco
  * @property Carbon|null $ano
@@ -23,9 +24,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $quartos
  * @property int|null $suites
  * @property int|null $garagens
- * @property int|null $pcinas
+ * @property int|null $piscinas
  * @property string|null $endereco
  * @property string|null $mapa
+ * @property bool|null $published
+ * @property string|null $default_image_link
  * @property int|null $condicao_id
  * @property int|null $bairro_id
  * @property int|null $cidade_id
@@ -47,6 +50,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Collection|Comentario[] $comentarios
  * @property Collection|DenuniasImovel[] $denunias_imovels
  * @property Collection|Foto[] $fotos
+ * @property Collection|UsersRating[] $users_ratings
  * @property Collection|Video[] $videos
  *
  * @package App\Models
@@ -63,7 +67,8 @@ class Imovel extends Model
 		'quartos' => 'int',
 		'suites' => 'int',
 		'garagens' => 'int',
-		'pcinas' => 'int',
+		'piscinas' => 'int',
+		'published' => 'bool',
 		'condicao_id' => 'int',
 		'bairro_id' => 'int',
 		'cidade_id' => 'int',
@@ -79,6 +84,7 @@ class Imovel extends Model
 	];
 
 	protected $fillable = [
+		'titulo',
 		'descricao',
 		'preco',
 		'ano',
@@ -87,9 +93,11 @@ class Imovel extends Model
 		'quartos',
 		'suites',
 		'garagens',
-		'pcinas',
+		'piscinas',
 		'endereco',
 		'mapa',
+		'published',
+		'default_image_link',
 		'condicao_id',
 		'bairro_id',
 		'cidade_id',
@@ -143,6 +151,11 @@ class Imovel extends Model
 	public function fotos()
 	{
 		return $this->hasMany(Foto::class);
+	}
+
+	public function users_ratings()
+	{
+		return $this->hasMany(UsersRating::class, 'imovels_id');
 	}
 
 	public function videos()

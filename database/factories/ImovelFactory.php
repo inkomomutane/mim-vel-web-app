@@ -5,6 +5,7 @@ use Faker\Generator as Faker;
 /* @var  $factory \Illuminate\Database\Eloquent\Factory */
 $factory->define(App\Models\Imovel::class, function (Faker $faker) {
     return [
+        'titulo' => $faker->word,
         'descricao' => $faker->text,
         'preco' => $faker->randomFloat(),
         'ano' => $faker->dateTime(),
@@ -13,9 +14,11 @@ $factory->define(App\Models\Imovel::class, function (Faker $faker) {
         'quartos' => $faker->randomNumber(),
         'suites' => $faker->randomNumber(),
         'garagens' => $faker->randomNumber(),
-        'pcinas' => $faker->randomNumber(),
+        'piscinas' => $faker->randomNumber(),
         'endereco' => $faker->text,
         'mapa' => $faker->text,
+        'published' => $faker->boolean,
+        'default_image_link' => $faker->text,
         'condicao_id' => factory(App\Models\Condicao::class),
         'bairro_id' => factory(App\Models\Bairro::class),
         'cidade_id' => factory(App\Models\Cidade::class),
