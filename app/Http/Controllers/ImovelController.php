@@ -46,7 +46,7 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -74,7 +74,6 @@ class ImovelController extends Controller
             'tipoDeImoveis' =>TipoDeImovel::all(),
             'statuses' =>Status::all(),
             'imovel'=>$imovel
-
         ]);
     }
 
@@ -87,7 +86,7 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
-        //
+        return $request->all();
     }
 
     /**
