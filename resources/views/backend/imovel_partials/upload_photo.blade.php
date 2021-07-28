@@ -8,8 +8,8 @@
     </div>
     <div class="col-sm-10">
         <div class="py-2 ">
-                 <img src="" alt="" srcset="" id="imovel_image_preview" class="col-sm-12" style="border-radius: 8px">
-                 <input type="text"  alt="" hidden name="default_image_link" id="imovel_image_preview_input" value="">
+                 <img src="@if (\Route::current()->getName() == 'imovel.edit' ) {{ asset('storage/'.$imovel->default_image_link) }} @endif" alt="" srcset="" id="imovel_image_preview" class="col-sm-12" style="border-radius: 8px">
+                 <input type="text"  alt="" hidden name="default_image_link" id="imovel_image_preview_input">
         </div>
 
     </div>

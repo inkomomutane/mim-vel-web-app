@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Imovel
- * 
+ *
  * @property int $id
  * @property string|null $titulo
  * @property string|null $descricao
@@ -40,7 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * 
+ *
  * @property Bairro|null $bairro
  * @property Cidade|null $cidade
  * @property Condicao|null $condicao
@@ -95,6 +95,7 @@ class Imovel extends Model
 		'garagens',
 		'piscinas',
 		'endereco',
+        'banheiros',
 		'mapa',
 		'published',
 		'default_image_link',

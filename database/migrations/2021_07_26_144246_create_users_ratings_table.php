@@ -19,7 +19,6 @@ class CreateUsersRatingsTable extends Migration
             $table->float('rating', 10, 0)->nullable();
             $table->timestamps();
             $table->bigIncrements('id');
-            $table->primary(['id', 'users_id', 'imovels_id']);
         });
     }
 

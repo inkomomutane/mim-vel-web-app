@@ -16,7 +16,7 @@
                 <label class="col-form-label text-md-left col-sm-12">Título do imóvel no site</label>
                 <div class="col-sm-12">
                     <input type="text" name="titulo" id="titulo" class="form-control"
-                        placeholder="Título do imóvel no site" @if (\Route::current()->getName() == 'imovel.edit') value = "{{ $imovel->titulo }}" @endif>
+                        placeholder="Título do imóvel no site" @if (\Route::current()->getName() == 'imovel.edit') value = "{{ $imovel->titulo }}" @endif required autofocus>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -70,7 +70,7 @@
             <div class="col-sm-3">
                 <label class="col-form-label text-md-left col-sm-12">Ano (Data) </label>
                 <div class="col-sm-12">
-                    <input type="date" name="ano" id="ano" class="form-control" @if (\Route::current()->getName() == 'imovel.edit') value = '{{ date_format($imovel->ano, 'Y-m-d') }}' @endif>
+                    <input type="date" name="ano" id="ano" class="form-control" @if (\Route::current()->getName() == 'imovel.edit' && $imovel->ano) value = '{{ date_format($imovel->ano, 'Y-m-d') }}' @endif>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -134,7 +134,18 @@
 
         <div class="form-group row mb-4">
             <div class="col-sm-12">
-                <label class="col-form-label text-md-left col-sm-12">Descrição</label>
+                <div class="section-title">Mapa da localização do imóvel</div>
+                <div class="col-sm-12">
+                <textarea name="mapa" class="form-control" style="height: 200px" placeholder="Por favor insira o Embeded do mapa"  @if (\Route::current()->getName() == 'imovel.edit')
+
+                @endif>  {{ $imovel->mapa }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mb-4">
+            <div class="col-sm-12">
+                <div class="section-title">Descrição</div>
                 <div class="col-sm-12 ">
                     <textarea class="summernote-simple form-control bg-light" name="descricao" id="descricao"> @if (\Route::current()->getName() == 'imovel.edit')
                                     {{ $imovel->descricao }}
