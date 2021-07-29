@@ -2097,7 +2097,7 @@ h1, h2, h3, h4, h5, h6 {
 .main-menu {
   padding-bottom: 20px;
   padding-top: 20px;
-  background: rgba(255, 255, 255, 0.15);
+  background: #fff;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -2113,7 +2113,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #header.header-scrolled {
   transition: all 0.5s;
-  background-color: rgba(34, 34, 34, 0.9);
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 #header.header-scrolled .header-top {
@@ -2192,11 +2193,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Nav Meu Styling */
 .nav-menu a {
-  padding: 0 8px 0px 8px;
+  padding: 0 12px 0px 12px;
   text-decoration: none;
   display: inline-block;
-  color: #fff;
-  font-weight: 500;
+  color: #5b5959;
+  font-weight: 550;
   font-size: 12px;
   text-transform: uppercase;
   outline: none;
@@ -2254,7 +2255,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #mobile-nav-toggle i {
-  color: #fff;
+  color: rgb(73, 72, 72);
   font-weight: 900;
 }
 
@@ -2362,7 +2363,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*  Homepage Styles
 /* =================================== */
 .section-gap {
-  padding: 120px 0;
+  padding: 50px 0;
 }
 
 .alert-msg {
@@ -2747,7 +2748,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-other-issue h4 {
-  margin: 20px 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -2765,7 +2767,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*-------- end other-issue Area ------------*/
 /*--------- start testimonial area  -------------*/
 .testimonial-area {
-  background-color: #f9f9ff;
+  background-color: #e9eaff;
 }
 
 .testimonial-area .owl-dots {
@@ -3006,7 +3008,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .about-banner {
-  background: url(../img/top-banner.jpg) center;
   background-size: cover;
 }
 
@@ -4488,9 +4489,15 @@ body.mobile-nav-active #mobile-nav-toggle {
 .footer-bottom {
   padding-top: 40px;
   margin-top: 20px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #3333331f;
 }
 
 .footer-text a, .footer-text i {
   color: #f8b600;
+}
+.menu-active{
+    color:rgba(248, 182, 0, 0.85) !important;
+}
+.about-banner{
+    margin-top: 64px;
 }

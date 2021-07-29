@@ -127,11 +127,7 @@ class ImovelController extends Controller
                     $dataUpdate[$key] = $value;
                 }
             }
-            $status = $imovel->update($dataUpdate);
-            if ($status && $request->default_image_link!=null) {
-                $old_image = $imovel->default_image_link;
-                Storage::delete('public/' . $old_image);
-            }
+            $imovel->update($dataUpdate);
             session()->flash('success', 'Imóvel actualizado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {

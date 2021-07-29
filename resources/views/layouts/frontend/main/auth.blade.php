@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('backend/fontawesome/css/all.min.css') }}">
 
     <!-- CSS Libraries -->
-    @rstack('cssLibs')
+    @stack('cssLibs')
     <!-- Page Specific CSS File -->
     @stack('css')
         <!-- Template CSS -->
