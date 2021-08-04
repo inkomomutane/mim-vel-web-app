@@ -17,10 +17,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.welcome');
-});
-Route::get('/test', function () {
-    return abort(503);
-});
+})->name('welcome');
+
+Route::get('/contact', function () {
+    return view('frontend.contact');
+})->name('contact');
+
+Route::get('/about', function () {
+    return view('frontend.about');
+})->name('about');
+
+Route::get('/complaint', function () {
+    return view('frontend.complaint');
+})->name('complaint');
+
+Route::get('/search', function () {
+    return view('frontend.search');
+})->name('search');
+
 
 Auth::routes(['verify' => true,'register'=>false]);
 
@@ -34,6 +48,9 @@ Route::resource('tipodeimovel', 'TipoDeImovelController')->middleware('verified'
 Route::resource('imovel', 'ImovelController')->middleware('verified');
 Route::resource('user', 'UserController');
 
+
+
+
 Route::middleware(['auth', 'ceo'])->group(function () {
 
 });
@@ -43,5 +60,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'corretor'])->group(function () {
 
 });
-
-/** */
