@@ -11,7 +11,13 @@
                 <li><a href="#">Corretores</a></li>
                 <li><a href="#">Sobre nós</a></li>
                 <li><a href="#">Contacto</a></li>
-                <li><a href="#">Meu perfil</a></li>
+                <li><a href="
+                    @guest {{ route('login') }} @else
+                        {{ route('home') }}
+                    @endguest
+                    ">Meu perfil</a></li>
+
+
             </ul>
           </nav><!-- #nav-menu-container -->
         </div>

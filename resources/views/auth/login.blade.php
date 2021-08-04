@@ -1,4 +1,6 @@
-@extends('layouts.frontend.auth')
+@include('auth.index')
+{{--
+    @extends('layouts.backend.dashboard')
 
 @section('content')
 <div class="container">
@@ -70,4 +72,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection--}}

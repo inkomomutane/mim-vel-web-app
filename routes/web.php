@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.welcome');
 });
+Route::get('/test', function () {
+    return abort(503);
+});
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true,'register'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 

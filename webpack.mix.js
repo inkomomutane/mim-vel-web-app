@@ -13,5 +13,6 @@ const mix = require('laravel-mix');
 
 mix.copyDirectory('resources/backend','public/backend')
 .copyDirectory('resources/frontend','public/frontend')
-.sass('resources/sass/app.scss', 'public/frontend/css');
+.copyDirectory('resources/login-form','public/login-form')
+//.sass('resources/sass/app.scss', 'public/frontend/css');
 
