@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('frontend.welcome');
 })->name('welcome');
 
+Route::get('/test', function () {
+    return abort(401);
+});
 Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
@@ -31,10 +34,17 @@ Route::get('/complaint', function () {
     return view('frontend.complaint');
 })->name('complaint');
 
+Route::get('/imo', function () {
+    return view('frontend.imovel');
+})->name('imo');
+
 Route::get('/search', function () {
     return view('frontend.search');
 })->name('search');
 
+Route::get('/corretor', function () {
+    return view('frontend.search');
+})->name('corretor');
 
 Auth::routes(['verify' => true,'register'=>false]);
 
