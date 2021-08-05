@@ -35,6 +35,8 @@ class UsersRating extends Model
 	];
 
 	protected $fillable = [
+		'users_id',
+		'imovels_id',
 		'rating'
 	];
 

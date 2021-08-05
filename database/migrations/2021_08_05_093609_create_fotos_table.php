@@ -17,7 +17,8 @@ class CreateFotosTable extends Migration
             $table->bigIncrements('id');
             $table->text('url')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('imovel_id')->nullable()->index('fk_foto_imovel1_idx');
+            $table->unsignedBigInteger('fotable_id')->nullable();
+            $table->string('fotable_type', 191)->nullable();
         });
     }
 

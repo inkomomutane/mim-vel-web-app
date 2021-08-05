@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVideosTable extends Migration
+class CreateWebLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('url')->nullable();
+        Schema::create('web_links', function (Blueprint $table) {
             $table->timestamps();
-            $table->unsignedBigInteger('imovel_id')->nullable()->index('fk_video_imovel1_idx');
+            $table->bigIncrements('id');
+            $table->string('url', 191)->nullable();
+            $table->string('icon', 45)->nullable();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('web_links');
     }
 }

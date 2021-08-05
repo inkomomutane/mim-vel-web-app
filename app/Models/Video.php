@@ -11,14 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Video
- * 
+ *
  * @property int $id
  * @property string|null $url
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property int|null $imovel_id
- * 
- * @property Imovel|null $imovel
+ * @property int|null $videoble_id
+ * @property string|null $videoble_type
  *
  * @package App\Models
  */
@@ -27,16 +26,16 @@ class Video extends Model
 	protected $table = 'videos';
 
 	protected $casts = [
-		'imovel_id' => 'int'
+		'videoble_id' => 'int'
 	];
 
 	protected $fillable = [
 		'url',
-		'imovel_id'
+		'videoble_id',
+		'videoble_type'
 	];
-
-	public function imovel()
-	{
-		return $this->belongsTo(Imovel::class);
-	}
+    public function videoble()
+    {
+        return $this->morphTo();
+    }
 }

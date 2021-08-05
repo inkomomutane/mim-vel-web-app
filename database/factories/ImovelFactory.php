@@ -1,14 +1,16 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Date;
 
 /* @var  $factory \Illuminate\Database\Eloquent\Factory */
 $factory->define(App\Models\Imovel::class, function (Faker $faker) {
     return [
         'titulo' => $faker->word,
-        'descricao' => $faker->text,
+        'descricao' => $faker->word,
+        'banheiros' => $faker->randomNumber(),
         'preco' => $faker->randomFloat(),
-        'ano' => $faker->dateTime(),
+        'ano' => Date::now(),
         'andar' => $faker->randomNumber(),
         'area' => $faker->randomFloat(),
         'quartos' => $faker->randomNumber(),
@@ -18,14 +20,13 @@ $factory->define(App\Models\Imovel::class, function (Faker $faker) {
         'endereco' => $faker->text,
         'mapa' => $faker->text,
         'published' => $faker->boolean,
-        'default_image_link' => $faker->text,
-        'condicao_id' => factory(App\Models\Condicao::class),
-        'bairro_id' => factory(App\Models\Bairro::class),
-        'cidade_id' => factory(App\Models\Cidade::class),
-        'tipo_de_imovel_id' => factory(App\Models\TipoDeImovel::class),
-        'status_id' => factory(App\Models\Status::class),
+        'condicao_id' => $faker->numberBetween(4,15),
+        'bairro_id' => $faker->numberBetween(4,15),
+        'cidade_id' => $faker->numberBetween(4,15),
+        'tipo_de_imovel_id' => $faker->numberBetween(4,15),
+        'status_id' => $faker->numberBetween(4,15),
         'views' => $faker->randomNumber(),
         'rating' => $faker->randomFloat(),
-        'postado_por' => factory(App\Models\User::class),
+        'postado_por' => $faker->numberBetween(4,15),
     ];
 });

@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\RemoveAccent;
 use App\Models\Bairro;
 use App\Models\Cidade;
+use App\Models\Foto;
 use App\Models\Imovel;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class ImovelController extends Controller
 {
+    use RemoveAccent;
     /**
      * Display a listing of the resource.
      *
@@ -47,32 +52,87 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-        $path =  str_replace(" ", "_", $this->str_without_accents($request->titulo));
-        $imageName = 'imoveis/' . $path . '.' . 'png';
+       // $path =  str_replace(" ", "_", $this->str_without_accents($request->titulo));
+        //$imageName = 'imoveis/' . $path . '.' . 'png';
 
         try {
             $data = $request->all();
             $dataCreate  = array();
             foreach ($data as $key => $value) {
-                if ($key == "default_image_link" && $value) {
-                    $image = str_replace('data:image/png;base64,', '', $value);
-                    $image = str_replace(' ', '+', $image);
-                    Storage::put('public/' . $imageName, base64_decode($image));
-                    $dataCreate[$key] = $imageName;
-                } else {
-                    $dataCreate[$key] = $value;
-                }
+                $dataCreate[$key] = $value;
+               // if ($key == "default_image_link" && $value) {
+                    //$image = str_replace('data:image/png;base64,', '', $value);
+                   // $image = str_replace(' ', '+', $image);
+                   // Storage::put('public/' . $imageName, base64_decode($image));
+                   // $dataCreate[$key] = $imageName;
+              //  } else {
+                  //  $dataCreate[$key] = $value;
+              //  }
             }
             Imovel::create($dataCreate);
             session()->flash('success', 'Imóvel criado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {
-            Storage::delete('public' . $imageName);
+           // Storage::delete('public' . $imageName);
             session()->flash('error', 'Erro na criação do imóvel.');
             return redirect()->route('imovel.index');
         }
     }
 
+    public function store_image(Request $request,Imovel $imovel)
+    {
+        $validation = $request->validate([
+            'default_image_link' => 'required'
+        ]);
+
+        if ($validation) {
+            try {
+                $date = date_format((new DateTime('now'))," Y m d H i s");
+                $path =  str_replace(" ", "_", $this->str_without_accents($imovel->titulo) . $date);
+                $imageName = 'imoveis/' . $path . '.' . 'png';
+                $image = str_replace('data:image/png;base64,', '', $request->default_image_link);
+                $image = str_replace(' ', '+', $image);
+                Storage::put('public/' . $imageName, base64_decode($image));
+                Foto::create([
+                    'fotable_id' =>$imovel->id,
+                    'fotable_type' => 'App\Models\Imovel',
+                    'url'=> $imageName
+                ]);
+                session()->flash('success', 'Foto criada com sucesso.');
+                return redirect()->back();
+
+            } catch (\Throwable $th) {
+
+                session()->flash('error', 'Erro na criação da Foto.');
+                return redirect()->back();
+            }
+        }
+        session()->flash('error', 'Erro na criação da Foto.');
+        return redirect()->back();
+    }
+
+    public function delete_image(Request $request,Imovel $imovel)
+    {
+
+        try {
+            foreach($request->all() as $id => $value){
+                if ($id != '_token') {
+                     $foto = $imovel->fotos->where('id',$id)->first();
+                     $foto->delete();
+                   //  dd($value);
+                     Storage::delete('public/'.$value);
+
+                }
+            }
+            session()->flash('success', 'Fotos deletadas com sucesso.');
+            return redirect()->back();
+
+        } catch (\Throwable $th) {
+            session()->flash('error', 'Erro ao deletar Fotos.'. $th);
+            return redirect()->back();
+        }
+
+    }
     /**
      * Display the specified resource.
      *
@@ -81,7 +141,7 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
-        //
+        return view('backend.galeria')->with('imovel',$imovel);
     }
 
     /**
@@ -111,21 +171,23 @@ class ImovelController extends Controller
     public function update(Request $request, Imovel $imovel)
     {
 
-        $path =  str_replace(" ", "_", $this->str_without_accents($request->titulo));
-        $imageName = 'imoveis/' . $path . '.' . 'png';
+        //$path =  str_replace(" ", "_", $this->str_without_accents($request->titulo));
+       // $imageName = 'imoveis/' . $path . '.' . 'png';
         try {
             $data = $request->all();
            // dd($imovel);
             $dataUpdate  = array();
             foreach ($data as $key => $value) {
+                $dataUpdate[$key] = $value;
+                /*
                 if ($key == "default_image_link" && $value && $value != null) {
                     $image = str_replace('data:image/png;base64,', '', $value);
                     $image = str_replace(' ', '+', $image);
                     Storage::put('public/' . $imageName, base64_decode($image));
                     $dataUpdate[$key] = $imageName;
                 } else if ($value || $value != null || $value != '') {
-                    $dataUpdate[$key] = $value;
-                }
+
+                }*/
             }
             $imovel->update($dataUpdate);
             session()->flash('success', 'Imóvel actualizado com sucesso.');
@@ -148,14 +210,4 @@ class ImovelController extends Controller
         $imovel->images()->sync([]);
     }
 
-    private function str_without_accents($str, $charset = 'utf-8')
-    {
-        $str = htmlentities($str, ENT_NOQUOTES, $charset);
-
-        $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
-        $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
-        $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
-
-        return $str;   // or add this : mb_strtoupper($str); for uppercase :)
-    }
 }

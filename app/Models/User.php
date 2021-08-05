@@ -9,9 +9,9 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
@@ -24,7 +24,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string|null $image_url
  * @property string|null $profile_url
  *
  * @property Collection|Agenda[] $agendas
@@ -53,7 +52,6 @@ class User extends Authenticatable implements MustVerifyEmail
 		'email_verified_at',
 		'password',
 		'remember_token',
-		'image_url',
 		'profile_url'
 	];
 
@@ -71,4 +69,9 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 		return $this->hasMany(UsersRating::class, 'users_id');
 	}
+
+    public function foto()
+    {
+        return $this->morphOne('App\Models\Foto', 'fotable');
+    }
 }

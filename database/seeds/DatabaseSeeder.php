@@ -13,7 +13,22 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {  app()[PermissionRegistrar::class]->forgetCachedPermissions();
+    {
+        factory(App\Models\User::class, 1)->create();
+
+        factory(App\Models\Agenda::class, 15)->create();
+          factory(App\Models\Bairro::class, 15)->create();
+         factory(App\Models\Cidade::class, 15)->create();
+          factory(App\Models\Comentario::class, 55)->create();
+        factory(App\Models\Condicao::class, 15)->create();
+        factory(App\Models\Denuncia::class, 15)->create();
+        factory(App\Models\Foto::class, 15)->create();
+        factory(App\Models\Video::class, 15)->create();
+        factory(App\Models\Imovel::class, 35)->create();
+        factory(App\Models\WebLink::class, 5)->create();
+
+
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
         $ceo =  Role::create([
             'name' => 'ceo',
         ]);

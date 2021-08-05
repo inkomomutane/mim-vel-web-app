@@ -69,7 +69,7 @@
                                         </td>
                                         <td><a class="btn btn-secondary" href="{{ route('imovel.edit', $imovel->id) }}"><i class="fa fa-edit"></i></a>
                                         </td>
-                                        <td><a class="btn btn-dark" href="{{ route('imovel.edit', $imovel->id) }}"><i class="fa fa-photo-video"></i></a>
+                                        <td><a class="btn btn-dark" href="{{ route('imovel.show', $imovel->id) }}"><i class="fa fa-photo-video"></i></a>
                                         </td>
                                         <td><a href="#" class="btn btn-danger" data-toggle="modal"
                                             data-target="#DeleteImovel" data-code="{{ ucfirst($imovel) }}"><i

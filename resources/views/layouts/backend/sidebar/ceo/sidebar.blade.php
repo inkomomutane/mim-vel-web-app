@@ -1,3 +1,8 @@
+@php
+    use App\Models\WebLink;
+    $links = WebLink::all();
+@endphp
+
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
@@ -8,14 +13,16 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Painel Administrativo</li>
-            <li class="@if (Route::is('home')) active @endif"><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-chart-line"></i>
-                <span>Estatísticas</span></a></li>
+            <li class="@if (Route::is('home')) active @endif"><a
+                    class="nav-link" href="{{ route('home') }}"><i class="fas fa-chart-line"></i>
+                    <span>Estatísticas</span></a></li>
         </ul>
         <ul class="sidebar-menu">
             <li class="
-            @if (Route::is('imovel.*')) active @endif
-            "><a class="nav-link" href="{{ route('imovel.index') }}"><i class="fas fa-home"></i>
-                    <span>Imóveis</span></a></li>
+            @if (Route::is('imovel.*')) active @endif "><a class="
+                nav-link" href="{{ route('imovel.index') }}"><i class="fas fa-home"></i>
+                <span>Imóveis</span></a>
+            </li>
         </ul>
         <ul class="sidebar-menu">
             <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-calendar-minus"></i>
@@ -31,29 +38,52 @@
         </ul>
 
         <ul class="sidebar-menu">
-            <li class="@if (Route::is('user.index')) active @endif"><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i>
+            <li class="@if (Route::is('user.index')) active @endif"><a
+                    class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users-cog"></i>
                     <span>Usuarios</span></a></li>
         </ul>
         <ul class="sidebar-menu">
             <li class="menu-header">Definições</li>
-            <li class="@if (Route::is('bairro.index')) active @endif"><a class="nav-link" href="{{ route('bairro.index') }}"><i class="fas fa-map-marker-alt"></i>
+            <li class="dropdown @if (Route::is('weblink.*')) active @endif">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i> <span>Site CMS</span></a>
+                <ul class="dropdown-menu" style="display:
+
+                @if (Route::is('weblink.*')) block; @else none; @endif
+                ">
+                <li class="@if (Request::url() == route('weblink.index') ) active @endif"><a
+                    class="nav-link" href="{{ route('weblink.index') }}"><i class="fas fa-cogs"></i>
+                    <span>Links</span></a></li>
+
+                    @foreach ($links as $link)
+                    <li class="@if (Request::url() == route('weblink.edit',$link->id) ) active @endif"><a
+                        class="nav-link" href="{{ route('weblink.edit',$link->id) }}"><i class="{{$link->icon}}"></i>
+                        <span>{{$link->url}}</span></a></li>
+                    @endforeach
+                </ul>
+            </li>
+            <li class="@if (Route::is('bairro.index')) active @endif"><a
+                    class="nav-link" href="{{ route('bairro.index') }}"><i class="fas fa-map-marker-alt"></i>
                     <span>Bairro</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class="@if (Route::is('cidade.index')) active @endif"><a class="nav-link" href="{{ route('cidade.index') }}"><i class="fas fa-city"></i>
+            <li class="@if (Route::is('cidade.index')) active @endif"><a
+                    class="nav-link" href="{{ route('cidade.index') }}"><i class="fas fa-city"></i>
                     <span>Cidade</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class="@if (Route::is('status.index')) active @endif"><a class="nav-link" href="{{ route('status.index') }}"><i class="fas fa-check-double"></i>
+            <li class="@if (Route::is('status.index')) active @endif"><a
+                    class="nav-link" href="{{ route('status.index') }}"><i class="fas fa-check-double"></i>
                     <span>Status</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class="@if (Route::is('tipodeimovel.index')) active @endif"><a class="nav-link" href="{{ route('tipodeimovel.index') }}"><i class="fas fa-tasks"></i> <span>Tipos de
+            <li class="@if (Route::is('tipodeimovel.index')) active @endif"><a class="nav-link" href="{{ route('tipodeimovel.index') }}"><i class="fas fa-tasks"></i>
+                    <span>Tipos de
                         imóvel</span></a></li>
         </ul>
         <ul class="sidebar-menu">
             <li class="@if (Route::is('permissions')) active @endif "><a class=" nav-link" href="{{ route('permissions') }}"><i class="fas fa-user-shield"></i>
-                <span>Permissões</span></a></li>
+                <span>Permissões</span></a>
+            </li>
         </ul>
     </aside>
 </div>

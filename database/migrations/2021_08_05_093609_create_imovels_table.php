@@ -29,7 +29,6 @@ class CreateImovelsTable extends Migration
             $table->text('endereco')->nullable();
             $table->text('mapa')->nullable();
             $table->boolean('published')->nullable()->default(0);
-            $table->text('default_image_link')->nullable();
             $table->unsignedBigInteger('condicao_id')->nullable()->index('fk_imovel_condicao1_idx');
             $table->unsignedBigInteger('bairro_id')->nullable()->index('fk_imovel_bairro2_idx');
             $table->unsignedBigInteger('cidade_id')->nullable()->index('fk_imovel_cidade1_idx');

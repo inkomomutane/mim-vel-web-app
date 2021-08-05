@@ -129,16 +129,14 @@
                 </div>
             </div>
         </div>
-
-        @include('backend.imovel_partials.upload_photo')
-
         <div class="form-group row mb-4">
             <div class="col-sm-12">
                 <div class="section-title">Mapa da localização do imóvel</div>
                 <div class="col-sm-12">
-                <textarea name="mapa" class="form-control" style="height: 200px" placeholder="Por favor insira o Embeded do mapa"  @if (\Route::current()->getName() == 'imovel.edit')
-
-                @endif>  {{ $imovel->mapa }}</textarea>
+                <textarea name="mapa" class="form-control" style="height: 200px" placeholder="Por favor insira o Embeded do mapa"
+                >@if (\Route::current()->getName() == 'imovel.edit')
+                {{ $imovel->mapa }}
+                @endif  </textarea>
                 </div>
             </div>
         </div>

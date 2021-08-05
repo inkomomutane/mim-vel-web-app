@@ -11,14 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Foto
- * 
+ *
  * @property int $id
  * @property string|null $url
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property int|null $imovel_id
- * 
- * @property Imovel|null $imovel
+ * @property int|null $fotable_id
+ * @property string|null $fotable_type
  *
  * @package App\Models
  */
@@ -27,16 +26,16 @@ class Foto extends Model
 	protected $table = 'fotos';
 
 	protected $casts = [
-		'imovel_id' => 'int'
+		'fotable_id' => 'int'
 	];
 
 	protected $fillable = [
 		'url',
-		'imovel_id'
+		'fotable_id',
+		'fotable_type'
 	];
-
-	public function imovel()
-	{
-		return $this->belongsTo(Imovel::class);
-	}
+    public function fotable()
+    {
+        return $this->morphTo();
+    }
 }

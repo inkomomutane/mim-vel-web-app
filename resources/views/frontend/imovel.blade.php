@@ -129,7 +129,7 @@
         <div class="container">
             <h5 class="mt-20 mb-20">Mapa</h5>
             <div class="row d-flex justify-content-start maps">
-                <iframe src="{{ route('welcome') }}" frameborder="0"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d156560.71495239565!2d35.07259699038019!3d-18.71783942299185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-PT!2smz!4v1628148704798!5m2!1spt-PT!2smz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="row container justify-content-between">
 
@@ -141,7 +141,7 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img src="img/blog/c1.jpg" alt="">
+                                <img src="{{ asset('frontend/img/blog/c1.jpg') }}" alt="">
                             </div>
                             <div class="desc">
                                 <h5><a href="#">Emilly Blunt</a></h5>
@@ -160,7 +160,7 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img src="img/blog/c2.jpg" alt="">
+                                <img src="{{ asset('frontend/img/blog/c2.jpg') }}" alt="">
                             </div>
                             <div class="desc">
                                 <h5><a href="#">Elsie Cunningham</a></h5>
@@ -179,7 +179,7 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img src="img/blog/c3.jpg" alt="">
+                                <img src="{{ asset('frontend/img/blog/c3.jpg') }}" alt="">
                             </div>
                             <div class="desc">
                                 <h5><a href="#">Annie Stephens</a></h5>
@@ -198,7 +198,7 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img src="img/blog/c4.jpg" alt="">
+                                <img src="{{ asset('frontend/img/blog/c4.jpg') }}" alt="">
                             </div>
                             <div class="desc">
                                 <h5><a href="#">Maria Luna</a></h5>
@@ -217,7 +217,7 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img src="img/blog/c5.jpg" alt="">
+                                <img src="{{ asset('frontend/img/blog/c5.jpg') }}" alt="">
                             </div>
                             <div class="desc">
                                 <h5><a href="#">Ina Hayes</a></h5>

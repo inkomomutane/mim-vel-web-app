@@ -16,7 +16,7 @@ class CreateUsersRatingsTable extends Migration
         Schema::create('users_ratings', function (Blueprint $table) {
             $table->unsignedBigInteger('users_id')->index('fk_users_has_imovels_users1_idx');
             $table->unsignedBigInteger('imovels_id')->index('fk_users_has_imovels_imovels1_idx');
-            $table->float('rating', 10, 0)->nullable();
+            $table->double('rating')->nullable();
             $table->timestamps();
             $table->bigIncrements('id');
         });

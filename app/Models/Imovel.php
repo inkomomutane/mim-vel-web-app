@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string|null $titulo
  * @property string|null $descricao
+ * @property int|null $banheiros
  * @property float|null $preco
  * @property Carbon|null $ano
  * @property int|null $andar
@@ -28,7 +29,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $endereco
  * @property string|null $mapa
  * @property bool|null $published
- * @property string|null $default_image_link
  * @property int|null $condicao_id
  * @property int|null $bairro_id
  * @property int|null $cidade_id
@@ -49,9 +49,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User|null $user
  * @property Collection|Comentario[] $comentarios
  * @property Collection|DenuniasImovel[] $denunias_imovels
- * @property Collection|Foto[] $fotos
  * @property Collection|UsersRating[] $users_ratings
- * @property Collection|Video[] $videos
  *
  * @package App\Models
  */
@@ -61,6 +59,7 @@ class Imovel extends Model
 	protected $table = 'imovels';
 
 	protected $casts = [
+		'banheiros' => 'int',
 		'preco' => 'float',
 		'andar' => 'int',
 		'area' => 'float',
@@ -86,6 +85,7 @@ class Imovel extends Model
 	protected $fillable = [
 		'titulo',
 		'descricao',
+		'banheiros',
 		'preco',
 		'ano',
 		'andar',
@@ -95,10 +95,8 @@ class Imovel extends Model
 		'garagens',
 		'piscinas',
 		'endereco',
-        'banheiros',
 		'mapa',
 		'published',
-		'default_image_link',
 		'condicao_id',
 		'bairro_id',
 		'cidade_id',
@@ -149,18 +147,18 @@ class Imovel extends Model
 		return $this->hasMany(DenuniasImovel::class);
 	}
 
-	public function fotos()
-	{
-		return $this->hasMany(Foto::class);
-	}
-
 	public function users_ratings()
 	{
 		return $this->hasMany(UsersRating::class, 'imovels_id');
 	}
 
-	public function videos()
-	{
-		return $this->hasMany(Video::class);
-	}
+    public function fotos()
+    {
+        return $this->morphMany('App\Models\Foto', 'fotable');
+    }
+
+    public function videos()
+    {
+        return $this->morphMany('App\Models\Video', 'videoble');
+    }
 }

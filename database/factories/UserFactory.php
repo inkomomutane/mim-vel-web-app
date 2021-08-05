@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /* @var  $factory \Illuminate\Database\Eloquent\Factory */
@@ -9,9 +10,8 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'email_verified_at' => $faker->dateTime(),
-        'password' => bcrypt($faker->password),
+        'password' => Hash::make('password'),
         'remember_token' => Str::random(10),
-        'image_url' => $faker->text,
-        'profile_url' => $faker->text,
+        'profile_url' => $faker->url,
     ];
 });

@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Models\Video::class, function (Faker $faker) {
     return [
         'url' => $faker->url,
-        'imovel_id' => factory(App\Models\Imovel::class),
+        'videoble_id' => $faker->randomNumber(),
+        'videoble_type' => 'App\Models\Imovel',
     ];
 });
