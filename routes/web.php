@@ -16,7 +16,8 @@
     */
 
     Route::get('/', function () {
-        return view('frontend.welcome');
+ //      abort(504);
+       return view('frontend.welcome');
     })->name('welcome');
 
     Route::get('/test', function () {

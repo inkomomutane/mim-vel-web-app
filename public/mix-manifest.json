@@ -1,1 +1,4 @@
-{}
+{
+    "/backend/js/app.js": "/backend/js/app.js",
+    "/frontend/css/app.css": "/frontend/css/app.css"
+}

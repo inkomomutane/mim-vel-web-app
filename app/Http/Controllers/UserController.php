@@ -76,7 +76,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         if ($user->id == Auth::user()->id) {
-            return $user;
+            return view('backend.profile')->with('user',$user);
         }else{
             return abort(404);
         }
