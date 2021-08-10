@@ -12,11 +12,11 @@
 </head>
 <body class="layout-3">
 
-    <div id="app">
+    <div id="app" style="background-color: #eaecec47">
         <!-- #header -->
         @include('layouts.frontend.navbar.navbar')
         <!-- start banner Area -->
-        @yield('banner')
+        @include('layouts.frontend.banner.banner')
         <!-- content area -->
         @yield('content')
     </div>

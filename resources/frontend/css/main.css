@@ -4498,3 +4498,19 @@ body.mobile-nav-active #mobile-nav-toggle {
 .about-banner{
     margin-top: 64px;
 }
+.badge-light {
+    color: #212529;
+    background-color: #ebebeb !important;
+}
+.card{
+    border:1px solid rgb(244, 244, 244) !important;
+}
+.far.fa-star{
+    color: gold !important;
+}
+.fas.fa-star.checked{
+color: gold !important;
+}
+a.badge-light:hover{
+    background:#eaf2fb !important;
+}

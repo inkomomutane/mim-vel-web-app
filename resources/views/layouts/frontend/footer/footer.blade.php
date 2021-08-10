@@ -55,21 +55,10 @@
                 </div>
             </div>
             <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget mail-chimp">
-                    <h6 class="mb-20">InstaFeed</h6>
-                    <ul class="instafeed d-flex flex-wrap">
-                        <li><img src="frontend/img/i1.jpg" alt=""></li>
-                        <li><img src="frontend/img/i2.jpg" alt=""></li>
-                        <li><img src="frontend/img/i3.jpg" alt=""></li>
-                        <li><img src="frontend/img/i4.jpg" alt=""></li>
-                        <li><img src="frontend/img/i5.jpg" alt=""></li>
-                        <li><img src="frontend/img/i6.jpg" alt=""></li>
-                        <li><img src="frontend/img/i7.jpg" alt=""></li>
-                        <li><img src="frontend/img/i8.jpg" alt=""></li>
-                    </ul>
-                </div>
+                <img src="http://127.0.0.1:8000/storage/imoveis/saepe_2021_08_07_08_33_45.png"  class="col" alt="" srcset="">
             </div>
         </div>
+
 
         <div class="row footer-bottom d-flex justify-content-between align-items-center">
             <p class="col-lg-8 col-sm-12 footer-text m-0">

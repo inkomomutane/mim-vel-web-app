@@ -15,10 +15,12 @@
     |
     */
 
-    Route::get('/', function () {
- //      abort(504);
-       return view('frontend.welcome');
-    })->name('welcome');
+    Route::get('/', 'Frontend\WelcomController@index')->name('welcome');
+    Route::get('/imoveis/{imovel}', 'Frontend\ImovelController@show')->name('imo.show');
+
+    Route::get('/message', function () {
+        return view('backend.messages.message');
+    })->name('message.index');
 
     Route::get('/test', function () {
         return abort(401);
@@ -36,7 +38,10 @@
     })->name('complaint');
 
     Route::get('/imo', function () {
-        return view('frontend.imovel');
+        return  [];//view('frontend.imovel');
+    })->name('imo');
+    Route::get('/imo', function () {
+        return view('frontend.search');
     })->name('imo');
 
     Route::get('/search', function () {

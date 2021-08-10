@@ -33,7 +33,7 @@
                     <span>Denúncias</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-comments"></i>
+            <li class="@if (Route::is('message.index')) active @endif"><a class="nav-link" href="{{ route('message.index') }}"><i class="fas fa-comments"></i>
                     <span>Mensagens</span></a></li>
         </ul>
 

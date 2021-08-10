@@ -12,8 +12,26 @@
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('frontend/js/mail-script.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+
     <!-- JS Libraies -->
     @stack('jsLibs')
     <!-- Page Specific JS File -->
     @stack('js')
     <!-- Template JS File -->
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                lazyLoad: true,
+                items: 5,
+            singleItem: true,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                singleItem: true,
+                maxHeight: 400,
+                maxWidth:300
+            });
+        });
+    </script>

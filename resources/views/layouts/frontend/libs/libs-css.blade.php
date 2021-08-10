@@ -1,6 +1,6 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('frontend/css/linearicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('backend/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery-ui.css') }}">

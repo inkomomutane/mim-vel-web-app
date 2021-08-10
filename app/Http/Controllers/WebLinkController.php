@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Task;
 use App\Http\Traits\RemoveAccent;
 use App\Models\Foto;
 use App\Models\WebLink;
@@ -99,6 +100,8 @@ class WebLinkController extends Controller
         if($validade){
             try {
                 $weblink->update($validade);
+
+
             session()->flash('success', 'Link actualizado com sucesso.');
             return redirect()->back();
             } catch (\Throwable $th) {
