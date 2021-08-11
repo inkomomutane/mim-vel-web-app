@@ -22,10 +22,16 @@
                             <div class="card-body">
                                 <a href="{{ route('imo.show', $imovel->id) }}">
                                 <h5 class="card-title text-truncate">{{ ucfirst($imovel->titulo) }}
-                                    <a class="badge badge-pill badge-light p-2 text-truncate float-right" href="">
+                                    </h5>
+                                    </a>
+
+                                    <a class="badge  badge-light  p-2 text-truncate float-right" href="">
                                         MZN&nbsp;
                                         {{round($imovel->preco,2)}} &nbsp;</a></h5>
                                     </a>
+                                    <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                        Tipo:&nbsp;
+                                        {{ucfirst($imovel->tipo_de_imovel->nome)}} &nbsp;</a>
                                 <strong class="card-subtitle text-truncate">
                                     Last brea
                                 </strong>
@@ -73,6 +79,53 @@
             <div class="row">
                 @foreach ($procurados_por_localizacao as $imovel)
                 <div class="col-sm-4 p-2">
+                    <div class="card">
+                        <a href="{{ route('imo.show', $imovel->id) }}">
+                        <img class="card-img-top" src="{{ asset('storage/') }}/{{ $imovel->image }}"
+                            alt="Imóvel do Mimóvel">
+                        </a>
+                        <div class="card-body">
+                            <a href="{{ route('imo.show', $imovel->id) }}">
+                            <h5 class="card-title text-truncate">{{ ucfirst($imovel->titulo) }}
+                                </h5>
+                                </a>
+
+                                <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                    MZN&nbsp;
+                                    {{round($imovel->preco,2)}} &nbsp;</a></h5>
+                                </a>
+                                <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                    Tipo:&nbsp;
+                                    {{ucfirst($imovel->tipo_de_imovel->nome)}} &nbsp;</a>
+                            <strong class="card-subtitle text-truncate">
+                                Last brea
+                            </strong>
+                            <div class="star">
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="far fa-star "></span>
+                                <span class="far fa-star "></span>
+                                <span class="far fa-star"></span>
+                            </div>
+
+                            <p class="card-text text-truncate">{!! ucfirst($imovel->descricao) !!}</p>
+                            <hr>
+                            <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                {{ucfirst($imovel->cidade->nome)}} &nbsp;</a>
+                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                <i class="fa fa-eye"></i>&nbsp;
+                                3k &nbsp;</a>
+                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                <i class="far fa-comment-alt"></i>
+                                &nbsp; {{ucfirst($imovel->comentarios->count())}} &nbsp;</a>
+                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                <i class="fa fa-share-alt"></i>
+                                &nbsp; Partilhar &nbsp;</a>
+
+
+                        </div>
+                    </div>
                 </div>
                 @endforeach
             </div>

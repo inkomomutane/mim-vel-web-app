@@ -1,18 +1,16 @@
 @extends('layouts.frontend.main.root')
 
 @section('content')
-    <section class="other-issue-area section-gap  bg-light pt-5 mt-3">
+    <section class="other-issue-area bg-light pt-5 mt-3">
         <div class="container">
             <div class="row d-flex justify-content-start">
-
                 <div class="demo col-sm-8 ">
                     <div class="item">
-                        <div class="clearfix" style="width: 755px" >
+                        <div class="clearfix" style="width: 755px">
                             <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-
                                 @foreach ($imovel->fotos as $foto)
-                                    <li data-thumb="{{ asset('storage/') }}/{{$foto->url}}">
-                                        <img src="{{ asset('storage/') }}/{{$foto->url}}">
+                                    <li data-thumb="{{ asset('storage/') }}/{{ $foto->url }}">
+                                        <img src="{{ asset('storage/') }}/{{ $foto->url }}">
                                     </li>
                                 @endforeach
                             </ul>
@@ -22,18 +20,22 @@
                 <div class="col-sm-4 pl-4 mt-4 row d-flex justify-content-center ">
                     <form action="#">
                         <div class="mt-10">
-                            <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+                            <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'First Name'" required="" class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" class="single-input">
+                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Email address'" required="" class="single-input">
                         </div>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-                            <input type="text" name="address" placeholder="Contact" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required="" class="single-input">
+                            <input type="text" name="address" placeholder="Contact" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Address'" required="" class="single-input">
                         </div>
 
                         <div class="mt-10">
-                            <textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required=""></textarea>
+                            <textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Message'" required=""></textarea>
                         </div>
                         <div class="switch-wrap d-flex justify-content-start pt-3">
                             <div class="confirm-switch">
@@ -51,44 +53,65 @@
             </div>
         </div>
     </section>
-    <section class="other-issue-area py-4">
+    <section class="other-issue-area pb-3 pt-5">
         <div class="container">
             <div class="row d-flex justify-content-start">
-                <div class="progress-table-wrap">
-                    <div class="progress-table">
-                        <div class="table-head">
-                            <div class="serial">#</div>
-                            <div class="country">Countries</div>
-                            <div class="visit">Visits</div>
-                            <div class="percentage">Percentages</div>
-                            <div class="country">Countries</div>
-                            <div class="visit">Visits</div>
-                            <div class="percentage">Percentages</div>
+                <div class="row col-sm-10 justify-content-start d-flex">
+                    <div class="container row">
+                        <h5 class="pb-3 w-100">Propriedades:</h5>
+                        @if ($imovel->preco)
+                            <div class="col-sm-4 description">Preço: <strong>{{ $imovel->preco }} MTN</strong></div>
+                        @endif
+                        @if ($imovel->area)
+                            <div class="col-sm-4 description">Area (m²):<strong>{{ $imovel->area }} (m²)</strong></div>
+                        @endif
 
-                        </div>
-                        <div class="table-row">
-                            <div class="serial">01</div>
-                            <div class="country"> <img src="img/elements/f1.jpg" alt="flag">Canada</div>
-                            <div class="visit">645032</div>
-
-                            <div class="percentage">
-                                <div class="progress">
-                                    <div class="progress-bar color-1" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                        @if ($imovel->ano)
+                            <div class="col-sm-4 description">Ano de construção: <strong>{{ $imovel->ano->year }}</strong>
                             </div>
-                            <div class="country"> <img src="img/elements/f1.jpg" alt="flag">Canada</div>
-                            <div class="visit">645032</div>
 
-                            <div class="percentage">
-                                <div class="progress">
-                                    <div class="progress-bar color-1" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
+                        @endif
+                        @if ($imovel->status)
+                            <div class="col-sm-4 description">Estado: <strong>{{ $imovel->status->nome }}</strong></div>
+                        @endif
+
+                        <div class="col-sm-4 description text-truncate">Localização:
+                            <strong>{{ $imovel->cidade->nome . ', ' . $imovel->bairro->nome . ', ' . $imovel->endereco }}</strong>
                         </div>
+                        @if ($imovel->tipo_de_imovel)
+                            <div class="col-sm-4 description">Tipo de imóvel:
+                                <strong>{{ $imovel->tipo_de_imovel->nome }}</strong></div>
+                        @endif
+
+                        @if ($imovel->condicao)
+                            <div class="col-sm-4 description">Condição: <strong>{{ $imovel->condicao->nome }}</strong>
+                            </div>
+                        @endif
+                        @if ($imovel->andar)
+                            <div class="col-sm-4 description">Andares: <strong>{{ $imovel->andar }}</strong></div>
+                        @endif
+                        @if ($imovel->suites)
+                            <div class="col-sm-4 description">Suites: <strong>{{ $imovel->suites }}</strong></div>
+                        @endif
+
+                        @if ($imovel->quartos)
+                            <div class="col-sm-4 description">Quartos: <strong>{{ $imovel->quartos }}</strong></div>
+                        @endif
+                        @if ($imovel->garagens)
+                            <div class="col-sm-4 description">Garagens: <strong>{{ $imovel->garagens }}</strong></div>
+                        @endif
+                        @if ($imovel->piscinas)
+                            <div class="col-sm-4 description">Piscinas: <strong>{{ $imovel->piscinas }}</strong></div>
+                        @endif
+                        @if ($imovel->user)
+                            <div class="col-sm-4 description">Corretor: <strong>{{ $imovel->user->name }}</strong></div>
+                        @endif
+
                     </div>
                 </div>
-                <div class="col-sm-8">
-                    <h3 class="mt-20 mb-20">Descrição</h3>
+
+                <div class="w-100">
+                    <h5 class="mt-20 mb-20">Descrição</h5>
                     <p class="excert">
                         {!! ucfirst($imovel->descricao) !!}
                     </p>
@@ -97,130 +120,94 @@
             </div>
         </div>
     </section>
-<!--Maps-->
+    <!--Maps-->
     <section class="other-issue-area py-4">
         <div class="container">
-            <h5 class="mt-20 mb-20">Mapa</h5>
-            <div class="row d-flex justify-content-start maps">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d156560.71495239565!2d35.07259699038019!3d-18.71783942299185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-PT!2smz!4v1628148704798!5m2!1spt-PT!2smz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+            <h5 class="mt-20 mb-20 w-100">Mapa da localização</h5>
+            <div class="embed-responsive embed-responsive-21by9">
+                {!! $imovel->mapa!!}
+              </div>
             <div class="row container justify-content-between">
 
 
-            <!-- comment area-->
-            <div class="comments-area col-sm-8">
-                <h4>05 Comments</h4>
-                <div class="comment-list">
-                    <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/img/blog/c1.jpg') }}" alt="">
-                            </div>
-                            <div class="desc">
-                                <h5><a href="#">Emilly Blunt</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                <p class="comment">
-                                    Never say goodbye till the end comes!
-                                </p>
+                <!-- comment area-->
+                <div class="comments-area w-100 scroll">
+                    <h4>{{$imovel->comentarios->count()}} Comentários</h4>
+                    <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="{{ asset('frontend/img/blog/c1.jpg') }}" alt="">
+                                </div>
+                                <div class="desc get">
+                                    <h5><a href="#">Emilly Blunt</a></h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                    <p class="comment">
+                                        Never say goodbye till the end comes!
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="reply-btn">
-                               <a href="" class="btn-reply text-uppercase">reply</a>
+                    </div>
+                    <div class="comment-list left-padding">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="{{ asset('frontend/img/blog/c2.jpg') }}" alt="">
+                                </div>
+                                <div class="desc get">
+                                    <h5><a href="#">Elsie Cunningham</a></h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                    <p class="comment">
+                                        Never say goodbye till the end comes!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-list left-padding">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="{{ asset('frontend/img/blog/c3.jpg') }}" alt="">
+                                </div>
+                                <div class="desc sent">
+                                    <h5><a href="#">Annie Stephens</a></h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                    <p class="comment">
+                                        Never say goodbye till the end comes!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="{{ asset('frontend/img/blog/c4.jpg') }}" alt="">
+                                </div>
+                                <div class="desc get">
+                                    <h5><a href="#">Maria Luna</a></h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                    <p class="comment">
+                                        Never say goodbye till the end comes!
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="comment-list left-padding">
-                    <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/img/blog/c2.jpg') }}" alt="">
-                            </div>
-                            <div class="desc">
-                                <h5><a href="#">Elsie Cunningham</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                <p class="comment">
-                                    Never say goodbye till the end comes!
-                                </p>
-                            </div>
-                        </div>
-                        <div class="reply-btn">
-                               <a href="" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-list left-padding">
-                    <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/img/blog/c3.jpg') }}" alt="">
-                            </div>
-                            <div class="desc">
-                                <h5><a href="#">Annie Stephens</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                <p class="comment">
-                                    Never say goodbye till the end comes!
-                                </p>
-                            </div>
-                        </div>
-                        <div class="reply-btn">
-                               <a href="" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-list">
-                    <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/img/blog/c4.jpg') }}" alt="">
-                            </div>
-                            <div class="desc">
-                                <h5><a href="#">Maria Luna</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                <p class="comment">
-                                    Never say goodbye till the end comes!
-                                </p>
-                            </div>
-                        </div>
-                        <div class="reply-btn">
-                               <a href="" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-list">
-                    <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/img/blog/c5.jpg') }}" alt="">
-                            </div>
-                            <div class="desc">
-                                <h5><a href="#">Ina Hayes</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                <p class="comment">
-                                    Never say goodbye till the end comes!
-                                </p>
-                            </div>
-                        </div>
-                        <div class="reply-btn">
-                               <a href="" class="btn-reply text-uppercase">reply</a>
-                        </div>
+                <div class="message-input">
+                    <div class="wrap">
+                        <input type="text" placeholder="Digite seu comentario...">
+                        <button class="submit"><i class="far fa-comment-alt" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
-            <!-- comment form-->
-            <div class="py-5 col-sm-3 bg-white" style="border:none">
-
-                <form  class="bg-light p-4">
-                    <h4>Comment</h4>
-                    <div class="form-group pt-3">
-                        <textarea class="single-textarea mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-                    </div>
-                    <a href="#" class="primary-btn text-uppercase">Post Comment</a>
-                </form>
-            </div>
-        </div>
         </div>
     </section>
-                <!--End Mpas-->
+    <!--End Mpas-->
 
 
 @endsection
@@ -259,6 +246,7 @@
         li.lslide img {
             width: 100%;
         }
+
         .chocolat-overlay {
             background-color: #151515;
         }
@@ -267,7 +255,8 @@
             z-index: 999;
 
         }
-        .maps iframe{
+
+        .maps iframe {
             height: 400px;
             width: 100% !important;
         }

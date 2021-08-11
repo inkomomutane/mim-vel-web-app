@@ -37,21 +37,36 @@
 
 
 @section('content')
-<div class="whole-wrap">
+<div class="whole-wrap py-5">
     <div class="container">
 
         <div class="section-top-border">
-            <h3 class="mb-30">Results ...</h3>
-            @for ($i = 0; $i < 10; $i++)
-            <div class="row py-3">
+
+
+            @foreach ($imoveis as $imovel)
+            <a href="{{ route('imo.show',$imovel->id) }}" style="color: #000">
+            <div class="row py-3 bg-white shadow-sm mb-2" style="box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)">
                 <div class="col-md-3">
-                    <img src="{{ asset('frontend/img/elements/d.jpg')}}" alt="" class="img-fluid">
+
+                    <img src="{{ asset('storage/')}}/{{ $imovel->fotos->first()?$imovel->fotos->first()->url:''}}" alt="" class="img-fluid">
                 </div>
                 <div class="col-md-9 mt-sm-20 left-align-p">
-                    <p>Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking systems that accept players from the United States that wish to play in online casinos.</p>
+                    <h5>{{ucfirst($imovel->titulo)}}</h5>
+                    <hr>
+                    <strong style="font-weight: 501">{{ucfirst($imovel->cidade->nome)}}, {{$imovel->bairro->nome}} &nbsp;&nbsp;  Preço: {{ round($imovel->preco,2)}} MTN </strong>
+                    <p class="text-truncate">{!! $imovel->descricao !!}</p>
+                   @if ($imovel->user)
+                       <strong style="font-weight: 501">Corretor: {{$imovel->user->name}}</strong>
+                   @endif
                 </div>
+
             </div>
-            @endfor
+        </a>
+            @endforeach
+
+            <div class="row float-right">
+                {{ $imoveis->links() }}
+            </div>
         </div>
 
     </div>

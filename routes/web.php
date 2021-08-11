@@ -17,6 +17,8 @@
 
     Route::get('/', 'Frontend\WelcomController@index')->name('welcome');
     Route::get('/imoveis/{imovel}', 'Frontend\ImovelController@show')->name('imo.show');
+    Route::get('/imoveis', 'Frontend\ImovelController@index')->name('imo.index');
+
 
     Route::get('/message', function () {
         return view('backend.messages.message');

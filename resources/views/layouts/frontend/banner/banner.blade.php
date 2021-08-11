@@ -1,7 +1,7 @@
 @if ($images ?? '')
     @if ($images->count() > 1)
 
-        <div class="owl-carousel owl-theme w-100">
+        <div class="owl-carousel owl-theme w-100" style="padding-top: 65px">
             @foreach ($images as $image)
 
                 <figure class="figure">

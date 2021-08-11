@@ -10,11 +10,23 @@ class ImovelController extends Controller
 {
     public function index()
     {
-        return [];
+        return view('frontend.search')->with('imoveis',Imovel::paginate(8));
     }
 
     public function show(Imovel $imovel)
     {
         return view('frontend.imovel')->with('imovel',$imovel);
+    }
+    public function imoveis()
+    {
+        $imoveis = Imovel::paginate(15)->map(function($imovel){
+
+
+                $imovel['image'] = $imovel->fotos->first()?$imovel->fotos->first()->url:'';
+
+                return $imovel;
+
+        });
+        return $imoveis;
     }
 }

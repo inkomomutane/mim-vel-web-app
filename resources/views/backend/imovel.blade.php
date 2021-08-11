@@ -64,7 +64,7 @@
                                     <tr>
                                         <td><i class="fas fa-th"></i></td>
                                         <td>{{ ucfirst($imovel->id) }}</td>
-                                        <td>{{ ucfirst($imovel->descricao) }}</td>
+                                        <td class="text-truncate">{{ ucfirst($imovel->titulo) }}</td>
                                         <td><button class="btn btn-info"><i class="fa fa-eye"></i></button>
                                         </td>
                                         <td><a class="btn btn-secondary" href="{{ route('imovel.edit', $imovel->id) }}"><i class="fa fa-edit"></i></a>
