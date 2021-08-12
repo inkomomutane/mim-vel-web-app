@@ -54,9 +54,19 @@
                                 <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                     <i class="far fa-comment-alt"></i>
                                     &nbsp; {{ucfirst($imovel->comentarios->count())}} &nbsp;</a>
-                                <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
-                                    <i class="fa fa-share-alt"></i>
-                                    &nbsp; Partilhar &nbsp;</a>
+                                    <a class="dropdown">
+
+
+                                        <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-share-alt"></i>
+                                            &nbsp; Partilhar &nbsp;
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{ route('imo.show', $imovel->id) }}"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                <a class="dropdown-item" href="https://wa.me/?text= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                              </div>
+                                        </a>
+                                    </a>
 
 
                             </div>
@@ -119,9 +129,20 @@
                             <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                 <i class="far fa-comment-alt"></i>
                                 &nbsp; {{ucfirst($imovel->comentarios->count())}} &nbsp;</a>
-                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+
+<a class="dropdown">
+
+
+                            <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-share-alt"></i>
-                                &nbsp; Partilhar &nbsp;</a>
+                                &nbsp; Partilhar &nbsp;
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{ route('imo.show', $imovel->id) }}"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                    <a class="dropdown-item" href="https://wa.me/?text= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                    <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                  </div>
+                            </a>
+                        </a>
 
 
                         </div>
@@ -275,6 +296,7 @@
 
 @endsection
 @push('js')
+
     <script>
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel({
@@ -288,4 +310,5 @@
             });
         });
     </script>
+    <script src="{{ asset('js/share.js') }}"></script>
 @endpush

@@ -20,6 +20,18 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/components.min.css') }} ">
+    <style>
+        body.layout-4 .main-content,
+        body.layout-4 .main-footer {
+            padding-left: 0px !important;
+
+        }
+
+        .navbar {
+            left: 0 !important;
+        }
+
+    </style>
 </head>
 
 <body class="layout-4">
@@ -27,9 +39,6 @@
         <div class="main-wrapper main-wrapper-1">
             <!-- Start app top navbar -->
             @include('layouts.backend.navbar.navbar')
-
-            <!-- Start main left sidebar menu -->
-            @include('layouts.backend.sidebar.sidebar')
             <!-- Start app main Content -->
             @include('layouts.backend.content.content')
 

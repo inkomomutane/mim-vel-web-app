@@ -29,8 +29,8 @@
                                     <span class="lnr lnr-phone-handset"></span>
                                 </div>
                                 <div class="contact-details">
-                                    <h5>00 (958) 9865 562</h5>
-                                    <p>Segunda a Sexta das 8:00 a 16:00/p>
+                                    <h5> <a href="tel:+258849500900">84 9500 900</a>  ou <a href="tel:+258869500900">86 9500 900</a>  </h5>
+                                    <p>Segunda a Sexta das 8:00 a 16:00</p>
                                 </div>
                             </div>
                             <div class="single-contact-address d-flex flex-row">

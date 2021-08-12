@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
+
 
 /**
  * Class Imovel
@@ -56,8 +56,9 @@ use Laravel\Scout\Searchable;
  */
 class Imovel extends Model
 {
-	use SoftDeletes,Searchable;
+	use SoftDeletes;
 	protected $table = 'imovels';
+
 
 	protected $casts = [
 		'banheiros' => 'int',
@@ -161,5 +162,13 @@ class Imovel extends Model
     public function videos()
     {
         return $this->morphMany('App\Models\Video', 'videoble');
+    }
+    public function vzt()
+    {
+        return visits($this);
+    }
+    public function visits()
+    {
+        return visits($this)->relation();
     }
 }

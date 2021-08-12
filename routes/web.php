@@ -20,10 +20,6 @@
     Route::get('/imoveis', 'Frontend\ImovelController@index')->name('imo.index');
 
 
-    Route::get('/message', function () {
-        return view('backend.messages.message');
-    })->name('message.index');
-
     Route::get('/test', function () {
         return abort(401);
     });
@@ -40,7 +36,7 @@
     })->name('complaint');
 
     Route::get('/imo', function () {
-        return  [];//view('frontend.imovel');
+        return  [];
     })->name('imo');
     Route::get('/imo', function () {
         return view('frontend.search');
@@ -51,34 +47,55 @@
     })->name('search');
 
     Route::get('/corretor', function () {
-        return view('frontend.search');
+        return [];
     })->name('corretor');
 
-    Auth::routes(['verify' => true, 'register' => false]);
+    Auth::routes(['verify' => true, 'register' => true]);
 
-    Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+    Route::get('/home', 'HomeController@index')->name('home')
+        ->middleware(['verified', 'auth']);
 
-    Route::get('/permission', 'RoleController@index')->name('permissions')->middleware('verified');
-    Route::resource('bairro', 'BairroController')->middleware('verified');
-    Route::resource('cidade', 'CidadeController')->middleware('verified');
-    Route::resource('status', 'StatusController')->middleware('verified');
-    Route::resource('tipodeimovel', 'TipoDeImovelController')->middleware('verified');
-    Route::resource('imovel', 'ImovelController')->middleware('verified');
-    Route::resource('weblink', 'WebLinkController')->middleware('verified');
-    Route::post('weblink/{weblink}/store_image', 'WebLinkController@store_image')->name('weblink.store_image')->middleware('verified');
-    Route::post('weblink/{weblink}/delete_image', 'WebLinkController@delete_image')->name('weblink.delete_image')->middleware('verified');
+    Route::get('/permission', 'RoleController@index')->name('permissions')
+        ->middleware(['verified','auth','role:ceo']);
 
 
-    Route::post('imovel/{imovel}/store_image', 'ImovelController@store_image')->name('imovel.store_image')->middleware('verified');
-    Route::post('imovel/{imovel}/delete_image', 'ImovelController@delete_image')->name('imovel.delete_image')->middleware('verified');
-    Route::resource('user', 'UserController');
+    Route::resource('bairro', 'BairroController')
+        ->middleware(['verified','auth','role:ceo']);
 
+    Route::resource('cidade', 'CidadeController')
+        ->middleware(['verified','auth','role:ceo']);
 
+    Route::resource('status', 'StatusController')
+        ->middleware(['verified','auth','role:ceo']);
 
+    Route::resource('tipodeimovel', 'TipoDeImovelController')
+        ->middleware(['verified','auth','role:ceo']);
 
-    Route::middleware(['auth', 'ceo'])->group(function () {
-    });
-    Route::middleware(['auth', 'admin'])->group(function () {
-    });
-    Route::middleware(['auth', 'corretor'])->group(function () {
-    });
+    Route::resource('imovel', 'ImovelController')
+        ->middleware(['verified','auth','role:ceo|admin|corretor']);
+
+    Route::resource('weblink', 'WebLinkController')
+        ->middleware(['verified','auth','role:ceo|admin']);
+
+    Route::post('weblink/{weblink}/store_image', 'WebLinkController@store_image')
+        ->name('weblink.store_image')
+        ->middleware(['verified','auth','role:ceo']);
+
+    Route::post('weblink/{weblink}/delete_image', 'WebLinkController@delete_image')
+        ->name('weblink.delete_image')
+        ->middleware(['verified','auth','role:ceo']);
+
+    Route::post('imovel/{imovel}/store_image', 'ImovelController@store_image')
+        ->name('imovel.store_image')
+        ->middleware(['verified','auth','role:ceo']);
+
+    Route::post('imovel/{imovel}/delete_image', 'ImovelController@delete_image')
+        ->name('imovel.delete_image')
+        ->middleware(['verified','auth','role:ceo']);
+
+    Route::resource('user', 'UserController')->middleware(
+        ['verified','auth','role:ceo']
+    );
+    Route::resource('message', 'MessageController')->middleware(
+        ['verified','auth','role:ceo|admin|corretor|client']
+    );

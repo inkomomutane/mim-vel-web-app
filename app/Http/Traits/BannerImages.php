@@ -10,6 +10,13 @@ trait BannerImages
 {
     public function images(String $url)
     {
-       return WebLink::where('url',$url)->first()->fotos->pluck('url');
+        $images = WebLink::where('url',$url)->get();
+
+        if($images->count() > 0){
+            return $images->first()->fotos->pluck('url');
+        }else{
+            return null;
+        }
+
     }
 }

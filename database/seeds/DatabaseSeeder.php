@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -14,20 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\User::class, 1)->create();
-
-        factory(App\Models\Agenda::class, 15)->create();
-          factory(App\Models\Bairro::class, 15)->create();
-         factory(App\Models\Cidade::class, 15)->create();
-          factory(App\Models\Comentario::class, 55)->create();
-        factory(App\Models\Condicao::class, 15)->create();
-        factory(App\Models\Denuncia::class, 15)->create();
-        factory(App\Models\Foto::class, 15)->create();
-        factory(App\Models\Video::class, 15)->create();
-        factory(App\Models\Imovel::class, 35)->create();
-        factory(App\Models\WebLink::class, 5)->create();
-
-
+        $user = User::create(
+            [
+                'name' => 'Administrador',
+                'email' => 'administrator@mimovel.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('#mimovel@2021@project#'),
+                'remember_token' => Hash::make('password')
+            ]
+        );
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
         $ceo =  Role::create([
             'name' => 'ceo',
@@ -83,24 +80,26 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $permissions = Permission::all();
+        $roles = Role::where('name','ceo')->get();
 
         //$ceo->permissions($permissions);
         $admin->givePermissionTo([
-            'create post',
-            'update post',
-            'publish post',
-            'delete post',
-            'create user',
-            'update user',
-            'delete user',
-            'create core data',
-            'update core data',
-            'delete core data',
+            'create  post',
+            'update  post',
+           'publish  post',
+            'delete  post',
+            'create  user',
+            'update  user',
+            'delete  user',
+            'create  core data',
+            'update  core data',
+            'delete  core data',
         ]);
         $corretor->givePermissionTo([
             'create post',
             'update post',
             'delete post',
         ]);
+        $user->syncRoles([$roles]);
     }
 }

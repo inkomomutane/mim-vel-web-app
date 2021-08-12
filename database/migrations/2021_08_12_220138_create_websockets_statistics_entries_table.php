@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWebSocketsStatisticsEntriesTable extends Migration
+class CreateWebsocketsStatisticsEntriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateWebSocketsStatisticsEntriesTable extends Migration
             $table->integer('peak_connection_count');
             $table->integer('websocket_message_count');
             $table->integer('api_message_count');
-            $table->nullableTimestamps();
+            $table->timestamps();
         });
     }
 

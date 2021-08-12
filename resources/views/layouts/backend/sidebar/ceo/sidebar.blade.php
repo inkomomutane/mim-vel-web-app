@@ -1,6 +1,6 @@
 @php
-    use App\Models\WebLink;
-    $links = WebLink::all();
+use App\Models\WebLink;
+$links = WebLink::all();
 @endphp
 
 <div class="main-sidebar sidebar-style-2">
@@ -33,7 +33,8 @@
                     <span>Denúncias</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class="@if (Route::is('message.index')) active @endif"><a class="nav-link" href="{{ route('message.index') }}"><i class="fas fa-comments"></i>
+            <li class="@if (Route::is('message.index')) active @endif">
+                <a class="nav-link" href="{{ route('message.index') }}"><i class="fas fa-comments"></i>
                     <span>Mensagens</span></a></li>
         </ul>
 
@@ -48,22 +49,22 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i> <span>Site CMS</span></a>
                 <ul class="dropdown-menu" style="display:
 
-                @if (Route::is('weblink.*')) block; @else none; @endif
-                ">
-                <li class="@if (Request::url() == route('weblink.index') ) active @endif"><a
-                    class="nav-link" href="{{ route('weblink.index') }}"><i class="fas fa-cogs"></i>
-                    <span>Links</span></a></li>
-
-                    @foreach ($links as $link)
-                    <li class="@if (Request::url() == route('weblink.edit',$link->id) ) active @endif"><a
-                        class="nav-link" href="{{ route('weblink.edit',$link->id) }}"><i class="{{$link->icon}}"></i>
-                        <span>{{$link->url}}</span></a></li>
-                    @endforeach
-                </ul>
+                @if (Route::is('weblink.*')) block; @else none; @endif ">
+                <li class=" @if (Request::url() == route('weblink.index')) active @endif"><a class="nav-link" href="{{ route('weblink.index') }}"><i
+                            class="fas fa-cogs"></i>
+                        <span>Links</span></a>
             </li>
-            <li class="@if (Route::is('bairro.index')) active @endif"><a
-                    class="nav-link" href="{{ route('bairro.index') }}"><i class="fas fa-map-marker-alt"></i>
-                    <span>Bairro</span></a></li>
+
+            @foreach ($links as $link)
+                <li class="@if (Request::url()==route('weblink.edit', $link->id)) active @endif"><a class="nav-link"
+                        href="{{ route('weblink.edit', $link->id) }}"><i class="{{ $link->icon }}"></i>
+                        <span>{{ $link->url }}</span></a></li>
+            @endforeach
+        </ul>
+        </li>
+        <li class="@if (Route::is('bairro.index')) active @endif"><a
+                class="nav-link" href="{{ route('bairro.index') }}"><i class="fas fa-map-marker-alt"></i>
+                <span>Bairro</span></a></li>
         </ul>
         <ul class="sidebar-menu">
             <li class="@if (Route::is('cidade.index')) active @endif"><a

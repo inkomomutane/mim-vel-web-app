@@ -2144,8 +2144,8 @@ h6 {
 }
 
 .main-menu {
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
     background: #fff;
     padding-left: 15px;
     padding-right: 15px;
@@ -2289,7 +2289,7 @@ h6 {
 #mobile-nav-toggle {
     float: right;
     z-index: 999;
-    margin-top: 4px;
+    margin-top: 0.9rem;
     border: 0;
     background: none;
     font-size: 24px;
@@ -4649,4 +4649,8 @@ padding: 14px 0;
 cursor: pointer;
 background: #32465a;
 color: #f5f5f5;
+}
+.dropdown-menu.show{
+    border: none !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }

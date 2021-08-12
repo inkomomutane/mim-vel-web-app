@@ -70,7 +70,13 @@
                             </button>
 
                         </form>
+                        <p class="col-md-7 pt-4">
+                            <a href="{{ route('register') }}"  >
+                                {{ __('Register') }}
+                            </a>
+                        </p>
                     </div>
+
                 </div>
             </div>
         </div>

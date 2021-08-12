@@ -58,7 +58,9 @@ class UserController extends Controller
                 }
             }
             $user = User::create($dataCreate);
+
             $user->syncRoles([$request->roles]);
+
             session()->flash('success', 'User criado com sucesso.');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
@@ -119,7 +121,7 @@ class UserController extends Controller
             session()->flash('success', 'User actualizado com sucesso.');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
-            dd($e);
+
             session()->flash('error', 'Erro na actualização do user.');
             return redirect()->route('user.index');
         }
