@@ -17,6 +17,7 @@ class CreateImovelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo')->nullable();
             $table->text('descricao')->nullable();
+            $table->string('codigo')->nullable();
             $table->integer('banheiros')->nullable()->default(0);
             $table->double('preco')->nullable();
             $table->timestamp('ano')->nullable();

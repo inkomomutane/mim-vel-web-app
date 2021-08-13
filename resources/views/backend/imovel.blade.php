@@ -51,7 +51,8 @@
                                         <i class="fas fa-th"></i>
                                     </th>
                                     <th>Id</th>
-                                    <th>Nome</th>
+                                    <th>Titulo</th>
+                                    <th>Código</th>
                                     <th>Ver</th>
                                     <th>Editar</th>
                                     <th>Galeria</th>
@@ -65,7 +66,9 @@
                                         <td><i class="fas fa-th"></i></td>
                                         <td>{{ ucfirst($imovel->id) }}</td>
                                         <td class="text-truncate">{{ ucfirst($imovel->titulo) }}</td>
-                                        <td><button class="btn btn-info"><i class="fa fa-eye"></i></button>
+                                        <td class="text-truncate">{{ ucfirst($imovel->codigo) }}</td>
+                                        <td>
+                                            <a class="btn btn-info" href="{{ route('imo.show', $imovel->id) }}"><i class="fa fa-eye"></i></a>
                                         </td>
                                         <td><a class="btn btn-secondary" href="{{ route('imovel.edit', $imovel->id) }}"><i class="fa fa-edit"></i></a>
                                         </td>

@@ -14,7 +14,7 @@ class DenunciaController extends Controller
      */
     public function index()
     {
-        //
+return view('backend.complaint')->with('complaints',Denuncia::all());
     }
 
     /**
@@ -35,7 +35,24 @@ class DenunciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validade = $request->validate([
+            'nome_do_denunciante' => 'required',
+            'email' => 'required|email',
+            'imovel_url' => 'required',
+            'denuncia' => 'required'
+        ]);
+        if ($validade) {
+            try {
+                Denuncia::create($request->all());
+                session()->flash('success', 'Denuncia criada com sucesso.');
+                return redirect()->back();
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro na criação da Denuncia.');
+                return redirect()->back();
+            }
+        }
+        session()->flash('error', 'Erro na criação da Denuncia.');
+        return redirect()->back();
     }
 
     /**

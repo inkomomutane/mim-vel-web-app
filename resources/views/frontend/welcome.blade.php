@@ -11,7 +11,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-start">
                 @foreach ($destacados as $imovel)
                     <div class="col-sm-4 p-2">
                         <div class="card">
@@ -32,9 +32,7 @@
                                     <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
                                         Tipo:&nbsp;
                                         {{ucfirst($imovel->tipo_de_imovel->nome)}} &nbsp;</a>
-                                <strong class="card-subtitle text-truncate">
-                                    Last brea
-                                </strong>
+
                                 <div class="star">
                                     <span class="fas fa-star checked"></span>
                                     <span class="fas fa-star checked"></span>
@@ -50,7 +48,7 @@
                                     {{ucfirst($imovel->cidade->nome)}} &nbsp;</a>
                                 <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                     <i class="fa fa-eye"></i>&nbsp;
-                                    3k &nbsp;</a>
+                                    Cod: {{ucfirst($imovel->codigo)}}  &nbsp;</a>
                                 <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                     <i class="far fa-comment-alt"></i>
                                     &nbsp; {{ucfirst($imovel->comentarios->count())}} &nbsp;</a>
@@ -86,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-start">
                 @foreach ($procurados_por_localizacao as $imovel)
                 <div class="col-sm-4 p-2">
                     <div class="card">
@@ -107,9 +105,7 @@
                                 <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
                                     Tipo:&nbsp;
                                     {{ucfirst($imovel->tipo_de_imovel->nome)}} &nbsp;</a>
-                            <strong class="card-subtitle text-truncate">
-                                Last brea
-                            </strong>
+
                             <div class="star">
                                 <span class="fas fa-star checked"></span>
                                 <span class="fas fa-star checked"></span>
@@ -125,7 +121,7 @@
                                 {{ucfirst($imovel->cidade->nome)}} &nbsp;</a>
                             <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                 <i class="fa fa-eye"></i>&nbsp;
-                                3k &nbsp;</a>
+                                Cod: {{ucfirst($imovel->codigo)}} &nbsp;</a>
                             <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                 <i class="far fa-comment-alt"></i>
                                 &nbsp; {{ucfirst($imovel->comentarios->count())}} &nbsp;</a>

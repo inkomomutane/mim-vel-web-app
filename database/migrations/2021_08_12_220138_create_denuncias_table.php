@@ -19,7 +19,7 @@ class CreateDenunciasTable extends Migration
             $table->string('nome_do_denunciante')->nullable();
             $table->boolean('anonimo')->nullable()->default(0);
             $table->string('email')->nullable();
-            $table->string('contacto')->nullable();
+            $table->string('imovel_url')->nullable();
             $table->timestamps();
         });
     }

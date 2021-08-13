@@ -27,13 +27,11 @@
         return view('frontend.contact');
     })->name('contact');
 
-    Route::get('/about', function () {
-        return view('frontend.about');
-    })->name('about');
+    Route::get('/about','Frontend\AboutController@index')->name('about');
 
-    Route::get('/complaint', function () {
-        return view('frontend.complaint');
-    })->name('complaint');
+    Route::get('/complaint','Frontend\ComplaintController@index')->name('complaint');
+    Route::post('/complaint','DenunciaController@store')->name('complaint.store');
+    Route::get('/denuncia', 'DenunciaController@index')->name('denuncia.index');
 
     Route::get('/imo', function () {
         return  [];

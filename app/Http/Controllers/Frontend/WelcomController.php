@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\BannerImages;
+use App\Http\Traits\WebVisits;
 use App\Models\Imovel;
 use Illuminate\Http\Request;
 use Jorenvh\Share\Share;
 
 class WelcomController extends Controller
 {
-    use BannerImages;
+    use BannerImages,WebVisits;
     public function index()
     {
-
+        $this->visit();
         return view('frontend.welcome')->with(
         [
             'images'=>$this->images('welcome'),
@@ -25,7 +26,8 @@ class WelcomController extends Controller
 
     public function imoveis()
     {
-        $imoveis = Imovel::all()->map(function($imovel){
+        $this->visit();
+        $imoveis = visits('App\Models\Imovel')->top(9)->map(function($imovel){
             $share = new Share();
                 $imovel['image'] = $imovel->fotos->first()?$imovel->fotos->first()->url:'';
                 return $imovel;

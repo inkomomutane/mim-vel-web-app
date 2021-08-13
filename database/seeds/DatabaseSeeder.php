@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\WebLink;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
@@ -25,6 +26,11 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Hash::make('password')
             ]
         );
+
+        WebLink::create([
+            'url' => 'views',
+            'icon' => 'fa fa-eye'
+        ]);
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
         $ceo =  Role::create([
             'name' => 'ceo',
@@ -84,16 +90,16 @@ class DatabaseSeeder extends Seeder
 
         //$ceo->permissions($permissions);
         $admin->givePermissionTo([
-            'create  post',
-            'update  post',
-           'publish  post',
-            'delete  post',
-            'create  user',
-            'update  user',
-            'delete  user',
-            'create  core data',
-            'update  core data',
-            'delete  core data',
+            'create post',
+            'update post',
+           'publish post',
+            'delete post',
+            'create user',
+            'update user',
+            'delete user',
+            'create core data',
+            'update core data',
+            'delete core data',
         ]);
         $corretor->givePermissionTo([
             'create post',

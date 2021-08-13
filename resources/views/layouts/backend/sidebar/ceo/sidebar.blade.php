@@ -29,7 +29,7 @@ $links = WebLink::all();
                     <span>Agendas</span></a></li>
         </ul>
         <ul class="sidebar-menu">
-            <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-exclamation-triangle"></i>
+            <li class="@if (Route::is('denuncia.index')) active @endif"><a class="nav-link" href="{{ route('denuncia.index') }}"><i class="fas fa-exclamation-triangle"></i>
                     <span>Denúncias</span></a></li>
         </ul>
         <ul class="sidebar-menu">

@@ -86,6 +86,7 @@ class Imovel extends Model
 
 	protected $fillable = [
 		'titulo',
+        'codigo',
 		'descricao',
 		'banheiros',
 		'preco',

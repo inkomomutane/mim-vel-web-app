@@ -60,16 +60,15 @@ class ImovelController extends Controller
             $dataCreate  = array();
             foreach ($data as $key => $value) {
                 $dataCreate[$key] = $value;
-               // if ($key == "default_image_link" && $value) {
-                    //$image = str_replace('data:image/png;base64,', '', $value);
-                   // $image = str_replace(' ', '+', $image);
-                   // Storage::put('public/' . $imageName, base64_decode($image));
-                   // $dataCreate[$key] = $imageName;
-              //  } else {
-                  //  $dataCreate[$key] = $value;
-              //  }
             }
-            Imovel::create($dataCreate);
+            $imovel = Imovel::create($dataCreate);
+            $words = explode(" ",auth()->user()->name);
+            $acronym = "";
+            foreach ($words as $w) {
+            $acronym .= $w[0];
+            }
+            $imovel->codigo = strtoupper($acronym.$imovel->id);
+            $imovel->save();
             session()->flash('success', 'Imóvel criado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {

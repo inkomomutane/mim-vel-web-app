@@ -32,4 +32,13 @@ class WebLink extends Model
     {
         return $this->morphMany('App\Models\Foto', 'fotable');
     }
+
+    public function vzt()
+    {
+        return visits($this);
+    }
+    public function visits()
+    {
+        return visits($this)->relation();
+    }
 }
