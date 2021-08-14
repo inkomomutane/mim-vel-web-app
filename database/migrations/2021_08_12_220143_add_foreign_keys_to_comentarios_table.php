@@ -15,6 +15,7 @@ class AddForeignKeysToComentariosTable extends Migration
     {
         Schema::table('comentarios', function (Blueprint $table) {
             $table->foreign('imovel_id', 'fk_comentario_imovel1')->references('id')->on('imovels')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('imovel_id', 'fk_comentario_user1')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 
@@ -27,6 +28,7 @@ class AddForeignKeysToComentariosTable extends Migration
     {
         Schema::table('comentarios', function (Blueprint $table) {
             $table->dropForeign('fk_comentario_imovel1');
+            $table->dropForeign('fk_comentario_user1');
         });
     }
 }

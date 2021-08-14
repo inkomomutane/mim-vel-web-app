@@ -11,7 +11,9 @@ trait WebVisits
     public function visit()
     {
         $web = WebLink::where('url','views')->where('icon','fa fa-eye')->first();
-        visits($web)->increment();
+            if($web)
+             visits($web)->increment();
+            else
         return $web;
     }
 }

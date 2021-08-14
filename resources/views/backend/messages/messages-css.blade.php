@@ -438,7 +438,9 @@
 
     #frame #sidepanel #contacts ul li.contact.active {
         background: #f2f4f6;
-        border-left: 5px solid #563d7c;
+border-left: 3px solid #1a063991;
+border-top: 1px solid #563d7c12;
+border-bottom: 1px solid #563d7c12;
     }
 
     #frame #sidepanel #contacts ul li.contact.active span.contact-status {

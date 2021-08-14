@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -12,10 +14,66 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private User $user;
+    private User $contact;
+
     public function index()
     {
-        return view('backend.messages.message');
+       // return $this->contacts(Auth::user()->id);
+        return view('backend.messages.message')
+        ->with('contacts', $this->contacts(Auth::user()->id));
     }
+
+    public function contacts(Int $user)
+    {
+        $this->user  = User::where('id',$user)->first();
+        $contacts = $this->user->receivedMessages
+            ->map(function ($contact) {
+                return $contact->sender;
+            })
+            ->concat(
+                $this->user->sentMessages
+                    ->map(function ($contact) {
+                        return $contact->receiver;
+                    })
+            )->unique()
+            ->map(function ($contact) {
+                $nonReaded =   $contact->sentMessages->where(
+                    'to_id',
+                    $this->user->id
+                )->where(
+                    'readed',
+                    0
+                )
+                    ->count();
+                $contact['nonReaded'] = $nonReaded;
+                return $contact;
+            });
+        return $contacts;
+    }
+
+    public function messagesOf(Int $activeUser, Int $contact)
+    {
+        $this->user     = User::where('id',$activeUser)->first();
+        $this->contact  = User::where('id',$contact)->first();
+
+        $messages = $this->user->receivedMessages->where('from_id',$this->contact->id)
+        ->concat(
+            $this->user->sentMessages->where('to_id',$this->contact->id)
+        );
+        $messages = $messages->sortBy('id');
+        $this->user->receivedMessages->where('from_id',$this->contact->id)
+        ->where('readed',false)->map(function($message){
+             $message->readed = true;
+             $message->save();
+             return $message;
+        });
+        return $messages->toArray();
+    }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +82,6 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**

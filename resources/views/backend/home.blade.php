@@ -80,7 +80,7 @@
         </div>
     </div>
     <div class="col-sm-8">
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-header">
                 <h4>Visualizações do site</h4>
             </div>
@@ -135,7 +135,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection
@@ -150,54 +149,9 @@
 <script src="{{ asset('backend/js/chart.min.js') }}"></script>
 @endpush
 @push('js')
-
+<script src="{{ asset('backend/js/app.js') }}"></script>
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
-    datasets: [{
-      label: 'Sales',
-      data: [3200, 1800, 4305, 3022, 6310, 5120, 5880, 6154],
-      borderWidth: 2,
-      backgroundColor: 'rgba(63,82,227,.8)',
-      borderWidth: 0,
-      borderColor: 'transparent',
-      pointBorderWidth: 0,
-      pointRadius: 3.5,
-      pointBackgroundColor: 'transparent',
-      pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
-    }]
-  },
-  options: {
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        gridLines: {
-          // display: false,
-          drawBorder: false,
-          color: '#f2f2f2',
-        },
-        ticks: {
-          beginAtZero: true,
-          stepSize: 1500,
-          callback: function(value, index, values) {
-            return '$' + value;
-          }
-        }
-      }],
-      xAxes: [{
-        gridLines: {
-          display: false,
-          tickMarkLength: 15,
-        }
-      }]
-    },
-  }
-});
+
 </script>
 
 @endpush

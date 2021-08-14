@@ -15,9 +15,9 @@ class CreateComentariosTable extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ip')->nullable();
             $table->string('comentario')->nullable();
             $table->unsignedBigInteger('imovel_id')->nullable()->index('fk_comentario_imovel1_idx');
+            $table->unsignedBigInteger('author_id')->nullable()->index('fk_comentario_user1_idx');
             $table->timestamps();
         });
     }

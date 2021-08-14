@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Bairro;
+use App\Models\Cidade;
+use App\Models\Status;
 use App\Models\User;
 use App\Models\WebLink;
 use Illuminate\Database\Seeder;
@@ -26,11 +29,55 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Hash::make('password')
             ]
         );
+        $data  = [
+            ['url' => 'views', 'icon' => 'fa fa-eye'],
+            ['url' => 'welcome', 'icon' => 'fa fa-home'],
+            ['url' => 'contact', 'icon' => 'fa fa-phone'],
+            ['url' => 'about', 'icon' => 'fa fa-info'],
+            ['url' => 'complaint', 'icon' => 'fa fa-exclamation-triangle'],
+        ];
 
-        WebLink::create([
-            'url' => 'views',
-            'icon' => 'fa fa-eye'
-        ]);
+        foreach ($data as $value) {
+            WebLink::create($value);
+        }
+
+        $data = [
+            ['nome' => 'Macuti'],
+            ['nome' => 'Chaimite'],
+            ['nome' => 'Maquinino'],
+            ['nome' => 'Pnta Gêa'],
+            ['nome' => 'CFM'],
+            ['nome' => 'Munhava'],
+        ];
+
+        foreach ($data as $value) {
+            Bairro::create($value);
+        }
+
+        $data = [
+            ['nome' => 'Maputo'],
+            ['nome' => 'Xai - Xai'],
+            ['nome' => 'Inhambane'],
+            ['nome' => 'Beira'],
+            ['nome' => 'Chimoio'],
+            ['nome' => 'Tete'],
+            ['nome' => 'Quelimane'],
+            ['nome' => 'Nampula'],
+            ['nome' => 'Pemba'],
+            ['nome' => 'Lichinga'],
+        ];
+        foreach ($data as $value) {
+            Cidade::create($value);
+        }
+        $data = [
+            ['nome' => 'Vendido'],
+            ['nome' => 'Alugado'],
+            ['nome' => 'Disponivel'],
+        ];
+        foreach ($data as $value) {
+            Status::create($value);
+        }
+
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
         $ceo =  Role::create([
             'name' => 'ceo',
@@ -66,7 +113,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'delete user',
         ]);
         Permission::create([
-            'name' => 'update ceo']);
+            'name' => 'update ceo'
+        ]);
 
         Permission::create([
             'name' => 'delete ceo',
@@ -76,7 +124,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name' => 'create core data']);
+            'name' => 'create core data'
+        ]);
 
         Permission::create([
             'name' => 'delete core data',
@@ -86,13 +135,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $permissions = Permission::all();
-        $roles = Role::where('name','ceo')->get();
+        $roles = Role::where('name', 'ceo')->get();
 
         //$ceo->permissions($permissions);
         $admin->givePermissionTo([
             'create post',
             'update post',
-           'publish post',
+            'publish post',
             'delete post',
             'create user',
             'update user',

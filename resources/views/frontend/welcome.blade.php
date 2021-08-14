@@ -31,7 +31,10 @@
                                     </a>
                                     <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
                                         Tipo:&nbsp;
-                                        {{ucfirst($imovel->tipo_de_imovel->nome)}} &nbsp;</a>
+                                        @if ( $imovel->tipo_de_imovel)
+                                            {{ucfirst($imovel->tipo_de_imovel->nome)}}
+                                        @endif
+                                        &nbsp;</a>
 
                                 <div class="star">
                                     <span class="fas fa-star checked"></span>
@@ -45,7 +48,10 @@
                                 <hr>
                                 <a class="badge badge-pill badge-light p-2 text-truncate" href="">
                                     <i class="fa fa-map-marker-alt"></i>&nbsp;
-                                    {{ucfirst($imovel->cidade->nome)}} &nbsp;</a>
+                                    @if ($imovel->cidade)
+                                    {{ucfirst($imovel->cidade->nome)}}
+                                    @endif
+                                    &nbsp;</a>
                                 <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                     <i class="fa fa-eye"></i>&nbsp;
                                     Cod: {{ucfirst($imovel->codigo)}}  &nbsp;</a>
@@ -104,7 +110,10 @@
                                 </a>
                                 <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
                                     Tipo:&nbsp;
-                                    {{ucfirst($imovel->tipo_de_imovel->nome)}} &nbsp;</a>
+                                    @if ( $imovel->tipo_de_imovel)
+                                        {{ucfirst($imovel->tipo_de_imovel->nome)}}
+                                    @endif
+                                    &nbsp;</a>
 
                             <div class="star">
                                 <span class="fas fa-star checked"></span>
@@ -118,27 +127,29 @@
                             <hr>
                             <a class="badge badge-pill badge-light p-2 text-truncate" href="">
                                 <i class="fa fa-map-marker-alt"></i>&nbsp;
-                                {{ucfirst($imovel->cidade->nome)}} &nbsp;</a>
+                                @if ($imovel->cidade)
+                                {{ucfirst($imovel->cidade->nome)}}
+                                @endif
+                                &nbsp;</a>
                             <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                 <i class="fa fa-eye"></i>&nbsp;
-                                Cod: {{ucfirst($imovel->codigo)}} &nbsp;</a>
+                                Cod: {{ucfirst($imovel->codigo)}}  &nbsp;</a>
                             <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
                                 <i class="far fa-comment-alt"></i>
                                 &nbsp; {{ucfirst($imovel->comentarios->count())}} &nbsp;</a>
+                                <a class="dropdown">
 
-<a class="dropdown">
 
-
-                            <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-share-alt"></i>
-                                &nbsp; Partilhar &nbsp;
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{ route('imo.show', $imovel->id) }}"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
-                                    <a class="dropdown-item" href="https://wa.me/?text= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
-                                    <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
-                                  </div>
-                            </a>
-                        </a>
+                                    <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-share-alt"></i>
+                                        &nbsp; Partilhar &nbsp;
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{ route('imo.show', $imovel->id) }}"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                            <a class="dropdown-item" href="https://wa.me/?text= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                            <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= {{ route('imo.show', $imovel->id) }}"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                          </div>
+                                    </a>
+                                </a>
 
 
                         </div>

@@ -9,12 +9,12 @@
         if ($.trim(message) == '') {
             return false;
         }
-        $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>')
+        $('<li class="sent"><img src="http://127.0.0.1:8000/backend/images/avatar.png" alt="" /><p>' + message + '</p></li>')
             .appendTo($('.messages ul'));
         $('.message-input input').val(null);
         $('.contact.active .preview').html('<span>You: </span>' + message);
         $(".messages").animate({
-            scrollTop: $(document).height()
+            scrollTop: $('.messages').scrollTop() + 200
         }, "fast");
     };
 
@@ -28,5 +28,8 @@
             return false;
         }
     });
+
+
+
 </script>
 @endpush

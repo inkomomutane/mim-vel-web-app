@@ -29,17 +29,25 @@ class Message extends Model
 
 	protected $casts = [
 		'from_id' => 'int',
-		'to_id' => 'int'
+		'to_id' => 'int',
+        'readed' => 'bool'
 	];
 
 	protected $fillable = [
 		'from_id',
 		'to_id',
-		'message'
+		'message',
+        'readed'
 	];
 
-	public function user()
+	public function sender()
 	{
 		return $this->belongsTo(User::class, 'from_id');
 	}
+
+    public function receiver()
+	{
+		return $this->belongsTo(User::class, 'to_id');
+	}
+
 }

@@ -66,7 +66,12 @@ class User extends Authenticatable implements MustVerifyEmail
 		return $this->hasMany(Imovel::class, 'postado_por');
 	}
 
-	public function messages()
+	public function receivedMessages()
+	{
+		return $this->hasMany(Message::class, 'to_id');
+	}
+
+    public function sentMessages()
 	{
 		return $this->hasMany(Message::class, 'from_id');
 	}

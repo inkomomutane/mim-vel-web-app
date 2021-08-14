@@ -19,6 +19,8 @@
     Route::get('/imoveis/{imovel}', 'Frontend\ImovelController@show')->name('imo.show');
     Route::get('/imoveis', 'Frontend\ImovelController@index')->name('imo.index');
 
+    Route::get('/mm/{activeUser}/{contact}','MessageController@messagesOf')->name('messageOf');
+
 
     Route::get('/test', function () {
         return abort(401);
