@@ -14,7 +14,7 @@ class WelcomController extends Controller
     use BannerImages,WebVisits;
     public function index()
     {
-        $this->visit();
+      $this->visit();
         return view('frontend.welcome')->with(
         [
             'images'=>$this->images('welcome'),
@@ -27,7 +27,7 @@ class WelcomController extends Controller
     public function imoveis()
     {
         $this->visit();
-        $imoveis = visits('App\Models\Imovel')->top(9)->map(function($imovel){
+        $imoveis = Imovel::all()->map(function($imovel){
             $share = new Share();
                 $imovel['image'] = $imovel->fotos->first()?$imovel->fotos->first()->url:'';
                 return $imovel;
