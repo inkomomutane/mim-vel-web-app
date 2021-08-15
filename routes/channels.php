@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Message;
 use App\Models\WebLink;
 use Illuminate\Support\Facades\Broadcast;
 
@@ -22,5 +23,10 @@ Broadcast::channel('notification', function ()
 {
     return true;
 });
+Broadcast::channel('user.{id}', function ($user, $id) {
+    return (int) $user->id == (int) $id;
+});
 
-
+Broadcast::channel('message_get.{toId}', function ($user,$toId) {
+    return $user->id === $toId;
+});

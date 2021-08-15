@@ -33,7 +33,7 @@
                                         <td>{{ ucfirst($complaint->nome_do_denunciante) }}</td>
                                         <td>{{ ucfirst($complaint->denuncia ) }}</td>
                                         <td>{{ ucfirst($complaint->email ) }}</td>
-                                        <td><a href="{{ ucfirst($complaint->contacto ) }}">imovel</a> 	 </td>
+                                        <td><a href="{{ ucfirst($complaint->imovel_url ) }}">imovel</a> 	 </td>
                                      </tr>
                                 @endforeach
                             </tbody>

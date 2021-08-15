@@ -43,7 +43,7 @@
             <div class="message-input">
                 <div class="wrap">
                     <input type="text" placeholder="Write your message..." />
-                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    <button class="submit" data-to-id = ""><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -54,6 +54,33 @@
 
 @include('backend.messages.messages-js')
 
+
+@push('jsLibs')
+<script src="{{ asset('backend/js/app.js') }}"></script>
+<script>
+    Echo.channel('message_get.{!! auth()->user()->id !!}')
+        .listen('SendMessage', (event) => {
+            message = event.message;
+            id  = $('div#contacts ul li.contact.active').attr('data-id');
+            if (parseInt(id) == message.from_id) {
+                if ($.trim(message.message) == '') {
+                    return false;
+                }
+                $('<li class="replies"><img src="http://127.0.0.1:8000/backend/images/avatar.png" alt="" /><p>' + message.message + '</p></li>')
+                    .appendTo($('.messages ul'));
+                $('.message-input input').val(null);
+                $(".messages").animate({
+                    scrollTop: $('.messages').scrollTop() + 200
+                }, "fast");
+            }else{
+               dad =  $("li[data-id='" + message.from_id + "']").find('div.contact-status.online').remove();
+               $('<div class="contact-status online">⁺1</div>')
+               .prependTo($("li[data-id='" + message.from_id + "']").find('div.wrap div.meta'));
+               console.log(dad);
+            }
+        });
+</script>
+@endpush
 @push('js')
     <script>
         $('div#contacts ul li.contact').on('click', function() {
@@ -63,14 +90,14 @@
             $('div.contact-profile p').text(name);
             $(this).addClass('active');
             $('.messages ul').empty();
+            $('div.message-input div.wrap button.submit').attr('data-to-id', id);
             var ajres = $.ajax({
                 type: "get",
-                url: '{{ asset('') }}' + 'mm/' + {!! auth()->user()->id !!} + '/' + parseInt($(this).attr(
+                url: '{{ asset('') }}' + 'messages/' + {!! auth()->user()->id !!} + '/' + parseInt($(this).attr(
                     'data-id')),
                 data: "messages",
                 dataType: "json",
                 success: function(messages) {
-
                     var messages = Object.keys(messages).map(function(key) {
                         return messages[key];
                     });
@@ -90,7 +117,7 @@
                                 var scrollSize = $('.messages').attr('data-size');
                                 $('.messages').attr('data-size', '' + (parseInt(scrollSize) + 150));
                             }
-                    });
+                        });
                     $('li.contact.active div.wrap div.meta div.contact-status.online').remove();
                     return messages;
                 }
@@ -129,3 +156,4 @@
 
     </style>
 @endpush
+

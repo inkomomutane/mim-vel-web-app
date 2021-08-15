@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SendMessage;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -71,10 +72,6 @@ class MessageController extends Controller
         return $messages->toArray();
     }
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -92,7 +89,22 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valiadate =  $request->validate([
+            'to_id' => 'required',
+            'message' => 'required'
+        ]);
+        $valiadate['from_id'] = auth()->user()->id;
+        if($valiadate){
+            try {
+                $message = Message::create(
+                    $valiadate
+                );
+                event(new SendMessage($message));
+                return response()->json($message);
+            } catch (\Throwable $th) {
+                return response()->json('Error',403);
+            }
+        }
     }
 
     /**
@@ -104,6 +116,12 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         //
+    }
+    public function read(Message $message)
+    {
+        $message->readed = true;
+        $message->save();
+        return response()->json($message);
     }
 
     /**

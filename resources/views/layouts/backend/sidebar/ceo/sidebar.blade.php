@@ -35,7 +35,12 @@ $links = WebLink::all();
         <ul class="sidebar-menu">
             <li class="@if (Route::is('message.index')) active @endif">
                 <a class="nav-link" href="{{ route('message.index') }}"><i class="fas fa-comments"></i>
-                    <span>Mensagens</span></a></li>
+
+                    <span>Mensagens</span>
+                    <div class="notification" style="font-weight: 800">
+                    </div>
+                </a>
+                </li>
         </ul>
 
         <ul class="sidebar-menu">
@@ -88,3 +93,20 @@ $links = WebLink::all();
         </ul>
     </aside>
 </div>
+
+@push('css')
+    <style>
+        .notification{
+            width: 24px;
+padding: 0px;
+text-align: center;
+border-radius: 20px;
+height: 24px;
+text-align-last: center;
+float: right;
+color: #fff;
+font-size: 12px;
+font-weight: 800;
+        }
+    </style>
+@endpush

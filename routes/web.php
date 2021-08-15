@@ -19,12 +19,9 @@
     Route::get('/imoveis/{imovel}', 'Frontend\ImovelController@show')->name('imo.show');
     Route::get('/imoveis', 'Frontend\ImovelController@index')->name('imo.index');
 
-    Route::get('/mm/{activeUser}/{contact}','MessageController@messagesOf')->name('messageOf');
+    Route::get('/messages/{activeUser}/{contact}','MessageController@messagesOf')->name('messageOf');
 
 
-    Route::get('/test', function () {
-        return abort(401);
-    });
     Route::get('/contact', function () {
         return view('frontend.contact');
     })->name('contact');
@@ -99,3 +96,6 @@
     Route::resource('message', 'MessageController')->middleware(
         ['verified','auth','role:ceo|admin|corretor|client']
     );
+    Route::post('/message_send','MessageController@store')->name('message_send');
+    Route::post('/message_read/{message}','MessageController@read')->name('message_read');
+
