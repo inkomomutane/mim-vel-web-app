@@ -15,7 +15,7 @@ class TipoDeImovelController extends Controller
      */
     public function index()
     {
-        return view('backend.tipodeimovel')->with('tipodeimovels', TipoDeImovel::all());
+        return view('backend.tipo_de_imovel.tipodeimovel')->with('tipodeimovels', TipoDeImovel::all());
     }
 
     /**

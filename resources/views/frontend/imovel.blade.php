@@ -76,7 +76,14 @@
                         @endif
 
                         <div class="col-sm-4 description text-truncate">Localização:
-                            <strong>{{ $imovel->cidade->nome . ', ' . $imovel->bairro->nome . ', ' . $imovel->endereco }}</strong>
+                            <strong>
+
+                                @if ($imovel->bairro )
+                                {{ $imovel->bairro->cidade->nome . ', ' . $imovel->bairro->nome . ', ' . $imovel->endereco }}
+                                @else
+                                    {{$imovel->endereco }}
+                                @endif
+                                </strong>
                         </div>
                         @if ($imovel->tipo_de_imovel)
                             <div class="col-sm-4 description">Tipo de imóvel:

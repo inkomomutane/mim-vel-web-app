@@ -37,12 +37,28 @@
 
 
 @section('content')
+
+
+<div class="whole-wrap pt-5 bg-white">
+    <div class="container-fluid row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+</div>
+
+
+
 <div class="whole-wrap py-5">
     <div class="container">
 
         <div class="section-top-border">
 
-
+            <h6>
+                @if (Route::is('imovel.search'))
+                 Cerca de {{$imoveis->count()}} resultados encontrados ...
+                @endif
+            </h6>
             @foreach ($imoveis as $imovel)
             <a href="{{ route('imo.show',$imovel->id) }}" style="color: #000">
             <div class="row py-3 bg-white shadow-sm mb-2" style="box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)">
@@ -53,8 +69,12 @@
                 <div class="col-md-9 mt-sm-20 left-align-p">
                     <h5>{{ucfirst($imovel->titulo)}}</h5>
                     <hr>
-                    <strong style="font-weight: 501">{{ucfirst($imovel->cidade->nome)}}, {{$imovel->bairro->nome}} &nbsp;&nbsp;  Preço: {{ round($imovel->preco,2)}} MTN </strong>
+                    <strong style="font-weight: 501">
+                        @if ($imovel->bairro)
+                        {{ucfirst($imovel->bairro->cidade->nome)}}, {{$imovel->bairro->nome}}
+                        @endif  &nbsp;&nbsp;  Preço: {{ round($imovel->preco,2)}} MTN </strong>
                     <p class="text-truncate">{!! $imovel->descricao !!}</p>
+
                    @if ($imovel->user)
                        <strong style="font-weight: 501">Corretor: {{$imovel->user->name}}</strong>
                    @endif

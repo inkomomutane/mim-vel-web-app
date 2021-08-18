@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Bairro;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class Add extends FormRequest
 {
@@ -24,7 +25,7 @@ class Add extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|unique:bairros'
+            'nome' => 'required',Rule::unique('bairros')->ignore($this->nome, 'nome'),
         ];
     }
 }

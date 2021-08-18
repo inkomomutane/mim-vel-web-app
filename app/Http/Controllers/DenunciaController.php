@@ -14,7 +14,7 @@ class DenunciaController extends Controller
      */
     public function index()
     {
-return view('backend.complaint')->with('complaints',Denuncia::all());
+return view('backend.complaint.complaint')->with('complaints',Denuncia::all());
     }
 
     /**

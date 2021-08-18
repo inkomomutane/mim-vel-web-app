@@ -51,7 +51,7 @@ return [
     | Always return uncached fresh top/low lists
     |--------------------------------------------------------------------------
     */
-    'always_fresh' => false,
+    'always_fresh' => true,
 
 
     /*

@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 /**
  * Class Imovel
@@ -32,7 +32,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool|null $published
  * @property int|null $condicao_id
  * @property int|null $bairro_id
- * @property int|null $cidade_id
  * @property int|null $tipo_de_imovel_id
  * @property int|null $status_id
  * @property int|null $views
@@ -43,7 +42,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $deleted_at
  *
  * @property Bairro|null $bairro
- * @property Cidade|null $cidade
  * @property Condicao|null $condicao
  * @property Status|null $status
  * @property TipoDeImovel|null $tipo_de_imovel
@@ -56,9 +54,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Imovel extends Model
 {
-	use SoftDeletes;
+	use SoftDeletes,SearchableTrait;
 	protected $table = 'imovels';
-
 
 	protected $casts = [
 		'banheiros' => 'int',
@@ -72,7 +69,6 @@ class Imovel extends Model
 		'published' => 'bool',
 		'condicao_id' => 'int',
 		'bairro_id' => 'int',
-		'cidade_id' => 'int',
 		'tipo_de_imovel_id' => 'int',
 		'status_id' => 'int',
 		'views' => 'int',
@@ -84,9 +80,10 @@ class Imovel extends Model
 		'ano'
 	];
 
+
+
 	protected $fillable = [
 		'titulo',
-        'codigo',
 		'descricao',
 		'banheiros',
 		'preco',
@@ -94,6 +91,7 @@ class Imovel extends Model
 		'andar',
 		'area',
 		'quartos',
+        'codigo',
 		'suites',
 		'garagens',
 		'piscinas',
@@ -102,7 +100,6 @@ class Imovel extends Model
 		'published',
 		'condicao_id',
 		'bairro_id',
-		'cidade_id',
 		'tipo_de_imovel_id',
 		'status_id',
 		'views',
@@ -110,17 +107,63 @@ class Imovel extends Model
 		'postado_por'
 	];
 
+
+
+
+        /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'imovels.titulo'=> 10,
+            'imovels.descricao'=> 6,
+            'imovels.banheiros'=> 1,
+            'imovels.preco'=> 10,
+            'imovels.codigo' =>9,
+            'imovels.ano'=> 10,
+            'imovels.andar'=> 5,
+            'imovels.area'=> 5,
+            'imovels.quartos'=> 8,
+            'imovels.suites'=> 7,
+            'imovels.garagens'=> 3,
+            'imovels.piscinas'=> 3,
+            'imovels.endereco'=> 10,
+            'imovels.postado_por'=> 4,
+            'bairros.nome'=>10,
+            'condicaos.nome'=>10,
+            'statuses.nome'=>10,
+            'tipo_de_imovels.nome' => 8,
+        ],
+        'joins' => [
+            'bairros' => ['imovels.bairro_id','bairros.id'],
+            'condicaos' => ['imovels.condicao_id','condicaos.id'],
+            'statuses' => ['imovels.status_id','statuses.id'],
+            'tipo_de_imovels' => ['imovels.tipo_de_imovel_id','tipo_de_imovels.id'],
+        ],
+    ];
+
 	public function bairro()
 	{
 		return $this->belongsTo(Bairro::class);
 	}
-
-	public function cidade()
+    public function bairros()
 	{
-		return $this->belongsTo(Cidade::class);
+		return $this->belongsTo(Bairro::class);
 	}
-
 	public function condicao()
+	{
+		return $this->belongsTo(Condicao::class);
+	}
+    public function condicaos()
 	{
 		return $this->belongsTo(Condicao::class);
 	}
@@ -129,8 +172,16 @@ class Imovel extends Model
 	{
 		return $this->belongsTo(Status::class);
 	}
+    public function statuses()
+	{
+		return $this->belongsTo(Status::class);
+	}
 
 	public function tipo_de_imovel()
+	{
+		return $this->belongsTo(TipoDeImovel::class);
+	}
+    public function tipo_de_imovels()
 	{
 		return $this->belongsTo(TipoDeImovel::class);
 	}
@@ -172,4 +223,8 @@ class Imovel extends Model
     {
         return visits($this)->relation();
     }
+
+
+
+
 }

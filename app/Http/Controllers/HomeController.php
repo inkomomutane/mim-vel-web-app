@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('backend.home')->with(
+        return view('backend.dashboard.home')->with(
             [
                 'imoveis' =>   Imovel::all(),
                 'agendas' =>   Agenda::all(),

@@ -23,7 +23,7 @@ class UserController extends Controller
     {
             $users = User::all();
 
-            return view('backend.user')->with(['users' => $users,'roles'=>Role::all()]);
+            return view('backend.user.user')->with(['users' => $users,'roles'=>Role::all()]);
 
     }
 
@@ -78,7 +78,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         if ($user->id == Auth::user()->id) {
-            return view('backend.profile')->with('user',$user);
+            return view('backend.profile.profile')->with('user',$user);
         }else{
             return abort(404);
         }

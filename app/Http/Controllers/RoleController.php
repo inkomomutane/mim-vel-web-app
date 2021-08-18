@@ -9,6 +9,6 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return view('backend.permission')->with('permissions',Role::all());
+        return view('backend.permission.permission')->with('permissions',Role::all());
     }
 }

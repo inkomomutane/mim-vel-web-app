@@ -27,11 +27,10 @@ class WelcomController extends Controller
     public function imoveis()
     {
         $this->visit();
-        $imoveis = visits('App\Models\Imovel')->top(9)->map(function($imovel){
+        $imoveis =Imovel::all()->map(function($imovel){
             $share = new Share();
-                $imovel['image'] = $imovel->fotos->first()?$imovel->fotos->first()->url:'';
-                return $imovel;
-
+            $imovel['image'] = $imovel->fotos->first()?$imovel->fotos->first()->url:'';
+            return $imovel;
         });
         if($imoveis->count() > 9){
             return $imoveis->random(9);

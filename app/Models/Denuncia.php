@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Denuncia
- *
+ * 
  * @property int $id
  * @property string|null $denuncia
  * @property string|null $nome_do_denunciante
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $contacto
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
+ * 
  * @property Collection|DenuniasImovel[] $denunias_imovels
  *
  * @package App\Models
@@ -38,8 +38,12 @@ class Denuncia extends Model
 		'denuncia',
 		'nome_do_denunciante',
 		'anonimo',
-		'imovel_url',
-		'contacto',
-        'email'
+		'email',
+		'contacto'
 	];
+
+	public function denunias_imovels()
+	{
+		return $this->hasMany(DenuniasImovel::class);
+	}
 }

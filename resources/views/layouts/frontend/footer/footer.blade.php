@@ -18,44 +18,22 @@
                     <div class="row">
                         <div class="col">
                             <ul>
-                                <li><a href="#">Início</a></li>
-                                <li><a href="#">Imóveis</a></li>
-                                <li><a href="#">Corretores</a></li>
-                                <li><a href="#">Sobre nós</a></li>
+                                <li><a href="{{ asset('') }}">Início</a></li>
+                                <li><a href="{{ route('imo.index') }}">Ver  todos Imóveis</a></li>
+                                <li><a href="#">Parceria</a></li>
+                                <li><a href="{{ route('about') }}">Sobre nós</a></li>
                             </ul>
                         </div>
                         <div class="col">
                             <ul>
-                                <li><a href="#">Contacto</a></li>
-                                <li><a href="#">Meu perfil</a></li>
-                                <li><a href="#">Termos e condições de uso</a></li>
+                                <li><a href="{{ route('contact') }}">Contacto</a></li>
+                                <li><a href="{{ route('termos.frontend') }}">Termos e condições de uso</a></li>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Receber actualizações</h6>
-                    <p>
-                        Receba actualizações por email quando tiver novidades, imóveis novos, imóveis disponiveis.
-                    </p>
-                    <div id="mc_embed_signup">
-                        <form target="_blank"
-                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                            method="get" class="subscription relative">
-                            @csrf
-                            <div class="input-group d-flex flex-row">
-                                <input name="EMAIL" placeholder="Insira seu email" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Insira seu email'" required="" type="email">
-                                <button class="btn bb-btn"> <i class="fas fa-mail-bulk    "></i></button>
-                            </div>
-                            <div class="mt-10 info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <img src="http://127.0.0.1:8000/storage/imoveis/saepe_2021_08_07_08_33_45.png"  class="col" alt="" srcset="">
+            <div class="col-lg-4  col-md-4 col-sm-4">
+                <img src="{{ asset('/frontend/mimovel/mimovel.png') }}"  class="col" alt="" srcset="">
             </div>
         </div>
 
@@ -65,8 +43,8 @@
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 <script>
                     document.write(new Date().getFullYear());
-                </script> Todos direitos reservados |  <a href="#"
-                    target="_blank">Termos e condições de uso</a>
+                </script> Todos direitos reservados |  <a href="{{ route('termos.frontend') }}"
+                   >Termos e condições de uso</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
             <div class="col-lg-4 col-sm-12 footer-social">
