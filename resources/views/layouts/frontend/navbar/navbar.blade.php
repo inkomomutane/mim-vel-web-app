@@ -6,17 +6,16 @@
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li><a href="{{ route('imo.index') }}" class = "@if (Route::is('imo.index') || Route::is('imo.*')) menu-active @endif">Imóveis</a></li>
+                <li><a href="{{ route('welcome') }}"  class = "@if (Route::is('welcome') || Route::is('welcome')) menu-active @endif">Início</a></li>
+                <li><a href="{{ route('imo.index') }}" class = "@if (Route::is('imo.index') || Route::is('imo.*')) menu-active @endif">Ver todos Imóveis</a></li>
                 <li><a  href="{{ route('about') }}" class="@if (Route::is('about')) menu-active @endif">Sobre nós</a></li>
                 <li><a href="{{ route('contact') }}" class="@if (Route::is('contact')) menu-active @endif">Contacto</a></li>
-                <li><a href="{{ route('complaint') }}" class="@if (Route::is('complaint')) menu-active @endif">Denûncias</a></li>
-                <li><a href="
-                    @guest {{ route('login') }} @else
-                        {{ route('home') }}
-                    @endguest
-                    ">Meu perfil</a></li>
-
-
+                <li>
+                    <form action="{{ route('imovel.search') }}" method="get">
+                        @csrf
+                        <input type="text" name="query" id="query" placeholder="Pesquisar Imóvel" class="">
+                    </form>
+                </li>
             </ul>
           </nav><!-- #nav-menu-container -->
         </div>

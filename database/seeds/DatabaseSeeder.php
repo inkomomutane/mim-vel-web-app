@@ -42,34 +42,6 @@ class DatabaseSeeder extends Seeder
         }
 
         $data = [
-            ['nome' => 'Macuti'],
-            ['nome' => 'Chaimite'],
-            ['nome' => 'Maquinino'],
-            ['nome' => 'Pnta Gêa'],
-            ['nome' => 'CFM'],
-            ['nome' => 'Munhava'],
-        ];
-
-        foreach ($data as $value) {
-            Bairro::create($value);
-        }
-
-        $data = [
-            ['nome' => 'Maputo'],
-            ['nome' => 'Xai - Xai'],
-            ['nome' => 'Inhambane'],
-            ['nome' => 'Beira'],
-            ['nome' => 'Chimoio'],
-            ['nome' => 'Tete'],
-            ['nome' => 'Quelimane'],
-            ['nome' => 'Nampula'],
-            ['nome' => 'Pemba'],
-            ['nome' => 'Lichinga'],
-        ];
-        foreach ($data as $value) {
-            Cidade::create($value);
-        }
-        $data = [
             ['nome' => 'Vendido'],
             ['nome' => 'Alugado'],
             ['nome' => 'Disponivel'],
@@ -134,7 +106,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'update core data',
         ]);
 
-        $permissions = Permission::all();
+        //$permissions = Permission::all();
         $roles = Role::where('name', 'ceo')->get();
 
         //$ceo->permissions($permissions);

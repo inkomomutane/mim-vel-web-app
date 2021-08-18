@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Bairro\Add;
 use App\Models\Bairro;
+use App\Models\Cidade;
 use Illuminate\Http\Request;
 
 class BairroController extends Controller
@@ -15,7 +16,7 @@ class BairroController extends Controller
      */
     public function index()
     {
-        return view('backend.bairro')->with('bairros', Bairro::all());
+        return view('backend.bairro.bairro')->with('bairros', Bairro::all())->with('cidades',Cidade::all());
     }
 
     /**
@@ -54,7 +55,7 @@ class BairroController extends Controller
      */
     public function show(Bairro $bairro)
     {
-        //
+
     }
 
     /**

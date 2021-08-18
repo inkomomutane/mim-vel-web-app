@@ -15,7 +15,7 @@ class CidadeController extends Controller
      */
     public function index()
     {
-        return view('backend.cidade')->with('cidades', Cidade::all());
+        return view('backend.cidade.cidade')->with('cidades', Cidade::all());
     }
 
     /**
@@ -54,7 +54,8 @@ class CidadeController extends Controller
      */
     public function show(Cidade $cidade)
     {
-        //
+        $cidade = Cidade::where('id',$cidade->id)->with('bairros')->first();
+        return $cidade;
     }
 
     /**

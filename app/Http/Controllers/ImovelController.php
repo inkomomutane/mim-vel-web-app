@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Traits\RemoveAccent;
 use App\Models\Bairro;
 use App\Models\Cidade;
+use App\Models\Comentario;
+use App\Models\Denuncia;
+use App\Models\DenuniasImovel;
 use App\Models\Foto;
 use App\Models\Imovel;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
+use App\Models\Visit;
+use Awssat\Visits\Models\Visit as ModelsVisit;
+use Awssat\Visits\Visits;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -24,7 +30,7 @@ class ImovelController extends Controller
      */
     public function index()
     {
-        return view('backend.imovel')->with('imoveis', Imovel::all());
+        return view('backend.imovel.imovel')->with('imoveis', Imovel::with('visits')->get());
     }
 
     /**
@@ -35,7 +41,7 @@ class ImovelController extends Controller
     public function create()
     {
 
-        return view('backend.imovelCreatEdit')->with([
+        return view('backend.imovel.imovelCreatEdit')->with([
             'cidades' => Cidade::all(),
             'bairros' => Bairro::all(),
             'tipoDeImoveis' => TipoDeImovel::all(),
@@ -52,9 +58,6 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-       // $path =  str_replace(" ", "_", $this->str_without_accents($request->titulo));
-        //$imageName = 'imoveis/' . $path . '.' . 'png';
-
         try {
             $data = $request->all();
             $dataCreate  = array();
@@ -72,7 +75,7 @@ class ImovelController extends Controller
             session()->flash('success', 'Imóvel criado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {
-           // Storage::delete('public' . $imageName);
+            dd($e);
             session()->flash('error', 'Erro na criação do imóvel.');
             return redirect()->route('imovel.index');
         }
@@ -113,25 +116,43 @@ class ImovelController extends Controller
     public function delete_image(Request $request,Imovel $imovel)
     {
 
+            try {
+             $status = $this->delete_images_of_imoveis($request->all(),$imovel);
+             if($status == 200){
+                session()->flash('success', 'Fotos deletadas com sucesso.');
+                return redirect()->back();
+             }else{
+                session()->flash('error', 'Erro ao deletar Fotos.');
+                return redirect()->back();
+             }
+
+            } catch (\Throwable $th) {
+                session()->flash('error', 'Erro ao deletar Fotos.'. $th);
+                return redirect()->back();
+            }
+
+    }
+
+    private function delete_images_of_imoveis($array, Imovel $imovel){
         try {
-            foreach($request->all() as $id => $value){
+            foreach($array as $id => $value){
                 if ($id != '_token') {
                      $foto = $imovel->fotos->where('id',$id)->first();
                      $foto->delete();
-                   //  dd($value);
                      Storage::delete('public/'.$value);
-
                 }
             }
-            session()->flash('success', 'Fotos deletadas com sucesso.');
-            return redirect()->back();
-
+            return 200;
         } catch (\Throwable $th) {
-            session()->flash('error', 'Erro ao deletar Fotos.'. $th);
-            return redirect()->back();
+            return 403;
         }
 
     }
+
+
+
+
+
     /**
      * Display the specified resource.
      *
@@ -140,7 +161,7 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
-        return view('backend.galeria')->with('imovel',$imovel);
+        return view('backend.imovel.galeria')->with('imovel',$imovel);
     }
 
     /**
@@ -151,7 +172,7 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
-        return view('backend.imovelCreatEdit')->with([
+        return view('backend.imovel.imovelCreatEdit')->with([
             'cidades' => Cidade::all(),
             'bairros' => Bairro::all(),
             'tipoDeImoveis' => TipoDeImovel::all(),
@@ -169,30 +190,16 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
-
-        //$path =  str_replace(" ", "_", $this->str_without_accents($request->titulo));
-       // $imageName = 'imoveis/' . $path . '.' . 'png';
         try {
             $data = $request->all();
-           // dd($imovel);
             $dataUpdate  = array();
             foreach ($data as $key => $value) {
                 $dataUpdate[$key] = $value;
-                /*
-                if ($key == "default_image_link" && $value && $value != null) {
-                    $image = str_replace('data:image/png;base64,', '', $value);
-                    $image = str_replace(' ', '+', $image);
-                    Storage::put('public/' . $imageName, base64_decode($image));
-                    $dataUpdate[$key] = $imageName;
-                } else if ($value || $value != null || $value != '') {
-
-                }*/
             }
             $imovel->update($dataUpdate);
             session()->flash('success', 'Imóvel actualizado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {
-            dd($e);
             session()->flash('error', 'Erro na actualização do imóvel.');
             return redirect()->route('imovel.index');
         }
@@ -206,7 +213,40 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
-        $imovel->images()->sync([]);
+
+
+       try {
+        $array = [];
+        foreach ($imovel->fotos as  $foto) {
+            $array[$foto->id] = $foto->url;
+        }
+        if ($this->delete_images_of_imoveis($array,$imovel) == 200) {
+            Comentario::destroy($imovel->comentarios->pluck('id'));
+            DenuniasImovel::destroy($imovel->denunias_imovels->pluck('id'));
+            DenuniasImovel::destroy( $imovel->users_ratings->pluck('id'));
+            ModelsVisit::where('secondary_key',''.$imovel->id)->delete();
+            $imovel->delete();
+            session()->flash('success', 'Imóvel deletado com sucesso.');
+            return redirect()->route('imovel.index');
+        }else{
+            session()->flash('error', 'Erro ao Deletar o imóvel.');
+            return redirect()->route('imovel.index');
+        }
+       } catch (\Throwable $th) {
+        session()->flash('error', 'Erro ao Deletar o imóvel.' . $th);
+        return redirect()->route('imovel.index');
+       }
+
+
     }
 
+    public function search($query)
+    {
+       return Imovel::search($query)
+        ->with('bairro')
+        ->with('condicao')
+        ->with('status')
+        ->with('tipo_de_imovels')
+        ->paginate(15);
+    }
 }

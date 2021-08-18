@@ -20,7 +20,7 @@ class WebLinkController extends Controller
      */
     public function index()
     {
-        return view('backend.weblink')->with('links',WebLink::all());
+        return view('backend.web.weblink')->with('links',WebLink::all());
     }
 
     /**
@@ -79,7 +79,7 @@ class WebLinkController extends Controller
      */
     public function edit(WebLink $weblink)
     {
-        return view('backend.weblink_crud')->with('weblink',$weblink);
+        return view('backend.web.weblink_crud')->with('weblink',$weblink);
     }
 
     /**

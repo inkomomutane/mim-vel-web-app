@@ -15,7 +15,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        return view('backend.status')->with('statuses', Status::all());
+        return view('backend.status.status')->with('statuses', Status::all());
     }
 
     /**

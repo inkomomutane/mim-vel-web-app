@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Collection|Imovel[] $imovels
+ * @property Collection|Bairro[] $bairros
  *
  * @package App\Models
  */
@@ -30,8 +30,8 @@ class Cidade extends Model
 		'nome'
 	];
 
-	public function imovels()
+	public function bairros()
 	{
-		return $this->hasMany(Imovel::class);
+		return $this->hasMany(Bairro::class);
 	}
 }
