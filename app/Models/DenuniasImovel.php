@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class DenuniasImovel
- * 
+ *
  * @property int $id
  * @property int|null $denuncia_id
  * @property int|null $imovel_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Denuncia|null $denuncia
  * @property Imovel|null $imovel
  *
@@ -34,12 +34,14 @@ class DenuniasImovel extends Model
 
 	protected $fillable = [
 		'denuncia_id',
-		'imovel_id'
+		'imovel_id',
+        'nome_do_denunciante',
+        'denuncia'
 	];
 
-	public function denuncia()
+	public function imovel_denuncia()
 	{
-		return $this->belongsTo(Denuncia::class);
+		return $this->belongsTo(Denuncia::class,'denuncia_id');
 	}
 
 	public function imovel()

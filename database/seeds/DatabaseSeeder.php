@@ -2,6 +2,7 @@
 
 use App\Models\Bairro;
 use App\Models\Cidade;
+use App\Models\Denuncia;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\WebLink;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {/*
         $user = User::create(
             [
                 'name' => 'Administrador',
@@ -127,6 +128,12 @@ class DatabaseSeeder extends Seeder
             'update post',
             'delete post',
         ]);
-        $user->syncRoles([$roles]);
+        $user->syncRoles([$roles]);*/
+        Denuncia::create([
+            'denuncia'  => 'O imóvel é meu.'
+        ]);
+        Denuncia::create([
+            'denuncia'  => 'Corretor falso'
+        ]);
     }
 }

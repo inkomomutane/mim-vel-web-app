@@ -15,6 +15,8 @@ class CreateDenuniasImovelsTable extends Migration
     {
         Schema::create('denunias_imovels', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nome_do_denunciante')->nullable();
+            $table->string('denuncia')->nullable();
             $table->unsignedBigInteger('denuncia_id')->nullable()->index('fk_denuncia_has_imovel_denuncia1_idx');
             $table->unsignedBigInteger('imovel_id')->nullable()->index('fk_denuncia_has_imovel_imovel1_idx');
             $table->timestamps();

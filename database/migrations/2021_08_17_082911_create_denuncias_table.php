@@ -16,10 +16,6 @@ class CreateDenunciasTable extends Migration
         Schema::create('denuncias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('denuncia')->nullable();
-            $table->string('nome_do_denunciante')->nullable();
-            $table->boolean('anonimo')->nullable()->default(0);
-            $table->string('email')->nullable();
-            $table->string('contacto')->nullable();
             $table->timestamps();
         });
     }

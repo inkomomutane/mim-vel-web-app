@@ -19,8 +19,7 @@
                                     <th>Id</th>
                                     <th>Nome</th>
                                     <th>Denûncia</th>
-                                    <th>Email</th>
-                                    <th>Imóvel</th>
+                                    <th>Imóvel denunciado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,10 +29,23 @@
                                             <i class="fas fa-th"></i>
                                         </td>
                                         <td>{{ ucfirst($complaint->id) }}</td>
-                                        <td>{{ ucfirst($complaint->nome_do_denunciante) }}</td>
-                                        <td>{{ ucfirst($complaint->denuncia ) }}</td>
-                                        <td>{{ ucfirst($complaint->email ) }}</td>
-                                        <td><a href="{{ ucfirst($complaint->imovel_url ) }}">imovel</a> 	 </td>
+                                        <td>
+                                            @if ($complaint->nome_do_denunciante)
+                                            {{ ucfirst($complaint->nome_do_denunciante) }}
+                                                @else
+                                                Anónimo
+                                            @endif
+                                        </td>
+                                        <td>
+
+
+                                            @if ($complaint->denuncia )
+                                            {{ ucfirst($complaint->denuncia ) }}
+                                            @else
+                                            {{ ucfirst($complaint->imovel_denuncia->denuncia) }}
+                                            @endif
+                                        </td>
+                                        <td><a href="{{ route('imo.show',$complaint->imovel->id ) }}">imovel</a> 	 </td>
                                      </tr>
                                 @endforeach
                             </tbody>

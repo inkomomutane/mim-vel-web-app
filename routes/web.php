@@ -24,7 +24,7 @@
     })->name('contact');
     Route::get('/about', 'Frontend\AboutController@index')->name('about');
     Route::get('/termos_e_condicoes', 'Frontend\TermosController@index')->name('termos.frontend');
-    Route::get('/complaint', 'Frontend\ComplaintController@index')->name('complaint');
+    Route::get('/complaint/{imovel}', 'Frontend\ComplaintController@index')->name('complaint');
     Route::post('/complaint', 'DenunciaController@store')->name('complaint.store');
     Route::get('/denuncia', 'DenunciaController@index')->name('denuncia.index');
 
