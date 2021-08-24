@@ -14,7 +14,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
-                    <h6>Navigation Links</h6>
+                    <h6>Links de navegação</h6>
                     <div class="row">
                         <div class="col">
                             <ul>

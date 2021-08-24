@@ -2,6 +2,7 @@
 
 use App\Models\Bairro;
 use App\Models\Cidade;
+use App\Models\Denuncia;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\WebLink;
@@ -59,6 +60,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $corretor =  Role::create([
             'name' => 'corretor',
+        ]);
+        $client = Role::create([
+            'name' => 'client'
         ]);
         //imoveis
         Permission::create([
@@ -128,5 +132,11 @@ class DatabaseSeeder extends Seeder
             'delete post',
         ]);
         $user->syncRoles([$roles]);
+        Denuncia::create([
+            'denuncia'  => 'O imóvel é meu.'
+        ]);
+        Denuncia::create([
+            'denuncia'  => 'Corretor falso'
+        ]);
     }
 }

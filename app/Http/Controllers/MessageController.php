@@ -53,24 +53,6 @@ class MessageController extends Controller
         return $contacts;
     }
 
-    public function messagesOf(Int $activeUser, Int $contact)
-    {
-        $this->user     = User::where('id',$activeUser)->first();
-        $this->contact  = User::where('id',$contact)->first();
-
-        $messages = $this->user->receivedMessages->where('from_id',$this->contact->id)
-        ->concat(
-            $this->user->sentMessages->where('to_id',$this->contact->id)
-        );
-        $messages = $messages->sortBy('id');
-        $this->user->receivedMessages->where('from_id',$this->contact->id)
-        ->where('readed',false)->map(function($message){
-             $message->readed = true;
-             $message->save();
-             return $message;
-        });
-        return $messages->toArray();
-    }
 
     /**
      * Show the form for creating a new resource.

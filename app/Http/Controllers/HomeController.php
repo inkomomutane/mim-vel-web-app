@@ -27,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->roles->first()->name == "client") {
+           return redirect()->route('message.index');
+        }
         return view('backend.dashboard.home')->with(
             [
                 'imoveis' =>   Imovel::all(),

@@ -78,9 +78,10 @@
                     </div>
                 @endforeach
             </div>
-            <a class="badge badge-pill badge-secondary p-3 float-right"  href="">
-                <i class="fa fa-plus"></i>
-                &nbsp; Ver mais &nbsp;</a>
+            <a class="badge badge-secondary p-3 col-sm-5 my-3"  href="{{ route('imo.index') }}">
+                <i class="fa fa-eye"></i>
+                &nbsp; Ver Todos imoveis &nbsp;</a>
+
         </div>
         <div class="container pb-5">
             <div class="row d-flex justify-content-start">
@@ -157,9 +158,9 @@
                 </div>
                 @endforeach
             </div>
-                    <a class="badge badge-pill badge-secondary p-3 float-right"  href="">
-                        <i class="fa fa-plus"></i>
-                        &nbsp; Ver mais &nbsp;</a>
+            <a class="badge badge-secondary p-3 col-sm-5 my-3"  href="{{ route('imo.index') }}">
+                <i class="fa fa-eye"></i>
+                &nbsp; Ver Todos imoveis &nbsp;</a>
 
         </div>
 
@@ -172,126 +173,31 @@
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-70 col-lg-8">
                     <div class="title text-center">
-                        <h1 class="mb-10">Nossos corretores</h1>
+                        <h3 class="mb-10">Parceria</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="active-testimonial">
+                    @foreach ($parceiros as $parceiro)
                     <div class="single-testimonial item d-flex flex-row">
                         <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('frontend/img/elements/user1.png') }}" alt="">
+                            <img class="img-fluid"
+                            @if ($parceiro->fotos->count() > 0)
+                                  src="{{ asset('storage') }}/{{$parceiro->fotos->first()->url}}"
+                            @endif
+
+                             alt="">
                         </div>
                         <div class="desc">
                             <p>
-                                Do you want to be even more successful? Learn to love learning and growth. The more effort
-                                you put into improving your skills, the bigger the payoff you.
+                               {{$parceiro->description}}
                             </p>
-                            <h4>Harriet Maxwell</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
+                            <h4> {{$parceiro->name}}</h4>
+
                         </div>
                     </div>
-                    <div class="single-testimonial item d-flex flex-row">
-                        <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('frontend/img/elements/user2.png') }}" alt="">
-                        </div>
-                        <div class="desc">
-                            <p>
-                                A purpose is the eternal condition for success. Every former smoker can tell you just how
-                                hard it is to stop smoking cigarettes. However.
-                            </p>
-                            <h4>Carolyn Craig</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-testimonial item d-flex flex-row">
-                        <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('frontend/img/elements/user1.png') }}" alt="">
-                        </div>
-                        <div class="desc">
-                            <p>
-                                Do you want to be even more successful? Learn to love learning and growth. The more effort
-                                you put into improving your skills, the bigger the payoff you.
-                            </p>
-                            <h4>Harriet Maxwell</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-testimonial item d-flex flex-row">
-                        <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('frontend/img/elements/user2.png') }}" alt="">
-                        </div>
-                        <div class="desc">
-                            <p>
-                                A purpose is the eternal condition for success. Every former smoker can tell you just how
-                                hard it is to stop smoking cigarettes. However.
-                            </p>
-                            <h4>Carolyn Craig</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-testimonial item d-flex flex-row">
-                        <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('frontend/img/elements/user1.png') }}" alt="">
-                        </div>
-                        <div class="desc">
-                            <p>
-                                Do you want to be even more successful? Learn to love learning and growth. The more effort
-                                you put into improving your skills, the bigger the payoff you.
-                            </p>
-                            <h4>Harriet Maxwell</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-testimonial item d-flex flex-row">
-                        <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('frontend/img/elements/user2.png') }}" alt="">
-                        </div>
-                        <div class="desc">
-                            <p>
-                                owl-theme A purpose is the eternal condition for success. Every former smoker can tell you
-                                just how hard it is to stop smoking cigarettes. However.
-                            </p>
-                            <h4>Carolyn Craig</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

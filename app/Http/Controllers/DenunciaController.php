@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Denuncia;
+use App\Models\DenuniasImovel;
 use Illuminate\Http\Request;
 
 class DenunciaController extends Controller
@@ -14,7 +15,7 @@ class DenunciaController extends Controller
      */
     public function index()
     {
-return view('backend.complaint.complaint')->with('complaints',Denuncia::all());
+        return view('backend.complaint.complaint')->with('complaints',DenuniasImovel::all());
     }
 
     /**
@@ -35,23 +36,23 @@ return view('backend.complaint.complaint')->with('complaints',Denuncia::all());
      */
     public function store(Request $request)
     {
+
         $validade = $request->validate([
-            'nome_do_denunciante' => 'required',
-            'email' => 'required|email',
-            'imovel_url' => 'required',
-            'denuncia' => 'required'
+            'nome_do_denunciante' => 'string',
+            'imovel_id' => 'required',
+            'denuncia_id' => 'required'
         ]);
         if ($validade) {
             try {
-                Denuncia::create($request->all());
-                session()->flash('success', 'Denuncia criada com sucesso.');
+               DenuniasImovel::create($request->all());
+                session()->flash('success', 'Denûncia Feita com sucesso.');
                 return redirect()->back();
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro na criação da Denuncia.');
+                session()->flash('error', 'Erro ao fazer a Denûncia.');
                 return redirect()->back();
             }
         }
-        session()->flash('error', 'Erro na criação da Denuncia.');
+        session()->flash('error', 'Erro ao fazer a Denûncia.');
         return redirect()->back();
     }
 

@@ -40,18 +40,18 @@
             <section class="section">
                 <div class="section-header">
                     <div class="section-header-back">
-                        <a href="{{ route('imovel.index') }}" class="btn btn-icon btn-light"><i class="fas fa-arrow-left"></i>
+                        <a href="{{ route('parceiro.index') }}" class="btn btn-icon btn-light"><i class="fas fa-arrow-left"></i>
                             Voltar</a>
                     </div>
-                    <h3> <code>{{ $imovel->titulo }} </code></h3>
+                    <h3> <code>{{ $parceiro->name }} </code></h3>
 
                 </div>
             </section>
 
             <div class="card">
-                <form action="{{ route('imovel.store_image', $imovel->id) }}" method="post" id="store_image">
+                <form action="{{ route('parceiro.store_image', $parceiro->id) }}" method="post" id="store_image">
                     @csrf
-                    <input type="text" alt="" hidden name="default_image_link" id="imovel_image_preview_input" value="">
+                    <input type="text" alt="" hidden name="default_image_link" id="parceiro_image_preview_input" value="">
                 </form>
                 <div class="card-header">
                     <h4><strong>Galeria</strong></h4>
@@ -66,9 +66,9 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row gutters-sm">
-                            <form class="row col-sm-12" action="{{ route('imovel.delete_image', $imovel->id) }}" method="post" id="delete_image">
+                            <form class="row col-sm-12" action="{{ route('parceiro.delete_image', $parceiro->id) }}" method="post" id="delete_image">
                                 @csrf
-                                @foreach ($imovel->fotos as $foto)
+                                @foreach ($parceiro->fotos as $foto)
                                     <div class="col-sm-3">
                                         <label class="imagecheck mb-4">
                                             <input name="{{$foto->id}}" type="checkbox" value="{{ $foto->url }}" class="imagecheck-input"
@@ -146,7 +146,7 @@
 
             $modal.on('shown.bs.modal', function() {
                 cropper = new Cropper(image, {
-                    aspectRatio: 17 / 9,
+                    aspectRatio: 4 / 4,
                     viewMode: 3,
                 });
             }).on('hidden.bs.modal', function() {
@@ -155,7 +155,7 @@
             });
             $('#crop').click(function() {
                 canvas = cropper.getCroppedCanvas({
-                    width:730,
+                    width: 50,
                 });
 
                 canvas.toBlob(function(blob) {
@@ -165,7 +165,7 @@
                     reader.onloadend = function() {
                         var image = reader.result;
                         //var data = $('#imovel_image_preview');
-                        var data_file = $('#imovel_image_preview_input');
+                        var data_file = $('#parceiro_image_preview_input');
                         //data[0].src = image;
                         data_file[0].value = image;
 

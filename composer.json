@@ -21,10 +21,11 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "livewire/livewire": "^2.5",
+        "nicolaslopezj/searchable": "1.*",
+        "overtrue/laravel-lang": "^5.0",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-permission": "^4.2",
-        "spatie/laravel-searchable": "^1.9",
-        "nicolaslopezj/searchable": "1.*"
+        "spatie/laravel-searchable": "^1.9"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

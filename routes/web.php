@@ -24,9 +24,13 @@
     })->name('contact');
     Route::get('/about', 'Frontend\AboutController@index')->name('about');
     Route::get('/termos_e_condicoes', 'Frontend\TermosController@index')->name('termos.frontend');
-    Route::get('/complaint', 'Frontend\ComplaintController@index')->name('complaint');
+    Route::get('/complaint/{imovel}', 'Frontend\ComplaintController@index')->name('complaint');
     Route::post('/complaint', 'DenunciaController@store')->name('complaint.store');
     Route::get('/denuncia', 'DenunciaController@index')->name('denuncia.index');
+
+    Route::post('comentar','Frontend\CommentController@store')->name('comentar');
+
+    Route::get('/agendar','Frontend\AgendaController@index');
 
     Route::get('/imo', function () {
         return  [];
@@ -46,68 +50,80 @@
     Auth::routes(['verify' => true, 'register' => true]);
 
     Route::get('/home', 'HomeController@index')->name('home')
-        ->middleware(['verified', 'auth']);
+        ->middleware([  'auth']);
 
     Route::get('/permission', 'RoleController@index')->name('permissions')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
 
     Route::resource('bairro', 'BairroController')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('cidade', 'CidadeController')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('status', 'StatusController')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('tipodeimovel', 'TipoDeImovelController')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('imovel', 'ImovelController')
-        ->middleware(['verified', 'auth', 'role:ceo|admin|corretor']);
+        ->middleware([  'auth', 'role:ceo|admin|corretor']);
+    Route::resource('parceiro', 'PartnerController')
+        ->middleware([  'auth', 'role:ceo|admin|corretor']);
+    Route::post('parceiro/{parceiro}/store_image', 'PartnerController@store_image')
+        ->name('parceiro.store_image')
+        ->middleware([  'auth', 'role:ceo']);
+
+    Route::post('parceiro/{parceiro}/delete_image', 'PartnerController@delete_image')
+        ->name('parceiro.delete_image')
+        ->middleware([  'auth', 'role:ceo']);
+
 
     Route::resource('weblink', 'WebLinkController')
-        ->middleware(['verified', 'auth', 'role:ceo|admin']);
+        ->middleware([  'auth', 'role:ceo|admin']);
 
     Route::post('weblink/{weblink}/store_image', 'WebLinkController@store_image')
         ->name('weblink.store_image')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::post('weblink/{weblink}/delete_image', 'WebLinkController@delete_image')
         ->name('weblink.delete_image')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::post('imovel/{imovel}/store_image', 'ImovelController@store_image')
         ->name('imovel.store_image')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::post('imovel/{imovel}/delete_image', 'ImovelController@delete_image')
         ->name('imovel.delete_image')
-        ->middleware(['verified', 'auth', 'role:ceo']);
+        ->middleware([  'auth', 'role:ceo']);
 
     Route::get('pesquisar/imoveis','Frontend\ImovelController@search')
         ->name('imovel.search');
 
     Route::resource('user', 'UserController')->middleware(
-        ['verified', 'auth', 'role:ceo']
+        [  'auth', 'role:ceo']
     );
     Route::resource('message', 'MessageController')->middleware(
-        ['verified', 'auth', 'role:ceo|admin|corretor|client']
+        [  'auth', 'role:ceo|admin|corretor|client']
     );
-
+    Route::resource('agendas', 'AgendaController')->middleware(
+        [  'auth', 'role:ceo|admin|corretor|client']
+    );
     Route::get('sobre', 'SobreNosController@index')->middleware(
-        ['verified', 'auth', 'role:ceo|admin|corretor|client']
+        [  'auth', 'role:ceo|admin|corretor|client']
     )->name('sobre.index');
     Route::post('sobre', 'SobreNosController@update')->middleware(
-        ['verified', 'auth', 'role:ceo|admin|corretor|client']
+        [  'auth', 'role:ceo|admin|corretor|client']
     )->name('sobre.update');
 
     Route::get('termos', 'TermosECondicaoController@index')->middleware(
-        ['verified', 'auth', 'role:ceo|admin|corretor|client']
+        [  'auth', 'role:ceo|admin|corretor|client']
     )->name('termos.index');
     Route::post('termos', 'TermosECondicaoController@update')->middleware(
-        ['verified', 'auth', 'role:ceo|admin|corretor|client']
+        [  'auth', 'role:ceo|admin|corretor|client']
     )->name('termos.update');
 
 

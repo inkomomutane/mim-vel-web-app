@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -51,8 +52,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'contacto' => ['required','min:7']
         ]);
     }
 
@@ -66,11 +67,11 @@ class RegisterController extends Controller
     {
          $user =  User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'email' => str_replace(' ','',$data['name'])."@client.mimovel.com",
             'password' => Hash::make($data['password']),
+            'contacto' => $data['contacto'],
         ]);
         $user->syncRoles(['client']);
-
         return $user;
     }
 }
