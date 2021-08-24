@@ -41,7 +41,7 @@
 
                                 @if ($imovel->area)
                                     <tr>
-                                        <td>Area (m²)</td>{{ $imovel->area }} (m²)<td></td>
+                                        <td>Area (m²)</td><td>{{ $imovel->area }} (m²)</td>
                                     </tr>
                                 @endif
 
@@ -130,10 +130,10 @@
                                     @endif
                                     <tr>
                                         <td>
-                                            <a href="#" class="genric-btn success   text-uppercase w-100">Agendar Visita</a>
+                                            <a href="{{ route('register') }}" class="genric-btn success   text-uppercase w-100">Agendar Visita</a>
                                         </td>
                                         <td>
-                                            <a href="#" class="genric-btn success   text-uppercase w-100">Falar com corretor</a>
+                                            <a href="{{ route('register') }}" class="genric-btn success   text-uppercase w-100">Falar com corretor</a>
                                         </td>
                                         </tr>
                             </tbody>
@@ -168,43 +168,33 @@
                 <div class="comments-area w-100 scroll">
                     <h4>{{ $imovel->comentarios->count() }} Comentários</h4>
                     <div class="comment-list left-padding">
+                        @foreach ($imovel->comentarios as $comentario)
                         <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="{{ asset('frontend/img/blog/c3.jpg') }}" alt="">
-                                </div>
-                                <div class="desc sent">
-                                    <h5><a href="#">Annie Stephens</a></h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                    <p class="comment">
-                                        Never say goodbye till the end comes!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="{{ asset('frontend/img/blog/c4.jpg') }}" alt="">
-                                </div>
+                            <div class="user justify-content-between d-flex py-2">
                                 <div class="desc get">
-                                    <h5><a href="#">Maria Luna</a></h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                    <h5><a href="#">{{$comentario->nome}}</a></h5>
+                                    <p class="date">{{ date_format($comentario->updated_at,' d - M - Y  G:i') }} min</p>
                                     <p class="comment">
-                                        Never say goodbye till the end comes!
+                                        {{$comentario->comentario}}
                                     </p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
+
                 </div>
                 <div class="message-input">
                     <div class="wrap">
-                        <input type="text" placeholder="Digite seu comentario...">
-                        <button class="submit"><i class="far fa-comment-alt" aria-hidden="true"></i></button>
-                    </div>
+                        <form action="{{ route('comentar') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="ip" value="{{Request::ip()}}">
+                            <input type="hidden" name="imovel_id" value="{{$imovel->id}}">
+                            <input type="text" name="nome" placeholder="Digite seu nome...">
+                            <input type="text" name="comentario" placeholder="Digite seu comentario...">
+                            <button type="submit" class="submit"><i class="far fa-comment-alt" aria-hidden="true"></i></button>
+                        </form>
+                          </div>
                 </div>
             </div>
             <div class="row container justify-content-between py-5">

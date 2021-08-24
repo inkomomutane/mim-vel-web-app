@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {/*
+    {
         $user = User::create(
             [
                 'name' => 'Administrador',
@@ -60,6 +60,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $corretor =  Role::create([
             'name' => 'corretor',
+        ]);
+        $client = Role::create([
+            'name' => 'client'
         ]);
         //imoveis
         Permission::create([
@@ -128,7 +131,7 @@ class DatabaseSeeder extends Seeder
             'update post',
             'delete post',
         ]);
-        $user->syncRoles([$roles]);*/
+        $user->syncRoles([$roles]);
         Denuncia::create([
             'denuncia'  => 'O imóvel é meu.'
         ]);

@@ -192,6 +192,7 @@ class ImovelController extends Controller
     {
         try {
             $data = $request->all();
+
             $dataUpdate  = array();
             foreach ($data as $key => $value) {
                 $dataUpdate[$key] = $value;

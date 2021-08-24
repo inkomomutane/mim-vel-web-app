@@ -4595,7 +4595,9 @@ a.badge-light:hover {
     background: white;
     padding: 8px;
     border-radius: 6px;
+    margin-left: 15px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    width: 280px;
 }
 
 div.thumb img {
@@ -4635,7 +4637,7 @@ div.message-input div.wrap input {
     font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     float: left;
     border: none;
-    width: calc(100% - 50px);
+    width: calc(50% - 25px);
     padding: 14px 32px 14px 8px;
     font-size: 0.8em;
     color: #32465a;

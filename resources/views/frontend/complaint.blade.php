@@ -2,32 +2,32 @@
 @section('content')
     <!-- Start contact-page Area -->
 <section class="other-issue-area pt-5 mt-5 ml-5 mr-5 pb-5" >
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible show fade ml-auto  mr-auto mb-5 col-sm-10">
-        <div class="alert-body">
-            <button class="close" data-dismiss="alert"><span>×</span></button>
-            <strong>{{ session('success') }}</strong>
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible show fade ml-auto  mr-auto mb-5 col-sm-10">
+            <div class="alert-body">
+                <button class="close" data-dismiss="alert"><span>×</span></button>
+                <strong>{{ session('success') }}</strong>
+            </div>
         </div>
-    </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger alert-dismissible show fade ml-auto  mr-auto mb-5 col-sm-10">
-        <div class="alert-body">
-            <button class="close" data-dismiss="alert"><span>×</span></button>
-            <strong>{{ session('error') }}</strong>
-        </div>
-    </div>
-@endif
-@if (session('errors'))
-    <div class="alert alert-danger alert-dismissible show fade ml-auto  mr-auto mb-5 col-sm-10">
-        <div class="alert-body">
-            <button class="close" data-dismiss="alert"><span>×</span></button>
-            @error('nome')
-                <strong>{{ $message }}</strong>
-            @enderror
-        </div>
-    </div>
-@endif
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible show fade ml-auto  mr-auto mb-5 col-sm-10">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert"><span>×</span></button>
+                    <strong>{{ session('error') }}</strong>
+                </div>
+            </div>
+        @endif
+        @if (session('errors'))
+            <div class="alert alert-danger alert-dismissible show fade ml-auto  mr-auto mb-5 col-sm-10">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert"><span>×</span></button>
+                    @error('nome')
+                        <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
+            </div>
+        @endif
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
