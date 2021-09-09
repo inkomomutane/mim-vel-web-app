@@ -1,0 +1,573 @@
+
+    <!DOCTYPE html>
+    <html lang="pt">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="RxmPUjrGLED9dj7OCRqnTCMCkFbKbOxyfbcwB6Ox">
+        <title>Mimóvel</title>
+        <!-- Css libraries-->
+        <!-- General CSS Files -->
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/linearicons.css">
+         <link rel="stylesheet" href="https://mimovel.com/backend/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/bootstrap.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/magnific-popup.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/jquery-ui.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/nice-select.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/animate.min.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/owl.carousel.css">
+        <link rel="stylesheet" href="https://mimovel.com/frontend/css/main.css">
+    
+        <!-- CSS Libraries -->
+            <!-- Page Specific CSS File -->
+            <link rel="stylesheet" href="https://mimovel.com/frontend/css/lightslider.css" />
+        <style>
+            .demo {
+                margin-top: 30px;
+            }
+    
+            li.lslide img {
+                width: 100%;
+            }
+    
+            .chocolat-overlay {
+                background-color: #151515;
+            }
+    
+            .chocolat-wrapper {
+                z-index: 999;
+    
+            }
+    
+            .maps iframe {
+                height: 400px;
+                width: 100% !important;
+            }
+
+         /*Tabela propriedade*/
+            #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: auto;
+            margin-left: 15px;
+                       }
+           
+            .th {
+            padding-top: 12px;
+            padding-bottom: 20px;
+            text-align: center;
+            background-color: #ff6f00;
+            
+            color: white;
+           
+            }
+
+            .tds{
+                text-align: center;
+            } 
+
+            .tds td{
+              border-top: 10px solid rgb(255, 255, 255);
+              padding: 5px;
+              background-color: #d7d7d7;
+            }
+
+            .tdicon{
+             position: relative;
+             width:5px;
+            }
+            .tdPropety{
+               
+                border-left: 10px solid rgb(255, 255, 255);
+            } 
+
+            /*Agendar e falar*/
+
+            .visitarFalarWeb{
+               margin-bottom: 2px;
+              
+             }
+           
+            .agendar{
+               background-color: #ff6f00;
+               padding: 30px;
+               color: white;
+               border-top-left-radius: 25px;
+               border-bottom-left-radius: 25px;
+               border-right: 2px solid white;
+               transition: 0.7s; 
+
+               -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.14); 
+                box-shadow: 5px 5px 15px 5px rgba(92, 92, 92, 0.14);
+            } 
+
+            .falar{
+                background-color: #ff6f00;
+                padding: 30px;
+                color: white;
+                border-top-right-radius: 25px;
+                border-bottom-right-radius: 25px;
+                border-left: 2px solid white;
+                transition: 0.7s;
+
+                -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.14); 
+                box-shadow: 5px 5px 15px 5px rgba(92, 92, 92, 0.14);
+            }
+
+            .agendar:hover{
+                
+                padding: 35px;
+            } 
+            .falar:hover{
+                
+                padding: 35px;
+            }
+
+            /*Agedar e falar mobile*/
+            .visitarFalarMobile{
+               display: none;
+              
+             }
+
+            /*media screen*/
+            @media  screen and (max-width: 700px) {
+           
+            #rodape{
+
+                display: none;
+            }
+
+            .visitarFalarWeb{
+                display: none;
+            }
+
+            .visitarFalarMobile{
+                display: block;
+                position:fixed;
+                bottom:16px;
+                width:100%;
+                text-align: center;
+               
+             }
+             .falar{
+                background-color: #ff6f00;
+                padding-right: 68px;
+
+                border-left: 1px solid white;
+
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+                
+             
+            }
+            .agendar{
+                background-color: #ff6f00;
+                padding-left: 68px;
+
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                
+             
+            }
+
+            }
+        </style>
+        <!-- Template CSS -->
+    </head>
+    <body class="layout-3">
+
+
+
+    
+        <div id="app" style="background-color: #ffffff">
+
+                <!-- #header -->
+            
+                <header id="header">
+                    <div class="container main-menu col-sm-12">
+                        <div class="row align-items-center justify-content-start d-flex">
+                            <div id="logo" class="py-2">
+                            <a href="index.html"><img src="img/mimovel-sem-fundo.png" alt="Mimóvel" title="" style="width: 150px" /></a>
+                            </div>
+                
+                            <nav id="nav-menu-container">
+                            <ul class="nav-menu">
+                                <li><a href="#"  class = " menu-active ">Início</a></li>
+                                <li><a href="#" class = "">Ver todos Imóveis</a></li>
+                                <li><a href="#" class="">Sobre nós</a></li>
+                                <li><a href="#" class="">Contacto</a></li>
+                            </ul>
+                            </nav>
+                            
+                            <!-- #nav-menu-container -->
+                            
+                        </div>
+                    </div>
+                </header>
+                <!-- #header -->
+
+
+
+
+            <!-- start banner Area -->
+
+            <!-- content area -->
+            <br>
+            <section class="other-issue-area  pt-5 mt-3" > 
+                
+            <div class="container">
+                <div class="row d-flex justify-content-start">
+                    <div class="demo col-sm-8 ">
+                        <div class="item">
+                            <div class="clearfix" style="width: 755px">
+
+                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_08_58.png">
+
+                                            <div class="slideImage">
+
+                                                      <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_08_58.png">
+                                            </div>
+                                      
+                                        </li>
+                                        
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_12_50.png">
+                                            <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_12_50.png">
+                                        </li>
+                                        
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_13_10.png">
+                                            <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_13_10.png">
+                                        </li>
+                                        
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_13_32.png">
+                                            <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_13_32.png">
+                                        </li>
+                                        
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_14_08.png">
+                                            <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_14_08.png">
+                                        </li>
+                                        
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_14_32.png">
+                                            <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_14_32.png">
+                                        </li>
+                                        
+                                        <li data-thumb="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_15_07.png">
+                                            <img src="https://mimovel.com/storage/imoveis/Casa_Tipo-2_2021_08_24_15_15_07.png">
+                                        </li>
+                                        
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="other-issue-area pb-3 pt-5">
+            <div class="container">
+                <div class="row d-flex justify-content-start">
+                    <div class="row col-sm-10 justify-content-start d-flex">
+                        <div class="container row">
+                            <div class="col-sm-12 row">
+
+                                <table id="customers">
+
+                                    <tr>
+
+                                      <td class="th" colspan="3">Propriedades</td>
+                                     
+
+                                     </tr>
+
+                                    
+
+                                    <tr class="tds">
+
+                                      <td class="tdicon" >ICON</td>
+
+                                      <td class="tdPropety">ALGum Valor</td> 
+                                      
+                                     
+                                    </tr> 
+                                     
+                                    <tr class="tds">
+
+                                        <td class="tdicon" >ICON</td>
+  
+                                        <td class="tdPropety">ALGum Valor</td> 
+                                        
+                                       
+                                      </tr>
+
+                                      <tr class="tds">
+
+                                        <td class="tdicon" >ICON</td>
+  
+                                        <td class="tdPropety">ALGum Valor</td> 
+                                        
+                                       
+                                      </tr> 
+                                       
+                                      <tr class="tds">
+  
+                                          <td class="tdicon" >ICON</td>
+    
+                                          <td class="tdPropety">ALGum Valor</td> 
+                                          
+                                         
+                                        </tr>
+                                    
+                                  
+                                 
+                                 
+
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <h5 class="mt-20 mb-20">Descrição</h5>
+                    <p class="excert">
+                        <p>Uma casa nao acabada</p><p>localizada na manga Bazar Filipe&nbsp;</p><br>
+                    </p>
+
+
+                </div>
+
+                <div class="mapouter">
+
+                    <div class="gmap_canvas">
+       
+                           <iframe width="414" height="386" id="gmap_canvas" src="https://maps.google.com/maps?q=mozambique/beira/chaimite&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                           </iframe>
+       
+                           <a href="https://2piratebay.org"></a><br>
+                           <style>
+                           .mapouter{position:relative;text-align:right;height:386px;width:414px;}
+                           </style>
+                           <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                           <style>.gmap_canvas {overflow:hidden;background:none!important;height:386px;width:414px;}
+                           </style>
+       
+                    </div>
+                    <br><br>
+                
+                   <div class="visitarFalarWeb">
+
+                            <form action="descricao.html">
+                            
+                            <a href="#">
+                            <span class="agendar">
+                                    Agendar Visita
+                            </span>
+                            </a>
+
+                            <a href="#">
+                            <span class="falar">
+                                Falar com corretor
+                            </span>
+                            </a> 
+
+                            </form>
+
+                   </div> 
+              </div> 
+
+         
+
+             </div>
+       
+        </section> 
+
+
+        <!--Maps-->
+        <section class="other-issue-area py-4">
+            <div class="container">
+    
+                
+                <div class="row container justify-content-between">
+    
+    
+                    <!-- comment area-->
+                    <div class="comments-area w-100 scroll">
+                        <h4>0 Comentários</h4>
+                        <div class="comment-list left-padding">
+                                                </div>
+    
+                    </div>
+                    <div class="message-input">
+                        <div class="wrap">
+                            <form action="https://mimovel.com/comentar" method="post">
+                                <input type="hidden" name="_token" value="RxmPUjrGLED9dj7OCRqnTCMCkFbKbOxyfbcwB6Ox">                            <input type="hidden" name="ip" value="197.218.83.126">
+                                <input type="hidden" name="imovel_id" value="4">
+                                <input type="text" name="nome" placeholder="Digite seu nome...">
+                                <input type="text" name="comentario" placeholder="Digite seu comentario...">
+                                <button type="submit" class="submit"><i class="far fa-comment-alt" aria-hidden="true"></i></button>
+                            </form>
+                              </div>
+                    </div>
+                </div>
+                <div class="row container justify-content-between py-5">
+                    <a href="https://mimovel.com/complaint/4" class="genric-btn danger radius"> <i class="fas fa-home"></i> &nbsp; &nbsp; Denûnciar o imóvel</a>
+                </div>
+            </div>
+        </section>
+        <!--End Mpas-->
+    
+    
+        </div>
+
+
+      
+
+       <!-- start footer Area -->
+       <footer class="footer-area section-gap" id="rodape">
+        <div class="container">
+    
+            <div class="row">
+                <div class="col-lg-3  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Sobre Mimóvel</h6>
+                        <p>
+                            Mimóvel é uma empresa de aluguel, compra de imóveis localizada
+                            na cidade da beira, reconhecida pelos seus excelentes edificios
+                            que superam as expectativas dos clientes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Links de navegação</h6>
+                        <div class="row">
+                            <div class="col">
+                                <ul>
+                                    <li><a href="#">Início</a></li>
+                                    <li><a href="#">Ver  todos Imóveis</a></li>
+                                    <li><a href="#">Parceria</a></li>
+                                    <li><a href="#">Sobre nós</a></li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li><a href="#">Contacto</a></li>
+                                    <li><a href="#">Termos e condições de uso</a></li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-4">
+                    <img src="img/mimovel-sem-fundo.png"  class="col" alt="" srcset="">
+                </div>
+            </div>
+    
+    
+            <div class="row footer-bottom d-flex justify-content-between align-items-center">
+                <p class="col-lg-8 col-sm-12 footer-text m-0">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> Todos direitos reservados |  <a href="#"
+                       >Termos e condições de uso</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+                <div class="col-lg-4 col-sm-12 footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+        </footer>
+
+          <!--VisitareAgendarMobile-->
+          <div class="visitarFalarMobile">
+
+            <form action="descricao.html">
+            
+            <a href="#">
+            <span class="agendar">
+                    Agendar Visita
+            </span>
+            </a>
+
+            <a href="#">
+             <span class="falar">
+                Falar com corretor
+            </span>
+            </a> 
+
+            </form>
+
+           </div> 
+
+
+        <!-- End footer Area -->
+        <!-- End footer Area -->
+        <!-- General JS Scripts -->
+        <script src="https://mimovel.com/frontend/js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/popper.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/vendor/bootstrap.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/jquery-ui.js"></script>
+        <script src="https://mimovel.com/frontend/js/easing.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/hoverIntent.js"></script>
+        <script src="https://mimovel.com/frontend/js/superfish.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/jquery.ajaxchimp.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/jquery.magnific-popup.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/jquery.nice-select.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/owl.carousel.min.js"></script>
+        <script src="https://mimovel.com/frontend/js/mail-script.js"></script>
+        <script src="https://mimovel.com/frontend/js/main.js"></script>
+    
+        <!-- JS Libraies -->
+            <!-- Page Specific JS File -->
+            <script src="https://mimovel.com/frontend/js/lightslider.js"></script>
+    
+    
+        <script>
+            $(document).ready(function() {
+                $("#content-slider").lightSlider({
+                    loop: true,
+                    keyPress: true
+                });
+                $('#image-gallery').lightSlider({
+                    gallery: true,
+                    item: 1,
+                    thumbItem: 6,
+                    slideMargin: 0,
+                    speed: 3000,
+                    auto: false,
+                    loop: true,
+                    onSliderLoad: function() {
+                        $('#image-gallery').removeClass('cS-hidden');
+                    }
+                });
+            });
+        </script>
+        <!-- Template JS File -->
+        <script>
+            $(document).ready(function() {
+                $(".owl-carousel").owlCarousel({
+                    loop: true,
+                    lazyLoad: true,
+                    items: 5,
+                singleItem: true,
+                    responsiveClass: true,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    autoplayHoverPause: true,
+                    singleItem: true,
+                    maxHeight: 400,
+                    maxWidth:300
+                });
+            });
+        </script>
+    </body>
+    </html>
+    
+    

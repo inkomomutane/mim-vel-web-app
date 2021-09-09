@@ -1,0 +1,941 @@
+
+    <!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon">
+
+    <!-- CSRF Token -->
+   
+    <title>Mimóvel</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/linearicons.css">
+    <link rel="stylesheet" href="https://mimovel.com/backend/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/bootstrap.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/magnific-popup.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/jquery-ui.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/nice-select.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/animate.min.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/owl.carousel.css">
+    <link rel="stylesheet" href="https://mimovel.com/frontend/css/main.css">
+
+    <!-- CSS Libraries -->
+        <!-- Page Specific CSS File -->
+
+        <!-- Css adicionais  -->
+        <style>
+          
+
+                  hr.new4 {
+                 border: 1px solid #5e5e5e;
+                 width: 1095px;
+                  }
+
+
+              .tabela tr td{
+
+                width: fit-content;
+                height: fit-content;
+                padding: 80px;
+                border-radius: 100%;
+                
+               }
+             
+
+              .icons{
+                width: 70px;
+                transition: 0.1s;
+              }
+              .icons:hover{
+                  position: relative;
+                width: 90px;
+              } 
+
+              .tabela h6{
+                color: #4d4d4d;
+              }
+         /*______________slogan_________________*/
+         .slogan{
+                position: relative;
+                 z-index: 999;
+                margin: 0 auto;
+                left: 0;
+                 right: 0;        
+                text-align: center;
+                top: -360px; 
+                background:  rgba(49, 47, 47, 0.8);
+                opacity: 0.5
+                font-family: Arial,sans-serif;
+                color: #fff;
+                width: 100%;
+                height: 346px;
+              } 
+
+
+              .slogan .text{
+                   
+                   position: relative;
+                   top: 30%;
+                   text-transform: lowercase;
+                   font-size: 30px;
+                  
+                  
+                   
+              } 
+        
+         /*______________Search bar_________________*/
+         #search{
+                position: relative;
+                z-index: 999;
+                margin: 0 auto;
+                left: 0;
+                right: 0;        
+                text-align: center;
+                width: 800px;
+                height: fit-content;
+                float: inline-start;
+                margin: auto;
+                top: -445px;
+              }
+
+              #location {
+                     background: url(img/location.png) no-repeat scroll 7px 7px;
+                     padding-left:30px;
+              } 
+
+              /*cards*/
+              .card{
+                
+                -webkit-box-shadow: 7px 18px 20px 2px rgba(237,237,237,1);
+                 -moz-box-shadow: 7px 18px 20px 2px rgba(237,237,237,1);
+                 box-shadow: 7px 18px 20px 2px rgb(199, 198, 198);
+                 
+                  }
+
+            /*baddge-button*/
+          .badge-primary{
+                position: relative;
+                width: 1100px; 
+              }
+
+            /*class corpo*/
+            
+          .corpo{
+           position: absolute;
+           width: 100%;
+           top: 550px;
+           margin-left: 0px;
+          
+          }
+
+
+        /*Media screen para alguns objectos*/ 
+
+        @media  screen and (max-width: 700px) {
+           
+            /*carousel*/
+            #slide{
+                display: none;
+            }
+           /**/
+           /*Search bar*/
+           #search{
+               display: none;
+           }
+
+
+          
+           /*corpo*/
+           .corpo{
+           position: absolute;
+           top: 170px;
+
+          }
+
+
+          /*hr*/
+                 hr.new4 {
+                 border: 1px solid #5e5e5e;
+                 width: 380px;
+                  }
+        
+             
+        
+                .badge-primary{
+                    position: relative;
+                    width: 260px; 
+                }
+
+            }
+         
+        /*Temos para si*/
+        
+              
+
+        </style>
+        <!-- FIM Css adicionais  -->
+</head>
+<body class="layout-3">
+
+    <div id="app" style="background-color: #ffffff">
+        <!-- #header -->
+        <header id="header">
+          <div class="container main-menu col-sm-12">
+          <div class="row align-items-center justify-content-start d-flex">
+          <div id="logo" class="py-2">
+            <a href="#"><img src="img/mimovel-sem-fundo.png" alt="Mimóvel" title="" style="width: 150px" /></a>
+          </div>
+
+          <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li><a href="#"  class = " menu-active ">Início</a></li>
+                <li><a href="#" class = "">Ver todos Imóveis</a></li>
+                <li><a href="#" class="">Sobre nós</a></li>
+                <li><a href="#" class="">Contacto</a></li>
+            </ul>
+          </nav>
+          
+          <!-- #nav-menu-container -->
+          
+        </div>
+    </div>
+</header><!-- #header -->
+
+        <!-- start banner Area -->
+
+        <div class="owl-carousel owl-theme w-100" style="padding-top: 65px" id="slide">
+            
+                      <figure class="figure">
+                      <img src="img/banner.png" class="figure-img img-fluid rounded" style="height: 375px;"
+                        alt="A generic square placeholder image with rounded corners in a figure.">
+                      </figure>
+
+            
+                      <figure class="figure">
+                      <img src="img/banner2.png" class="figure-img img-fluid rounded" style="height: 375px;"
+                        alt="A generic square placeholder image with rounded corners in a figure.">
+                      </figure>
+
+            
+                      <figure class="figure">
+                      <img src="img/banner3.png" class="figure-img img-fluid rounded" style="height: 375px;"
+                        alt="A generic square placeholder image with rounded corners in a figure.">
+                      </figure>
+
+                      
+         </div>
+    
+         <div class="slogan">
+            <span class="text"><span style="text-transform: uppercase;">O</span> melhor sitio pra encontrar  imóveis  com segurança </span>
+          </div>
+
+
+        <!-- content area -->
+
+
+        <!--Search bar-->
+
+<div class="shadow-lg p-3 mb-5 bg-white rounded" id="search"> 
+
+
+    <form>
+
+             <table class="itenm-busca">
+                    <tr>
+                         
+                           <td>
+                                  <div class="form-group">
+                                     <select class="form-control" id="exampleFormControlSelect1" aria-label="Default select example">
+                                      <option selected>Apartamento</option>
+                                       <option value="tipo">Tpo</option>
+                                       <option value="tipo">Tpo</option>
+                                       <option value="tipo">Tpo</option>                                                
+                                     </select>
+                                   </div>
+                          </td>
+                           
+                          <td>
+                           <div class="form-group">
+                              <select class="form-control" id="exampleFormControlSelect1" aria-label="Default select example">
+                               <option selected>Para comprar</option>
+                                <option value="comprar">Para comprar</option>
+                                <option value="arendar">Arrendar</option>              
+                              </select>
+                            </div>
+                          </td>
+
+                          
+                          <td>
+                           <div class="form-group">
+                              <select class="form-control" id="exampleFormControlSelect1" aria-label="Default select example">
+                               <option selected>Tipologia </option>
+                                <option value="comprar">Para comprar</option>
+                                <option value="arendar">Arrendar</option>              
+                              </select>
+                            </div>
+                          </td>
+
+                          <td>
+
+                                <div class="form-group">
+                                  <input type="text" placeholder="Localização" class="form-control" aria-label="Text input with segmented dropdown button" id="location">
+                                </div>
+                           
+                          </td>
+
+                          <td>
+
+                           <div class="form-group">
+                                  <button type="submit" class="btn btn-info">Procurar</button>
+                           </div>
+                      
+                          </td>
+                    </tr> 
+
+
+              
+                    <tr>
+                         
+                           <td>
+                                  <div class="form-group">
+                                     <select class="form-control" id="exampleFormControlSelect1" aria-label="Default select example">
+                                      <option selected>Preço</option>
+                                       <option value="comprar">Para comprar</option>
+                                       <option value="arendar">Arrendar</option>              
+                                     </select>
+                                   </div>
+                          </td>
+                           
+                          <td>
+
+                           <div class="form-group">
+                              <select class="form-control" id="exampleFormControlSelect1" aria-label="Default select example">
+                               <option selected>Área útil</option>
+                                <option value="comprar">Para comprar</option>
+                                <option value="arendar">Arrendar</option>              
+                              </select>
+                            </div>
+                          </td>
+
+                         
+             </table>
+
+      </form>
+       
+</div>
+   <!--Fim search bar-->
+
+
+        
+    <!-- Start other-issue Area -->
+
+    <section class="corpo">
+
+
+
+                
+                        <div class="container pb-5">
+                        <div class="row d-flex justify-content-start">
+                            <div class="menu-content pb-20 col-lg-9">
+                                <div class="title text-start">
+                                    <h4 class="mb-10">Imóveis Mais Destacdos</h4>
+                                    <hr class="new4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-start">
+
+                            
+                            <!--Coluna para o foreach-->
+                                <div class="col-sm-4 p-2">
+                                <div class="card">
+                                    <a href="descricao.html">
+                                    <img class="card-img-top" src="img/banner2.png"
+                                        alt="Imóvel do Mimóvel">
+                                    </a>
+                                    <div class="card-body">
+                                        <a href="https://mimovel.com/imoveis/6">
+                                        <h5 class="card-title text-truncate">Casa Tipo-3
+                                            </h5>
+                                            </a>
+
+                                            <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                                MZN&nbsp;
+                                                10000 &nbsp;</a></h5>
+                                            </a>
+                                            <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                                Tipo:&nbsp;
+                                                                                        Moradia
+                                                                                    &nbsp;</a>
+
+                                        <div class="star">
+                                            <span class="fas fa-star checked"></span>
+                                            <span class="fas fa-star checked"></span>
+                                            <span class="far fa-star "></span>
+                                            <span class="far fa-star "></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+
+                                        <p class="card-text text-truncate">Uma casa com um quintal espac</p>
+                                        <hr>
+                                        <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                            <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                                                            &nbsp;</a>
+                                        <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                            <i class="fa fa-eye"></i>&nbsp;
+                                            Cod: A6  &nbsp;</a>
+                                        <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                            <i class="far fa-comment-alt"></i>
+                                            &nbsp; 0 &nbsp;</a>
+                                            <a class="dropdown">
+
+
+                                                <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-share-alt"></i>
+                                                    &nbsp; Partilhar &nbsp;
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u=https://mimovel.com/imoveis/6"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                        <a class="dropdown-item" href="https://wa.me/?text= https://mimovel.com/imoveis/6"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                        <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= https://mimovel.com/imoveis/6"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                                    </div>
+                                                </a>
+                                            </a>
+
+
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-sm-4 p-2">
+                                    <div class="card">
+                                        <a href="https://mimovel.com/imoveis/6">
+                                        <img class="card-img-top" src="img/banner2.png"
+                                            alt="Imóvel do Mimóvel">
+                                        </a>
+                                        <div class="card-body">
+                                            <a href="https://mimovel.com/imoveis/6">
+                                            <h5 class="card-title text-truncate">Casa Tipo-3
+                                                </h5>
+                                                </a>
+                
+                                                <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                                    MZN&nbsp;
+                                                    10000 &nbsp;</a></h5>
+                                                </a>
+                                                <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                                    Tipo:&nbsp;
+                                                                                            Moradia
+                                                                                        &nbsp;</a>
+                
+                                            <div class="star">
+                                                <span class="fas fa-star checked"></span>
+                                                <span class="fas fa-star checked"></span>
+                                                <span class="far fa-star "></span>
+                                                <span class="far fa-star "></span>
+                                                <span class="far fa-star"></span>
+                                            </div>
+                
+                                            <p class="card-text text-truncate">Uma casa com um quintal espac</p>
+                                            <hr>
+                                            <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                                <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                                                                &nbsp;</a>
+                                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                <i class="fa fa-eye"></i>&nbsp;
+                                                Cod: A6  &nbsp;</a>
+                                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                <i class="far fa-comment-alt"></i>
+                                                &nbsp; 0 &nbsp;</a>
+                                                <a class="dropdown">
+                
+                
+                                                    <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-share-alt"></i>
+                                                        &nbsp; Partilhar &nbsp;
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u=https://mimovel.com/imoveis/6"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                            <a class="dropdown-item" href="https://wa.me/?text= https://mimovel.com/imoveis/6"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                            <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= https://mimovel.com/imoveis/6"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                                        </div>
+                                                    </a>
+                                                </a>
+                
+                
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm-4 p-2">
+                                        <div class="card">
+                                            <a href="https://mimovel.com/imoveis/6">
+                                            <img class="card-img-top" src="img/banner2.png"
+                                                alt="Imóvel do Mimóvel">
+                                            </a>
+                                            <div class="card-body">
+                                                <a href="https://mimovel.com/imoveis/6">
+                                                <h5 class="card-title text-truncate">Casa Tipo-3
+                                                    </h5>
+                                                    </a>
+                    
+                                                    <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                                        MZN&nbsp;
+                                                        10000 &nbsp;</a></h5>
+                                                    </a>
+                                                    <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                                        Tipo:&nbsp;
+                                                                                                Moradia
+                                                                                            &nbsp;</a>
+                    
+                                                <div class="star">
+                                                    <span class="fas fa-star checked"></span>
+                                                    <span class="fas fa-star checked"></span>
+                                                    <span class="far fa-star "></span>
+                                                    <span class="far fa-star "></span>
+                                                    <span class="far fa-star"></span>
+                                                </div>
+                    
+                                                <p class="card-text text-truncate">Uma casa com um quintal espac</p>
+                                                <hr>
+                                                <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                                    <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                                                                    &nbsp;</a>
+                                                <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                    <i class="fa fa-eye"></i>&nbsp;
+                                                    Cod: A6  &nbsp;</a>
+                                                <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                    <i class="far fa-comment-alt"></i>
+                                                    &nbsp; 0 &nbsp;</a>
+                                                    <a class="dropdown">
+                    
+                    
+                                                        <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-share-alt"></i>
+                                                            &nbsp; Partilhar &nbsp;
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u=https://mimovel.com/imoveis/6"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                                <a class="dropdown-item" href="https://wa.me/?text= https://mimovel.com/imoveis/6"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                                <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= https://mimovel.com/imoveis/6"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                                            </div>
+                                                        </a>
+                                                    </a>
+                    
+                    
+                                            </div>
+                                        </div>
+                                        </div>
+                            <!-- FIM Coluna para o foreach-->
+
+                        </div>
+
+                            <!--Button Ver mais-->  
+                            <div class="campoButton">
+
+                                <a class="badge badge-primary p-3 col-sm-12 my-3"  href="#">
+                                <img src="img/icon/eye.svg">
+                                &nbsp; Ver Todos imoveis &nbsp;
+                                </a>
+
+                                </div>
+                        </div>
+
+                        <div class="container pb-5">
+                                    <div class="row d-flex justify-content-start">
+                                        <div class="menu-content pb-20 col-lg-9">
+                                            <div class="title text-start">
+                                                <h4 class="mb-10">Imóveis procurados local</h4>
+                                                <hr class="new4">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-start">
+
+                                        
+                                        <!--Coluna para o foreach-->
+
+                                            <div class="col-sm-4 p-2">
+                                            <div class="card">
+                                                <a href="https://mimovel.com/imoveis/6">
+                                                <img class="card-img-top" src="img/banner2.png"
+                                                    alt="Imóvel do Mimóvel">
+                                                </a>
+                                                <div class="card-body">
+                                                    <a href="https://mimovel.com/imoveis/6">
+                                                    <h5 class="card-title text-truncate">Casa Tipo-3
+                                                        </h5>
+                                                        </a>
+
+                                                        <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                                            MZN&nbsp;
+                                                            10000 &nbsp;</a></h5>
+                                                        </a>
+                                                        <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                                            Tipo:&nbsp;
+                                                                                                    Moradia
+                                                                                                &nbsp;</a>
+
+                                                    <div class="star">
+                                                        <span class="fas fa-star checked"></span>
+                                                        <span class="fas fa-star checked"></span>
+                                                        <span class="far fa-star "></span>
+                                                        <span class="far fa-star "></span>
+                                                        <span class="far fa-star"></span>
+                                                    </div>
+
+                                                    <p class="card-text text-truncate">Uma casa com um quintal espac</p>
+                                                    <hr>
+                                                    <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                                        <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                                                                        &nbsp;</a>
+                                                    <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                        <i class="fa fa-eye"></i>&nbsp;
+                                                        Cod: A6  &nbsp;</a>
+                                                    <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                        <i class="far fa-comment-alt"></i>
+                                                        &nbsp; 0 &nbsp;</a>
+                                                        <a class="dropdown">
+
+
+                                                            <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="fa fa-share-alt"></i>
+                                                                &nbsp; Partilhar &nbsp;
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                    <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u=https://mimovel.com/imoveis/6"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                                    <a class="dropdown-item" href="https://wa.me/?text= https://mimovel.com/imoveis/6"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                                    <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= https://mimovel.com/imoveis/6"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                                                </div>
+                                                            </a>
+                                                        </a>
+
+
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                            <div class="col-sm-4 p-2">
+                                                <div class="card">
+                                                    <a href="https://mimovel.com/imoveis/6">
+                                                    <img class="card-img-top" src="img/banner2.png"
+                                                        alt="Imóvel do Mimóvel">
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <a href="https://mimovel.com/imoveis/6">
+                                                        <h5 class="card-title text-truncate">Casa Tipo-3
+                                                            </h5>
+                                                            </a>
+                            
+                                                            <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                                                MZN&nbsp;
+                                                                10000 &nbsp;</a></h5>
+                                                            </a>
+                                                            <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                                                Tipo:&nbsp;
+                                                                                                        Moradia
+                                                                                                    &nbsp;</a>
+                            
+                                                        <div class="star">
+                                                            <span class="fas fa-star checked"></span>
+                                                            <span class="fas fa-star checked"></span>
+                                                            <span class="far fa-star "></span>
+                                                            <span class="far fa-star "></span>
+                                                            <span class="far fa-star"></span>
+                                                        </div>
+                            
+                                                        <p class="card-text text-truncate">Uma casa com um quintal espac</p>
+                                                        <hr>
+                                                        <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                                            <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                                                                            &nbsp;</a>
+                                                        <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                            <i class="fa fa-eye"></i>&nbsp;
+                                                            Cod: A6  &nbsp;</a>
+                                                        <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                            <i class="far fa-comment-alt"></i>
+                                                            &nbsp; 0 &nbsp;</a>
+                                                            <a class="dropdown">
+                            
+                            
+                                                                <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-share-alt"></i>
+                                                                    &nbsp; Partilhar &nbsp;
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                        <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u=https://mimovel.com/imoveis/6"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                                        <a class="dropdown-item" href="https://wa.me/?text= https://mimovel.com/imoveis/6"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                                        <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= https://mimovel.com/imoveis/6"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                                                    </div>
+                                                                </a>
+                                                            </a>
+                            
+                            
+                                                    </div>
+                                                </div>
+                                                </div>
+
+                                                <div class="col-sm-4 p-2">
+                                                    <div class="card">
+                                                        <a href="https://mimovel.com/imoveis/6">
+                                                        <img class="card-img-top" src="img/banner2.png"
+                                                            alt="Imóvel do Mimóvel">
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <a href="https://mimovel.com/imoveis/6">
+                                                            <h5 class="card-title text-truncate">Casa Tipo-3
+                                                                </h5>
+                                                                </a>
+                                
+                                                                <a class="badge  badge-light  p-2 text-truncate float-right" href="">
+                                                                    MZN&nbsp;
+                                                                    10000 &nbsp;</a></h5>
+                                                                </a>
+                                                                <a class="badge badge-light p-2 text-truncate float-right mr-2" href="">
+                                                                    Tipo:&nbsp;
+                                                                                                            Moradia
+                                                                                                        &nbsp;</a>
+                                
+                                                            <div class="star">
+                                                                <span class="fas fa-star checked"></span>
+                                                                <span class="fas fa-star checked"></span>
+                                                                <span class="far fa-star "></span>
+                                                                <span class="far fa-star "></span>
+                                                                <span class="far fa-star"></span>
+                                                            </div>
+                                
+                                                            <p class="card-text text-truncate">Uma casa com um quintal espac</p>
+                                                            <hr>
+                                                            <a class="badge badge-pill badge-light p-2 text-truncate" href="">
+                                                                <i class="fa fa-map-marker-alt"></i>&nbsp;
+                                                                                                &nbsp;</a>
+                                                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                                <i class="fa fa-eye"></i>&nbsp;
+                                                                Cod: A6  &nbsp;</a>
+                                                            <a class="badge badge-pill badge-light p-2 text-truncate"  href="">
+                                                                <i class="far fa-comment-alt"></i>
+                                                                &nbsp; 0 &nbsp;</a>
+                                                                <a class="dropdown">
+                                
+                                
+                                                                    <a class="badge badge-pill badge-light p-2 text-truncate dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fa fa-share-alt"></i>
+                                                                        &nbsp; Partilhar &nbsp;
+                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                            <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u=https://mimovel.com/imoveis/6"><i class="fab fa-facebook-f" style="color:rgb(96, 149, 248)"></i>&nbsp; Facebook</a>
+                                                                            <a class="dropdown-item" href="https://wa.me/?text= https://mimovel.com/imoveis/6"><i class="fab fa-whatsapp    " style="color: rgb(87, 145, 1)"></i> &nbsp; Whatsapp</a>
+                                                                            <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=Share+title&url= https://mimovel.com/imoveis/6"><i class="fab fa-twitter    " style="color:hsl(187, 100%, 50%)"></i>  &nbsp;Twitter</a>
+                                                                        </div>
+                                                                    </a>
+                                                                </a>
+                                
+                                
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                        <!-- FIM Coluna para o foreach-->
+
+                                    </div>
+
+                                        <!--Button Ver mais-->  
+                                        <div class="campoButton">
+
+                                            <a class="badge badge-primary p-3 col-sm-12 my-3"  href="#">
+                                            <img src="img/icon/eye.svg">
+                                            &nbsp; Ver Todos imoveis &nbsp;
+                                            </a>
+
+                                            </div>
+                        </div>
+
+
+
+
+                        <!-- End other-issue Area -->
+
+                        <!-- Start testimonial Area : Tmos para si-->
+                        <section class="testimonial-area section-gap">
+                                <div class="container">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="menu-content pb-70 col-lg-8">
+                                            <div class="title text-center">
+                                                <div style="background-color: #E9EAFF; text-align: center; margin-bottom: 0px; bottom: 0px; margin: 0;">
+
+                                                    <h4 style="text-align: center;">Temos para si</h4>
+
+                                                    <div class="container" id="temosParasi">
+
+                                                        <div class="row">
+
+                                                          <div class="col-sm-3 p-2">
+                                                            <a href="#">
+                                                                <img src="img/icon/icons8_company_1.svg" class="icons">
+                                                            </a>
+                                                            <h6>Apartamentos</h6>
+                                                          </div>
+
+                                                          <div class="col-sm-3 p-2">
+                                                               <a href="#">
+                                                                <img src="img/icon/icons8_home_page.svg" class="icons">
+                                                                </a>
+                                                                    <h6>Moadia</h6>
+                                                          </div>
+
+                                                          <div class="col-sm-3 p-2">
+                                                            <a href="#">
+                                                            <img src="img/icon/icons8_small_business.svg" class="icons">
+                                                            </a>
+                                                            <h6>Lojas</h6>
+                                                          </div>
+
+                                                      <div class="col-sm-3 p-2">
+                                                        <a href="#">
+                                                            <img src="img/icon/icons8_home_office.svg" class="icons">
+                                                            </a>
+                                                            <h6>Escritorios</h6>
+                                                      </div>
+                                                      <div class="col-sm-3 p-2">
+                                                        <a href="#">
+                                                            <img src="img/icon/icons8_carpark.svg" class="icons">
+                                                            </a>
+                                                            <h6>Armazens</h6>
+                                                      </div>
+                                                  
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="active-testimonial">
+                                                            </div>
+                                    </div>
+                                </div>
+                        </section>
+                         <!-- End testimonial Area -->
+                         
+                        <!-- start footer Area -->
+                         <footer class="footer-area section-gap">
+        <div class="container">
+    
+            <div class="row">
+                <div class="col-lg-3  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Sobre Mimóvel</h6>
+                        <p>
+                            Mimóvel é uma empresa de aluguel, compra de imóveis localizada
+                            na cidade da beira, reconhecida pelos seus excelentes edificios
+                            que superam as expectativas dos clientes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Links de navegação</h6>
+                        <div class="row">
+                            <div class="col">
+                                <ul>
+                                    <li><a href="#">Início</a></li>
+                                    <li><a href="#">Ver  todos Imóveis</a></li>
+                                    <li><a href="#">Parceria</a></li>
+                                    <li><a href="#">Sobre nós</a></li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li><a href="#">Contacto</a></li>
+                                    <li><a href="#">Termos e condições de uso</a></li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-4">
+                    <img src="img/mimovel-sem-fundo.png"  class="col" alt="" srcset="">
+                </div>
+            </div>
+    
+    
+            <div class="row footer-bottom d-flex justify-content-between align-items-center">
+                <p class="col-lg-8 col-sm-12 footer-text m-0">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> Todos direitos reservados |  <a href="#"
+                       >Termos e condições de uso</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+                <div class="col-lg-4 col-sm-12 footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+                        </footer>
+                       <!-- End footer Area -->
+
+    </section>
+
+ 
+
+
+
+
+   
+
+    <!-- General JS Scripts -->
+    <script src="https://mimovel.com/frontend/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/popper.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/vendor/bootstrap.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/jquery-ui.js"></script>
+    <script src="https://mimovel.com/frontend/js/easing.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/hoverIntent.js"></script>
+    <script src="https://mimovel.com/frontend/js/superfish.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/jquery.ajaxchimp.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/jquery.magnific-popup.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/jquery.nice-select.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/owl.carousel.min.js"></script>
+    <script src="https://mimovel.com/frontend/js/mail-script.js"></script>
+    <script src="https://mimovel.com/frontend/js/main.js"></script>
+
+    <!-- JS Libraies -->
+        <!-- Page Specific JS File -->
+    
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                lazyLoad: true,
+                items: 1,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+        });
+    </script>
+    <script src="https://mimovel.com/js/share.js"></script>
+    <!-- Template JS File -->
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                lazyLoad: true,
+                items: 5,
+            singleItem: true,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                singleItem: true,
+                maxHeight: 400,
+                maxWidth:300
+            });
+        });
+    </script>
+</body>
+</html>
+
