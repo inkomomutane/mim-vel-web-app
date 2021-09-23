@@ -174,7 +174,7 @@
             });
             $('#crop').click(function() {
                 canvas = cropper.getCroppedCanvas({
-                    width: 3072,
+                    width: 700,
                 });
 
                 canvas.toBlob(function(blob) {

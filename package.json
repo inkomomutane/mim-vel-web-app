@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "laravel-echo": "^1.11.1",
+        "pgwslideshow": "^2.0.0",
         "pusher-js": "^7.0.3"
     }
 }

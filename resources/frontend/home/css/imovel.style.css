@@ -1,0 +1,94 @@
+.section-top-border {
+    border-top: none !important;
+    padding: 0 !important;
+}
+
+.imovel-card-propriety {
+    font-size: 13px;
+    color: #8f8f8f;
+    font-weight: 700;
+}
+
+.imovel-card-propriety-light {
+    font-size: 13px;
+    color: #4d4d4d;
+    font-weight: 600;
+}
+
+.hotel_booking_area {
+    top: 0px;
+    position: relative;
+    padding: 15px 0;
+}
+
+.hotel_booking_table {
+    background: #fff;
+}
+
+.offer-item-price {
+    color: #21a4b8;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.imovel {
+    color: #797676;
+}
+
+.imovel:hover {
+    color: #0467d8;
+    text-decoration-line: #535252;
+}
+
+.book_tabel_item .form-group .input-group .form-control {
+    border-color: #dddddd;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 200;
+}
+th {
+    padding-top: 12px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #ff6f00;
+    color: white;
+}
+.iframe-content iframe {
+    width: 100% !important;
+}
+
+.agendar-button
+{
+    border: 2px solid #f0eff1 !important;
+    color: #fff;
+    font-weight: 800;
+    font-size: medium;
+}
+
+.agendar-section-mobile{
+    display: none ;
+}
+
+@media  screen and (max-width: 750px) {
+.agendar-section
+{
+    display: none !important;
+}
+
+    .agendar-section-mobile{
+        display: block !important;
+        position: fixed;
+        bottom:0px;
+        width:100%;
+        text-align: center;
+        z-index: 999;
+        padding: 0px;
+        margin-bottom:0px;
+    }
+    .agendar-button
+{
+    border: 1px solid #fff !important;
+    color: #fff;
+}
+}

@@ -164,11 +164,8 @@
                     reader.readAsDataURL(blob);
                     reader.onloadend = function() {
                         var image = reader.result;
-                        //var data = $('#imovel_image_preview');
                         var data_file = $('#imovel_image_preview_input');
-                        //data[0].src = image;
                         data_file[0].value = image;
-
                         console.log(data_file);
                         $('#store_image').submit();
                         $('#modal').modal('toggle');

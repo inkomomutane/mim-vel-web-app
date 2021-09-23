@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\BannerImages;
 use App\Http\Traits\WebVisits;
+use App\Models\Bairro;
+use App\Models\Condicao;
 use App\Models\Imovel;
 use App\Models\Partner;
+use App\Models\Status;
+use App\Models\TipoDeImovel;
 use Illuminate\Http\Request;
 use Jorenvh\Share\Share;
 
@@ -22,7 +26,10 @@ class WelcomController extends Controller
             'destacados'=> $this->imoveis(),
             'procurados_por_localizacao'=> $this->imoveis(),
             'parceiros' => Partner::with('fotos')->get(),
-
+            'bairros' => Bairro::all(),
+            'tipo_de_imovels' => TipoDeImovel::all(),
+            'conditions' => Condicao::all(),
+            'statuses' => Status::all()
         ]);
     }
 

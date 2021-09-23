@@ -4,17 +4,23 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\WebVisits;
+use App\Http\Traits\BannerImages;
+use App\Models\Bairro;
+use App\Models\Condicao;
 use App\Models\Imovel;
+use App\Models\Partner;
+use App\Models\Status;
+use App\Models\TipoDeImovel;
 use Illuminate\Http\Request;
 
 class ImovelController extends Controller
 {
-    use WebVisits;
+    use WebVisits,BannerImages;
 
     public function index()
     {
         $this->visit();
-        return view('frontend.search')->with('imoveis',Imovel::paginate(8));
+        return  $this->responseView(Imovel::paginate(25));
     }
     public function show(Imovel $imovel)
     {
@@ -36,19 +42,35 @@ class ImovelController extends Controller
 
     public function search(Request $request)
     {
-        $validade  = $request->validate([
-            'query' => 'required'
-        ]);
-        if ($validade) {
-           $query = $validade['query'];
-            return view('frontend.search')->with('imoveis',Imovel::search($query)
+        $pesquisa = "";
+        foreach ($request->all() as $key =>  $value) {
+            if ($key !== "_token" && $key !== "_method") {
+                $pesquisa .= " " . $value;
+            }
+        }
+        try {
+            return $this->responseView(Imovel::
+            search($pesquisa)
             ->with('bairro')
             ->with('condicao')
             ->with('status')
-            ->with('tipo_de_imovels')
-            ->paginate(15));
-        }else{
-            return view('frontend.search')->with('imoveis',[]);
+            ->with('tipo_de_imovels')->paginate(25));
+        } catch (\Throwable $th) {
+            return $this->responseView([]);
         }
     }
+
+    private function responseView($imoveis){
+        return view('frontend.search')
+        ->with( [
+            'images'=> $this->images('welcome'),
+            'imoveis'=> $imoveis,
+            'parceiros' => Partner::with('fotos')->get(),
+            'bairros' => Bairro::all(),
+            'tipo_de_imovels' => TipoDeImovel::all(),
+            'conditions' => Condicao::all(),
+            'statuses' => Status::all()
+        ]);
+    }
+
 }

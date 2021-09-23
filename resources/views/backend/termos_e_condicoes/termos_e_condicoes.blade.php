@@ -43,9 +43,9 @@
                     @csrf
 
                 <div class="form-group row mb-4">
-                    <div class="col-sm-12 col-md-12">
-                        <textarea class="summernote" name="termos">
-                            {{$termos}}
+                    <div class="col-sm-12 col-md-12 text">
+                        <textarea id="termos"  name="termos" >
+                            {!! $termos !!}
                         </textarea>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
 </div>
 @endsection
 @push('css')
-<link rel="stylesheet" href="{{ asset('backend/summernote/summernote-bs4.css') }}">
 @endpush
 @push('js')
-<script src="{{ asset('backend/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('frontend/ckeditor/ckeditor.js')}}"></script>
+<script>CKEDITOR.replace('termos');</script>
 @endpush

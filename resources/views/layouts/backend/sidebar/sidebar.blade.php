@@ -105,10 +105,17 @@ $role = Auth::user()->roles->first()->name;
                     <li class="@if (Route::is('cidade.index')) active @endif"><a class="nav-link" href="{{ route('cidade.index') }}"><i class="fas fa-city"></i>
                             <span>Cidade</span></a></li>
                 </ul>
+
                 <ul class="sidebar-menu">
                     <li class="@if (Route::is('status.index')) active @endif"><a class="nav-link" href="{{ route('status.index') }}"><i class="fas fa-check-double"></i>
                             <span>Status</span></a></li>
                 </ul>
+
+                <ul class="sidebar-menu">
+                    <li class="@if (Route::is('condicao.index')) active @endif"><a class="nav-link" href="{{ route('condicao.index') }}"><i class="fas fa-check-double"></i>
+                            <span>Condição</span></a></li>
+                </ul>
+
                 <ul class="sidebar-menu">
                     <li class="@if (Route::is('tipodeimovel.index')) active @endif"><a class="nav-link" href="{{ route('tipodeimovel.index') }}"><i
                                 class="fas fa-tasks"></i>

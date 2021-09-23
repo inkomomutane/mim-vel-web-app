@@ -1,0 +1,59 @@
+{
+  "_from": "pgwslideshow",
+  "_id": "pgwslideshow@2.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-i3gGyyu0k/L2yk2dBifaXMQmAh0=",
+  "_location": "/pgwslideshow",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "pgwslideshow",
+    "name": "pgwslideshow",
+    "escapedName": "pgwslideshow",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/pgwslideshow/-/pgwslideshow-2.0.0.tgz",
+  "_shasum": "8b7806cb2bb493f2f6ca4d9d0627da5cc426021d",
+  "_spec": "pgwslideshow",
+  "_where": "/var/www/html/apps/mim-vel-web-app",
+  "author": {
+    "name": "Jonathan M. Piat"
+  },
+  "bugs": {
+    "url": "https://github.com/Pagawa/PgwSlideshow/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Responsive slideshow / gallery / carousel for jQuery / Zepto",
+  "homepage": "https://pgwjs.com/pgwslideshow",
+  "keywords": [
+    "slider",
+    "slideshow",
+    "gallery",
+    "carousel",
+    "responsive",
+    "mobile",
+    "image",
+    "animation",
+    "ui",
+    "jquery",
+    "jquery-plugin",
+    "zepto"
+  ],
+  "license": "GNU GPLv3",
+  "main": "pgwslideshow.js",
+  "name": "pgwslideshow",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pagawa/PgwSlideshow.git"
+  },
+  "title": "PgwSlideshow",
+  "version": "2.0.0"
+}

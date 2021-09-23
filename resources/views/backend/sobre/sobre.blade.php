@@ -44,7 +44,7 @@
 
                 <div class="form-group row mb-4">
                     <div class="col-sm-12 col-md-12">
-                        <textarea class="summernote" name="sobre_nos">
+                        <textarea class="sobre_nos" name="sobre_nos">
                             {{$sobre}}
                         </textarea>
                     </div>
@@ -62,8 +62,10 @@
 </div>
 @endsection
 @push('css')
-<link rel="stylesheet" href="{{ asset('backend/summernote/summernote-bs4.css') }}">
+
 @endpush
 @push('js')
-<script src="{{ asset('backend/summernote/summernote-bs4.js') }}"></script>
+
+<script src="{{ asset('frontend/ckeditor/ckeditor.js')}}"></script>
+<script>CKEDITOR.replace('sobre_nos');</script>
 @endpush

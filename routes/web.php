@@ -32,17 +32,6 @@
 
     Route::get('/agendar','Frontend\AgendaController@index');
 
-    Route::get('/imo', function () {
-        return  [];
-    })->name('imo');
-    Route::get('/imo', function () {
-        return view('frontend.search');
-    })->name('imo');
-
-    Route::get('/search', function () {
-        return view('frontend.search');
-    })->name('search');
-
     Route::get('/corretor', function () {
         return [];
     })->name('corretor');
@@ -63,6 +52,8 @@
         ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('status', 'StatusController')
+        ->middleware([  'auth', 'role:ceo']);
+    Route::resource('condicao', 'CondicaoController')
         ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('tipodeimovel', 'TipoDeImovelController')
@@ -100,7 +91,7 @@
         ->name('imovel.delete_image')
         ->middleware([  'auth', 'role:ceo']);
 
-    Route::get('pesquisar/imoveis','Frontend\ImovelController@search')
+    Route::post('pesquisar/imoveis','Frontend\ImovelController@search')
         ->name('imovel.search');
 
     Route::resource('user', 'UserController')->middleware(
