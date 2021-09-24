@@ -10,6 +10,8 @@
         @method('POST')
     @endif
     @csrf
+
+    <input type="hidden" name="postado_por" value="{{auth()->user()->id}}">
     <div class="card-body">
         <div class="form-group row mb-4">
             <div class="col-sm-6">

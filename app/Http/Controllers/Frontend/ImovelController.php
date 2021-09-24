@@ -73,4 +73,30 @@ class ImovelController extends Controller
         ]);
     }
 
+    public function suites()
+    {
+        return view('frontend.search')
+        ->with( [
+            'images'=> $this->images('welcome'),
+            'imoveis'=> Imovel::where('suites','>',1)->paginate(25),
+            'parceiros' => Partner::with('fotos')->get(),
+            'bairros' => Bairro::all(),
+            'tipo_de_imovels' => TipoDeImovel::all(),
+            'conditions' => Condicao::all(),
+            'statuses' => Status::all()
+        ]);
+    }
+    public function disponiveis()
+    {
+        return view('frontend.search')
+        ->with( [
+            'images'=> $this->images('welcome'),
+            'imoveis'=> Imovel::where('status_id',3)->paginate(25),
+            'parceiros' => Partner::with('fotos')->get(),
+            'bairros' => Bairro::all(),
+            'tipo_de_imovels' => TipoDeImovel::all(),
+            'conditions' => Condicao::all(),
+            'statuses' => Status::all()
+        ]);
+    }
 }

@@ -23,8 +23,6 @@ class TermosController extends Controller
             $request  = Storage::get('termos.dat');
             return view('frontend.termos')->with(['images'=>$this->images('termos'),'termos'=> $request]);
         }
-
-
-        return view('frontend.about')->with(['images'=>$this->images('termos'),'termos'=>'']);
+        return view('frontend.termos')->with(['images'=>$this->images('termos'),'termos'=>'']);
     }
 }

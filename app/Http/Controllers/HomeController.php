@@ -38,7 +38,7 @@ class HomeController extends Controller
                 'denuncias' => Denuncia::all(),
                 'imo_views' => visits('App\Models\Imovel')->count(),
                 'web_views' => visits('App\Models\WebLink')->count()
-
+             //   'mais_visitados' => Imovel::mostvisited();
             ]
         );
     }

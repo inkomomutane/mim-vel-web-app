@@ -2,7 +2,7 @@
 @section('title', 'Mimóvel')
 @section('content')
     <!--================ Latest Blog Area  =================-->
-    <section class="latest_blog_area mb-5 row mr-0 ml-0">
+    <section class="latest_blog_area pb-5 row mr-0 ml-0">
         <div class="container col-sm-10">
             <div class="section_title text-start ">
                 <h3 class="title_color">Imóveis mais destacados</h3>
@@ -13,34 +13,35 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="single-recent-blog-post "
                                 style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
-                                <div class="thumb">
 
-                                    <div class="card-carousel">
-                                        <div id="loop_{{ $imovel->id }}" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner">
+                                    <a href="{{ route('imo.show', $imovel->id) }}">
+                                            <div class="thumb">
+                                                <div class="card-carousel">
+                                                    <div id="loop_{{ $imovel->id }}" class="carousel slide" data-ride="carousel">
+                                                        <div class="carousel-inner">
 
-                                                @foreach ($imovel->fotos as $image)
+                                                            @foreach ($imovel->fotos as $image)
 
-                                                    <div class="carousel-item @if ($loop->first) active  @endif">
-                                                        <img class="img-fluid"
-                                                            src="{{ asset('storage') }}/{{ $image->url }}" alt="post">
+                                                                <div class="carousel-item @if ($loop->first) active  @endif">
+                                                                    <img class="img-fluid"
+                                                                        src="{{ asset('storage') }}/{{ $image->url }}" alt="post">
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                        <a class="carousel-control-prev" href="#loop_{{ $imovel->id }}" role="button"
+                                                            data-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#loop_{{ $imovel->id }}" role="button"
+                                                            data-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
                                                     </div>
-                                                @endforeach
+                                                </div>
                                             </div>
-                                            <a class="carousel-control-prev" href="#loop_{{ $imovel->id }}" role="button"
-                                                data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#loop_{{ $imovel->id }}" role="button"
-                                                data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                        </a>
                                 <div class="details ml-4 mr-4 pb-4">
                                     <div class="tags row">
                                         <a href="#" class="button_hover tag_btn w-40 text-truncate mt-2">Preço:
@@ -74,22 +75,42 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-recent-blog-post "
-                                style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-recent-blog-post "
+                            style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+
                                 <div class="details ml-4 mr-4 pb-4">
-                                    <div class="tags">
-                                        <a href="#" class="button_hover tag_btn">Travel</a>
-                                        <a href="#" class="button_hover tag_btn">Life Style</a>
+                                    <div class="tags row">
+                                        <a href="#" class="button_hover tag_btn w-40 text-truncate mt-2">Preço:
+                                            {{ $imovel->preco }} MZN</a>
+                                        @if ($imovel->tipo_de_imovel != null)
+                                            <a href="#"
+                                                class="button_hover tag_btn w-40 text-truncate mt-2 mt-2">{{ 'Tipo: ' . $imovel->tipo_de_imovel->nome }}</a>
+                                        @endif
+                                        <a href="#"
+                                            class="button_hover tag_btn w-40 text-truncate w-40 text-truncate mt-2">Código:
+                                            {{ $imovel->codigo }}</a>
+
+                                        <a class="button_hover tag_btn dropdown-toggle w-40 text-truncate mt-2"
+                                            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">Partilhar
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('imo.show', $imovel->id) }}"
+                                                class="dropdown-item" href="#">
+                                                Facebook
+                                            </a>
+                                            <a class="dropdown-item"
+                                                href="https://wa.me/?text={{ route('imo.show', $imovel->id) }}">Whatsapp</a>
+                                        </div>
                                     </div>
-                                    <a href="#">
-                                        <h4 class="sec_h4">{{ $imovel->titulo }}</h4>
+                                    <a href="{{ route('imo.show', $imovel->id) }}">
+                                        <h4 class="sec_h4">{{ Str::ucfirst($imovel->titulo) }}</h4>
                                     </a>
-                                    <p>{{ $imovel->descricao }}</p>
                                     <h6 class="date title_color">{{ $imovel->created_at->toDateString() }} </h6>
                                 </div>
-                            </div>
                         </div>
+                    </div>
                     @endif
 
                 @endforeach
@@ -103,36 +124,75 @@
                 @foreach ($procurados_por_localizacao as $imovel)
                     @if ($imovel->fotos->count() > 0)
                         <div class="col-lg-4 col-md-6">
-                            <div class="single-recent-blog-post "
-                                style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
-                                <div class="thumb">
+                            <a href="{{ route('imo.show', $imovel->id) }}">
+                                <div class="single-recent-blog-post "
+                                    style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+                                    <div class="thumb">
 
-                                    <div class="card-carousel">
-                                        <div id="loop_{{ $imovel->id }}" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner">
+                                        <div class="card-carousel">
+                                            <div id="loup_{{ $imovel->id }}" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner">
 
-                                                @foreach ($imovel->fotos as $image)
+                                                    @foreach ($imovel->fotos as $image)
 
-                                                    <div class="carousel-item @if ($loop->first) active  @endif">
-                                                        <img class="img-fluid"
-                                                            src="{{ asset('storage') }}/{{ $image->url }}" alt="post">
-                                                    </div>
-                                                @endforeach
+                                                        <div class="carousel-item @if ($loop->first) active  @endif">
+                                                            <img class="img-fluid"
+                                                                src="{{ asset('storage') }}/{{ $image->url }}" alt="post">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <a class="carousel-control-prev" href="#loup_{{ $imovel->id }}" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#loup_{{ $imovel->id }}" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
                                             </div>
-                                            <a class="carousel-control-prev" href="#loop_{{ $imovel->id }}" role="button"
-                                                data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#loop_{{ $imovel->id }}" role="button"
-                                                data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
                                         </div>
-                                    </div>
 
+                                    </div>
+                                    <div class="details ml-4 mr-4 pb-4">
+                                        <div class="tags row">
+                                            <a href="#" class="button_hover tag_btn w-40 text-truncate mt-2">Preço:
+                                                {{ $imovel->preco }} MZN</a>
+                                            @if ($imovel->tipo_de_imovel != null)
+                                                <a href="#"
+                                                    class="button_hover tag_btn w-40 text-truncate mt-2 mt-2">{{ 'Tipo: ' . $imovel->tipo_de_imovel->nome }}</a>
+                                            @endif
+                                            <a href="#"
+                                                class="button_hover tag_btn w-40 text-truncate w-40 text-truncate mt-2">Código:
+                                                {{ $imovel->codigo }}</a>
+
+                                            <a class="button_hover tag_btn dropdown-toggle w-40 text-truncate mt-2"
+                                                id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">Partilhar
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('imo.show', $imovel->id) }}"
+                                                    class="dropdown-item" href="#">
+                                                    Facebook
+                                                </a>
+                                                <a class="dropdown-item"
+                                                    href="https://wa.me/?text={{ route('imo.show', $imovel->id) }}">Whatsapp</a>
+                                            </div>
+                                        </div>
+                                        <a href="{{ route('imo.show', $imovel->id) }}">
+                                            <h4 class="sec_h4">{{ Str::ucfirst($imovel->titulo) }}</h4>
+                                        </a>
+                                        <h6 class="date title_color">{{ $imovel->created_at->toDateString() }} </h6>
+                                    </div>
                                 </div>
+                            </a>
+                        </div>
+                    @else
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-recent-blog-post "
+                            style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+
                                 <div class="details ml-4 mr-4 pb-4">
                                     <div class="tags row">
                                         <a href="#" class="button_hover tag_btn w-40 text-truncate mt-2">Preço:
@@ -163,25 +223,8 @@
                                     </a>
                                     <h6 class="date title_color">{{ $imovel->created_at->toDateString() }} </h6>
                                 </div>
-                            </div>
                         </div>
-                    @else
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-recent-blog-post "
-                                style=";box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
-                                <div class="details ml-4 mr-4 pb-4">
-                                    <div class="tags">
-                                        <a href="#" class="button_hover tag_btn">Travel</a>
-                                        <a href="#" class="button_hover tag_btn">Life Style</a>
-                                    </div>
-                                    <a href="#">
-                                        <h4 class="sec_h4">{{ $imovel->titulo }}</h4>
-                                    </a>
-                                    <p>{{ $imovel->descricao }}</p>
-                                    <h6 class="date title_color">{{ $imovel->created_at->toDateString() }} </h6>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                     @endif
 
                 @endforeach
@@ -191,6 +234,42 @@
         </div>
     </section>
     <!--================ Recent Area  =================-->
+
+
+    <section class="facilities_area section_gap">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""
+            style="transform: translateY(-21.9667px);">
+        </div>
+        <div class="container">
+            <div class="section_title text-center">
+                <h2 class="title_w">Encontre na Mimóvel</h2>
+            </div>
+            <div class="row mb_30 mx-auto justify-content-between">
+
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{{ url('imovel/suites') }}">
+                        <div class="facilities_item">
+                            <h4 class="sec_h4">
+                                <i class="fas fa-bed    " style="color: #f3c300"></i>
+                                </i> &nbsp; &nbsp; Casas de luxo com Suítes
+                            </h4>
+                        </div>
+                    </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{{ url('imovel/disponiveis') }}">
+                        <div class="facilities_item">
+                            <h4 class="sec_h4">
+                                <i class="fas fa-hotel    " style="color: #f3c300"></i>
+                                </i> &nbsp; &nbsp; Casas de luxo disponiveis
+                            </h4>
+                        </div>
+                    </a>
+                    </div>
+
+            </div>
+        </div>
+    </section>
 @endsection
 
 @section('banner')

@@ -29,7 +29,7 @@
                             <a class="nav-link" href="">Imóvel</a>
                         </li>
                     @endif
-                    <li class="nav-item @if (Route::is('imo.index')) active @endif">
+                    <li class="nav-item @if (Route::is('imo.index') || Request::is('imovel/*')) active @endif">
                         <a class="nav-link" href="{{ route('imo.index') }}">Ver todos imóveis</a>
                     </li>
                     <li class="nav-item @if (Route::is('about')) active @endif">

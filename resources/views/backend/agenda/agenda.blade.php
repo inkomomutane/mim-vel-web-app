@@ -20,8 +20,10 @@
     @if (session('errors'))
         <div class="alert alert-danger alert-dismissible show fade">
             <div class="alert-body">
+
+                {{$errors}}
                 <button class="close" data-dismiss="alert"><span>×</span></button>
-                @error('nome')
+                @error('local_de_encontro')
                     <strong>{{ $message }}</strong>
                 @enderror
             </div>
@@ -36,38 +38,45 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Tabela de condição</h4>
-                    <div class="card-header-action">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#novoStatus"><i
-                                class="fas fa-plus"></i><span> Novo condição</span></button>
-                    </div>
+                    <h4>Tabela de agendas</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped v_center" id="condicaos">
+                        <table class="table table-striped v_center" id="agendas">
                             <thead>
                                 <tr>
                                     <th class="text-center">
                                         <i class="fas fa-th"></i>
                                     </th>
-                                    <th>Id</th>
-                                    <th>Nome</th>
+                                    <th>Nome do cliente</th>
+                                    <th>Contacto</th>
+                                    <th>Código do imóvel</th>
+                                    <th>Data da visita</th>
+                                    <th>Status</th>
                                     <th>Editar</th>
                                     <th>Delatar</th>
-
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($condicaos as $condicao)
+                                @foreach ($agendas as $agenda)
                                     <tr>
                                         <td><i class="fas fa-th"></i></td>
-                                        <td>{{ ucfirst($condicao->id) }}</td>
-                                        <td>{{ ucfirst($condicao->nome) }}</td>
-                                        <td><button class="btn btn-secondary" data-toggle="modal" data-target="#EditStatus"
-                                                data-code="{{ ucfirst($condicao) }}"><i class="fa fa-edit"></i></button>
+                                        <td>{{ ucfirst($agenda->nome_cliente ) }}</td>
+                                       <td> <a href="tel:{{$agenda->contacto}}">{{$agenda->contacto}}</a></td>
+                                       <td>{{$agenda->imovel->codigo}}</td>
+                                       <td>{{ date_format($agenda->horario,'d-M-Y') }}</td>
+                                       <td>
+                                           @if ($agenda->confirmed)
+                                           <span class="badge badge-pill badge-success">Confirmado</span>
+                                           @else
+                                           <span class="badge badge-pill badge-warning">Em espera</span>
+                                           @endif
+                                       </td>
+                                        <td><button class="btn btn-secondary" data-toggle="modal" data-target="#EditAgenda"
+                                                data-code="{{ ucfirst($agenda) }}"><i class="fa fa-edit"></i></button>
                                         </td>
                                         <td><a href="#" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#DeleteStatus" data-code="{{ ucfirst($condicao) }}"><i
+                                                data-target="#DeleteAgenda" data-code="{{ ucfirst($agenda) }}"><i
                                                     class="fa fa-trash"></i></a></td>
                                     </tr>
                                 @endforeach
@@ -83,57 +92,56 @@
 @endsection
 
 @section('modals')
-    <div class="modal fade" tabindex="-1" role="dialog" id="novoStatus">
+    <div class="modal fade" tabindex="-1" role="dialog" id="EditAgenda">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Novo condição</h5>
+                    <h5 class="modal-title">Editar agenda</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('condicao.store') }}" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="container form-group row">
-
-                            <div class="col-md-12">
-                                <input id="nome" type="text" class="form-control" name="nome"
-                                    placeholder="Digite nome de condição" required autocomplete="nome" autofocus>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Gravar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" tabindex="-1" role="dialog" id="EditStatus">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Editar condição</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="{{ route('condicao.index') }}" method="post" id="edit_form">
+                <form action="{{ route('agenda.index') }}" method="post" id="edit_form">
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
                         <div class="container form-group row">
                             <div class="col-md-4">
                                 <input id="id_edit" type="text" class="form-control" name="id" placeholder="Digite Id"
-                                    required autocomplete="id" autofocus disabled>
+                                    required autocomplete="id" autofocus >
+                            </div>
+                                <input type="hidden" name="corretor_id"  class="corretor_id_edit">
+                            <div class="col-md-12">
+                                <label for="">Nome do cliente</label>
+                                <input id="nome_do_cliente_edit" type="text" class="form-control" name="nome_cliente"
+                                    required  autofocus >
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Contacto do cliente</label>
+                                <input id="contacto_do_cliente_edit" type="text" class="form-control" name="contacto"
+                                    required autofocus >
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="">Id do imóvel</label>
+                                <input id="imovel_id_edit" type="text" class="form-control" name="imovel_id"
+                                    required autofocus >
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Data da visita</label>
+                                <input id="data_da_visita_edit" type="date" class="form-control" name="horario"
+                                    required  autofocus>
                             </div>
                             <div class="py-2 col-md-12">
-                                <input id="nome_edit" type="text" class="form-control" name="nome"
-                                    placeholder="Digite nome de condição" required autocomplete="nome" autofocus>
+                                <input id="local_de_encontro_edit" type="text" class="form-control" name="local_de_encontro"
+                                    placeholder="Digite local de encontro" required autocomplete="local_de_encontro" autofocus>
+                            </div>
+                            <div class="col-md-12 py-2">
+                            <label for="cidades">Status</label>
+                            <select name="confirmed" id="update_confirmed" class="selectric">
+                                <option value="1">Confirmado</option>
+                                    <option value="0">Não confirmado</option>
+                            </select>
                             </div>
                         </div>
                     </div>
@@ -145,16 +153,16 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" role="dialog" id="DeleteStatus">
+    <div class="modal fade" tabindex="-1" role="dialog" id="DeleteAgenda">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title">Deletar condição</h6>
+                    <h6 class="modal-title">Deletar agenda</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('condicao.index') }}" method="post" id="delete_form">
+                <form action="{{ route('agenda.index') }}" method="post" id="delete_form">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer bg-whitesmoke br">
@@ -170,6 +178,7 @@
     <link rel="stylesheet" href="{{ asset('backend/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/jquery-selectric/selectric.css') }}">
 @endpush
 @push('cssLibs')
     <link rel="stylesheet" href="{{ asset('backend/prism/prism.css') }}">
@@ -180,16 +189,16 @@
     <script src="{{ asset('backend/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('backend/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('backend/prism/prism.js') }}"></script>
-
+    <script src="{{ asset('backend/jquery-selectric/jquery.selectric.min.js') }}"></script>
 @endpush
 @push('js')
     <script>
-        $("#condicaos").dataTable({
+        $("#agendas").dataTable({
             "lengthChange": false,
             "pageLength": 5,
             "info": false,
             "language": {
-                'sSearch': 'Pesquisar condição',
+                'sSearch': 'Pesquisar agendas',
                 "oPaginate": {
                     "sFirst": "Primero",
                     "sLast": "Último",
@@ -199,25 +208,43 @@
             }
         });
         $(function() {
-            $('#EditStatus').on('show.bs.modal', function(event) {
+            $('#EditAgenda').on('show.bs.modal', function(event) {
+
                 var button = $(event.relatedTarget);
                 var code = button.data('code');
                 var modal = $(this);
                 var form = modal.find('#edit_form');
-                form.attr('action', '{!! route('condicao.index') !!}' + '/' + code.id);
+                form.attr('action', '{!! route('agenda.index') !!}' + '/' + code.id);
                 modal.find('#id_edit').val(code.id);
-                modal.find('#nome_edit').val(code.nome);
+                modal.find('#local_de_encontro_edit').val(code.local_de_encontro);
+                modal.find('#nome_do_cliente_edit').val(code.nome_cliente);
+                modal.find('#contacto_do_cliente_edit').val(code.contacto);
+                modal.find('#imovel_id_edit').val(code.imovel_id);
+console.log(code);
+                modal.find('.corretor_id_edit').val(code.corretor_id);
+
+                modal.find('#data_da_visita_edit').val(code.horario.split('T')[0]);
+                $("#update_confirmed option").attr("selected", false);
+                var confirmed = code.confirmed? "1" : "0";
+                $('#update_confirmed option[value="'+ confirmed +'"]').attr("selected", "selected");
+                $('#update_confirmed').selectric('refresh');
             });
         });
         $(function() {
-            $('#DeleteStatus').on('show.bs.modal', function(event) {
+            $('#DeleteAgenda').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var code = button.data('code');
                 var modal = $(this);
                 var form = modal.find('#delete_form');
-                form.attr('action', '{!! route('condicao.index') !!}' + '/' + code.id);
+                form.attr('action', '{!! route('agenda.index') !!}' + '/' + code.id);
 
             });
+        });
+
+        $(function() {
+             $('selectric').selectric({
+                ignore: []
+             });
         });
     </script>
 @endpush

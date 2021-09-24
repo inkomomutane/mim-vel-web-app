@@ -19,26 +19,26 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="contact_info p-4">
-                                <div class="info_item">
+                            <div class="contact_info p-4 col-sm-12 mx-auto row">
+                                <div class="info_item col-sm-6">
                                     <i class="lnr lnr-home"></i>
 
                                     <h6>&nbsp; Beira, Chaimite</h6>
                                     <p></p>
                                 </div>
-                                <div class="info_item">
+                                <div class="info_item col-sm-6">
                                     <i class="lnr lnr-phone-handset"></i>
                                     <h6><a href="tel:+258849500900"> ( +258 ) 84 9500 900 </a></h6>
                                     <p></p>
                                 </div>
-                                <div class="info_item">
+                                <div class="info_item col-sm-6">
                                     <i class="lnr lnr-phone-handset"></i>
                                     <h6><a href="tel:+258869500900"> ( +258 ) 86 9500 900 </a></h6>
                                     <p></p>
                                 </div>
-                                <div class="info_item">
+                                <div class="info_item col-sm-6">
                                     <i class="lnr lnr-envelope"></i>
-                                    <h6><a href="support@mimovel.com">support@mimovel.com</a></h6>
+                                    <h6><a href="mailto:support@mimovel.com">support@mimovel.com</a></h6>
                                     <p>Envie sua mensagem a qualquer hora!</p>
                                 </div>
                             </div>
@@ -55,6 +55,5 @@
             font-size: 30px;
             font-weight: 600;
         }
-
     </style>
 @endpush

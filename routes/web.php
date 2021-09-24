@@ -26,18 +26,27 @@
     Route::get('/termos_e_condicoes', 'Frontend\TermosController@index')->name('termos.frontend');
     Route::get('/complaint/{imovel}', 'Frontend\ComplaintController@index')->name('complaint');
     Route::post('/complaint', 'DenunciaController@store')->name('complaint.store');
-    Route::get('/denuncia', 'DenunciaController@index')->name('denuncia.index');
+    Route::get('/filtered_data','ImovelController@results');
+
+    /**
+     * Routes for specific filter imovel's
+     */
+    Route::get('imovel/suites','Frontend\ImovelController@suites');
+    Route::get('imovel/disponiveis','Frontend\ImovelController@disponiveis');
+    
 
     Route::post('comentar','Frontend\CommentController@store')->name('comentar');
 
-    Route::get('/agendar','Frontend\AgendaController@index');
+    Auth::routes([
+    'verify' => false,
+    'register' => false,
+    'reset'=> false,
+    'request' =>false
+    ]);
+    Route::post('/agendar','Frontend\AgendaController@store')->name('agendar_visita');
 
-    Route::get('/corretor', function () {
-        return [];
-    })->name('corretor');
-
-    Auth::routes(['verify' => true, 'register' => true]);
-
+    Route::get('/denuncia_imovel', 'DenunciaController@index')->name('denuncia_imovel.index')
+    ->middleware([  'auth', 'role:ceo|role:admin']);
     Route::get('/home', 'HomeController@index')->name('home')
         ->middleware([  'auth']);
 
@@ -57,6 +66,8 @@
         ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('tipodeimovel', 'TipoDeImovelController')
+        ->middleware([  'auth', 'role:ceo']);
+    Route::resource('opcao_denuncie', 'OpcaoDenunciaController')
         ->middleware([  'auth', 'role:ceo']);
 
     Route::resource('imovel', 'ImovelController')
@@ -100,7 +111,7 @@
     Route::resource('message', 'MessageController')->middleware(
         [  'auth', 'role:ceo|admin|corretor|client']
     );
-    Route::resource('agendas', 'AgendaController')->middleware(
+    Route::resource('agenda', 'AgendaController')->middleware(
         [  'auth', 'role:ceo|admin|corretor|client']
     );
     Route::get('sobre', 'SobreNosController@index')->middleware(

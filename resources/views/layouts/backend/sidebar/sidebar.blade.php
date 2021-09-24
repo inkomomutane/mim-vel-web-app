@@ -27,11 +27,12 @@ $role = Auth::user()->roles->first()->name;
                     </li>
                 </ul>
                 <ul class="sidebar-menu">
-                    <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-calendar-minus"></i>
+                    <li class="@if (Route::is('agenda.index')) active @endif"><a class="nav-link" href="{{ route('agenda.index') }}"><i class="fas fa-calendar-minus"></i>
                             <span>Agendas</span></a></li>
                 </ul>
                 <ul class="sidebar-menu">
-                    <li class="@if (Route::is('denuncia.index')) active @endif"><a class="nav-link" href="{{ route('denuncia.index') }}"><i
+                    <li class="@if (Route::is('denuncia_imovel.index')) active @endif">
+                        <a class="nav-link" href="{{ route('denuncia_imovel.index') }}"><i
                                 class="fas fa-exclamation-triangle"></i>
                             <span>Denúncias</span></a></li>
                 </ul>
@@ -96,6 +97,12 @@ $role = Auth::user()->roles->first()->name;
                                 <span>{{ $link->url }}</span></a></li>
                     @endforeach
                 </ul>
+                <ul class="sidebar-menu">
+                    <li class="@if (Route::is('opcao_denuncie.index')) active @endif">
+                        <a class="nav-link" href="{{ route('opcao_denuncie.index') }}"><i
+                                class="fas fa-exclamation-circle "  ></i>
+                            <span>Opções de denûncias</span></a></li>
+                </ul>
                 </li>
                 <li class="@if (Route::is('bairro.index')) active @endif"><a
                         class="nav-link" href="{{ route('bairro.index') }}"><i class="fas fa-map-marker-alt"></i>
@@ -152,11 +159,11 @@ $role = Auth::user()->roles->first()->name;
                 </li>
             </ul>
             <ul class="sidebar-menu">
-                <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-calendar-minus"></i>
+                <li class="@if (Route::is('agenda.index')) active @endif"><a class="nav-link" href="{{ route('agenda.index') }}"><i class="fas fa-calendar-minus"></i>
                         <span>Agendas</span></a></li>
             </ul>
             <ul class="sidebar-menu">
-                <li class="@if (Route::is('denuncia.index')) active @endif"><a class="nav-link" href="{{ route('denuncia.index') }}"><i
+                <li class="@if (Route::is('denuncia_imovel.index')) active @endif"><a class="nav-link" href="{{ route('denuncia_imovel.index') }}"><i
                             class="fas fa-exclamation-triangle"></i>
                         <span>Denúncias</span></a></li>
             </ul>
@@ -267,13 +274,8 @@ $role = Auth::user()->roles->first()->name;
                 </li>
             </ul>
             <ul class="sidebar-menu">
-                <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-calendar-minus"></i>
+                <li class="@if (Route::is('agenda.index')) active @endif"><a class="nav-link" href="{{ route('agenda.index') }}"><i class="fas fa-calendar-minus"></i>
                         <span>Agendas</span></a></li>
-            </ul>
-            <ul class="sidebar-menu">
-                <li class="@if (Route::is('denuncia.index')) active @endif"><a class="nav-link" href="{{ route('denuncia.index') }}"><i
-                            class="fas fa-exclamation-triangle"></i>
-                        <span>Denúncias</span></a></li>
             </ul>
             <ul class="sidebar-menu">
                 <li class="@if (Route::is('message.index')) active @endif">
@@ -302,7 +304,7 @@ $role = Auth::user()->roles->first()->name;
                 <li class="menu-header">Painel Administrativo</li>
             </ul>
             <ul class="sidebar-menu">
-                <li class=""><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-calendar-minus"></i>
+                <li class="@if (Route::is('agenda.index')) active @endif"><a class="nav-link" href="{{ route('agenda.index') }}"><i class="fas fa-calendar-minus"></i>
                         <span>Agendas</span></a></li>
             </ul>
             <ul class="sidebar-menu">

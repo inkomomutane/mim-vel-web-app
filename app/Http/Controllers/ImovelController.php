@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\RemoveAccent;
+use App\Models\Agenda;
 use App\Models\Bairro;
 use App\Models\Cidade;
 use App\Models\Comentario;
@@ -12,6 +13,7 @@ use App\Models\Foto;
 use App\Models\Imovel;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
+use App\Models\User;
 use App\Models\Visit;
 use Awssat\Visits\Models\Visit as ModelsVisit;
 use Awssat\Visits\Visits;
@@ -30,7 +32,12 @@ class ImovelController extends Controller
      */
     public function index()
     {
-        return view('backend.imovel.imovel')->with('imoveis', Imovel::with('visits')->get());
+        if(User::where('id',auth()->user()->id)->first()->hasRole(['ceo','admin'])){
+        $imoveis = Imovel::with('visits')->get();
+        return view('backend.imovel.imovel')->with('imoveis', $imoveis);
+    }else
+        $imoveis = Imovel::where('postado_por',auth()->user()->id)->with('visits')->get();
+        return view('backend.imovel.imovel')->with('imoveis', $imoveis);
     }
 
     /**
@@ -46,7 +53,6 @@ class ImovelController extends Controller
             'bairros' => Bairro::all(),
             'tipoDeImoveis' => TipoDeImovel::all(),
             'statuses' => Status::all()
-
         ]);
     }
 
@@ -214,8 +220,6 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
-
-
        try {
         $array = [];
         foreach ($imovel->fotos as  $foto) {
@@ -226,6 +230,7 @@ class ImovelController extends Controller
             DenuniasImovel::destroy($imovel->denunias_imovels->pluck('id'));
             DenuniasImovel::destroy( $imovel->users_ratings->pluck('id'));
             ModelsVisit::where('secondary_key',''.$imovel->id)->delete();
+            Agenda::destroy($imovel->agendas->pluck('id'));
             $imovel->delete();
             session()->flash('success', 'Imóvel deletado com sucesso.');
             return redirect()->route('imovel.index');
@@ -237,8 +242,6 @@ class ImovelController extends Controller
         session()->flash('error', 'Erro ao Deletar o imóvel.' . $th);
         return redirect()->route('imovel.index');
        }
-
-
     }
 
     public function search($query)
@@ -250,4 +253,6 @@ class ImovelController extends Controller
         ->with('tipo_de_imovels')
         ->paginate(15);
     }
+
+
 }

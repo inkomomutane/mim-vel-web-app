@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Agenda;
 use App\Http\Controllers\Controller;
+use App\Models\Imovel;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
@@ -25,7 +26,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,7 +37,21 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nome_cliente' => 'required|string',
+            'contacto' => 'required|numeric',
+            'horario' => 'required|date',
+            'corretor_id' => 'required|numeric',
+            'imovel_id' => 'required|numeric'
+        ]);
+        try {
+            Agenda::create($data);
+            session()->flash('success', 'A sua agenda a visita foi marcada com sucesso! aguarde pela  nossa confirmação. ( sms | chamada )');
+            return redirect()->back();
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro ao agendar sua visita, verifica se prencheu todos dados corretamente!');
+            return redirect()->back();
+        }
     }
 
     /**

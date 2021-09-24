@@ -17,9 +17,10 @@
                                         <i class="fas fa-th"></i>
                                     </th>
                                     <th>Id</th>
-                                    <th>Nome</th>
+                                    <th>Nome do denunciante</th>
                                     <th>Denûncia</th>
                                     <th>Imóvel denunciado</th>
+                                    <th>Corretor desse imóvel</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +46,9 @@
                                             {{ ucfirst($complaint->imovel_denuncia->denuncia) }}
                                             @endif
                                         </td>
-                                        <td><a href="{{ route('imo.show',$complaint->imovel->id ) }}">imovel</a> 	 </td>
+                                        <td><a href="{{ route('imo.show',$complaint->imovel->id ) }}">imovel</a>
+                                         	 </td>
+                                              <td>{{ $complaint->imovel->user->name }}</td>
                                      </tr>
                                 @endforeach
                             </tbody>

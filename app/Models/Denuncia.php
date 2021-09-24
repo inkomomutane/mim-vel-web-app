@@ -12,16 +12,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Denuncia
- * 
+ *
  * @property int $id
  * @property string|null $denuncia
- * @property string|null $nome_do_denunciante
- * @property bool|null $anonimo
- * @property string|null $email
- * @property string|null $contacto
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Collection|DenuniasImovel[] $denunias_imovels
  *
  * @package App\Models
@@ -30,16 +26,8 @@ class Denuncia extends Model
 {
 	protected $table = 'denuncias';
 
-	protected $casts = [
-		'anonimo' => 'bool'
-	];
-
 	protected $fillable = [
-		'denuncia',
-		'nome_do_denunciante',
-		'anonimo',
-		'email',
-		'contacto'
+		'denuncia'
 	];
 
 	public function denunias_imovels()

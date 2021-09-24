@@ -23,8 +23,12 @@
                                     <ul class="list_style">
                                         <li><a href="{{ route('about') }}">Sobre nós</a></li>
                                 <li><a href="{{ route('contact') }}">Contacto</a></li>
+                                <li><a href="{{ route('termos.frontend') }}">Termos e condições de uso</a></li>
                                     </ul>
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>

@@ -40,7 +40,8 @@ class DenunciaController extends Controller
         $validade = $request->validate([
             'nome_do_denunciante' => 'string',
             'imovel_id' => 'required',
-            'denuncia_id' => 'required'
+            'denuncia_id' => 'required',
+            'denuncia' => 'string'
         ]);
         if ($validade) {
             try {

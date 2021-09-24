@@ -196,6 +196,12 @@ class Imovel extends Model
 		return $this->hasMany(Comentario::class);
 	}
 
+    public function agendas()
+	{
+		return $this->hasMany(Agenda::class);
+	}
+
+
 	public function denunias_imovels()
 	{
 		return $this->hasMany(DenuniasImovel::class);
