@@ -151,7 +151,7 @@
         <div class="container col-sm-10">
             <div class="section-top-border">
 
-                <h6 class="my-3 title_color" style="font-weight: 500">Resultados encontados: <span style="font-weight: 600">{{$imoveis->total()}} </span></h6>
+                <h6 class="my-3 title_color" style="font-weight: 500">Resultados encontados: <span style="font-weight: 600">@if($imoveis) {{ $imoveis->total() }} @endif </span></h6>
                 @foreach ($imoveis as $imovel)
                     @if ($imovel->fotos->count() > 0)
                         <div class="row @if($loop->first) mb-4 @else my-4 @endif  bg-white">
@@ -242,8 +242,11 @@
                     @else
                     @endif
                 @endforeach
-                <div class="float-right">
+                <div class="float-right"
+                >
+                    @if($imoveis)
                 {{ $imoveis->links() }}
+                @endif
                 </div>
             </div>
         </div>

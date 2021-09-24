@@ -194,7 +194,7 @@
 
                             <h5 style="font-weight: 600">Descrição</h5>
                             <p>
-                                {{ $imovel->descricao }}
+                                {!! $imovel->descricao !!}
                             </p>
                         </div>
 

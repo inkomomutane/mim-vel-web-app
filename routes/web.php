@@ -12,9 +12,17 @@
     | routes are loaded by the RouteServiceProvider within a group which
     | contains the "web" middleware group. Now create something great!
     |
-    */
+    |
+      Route::get('/',function(){
+            $targetFolder = __DIR__. '/../storage/app/public';
+            $linkFolder = __DIR__. '/../../public_html/storage';
+            
+           symlink($targetFolder, $linkFolder) or die("error creating symlink");
+           echo 'Symlink process successfully completed';
+    });
+     */ 
 
-    Route::get('/', 'Frontend\WelcomController@index')->name('welcome');
+   Route::get('/', 'Frontend\WelcomController@index')->name('welcome');
     Route::get('/imoveis/{imovel}', 'Frontend\ImovelController@show')->name('imo.show');
     Route::get('/imoveis', 'Frontend\ImovelController@index')->name('imo.index');
     Route::get('/messages/{activeUser}/{contact}', 'MessageController@messagesOf')->name('messageOf');

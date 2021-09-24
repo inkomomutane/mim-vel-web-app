@@ -256,7 +256,7 @@
                         </div>
                     </a>
                     </div>
-
+                    @if($top)
                     <div class="col-lg-4 col-md-6">
                         <a href="{{ route('imo.show', $top->first->id) }}">
                         <div class="facilities_item">
@@ -268,6 +268,7 @@
                         </div>
                     </a>
                     </div>
+                    @endif
                     <div class="col-lg-4 col-md-6">
                         <a href="{{ url('imovel/disponiveis') }}">
                         <div class="facilities_item">
