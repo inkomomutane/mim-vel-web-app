@@ -29,7 +29,8 @@ class WelcomController extends Controller
             'bairros' => Bairro::all(),
             'tipo_de_imovels' => TipoDeImovel::all(),
             'conditions' => Condicao::all(),
-            'statuses' => Status::all()
+            'statuses' => Status::all(),
+            'top' => visits('App\Models\Imovel')->top(1)
         ]);
     }
 

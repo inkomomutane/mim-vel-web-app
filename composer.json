@@ -23,6 +23,7 @@
         "laravel/ui": "2.4",
         "livewire/livewire": "^2.5",
         "nicolaslopezj/searchable": "1.*",
+        "orangehill/iseed": "2.2",
         "overtrue/laravel-lang": "^5.0",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-permission": "^4.2",

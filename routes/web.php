@@ -43,7 +43,7 @@
     Route::post('/agendar', 'Frontend\AgendaController@store')->name('agendar_visita');
     Route::get('/denuncia_imovel', 'DenunciaController@index')->name('denuncia_imovel.index')
         ->middleware(['auth', 'role:ceo|role:admin']);
-    Route::get('/home', 'HomeController@index')->name('home')
+    Route::get('/mimovel-dashboard', 'HomeController@index')->name('home')
         ->middleware(['auth']);
     Route::get('/permission', 'RoleController@index')->name('permissions')
         ->middleware(['auth', 'role:ceo']);

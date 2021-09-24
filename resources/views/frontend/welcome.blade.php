@@ -256,6 +256,18 @@
                         </div>
                     </a>
                     </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{{ route('imo.show', $top->first->id) }}">
+                        <div class="facilities_item">
+                            <h4 class="sec_h4">
+                                <i class="fas fa-hotel" style="color: #f3c300">
+                                </i>
+                                </i> &nbsp; &nbsp; Imóvel mais visitado
+                            </h4>
+                        </div>
+                    </a>
+                    </div>
                     <div class="col-lg-4 col-md-6">
                         <a href="{{ url('imovel/disponiveis') }}">
                         <div class="facilities_item">

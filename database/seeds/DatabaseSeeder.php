@@ -132,11 +132,5 @@ class DatabaseSeeder extends Seeder
             'delete post',
         ]);
         $user->syncRoles([$roles]);
-        Denuncia::create([
-            'denuncia'  => 'O imóvel é meu.'
-        ]);
-        Denuncia::create([
-            'denuncia'  => 'Corretor falso'
-        ]);
     }
 }
