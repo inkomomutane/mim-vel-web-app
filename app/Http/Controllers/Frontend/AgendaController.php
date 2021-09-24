@@ -44,6 +44,7 @@ class AgendaController extends Controller
             'corretor_id' => 'required|numeric',
             'imovel_id' => 'required|numeric'
         ]);
+        
         try {
             Agenda::create($data);
             session()->flash('success', 'A sua agenda a visita foi marcada com sucesso! aguarde pela  nossa confirmação. ( sms | chamada )');

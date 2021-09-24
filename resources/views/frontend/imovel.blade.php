@@ -218,7 +218,7 @@
                 <div class="mr-auto ml-auto conatiner row col-sm-12 col-md-10 justify-content-center d-flex ">
                     <button class="agendar-button col-6 bg-warning py-3 justify-content-center d-flex  align-items-center" data-toggle="modal" data-target="#agendar">
                             <i class="fas fa-calendar"></i>
-                            &nbsp; Angendar
+                            &nbsp; Agendar visita
                         </button>
                         <button class="agendar-button col-6 bg-warning py-3 justify-content-center d-flex  align-items-center" data-toggle="modal" data-target="#falar_com_o_corretor" >
                             <i class="fas fa-comment-alt"></i>
@@ -341,7 +341,7 @@
 <div class=" w-100 mr-0 ml-0 row w-100 pl-0 pr-0">
     <button class="agendar-button  w-100 mr-0 ml-0 pr-0 pl-0 col-6 bg-warning py-3 justify-content-center d-flex  align-items-center" data-toggle="modal" data-target="#agendar">
         <i class="fas fa-calendar"></i>
-        &nbsp; Angendar
+        &nbsp; Agendar visita
     </button>
     <button class="agendar-button w-100 col-6 mr-0 ml-0 pr-0 pl-0 bg-warning py-3 justify-content-center d-flex  align-items-center">
         <i class="fas fa-comment-alt"></i>
