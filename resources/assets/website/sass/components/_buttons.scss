@@ -1,0 +1,17 @@
+@each $color, $value in $theme-colors {
+
+    .badge-#{$color}-light{
+        background-color: rgba($value, 0.15);
+        color: $value;
+    }
+    .btn-#{$color}-light{
+        background-color: rgba($value, 0.15);
+        color: $value;
+    }
+    .bg-#{$color}-light{
+        background-color: rgba($value, 0.33);
+    }
+  }
+  .btn-rounded{
+      border-radius: 3rem !important;
+  }
