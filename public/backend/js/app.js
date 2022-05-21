@@ -81462,10 +81462,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/website/sass/app.scss":
-/*!************************************************!*\
-  !*** ./resources/assets/website/sass/app.scss ***!
-  \************************************************/
+/***/ "./resources/assets/website/sass/style.scss":
+/*!**************************************************!*\
+  !*** ./resources/assets/website/sass/style.scss ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -106710,7 +106710,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		var installedChunks = {
 /******/ 			"/backend/js/app": 0,
 /******/ 			"backend/css/app": 0,
-/******/ 			"website/css/app": 0,
+/******/ 			"website/css/style": 0,
 /******/ 			"backend/errors/errors": 0
 /******/ 		};
 /******/ 		
@@ -106723,7 +106723,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(!/^(backend\/(css\/app|errors\/errors)|website\/css\/app)$/.test(chunkId)) {
+/******/ 						if(!/^(backend\/(css\/app|errors\/errors)|website\/css\/style)$/.test(chunkId)) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
@@ -106798,10 +106798,10 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/errors.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/app","website/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/website/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/errors.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/website/sass/style.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

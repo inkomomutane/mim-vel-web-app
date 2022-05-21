@@ -1,0 +1,112 @@
+//
+// price.scss
+//
+.pricing-rates {
+    position: relative;
+    z-index: 1;
+    border-bottom: 3px solid $gray-500 !important;
+    transition: all 0.5s ease;
+    .price {
+        font-weight: 400;
+    }
+    &.business-rate {
+        &:hover {
+            transform: scale(1.03);
+            z-index: 2;
+            border-color: $primary !important;
+            box-shadow: $shadow-md !important;
+            background-color: $white !important;
+            .title {
+                color: $primary;
+            }
+        }
+    }
+
+    &.starter-plan {
+        transform: scale(1.05);
+        z-index: 2;
+        border-color: $primary !important;
+        
+        @media (max-width: 767px) {
+            transform: scale(1);
+        }
+    }
+
+    &.best-plan {
+        &:hover {
+            transform: translateY(-10px);
+        }
+    }
+}
+
+.ribbon {
+    @each $name,
+    $value in $colors {
+        &.ribbon-#{$name} {
+            span {
+                background-color: #{$value} !important;
+                &:before {
+                    border-left-color: darken($value, 10%);
+                    border-top-color: darken($value, 10%);
+                }
+        
+                &:after {
+                    border-right-color: darken($value, 10%);
+                    border-top-color: darken($value, 10%);
+                }
+            }
+        }
+    }
+}
+
+.ribbon {
+    position: absolute;
+    top: -5px;
+    width: 75px;
+    height: 75px;
+    z-index: 2;
+    &.ribbon-right {
+        right: -5px;
+        span {
+            right: -23px;
+            transform: rotate(45deg);
+        }
+    }
+    &.ribbon-left {
+        left: -5px;
+        span {
+            left: -23px;
+            transform: rotate(-45deg);
+        }
+    }
+    span {
+        position: absolute;
+        top: 15px;
+        width: 100px;
+        color: $white;
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            z-index: -1;
+            border: 3px solid transparent;
+        }
+        &:before {
+            left: 0;
+        }
+
+        &:after {
+            right: 0;
+        }
+    }
+}
+
+//page-invoice.html
+.invoice-top {
+    .logo-invoice {
+        font-weight: 700;
+        font-size: 27px;
+        letter-spacing: 1px;
+    }
+}
