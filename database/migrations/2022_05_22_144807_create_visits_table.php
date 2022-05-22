@@ -21,6 +21,7 @@ class CreateVisitsTable extends Migration
             $table->json('list')->nullable();
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();
+
             $table->unique(['primary_key', 'secondary_key']);
         });
     }

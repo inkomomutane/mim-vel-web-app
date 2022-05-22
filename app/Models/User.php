@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +45,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function agendas()
+	{
+		return $this->hasMany(Agenda::class, 'corretor_id');
+	}
+
+	public function imovels()
+	{
+		return $this->hasMany(Imovel::class, 'corretor_id');
+	}
+
+	public function receivedMessages()
+	{
+		return $this->hasMany(Message::class, 'to_id');
+	}
+
+    public function sentMessages()
+	{
+		return $this->hasMany(Message::class, 'from_id');
+	}
 }
