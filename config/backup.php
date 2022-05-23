@@ -18,7 +18,7 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path(),
+                    storage_path('app'),
                 ],
 
                 /*
@@ -28,6 +28,8 @@ return [
                  */
                 'exclude' => [
                     base_path('vendor'),
+                    base_path('.git'),
+                    base_path('public'),
                     base_path('node_modules'),
                 ],
 
@@ -95,7 +97,7 @@ return [
          *
          * If you do not want any compressor at all, set it to null.
          */
-        'database_dump_compressor' => null,
+        'database_dump_compressor' => Spatie\DbDumper\Compressors\GzipCompressor::class,
 
         /*
          * The file extension used for the database dump files.

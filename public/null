@@ -1,4 +1,7 @@
-User::find(1
-		 )
-User::find(1
-		 )->getMedia()
+base_path()
+base_path('storage')
+base_path('storage/app')
+base_path('storage\app')
+storage_path('storage\app')
+storage_path('app')
+storage_path('app\public')
