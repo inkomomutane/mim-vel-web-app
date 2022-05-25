@@ -81466,9 +81466,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./resources/assets/website/sass/style.scss ***!
   \**************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nError: Can't resolve '../images/process.png' in 'C:\\wamp64\\www\\mimovel\\resources\\assets\\website\\sass'\n    at finishWithoutResolve (C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\Resolver.js:309:18)\n    at C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\Resolver.js:386:15\n    at C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\Resolver.js:435:5\n    at eval (eval at create (C:\\wamp64\\www\\mimovel\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\Resolver.js:435:5\n    at eval (eval at create (C:\\wamp64\\www\\mimovel\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:27:1)\n    at C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\DescriptionFilePlugin.js:87:43\n    at C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\Resolver.js:435:5\n    at eval (eval at create (C:\\wamp64\\www\\mimovel\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at C:\\wamp64\\www\\mimovel\\node_modules\\enhanced-resolve\\lib\\Resolver.js:435:5\n    at processResult (C:\\wamp64\\www\\mimovel\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\wamp64\\www\\mimovel\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\wamp64\\www\\mimovel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\wamp64\\www\\mimovel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\wamp64\\www\\mimovel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\wamp64\\www\\mimovel\\node_modules\\css-loader\\dist\\index.js:155:5)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -106707,6 +106710,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		var installedChunks = {
 /******/ 			"/backend/js/app": 0,
 /******/ 			"backend/css/app": 0,
+/******/ 			"website/css/style": 0,
 /******/ 			"backend/errors/errors": 0
 /******/ 		};
 /******/ 		
@@ -106719,7 +106723,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(!/^backend\/(css\/app|errors\/errors)$/.test(chunkId)) {
+/******/ 						if(!/^(backend\/(css\/app|errors\/errors)|website\/css\/style)$/.test(chunkId)) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
@@ -106794,10 +106798,10 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["backend/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["backend/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["backend/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/errors.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/app","backend/errors/errors"], () => (__webpack_require__("./resources/assets/website/sass/style.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/backend/sass/errors.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/app","website/css/style","backend/errors/errors"], () => (__webpack_require__("./resources/assets/website/sass/style.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

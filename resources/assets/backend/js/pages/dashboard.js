@@ -263,7 +263,8 @@ $(document).ready(function () {
     // datatable('#example');
     datatable('#users_table');
     datatable('#categories_table');
-    // datatable('#periods_table');
+    datatable('#cidades_table');
+
     // datatable('#civil_states_table');
     // datatable('#payment_phases_table');
     // datatable('#students_table');

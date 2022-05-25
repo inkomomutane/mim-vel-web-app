@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CidadeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,5 @@ Auth::routes([
 Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
 });
+Route::resource('user', \App\Http\Controllers\Backend\UserController::class);
+Route::resource('cidade', CidadeController::class);

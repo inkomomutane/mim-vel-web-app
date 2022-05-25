@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -55,7 +56,7 @@ use Spatie\Tags\HasTags;
  */
 class Imovel extends Model implements HasMedia
 {
-    use InteractsWithMedia,HasTags,HasSlug;
+    use InteractsWithMedia,HasTags,HasSlug,HasSEO;
 
 	protected $table = 'imovels';
 

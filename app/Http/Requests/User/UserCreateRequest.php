@@ -23,6 +23,10 @@ class UserCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:8'
+        ];
     }
 }
