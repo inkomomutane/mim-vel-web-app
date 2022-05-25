@@ -1,1 +1,6 @@
-storage_path('app\publica')
+User::last()->with('media')->get()
+User::last()->getFirstMedia()
+User::last->getFirstMedia()
+User::last()->Media()
+User::last()->Media()->get()
+User::last()->Media()->get()->first()

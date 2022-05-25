@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -65,4 +66,15 @@ class User extends Authenticatable implements HasMedia
 	{
 		return $this->hasMany(Message::class, 'from_id');
 	}
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+        ->width('200');
+    }
+
+    public static function last()
+    {
+        return Static::all()->last();
+    }
 }
