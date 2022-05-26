@@ -23,6 +23,8 @@ class CidadeUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:cidades,nome,'. $this->cidade->id,
+        ];
     }
 }

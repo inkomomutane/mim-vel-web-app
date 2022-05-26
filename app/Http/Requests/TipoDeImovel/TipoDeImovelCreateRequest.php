@@ -23,6 +23,8 @@ class TipoDeImovelCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:tipo_de_imovels,nome',
+        ];
     }
 }

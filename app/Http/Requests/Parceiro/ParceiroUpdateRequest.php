@@ -23,6 +23,8 @@ class ParceiroUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:parceiros,nome,'. $this->parceiro->id,
+        ];
     }
 }

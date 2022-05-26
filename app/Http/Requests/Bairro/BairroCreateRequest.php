@@ -23,6 +23,8 @@ class BairroCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:bairros,nome',
+        ];
     }
 }

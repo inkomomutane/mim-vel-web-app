@@ -23,6 +23,8 @@ class CondicaoCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:condicaos,nome',
+        ];
     }
 }

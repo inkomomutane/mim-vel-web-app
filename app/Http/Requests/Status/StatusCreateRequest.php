@@ -23,6 +23,8 @@ class StatusCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:statuses,nome',
+        ];
     }
 }

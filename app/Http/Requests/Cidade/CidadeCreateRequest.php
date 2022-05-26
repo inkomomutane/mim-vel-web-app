@@ -23,6 +23,8 @@ class CidadeCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:cidades,nome',
+        ];
     }
 }

@@ -23,6 +23,8 @@ class StatusUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:statuses,nome,'. $this->status->id,
+        ];
     }
 }

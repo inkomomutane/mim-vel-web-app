@@ -23,6 +23,8 @@ class TermoUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'termos' => 'string|nullable',
+        ];
     }
 }

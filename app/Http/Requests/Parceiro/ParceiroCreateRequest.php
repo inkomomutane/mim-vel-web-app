@@ -23,6 +23,8 @@ class ParceiroCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'nome' => 'required|unique:parceiros,nome',
+        ];
     }
 }
