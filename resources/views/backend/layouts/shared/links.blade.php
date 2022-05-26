@@ -21,3 +21,8 @@
         @svg('fluentui-building-16-o' ,'feather align-middle')<span class="align-middle">Bairro</span>
     </a>
 </li>
+<li class="sidebar-item @if (request()->routeIs('condicao.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('condicao.index') }}">
+        @svg('fluentui-real-estate-20' ,'feather align-middle')<span class="align-middle">Condição da casa</span>
+    </a>
+</li>

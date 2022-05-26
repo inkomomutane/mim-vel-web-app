@@ -101,13 +101,13 @@ class BairroController extends Controller
      */
     public function destroy(Bairro $bairro)
     {
-        if (!is_null($bairro) || $bairro->students->count() <= 0) {
+        if (!is_null($bairro) || $bairro->imovels->isEmpty()) {
             try {
                 $bairro->delete();
                 session()->flash('success', 'Bairro deletado com sucesso.');
                 return redirect()->route('bairro.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar estado civil.');
+                session()->flash('error', 'Erro ao deletar bairro.');
                 return redirect()->route('bairro.index');
             }
         } else {

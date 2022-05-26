@@ -100,13 +100,13 @@ class CidadeController extends Controller
      */
     public function destroy(Cidade $cidade)
     {
-        if (!is_null($cidade) || $cidade->students->count() <= 0) {
+        if (!is_null($cidade) || $cidade->bairros->isEmpty()) {
             try {
                 $cidade->delete();
                 session()->flash('success', 'Cidade deletada com sucesso.');
                 return redirect()->route('cidade.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar estado civil.');
+                session()->flash('error', 'Erro ao deletar cidade.');
                 return redirect()->route('cidade.index');
             }
         } else {
