@@ -1,12 +1,12 @@
 @extends('backend.layouts.app')
-@section('title', request()->routeIs('cidade.edit') ? 'Editar a cidade - ' . $cidade->nome : 'Criar nova cidade')
+@section('title', request()->routeIs('bairro.edit') ? 'Editar o bairro - ' . $bairro->nome : 'Criar novo bairro')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="row">
                 <div class="card">
                     <div class="card-header row justify-content-between">
-                        <a href="{{ route('cidade.index') }}" class="col-auto btn btn-info">
+                        <a href="{{ route('bairro.index') }}" class="col-auto btn btn-info">
                             <i class="align-middle" data-feather="corner-up-left"></i>&nbsp; Voltar
                         </a>
                     </div>
@@ -33,26 +33,37 @@
                         @endif
                         <div class="container row">
 
-                            @if (request()->routeIs('cidade.edit'))
-                                <form action="{{ route('cidade.update', $cidade->id) }}" method="post">
+                            @if (request()->routeIs('bairro.edit'))
+                                <form action="{{ route('bairro.update', $bairro->id) }}" method="post">
                                     @method('PATCH')@csrf
-                                    <input type="hidden" name="unique_hash" value="{{encrypt($cidade->id)}}">
+                                    <input type="hidden" name="unique_hash" value="{{encrypt($bairro->id)}}">
                                 @else
-                                    <form action="{{ route('cidade.store') }}" method="post">
+                                    <form action="{{ route('bairro.store') }}" method="post">
                                         @method('POST')@csrf
                             @endif
 
                             <div class="row justify-content-between mb-3">
 
-                                <label for="name">Nome da cidade</label>
-                                <div class="row col-md-12">
-                                    <input name="nome" value="@if(old('nome')){{old('nome')}}@elseif(request()->routeIs('cidade.edit')){{ $cidade->nome }}@endif" type="text" class="form-control"
-                                        placeholder="Nome do cidade" autofocus autocomplete="" required >
+
+                                <div class="row col-md-6">
+                                    <label for="name">Cidade</label>
+                                    <select name="cidade_id" id="cidade_id" class="form-control form-select">
+                                        @foreach ($cidades as $cidade)
+                                        <option value="{{$cidade->id}}" @if(request()->routeIs('bairro.edit') && $bairro->cidade->id  == $cidade->id) selected @endif>{{$cidade->nome}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+                                <div class="row col-md-6">
+                                    <label for="name">Nome do bairro</label>
+                                    <input name="nome" value="@if(old('nome')){{old('nome')}}@elseif(request()->routeIs('bairro.edit')){{ $bairro->nome }}@endif" type="text" class="form-control"
+                                        placeholder="Nome do bairro" autofocus autocomplete="" required >
                                 </div>
                             </div>
 
                             <div class="row container justify-content-center col-md-12">
-                                <input type="submit" class="btn btn-primary rounded-3 col" value="@if (request()->routeIs('cidade.edit')) Actualizar @else Guardar @endif">
+                                <input type="submit" class="btn btn-primary rounded-3 col" value="@if (request()->routeIs('bairro.edit')) Actualizar @else Guardar @endif">
                             </div>
                         </div>
                     </div>

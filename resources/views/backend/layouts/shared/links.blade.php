@@ -15,3 +15,9 @@
         @svg('fluentui-city-16-o' ,'feather align-middle')<span class="align-middle">Cidade</span>
     </a>
 </li>
+
+<li class="sidebar-item @if (request()->routeIs('bairro.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('bairro.index') }}">
+        @svg('fluentui-building-16-o' ,'feather align-middle')<span class="align-middle">Bairro</span>
+    </a>
+</li>

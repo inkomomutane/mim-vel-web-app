@@ -40153,8 +40153,8 @@ $(document).ready(function () {
 
   datatable('#users_table');
   datatable('#categories_table');
-  datatable('#cidades_table'); // datatable('#civil_states_table');
-  // datatable('#payment_phases_table');
+  datatable('#cidades_table');
+  datatable('#bairros_table'); // datatable('#payment_phases_table');
   // datatable('#students_table');
   // datatable('#veicle_classes_table');
   // datatable('#exam_types_table');
