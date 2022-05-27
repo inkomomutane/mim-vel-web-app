@@ -27,8 +27,17 @@ class DatabaseSeeder extends Seeder
             'remember_token' =>'92IXUNpkjO0rOQ5byMi'
         ]);
 
+       try {
         $admins->addMedia(storage_path('img.jpg'))
-        ->toMediaCollection('Post');
+        ->preservingOriginal()
+        ->withResponsiveImages()
+        ->toMediaCollection('posts','posts');
+
+
+       } catch (\Throwable $th) {
+           throw $th;
+       }
+
          $admins->assignRole('Admin');
     }
 }

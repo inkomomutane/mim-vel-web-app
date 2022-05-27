@@ -69,8 +69,7 @@ class User extends Authenticatable implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-        ->width('200');
+        $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }
 
     public static function last()

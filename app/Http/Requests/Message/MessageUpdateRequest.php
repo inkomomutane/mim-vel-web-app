@@ -4,7 +4,7 @@ namespace App\Http\Requests\Message;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MessageCreateRequest extends FormRequest
+class MessageUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

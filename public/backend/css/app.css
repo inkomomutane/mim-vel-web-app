@@ -4845,7 +4845,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 73, 80, 87;
-  --bs-body-bg-rgb: 246, 246, 249;
+  --bs-body-bg-rgb: 247, 251, 254;
   --bs-font-sans-serif: "Inter", "Helvetica Neue", Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -4854,7 +4854,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #495057;
-  --bs-body-bg: #f6f6f9;
+  --bs-body-bg: #f7fbfe;
 }
 
 *,
@@ -5345,7 +5345,7 @@ progress {
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f6f6f9;
+  background-color: #f7fbfe;
   border: 1px solid #dee2e6;
   border-radius: 0.2rem;
   max-width: 100%;
@@ -7435,10 +7435,10 @@ textarea.form-control-lg {
   outline: 0;
 }
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f6f6f9, none;
+  box-shadow: 0 0 0 1px #f7fbfe, none;
 }
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f6f6f9, none;
+  box-shadow: 0 0 0 1px #f7fbfe, none;
 }
 .form-range::-moz-focus-outer {
   border: 0;
@@ -8863,8 +8863,8 @@ textarea.form-control-lg {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f6f6f9;
-  border-color: #dee2e6 #dee2e6 #f6f6f9;
+  background-color: #f7fbfe;
+  border-color: #dee2e6 #dee2e6 #f7fbfe;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -9565,7 +9565,7 @@ textarea.form-control-lg {
   font-size: 0.875rem;
   color: #495057;
   text-align: left;
-  background-color: #f6f6f9;
+  background-color: #f7fbfe;
   border: 0;
   border-radius: 0;
   overflow-anchor: none;
@@ -9616,7 +9616,7 @@ textarea.form-control-lg {
 }
 
 .accordion-item {
-  background-color: #f6f6f9;
+  background-color: #f7fbfe;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .accordion-item:first-of-type {
@@ -18734,7 +18734,7 @@ textarea.form-control-lg {
 .card {
   margin-bottom: 24px;
   box-shadow: 0 0 0.875rem 0 rgba(33, 37, 41, 0.05);
-  border: 1px solid #e9e6e6;
+  border: 1px solid #f7fbfe;
 }
 
 .card-header {
@@ -18983,7 +18983,7 @@ a.list-group-item {
   min-width: 0;
   min-height: 100vh;
   transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out, margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
-  background: #f6f6f9;
+  background: #f7fbfe;
   flex-direction: column;
   overflow: hidden;
   border-top-left-radius: 0;
