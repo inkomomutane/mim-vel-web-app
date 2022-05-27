@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BairroController;
 use App\Http\Controllers\Backend\CidadeController;
 use App\Http\Controllers\Backend\CondicaoController;
+use App\Http\Controllers\Backend\StatusController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('cidade', CidadeController::class);
     Route::resource('bairro', BairroController::class);
     Route::resource('condicao', CondicaoController::class);
+    Route::resource('status', StatusController::class);
 
 
 });

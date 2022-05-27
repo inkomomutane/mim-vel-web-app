@@ -40155,8 +40155,8 @@ $(document).ready(function () {
   datatable('#categories_table');
   datatable('#cidades_table');
   datatable('#bairros_table');
-  datatable('#condicaos_table'); // datatable('#students_table');
-  // datatable('#veicle_classes_table');
+  datatable('#condicaos_table');
+  datatable('#statuses_table'); // datatable('#veicle_classes_table');
   // datatable('#exam_types_table');
   // datatable('#class_rooms_table');
   // datatable('#dashboard_payments_tables');

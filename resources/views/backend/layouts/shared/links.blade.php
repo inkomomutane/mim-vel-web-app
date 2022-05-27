@@ -23,6 +23,11 @@
 </li>
 <li class="sidebar-item @if (request()->routeIs('condicao.*')) active @endif">
     <a class="sidebar-link " href="{{ route('condicao.index') }}">
-        @svg('fluentui-real-estate-20' ,'feather align-middle')<span class="align-middle">Condição da casa</span>
+        @svg('fluentui-real-estate-20-o' ,'feather align-middle')<span class="align-middle">Condição da casa</span>
+    </a>
+</li>
+<li class="sidebar-item @if (request()->routeIs('status.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('status.index') }}">
+        @svg('fluentui-status-20-o' ,'feather align-middle')<span class="align-middle">Status</span>
     </a>
 </li>
