@@ -1,5 +1,6 @@
 const { now } = require("lodash");
 const printJS = require("print-js");
+const Choices =  require("choices.js");
 import "moment";
 import moment from "moment";
 $(document).ready(function () {
@@ -327,5 +328,10 @@ $(document).ready(function () {
     //     timeFormat: 'H:i',
     //     disableTimeRanges:[['0:00', '5:30'], ['21:00', '23:59']]
     // });
+
+   /**
+    *  Choices
+    */
+    new Choices(document.querySelector(".choices-single"));
 });
 

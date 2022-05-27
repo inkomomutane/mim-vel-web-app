@@ -47,7 +47,7 @@
 
                                 <div class="row col-md-6">
                                     <label for="name">Cidade</label>
-                                    <select name="cidade_id" id="cidade_id" class="form-control form-select">
+                                    <select name="cidade_id" id="cidade_id" class="form-control choices-single">
                                         @foreach ($cidades as $cidade)
                                         <option value="{{$cidade->id}}" @if(request()->routeIs('bairro.edit') && $bairro->cidade->id  == $cidade->id) selected @endif>{{$cidade->nome}}</option>
                                         @endforeach
@@ -72,3 +72,6 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+@endpush

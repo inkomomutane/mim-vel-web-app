@@ -13,6 +13,13 @@
                         </div>
                     @endif
                     {{ __('You are logged in!') }}
+
+
+                    <form action="" method="get" class="dropzone" id="upload"  enctype="multipart/form-data">
+
+
+                        <input type="file" name="file" id="file" multiple>
+                    </form>
                 </div>
             </div>
         </div>

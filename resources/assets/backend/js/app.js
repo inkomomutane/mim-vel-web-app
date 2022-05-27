@@ -13,6 +13,7 @@ import "selectric";
 import "daterangepicker";
 import "timepicker";
 
+
 //Datatables
 import "./modules/datatables";
 import printJs from "print-js";
