@@ -31,3 +31,9 @@
         @svg('fluentui-status-20-o' ,'feather align-middle')<span class="align-middle">Status</span>
     </a>
 </li>
+
+<li class="sidebar-item @if (request()->routeIs('tipo_de_imovel.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('tipo_de_imovel.index') }}">
+        @svg('fluentui-tasks-app-20-o' ,'feather align-middle')<span class="align-middle">Tipo de Imóvel</span>
+    </a>
+</li>

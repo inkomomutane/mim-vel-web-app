@@ -2,8 +2,6 @@ const { now } = require("lodash");
 const printJS = require("print-js");
 import "moment";
 import moment from "moment";
-
-
 $(document).ready(function () {
    function datatable(table) {
        $(table).DataTable({
@@ -267,8 +265,8 @@ $(document).ready(function () {
     datatable('#bairros_table');
     datatable('#condicaos_table');
     datatable('#statuses_table');
+    datatable('#tipo_de_imovels_table');
 
-    // datatable('#veicle_classes_table');
     // datatable('#exam_types_table');
     // datatable('#class_rooms_table');
     // datatable('#dashboard_payments_tables');
