@@ -12,11 +12,13 @@ import "./modules/flatpickr";
 import "selectric";
 import "daterangepicker";
 import "timepicker";
+import "./modules/ckeditor";
+import "./modules/mask";
 
 
 //Datatables
 import "./modules/datatables";
-import printJs from "print-js";
+
 
 
 //import "fontawesome-pro/js/all";

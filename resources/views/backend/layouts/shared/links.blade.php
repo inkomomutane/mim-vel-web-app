@@ -3,6 +3,12 @@
         @svg('radix-dashboard' ,'feather align-middle')<span class="align-middle">Administração</span>
     </a>
 </li>
+<li class="sidebar-item @if (request()->routeIs('imovel.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('imovel.index') }}">
+        @svg('fluentui-tasks-app-20-o' ,'feather align-middle')<span class="align-middle">Imóveis</span>
+    </a>
+</li>
+
 <li class="sidebar-item @if (request()->routeIs('user.*')) active @endif">
     <a class="sidebar-link " href="{{ route('user.index') }}">
         <i class="far fa-users align-middle" data-feather="users"></i>

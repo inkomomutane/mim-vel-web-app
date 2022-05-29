@@ -10,12 +10,15 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Spatie\Tags\HasSlug;
 use Spatie\Tags\HasTags;
+
+use function PHPSTORM_META\type;
 
 /**
  * Class Imovel
@@ -148,12 +151,35 @@ class Imovel extends Model implements HasMedia
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('titulo')
+            ->generateSlugsFrom(['titulo'])
             ->saveSlugsTo('slug');
     }
 
-    public function registerMediaConversions(?Media $media = null): void
+     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+   public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }
+
+    public function getDynamicSEOData(): SEOData
+{
+    return new SEOData(
+        title: $this->titulo,
+        description: $this->descricao,
+        author: $this->corretor->name,
+        image: $this->hasMedia('posts') ? $this->getFirstMedia()->getUrl() : null,
+        type: 'article',
+        published_time:$this->published_at,
+        modified_time: $this->updated_at
+    );
+}
 }

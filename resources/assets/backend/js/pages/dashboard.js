@@ -1,9 +1,8 @@
 const { now } = require("lodash");
 const printJS = require("print-js");
-const Choices =  require("choices.js");
 import "moment";
 import moment from "moment";
-$(document).ready(function () {
+$(function () {
    function datatable(table) {
        $(table).DataTable({
            language: {
@@ -267,8 +266,11 @@ $(document).ready(function () {
     datatable('#condicaos_table');
     datatable('#statuses_table');
     datatable('#tipo_de_imovels_table');
+    datatable('#imovels_table');
 
-    // datatable('#exam_types_table');
+        $("#preco_imovel").inputmask("99-9999999")
+
+
     // datatable('#class_rooms_table');
     // datatable('#dashboard_payments_tables');
 
@@ -332,6 +334,5 @@ $(document).ready(function () {
    /**
     *  Choices
     */
-    new Choices(document.querySelector(".choices-single"));
 });
 
