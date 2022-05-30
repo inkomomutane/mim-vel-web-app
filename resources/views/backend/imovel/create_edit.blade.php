@@ -37,11 +37,11 @@
                         <div class="container row">
 
                             @if (request()->routeIs('imovel.edit'))
-                                <form action="{{ route('imovel.update', $imovel->slug) }}" method="post">
+                                <form action="{{ route('imovel.update', $imovel->slug) }}" method="post" enctype="multipart/form-data">
                                     @method('PATCH')@csrf
                                     <input type="hidden" name="unique_hash" value="{{encrypt($imovel->id)}}">
                                 @else
-                                    <form action="{{ route('imovel.store') }}" method="post">
+                                    <form action="{{ route('imovel.store') }}" method="post" enctype="multipart/form-data">
                                         @method('POST')@csrf
                             @endif
 
@@ -126,6 +126,43 @@
 
                             <div class="row justify-content-between my-3">
                                 @livewire('upload-images')
+                            </div>
+
+                            <div class="row justify-content-between my-3">
+                                <div class="col-sm-3">
+                                    <label for="name">Ano</label>
+                                    <input type="number" name="ano" id="ano" class="form-control" placeholder="ano" value="@if(old('ano')){{old('ano')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->ano }}@endif">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="name">Área (m^2)</label>
+                                    <input type="number" name="area" id="area" class="form-control" placeholder="Área (m^2)" value="@if(old('area')){{old('area')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->area }}@endif">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="name">Quartos</label>
+                                    <input type="number" name="quartos" id="quartos" class="form-control" placeholder="Quartos" value="@if(old('quartos')){{old('quartos')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->quartos }}@endif">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="name">Suites</label>
+                                    <input type="number" name="suites" id="suites" class="form-control" placeholder="Suites" value="@if(old('suites')){{old('suites')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->suites }}@endif">
+                                </div>
+                            </div>
+                            <div class="row justify-content-between my-3">
+                                <div class="col-sm-3">
+                                    <label for="name">Banheiros</label>
+                                    <input type="number" name="banheiros" id="banheiros" class="form-control" placeholder="Banheiros" value="@if(old('banheiros')){{old('banheiros')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->banheiros }}@endif">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="name">Piscinas</label>
+                                    <input type="number" name="piscinas" id="piscinas" class="form-control" placeholder="Piscinas" value="@if(old('piscinas')){{old('piscinas')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->piscinas }}@endif">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="name">Garagens</label>
+                                    <input type="text" name="garagens" id="garagens" class="form-control" placeholder="Garagens" value="@if(old('garagens')){{old('garagens')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->garagens }}@endif">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="name">Andares</label>
+                                    <input type="text" name="andares" id="andares" class="form-control" placeholder="Andares" value="@if(old('andares')){{old('andares')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->andares }}@endif">
+                                </div>
                             </div>
 
 

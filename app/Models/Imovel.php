@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\ImageMeta;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -90,15 +91,15 @@ class Imovel extends Model implements HasMedia
 		'titulo',
 		'descricao',
         'slug',
-		'banheiros',
+		'banheiros',//v
 		'preco',
-		'ano',
-		'andares',
-		'area',
-		'quartos',
-		'suites',
-		'garagens',
-		'piscinas',
+		'ano',//v
+		'andares',//
+		'area',//v
+		'quartos',//v
+		'suites',//v
+		'garagens',//v
+		'piscinas',//v
 		'endereco',
 		'mapa',
 		'published_at',
@@ -176,10 +177,11 @@ class Imovel extends Model implements HasMedia
         title: $this->titulo,
         description: $this->descricao,
         author: $this->corretor->name,
-        image: $this->hasMedia('posts') ? $this->getFirstMedia()->getUrl() : null,
+        image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl() : null,
         type: 'article',
         published_time:$this->published_at,
-        modified_time: $this->updated_at
+        modified_time: $this->updated_at,
+        imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl() ): null,
     );
 }
 }

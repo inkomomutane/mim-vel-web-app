@@ -268,8 +268,6 @@ $(function () {
     datatable('#tipo_de_imovels_table');
     datatable('#imovels_table');
 
-        $("#preco_imovel").inputmask("99-9999999")
-
 
     // datatable('#class_rooms_table');
     // datatable('#dashboard_payments_tables');

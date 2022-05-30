@@ -13,7 +13,7 @@ import "selectric";
 import "daterangepicker";
 import "timepicker";
 import "./modules/ckeditor";
-import "./modules/mask";
+import "./modules/alphine";
 
 
 //Datatables

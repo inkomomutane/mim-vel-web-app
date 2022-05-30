@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,17 +16,13 @@ class UploadImages extends Component
 
     }
 
-    public function updated($fields){
+    public function updated(){
 
-        $this->validate([
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|nullable'
-        ]);
-    }
-
-    public function uploadImage(){
-        $this->validate([
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|nullable'
-        ]);
+    $this->validate(
+        [
+            'image.*' => 'required|image|mimes:jpg,bmp,png,jpeg,svg|max:90288'
+        ]
+    );
     }
 
     public function render()

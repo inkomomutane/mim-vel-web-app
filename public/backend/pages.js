@@ -40158,8 +40158,7 @@ $(function () {
   datatable('#condicaos_table');
   datatable('#statuses_table');
   datatable('#tipo_de_imovels_table');
-  datatable('#imovels_table');
-  $("#preco_imovel").inputmask("99-9999999"); // datatable('#class_rooms_table');
+  datatable('#imovels_table'); // datatable('#class_rooms_table');
   // datatable('#dashboard_payments_tables');
   // const date = new Date('12/31/2001');
   //  date.setYear((new Date().getFullYear() - 15));

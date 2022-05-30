@@ -49,13 +49,16 @@ class ImovelController extends Controller
     public function store(ImovelCreateRequest $request)
     {
         try {
-
            $data = $request->all();
            $data['corretor_id'] = auth()->user()->id;
-
-// dd($data);
-            $imovel = Imovel::create($data);
-
+                $imovel = Imovel::create($data);
+                if(request()->hasFile('image')){
+                   foreach ($request->image as  $image) {
+                       $imovel->addMedia($image)
+                       ->withResponsiveImages()
+                       ->toMediaCollection('posts', 'posts');
+                   }
+                }
             session()->flash('success', 'Imovel criado com sucesso.');
            return redirect()->route('imovel.index');
        } catch (\Throwable $e) {
@@ -104,6 +107,17 @@ class ImovelController extends Controller
     {
         try {
             $imovel->update($request->all());
+            if(request()->hasFile('image')){
+                foreach ($request->image as  $image) {
+                 try {
+                    $imovel->addMedia($image)
+                    ->withResponsiveImages()
+                    ->toMediaCollection('posts', 'posts');
+                 } catch (\Throwable $th) {
+                     throw $th;
+                 }
+                }
+             }
             session()->flash('success', 'Imovel actualizado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {
