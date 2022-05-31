@@ -1,19 +1,19 @@
 .bg-primary,
 .btn-primary,
-.btn-soft-primary:hover, 
-.btn-soft-primary:focus, 
-.btn-soft-primary:active, 
-.btn-soft-primary.active, 
+.btn-soft-primary:hover,
+.btn-soft-primary:focus,
+.btn-soft-primary:active,
+.btn-soft-primary.active,
 .btn-soft-primary.focus,
-.btn-outline-primary:hover, 
-.btn-outline-primary:focus, 
-.btn-outline-primary:active, 
-.btn-outline-primary.active, 
-.btn-outline-primary.focus, 
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .pagination .page-item.active .page-link,
 .nav-pills .nav-link.active,
-#preloader #status .spinner .double-bounce1, 
+#preloader #status .spinner .double-bounce1,
 #preloader #status .spinner .double-bounce2,
 .social-icon li a:hover,
 #topnav .navbar-toggle.open span:hover,
@@ -27,26 +27,26 @@
 .ribbon.ribbon-primary span,
 .sidebar .widget .tagcloud > a:hover,
 .work-container.work-modern .icons .work-icon:hover,
-.timeline-page .timeline-item .date-label-left:after, 
+.timeline-page .timeline-item .date-label-left:after,
 .timeline-page .timeline-item .duration-right:after,
 #navmenu-nav li.account-menu.active .navbar-link,
 #navmenu-nav li.account-menu:hover .navbar-link,
 .form-check-input.form-check-input:checked,
-.qs-datepicker-container .qs-squares .qs-square:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover, 
+.qs-datepicker-container .qs-squares .qs-square:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover,
 .qs-datepicker-container .qs-squares .qs-square.qs-current {
-    background-color: #2f55d4 !important;
+    background-color: #ec930e !important;
 }
 
 .text-primary,
 .bg-soft-primary,
-.component-wrapper.sticky-bar li a:hover, 
+.component-wrapper.sticky-bar li a:hover,
 .component-wrapper.sticky-bar li a:focus,
 .btn-soft-primary,
 .btn-outline-primary,
-.dropdown-primary .dropdown-menu .dropdown-item:hover, 
-.dropdown-primary .dropdown-menu .dropdown-item.active, 
-.dropdown-primary .dropdown-menu .dropdown-item:active, 
-.dropdown-primary .dropdown-menu .dropdown-item.focus, 
+.dropdown-primary .dropdown-menu .dropdown-item:hover,
+.dropdown-primary .dropdown-menu .dropdown-item.active,
+.dropdown-primary .dropdown-menu .dropdown-item:active,
+.dropdown-primary .dropdown-menu .dropdown-item.focus,
 .dropdown-primary .dropdown-menu .dropdown-item:focus,
 .alert-outline-primary,
 .breadcrumb .breadcrumb-item a:hover,
@@ -54,12 +54,12 @@
 #topnav .has-submenu.active .submenu li.active > a,
 #topnav .navigation-menu > li:hover > a,
 #topnav .navigation-menu > li.active > a,
-#topnav .navigation-menu > li > a:hover, 
+#topnav .navigation-menu > li > a:hover,
 #topnav .navigation-menu > li > a:active,
-#topnav.scroll .navigation-menu > li:hover > a, 
+#topnav.scroll .navigation-menu > li:hover > a,
 #topnav.scroll .navigation-menu > li.active > a,
 #topnav.nav-sticky .navigation-menu.nav-light > li.active > a,
-#topnav.nav-sticky .navigation-menu.nav-light > li:hover > a, 
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > a,
 #topnav.nav-sticky .navigation-menu.nav-light > li.active > a,
 #topnav .navigation-menu > li .submenu li a:hover,
 #topnav .navigation-menu > li:hover > a,
@@ -83,8 +83,8 @@
 .job-box .company-name:hover,
 .candidate-list .name:hover,
 .company-list .name:hover,
-.work-container.work-classic .content .title:hover, 
-.work-container.work-grid .content .title:hover, 
+.work-container.work-classic .content .title:hover,
+.work-container.work-grid .content .title:hover,
 .work-container.work-modern .content .title:hover,
 .event-schedule .content .title:hover,
 .courses-desc .content .title:hover,
@@ -94,21 +94,21 @@
 .accordion .accordion-button:not(.collapsed),
 .accordion .accordion-item .accordion-button:before,
 #navmenu-nav li.active a {
-    color: #2f55d4 !important;
+    color: #f17425 !important;
 }
 
 .btn-primary,
-.btn-soft-primary:hover, 
-.btn-soft-primary:focus, 
-.btn-soft-primary:active, 
-.btn-soft-primary.active, 
+.btn-soft-primary:hover,
+.btn-soft-primary:focus,
+.btn-soft-primary:active,
+.btn-soft-primary.active,
 .btn-soft-primary.focus,
 .btn-outline-primary,
-.btn-outline-primary:hover, 
-.btn-outline-primary:focus, 
-.btn-outline-primary:active, 
-.btn-outline-primary.active, 
-.btn-outline-primary.focus, 
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .alert-primary,
 .alert-outline-primary,
@@ -119,16 +119,16 @@
 .social-icon li a:hover,
 #topnav .has-submenu.active.active .menu-arrow,
 #topnav .has-submenu .submenu .has-submenu:hover .submenu-arrow,
-#topnav.scroll .navigation-menu > li:hover > .menu-arrow, 
+#topnav.scroll .navigation-menu > li:hover > .menu-arrow,
 #topnav.scroll .navigation-menu > li.active > .menu-arrow,
-#topnav.nav-sticky .navigation-menu.nav-light > li:hover > .menu-arrow, 
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > .menu-arrow,
 #topnav.nav-sticky .navigation-menu.nav-light > li.active > .menu-arrow,
 #topnav .navigation-menu > li:hover > .menu-arrow,
 .swiper-slider-hero .swiper-container .swiper-button-next:hover,
 .pricing-rates.starter-plan,
 .event-schedule:hover,
 .container-filter li.active, .container-filter li:hover{
-    border-color: #2f55d4 !important;
+    border-color: #f17425 !important;
 }
 
 .bg-soft-primary,
@@ -161,16 +161,16 @@
 }
 
 .event-schedule .date .day {
-    box-shadow: 0px 0px 2px 0.25px rgba(47, 85, 212, 0.5);
+    box-shadow: 0px 0px 2px 0.25px rgba(228, 159, 10, 0.5);
 }
 
 .btn-primary,
 .btn-soft-primary,
-.btn-outline-primary:hover, 
-.btn-outline-primary:focus, 
-.btn-outline-primary:active, 
-.btn-outline-primary.active, 
-.btn-outline-primary.focus, 
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active {
     box-shadow: 0 3px 5px 0 rgba(47, 85, 212, 0.3);
 }
@@ -183,25 +183,25 @@
 }
 
 .social-icon li a:hover .fea-social {
-    fill: #2f55d4;
+    fill: #f17425;
 }
 
 .bg-circle-gradiant {
-    background: radial-gradient(circle at 50% 50%, rgba(47, 85, 212, 0.1) 0%, rgba(47, 85, 212, 0.1) 33.333%, rgba(47, 85, 212, 0.3) 33.333%, rgba(47, 85, 212, 0.3) 66.666%, rgba(47, 85, 212, 0.5) 66.666%, rgba(47, 85, 212, 0.5) 99.999%);
+    background: radial-gradient(circle at 50% 50%, rgba(47, 85, 212, 0.1) 0%, rgba(47, 85, 212, 0.1) 33.333%, rgba(47, 85, 212, 0.3) 33.333%, rgba(47, 85, 212, 0.3) 66.666%, rgba(228, 159, 10, 0.5) 66.666%, rgba(228, 159, 10, 0.5) 99.999%);
 }
 
 .tns-nav button {
-    background: rgba(47, 85, 212, 0.5) !important;
+    background: rgba(228, 159, 10, 0.5) !important;
 }
 
 .classic-app-image .bg-app-shape:after,
 .classic-saas-image .bg-saas-shape:after,
 .freelance-hero .bg-shape:after {
-    box-shadow: 0 0 40px rgba(47, 85, 212, 0.5);
+    box-shadow: 0 0 40px rgba(228, 159, 10, 0.5);
 }
 
 .freelance-hero .bg-shape:after {
-    background-color: #99abea;
+    background-color: #eae599;
 }
 
 .key-feature .icon {
@@ -218,34 +218,34 @@
 }
 
 .play-icon i {
-    -webkit-text-stroke: 2px #2f55d4;
+    -webkit-text-stroke: 2px #f17425;
     -webkit-text-fill-color: transparent;
 }
 
 .play-icon i:hover {
-    -webkit-text-stroke: 2px #2f55d4;
-    -webkit-text-fill-color: #2f55d4;
+    -webkit-text-stroke: 2px #f17425;
+    -webkit-text-fill-color: #f17425;
 }
-a.text-primary:hover, 
+a.text-primary:hover,
 a.text-primary:focus {
-    color: #284bc1 !important;
+    color: #f17425  !important;
 }
 
-.btn-primary:hover, 
-.btn-primary:focus, 
-.btn-primary:active, 
-.btn-primary.active, 
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
 .btn-primary.focus {
-    background-color: #2443ac !important;
-    border-color: #2443ac !important;
+    background-color: #f17425 !important;
+    border-color: #f17425 !important;
 }
 
 .ribbon.ribbon-primary span:before {
-    border-left-color: #2443ac;
-    border-top-color: #2443ac;
+    border-left-color: #f17425;
+    border-top-color: #f17425;
 }
 
 .ribbon.ribbon-primary span:after {
-    border-right-color: #2443ac;
-    border-top-color: #2443ac;
+    border-right-color: #f17425;
+    border-top-color: #f17425;
 }

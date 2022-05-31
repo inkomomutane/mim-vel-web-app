@@ -28,8 +28,9 @@
  *     17.  Contact              *
  *     18.  Footer               *
  ================================*/
-@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source Sans Pro:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
 @media (min-width: 1400px) {
   .container {
     max-width: 1140px !important;
@@ -1760,12 +1761,12 @@ button:not(:disabled) {
 }
 
 .social-icon.social li a {
-  color: #adb5bd;
-  border-color: #adb5bd;
+  color: #161c2d;
+  border-color: #161c2d;
 }
 
 .social-icon.foot-social-icon li a {
-  color: #adb5bd;
+  color: #161c2d;
   border-color: #283353;
 }
 
@@ -1866,14 +1867,14 @@ button:not(:disabled) {
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   overflow-x: hidden !important;
   font-size: 16px;
   color: #161c2d;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   line-height: 1.5;
   font-weight: 600;
 }
@@ -2346,7 +2347,7 @@ p {
   text-transform: uppercase;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
-  font-family: "Nunito", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -3731,7 +3732,7 @@ p {
 .pricing-rates {
   position: relative;
   z-index: 1;
-  border-bottom: 3px solid #adb5bd !important;
+  border-bottom: 3px solid #161c2d !important;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -5107,7 +5108,7 @@ p {
   background: #202942;
   padding: 60px 0;
   position: relative;
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .logo-footer {
@@ -5135,27 +5136,27 @@ p {
 }
 
 .footer .foot-subscribe.foot-white .form-control {
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .foot-subscribe input::-webkit-input-placeholder {
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .foot-subscribe input:-ms-input-placeholder {
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .foot-subscribe input::-ms-input-placeholder {
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .foot-subscribe input::placeholder {
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .text-foot {
-  color: #adb5bd;
+  color: #161c2d;
 }
 
 .footer .footer-list {
