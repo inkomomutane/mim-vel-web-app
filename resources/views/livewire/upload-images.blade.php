@@ -33,6 +33,7 @@
         @if ($image)
             <div class="row mt-3">
                 @foreach ($image as $tempImage)
+
                     <figure class="figure col-sm-2 my-2">
 
                         <img src="{{ $tempImage->temporaryUrl() }}" class="figure-img img-fluid rounded"

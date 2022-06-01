@@ -91,15 +91,15 @@ class Imovel extends Model implements HasMedia
 		'titulo',
 		'descricao',
         'slug',
-		'banheiros',//v
+		'banheiros',
 		'preco',
-		'ano',//v
-		'andares',//
-		'area',//v
-		'quartos',//v
-		'suites',//v
-		'garagens',//v
-		'piscinas',//v
+		'ano',
+		'andares',
+		'area',
+		'quartos',
+		'suites',
+		'garagens',
+		'piscinas',
 		'endereco',
 		'mapa',
 		'published_at',

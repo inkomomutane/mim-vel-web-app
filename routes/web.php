@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ImovelController;
 use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
+use App\Models\Imovel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +24,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('website.welcome');
+    return view('website.welcome',[
+        'destacados' => Imovel::all()->take(8),
+        'recents' => Imovel::orderBy('created_at', 'desc')->take(3)->get()
+    ]);
 })->name('welcome');
+
+Route::get('/posts', function () {
+    return view('website.posts')->with('posts',Imovel::paginate(9));
+})->name('posts');
+
+
 Auth::routes([
     'register' => false,
     'reset' => false,
@@ -41,16 +51,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('condicao', CondicaoController::class);
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
-    Route::controller(ImovelController::class)->group(function () {
-        Route::get('/imovel', 'index')->name('imovel.index');
-        Route::get('/imovel/create', 'create')->name('imovel.create');
-        Route::post('/imovel', 'store')->name('imovel.store');
-        Route::get('/imovel/{imovel}/edit', 'edit')->name('imovel.edit');
-        Route::patch('/imovel/{imovel}','update')->name('imovel.update');
-        Route::delete('/imovel/{imovel}','destroy')->name('imovel.destroy');
-    });
+    Route::resource('imovel',ImovelController::class);
 });
 
 Route::controller(ImovelController::class)->group(function () {
-    Route::get('/posts/{imovel}', 'show')->name('imovel.show');
+    // Route::get('/posts/{imovel}', 'show')->name('imovel.show');
 });

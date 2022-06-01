@@ -20,7 +20,7 @@ class UploadImages extends Component
 
     $this->validate(
         [
-            'image.*' => 'required|image|mimes:jpg,bmp,png,jpeg,svg|max:90288'
+            'image.*' => 'required|image:'
         ]
     );
     }

@@ -55,8 +55,9 @@ class ImovelController extends Controller
                 if(request()->hasFile('image')){
                    foreach ($request->image as  $image) {
                        $imovel->addMedia($image)
+                       ->toMedia('posts','posts')
                        ->withResponsiveImages()
-                       ->toMediaCollection('posts', 'posts');
+                       ->toMediaCollection('posts','posts');
                    }
                 }
             session()->flash('success', 'Imovel criado com sucesso.');
@@ -112,7 +113,7 @@ class ImovelController extends Controller
                  try {
                     $imovel->addMedia($image)
                     ->withResponsiveImages()
-                    ->toMediaCollection('posts', 'posts');
+                    ->toMediaCollection('posts','posts');
                  } catch (\Throwable $th) {
                      throw $th;
                  }

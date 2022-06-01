@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('website/css/tiny-slider.css') }}" />
     <!-- Main Css -->
     <link href="{{ asset('website/css/style.css') }}" rel="stylesheet" type="text/css" id="theme-opt" />
-    <link href="{{ asset('website/css/colors/default.css') }}" rel="stylesheet" id="color-opt">
+    <link href="{{ asset('website/css/colors/yellow.css') }}" rel="stylesheet" id="color-opt">
     @stack('css')
 </head>
 

@@ -5188,3 +5188,9 @@ p {
   padding: 30px 0;
 }
 /*# sourceMappingURL=style.css.map */
+
+.cover-image{
+    width: 100% !important;
+    height: 18vw !important;
+object-fit: cover !important;
+}
