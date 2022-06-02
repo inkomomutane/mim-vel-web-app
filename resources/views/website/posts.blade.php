@@ -51,18 +51,18 @@
 
                         </div>
                         <div class="card-body content">
-                            <h5><a href="javascript:void(0)" class="card-title title text-dark">Design your apps in your own way</a></h5>
+                            <h5><a href="{{ route('posts.show', $imovel->slug) }}" class="card-title title text-dark">{{$imovel->titulo}}</a></h5>
                             <div class="post-meta d-flex justify-content-between mt-3">
                                 <ul class="list-unstyled mb-0">
                                     <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="uil uil-heart me-1"></i>33</a></li>
                                     <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="uil uil-comment me-1"></i>08</a></li>
                                 </ul>
-                                <a href="page-blog-detail.html" class="text-muted readmore">Read More <i class="uil uil-angle-right-b align-middle"></i></a>
+                                <a href="{{ route('posts.show', $imovel->slug) }}" class="text-muted readmore">Ver mais <i class="uil uil-angle-right-b align-middle"></i></a>
                             </div>
                         </div>
                         <div class="author">
-                            <small class="text-light user d-block"><i class="uil uil-user"></i> Calvin Carlo</small>
-                            <small class="text-light date"><i class="uil uil-calendar-alt"></i> 13th August, 2019</small>
+                            <small class="text-light user d-block"><i class="uil uil-user"></i> {{$imovel->corretor->name}}</small>
+                            <small class="text-light date"><i class="uil uil-calendar-alt"></i>{{$imovel->created_at->day}}th {{$imovel->created_at->month}}, {{$imovel->created_at->year}}</small>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,6 @@
         </section><!--end section-->
         <!-- Blog End -->
 @endsection
-
 @push('js')
 <script>
     easy_background("#posts",
@@ -86,5 +85,12 @@
         }
     );
 </script>
-
 @endpush
+@section('seo')
+<title>@yield('title')</title>
+<meta name="description"
+    content="Mimóvel é uma empresa de aluguel, compra de imóveis localizada na cidade da beira, reconhecida pelos seus excelentes edificios que superam as expectativas dos clientes." />
+<meta name="keywords" content="Imóveis, Mimóvel, Casas, Arendar, Comprar, Aluguar" />
+<meta name="author" content="Administrator" />
+<meta name="website" content="{{ config('app.url') }}" />
+@endsection

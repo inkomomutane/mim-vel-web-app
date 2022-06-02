@@ -196,197 +196,43 @@
 
                     <div class="col-lg-8 mt-4 mt-lg-0 pt-2 pt-lg-0">
                         <div class="tiny-two-item">
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p1.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
 
+                            @foreach ($destacados as $imovel)
                             <div class="tiny-slide">
                                 <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
                                     <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p2.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
+                                        <a href="{{ route('posts.show', $imovel->slug) }}">
+                                            @if ($imovel->getFirstMedia('posts'))
+                                            {{$imovel->getFirstMedia('posts')}}
+                                            @else
+                                            <img  src="https://via.placeholder.com/{{ rand(200,500) }}x{{ rand(300,1000) }}" class="cover-image" alt="...">
+                                           @endif
+                                        {{-- <ul class="list-unstyled shop-icons">
                                             <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
                                             <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
                                             <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                     <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
+                                        <div class="author">
+                                            <small class="text-light user d-block"><i class="uil uil-user"></i> {{$imovel->corretor->name}}</small>
+                                            <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{$imovel->created_at->day}}th {{$imovel->created_at->month}}, {{$imovel->created_at->year}}</small>
+                                        </div>
+                                        <a href="javascript:void(0)" class="text-dark product-name h6">{{$imovel->titulo}}</a>
                                         <ul class="list-unstyled text-muted mt-2 mb-0">
                                             <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
                                             <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
                                         </ul>
                                         <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
+                                            <li class="list-inline-item"><b></b></li>
+                                            <li class="list-inline-item text-muted">MZN {{$imovel->preco}} </li>
                                         </ul>
                                     </div>
                                 </div><!--end items-->
                             </div>
+                            @endforeach
 
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p3.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
 
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p4.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
-
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p5.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
-
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p6.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
-
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p7.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
-
-                            <div class="tiny-slide">
-                                <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="shop-product-detail.html"><img src="{{ asset('website/images/real/p8.jpg')}}" class="img-fluid" alt=""></a>
-                                        <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In chelsea</a>
-                                        <ul class="list-unstyled text-muted mt-2 mb-0">
-                                            <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
-                                            <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
-                                        </ul>
-                                        <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                            <li class="list-inline-item"><b>MZN  44000</b></li>
-                                            <li class="list-inline-item text-muted">MZN  850 </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end items-->
-                            </div>
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->
@@ -420,18 +266,18 @@
                                @endif   <div class="overlay rounded-top bg-dark"></div>
                             </div>
                             <div class="card-body content">
-                                <h5><a href="javascript:void(0)" class="card-title title text-dark">Design your apps in your own way</a></h5>
+                                <h5><a href="javascript:void(0)" class="card-title title text-dark">{{$imovel->titulo}}</a></h5>
                                 <div class="post-meta d-flex justify-content-between mt-3">
                                     <ul class="list-unstyled mb-0">
-                                        <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="uil uil-heart me-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="uil uil-comment me-1"></i>08</a></li>
+                                        <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="uil uil-heart me-1"></i>0</a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="uil uil-comment me-1"></i>{{$imovel->comentarios->count()}}</a></li>
                                     </ul>
-                                    <a href="page-blog-detail.html" class="text-muted readmore">Ver Mais <i class="uil uil-angle-right-b align-middle"></i></a>
+                                    <a href="{{ route('posts.show',$imovel->slug) }}" class="text-muted readmore">Ver Mais <i class="uil uil-angle-right-b align-middle"></i></a>
                                 </div>
                             </div>
                             <div class="author">
-                                <small class="text-light user d-block"><i class="uil uil-user"></i> Calvin Carlo</small>
-                                <small class="text-light date"><i class="uil uil-calendar-alt"></i> 13th August, 2019</small>
+                                <small class="text-light user d-block"><i class="uil uil-user"></i> {{$imovel->corretor->name}}</small>
+                                <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{$imovel->created_at->day}}th {{$imovel->created_at->month}}, {{$imovel->created_at->year}}</small>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -449,8 +295,16 @@
     easy_background("#home",
         {
             slide: ["{{ asset('website/images/real/1.jpg')}}", "{{ asset('website/images/real/2.jpg')}}", "{{ asset('website/images/real/3.jpg')}}"],
-            delay: [8000, 10000, 12000]
+            delay: [8000, 10000, 12000,]
         }
     );
 </script>
 @endpush
+@section('seo')
+<title>@yield('title')</title>
+<meta name="description"
+    content="Mimóvel é uma empresa de aluguel, compra de imóveis localizada na cidade da beira, reconhecida pelos seus excelentes edificios que superam as expectativas dos clientes." />
+<meta name="keywords" content="Imóveis, Mimóvel, Casas, Arendar, Comprar, Aluguar" />
+<meta name="author" content="Administrator" />
+<meta name="website" content="{{ config('app.url') }}" />
+@endsection

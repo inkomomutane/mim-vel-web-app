@@ -7,12 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title')</title>
-    <meta name="description"
-        content="Mimóvel é uma empresa de aluguel, compra de imóveis localizada na cidade da beira, reconhecida pelos seus excelentes edificios que superam as expectativas dos clientes." />
-    <meta name="keywords" content="Imóveis, Mimóvel, Casas, Arendar, Comprar, Aluguar" />
-    <meta name="author" content="Administrator" />
-    <meta name="website" content="{{ config('app.url') }}" />
+    @yield('seo')
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('website/images/favicon.ico') }}">
     <!-- Bootstrap -->
@@ -33,14 +28,14 @@
 <body>
 
             <!-- Loader -->
-        <div id="preloader">
+        {{-- <div id="preloader">
             <div id="status">
                 <div class="spinner">
                     <div class="double-bounce1"></div>
                     <div class="double-bounce2"></div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Loader -->
     @include('website.layouts.shared.navbar')
     <main>

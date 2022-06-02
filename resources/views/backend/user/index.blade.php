@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->roles()->first()->name}}</td>
+                                <td>{{$user->roles()->first()->name ?? '' }}</td>
                                 <td><a class="btn btn-warning" href="{{route('user.edit',$user->id)}}">Editar</a></td>
                                 <td><button class="btn btn-danger" onclick="document.getElementById('user_{{$user->id}}_delete').submit()">Delete</button>
                                     <form action="{{route('user.destroy',$user->id)}}" method="post" id="user_{{$user->id}}_delete">

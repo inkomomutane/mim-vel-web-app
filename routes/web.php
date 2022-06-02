@@ -24,16 +24,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('website.welcome',[
-        'destacados' => Imovel::all()->take(8),
-        'recents' => Imovel::orderBy('created_at', 'desc')->take(3)->get()
+    return view('website.welcome', [
+        'destacados' => Imovel::count() > 8 ?
+            Imovel::all()->take(8) :
+            Imovel::all(),
+        'recents' => Imovel::count() > 3 ?
+            Imovel::orderBy('created_at', 'desc')->take(3)->get() :
+            Imovel::all()
     ]);
 })->name('welcome');
 
 Route::get('/posts', function () {
-    return view('website.posts')->with('posts',Imovel::paginate(9));
+    return view('website.posts')->with('posts', Imovel::paginate(9));
 })->name('posts');
 
+Route::controller(ImovelController::class)->group(function () {
+    Route::get('/posts/{imovel}', 'show')->name('posts.show');
+});
+Route::get('/contacto',function(){
+    return view('website.contacto');
+})->name('contacto');
+
+Route::get('/sobre-nos',function(){
+    return view('website.sobre');
+})->name('sobre');
 
 Auth::routes([
     'register' => false,
@@ -43,7 +57,7 @@ Auth::routes([
 ]);
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
     Route::resource('user', UserController::class);
     Route::resource('cidade', CidadeController::class);
@@ -51,9 +65,6 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('condicao', CondicaoController::class);
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
-    Route::resource('imovel',ImovelController::class);
+    Route::resource('imovel', ImovelController::class);
 });
 
-Route::controller(ImovelController::class)->group(function () {
-    // Route::get('/posts/{imovel}', 'show')->name('imovel.show');
-});

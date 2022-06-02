@@ -169,8 +169,11 @@ class Imovel extends Model implements HasMedia
    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
+        $this->addMediaCollection('posts');
     }
 
+
+    
     public function getDynamicSEOData(): SEOData
 {
     return new SEOData(

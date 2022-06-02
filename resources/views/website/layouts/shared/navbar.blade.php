@@ -2,7 +2,7 @@
         <header id="topnav" class="defaultscroll sticky">
             <div class="container">
                 <!-- Logo container-->
-                <a class="logo" href="index.html">
+                <a class="logo" href="{{ route('welcome') }}">
                     <span class="logo-light-mode">
                         <img src="{{ asset('website/images/logo-dark.png') }}" class="l-dark" height="35"
                             alt="">
@@ -30,15 +30,14 @@
                     <!-- Navigation Menu-->
                     <ul
                         class="navigation-menu
-                    @if (request()->routeIs('posts')) nav-light
-                        @else
-                        nav-light @endif
+                    @if (request()->routeIs('contacto')) nav-dark
+                    @else  nav-light @endif
 
                     ">
                         <li  @if (request()->routeIs('welcome')) class="active" @endif> <a href="{{ route('welcome') }}">Início</a></li>
-                        <li  @if (request()->routeIs('posts')) class="active" @endif><a href="{{ route('posts') }}">Todos imóveis</a></li>
-                        <li><a href="{{ route('welcome') }}">Sobre nós</a></li>
-                        <li><a href="{{ route('welcome') }}">Contactos</a></li>
+                        <li  @if (request()->routeIs('posts.*') || request()->routeIs('imovel.*')) class="active" @endif><a href="{{ route('posts') }}">Todos imóveis</a></li>
+                        <li  @if (request()->routeIs('sobre')) class="active" @endif><a href="{{ route('sobre') }}">Sobre nós</a></li>
+                        <li  @if (request()->routeIs('contacto')) class="active" @endif><a href="{{ route('contacto') }}">Contactos</a></li>
                         <li><a href="{{ route('welcome') }}">Termos e Condições</a></li>
 
                     </ul>

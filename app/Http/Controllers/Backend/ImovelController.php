@@ -55,7 +55,6 @@ class ImovelController extends Controller
                 if(request()->hasFile('image')){
                    foreach ($request->image as  $image) {
                        $imovel->addMedia($image)
-                       ->toMedia('posts','posts')
                        ->withResponsiveImages()
                        ->toMediaCollection('posts','posts');
                    }
@@ -77,8 +76,7 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
-        return $imovel;
-       // return view('backend.imovel.create_edit')->with('imovel',$imovel);
+        return view('website.post')->with('imovel',$imovel);
     }
 
     /**
