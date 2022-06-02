@@ -41,23 +41,46 @@
                    @foreach ($posts as $imovel)
                    <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="card blog rounded border-0 shadow overflow-hidden">
-                        <div class="position-relative">
-                           @if ($imovel->getFirstMedia('posts')->img('',['class'=>'cover-image']))
-                            {{$imovel->getFirstMedia('posts')->img('',['class'=>'cover-image'])}}
-                            @else
-                            <img  src="https://via.placeholder.com/{{ rand(200,500) }}x{{ rand(300,1000) }}" class="cover-image" alt="...">
-                           @endif
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
+                        <a href="{{ route('posts.show', $imovel->slug) }}">
+                            <div class="position-relative">
+                                @if ($imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image rounded']))
+                                    {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image rounded']) }}
+                                @else
+                                    <img src="https://via.placeholder.com/{{ rand(200, 500) }}x{{ rand(300, 1000) }}"
+                                        class="cover-image" alt="...">
+                                    @endif <div class="overlay rounded-top bg-dark"></div>
+                            </div>
+                        </a>
                         <div class="card-body content">
                             <h5><a href="{{ route('posts.show', $imovel->slug) }}" class="card-title title text-dark">{{$imovel->titulo}}</a></h5>
-                            <div class="post-meta d-flex justify-content-between mt-3">
+                            <div class="rating">
                                 <ul class="list-unstyled mb-0">
-                                    <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="uil uil-heart me-1"></i>33</a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="uil uil-comment me-1"></i>08</a></li>
+
+                                    @for ($i = 0; $i < $imovel->stars(); $i++)
+                                        <li class="list-inline-item"><i class="mdi mdi-star h5 mb-0 text-warning"></i>
+                                        </li>
+                                    @endfor
+                                    <li class="list-inline-item text-end">&nbsp; &nbsp;
+                                        ({{ $imovel->ratings->count() }} <i class="uil uil-user text-muted"></i>)
+                                    </li>
                                 </ul>
-                                <a href="{{ route('posts.show', $imovel->slug) }}" class="text-muted readmore">Ver mais <i class="uil uil-angle-right-b align-middle"></i></a>
+                            </div>
+                            <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                                <li class="text-muted small">
+                                    <i class="uil uil-comment me-1 fea icon-sm text-info"></i>
+                                    {{ $imovel->comentarios->count() }} Comentários
+                                </li>
+                                <li class="text-muted small ms-3">
+                                    <small>(MZN)</small><strong class="h6">
+                                        {{ $imovel->preco }}</strong>
+                                </li>
+                            </ul>
+                            <div class="post-meta d-flex justify-content-end mt-3">
+                                <a href="{{ route('posts.show', $imovel->slug) }}"
+                                    class="text-muted readmore text-primary">
+                                    <span class="badge rounded-pill bg-soft-primary p-2"> Ver Mais <i
+                                            class="uil uil-angle-right-b align-middle"></i> </span>
+                                </a>
                             </div>
                         </div>
                         <div class="author">

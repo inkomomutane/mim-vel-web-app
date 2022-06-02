@@ -48,6 +48,10 @@ Route::get('/contacto',function(){
 Route::get('/sobre-nos',function(){
     return view('website.sobre');
 })->name('sobre');
+Route::get('/termos-e-condicoes',function(){
+    return view('website.termos');
+})->name('termos');
+
 
 Auth::routes([
     'register' => false,

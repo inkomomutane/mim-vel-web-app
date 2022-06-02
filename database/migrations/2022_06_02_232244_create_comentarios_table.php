@@ -15,7 +15,7 @@ class CreateComentariosTable extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('comentario')->nullable();
+            $table->string('comentario', 1000)->nullable();
             $table->timestamps();
             $table->string('nome')->nullable();
             $table->string('ip', 45)->nullable();

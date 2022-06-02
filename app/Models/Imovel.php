@@ -188,4 +188,10 @@ class Imovel extends Model implements HasMedia
         imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl() ): null,
     );
 }
+
+
+    public function stars(): int
+    {
+       return (int) $this->ratings->avg('rating');
+    }
 }

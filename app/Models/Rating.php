@@ -7,11 +7,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Rating
- * 
+ *
  * @property int $id
  * @property float|null $rating
  * @property Carbon|null $created_at
@@ -19,13 +20,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $ip
  * @property string|null $nome
  * @property int $imovel_id
- * 
+ *
  * @property Imovel $imovel
  *
  * @package App\Models
  */
 class Rating extends Model
 {
+    use HasFactory;
+    
 	protected $table = 'ratings';
 
 	protected $casts = [

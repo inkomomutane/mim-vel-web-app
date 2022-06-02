@@ -23,6 +23,8 @@
     <link href="{{ asset('website/css/style.css') }}" rel="stylesheet" type="text/css" id="theme-opt" />
     <link href="{{ asset('website/css/colors/yellow.css') }}" rel="stylesheet" id="color-opt">
     @stack('css')
+
+    @livewireStyles
 </head>
 
 <body>
@@ -69,13 +71,13 @@
     <script src="{{ asset('website/js/feather.min.js') }}"></script>
     <!-- Main Js -->
     @stack('js')
-    
+
     <script src="{{ asset('website/js/plugins.init.js') }}"></script>
     <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
     <script src="{{ asset('website/js/app.js') }}"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 
-
+    @livewireScripts
 
 
 

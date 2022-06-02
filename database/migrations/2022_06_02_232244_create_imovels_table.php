@@ -16,7 +16,6 @@ class CreateImovelsTable extends Migration
         Schema::create('imovels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo')->nullable();
-            $table->string('slug')->nullable();
             $table->text('descricao')->nullable();
             $table->integer('banheiros')->nullable()->default(0);
             $table->float('preco', 10, 0)->nullable()->default(0);
@@ -37,6 +36,7 @@ class CreateImovelsTable extends Migration
             $table->unsignedBigInteger('tipo_de_imovel_id')->index('fk_imovels_tipo_de_imovels1_idx');
             $table->unsignedBigInteger('status_id')->index('fk_imovels_statuses1_idx');
             $table->unsignedBigInteger('corretor_id')->index('fk_imovels_users1_idx');
+            $table->string('slug')->nullable();
         });
     }
 
