@@ -1,1 +1,1 @@
-<img{!! $attributeString !!}@if($loadingAttributeValue) loading="{{ $loadingAttributeValue }}"@endif src="{{ $media->getUrl($conversion) }}" alt="{{ $media->name }}"  class="cover-image">
+<img{!! $attributeString !!}@if($loadingAttributeValue) loading="{{ $loadingAttributeValue }}"@endif src="{{ $media->getUrl($conversion) }}" alt="{{ $media->name }}">

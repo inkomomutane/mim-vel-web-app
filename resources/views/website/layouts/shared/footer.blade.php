@@ -8,9 +8,9 @@
                         </a>
                         <p class="mt-4">Mimóvel é uma empresa de aluguel, compra de imóveis localizada na cidade da beira, reconhecida pelos seus excelentes edificios que superam as expectativas dos clientes.</p>
                         <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
-                            <li class="list-inline-item"><a href="https://www.facebook.com/mimovel.meuimovel" class="rounded" target="_blank"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
-                            <li class="list-inline-item"><a href="https://www.instagram.com/mimovel_imobiliaria/" class="rounded" target="_blank"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
-                            <li class="list-inline-item"><a href="https://api.whatsapp.com/send?phone=258849500900" class="rounded" target="_blank"><i data-feather="whatsapp" class="fea icon-sm fea-social"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/mimovel.meuimovel" class="rounded" target="_blank">@svg('fab-facebook','fea icon-sm')</a></li>
+                            <li class="list-inline-item"><a href="https://www.instagram.com/mimovel_imobiliaria/" class="rounded" target="_blank">@svg('fab-instagram','fea icon-sm')</a></li>
+                            <li class="list-inline-item"><a href="https://api.whatsapp.com/send?phone=258849500900" class="rounded" target="_blank">@svg('fab-whatsapp','fea icon-sm')</a></li>
 
                         </ul><!--end icon-->
                     </div><!--end col-->

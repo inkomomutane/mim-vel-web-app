@@ -42,8 +42,8 @@
                    <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="card blog rounded border-0 shadow overflow-hidden">
                         <div class="position-relative">
-                           @if ($imovel->getFirstMedia('posts'))
-                            {{$imovel->getFirstMedia('posts')}}
+                           @if ($imovel->getFirstMedia('posts')->img('',['class'=>'cover-image']))
+                            {{$imovel->getFirstMedia('posts')->img('',['class'=>'cover-image'])}}
                             @else
                             <img  src="https://via.placeholder.com/{{ rand(200,500) }}x{{ rand(300,1000) }}" class="cover-image" alt="...">
                            @endif
@@ -62,7 +62,8 @@
                         </div>
                         <div class="author">
                             <small class="text-light user d-block"><i class="uil uil-user"></i> {{$imovel->corretor->name}}</small>
-                            <small class="text-light date"><i class="uil uil-calendar-alt"></i>{{$imovel->created_at->day}}th {{$imovel->created_at->month}}, {{$imovel->created_at->year}}</small>
+                            <small class="text-light date"><i class="uil uil-calendar-alt"></i>{{date_format($imovel->created_at,'j').'th, '}}{{__(date_format($imovel->created_at,'F'). ', ')}}
+                                {{date_format($imovel->created_at,'Y')}}</small>
                         </div>
                     </div>
                 </div>

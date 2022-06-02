@@ -189,7 +189,7 @@
                             <p class="text-muted mx-auto mx-lg-star para-desc mb-0">Imóveis mais visitados e visualizados por usuário do site.
                                 </p>
                             <div class="mt-4 d-none d-lg-block">
-                                <a href="javascript:void(0)" class="btn btn-warning">Ver mais</a>
+                                <a href="{{ route('posts') }}" class="btn btn-warning">Ver mais</a>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -202,8 +202,8 @@
                                 <div class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
                                     <div class="shop-image position-relative overflow-hidden shadow">
                                         <a href="{{ route('posts.show', $imovel->slug) }}">
-                                            @if ($imovel->getFirstMedia('posts'))
-                                            {{$imovel->getFirstMedia('posts')}}
+                                            @if ($imovel->getFirstMedia('posts')->img('',['class'=>'cover-image']))
+                                            {{$imovel->getFirstMedia('posts')->img('',['class'=>'cover-image'])}}
                                             @else
                                             <img  src="https://via.placeholder.com/{{ rand(200,500) }}x{{ rand(300,1000) }}" class="cover-image" alt="...">
                                            @endif
@@ -216,9 +216,10 @@
                                     <div class="card-body content p-4">
                                         <div class="author">
                                             <small class="text-light user d-block"><i class="uil uil-user"></i> {{$imovel->corretor->name}}</small>
-                                            <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{$imovel->created_at->day}}th {{$imovel->created_at->month}}, {{$imovel->created_at->year}}</small>
+                                            <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{date_format($imovel->created_at,'j').'th, '}}{{__(date_format($imovel->created_at,'F'). ', ')}}
+                                                {{date_format($imovel->created_at,'Y')}}</small>
                                         </div>
-                                        <a href="javascript:void(0)" class="text-dark product-name h6">{{$imovel->titulo}}</a>
+                                        <a href="{{ route('posts.show',$imovel->slug) }}" class="text-dark product-name h6">{{$imovel->titulo}}</a>
                                         <ul class="list-unstyled text-muted mt-2 mb-0">
                                             <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
                                             <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
@@ -259,14 +260,14 @@
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="card blog rounded border-0 shadow">
                             <div class="position-relative">
-                                @if ($imovel->getFirstMedia('posts'))
-                                {{$imovel->getFirstMedia('posts')}}
+                                @if ($imovel->getFirstMedia('posts')->img('',['class'=>'cover-image rounded']))
+                                {{$imovel->getFirstMedia('posts')->img('',['class'=>'cover-image rounded'])}}
                                 @else
                                 <img  src="https://via.placeholder.com/{{ rand(200,500) }}x{{ rand(300,1000) }}" class="cover-image" alt="...">
                                @endif   <div class="overlay rounded-top bg-dark"></div>
                             </div>
                             <div class="card-body content">
-                                <h5><a href="javascript:void(0)" class="card-title title text-dark">{{$imovel->titulo}}</a></h5>
+                                <h5><a href="{{ route('posts.show',$imovel->slug) }}" class="card-title title text-dark">{{$imovel->titulo}}</a></h5>
                                 <div class="post-meta d-flex justify-content-between mt-3">
                                     <ul class="list-unstyled mb-0">
                                         <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="uil uil-heart me-1"></i>0</a></li>
@@ -277,7 +278,8 @@
                             </div>
                             <div class="author">
                                 <small class="text-light user d-block"><i class="uil uil-user"></i> {{$imovel->corretor->name}}</small>
-                                <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{$imovel->created_at->day}}th {{$imovel->created_at->month}}, {{$imovel->created_at->year}}</small>
+                                <small class="text-light date"><i class="uil uil-calendar-alt"></i>{{date_format($imovel->created_at,'j').'th, '}}{{__(date_format($imovel->created_at,'F'). ', ')}}
+                                    {{date_format($imovel->created_at,'Y')}}</small>
                             </div>
                         </div>
                     </div><!--end col-->

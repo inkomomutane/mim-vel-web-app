@@ -19,6 +19,7 @@
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
         "overtrue/laravel-lang": "~6.0",
+        "owenvoke/blade-fontawesome": "^2.0",
         "queueworker/sansdaemon": "^1.2",
         "ralphjsmit/laravel-seo": "^1.0",
         "spatie/laravel-backup": "^8.1",

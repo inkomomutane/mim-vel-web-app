@@ -83,7 +83,6 @@ class Imovel extends Model implements HasMedia
 	];
 
 	protected $dates = [
-		'ano',
 		'published_at'
 	];
 
@@ -168,12 +167,14 @@ class Imovel extends Model implements HasMedia
 
    public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion('thumb')->width('200')->nonQueued();
+        $this->addMediaConversion('thumb')
+        ->width('200')
+        ->nonQueued();
         $this->addMediaCollection('posts');
     }
 
 
-    
+
     public function getDynamicSEOData(): SEOData
 {
     return new SEOData(

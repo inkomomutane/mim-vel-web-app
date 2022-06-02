@@ -20,7 +20,7 @@ class CreateImovelsTable extends Migration
             $table->text('descricao')->nullable();
             $table->integer('banheiros')->nullable()->default(0);
             $table->float('preco', 10, 0)->nullable()->default(0);
-            $table->date('ano')->nullable();
+            $table->integer('ano')->nullable();
             $table->integer('andares')->nullable()->default(0);
             $table->float('area', 10, 0)->nullable()->default(0);
             $table->integer('quartos')->nullable()->default(0);

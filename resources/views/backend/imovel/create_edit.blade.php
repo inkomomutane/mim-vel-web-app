@@ -130,12 +130,12 @@
 
                             <div class="row justify-content-between my-3">
                                 <div class="col-sm-3">
-                                    <label for="name">Ano</label>
-                                    <input type="number" name="ano" id="ano" class="form-control" placeholder="ano" value="@if(old('ano')){{old('ano')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->ano }}@endif">
+                                    <label for="name">Ano de construção</label>
+                                    <input type="number" name="ano" id="ano" class="form-control" placeholder="Ano de construção" value="@if(old('ano')){{old('ano')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->ano }}@endif">
                                 </div>
                                 <div class="col-sm-3">
-                                    <label for="name">Área (m^2)</label>
-                                    <input type="number" name="area" id="area" class="form-control" placeholder="Área (m^2)" value="@if(old('area')){{old('area')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->area }}@endif">
+                                    <label for="name">Área (m²)</label>
+                                    <input type="number" name="area" id="area" class="form-control" placeholder="Área (m²)" value="@if(old('area')){{old('area')}}@elseif(request()->routeIs('imovel.edit')){{ $imovel->area }}@endif">
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="name">Quartos</label>

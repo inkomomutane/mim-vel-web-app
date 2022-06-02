@@ -10,6 +10,8 @@ use App\Models\Bairro;
 use App\Models\Condicao;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
+use Intervention\Image\Facades\Image;
+use Jorenvh\Share\ShareFacade;
 
 class ImovelController extends Controller
 {
@@ -76,7 +78,14 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
-        return view('website.post')->with('imovel',$imovel);
+        return view('website.post')->with('imovel',$imovel)->with('socialMedias',
+        ShareFacade::page(route('posts.show',$imovel->slug), 'Share title')
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->reddit()
+        ->telegram()
+        ->whatsapp()->getRawLinks());
     }
 
     /**
@@ -120,6 +129,7 @@ class ImovelController extends Controller
             session()->flash('success', 'Imovel actualizado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {
+            throw $e;
             session()->flash('error', 'Erro na actualização da imovel.');
             return redirect()->route('imovel.index');
         }
