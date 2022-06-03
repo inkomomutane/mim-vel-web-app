@@ -43,10 +43,10 @@
                     <div class="card blog rounded border-0 shadow overflow-hidden">
                         <a href="{{ route('posts.show', $imovel->slug) }}">
                             <div class="position-relative">
-                                @if ($imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image rounded']))
+                                @if ($imovel->getFirstMedia('posts'))
                                     {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image rounded']) }}
                                 @else
-                                    <img src="https://via.placeholder.com/{{ rand(200, 500) }}x{{ rand(300, 1000) }}"
+                                    <img src="{{ asset('website/images/placeholder.png') }}"
                                         class="cover-image" alt="...">
                                     @endif <div class="overlay rounded-top bg-dark"></div>
                             </div>

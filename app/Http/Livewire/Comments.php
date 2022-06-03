@@ -27,7 +27,7 @@ class Comments extends Component
         $this->imovel = $imovel;
         $this->nome = "";
         $this->comentario = "";
-        $this->ip = "127.0.0.1";
+        $this->ip = request()->userAgent();
 
     }
 

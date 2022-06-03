@@ -241,10 +241,10 @@
                                     class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
                                     <div class="shop-image position-relative overflow-hidden shadow">
                                         <a href="{{ route('posts.show', $imovel->slug) }}">
-                                            @if ($imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']))
+                                            @if ($imovel->getFirstMedia('posts'))
                                                 {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']) }}
                                             @else
-                                                <img src="https://via.placeholder.com/{{ rand(200, 500) }}x{{ rand(300, 1000) }}"
+                                                <img src="{{ asset('website/images/placeholder.png') }}"
                                                     class="cover-image" alt="...">
                                             @endif
                                             {{-- <ul class="list-unstyled shop-icons">
@@ -325,10 +325,10 @@
                         <div class="card blog rounded border-0 shadow">
                             <a href="{{ route('posts.show', $imovel->slug) }}">
                                 <div class="position-relative">
-                                    @if ($imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image rounded']))
+                                    @if ($imovel->getFirstMedia('posts'))
                                         {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image rounded']) }}
                                     @else
-                                        <img src="https://via.placeholder.com/{{ rand(200, 500) }}x{{ rand(300, 1000) }}"
+                                        <img src="{{ asset('website/images/placeholder.png') }}"
                                             class="cover-image" alt="...">
                                         @endif <div class="overlay rounded-top bg-dark"></div>
                                 </div>

@@ -90,5 +90,6 @@
             </div>
         </div>
     @endif
-    
+
+    {{$ip}}
 </div>

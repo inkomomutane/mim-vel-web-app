@@ -194,4 +194,9 @@ class Imovel extends Model implements HasMedia
     {
        return (int) $this->ratings->avg('rating');
     }
+
+    public function vzt()
+    {
+        return visits($this);
+    }
 }
