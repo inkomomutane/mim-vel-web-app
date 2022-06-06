@@ -41,7 +41,7 @@
                                 <td><a class="btn btn-warning" href="{{route('imovel.edit',$imovel->slug)}}">Editar</a></td>
                                 <td>
                                     <button class="btn btn-danger" onclick="document.getElementById('imovel_{{$imovel->id}}_delete').submit()">Delete</button>
-                                    <form action="{{route('imovel.destroy',$imovel->id)}}" method="post" id="imovel_{{$imovel->id}}_delete">
+                                    <form action="{{route('imovel.destroy',$imovel->slug)}}" method="post" id="imovel_{{$imovel->id}}_delete">
                                         @csrf
                                         @method('DELETE')
                                     </form>
