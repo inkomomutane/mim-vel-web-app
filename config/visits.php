@@ -7,10 +7,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Supported Engines: "redis", "eloquent"
-    | Connection Name: see config/database.php 
+    | Connection Name: see config/database.php
     |
     */
-    'engine' => 'redis',
+    'engine' => 'eloquent',
     'connection' => 'laravel-visits',
 
 
@@ -66,7 +66,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Global Ignore Recording 
+    | Global Ignore Recording
     |--------------------------------------------------------------------------
     |
     | stop recording specific items (can be any of these: 'country', 'refer', 'periods', 'operatingSystem', 'language')

@@ -7,8 +7,10 @@ use App\Http\Controllers\Backend\ImovelController;
 use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\BackupController;
 use App\Models\Imovel;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,5 +72,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
     Route::resource('imovel', ImovelController::class);
+    Route::controller(BackupController::class)->group(function () {
+        Route::get('/backup', 'create')->name('backup.create');
+        Route::post('/backup/download', 'create')->name('backup.download');
+    });
 });
 

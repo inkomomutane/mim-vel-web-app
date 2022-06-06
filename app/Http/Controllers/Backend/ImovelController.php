@@ -135,6 +135,7 @@ class ImovelController extends Controller
         }
     }
 
+
     /**
      * Remove the specified resource from storage.
      *

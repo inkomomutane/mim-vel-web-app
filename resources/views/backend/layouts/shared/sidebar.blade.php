@@ -5,7 +5,7 @@
         </a>
         <ul class="sidebar-nav">
             <li class="sidebar-header">
-                Dashboard
+                Painel Administrativo
             </li>
             @include('backend.layouts.shared.links')
         </ul>
