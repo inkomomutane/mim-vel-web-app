@@ -181,7 +181,7 @@ class Imovel extends Model implements HasMedia
 {
     return new SEOData(
         title: $this->titulo,
-        description: $this->descricao,
+        description: strip_tags($this->descricao),
         author: $this->corretor->name,
         image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
         type: 'article',
