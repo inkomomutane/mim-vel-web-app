@@ -72,9 +72,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
     Route::resource('imovel', ImovelController::class);
-    Route::controller(BackupController::class)->group(function () {
-        Route::get('/backup', 'create')->name('backup.create');
-        Route::post('/backup/download', 'create')->name('backup.download');
-    });
 });
 

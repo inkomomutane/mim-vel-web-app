@@ -49,3 +49,8 @@
         @svg('fluentui-calendar-clock-24-o' ,'feather align-middle')<span class="align-middle">Agendas</span>
     </a>
 </li>
+<li class="sidebar-item  @if (request()->is('backup')) active @endif">
+    <a class="sidebar-link" href="{{ url('/backup') }}">
+        @svg('fluentui-history-16' ,'feather align-middle')<span class="align-middle">Backup's</span>
+    </a>
+</li>
