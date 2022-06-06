@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Providers\LaravelBackupPanelServiceProvider::class,
 
         /*
          * Package Service Providers...
