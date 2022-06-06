@@ -168,7 +168,9 @@ class Imovel extends Model implements HasMedia
    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-        ->width('200')
+        ->width('200')->nonQueued();
+        $this->addMediaConversion('social-media')
+        ->width('720')
         ->nonQueued();
         $this->addMediaCollection('posts');
     }
@@ -181,11 +183,11 @@ class Imovel extends Model implements HasMedia
         title: $this->titulo,
         description: $this->descricao,
         author: $this->corretor->name,
-        image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl() : null,
+        image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
         type: 'article',
         published_time:$this->published_at,
         modified_time: $this->updated_at,
-        imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl() ): null,
+        imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl('social-media') ): null,
     );
 }
 
