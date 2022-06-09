@@ -11,17 +11,17 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Agenda
- * 
+ *
  * @property int $id
- * @property string|null $nome_cliente
- * @property string|null $contacto
- * @property Carbon|null $horario
- * @property string|null $local_de_encontro
+ * @property string|null $nome_do_cliente
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property int|null $corretor_id
- * 
- * @property User|null $user
+ * @property string|null $local
+ * @property string|null $contacto
+ * @property Carbon|null $data_hora
+ * @property int $corretor_id
+ *
+ * @property User $user
  *
  * @package App\Models
  */
@@ -34,18 +34,18 @@ class Agenda extends Model
 	];
 
 	protected $dates = [
-		'horario'
+		'data_hora'
 	];
 
 	protected $fillable = [
-		'nome_cliente',
+		'nome_do_cliente',
+		'local',
 		'contacto',
-		'horario',
-		'local_de_encontro',
+		'data_hora',
 		'corretor_id'
 	];
 
-	public function user()
+	public function corretor()
 	{
 		return $this->belongsTo(User::class, 'corretor_id');
 	}

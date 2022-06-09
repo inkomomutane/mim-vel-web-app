@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Model;
  * Class Comentario
  * 
  * @property int $id
- * @property string|null $ip
  * @property string|null $comentario
- * @property int|null $imovel_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $nome
+ * @property string|null $ip
+ * @property int $imovel_id
  * 
- * @property Imovel|null $imovel
+ * @property Imovel $imovel
  *
  * @package App\Models
  */
@@ -33,10 +33,10 @@ class Comentario extends Model
 	];
 
 	protected $fillable = [
-		'ip',
 		'comentario',
-		'imovel_id',
-		'nome'
+		'nome',
+		'ip',
+		'imovel_id'
 	];
 
 	public function imovel()

@@ -1,4 +1,11 @@
 {
     "/backend/js/app.js": "/backend/js/app.js",
-    "/frontend/css/app.css": "/frontend/css/app.css"
+    "/backend/pages.js": "/backend/pages.js",
+    "/backend/errors/errors.js": "/backend/errors/errors.js",
+    "/backend/css/app.css": "/backend/css/app.css",
+    "/backend/errors/errors.css": "/backend/errors/errors.css",
+    "/backend/img/auth.svg": "/backend/img/auth.svg",
+    "/backend/img/avatar.svg": "/backend/img/avatar.svg",
+    "/backend/img/gender.svg": "/backend/img/gender.svg",
+    "/backend/img/rings.svg": "/backend/img/rings.svg"
 }

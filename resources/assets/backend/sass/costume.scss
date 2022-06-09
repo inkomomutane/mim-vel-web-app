@@ -1,0 +1,36 @@
+.form-control {
+    padding: 0.6rem 0.85rem;
+    border-radius: 5px 5px;
+}
+
+@each $color, $value in $theme-colors {
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+        box-shadow: 0 0.05rem 0.19rem $value;
+    }
+    .badge-#{$color}-light{
+        background-color: rgba($value, 0.15);
+        color: $value;
+    }
+    .btn-#{$color}-light{
+        background-color: rgba($value, 0.15);
+        color: $value;
+    }
+    .bg-#{$color}-light{
+        background-color: rgba($value, 0.33);
+    }
+}
+
+.modal-header {
+    border-bottom: 0px solid #fff !important;
+}
+.modal-footer {
+    border-top: 0px solid #fff !important;
+}
+.sidebar-content{
+    border-right: 0.3px solid #f2f2f3;
+}
+.sidebar-brand
+{
+    border-bottom: 0.3px solid #f2f2f3;
+}

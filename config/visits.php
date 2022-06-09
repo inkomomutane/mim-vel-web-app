@@ -44,14 +44,14 @@ return [
     | Will count only one visit of an IP during this specified time.
     |
     */
-    'remember_ip' => 1440 * 60,
+    'remember_ip' => 15 * 60,
 
     /*
     |--------------------------------------------------------------------------
     | Always return uncached fresh top/low lists
     |--------------------------------------------------------------------------
     */
-    'always_fresh' => true,
+    'always_fresh' => false,
 
 
     /*

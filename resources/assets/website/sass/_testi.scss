@@ -1,0 +1,47 @@
+//
+// testi.scss
+//
+.client-testi {
+    cursor: e-resize;
+    .client-image {
+        margin-right: 16px;
+    }
+    .content {
+        &:before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 0;
+            margin-left: 13px;
+            box-sizing: border-box;
+            border: 8px solid $dark;
+            border-color: transparent $white $white transparent;
+            transform-origin: 0 0;
+            transform: rotate(135deg);
+            box-shadow: 2px 2px 2px -1px rgba($dark, 0.15);
+        }
+    }
+}
+
+.tns-nav {
+    text-align: center;
+    margin-top: 10px;
+    button {
+        border-radius: 3px;
+        background: rgba($primary, 0.5) !important;
+        transition: all 0.5s ease;
+        border: none;
+        margin: 0 5px;
+        padding: 5px;
+        &.tns-nav-active {
+            background: $primary !important;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+//Slick slider
+.slick-slider {
+    overflow-x: hidden !important;
+    cursor: pointer;
+}

@@ -7,20 +7,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('backend/fontawesome/css/all.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('backend/errors/errors.css') }}">
 
 </head>
 <style>
     @font-face {
         font-family: 'Ubuntu';
-        src: url("{{ asset('frontend/errors/fonts/ubuntu.ttf') }}") format('truetype'), ;
+        src: url("{{ asset('backend/errors/fonts/ubuntu.ttf') }}") format('truetype'), ;
         font-weight: normal;
         font-style: normal;
     }
 
     body {
-        background-color: #f9f9f9;
+        background-color: #e0eaff;
         font-family: 'Ubuntu';
         color: #3f3d56;
     }
@@ -77,17 +76,18 @@
 <body>
 
     <section>
-        <img src="{{ asset('frontend/errors/svgs') }}/@yield('image')" alt="" srcset="">
+        <img src="{{ asset('backend/errors/svgs') }}/@yield('image')" alt="" srcset="">
         <div class="message">
             <h1> Erro @yield('code') | @yield('message')</h1>
         </div>
         <div class="home">
             <a href="{{ URL::previous()}}">
-                <i class="fas fa-arrow-left"></i>
-                Voltar</a>
+                <i class="align-middle" data-feather="corner-up-left"></i>
+                &nbsp; Voltar</a>
         </div>
 
     </section>
+    <script src="{{ asset('backend/errors/errors.js') }}"></script>
 </body>
 
 </html>

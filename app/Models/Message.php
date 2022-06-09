@@ -12,12 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Message
  *
- * @property int $from_id
- * @property int $to_id
  * @property int $id
  * @property string|null $message
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property bool|null $readed
+ * @property int $from_id
+ * @property int $to_id
  *
  * @property User $user
  *
@@ -28,26 +29,25 @@ class Message extends Model
 	protected $table = 'messages';
 
 	protected $casts = [
+		'readed' => 'bool',
 		'from_id' => 'int',
-		'to_id' => 'int',
-        'readed' => 'bool'
+		'to_id' => 'int'
 	];
 
 	protected $fillable = [
-		'from_id',
-		'to_id',
 		'message',
-        'readed'
+		'readed',
+		'from_id',
+		'to_id'
 	];
 
-	public function sender()
-	{
-		return $this->belongsTo(User::class, 'from_id');
-	}
-
-    public function receiver()
+	public function receiver()
 	{
 		return $this->belongsTo(User::class, 'to_id');
 	}
 
+    public function sender()
+	{
+		return $this->belongsTo(User::class, 'from_id');
+	}
 }

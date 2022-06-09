@@ -1,69 +1,63 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
-/**
- * Class User
- *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $profile_url
- *
- * @property Collection|Agenda[] $agendas
- * @property Collection|Imovel[] $imovels
- * @property Collection|Message[] $messages
- * @property Collection|UsersRating[] $users_ratings
- *
- * @package App\Models
- */
-class User extends Authenticatable
+
+class User extends Authenticatable implements HasMedia
 {
-    use Notifiable,HasRoles;
-	protected $table = 'users';
+    use HasApiTokens, HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
-	protected $dates = [
-		'email_verified_at'
-	];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'contacto',
+        'location',
+        
+    ];
 
-	protected $hidden = [
-		'password',
-		'remember_token'
-	];
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-	protected $fillable = [
-		'name',
-		'email',
-		'email_verified_at',
-		'password',
-		'remember_token',
-		'profile_url'
-	];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
-	public function agendas()
+    public function agendas()
 	{
 		return $this->hasMany(Agenda::class, 'corretor_id');
 	}
 
 	public function imovels()
 	{
-		return $this->hasMany(Imovel::class, 'postado_por');
+		return $this->hasMany(Imovel::class, 'corretor_id');
 	}
 
 	public function receivedMessages()
@@ -76,13 +70,13 @@ class User extends Authenticatable
 		return $this->hasMany(Message::class, 'from_id');
 	}
 
-	public function users_ratings()
-	{
-		return $this->hasMany(UsersRating::class, 'users_id');
-	}
-
-    public function foto()
+    public function registerMediaConversions(?Media $media = null): void
     {
-        return $this->morphOne('App\Models\Foto', 'fotable');
+        $this->addMediaConversion('thumb')->width('200')->nonQueued();
+    }
+
+    public static function last()
+    {
+        return Static::all()->last();
     }
 }
