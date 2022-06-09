@@ -145,7 +145,7 @@
 
                                                 </div>
                                                 <p class="para-desc text-muted mb-1 text-truncate-2">
-                                                    {!! $imovel->descricao !!} </p>
+                                                    {{ ucfirst(trim(html_entity_decode(($imovel->descricao)))) }} </p>
                                                 <div class="post-meta d-flex justify-content-between mt-3">
                                                     <ul class="list-unstyled mb-0">
                                                         <li class="list-inline-item"><span
