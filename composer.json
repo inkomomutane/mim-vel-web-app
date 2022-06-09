@@ -60,6 +60,8 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan vendor:publish --force --tag=livewire:assets --ansi",
+            "@php artisan vendor:publish --force --tag=web-tinker-assets --ansi",
+            "@php artisan vendor:publish --force --tag=laravel-backup-panel-assets --ansi",
             "@php artisan optimize"
         ],
         "post-update-cmd": [
