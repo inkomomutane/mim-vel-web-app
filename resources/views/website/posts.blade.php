@@ -34,7 +34,9 @@
         </div>
         <!--Shape End-->
 
-        <!-- Blog STart -->
+        @livewire('search-imovel')
+
+        {{-- <!-- Blog STart -->
         <section class="section">
             <div class="container">
                 <div class="row">
@@ -98,7 +100,7 @@
                 </div><!--end row-->
             </div><!--end container-->
         </section><!--end section-->
-        <!-- Blog End -->
+        <!-- Blog End --> --}}
 @endsection
 @push('js')
 <script>

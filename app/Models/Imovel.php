@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\ImageMeta;
@@ -60,7 +61,7 @@ use function PHPSTORM_META\type;
  */
 class Imovel extends Model implements HasMedia
 {
-    use InteractsWithMedia,HasTags,HasSlug,HasSEO;
+    use InteractsWithMedia,HasTags,HasSlug,HasSEO,HasFactory;
 
 	protected $table = 'imovels';
 
