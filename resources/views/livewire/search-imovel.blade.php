@@ -145,7 +145,7 @@
 
                                                 </div>
                                                 <p class="para-desc text-muted mb-1 text-truncate-2">
-                                                    {{ ucfirst(trim(html_entity_decode(($imovel->descricao)))) }} </p>
+                                                    {{ ucfirst(strip_tags($imovel->descricao)) }} </p>
                                                 <div class="post-meta d-flex justify-content-between mt-3">
                                                     <ul class="list-unstyled mb-0">
                                                         <li class="list-inline-item"><span
@@ -176,7 +176,7 @@
                     <!--end col-->
 
                     <!-- PAGINATION START -->
-                    <div class="col-12 mt-4 pt-2  row justify-content-end">
+                    <div class="col-12 mt-4 pt-2  row justify-content-center">
                       <div class="col-sm-6">
                         {{ $imovels->links() }}
                       </div>
