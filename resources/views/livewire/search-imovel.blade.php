@@ -144,8 +144,14 @@
                                                     </h6>
 
                                                 </div>
-                                                <p class="para-desc text-muted mb-1 text-truncate-2">
-                                                    {{ ucfirst(strip_tags($imovel->descricao)) }} </p>
+                                                <div class="row justify-content-start">
+                                                    <div class="col-md-4 text-muted">
+                                                        <strong> Tipo: &nbsp;  {{$imovel->tipo_de_imovel->nome}} </strong>
+                                                    </div>
+                                                    <div class="col-md-4 text-muted">
+                                                        <strong> Condição: &nbsp; {{$imovel->condicao->nome}} </strong>
+                                                    </div>
+                                                </div>
                                                 <div class="post-meta d-flex justify-content-between mt-3">
                                                     <ul class="list-unstyled mb-0">
                                                         <li class="list-inline-item"><span
