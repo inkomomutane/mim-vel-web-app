@@ -28,16 +28,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('website.welcome', [
         'destacados' => Imovel::count() > 8 ?
-            Imovel::all()->take(8) :
-            Imovel::all(),
+            Imovel::with('ratings')
+            ->with('comentarios')
+            ->with('corretor')
+            ->get()->take(8) :
+            Imovel::with('ratings')
+            ->with('comentarios')
+            ->with('corretor')
+            ->get(),
         'recents' => Imovel::count() > 3 ?
-            Imovel::orderBy('created_at', 'desc')->take(3)->get() :
-            Imovel::all()
+            Imovel::orderBy('created_at', 'desc')
+            ->with('ratings')
+    ->with('comentarios')
+    ->with('corretor')
+    ->take(3)->get() :
+            Imovel::with('ratings')
+            ->with('comentarios')
+            ->with('corretor')
+            ->get()
     ]);
 })->name('welcome');
 
 Route::get('/posts', function () {
-    return view('website.posts')->with('posts', Imovel::paginate(9));
+    return view('website.posts')->with('posts', Imovel::with('ratings')
+    ->with('comentarios')
+    ->with('corretor')
+    ->paginate(9));
 })->name('posts');
 
 Route::controller(ImovelController::class)->group(function () {

@@ -41,7 +41,10 @@ class SearchImovel extends Component
 
     public function render()
     {
-        $this->imovels = Imovel::paginate(15);
+        $this->imovels = Imovel::with('ratings')
+        ->with('tipo_de_imovel')
+        ->with('condicao')
+        ->with('comentarios')->paginate(15);
 
         // switch ($this->order) {
         //     case 1:

@@ -78,6 +78,7 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
+       $imovel =  $imovel->with('media')->where('id',$imovel->id)->first();
         return view('website.post')->with('imovel',$imovel)->with('socialMedias',
         ShareFacade::page(route('posts.show',$imovel->slug), 'Share title')
         ->facebook()
