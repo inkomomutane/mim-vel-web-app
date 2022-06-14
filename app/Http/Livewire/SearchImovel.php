@@ -16,9 +16,14 @@ class SearchImovel extends Component
     use WithPagination;
 
     public $order;
+    public $search;
 
     public $orderOptions;
     private $imovels;
+    public $bairro;
+    public $condicao;
+    public $tipoDeImovel;
+
 
     public function mount()
     {
@@ -36,45 +41,39 @@ class SearchImovel extends Component
     }
 
 
+    public function resetFilters()
+    {
+        $this->bairro = null;
+        $this->condicao = null;
+        $this->order = null;
+        $this->tipoDeImovel = null;
+        $this->resetPage();
+    }
 
     protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        $this->imovels = Imovel::with('ratings')
-        ->with('tipo_de_imovel')
-        ->with('condicao')
-        ->with('comentarios')->paginate(15);
-
-        // switch ($this->order) {
-        //     case 1:
-        //         $this->imovels = Imovel::orderBy('created_at', 'desc')->paginate(15);
-        //         break;
-        //     case 2:
-        //         $this->imovels = Imovel::orderBy('created_at', 'asc')->paginate(15);
-        //         break;
-        //     case 3:
-        //         $this->imovels = Imovel::withAvg('ratings', 'rating')->orderBy('ratings_avg_rating', 'desc')->paginate(15);
-        //         break;
-        //     case 4:
-        //         $this->imovels = Imovel::withAvg('ratings', 'rating')->orderBy('ratings_avg_rating', 'asc')->paginate(15);
-        //         break;
-        //     case 5:
-        //         $this->imovels = Imovel::orderBy('preco', 'desc')->paginate(15);
-        //         break;
-
-        //     case 6:
-        //         $this->imovels = Imovel::orderBy('preco', 'asc')->paginate(15);
-        //         break;
-
-        //     default:
-        //         $this->imovels = Imovel::paginate(15);
-        //         break;
-        // }
-
-
+        // $this->imovels = Imovel::with('ratings')
+        // ->with('tipo_de_imovel')
+        // ->with('condicao')
+        // ->with('comentarios')->paginate(15);
         return view('livewire.search-imovel', [
-            'imovels' =>  $this->imovels,
+
+            'imovels' => Imovel::with('ratings')
+            ->with('tipo_de_imovel')
+            ->with('condicao')
+            ->with('comentarios')
+                ->when($this->bairro,function($query,$bairro){
+                    return $query->where('bairro_id',$bairro);
+                })
+                ->when($this->tipoDeImovel,function($query,$tipoDeImovel){
+                    return $query->where('tipo_de_imovel_id',$tipoDeImovel);
+                })
+                ->when($this->condicao,function($query,$condicao){
+                    return $query->where('condicao_id',$condicao);
+                })
+                ->paginate(15)            ,
             'bairros' => Bairro::all(),
             'tipoDeImovels' => TipoDeImovel::all(),
             'condicaoDeImovels' => Condicao::all()

@@ -19,9 +19,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
-
-use function PHPSTORM_META\type;
-
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 /**
  * Class Imovel
  *
@@ -59,7 +58,7 @@ use function PHPSTORM_META\type;
  *
  * @package App\Models
  */
-class Imovel extends Model implements HasMedia
+class Imovel extends Model implements HasMedia,Searchable
 {
     use InteractsWithMedia,HasTags,HasSlug,HasSEO,HasFactory;
 
@@ -201,5 +200,16 @@ class Imovel extends Model implements HasMedia
     public function vzt()
     {
         return visits($this);
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+       $url = route('posts.show', $this->slug);
+
+        return new \Spatie\Searchable\SearchResult(
+           $this,
+           $this->titulo,
+           $url
+        );
     }
 }

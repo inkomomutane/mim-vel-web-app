@@ -19,7 +19,7 @@
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Bairro</label>
-                                        <select class="form-select form-control" aria-label="Ordenar imóvels">
+                                        <select class="form-select form-control" aria-label="Ordenar imóvels" wire:model='bairro'>
                                             @foreach ($bairros as $bairro)
                                             <option value="{{$bairro->id}}">{{$bairro->nome}}</option>
                                             @endforeach
@@ -27,7 +27,7 @@
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Tipo de imóvel</label>
-                                        <select class="form-select form-control" aria-label="Ordenar imóvels">
+                                        <select class="form-select form-control" aria-label="Ordenar imóvels" wire:model='tipoDeImovel'>
                                             <optgroup label="Tipo de imóvel">
                                               @foreach ($tipoDeImovels as $tipoDeImovel)
                                               <option value="{{$tipoDeImovel->id}}">{{$tipoDeImovel->nome}}</option>
@@ -37,7 +37,7 @@
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Condição</label>
-                                        <select class="form-select form-control" aria-label="Condição de Imóvel">
+                                        <select class="form-select form-control" aria-label="Condição de Imóvel" wire:model='condicao'>
                                             <optgroup label="Condição de Imóvel">
                                                 @foreach ($condicaoDeImovels as $condicaoDeImovel)
                                               <option value="{{$condicaoDeImovel->id}}">{{$condicaoDeImovel->nome}}</option>
@@ -76,13 +76,7 @@
                                         </div>
                                     </li>
                                     <li class="col-md-12">
-                                        <label for="">Ordenar</label>
-                                        <select class="form-select form-control" aria-label="Ordenar imóvels"
-                                            id="Sortbylist-job" wire:model='order'>
-                                            @foreach ($orderOptions as $option)
-                                                <option value="{{ $option['id'] }}">{{ $option['value'] }}</option>
-                                            @endforeach
-                                        </select>
+                                        <button class="btn btn-secondary w-100" wire:click='resetFilters'> Limpar Filtro</button>
                                     </li>
                                     <li class="col-md-12">
                                         <button class="btn btn-warning w-100"> Pesquisar</button>
