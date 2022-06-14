@@ -2,7 +2,7 @@
 
 
 ## Mimóvel
-Mimóvel é uma empresa de aluguel, compra de imóveis localizada na cidade da beira, reconhecida pelos seus excelentes edificios que superam as expectativas dos clientes.
+Mimóvel é uma empresa de aluguel, compra de imóveis localizada na cidade da Beira, reconhecida pelos seus excelentes edifícios que superam as expectativas dos clientes.
 
 
 - **[Facebook](https://www.facebook.com/Mim%C3%B3velcom-imobili%C3%A1ria-101155348750579)**
