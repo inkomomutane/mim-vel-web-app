@@ -19,67 +19,60 @@
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Bairro</label>
-                                        <select class="form-select form-control" aria-label="Ordenar imóvels" wire:model='bairro'>
+                                        <select class="form-select form-control" aria-label="Ordenar imóvels"
+                                            wire:model='bairro'>
                                             @foreach ($bairros as $bairro)
-                                            <option value="{{$bairro->id}}">{{$bairro->nome}}</option>
+                                                <option value="{{ $bairro->id }}">{{ $bairro->nome }}</option>
                                             @endforeach
                                         </select>
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Tipo de imóvel</label>
-                                        <select class="form-select form-control" aria-label="Ordenar imóvels" wire:model='tipoDeImovel'>
+                                        <select class="form-select form-control" aria-label="Ordenar imóvels"
+                                            wire:model='tipoDeImovel'>
                                             <optgroup label="Tipo de imóvel">
-                                              @foreach ($tipoDeImovels as $tipoDeImovel)
-                                              <option value="{{$tipoDeImovel->id}}">{{$tipoDeImovel->nome}}</option>
-                                              @endforeach
+                                                @foreach ($tipoDeImovels as $tipoDeImovel)
+                                                    <option value="{{ $tipoDeImovel->id }}">{{ $tipoDeImovel->nome }}
+                                                    </option>
+                                                @endforeach
                                             </optgroup>
                                         </select>
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Condição</label>
-                                        <select class="form-select form-control" aria-label="Condição de Imóvel" wire:model='condicao'>
+                                        <select class="form-select form-control" aria-label="Condição de Imóvel"
+                                            wire:model='condicao'>
                                             <optgroup label="Condição de Imóvel">
                                                 @foreach ($condicaoDeImovels as $condicaoDeImovel)
-                                              <option value="{{$condicaoDeImovel->id}}">{{$condicaoDeImovel->nome}}</option>
-                                              @endforeach
+                                                    <option value="{{ $condicaoDeImovel->id }}">
+                                                        {{ $condicaoDeImovel->nome }}</option>
+                                                @endforeach
                                             </optgroup>
                                         </select>
                                     </li>
                                     <li class="col-md-12 row">
                                         <div class="col-md-6">
-                                            <label for="">Preço: Min</label>
-                                            <select class="form-select form-control" aria-label="Preço mínino">
-                                                <optgroup label="Min">
-                                                    <option value="500">500</option>
-                                                    <option value="1000">1000</option>
-                                                    <option value="2000">2000</option>
-                                                    <option value="3000">3000</option>
-                                                    <option value="4000">4000</option>
-                                                    <option value="5000">5000</option>
-                                                    <option value="+5000">+5000</option>
-                                                </optgroup>
-                                            </select>
+                                            <label for="">Max</label>
+                                            <div class="input-group mb-3 border rounded">
+                                                <input type="number" id="precoMax" name="precoMax"
+                                                    class="form-control border-0" placeholder="Max"
+                                                    wire:model='precoMax'
+                                                    @if ($precoMin > $precoMax) Disabled @endif>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="">Max</label>
-                                            <select class="form-select form-control" aria-label="Preço máximo">
-                                                <optgroup label="Máx">
-                                                    <option value="500">500</option>
-                                                    <option value="1000">1000</option>
-                                                    <option value="2000">2000</option>
-                                                    <option value="3000">3000</option>
-                                                    <option value="4000">4000</option>
-                                                    <option value="5000">5000</option>
-                                                    <option value="+5000">+5000</option>
-                                                </optgroup>
-                                            </select>
+                                            <label for="">Preço: Min</label>
+                                            <div class="input-group mb-3 border rounded">
+                                                <input type="number" id="precoMin" name="precoMin"
+                                                    class="form-control border-0" placeholder="Min"
+                                                    wire:model='precoMin'>
+                                            </div>
                                         </div>
+
                                     </li>
                                     <li class="col-md-12">
-                                        <button class="btn btn-secondary w-100" wire:click='resetFilters'> Limpar Filtro</button>
-                                    </li>
-                                    <li class="col-md-12">
-                                        <button class="btn btn-warning w-100"> Pesquisar</button>
+                                        <button class="btn btn-secondary w-100" wire:click='resetFilters'> Limpar
+                                            Filtro</button>
                                     </li>
                                 </ul>
                             </div>
@@ -140,10 +133,12 @@
                                                 </div>
                                                 <div class="row justify-content-start">
                                                     <div class="col-md-4 text-muted">
-                                                        <strong> Tipo: &nbsp;  {{$imovel->tipo_de_imovel->nome}} </strong>
+                                                        <strong> Tipo: &nbsp; {{ $imovel->tipo_de_imovel->nome }}
+                                                        </strong>
                                                     </div>
                                                     <div class="col-md-4 text-muted">
-                                                        <strong> Condição: &nbsp; {{$imovel->condicao->nome}} </strong>
+                                                        <strong> Condição: &nbsp; {{ $imovel->condicao->nome }}
+                                                        </strong>
                                                     </div>
                                                 </div>
                                                 <div class="post-meta d-flex justify-content-between mt-3">
@@ -177,9 +172,9 @@
 
                     <!-- PAGINATION START -->
                     <div class="col-12 mt-4 pt-2  row justify-content-center">
-                      <div class="col-sm-6">
-                        {{ $imovels->links() }}
-                      </div>
+                        <div class="col-sm-6">
+                            {{ $imovels->links() }}
+                        </div>
                     </div>
                     <!--end col-->
 

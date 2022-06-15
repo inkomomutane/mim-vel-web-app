@@ -12,9 +12,9 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @forelse ($imovel->getMedia('posts') as $media)
-                    <div class="swiper-slide d-flex align-items-center overflow-hidden">
+                    <div class="swiper-slide d-flex align-items-center overflow-hidden ">
                         @if ($media)
-                            {{ $media->img('', ['class' => 'slide-inner']) }}
+                            {{ $media->img('', ['class' => 'slide-inner cover-slide-image']) }}
                         @else
                             <img src="{{ asset('website/images/placeholder.png') }}"
                                 class="slide-inner" alt="No Image">
