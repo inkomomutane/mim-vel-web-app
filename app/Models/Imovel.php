@@ -71,6 +71,7 @@ class Imovel extends Model implements HasMedia,Searchable
 		'andares' => 'int',
 		'area' => 'float',
 		'quartos' => 'int',
+        'for_rent' => 'bool',
 		'suites' => 'int',
 		'garagens' => 'int',
 		'piscinas' => 'int',
@@ -94,6 +95,7 @@ class Imovel extends Model implements HasMedia,Searchable
 		'preco',
 		'ano',
 		'andares',
+        'for_rent',
 		'area',
 		'quartos',
 		'suites',
@@ -191,6 +193,10 @@ class Imovel extends Model implements HasMedia,Searchable
     );
 }
 
+    public function isForRent() : bool
+    {
+        return $this->for_rent  == true;
+    }
 
     public function stars(): int
     {

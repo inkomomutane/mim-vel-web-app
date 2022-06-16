@@ -25,6 +25,8 @@ class SearchImovel extends Component
     public $tipoDeImovel;
     public $precoMin;
     public $precoMax;
+    public $forRent;
+    public $forBuy;
 
 
 
@@ -35,8 +37,9 @@ class SearchImovel extends Component
         $this->condicao = null;
         $this->order = null;
         $this->tipoDeImovel = null;
-        $this->precoMax = null;
-        $this->precoMin = null;
+        $this->forRent = null;
+        $this->forBuy = null;
+        $this->mount();
         $this->resetPage();
     }
 
@@ -73,6 +76,12 @@ class SearchImovel extends Component
                 ->when($this->precoMax, function ($query, $precoMax) {
                     return $query->where('preco', '<=', $precoMax);
                 })
+                ->when($this->forRent, function ($query) {
+                    return $query->where('for_rent', '=', true);
+                })
+                ->when($this->forBuy, function ($query) {
+                    return $query->where('for_rent', '<>', true);
+                })
                 ->paginate(15),
             'bairros' => Bairro::all(),
             'tipoDeImovels' => TipoDeImovel::all(),
@@ -80,8 +89,18 @@ class SearchImovel extends Component
         ]);
     }
 
-    public function updatingOrder()
+    public function updatedForBuy()
+    {
 
+         $this->forRent = !$this->forBuy;
+    }
+    public function updatedForRent()
+    {
+        $this->forBuy = !$this->forRent;
+    }
+
+
+    public function updatingOrder()
     {
 
         $this->resetPage();

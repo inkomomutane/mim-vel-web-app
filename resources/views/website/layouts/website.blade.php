@@ -23,7 +23,7 @@
     <link href="{{ asset('website/css/style.css') }}" rel="stylesheet" type="text/css" id="theme-opt" />
     <link href="{{ asset('website/css/colors/yellow.css') }}" rel="stylesheet" id="color-opt">
     @stack('css')
-
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireStyles
 </head>
 
@@ -77,6 +77,7 @@
     <script src="{{ asset('website/js/app.js') }}"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 
+    @livewire('livewire-ui-modal')
     @livewireScripts
 
 

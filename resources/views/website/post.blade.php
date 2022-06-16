@@ -16,8 +16,7 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
                         @if ($media)
                             {{ $media->img('', ['class' => 'slide-inner cover-slide-image']) }}
                         @else
-                            <img src="{{ asset('website/images/placeholder.png') }}"
-                                class="slide-inner" alt="No Image">
+                            <img src="{{ asset('website/images/placeholder.png') }}" class="slide-inner" alt="No Image">
                         @endif
                         <div class="bg-overlay">
                         </div>
@@ -36,24 +35,23 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
                         <!-- end slide-inner -->
                     </div>
                 @empty
-                <div class="swiper-slide d-flex align-items-center overflow-hidden">
-                    <img src="{{ asset('website/images/placeholder.png') }}"
-                    class="slide-inner" alt="No Image">
-                    <div class="bg-overlay">
-                    </div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-12">
-                                <div class="title-heading text-center">
-                                    <h1 class="heading text-white title-dark mb-4">Imóvel</h1>
-                                    <p class="para-desc mx-auto text-white-50">{{ $imovel->titulo }}</p>
-                                </div>
-                            </div>
-                            <!--end col-->
+                    <div class="swiper-slide d-flex align-items-center overflow-hidden">
+                        <img src="{{ asset('website/images/placeholder.png') }}" class="slide-inner" alt="No Image">
+                        <div class="bg-overlay">
                         </div>
-                        <!--end row-->
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="title-heading text-center">
+                                        <h1 class="heading text-white title-dark mb-4">Imóvel</h1>
+                                        <p class="para-desc mx-auto text-white-50">{{ $imovel->titulo }}</p>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                        </div>
                     </div>
-                </div>
                 @endforelse
             </div>
             <!-- end swiper-wrapper -->
@@ -78,7 +76,7 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
     <section class="section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="row">
                         <!-- Share media -->
                         <div class="col-md-2 d-none d-md-block">
@@ -98,7 +96,7 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
                         </div>
                         <!-- End media -->
 
-                        <div class="col-md-10 row">
+                        <div class="col-md-7 row">
                             <ul class="list-unstyled d-flex justify-content-between mt-0">
                                 <li class="list-inline-item user me-2">
                                     <span class="text-muted"> <strong>Autor :</strong> &nbsp; <i
@@ -212,12 +210,32 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
 
                             @livewire('comments', ['imovel' => $imovel])
                         </div>
-
                     </div>
+                    <!-- Share media -->
+                    <div class="col-md-2 d-none d-md-block">
+                        <ul class="list-unstyled text-start sticky-bar  mb-0 pl-2 text-muted">
+                            <li class="mb-3 h6">Contactar corretor</li>
+
+                            <li class="pb-3">
+                                <a href="tel:{{ $imovel->corretor->contacto }}" class="rounded mb-2">@svg('fluentui-call-outbound-28-o', 'fea icon-md text-muted')</i> &nbsp;
+                                    Chamada </a>
+                            </li>
+                            <li class="pb-3">
+
+                                <a href="" target="_blank" class="rounded mb-2"  data-bs-toggle="modal" data-bs-target="#exampleModal">@svg('fluentui-calendar-chat-24-o', 'fea icon-md text-muted')</i> &nbsp; Mensagem </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+
                 </div>
             </div>
         </div>
+        </div>
     </section>
+    @livewire('message-agenda', ['corretor_id' => $imovel->corretor_id, 'imovel_id' => $imovel->id])
+
 @endsection
 @push('css')
     <link href="{{ asset('website/css/swiper.min.css') }}" rel="stylesheet" type="text/css" />

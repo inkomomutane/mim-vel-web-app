@@ -12,10 +12,14 @@
                             <div class="widget">
                                 <ul class="list-unstyled mt-4 mb-0 blog-categories row">
                                     <li class="col-md-12">
-                                        <div class="input-group mb-3 border rounded">
-                                            <input type="text" id="search" name="search" class="form-control border-0"
-                                                placeholder="Pesquisar imóvel por títolu ou localização">
-                                        </div>
+
+                                       <input class="form-check-input" type="checkbox" role="switch" name="forRent"  wire:model='forRent'
+                                       >
+                                       <label for="forRent">Arrendar</label>
+                                       <input class="form-check-input" type="checkbox" role="switch"  name="forBuy" wire:model='forBuy'
+
+                                       >
+                                       <label for="forBuy">Comprar</label>
                                     </li>
                                     <li class="col-md-12">
                                         <label for="">Bairro</label>

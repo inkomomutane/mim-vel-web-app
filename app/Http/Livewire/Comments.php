@@ -63,7 +63,6 @@ class Comments extends Component
 
                 session()->flash('success', 'Seu comentário foi enviado com sucesso.');
             } catch (\Throwable $th) {
-                throw $th;
                 session()->flash('error', 'Ocorreu um erro ao comentar! Tente novamente.');
             }
         }

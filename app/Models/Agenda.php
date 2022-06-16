@@ -30,7 +30,8 @@ class Agenda extends Model
 	protected $table = 'agendas';
 
 	protected $casts = [
-		'corretor_id' => 'int'
+		'corretor_id' => 'int',
+        'imovel_id' => 'int'
 	];
 
 	protected $dates = [
@@ -39,10 +40,12 @@ class Agenda extends Model
 
 	protected $fillable = [
 		'nome_do_cliente',
-		'local',
+        'mensagem',
+        'email',
 		'contacto',
 		'data_hora',
-		'corretor_id'
+		'corretor_id',
+        'imovel_id'
 	];
 
 	public function corretor()
