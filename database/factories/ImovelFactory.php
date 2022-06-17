@@ -44,5 +44,25 @@ class ImovelFactory extends Factory
             'corretor_id' => \App\Models\User::all()->random(1)->first(),
             'slug' => $this->faker->slug(),
         ];
+
+
+    }
+
+        /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterMaking(function (Imovel $imovel) {
+            $imovel->addMediaFromUrl('https://picsum.photos/1080/420.jpg')
+            ->withResponsiveImages()
+            ->toMediaCollection('posts','posts');
+        })->afterCreating(function (Imovel $imovel) {
+            $imovel->addMediaFromUrl('https://picsum.photos/1080/420.jpg')
+                       ->withResponsiveImages()
+                       ->toMediaCollection('posts','posts');
+        });
     }
 }

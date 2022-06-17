@@ -89,7 +89,7 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
                                 @endforeach
                                 <li>
                                     <h5 class="mt-4  text-center text-muted">
-                                        <strong> {{ $imovel->preco }} MZN </strong>
+                                        <strong> {{ number_format($imovel->preco,2) }} MZN </strong>
                                     </h5>
                                 </li>
                             </ul>
@@ -113,7 +113,7 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
                                     {{ $imovel->titulo }}
                                 </h5>
                                 <h5 class="mt-1 col-4 text-end text-muted ">
-                                    <strong> {{ $imovel->preco }} MZN </strong>
+                                    <strong> {{number_format($imovel->preco,2) }} MZN </strong>
                                 </h5>
                             </div>
                             <h6 class="mt-4">Descrição</h6>

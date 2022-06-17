@@ -131,7 +131,7 @@
                                                     </ul>
                                                     <h6 class=" text-muted mb-0 me-3 ">MZN
                                                         <strong class="fst-bold h4 text-muted">
-                                                            {{ $imovel->preco }}</strong>
+                                                            {{ number_format($imovel->preco,2) }}</strong>
                                                     </h6>
 
                                                 </div>

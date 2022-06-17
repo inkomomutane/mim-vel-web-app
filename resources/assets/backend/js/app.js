@@ -14,6 +14,7 @@ import "daterangepicker";
 import "timepicker";
 import "./modules/ckeditor";
 import "./modules/alphine";
+import "./modules/mask";
 
 
 //Datatables

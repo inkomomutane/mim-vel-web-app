@@ -53,6 +53,9 @@ class ImovelController extends Controller
         try {
            $data = $request->all();
            $data['corretor_id'] = auth()->user()->id;
+           $data['preco']=  str_replace(['(MZN) ','.'],'',$data['preco']);
+           $data['preco']=  str_replace([','],'.',$data['preco']);
+
                 $imovel = Imovel::create($data);
                 if(request()->hasFile('image')){
                    foreach ($request->image as  $image) {
@@ -115,7 +118,10 @@ class ImovelController extends Controller
     public function update(ImovelUpdateRequest $request, Imovel $imovel)
     {
         try {
-            $imovel->update($request->all());
+            $data = $request->all();
+            $data['preco']=  str_replace(['(MZN) ','.'],'',$data['preco']);
+            $data['preco']=  str_replace([','],'.',$data['preco']);
+            $imovel->update($data);
             if(request()->hasFile('image')){
                 foreach ($request->image as  $image) {
                  try {

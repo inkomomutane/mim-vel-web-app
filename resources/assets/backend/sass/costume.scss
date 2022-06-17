@@ -34,3 +34,8 @@
 {
     border-bottom: 0.3px solid #f2f2f3;
 }
+.cover-image{
+    width: 100% !important;
+    height: 150px !important;
+object-fit: cover !important;
+}

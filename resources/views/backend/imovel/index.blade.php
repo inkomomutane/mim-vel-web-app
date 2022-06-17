@@ -29,6 +29,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Título</th>
+                                <th>Media</th>
                                 <th>Editar</th>
                                 <th>Deletar</th>
                             </tr>
@@ -38,6 +39,10 @@
                             <tr>
                                 <td>{{$imovel->id}}</td>
                                 <td>{{$imovel->titulo}}</td>
+                                <td><a class="btn btn-purple" href="{{route('media.show',['imovel'=> $imovel->slug])}}">
+                                    @svg('fluentui-image-multiple-28-o' ,'feather align-middle') Media
+                                    </a></td>
+
                                 <td><a class="btn btn-warning" href="{{route('imovel.edit',$imovel->slug)}}">Editar</a></td>
                                 <td>
                                     <button class="btn btn-danger" onclick="document.getElementById('imovel_{{$imovel->id}}_delete').submit()">Delete</button>
@@ -54,6 +59,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Título</th>
+                                        <th>Media</th>
                                         <th>Editar</th>
                                         <th>Deletar</th>
                                     </tr>

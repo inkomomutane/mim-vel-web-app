@@ -11,9 +11,10 @@ class UploadImages extends Component
     use WithFileUploads;
 
     public $image;
+    public $stored;
 
-    public function mount(){
-
+    public function mount($stored = null){
+        $this->stored = $stored;
     }
 
     public function updated(){

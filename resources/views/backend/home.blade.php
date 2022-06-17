@@ -5,5 +5,5 @@
     <div class="col-auto d-none d-sm-block">
         <h3><strong>Mimóvel</strong> Dashboard</h3>
     </div>
-
+</div>
 @endsection

@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\BairroController;
 use App\Http\Controllers\Backend\CidadeController;
 use App\Http\Controllers\Backend\CondicaoController;
 use App\Http\Controllers\Backend\ImovelController;
+use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
@@ -88,5 +89,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
     Route::resource('imovel', ImovelController::class);
+
+    Route::controller(MediaController::class)->group(function () {
+        Route::get('media', 'index')->name('media.index');
+        Route::get('media/imovel/{imovel}', 'show')->name('media.show');
+        Route::post('media/store/{imovel}', 'store')->name('media.store');
+        Route::delete('media/{media}', 'destroy')->name('media.destroy');
+    });
+
 });
 

@@ -9,6 +9,11 @@
         @svg('fluentui-tasks-app-20-o' ,'feather align-middle')<span class="align-middle">Imóveis</span>
     </a>
 </li>
+<li class="sidebar-item @if (request()->routeIs('media.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('media.index') }}">
+        @svg('fluentui-image-multiple-28-o' ,'feather align-middle')<span class="align-middle">Media</span>
+    </a>
+</li>
 
 <li class="sidebar-item @if (request()->routeIs('user.*')) active @endif">
     <a class="sidebar-link " href="{{ route('user.index') }}">

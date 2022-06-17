@@ -28,7 +28,7 @@ class ImovelUpdateRequest extends FormRequest
             'descricao' => 'string|nullable',
             'slug' => 'string|nullable',
             'banheiros' => 'numeric|nullable',
-            'preco'=> 'numeric|nullable',
+            'preco'=> 'string|nullable',
             'ano' => 'numeric|nullable',
             'andares' => 'numeric|nullable',
             'area' => 'numeric|nullable',

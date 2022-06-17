@@ -275,7 +275,7 @@
                                             </li>
                                             <li class="text-muted small ms-3">
                                                 <small>(MZN)</small><strong class="h6">
-                                                    {{ $imovel->preco }}</strong>
+                                                    {{ number_format($imovel->preco,2) }}</strong>
                                             </li>
                                         </ul>
                                         <div class="post-meta d-flex justify-content-end mt-3">
@@ -355,7 +355,7 @@
                                     </li>
                                     <li class="text-muted small ms-3">
                                         <small>(MZN)</small><strong class="h6">
-                                            {{ $imovel->preco }}</strong>
+                                            {{ number_format($imovel->preco,2) }}</strong>
                                     </li>
                                 </ul>
                                 <div class="post-meta d-flex justify-content-end mt-3">
