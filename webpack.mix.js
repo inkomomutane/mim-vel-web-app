@@ -23,4 +23,6 @@ const mix = require('laravel-mix');
 * | Website Assets generator
 * |-----------------------------------------------------------------
 */
-.copyDirectory('resources/assets/website','public/website')
+// .copyDirectory('resources/assets/website','public/website')
+.js('resources/assets/website/js/bootstrap.js', 'public/website/js')
+.sass('resources/assets/website/sass/app.scss', 'public/website/css')

@@ -9,27 +9,47 @@
                     <div class="col-lg-12 text-center">
                         <div class="page-next-level">
                             <h4 class="display-4 fw-bold text-white title-dark mb-3"> Imóveis </h4>
-                            <div class="page-next">
-                                <nav aria-label="breadcrumb" class="d-inline-block">
-                                    <ul class="breadcrumb bg-white rounded shadow mb-0">
-                                        <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Mimóvel</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Posts</li>
-                                    </ul>
-                                </nav>
-                            </div>
+
                         </div>
                     </div>  <!--end col-->
                 </div><!--end row-->
             </div> <!--end container-->
         </section><!--end section-->
         <!-- Hero End -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#">Hidden brand</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
 
 
 
-        @livewire('search-imovel')
+
+          {{-- @livewire('search-imovel') --}}
 
 @endsection
 @push('js')
+
 <script>
     easy_background("#posts",
         {

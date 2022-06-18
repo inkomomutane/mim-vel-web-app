@@ -147,7 +147,7 @@
                 <div class="col-lg-4">
                     <div class="section-title text-center text-lg-start mb-4 mb-lg-0">
                         <span class="badge rounded-pill bg-soft-warning">Destaque</span>
-                        <h4 class="title mt-3 mb-4">Imóveis mais destacados</h4>
+                        <h4 class="title mt-3 mb-4 text-dark">Imóveis mais destacados</h4>
                         <p class="text-muted mx-auto mx-lg-star para-desc mb-0">Imóveis mais visitados e visualizados por
                             usuário do site.
                         </p>
@@ -162,59 +162,63 @@
                     <div class="tiny-two-item">
 
                         @foreach ($destacados as $imovel)
-                            <div class="tiny-slide">
-                                <div
-                                    class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="{{ route('posts.show', $imovel->slug) }}">
-                                            @if ($imovel->getFirstMedia('posts'))
-                                                {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']) }}
-                                            @else
-                                                <img src="{{ asset('website/images/placeholder.png') }}"
-                                                    class="cover-image" alt="...">
-                                            @endif
-                                            {{-- <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul> --}}
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="{{ route('posts.show', $imovel->slug) }}"
-                                            class="text-dark product-name h6">{{ $imovel->titulo }}</a>
-                                        <div class="rating">
-                                            <ul class="list-unstyled mb-0">
+                        <div class="tiny-slide">
 
-                                                @for ($i = 0; $i < $imovel->stars(); $i++)
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star h5 mb-0 text-warning"></i></li>
-                                                @endfor
-                                                <li class="list-inline-item text-end">&nbsp; &nbsp;
-                                                    ({{ $imovel->ratings->count() }} <i
-                                                        class="uil uil-user text-muted"></i>)</li>
-                                            </ul>
-                                        </div>
-                                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
-                                            <li class="text-muted small">
-                                                <i class="uil uil-comment me-1 fea icon-sm text-info"></i>
-                                                {{ $imovel->comentarios->count() }} Comentários
-                                            </li>
-                                            <li class="text-muted small ms-3">
-                                                <small>(MZN)</small><strong class="h6">
-                                                    {{ number_format($imovel->preco,2) }}</strong>
-                                            </li>
+                            <div class="card blog border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a href="{{ route('posts.show', $imovel->slug) }}">
+                                        @if ($imovel->getFirstMedia('posts'))
+                                            {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']) }}
+                                        @else
+                                            <img src="{{ asset('website/images/placeholder.png') }}"
+                                                class="cover-image" alt="...">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="{{ route('posts.show', $imovel->slug) }}"
+                                        class="text-dark product-name h6 d-inline-block text-truncate">{{ $imovel->titulo }}</a>
+                                    <div class="rating">
+                                        <ul class="list-unstyled mb-0">
+
+                                            @for ($i = 0; $i < $imovel->stars(); $i++)
+                                                <li class="list-inline-item"><i
+                                                        class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            @endfor
+                                            <li class="list-inline-item text-end">&nbsp; &nbsp;
+                                                ({{ $imovel->ratings->count() }} <i
+                                                    class="uil uil-user text-muted"></i>)</li>
                                         </ul>
-                                        <div class="post-meta d-flex justify-content-end mt-3">
-                                            <a href="{{ route('posts.show', $imovel->slug) }}"
-                                                class="text-muted readmore text-primary">
-                                                <span class="badge rounded-pill bg-soft-primary p-2"> Ver Mais <i
-                                                        class="uil uil-angle-right-b align-middle"></i> </span>
-                                            </a>
-                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                                        <li class="text-muted small">
+                                            <i class="uil uil-comment me-1 fea icon-sm text-info"></i>
+                                            {{ $imovel->comentarios->count() }} Comentários
+                                        </li>
+                                        <li class="text-muted small ms-3">
+                                            <small>(MZN)</small><strong class="h6">
+                                                {{ number_format($imovel->preco,2) }}</strong>
+                                        </li>
+                                    </ul>
+                                    <div class="post-meta d-flex justify-content-end mt-3">
+                                        <a href="{{ route('posts.show', $imovel->slug) }}"
+                                            class="text-muted readmore text-primary">
+                                            <span class="badge rounded-pill bg-soft-primary p-2"> Ver Mais <i
+                                                    class="uil uil-angle-right-b align-middle"></i> </span>
+                                        </a>
                                     </div>
                                 </div>
-                                <!--end items-->
+
+                            <div class="author">
+                                <small class="text-light user d-block"><i class="uil uil-user"></i>
+                                    {{ $imovel->corretor->name }}</small>
+                                <small class="text-light date"><i
+                                        class="uil uil-calendar-alt"></i>{{ ' '. date_format($imovel->created_at, 'j') . ' th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
+                                    {{ date_format($imovel->created_at, 'Y') }}</small>
                             </div>
+                            </div>
+
+                        </div>
                         @endforeach
 
 
@@ -236,7 +240,7 @@
                 <div class="col-12 text-center">
                     <div class="section-title mb-4 pb-2">
                         <span class="badge rounded-pill bg-soft-warning">Recentes</span>
-                        <h4 class="title mb-4">Imóveis publicados recentemente</h4>
+                        <h4 class="title mb-4 text-dark">Imóveis publicados recentemente</h4>
                         <p class="text-muted para-desc mx-auto mb-0"></p>
                     </div>
                 </div>
@@ -260,8 +264,8 @@
                                 </div>
                             </a>
                             <div class="card-body content">
-                                <h5><a href="{{ route('posts.show', $imovel->slug) }}"
-                                        class="card-title title text-dark">{{ $imovel->titulo }}</a></h5>
+                                <a href="{{ route('posts.show', $imovel->slug) }}"
+                                        class="text-dark product-name h6 d-inline-block text-truncate">{{ $imovel->titulo }}</a>
                                 <div class="rating">
                                     <ul class="list-unstyled mb-0">
 
@@ -296,7 +300,7 @@
                                 <small class="text-light user d-block"><i class="uil uil-user"></i>
                                     {{ $imovel->corretor->name }}</small>
                                 <small class="text-light date"><i
-                                        class="uil uil-calendar-alt"></i>{{ date_format($imovel->created_at, 'j') . 'th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
+                                        class="uil uil-calendar-alt"></i>{{' '. date_format($imovel->created_at, 'j') . 'th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
                                     {{ date_format($imovel->created_at, 'Y') }}</small>
                             </div>
                         </div>

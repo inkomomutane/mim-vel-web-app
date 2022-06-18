@@ -13,7 +13,7 @@
         }
     }
     .footer-head {
-        letter-spacing: 1px;         
+        letter-spacing: 1px;
         font-weight: 500;
     }
     .foot-subscribe {
@@ -35,9 +35,9 @@
                 color: $gray-500;
             }
         }
-    } 
+    }
     .text-foot {
-        color: $gray-500;
+        color: $gray-800;
     }
     .footer-list {
         margin-bottom: 0;
@@ -46,12 +46,12 @@
             a{
                 transition: all 0.5s ease;
                 &:hover {
-                    color: lighten($gray-500, 20%);
+                    color: lighten($orange-800, 40%);
                 }
-            }   
+            }
             &:last-child{
                 margin-bottom: 0;
-            }         
+            }
         }
     }
     &.footer-border,

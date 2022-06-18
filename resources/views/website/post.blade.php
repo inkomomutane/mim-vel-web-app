@@ -239,8 +239,8 @@ file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.
 
 @endsection
 @push('css')
-    <link href="{{ asset('website/css/swiper.min.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('website/css/swiper.min.css') }}" rel="stylesheet" type="text/css" /> --}}
 @endpush
 @push('js')
-    <script src="{{ asset('website/js/swiper.min.js') }}"></script>
+    {{-- <script src="{{ asset('website/js/swiper.min.js') }}"></script> --}}
 @endpush
