@@ -1,6 +1,6 @@
 <div>
     <!-- Start Products -->
-    <section class="section">
+    <section class="section bg-facebook-darken">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">

@@ -9,8 +9,8 @@
                 <div class="col-12">
                     <div class="title-heading text-center my-3">
                         <h4 class="display-4 fw-bold text-white title-dark mb-3">Mimóvel</h4>
-                        <p class="para-desc text-white-50 mb-0 mx-auto">Agência Imobiliária: Intermediações na compra, venda
-                            e arendamento de imóveis.</p>
+                        {{-- <p class="para-desc text-white-50 mb-0 mx-auto">Agência Imobiliária: Intermediações na compra, venda
+                            e arendamento de imóveis.</p> --}}
                     </div>
                 </div>
             </div>
@@ -22,11 +22,11 @@
     <!-- Hero End -->
 
     <!-- Start -->
-    <section class="section">
+    <section class="section  bg-facebook">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0">
-                    <div class="text-center features-absolute">
+                <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0 p-5">
+                    <div class="text-center features-absolute bg-dark-light p-5 rounded-3">
                         <ul class="nav nav-pills shadow border-bottom flex-column flex-sm-row d-md-inline-flex nav-justified mb-0 bg-white rounded-top position-relative overflow-hidden"
                             id="pills-tab" role="tablist">
                             <li class="nav-item m-1">
@@ -52,18 +52,17 @@
                             <!--end nav item-->
                         </ul>
 
-                        <div class="tab-content bg-white rounded-bottom shadow" id="pills-tabContent">
+                        <div class="tab-content bg-white rounded-3 shadow" id="pills-tabContent">
                             <div class="card border-0 tab-pane fade show active" id="buy" role="tabpanel"
                                 aria-labelledby="buy-login">
                                 <form class="card-body text-start">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="col-lg-6 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Pesquisar :</label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="location" id="location" type="text"
-                                                        class="form-control ps-5" placeholder="Pesquisar por localização:">
+                                                    <input name="locationc" id="location" type="text"
+                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por localização:">
                                                 </div>
                                             </div>
                                         </div>
@@ -71,8 +70,7 @@
 
                                         <div class="col-lg-3 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Selecione tipo de imóvel:</label>
-                                                <select class="form-control custom-select" id="buy-properties3"
+                                                <select class="form-control form-select p-2" id="buy-properties3"
                                                     name="tipo_de_imovel">
                                                     <option>Houses</option>
                                                     <option>Apartment</option>
@@ -81,44 +79,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!--end col-->
 
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço mínimo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-min-price3">
-                                                    <option>Preço mínimo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>6000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço máximo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-max-price3">
-                                                    <option>Preço máximo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>+5000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-12">
-                                            <a href="javascript:void(0)" class="btn btn-warning">
+                                        <div class="col-lg-3 col-md-6 col-12 ">
+                                            <a href="javascript:void(0)" class="btn btn-warning ">
                                                 <i data-feather="search" class="fea icon-sm icons"></i>
                                                 Pesquisar</a>
                                         </div>
@@ -133,13 +96,12 @@
                             <div class="card border-0 tab-pane fade" id="rent" role="tabpanel" aria-labelledby="rent-login">
                                 <form class="card-body text-start">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="col-lg-6 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Pesquisar :</label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="location" id="location" type="text"
-                                                        class="form-control ps-5" placeholder="Pesquisar por localização:">
+                                                    <input name="locationc" id="location" type="text"
+                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por localização:">
                                                 </div>
                                             </div>
                                         </div>
@@ -147,8 +109,7 @@
 
                                         <div class="col-lg-3 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Selecione tipo de imóvel:</label>
-                                                <select class="form-control custom-select" id="buy-properties3"
+                                                <select class="form-control form-select p-2" id="buy-properties3"
                                                     name="tipo_de_imovel">
                                                     <option>Houses</option>
                                                     <option>Apartment</option>
@@ -157,43 +118,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!--end col-->
 
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço mínimo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-min-price3">
-                                                    <option>Preço mínimo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>6000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço máximo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-max-price3">
-                                                    <option>Preço máximo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>+5000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-12">
+                                        <div class="col-lg-3 col-md-6 col-12 ">
                                             <a href="javascript:void(0)" class="btn btn-warning">
                                                 <i data-feather="search" class="fea icon-sm icons"></i>
                                                 Pesquisar</a>
@@ -303,7 +229,7 @@
     <!--end section-->
     <!-- End -->
 
-    <section class="section pt-0"
+    <section class="section pt-5 bg-facebook-darken"
         style="background: url('{{ asset('website/images/real/build.png') }}') bottom no-repeat;">
         <div class="container">
             <div class="row justify-content-center">
@@ -406,3 +332,19 @@
     <meta name="author" content="Administrator" />
     <meta name="website" content="{{ config('app.url') }}" />
 @endsection
+@push('css')
+<style>
+    .bg-dark-light {
+        background-color: #3c414a9c !important;
+    }
+    .bg-facebook{
+        background-color: #f6f6f6 !important;
+
+    }
+
+    .bg-facebook-darken{
+        background-color: #dde6e9 !important;
+
+    }
+</style>
+@endpush

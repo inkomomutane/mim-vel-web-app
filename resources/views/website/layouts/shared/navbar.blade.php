@@ -1,5 +1,5 @@
         <!-- Navbar STart -->
-        <header id="topnav" class="defaultscroll sticky">
+        <header id="topnav" class="defaultscroll sticky shadow-none">
             <div class="container">
                 <!-- Logo container-->
                 <a class="logo" href="{{ route('welcome') }}">
