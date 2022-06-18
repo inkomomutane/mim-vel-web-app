@@ -14,7 +14,7 @@ class SearchImovel extends Component
 {
 
 
-    use WithPagination;
+    // use WithPagination;
     public $order;
     public $search;
 
@@ -47,7 +47,7 @@ class SearchImovel extends Component
 
     public function mount()
     {
-        $preco = Imovel::select(DB::raw('MAX(preco) as max_price'),DB::raw('Min(preco) as min_price'))->first();
+        $preco = Imovel::select(DB::raw('MAX(preco) as max_price'), DB::raw('Min(preco) as min_price'))->first();
         $this->precoMin = (int)  $preco->min_price;
         $this->precoMax = (int)  $preco->max_price;
     }
@@ -57,6 +57,7 @@ class SearchImovel extends Component
         return view('livewire.search-imovel', [
 
             'imovels' => Imovel::with('ratings')
+                ->with('corretor')
                 ->with('tipo_de_imovel')
                 ->with('condicao')
                 ->with('media')
@@ -82,7 +83,7 @@ class SearchImovel extends Component
                 ->when($this->forBuy, function ($query) {
                     return $query->where('for_rent', '<>', true);
                 })
-                ->paginate(15),
+                ->paginate(10),
             'bairros' => Bairro::all(),
             'tipoDeImovels' => TipoDeImovel::all(),
             'condicaoDeImovels' => Condicao::all()
@@ -92,7 +93,7 @@ class SearchImovel extends Component
     public function updatedForBuy()
     {
 
-         $this->forRent = !$this->forBuy;
+        $this->forRent = !$this->forBuy;
     }
     public function updatedForRent()
     {
