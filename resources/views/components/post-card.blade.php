@@ -52,7 +52,7 @@
                             </small></strong></p>
 
                     <p class="text-muted mb-0 text-truncate-2">
-                        {{ $description }}
+                        {!!  strip_tags($description) !!}
                     </p>
 
                     <div class="post-meta d-flex justify-content-between mt-3">
