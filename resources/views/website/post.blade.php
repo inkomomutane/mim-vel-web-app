@@ -1,6 +1,3 @@
-{{-- file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.1/HTML/index-corporate.html
-file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.1/HTML/page-blog-detail-two.html
-file:///C:/Users/USER/Downloads/landrickhtml-311/landrickhtml-311/Landrick_v3.1.1/HTML/shop-product-detail.html --}}
 
 @extends('website.layouts.website')
 @section('title', 'Imóveis')

@@ -70,7 +70,7 @@
             box-shadow: $shadow-lg;
             background-color: $primary !important;
             color: $white !important;
-            .icon2, 
+            .icon2,
             .para {
                 color: rgba($white, 0.5) !important;
             }
@@ -117,14 +117,14 @@
         font-size: 15px;
     }
     &.process-arrow {
-        &:after {    
+        &:after {
             content: '';
             position: absolute;
             width: 60%;
             height: 40px;
             top: 80px;
             left: 80%;
-            background: url("../images/process.png") center center no-repeat;
+            background: url("../../images/process.png") center center no-repeat;
             z-index: 1;
 
             @media (max-width: 767px) {
@@ -181,7 +181,7 @@
     @media (max-width: 768px) {
         margin: -140px 0 0;
     }
-    
+
     &.blog-search {
         margin: -120px 0 0px;
 
@@ -220,7 +220,7 @@
     &:after {
         left: 10rem;
         transform: rotate(150deg);
-        
+
         @media (max-width: 768px) {
             left: 0;
         }
@@ -257,7 +257,7 @@
         height: 35rem;
         border-radius: 15rem;
         transform: rotate(145deg);
-        
+
         @media (max-width: 767px) {
             bottom: -1rem;
             width: 25rem;

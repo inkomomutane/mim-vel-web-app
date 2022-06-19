@@ -9,8 +9,8 @@
                 <div class="col-12">
                     <div class="title-heading text-center my-3">
                         <h4 class="display-4 fw-bold text-white title-dark mb-3">Mimóvel</h4>
-                        <p class="para-desc text-white-50 mb-0 mx-auto">Agência Imobiliária: Intermediações na compra, venda
-                            e arendamento de imóveis.</p>
+                        {{-- <p class="para-desc text-white-50 mb-0 mx-auto">Agência Imobiliária: Intermediações na compra, venda
+                            e arendamento de imóveis.</p> --}}
                     </div>
                 </div>
             </div>
@@ -22,11 +22,11 @@
     <!-- Hero End -->
 
     <!-- Start -->
-    <section class="section">
+    <section class="section  bg-facebook">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0">
-                    <div class="text-center features-absolute">
+                <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0 p-5">
+                    <div class="text-center features-absolute bg-dark-light p-5 rounded-3">
                         <ul class="nav nav-pills shadow border-bottom flex-column flex-sm-row d-md-inline-flex nav-justified mb-0 bg-white rounded-top position-relative overflow-hidden"
                             id="pills-tab" role="tablist">
                             <li class="nav-item m-1">
@@ -52,18 +52,17 @@
                             <!--end nav item-->
                         </ul>
 
-                        <div class="tab-content bg-white rounded-bottom shadow" id="pills-tabContent">
+                        <div class="tab-content bg-white rounded-3 shadow" id="pills-tabContent">
                             <div class="card border-0 tab-pane fade show active" id="buy" role="tabpanel"
                                 aria-labelledby="buy-login">
                                 <form class="card-body text-start">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="col-lg-6 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Pesquisar :</label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="location" id="location" type="text"
-                                                        class="form-control ps-5" placeholder="Pesquisar por localização:">
+                                                    <input name="locationc" id="location" type="text"
+                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por localização:">
                                                 </div>
                                             </div>
                                         </div>
@@ -71,8 +70,7 @@
 
                                         <div class="col-lg-3 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Selecione tipo de imóvel:</label>
-                                                <select class="form-control custom-select" id="buy-properties3"
+                                                <select class="form-control form-select p-2" id="buy-properties3"
                                                     name="tipo_de_imovel">
                                                     <option>Houses</option>
                                                     <option>Apartment</option>
@@ -81,44 +79,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!--end col-->
 
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço mínimo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-min-price3">
-                                                    <option>Preço mínimo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>6000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço máximo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-max-price3">
-                                                    <option>Preço máximo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>+5000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-12">
-                                            <a href="javascript:void(0)" class="btn btn-warning">
+                                        <div class="col-lg-3 col-md-6 col-12 ">
+                                            <a href="javascript:void(0)" class="btn btn-warning ">
                                                 <i data-feather="search" class="fea icon-sm icons"></i>
                                                 Pesquisar</a>
                                         </div>
@@ -133,13 +96,12 @@
                             <div class="card border-0 tab-pane fade" id="rent" role="tabpanel" aria-labelledby="rent-login">
                                 <form class="card-body text-start">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="col-lg-6 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Pesquisar :</label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="location" id="location" type="text"
-                                                        class="form-control ps-5" placeholder="Pesquisar por localização:">
+                                                    <input name="locationc" id="location" type="text"
+                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por localização:">
                                                 </div>
                                             </div>
                                         </div>
@@ -147,8 +109,7 @@
 
                                         <div class="col-lg-3 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <label class="form-label">Selecione tipo de imóvel:</label>
-                                                <select class="form-control custom-select" id="buy-properties3"
+                                                <select class="form-control form-select p-2" id="buy-properties3"
                                                     name="tipo_de_imovel">
                                                     <option>Houses</option>
                                                     <option>Apartment</option>
@@ -157,43 +118,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!--end col-->
 
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço mínimo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-min-price3">
-                                                    <option>Preço mínimo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>6000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <label class="form-label">Preço máximo (MZN) :</label>
-                                                <select class="form-control custom-select" id="buy-max-price3">
-                                                    <option>Preço máximo</option>
-                                                    <option>500</option>
-                                                    <option>1000</option>
-                                                    <option>2000</option>
-                                                    <option>3000</option>
-                                                    <option>4000</option>
-                                                    <option>5000</option>
-                                                    <option>+5000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-12">
+                                        <div class="col-lg-3 col-md-6 col-12 ">
                                             <a href="javascript:void(0)" class="btn btn-warning">
                                                 <i data-feather="search" class="fea icon-sm icons"></i>
                                                 Pesquisar</a>
@@ -221,7 +147,7 @@
                 <div class="col-lg-4">
                     <div class="section-title text-center text-lg-start mb-4 mb-lg-0">
                         <span class="badge rounded-pill bg-soft-warning">Destaque</span>
-                        <h4 class="title mt-3 mb-4">Imóveis mais destacados</h4>
+                        <h4 class="title mt-3 mb-4 text-dark">Imóveis mais destacados</h4>
                         <p class="text-muted mx-auto mx-lg-star para-desc mb-0">Imóveis mais visitados e visualizados por
                             usuário do site.
                         </p>
@@ -236,59 +162,63 @@
                     <div class="tiny-two-item">
 
                         @foreach ($destacados as $imovel)
-                            <div class="tiny-slide">
-                                <div
-                                    class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
-                                    <div class="shop-image position-relative overflow-hidden shadow">
-                                        <a href="{{ route('posts.show', $imovel->slug) }}">
-                                            @if ($imovel->getFirstMedia('posts'))
-                                                {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']) }}
-                                            @else
-                                                <img src="{{ asset('website/images/placeholder.png') }}"
-                                                    class="cover-image" alt="...">
-                                            @endif
-                                            {{-- <ul class="list-unstyled shop-icons">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-estate icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-heart icons"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning"><i class="uil uil-camera icons"></i></a></li>
-                                        </ul> --}}
-                                    </div>
-                                    <div class="card-body content p-4">
-                                        <a href="{{ route('posts.show', $imovel->slug) }}"
-                                            class="text-dark product-name h6">{{ $imovel->titulo }}</a>
-                                        <div class="rating">
-                                            <ul class="list-unstyled mb-0">
+                        <div class="tiny-slide">
 
-                                                @for ($i = 0; $i < $imovel->stars(); $i++)
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star h5 mb-0 text-warning"></i></li>
-                                                @endfor
-                                                <li class="list-inline-item text-end">&nbsp; &nbsp;
-                                                    ({{ $imovel->ratings->count() }} <i
-                                                        class="uil uil-user text-muted"></i>)</li>
-                                            </ul>
-                                        </div>
-                                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
-                                            <li class="text-muted small">
-                                                <i class="uil uil-comment me-1 fea icon-sm text-info"></i>
-                                                {{ $imovel->comentarios->count() }} Comentários
-                                            </li>
-                                            <li class="text-muted small ms-3">
-                                                <small>(MZN)</small><strong class="h6">
-                                                    {{ number_format($imovel->preco,2) }}</strong>
-                                            </li>
+                            <div class="card blog border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a href="{{ route('posts.show', $imovel->slug) }}">
+                                        @if ($imovel->getFirstMedia('posts'))
+                                            {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']) }}
+                                        @else
+                                            <img src="{{ asset('website/images/placeholder.png') }}"
+                                                class="cover-image" alt="...">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="{{ route('posts.show', $imovel->slug) }}"
+                                        class="text-dark product-name h6 d-inline-block text-truncate">{{ $imovel->titulo }}</a>
+                                    <div class="rating">
+                                        <ul class="list-unstyled mb-0">
+
+                                            @for ($i = 0; $i < $imovel->stars(); $i++)
+                                                <li class="list-inline-item"><i
+                                                        class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            @endfor
+                                            <li class="list-inline-item text-end">&nbsp; &nbsp;
+                                                ({{ $imovel->ratings->count() }} <i
+                                                    class="uil uil-user text-muted"></i>)</li>
                                         </ul>
-                                        <div class="post-meta d-flex justify-content-end mt-3">
-                                            <a href="{{ route('posts.show', $imovel->slug) }}"
-                                                class="text-muted readmore text-primary">
-                                                <span class="badge rounded-pill bg-soft-primary p-2"> Ver Mais <i
-                                                        class="uil uil-angle-right-b align-middle"></i> </span>
-                                            </a>
-                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                                        <li class="text-muted small">
+                                            <i class="uil uil-comment me-1 fea icon-sm text-info"></i>
+                                            {{ $imovel->comentarios->count() }} Comentários
+                                        </li>
+                                        <li class="text-muted small ms-3">
+                                            <small>(MZN)</small><strong class="h6">
+                                                {{ number_format($imovel->preco,2) }}</strong>
+                                        </li>
+                                    </ul>
+                                    <div class="post-meta d-flex justify-content-end mt-3">
+                                        <a href="{{ route('posts.show', $imovel->slug) }}"
+                                            class="text-muted readmore text-primary">
+                                            <span class="badge rounded-pill bg-soft-primary p-2"> Ver Mais <i
+                                                    class="uil uil-angle-right-b align-middle"></i> </span>
+                                        </a>
                                     </div>
                                 </div>
-                                <!--end items-->
+
+                            <div class="author">
+                                <small class="text-light user d-block"><i class="uil uil-user"></i>
+                                    {{ $imovel->corretor->name }}</small>
+                                <small class="text-light date"><i
+                                        class="uil uil-calendar-alt"></i>{{ ' '. date_format($imovel->created_at, 'j') . ' th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
+                                    {{ date_format($imovel->created_at, 'Y') }}</small>
                             </div>
+                            </div>
+
+                        </div>
                         @endforeach
 
 
@@ -303,14 +233,14 @@
     <!--end section-->
     <!-- End -->
 
-    <section class="section pt-0"
+    <section class="section pt-5 bg-facebook-darken"
         style="background: url('{{ asset('website/images/real/build.png') }}') bottom no-repeat;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <div class="section-title mb-4 pb-2">
                         <span class="badge rounded-pill bg-soft-warning">Recentes</span>
-                        <h4 class="title mb-4">Imóveis publicados recentemente</h4>
+                        <h4 class="title mb-4 text-dark">Imóveis publicados recentemente</h4>
                         <p class="text-muted para-desc mx-auto mb-0"></p>
                     </div>
                 </div>
@@ -334,8 +264,8 @@
                                 </div>
                             </a>
                             <div class="card-body content">
-                                <h5><a href="{{ route('posts.show', $imovel->slug) }}"
-                                        class="card-title title text-dark">{{ $imovel->titulo }}</a></h5>
+                                <a href="{{ route('posts.show', $imovel->slug) }}"
+                                        class="text-dark product-name h6 d-inline-block text-truncate">{{ $imovel->titulo }}</a>
                                 <div class="rating">
                                     <ul class="list-unstyled mb-0">
 
@@ -370,7 +300,7 @@
                                 <small class="text-light user d-block"><i class="uil uil-user"></i>
                                     {{ $imovel->corretor->name }}</small>
                                 <small class="text-light date"><i
-                                        class="uil uil-calendar-alt"></i>{{ date_format($imovel->created_at, 'j') . 'th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
+                                        class="uil uil-calendar-alt"></i>{{' '. date_format($imovel->created_at, 'j') . 'th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
                                     {{ date_format($imovel->created_at, 'Y') }}</small>
                             </div>
                         </div>
@@ -406,3 +336,19 @@
     <meta name="author" content="Administrator" />
     <meta name="website" content="{{ config('app.url') }}" />
 @endsection
+@push('css')
+<style>
+    .bg-dark-light {
+        background-color: #3c414a9c !important;
+    }
+    .bg-facebook{
+        background-color: #f6f6f6 !important;
+
+    }
+
+    .bg-facebook-darken{
+        background-color: #dde6e9 !important;
+
+    }
+</style>
+@endpush

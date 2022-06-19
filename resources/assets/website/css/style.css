@@ -5237,3 +5237,12 @@ display: -webkit-box;
 -webkit-line-clamp: 5;
 -webkit-box-orient: vertical;
 }
+.bg-facebook{
+    background-color: #f6f6f6 !important;
+
+}
+
+.bg-facebook-darken{
+    background-color: #dde6e9 !important;
+
+}
