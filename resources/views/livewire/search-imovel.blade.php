@@ -5,7 +5,7 @@
         <div class="col-lg-12 col-12 mb-4 pb-2 " data-aos="fade-up" data-aos-duration="300">
             <x-post-card author="{{ $imovel->corretor->name }}"
                 title="{{ $imovel->titulo }}"
-                description="{{ $imovel->descricao }}"
+                :description="$imovel->descricao"
                 price="{{ $imovel->preco }}"
 
                 ratings="{{ $imovel->ratings }}"
