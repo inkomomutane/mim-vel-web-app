@@ -71,6 +71,9 @@ Route::get('/termos-e-condicoes',function(){
     return view('website.termos');
 })->name('termos');
 
+Route::post('/posts-search',function(){
+    dd(request()->all());
+})->name('search-posts');
 
 Auth::routes([
     'register' => false,

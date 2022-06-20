@@ -4,6 +4,8 @@
 /public/website
 /public/backend
 /public/vendor
+/public/*.zip
+/public/*.rar
 /storage/*.key
 /vendor
 .env

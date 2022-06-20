@@ -54,7 +54,7 @@
 
         </div>
     </div>
-    
+
 
     {{-- <div class="container" style="padding-top: 3.5rem">
         <div class="dropdown mt-3">
@@ -89,7 +89,7 @@
                   <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </div>
-        </div> 
+        </div>
     </div> --}}
     @endsection
 @push('js')
