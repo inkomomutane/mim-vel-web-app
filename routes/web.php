@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\BackupController;
+use App\Http\Controllers\PostSearchController;
 use App\Models\Imovel;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
@@ -51,10 +52,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/posts', function () {
-    return view('website.posts')->with('posts', Imovel::with('ratings')
-    ->with('comentarios')
-    ->with('corretor')
-    ->paginate(9));
+    return view('website.posts')->with('posts',null);
 })->name('posts');
 
 Route::controller(ImovelController::class)->group(function () {
@@ -71,9 +69,10 @@ Route::get('/termos-e-condicoes',function(){
     return view('website.termos');
 })->name('termos');
 
-Route::post('/posts-search',function(){
-    dd(request()->all());
-})->name('search-posts');
+
+Route::controller(PostSearchController::class)->group(function(){
+    Route::any('/posts-search','search')->name('search-posts');
+});
 
 Auth::routes([
     'register' => false,

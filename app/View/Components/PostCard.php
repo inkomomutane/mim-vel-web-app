@@ -27,6 +27,9 @@ class PostCard extends Component
     public  $date;
     public $comments;
     public $image;
+    public $tipo;
+    public $andares;
+    public $ano;
 
     public function __construct(
         $author = "",
@@ -40,10 +43,13 @@ class PostCard extends Component
         $banheiros = null,
         $piscinas = null,
         $garagens = null,
+        $andares = null,
+        $tipo = null,
         $url = '',
         $date = null,
         $comments = 0,
-        $image = ""
+        $image = "",
+        $ano = null
 
 
     ) {
@@ -51,7 +57,7 @@ class PostCard extends Component
         $this->title = $title;
         $this->price = $price;
         $this->description = $description;
-        $this->rating = $ratings;
+        $this->ratings = $ratings;
         $this->quartos = $quartos;
         $this->area = $area;
         $this->suites = $suites;
@@ -62,6 +68,9 @@ class PostCard extends Component
         $this->date =  is_null($date)? now() : $date;
         $this->comments = $comments;
         $this->image = $image;
+        $this->tipo = $tipo;
+        $this->andares = $andares;
+        $this->ano = $ano;
     }
 
     /**

@@ -19,9 +19,12 @@ class PostFilter extends Component
     public $estados;
     public $precoMin;
     public $precoMax;
+    public $search;
 
-    public function mount()
+
+    public function mount($search = null)
     {
+        $this->search = $search;
         $this->bairros = Bairro::all();
         $this->tipoDeImovels = TipoDeImovel::all();
         $this->condicaos = Condicao::all();
@@ -35,5 +38,4 @@ class PostFilter extends Component
     {
         return view('livewire.post-filter');
     }
-
 }

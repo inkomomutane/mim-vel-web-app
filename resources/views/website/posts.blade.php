@@ -31,14 +31,18 @@
             </span>
 
             <div class="collapse navbar-collapse">
-                @livewire('post-filter')
+                @livewire('post-filter',[
+                    'search' => $search
+                ])
             </div>
         </div>
     </nav>
     <section class="p-3 bg-facebook-darken">
         <div class="container">
             <div class="row">
-                @livewire('search-imovel')
+                @livewire('search-imovel', [
+                    'posts' => $posts
+                ])
             </div>
         </div>
 

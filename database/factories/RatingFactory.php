@@ -21,7 +21,7 @@ class RatingFactory extends Factory
         'rating' => rand(1,5),
 		'ip' => '127.0.0.1',
 		'nome'=> $this->faker->name(),
-		'imovel_id' => Imovel::all()->random(1)->first()
+		'imovel_id' => Imovel::all()->random(5)->first()
         ];
     }
 }

@@ -1,6 +1,7 @@
 <div class="w-100">
-    <form class="d-flex row" action="{{ route('search-posts') }}" method="POST">
+    <form class="d-flex row" action="{{ route('search-posts') }}" method="POST" id="filterForm">
         @csrf
+        <input type="hidden" name="search" value="{{$search}}" readonly>
         <div class="col-sm-2">
             <select class="form-control form-select bairros p-3 m-0 mx-3  w-100 rounded-3 bg-white"
                 aria-label="Default select example" multiple name="bairros[]">
@@ -33,7 +34,7 @@
                 aria-label="Default select example" multiple name="estados[]">
                 <option placeholder class="bg-white">Estado</option>
                 @foreach ($estados as $estado)
-<option value="{{$estado->id}}">{{$estado->nome}}</option>
+                    <option value="{{ $estado->id }}">{{ $estado->nome }}</option>
                 @endforeach
             </select>
         </div>
@@ -41,7 +42,7 @@
             <button class="form-control dropdown-toggle p-2 text-start" type="text" placeholder="Filtro"
                 aria-label="dropdown" id="filtro" data-bs-toggle="dropdown" aria-expanded="false"
                 data-bs-auto-close="outside">
-             + Filtros
+                + Filtros
             </button>
 
             <div class="dropdown-menu p-2 shadow-md border-0 dropdown-menu-start dropdown-menu-lg-end"
@@ -59,67 +60,72 @@
                     <div class="col-6">
                         <input type="text" name="min_price" id="min_price"
                             class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="(MZN) Preço Min">
-                        <small class="text-muted">Menor preço no site :(MZN) {{number_format($precoMin,2)}}</small>
+                        <small class="text-muted">Menor preço no site :(MZN) {{ number_format($precoMin, 2) }}</small>
                     </div>
                     <div class="col-6">
                         <input type="text" name="max_price" id="max_price"
                             class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="(MZN) Preço Max">
-                        <small class="text-muted">Maior preço no site :(MZN)  {{number_format($precoMax,2)}}</small>
+                        <small class="text-muted">Maior preço no site :(MZN)
+                            {{ number_format($precoMax, 2) }}</small>
                     </div>
                     <h6 class="text-muted my-2">Caracteristicas</h6>
 
                     <div class="w-100 m-0 p-0 pt-2 row justify-content-between ">
                         <div class="col-3">
-                            <input type="text" name="" id="ano"
+                            <input type="text" name="ano" id="ano"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Ano">
 
                         </div>
                         <div class="col-3">
-                            <input type="text" name="" id="area"
+                            <input type="text" name="area" id="area"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Área (m²)">
                         </div>
                         <div class="col-3">
-                            <input type="text" name="" id="quartos"
+                            <input type="text" name="quartos" id="quartos"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Quartos">
 
                         </div>
                         <div class="col-3">
-                            <input type="text" name="" id="suites"
+                            <input type="text" name="suites" id="suites"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Suites">
                         </div>
                     </div>
 
                     <div class="w-100 m-0 p-0 pt-2 row justify-content-between ">
                         <div class="col-3">
-                            <input type="text" name="" id="banheiros"
+                            <input type="text" name="banheiros" id="banheiros"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Banheiros">
 
                         </div>
                         <div class="col-3">
-                            <input type="text" name="" id="piscinas"
+                            <input type="text" name="piscinas" id="piscinas"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Piscinas">
                         </div>
                         <div class="col-3">
-                            <input type="text" name="" id="garagens"
+                            <input type="text" name="garagens" id="garagens"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Garagens">
 
                         </div>
                         <div class="col-3 mb-3">
-                            <input type="text" name="" id="andares"
+                            <input type="text" name="andares" id="andares"
                                 class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="Andares">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
-
-            <button class="btn btn-outline-success" type="submit">
-                @svg('fluentui-arrow-sync-circle-24', 'fea icon-sm fw-bold')
-                Pesquisar</button>
-                <span class="btn btn-outline-danger" id="clearFormChoices">
+        <div class="col-sm-3 row p-0 m-0">
+            <div class="col-6">
+                <button class="btn btn-outline-success w-100" type="submit">
+                    @svg('fluentui-arrow-sync-circle-24', 'fea icon-sm fw-bold')
+                    Pesquisar</button>
+            </div>
+            <div class="col-6">
+                <span class="btn btn-outline-danger w-100" id="clearFormChoices">
                     @svg('fluentui-filter-dismiss-16', 'fea icon-sm')
-                    Limpar Filtros</span>
+                    Limpar</span>
+            </div>
+
         </div>
     </form>
 </div>
