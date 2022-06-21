@@ -197,7 +197,7 @@
 
                             <h6 class="mt-4">Mapa</h6>
                             @if ($imovel->mapa)
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 mb-4 ">
                                     <div class="card map border-0">
                                         <div class="card-body p-0 ratio ratio-16x9">
                                             {!! $imovel->mapa !!}
@@ -221,10 +221,14 @@
                                 </li>
                                 <li class="pb-3">
 
-                                    <a href="" target="_blank" class="rounded mb-2" data-bs-toggle="modal"
+                                    <a href=""  class="rounded mb-2" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">@svg('fluentui-calendar-chat-24-o', 'fea icon-md text-muted')</i> &nbsp; Mensagem </a>
 
                                 </li>
+                                <li class="pb-3">
+                                    <a href="" class="rounded mb-2" data-bs-toggle="modal"
+                                    data-bs-target="#avaliar">@svg('fluentui-star-24-o', 'fea icon-md text-muted')</i> &nbsp; Avaliar </a>
+                                    </li>
                             </ul>
                         </div>
                     </div>
@@ -233,6 +237,7 @@
         </div>
     </section>
     @livewire('message-agenda', ['corretor_id' => $imovel->corretor_id, 'imovel_id' => $imovel->id])
+    @livewire('avaliar', [ 'imovel_id' => $imovel->id])
 
 @endsection
 @push('css')
@@ -240,4 +245,5 @@
 @endpush
 @push('js')
     <script src="{{ asset('website/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('website/js/page/post.js') }}"></script>
 @endpush

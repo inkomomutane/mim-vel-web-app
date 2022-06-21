@@ -49,20 +49,20 @@
         @svg('fluentui-tasks-app-20-o' ,'feather align-middle')<span class="align-middle">Tipo de Imóvel</span>
     </a>
 </li>
-<li class="sidebar-item ">
-    <a class="sidebar-link " href="">
+<li class="sidebar-item @if (request()->routeIs('agenda.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('agenda.index') }}">
         @svg('fluentui-calendar-clock-24-o' ,'feather align-middle')<span class="align-middle">Agendas</span>
     </a>
 </li>
 <li class="sidebar-item  @if (request()->routeIs('termos.index')) active @endif">
     <a class="sidebar-link" href="{{ route('termos.index') }}">
-        @svg('fluentui-history-16' ,'feather align-middle')<span class="align-middle">Termos de condições</span>
+        @svg('fluentui-document-lock-16-o' ,'feather align-middle')<span class="align-middle">Termos de condições</span>
     </a>
 </li>
 
 <li class="sidebar-item  @if (request()->routeIs('politicas.index')) active @endif">
     <a class="sidebar-link" href="{{ route('politicas.index') }}">
-        @svg('fluentui-history-16' ,'feather align-middle')<span class="align-middle">Politicas de privacidade</span>
+        @svg('fluentui-shield-lock-48-o' ,'feather align-middle')<span class="align-middle">Politicas de privacidade</span>
     </a>
 </li>
 <li class="sidebar-item  @if (request()->is('backup')) active @endif">

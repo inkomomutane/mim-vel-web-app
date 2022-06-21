@@ -34,7 +34,7 @@ fields.map((e) => new window.IMask(document.getElementById(e), {
     mask: 'num',
     blocks: {
         num: {
-            mask: Number,
+            mask: '[000000000]',
         }
     }
 }));

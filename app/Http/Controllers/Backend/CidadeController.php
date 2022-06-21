@@ -17,7 +17,7 @@ class CidadeController extends Controller
     public function index()
     {
 
-        return view('backend.cidade.index')->with('cidades',Cidade::all());
+        return view('backend.cidade.index')->with('cidades',Cidade::with('bairros')->get());
 
     }
 

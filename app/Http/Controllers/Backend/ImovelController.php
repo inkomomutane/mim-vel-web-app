@@ -7,7 +7,9 @@ use App\Models\Imovel;
 use App\Http\Requests\Imovel\ImovelCreateRequest;
 use App\Http\Requests\Imovel\ImovelUpdateRequest;
 use App\Models\Bairro;
+use App\Models\Comentario;
 use App\Models\Condicao;
+use App\Models\Rating;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
 use Intervention\Image\Facades\Image;
@@ -153,10 +155,16 @@ class ImovelController extends Controller
     {
         if (!is_null($imovel)) {
             try {
+                visits($imovel)->reset();
+
+                Rating::whereIn('id',$imovel->ratings->pluck('id'))->delete();
+                Comentario::whereIn('id',$imovel->comentarios->pluck('id'))->delete();
                 $imovel->delete();
+
                 session()->flash('success', 'Imovel deletado com sucesso.');
                 return redirect()->route('imovel.index');
             } catch (\Throwable $e) {
+                throw $e;
                 session()->flash('error', 'Erro ao deletar imovel.');
                 return redirect()->route('imovel.index');
             }

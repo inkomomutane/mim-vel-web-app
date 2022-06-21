@@ -5,6 +5,7 @@
     "/website/js/bootstrap.js": "/website/js/bootstrap.js",
     "/website/js/page/about.js": "/website/js/page/about.js",
     "/website/js/page/contact.js": "/website/js/page/contact.js",
+    "/website/js/page/post.js": "/website/js/page/post.js",
     "/website/js/page/posts.js": "/website/js/page/posts.js",
     "/website/js/page/privacy.js": "/website/js/page/privacy.js",
     "/website/js/page/search.js": "/website/js/page/search.js",
