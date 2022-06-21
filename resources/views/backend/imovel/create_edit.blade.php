@@ -74,7 +74,7 @@
                             </div>
                             <div>
                                 <label for="name">Descrição</label>
-                                <textarea class="col-12" name="descricao" id="editor">
+                                <textarea class="col-12" name="descricao" id="editor" rows="14">
                                     @if (old('descricao'))
 {!! old('descricao') !!}
 @elseif(request()->routeIs('imovel.edit'))

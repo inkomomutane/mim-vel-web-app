@@ -54,6 +54,17 @@
         @svg('fluentui-calendar-clock-24-o' ,'feather align-middle')<span class="align-middle">Agendas</span>
     </a>
 </li>
+<li class="sidebar-item  @if (request()->routeIs('termos.index')) active @endif">
+    <a class="sidebar-link" href="{{ route('termos.index') }}">
+        @svg('fluentui-history-16' ,'feather align-middle')<span class="align-middle">Termos de condições</span>
+    </a>
+</li>
+
+<li class="sidebar-item  @if (request()->routeIs('politicas.index')) active @endif">
+    <a class="sidebar-link" href="{{ route('politicas.index') }}">
+        @svg('fluentui-history-16' ,'feather align-middle')<span class="align-middle">Politicas de privacidade</span>
+    </a>
+</li>
 <li class="sidebar-item  @if (request()->is('backup')) active @endif">
     <a class="sidebar-link" href="{{ url('/backup') }}">
         @svg('fluentui-history-16' ,'feather align-middle')<span class="align-middle">Backup's</span>
