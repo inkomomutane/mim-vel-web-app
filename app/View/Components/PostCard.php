@@ -30,6 +30,7 @@ class PostCard extends Component
     public $tipo;
     public $andares;
     public $ano;
+    public $imovel;
 
     public function __construct(
         $author = "",
@@ -49,7 +50,8 @@ class PostCard extends Component
         $date = null,
         $comments = 0,
         $image = "",
-        $ano = null
+        $ano = null,
+        $imovel = null
 
 
     ) {
@@ -71,6 +73,7 @@ class PostCard extends Component
         $this->tipo = $tipo;
         $this->andares = $andares;
         $this->ano = $ano;
+        $this->imovel = $imovel;
     }
 
     /**

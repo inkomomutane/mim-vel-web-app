@@ -43,11 +43,11 @@
                         <div class="tab-content bg-white rounded-3 shadow" id="pills-tabContent">
 
                             <div class="card border-0 tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="rent-login">
-                                <form class="card-body text-start" action="{{ route('search-posts') }}" method="post">
+                                <form class="card-body text-start" action="{{ route('posts.search') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="home_link" id="home_link" readonly value="{{Hash::make('home_link')}}">
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="col-lg-5 col-md-6 col-12">
                                             <div class="mb-3 text-start">
                                                 <div class="form-icon position-relative">
 
@@ -60,10 +60,11 @@
                                         </div>
                                         <!--end col-->
 
-                                        <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="col-lg-4 col-md-6 col-12">
                                             <div class="mb-3 text-start">
                                                 <select class="form-control form-select alugar p-2" id="buy-properties3"
-                                                    name="rent" >
+                                                    name="rent[]" multiple>
+                                                    <option placeholder> Arendar ou comprar</option>
                                                     <option value="1">Alugar</option>
                                                     <option value="0">Comprar</option>
                                                 </select>
@@ -278,6 +279,7 @@
             delay: [8000, 10000, 12000, ]
         });
     </script>
+    <script src="{{ asset('website/js/page/welcome.js') }}"></script>
 @endpush
 @section('seo')
     <title>@yield('title')</title>

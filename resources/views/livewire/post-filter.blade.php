@@ -1,5 +1,5 @@
 <div class="w-100">
-    <form class="d-flex row" action="{{ route('search-posts') }}" method="POST" id="filterForm">
+    <form class="d-flex row" action="{{ route('posts.search') }}" method="POST" id="filterForm">
         @csrf
         <input type="hidden" name="search" value="{{$search}}" readonly>
         <div class="col-sm-2">
@@ -57,16 +57,23 @@
                         </div>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-4">
                         <input type="text" name="min_price" id="min_price"
                             class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="(MZN) Preço Min">
-                        <small class="text-muted">Menor preço no site :(MZN) {{ number_format($precoMin, 2) }}</small>
+                        <small class="text-muted">No site : {{ number_format($precoMin, 2) }}</small>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <input type="text" name="max_price" id="max_price"
                             class="form-control  bg-white p-2 rounded-3 bg-light w-100" placeholder="(MZN) Preço Max">
-                        <small class="text-muted">Maior preço no site :(MZN)
+                        <small class="text-muted">No site :
                             {{ number_format($precoMax, 2) }}</small>
+                    </div>
+                    <div class="col-4">
+                        <select name="rent[]" multiple class="alugar">
+                            <option placeholder>Alugar ou comprar</option>
+                            <option value="1" selected>Alugar</option>
+                            <option value="0" selected>Comprar</option>
+                        </select>
                     </div>
                     <h6 class="text-muted my-2">Caracteristicas</h6>
 

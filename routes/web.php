@@ -51,9 +51,6 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
-Route::get('/posts', function () {
-    return view('website.posts')->with('posts',null);
-})->name('posts');
 
 Route::controller(ImovelController::class)->group(function () {
     Route::get('/posts/{imovel}', 'show')->name('posts.show');
@@ -71,7 +68,8 @@ Route::get('/termos-e-condicoes',function(){
 
 
 Route::controller(PostSearchController::class)->group(function(){
-    Route::any('/posts-search','search')->name('search-posts');
+    Route::any('/posts-search','search')->name('posts.search');
+    Route::any('/posts','search')->name('posts');
 });
 
 Auth::routes([

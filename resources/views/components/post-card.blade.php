@@ -22,8 +22,25 @@
             <!--end col-->
             <div class="col-lg-9">
                 <div class="card-body content p-sm-3 p-lg-0 px-lg-3 ">
+
+                    @if($imovel)
                     <small class="badge badge-rounded-3 bg-success">@svg('fluentui-building-home-24', 'fea icon-sm')
-                        {{ $tipo }} </small>
+                        {{ $imovel->bairro->nome }} </small>
+                        <small class="badge badge-rounded-3 bg-success">@svg('fluentui-building-home-24', 'fea icon-sm')
+                            {{ $imovel->tipo_de_imovel->nome }} </small>
+
+                        <small class="badge badge-rounded-3 bg-success">@svg('fluentui-building-home-24', 'fea icon-sm')
+                            {{ $imovel->condicao->nome }} </small>
+                            <small class="badge badge-rounded-3 bg-success">@svg('fluentui-building-home-24', 'fea icon-sm')
+                                {{ $imovel->status->nome }} </small>
+                            <small class="badge badge-rounded-3 bg-success">@svg('fluentui-building-home-24', 'fea icon-sm')
+                                    {{ $imovel->corretor->name }} </small>
+                                    <small class="badge badge-rounded-3 bg-success">@svg('fluentui-building-home-24', 'fea icon-sm')
+                                        {{ $imovel->isForRent() ? __('Aluguel') : __('Compra')}} </small>
+
+                    @endif
+
+
                     <h5><a href="{{ $url }}" class="card-title title text-dark">{{ $title }}</a></h5>
 
                     <ul class="list-unstyled h6 mb-0 text-warning">

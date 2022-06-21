@@ -31,7 +31,10 @@ class SearchImovel extends Component
 
 
     protected $paginationTheme = 'bootstrap';
-
+public function updatedPage()
+{
+    $this->dispatchBrowserEvent('page-updated', ['newName' => $this->page]);
+}
     public function mount($posts = null)
     {
 
@@ -46,6 +49,9 @@ class SearchImovel extends Component
         return view('livewire.search-imovel', [
             'imovels' => Imovel::with('ratings')
                 ->with('corretor')
+                ->with('bairro')
+                ->with('condicao')
+                ->with('status')
                 ->with('tipo_de_imovel')
                 ->with('condicao')
                 ->with('media')
