@@ -8,12 +8,12 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-12 text-center">
                         <div class="page-next-level">
-                            <h4 class="display-4 fw-bold text-white title-dark mb-3"> Termos e condições </h4>
+                            <h4 class="display-4 fw-bold text-white title-dark mb-3"> Políticas de privacidade </h4>
                             <div class="page-next">
                                 <nav aria-label="breadcrumb" class="d-inline-block">
                                     <ul class="breadcrumb bg-white rounded shadow mb-0">
                                         <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Mimóvel</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Termos e Condições</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Políticas de privacidade</li>
                                     </ul>
                                 </nav>
                             </div>
@@ -32,7 +32,7 @@
                             <div class="col-lg-9">
                                 <div class="card shadow border-0 rounded">
                                     <div class="card-body">
-                                        {!! $termo->termos !!}
+                                        {!! $politica->politicas !!}
                                     </div>
                                 </div>
                             </div><!--end col-->

@@ -38,8 +38,8 @@
                         <li  @if (request()->routeIs('posts.*') || request()->routeIs('posts')) class="active" @endif><a href="{{ route('posts') }}">Todos imóveis</a></li>
                         <li  @if (request()->routeIs('sobre')) class="active" @endif><a href="{{ route('sobre') }}">Sobre nós</a></li>
                         <li  @if (request()->routeIs('contacto')) class="active" @endif><a href="{{ route('contacto') }}">Contactos</a></li>
-                        <li  @if (request()->routeIs('termos')) class="active" @endif><a href="{{ route('termos') }}">Termos e Condições</a></li>
-
+                        <li  @if (request()->routeIs('termos')) class="active" @endif><a href="{{ route('termos') }}">Termos e condições</a></li>
+                        @if (request()->routeIs('politicas')) <li class="active"><a href="{{ route('termos') }}">Políticas de privacidade</a></li> @endif
                     </ul>
 
                     <!--end navigation menu-->

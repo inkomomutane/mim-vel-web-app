@@ -2,9 +2,10 @@ try {
     window.$ = window.jQuery = require('jquery');
     window.Popper = require('@popperjs/core');
     window.bootstrap = require('bootstrap');
+    window.Choices = require('choices.js');
+    Window.IMask = require('imask');
 } catch (e) {};
 
-import "./choices";
 (function($bs) {
     const CLASS_NAME = 'has-child-dropdown-show';
     $bs.Dropdown.prototype.toggle = function(_orginal) {
@@ -30,7 +31,7 @@ import "./choices";
         });
     });
 
-   
+
     document.querySelectorAll('.dropdown-hover, .dropdown-hover-all .dropdown').forEach(function(dd) {
         dd.addEventListener('mouseenter', function(e) {
             let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');

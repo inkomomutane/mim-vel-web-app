@@ -26,103 +26,55 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0 p-5">
+
                     <div class="text-center features-absolute bg-dark-light p-5 rounded-3">
-                        <ul class="nav nav-pills shadow border-bottom flex-column flex-sm-row d-md-inline-flex nav-justified mb-0 bg-white rounded-top position-relative overflow-hidden"
+                        <ul class="nav nav-pills shadow border-bottom flex-column flex-sm-row d-md-inline-flex nav-justified-start mb-0 bg-white rounded-top position-relative overflow-hidden"
                             id="pills-tab" role="tablist">
                             <li class="nav-item m-1">
-                                <a class="nav-link py-2 px-5 active rounded" id="buy-login" data-bs-toggle="pill"
-                                    href="#buy" role="tab" aria-controls="buy" aria-selected="false">
+                                <div class="nav-link py-2 px-5  rounded-3" id="buy-login">
                                     <div class="text-center">
-                                        <h6 class="mb-0">Comprar</h6>
+                                        <h6 class="mb-0">Comprar ou Alugar</h6>
                                     </div>
-                                </a>
+                                </div>
                                 <!--end nav link-->
                             </li>
-                            <!--end nav item-->
-
-                            <li class="nav-item m-1">
-                                <a class="nav-link py-2 px-5 rounded" id="rent-login" data-bs-toggle="pill" href="#rent"
-                                    role="tab" aria-controls="rent" aria-selected="false">
-                                    <div class="text-center">
-                                        <h6 class="mb-0">Arendar</h6>
-                                    </div>
-                                </a>
-                                <!--end nav link-->
-                            </li>
-                            <!--end nav item-->
                         </ul>
 
                         <div class="tab-content bg-white rounded-3 shadow" id="pills-tabContent">
-                            <div class="card border-0 tab-pane fade show active" id="buy" role="tabpanel"
-                                aria-labelledby="buy-login">
-                                <form class="card-body text-start">
+
+                            <div class="card border-0 tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="rent-login">
+                                <form class="card-body text-start" action="{{ route('posts.search') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="home_link" id="home_link" readonly value="{{Hash::make('home_link')}}">
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="col-lg-5 col-md-6 col-12">
                                             <div class="mb-3 text-start">
                                                 <div class="form-icon position-relative">
+
                                                     <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="locationc" id="location" type="text"
-                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por localização:">
+                                                    <input name="search" id="location" type="text"
+                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por titulo, bairro, cidade... :">
+
                                                 </div>
                                             </div>
                                         </div>
                                         <!--end col-->
 
-                                        <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="col-lg-4 col-md-6 col-12">
                                             <div class="mb-3 text-start">
-                                                <select class="form-control form-select p-2" id="buy-properties3"
-                                                    name="tipo_de_imovel">
-                                                    <option>Houses</option>
-                                                    <option>Apartment</option>
-                                                    <option>Offices</option>
-                                                    <option>Townhome</option>
+                                                <select class="form-control form-select alugar p-2" id="buy-properties3"
+                                                    name="rent[]" multiple>
+                                                    <option placeholder> Arendar ou comprar</option>
+                                                    <option value="1">Alugar</option>
+                                                    <option value="0">Comprar</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 col-12 ">
-                                            <a href="javascript:void(0)" class="btn btn-warning ">
+                                            <button type="submit" class="btn btn-warning">
                                                 <i data-feather="search" class="fea icon-sm icons"></i>
-                                                Pesquisar</a>
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </form>
-                                <!--end form-->
-                            </div>
-                            <!--end teb pane-->
-
-                            <div class="card border-0 tab-pane fade" id="rent" role="tabpanel" aria-labelledby="rent-login">
-                                <form class="card-body text-start">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <div class="form-icon position-relative">
-                                                    <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="locationc" id="location" type="text"
-                                                        class="form-control ps-5 p-2" placeholder="Pesquisar por localização:">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-3 col-md-6 col-12">
-                                            <div class="mb-3 text-start">
-                                                <select class="form-control form-select p-2" id="buy-properties3"
-                                                    name="tipo_de_imovel">
-                                                    <option>Houses</option>
-                                                    <option>Apartment</option>
-                                                    <option>Offices</option>
-                                                    <option>Townhome</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3 col-md-6 col-12 ">
-                                            <a href="javascript:void(0)" class="btn btn-warning">
-                                                <i data-feather="search" class="fea icon-sm icons"></i>
-                                                Pesquisar</a>
+                                                Pesquisar</button>
                                         </div>
                                         <!--end col-->
                                     </div>
@@ -327,6 +279,7 @@
             delay: [8000, 10000, 12000, ]
         });
     </script>
+    <script src="{{ asset('website/js/page/welcome.js') }}"></script>
 @endpush
 @section('seo')
     <title>@yield('title')</title>
