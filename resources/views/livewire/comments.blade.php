@@ -1,6 +1,6 @@
 <div>
 
-    <h5 class="mt-4">Comentários :</h5>
+    <h5 class="mt-5 text-muted">Comentários :</h5>
 
     <ul class="media-list list-unstyled mb-0">
         @foreach ($comments as $comentario)

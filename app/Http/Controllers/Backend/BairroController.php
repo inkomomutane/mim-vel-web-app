@@ -18,7 +18,7 @@ class BairroController extends Controller
     public function index()
     {
 
-        return view('backend.bairro.index')->with('bairros',Bairro::all());
+        return view('backend.bairro.index')->with('bairros',Bairro::with('cidade')->get());
 
     }
 

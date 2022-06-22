@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AgendaController;
 use App\Http\Controllers\Backend\BairroController;
 use App\Http\Controllers\Backend\CidadeController;
 use App\Http\Controllers\Backend\CondicaoController;
@@ -91,30 +92,26 @@ Auth::routes([
 Route::prefix('/adminintration')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
     Route::resource('user', UserController::class);
+    Route::resource('agenda', AgendaController::class);
     Route::resource('cidade', CidadeController::class);
     Route::resource('bairro', BairroController::class);
     Route::resource('condicao', CondicaoController::class);
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
     Route::resource('imovel', ImovelController::class);
-
     Route::controller(MediaController::class)->group(function () {
         Route::get('media', 'index')->name('media.index');
         Route::get('media/imovel/{imovel}', 'show')->name('media.show');
         Route::post('media/store/{imovel}', 'store')->name('media.store');
         Route::delete('media/{media}', 'destroy')->name('media.destroy');
     });
-
     Route::controller(TermosController::class)->group(function(){
         Route::get('/termos','index')->name('termos.index');
         Route::patch('/termos','update')->name('termos.update');
     });
-
-
     Route::controller(PoliticaController::class)->group(function(){
         Route::get('/politicas','index')->name('politicas.index');
         Route::patch('/politicas','update')->name('politicas.update');
     });
-
 });
 

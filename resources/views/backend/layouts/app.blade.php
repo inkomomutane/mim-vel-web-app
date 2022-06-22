@@ -13,6 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('website/images/favicon.ico') }}">
     <!-- Styles -->
     <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
     @stack('css')

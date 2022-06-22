@@ -18,7 +18,7 @@ fields.map((e) => new IMask(document.getElementById(e), {
     mask: 'num',
     blocks: {
         num: {
-            mask: Number,
+            mask: '[000000000]',
         }
     }
 }));

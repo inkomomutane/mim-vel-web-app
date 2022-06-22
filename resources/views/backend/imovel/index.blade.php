@@ -24,6 +24,14 @@
                                 </div>
                             </div>
                         @endif
+                        @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible show fade" role="alert" style="border-left: 5px solid rgb(100, 0, 0);">
+                            <div class="alert-body">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <strong>{{ session('error') }}</strong>
+                            </div>
+                        </div>
+                    @endif
                         <table id="imovels_table" class="table table-responsive display table-hover my-0 w-100">
                             <thead>
                             <tr>
