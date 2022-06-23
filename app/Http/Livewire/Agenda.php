@@ -14,11 +14,7 @@ class Agenda extends Component
     public $unreadMsg;
     public function mount()
     {
-        $this->unreadMsg =AgendaModel::select(
-            DB::raw(
-            'count("select * from agendas where is_readed = 0") as count
-          ')
-          )->first()->count();
+        $this->unreadMsg =AgendaModel::where('is_readed',false)->count();
     }
 
 
@@ -36,7 +32,7 @@ class Agenda extends Component
     {
         try {
             $agenda =  AgendaModel::find($id);
-            $agenda->is_readed = !$agenda->is_readed;
+            $agenda->is_readed = true;
             $agenda->save();
             session()->flash('success', 'Mensagem de '. $agenda->nome_do_cliente . ' marcada como' .  ($agenda->is_readed ? 'lida.' : 'não lida.') . '.');
         } catch (\Throwable $th) {

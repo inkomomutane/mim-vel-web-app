@@ -286,22 +286,16 @@ $(function () {
     //     drops: "auto"
     // });
 
-    // $('#dates').daterangepicker({
-    //     showDropdowns : true,
-    //     autoUpdateInput:true,
-    //     locale: {
-    //         format: 'D-MM-Y',
-    //         separator: " to "
-    //     },
-    //     ranges: {
-    //         'Hoje': [moment(), moment()],
-    //         'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-    //         'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
-    //         'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
-    //         'Este mês': [moment().startOf('month'), moment().endOf('month')],
-    //         'Mês passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    //      }
-    // });
+    $('#dates').daterangepicker({
+        showDropdowns : true,
+        autoUpdateInput:true,
+        maxDate : new Date(9999,11,31,23,59,59),
+        minDate: new Date(2000,1,1),
+        locale: {
+            format: 'D-MM-Y',
+            separator: " A "
+        }
+    });
 
     // const biDate =  new Date();
     // biDate.setYear((new Date().getFullYear() - 5));

@@ -1,9 +1,6 @@
 @extends('backend.layouts.app')
-
+@section('title', 'Dashboard')
 @section('content')
-<div class="row mb-2 mb-xl-3">
-    <div class="col-auto d-none d-sm-block">
-        <h3><strong>Mimóvel</strong> Dashboard</h3>
-    </div>
-</div>
+
+@livewire('dashboard')
 @endsection

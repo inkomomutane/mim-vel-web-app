@@ -116,7 +116,8 @@
                                     <select name="tipo_de_imovel_id" id="tipo_de_imovel_id"
                                         class="form-control form-select">
                                         @foreach ($tipo_de_imovels as $tipo_de_imovel)
-                                            <option value="{{ $tipo_de_imovel->id }}">{{ $tipo_de_imovel->nome }}</option>
+                                            <option value="{{ $tipo_de_imovel->id }}">{{ $tipo_de_imovel->nome }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -150,40 +151,40 @@
                             <div class="row justify-content-between my-3">
                                 <div class="col-sm-3">
                                     <label for="name">Ano de construção</label>
-                                    <input type="text" imaskable_number name="ano" id="ano" class="form-control"
-                                        placeholder="Ano de construção"
+                                    <input type="text" imaskable_number name="ano" id="ano"
+                                        class="form-control" placeholder="Ano de construção"
                                         value="@if (old('ano')) {{ old('ano') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->ano }} @endif">
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="name">Área (m²)</label>
-                                    <input type="text" imaskable_number name="area" id="area" class="form-control"
-                                        placeholder="Área (m²)"
+                                    <input type="text" imaskable_number name="area" id="area"
+                                        class="form-control" placeholder="Área (m²)"
                                         value="@if (old('area')) {{ old('area') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->area }} @endif">
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="name">Quartos</label>
-                                    <input type="text" imaskable_number name="quartos" id="quartos" class="form-control"
-                                        placeholder="Quartos"
+                                    <input type="text" imaskable_number name="quartos" id="quartos"
+                                        class="form-control" placeholder="Quartos"
                                         value="@if (old('quartos')) {{ old('quartos') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->quartos }} @endif">
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="name">Suites</label>
-                                    <input type="text" imaskable_number name="suites" id="suites" class="form-control"
-                                        placeholder="Suites"
+                                    <input type="text" imaskable_number name="suites" id="suites"
+                                        class="form-control" placeholder="Suites"
                                         value="@if (old('suites')) {{ old('suites') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->suites }} @endif">
                                 </div>
                             </div>
                             <div class="row justify-content-between my-3">
                                 <div class="col-sm-3">
                                     <label for="name">Banheiros</label>
-                                    <input type="text" imaskable_number name="banheiros" id="banheiros" class="form-control"
-                                        placeholder="Banheiros"
+                                    <input type="text" imaskable_number name="banheiros" id="banheiros"
+                                        class="form-control" placeholder="Banheiros"
                                         value="@if (old('banheiros')) {{ old('banheiros') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->banheiros }} @endif">
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="name">Piscinas</label>
-                                    <input type="text" imaskable_number name="piscinas" id="piscinas" class="form-control"
-                                        placeholder="Piscinas"
+                                    <input type="text" imaskable_number name="piscinas" id="piscinas"
+                                        class="form-control" placeholder="Piscinas"
                                         value="@if (old('piscinas')) {{ old('piscinas') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->piscinas }} @endif">
                                 </div>
                                 <div class="col-sm-3">
@@ -212,3 +213,34 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.ClassicEditor.create(document.querySelector('#editor'));
+            const currencyMask = new IMask(
+                document.getElementById('preco_imovel'), {
+                    mask: '(MZN) num',
+                    blocks: {
+                        num: {
+                            mask: Number,
+                            thousandsSeparator: '.',
+                            placeholderChar: "M"
+
+                        }
+                    }
+                });
+
+            const fields = ['ano', 'area', 'quartos', 'suites', 'banheiros', 'piscinas', 'garagens', 'andares'];
+            fields.map((e) => new IMask(document.getElementById(e), {
+                mask: 'num',
+                blocks: {
+                    num: {
+                        mask: '[000000000]',
+                    }
+                }
+            }));
+
+        });
+    </script>
+@endpush
