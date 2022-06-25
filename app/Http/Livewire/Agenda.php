@@ -16,8 +16,6 @@ class Agenda extends Component
     {
         $this->unreadMsg =AgendaModel::where('is_readed',false)->count();
     }
-
-
     public function render()
     {
         return view('livewire.agenda',[

@@ -23,9 +23,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top p-3 shadow-sm">
         <div class="container-fluid">
             <span class="navbar-toggler border-0">
-                <a href="#" class="text-dark" data-bs-toggle="offcanvas" data-bs-target="#filtros"
+                <a href="#" class="text-dark fw-bolder" data-bs-toggle="offcanvas" data-bs-target="#filtros"
                     aria-controls="offcanvasRight">
-                    @svg('fluentui-filter-16', 'fea icon-md')
+                    @svg('fluentui-filter-16', 'fea icon-sm')
                     Filtros
                 </a>
             </span>
@@ -56,7 +56,9 @@
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-
+            @livewire('post-filter-mobile',[
+                'search' => $search
+            ])
         </div>
     </div>
     @endsection
