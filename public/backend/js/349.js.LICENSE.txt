@@ -1,0 +1,15 @@
+/*! Bootstrap 5 ui integration for DataTables' SearchBuilder
+ * ©2016 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! DataTables Bootstrap 5 integration
+ * 2020 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! SearchBuilder 1.3.2
+     * ©SpryMedia Ltd - datatables.net/license/mit
+     */
+
+/*! SearchBuilder 1.3.2
+ * ©SpryMedia Ltd - datatables.net/license/mit
+ */

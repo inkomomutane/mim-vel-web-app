@@ -1,0 +1,15 @@
+/*! Bootstrap integration for DataTables' StateRestore
+ * ©2016 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! DataTables Bootstrap 5 integration
+ * 2020 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! StateRestore 1.0.0
+     * 2019-2020 SpryMedia Ltd - datatables.net/license
+     */
+
+/*! StateRestore 1.0.0
+ * 2019-2020 SpryMedia Ltd - datatables.net/license
+ */

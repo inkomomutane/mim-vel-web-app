@@ -1,0 +1,1 @@
+[".avaliar"].map((function(a){return new Choices(a,{})}));
