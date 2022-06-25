@@ -11,13 +11,10 @@ use App\Http\Controllers\Backend\Pages\TermosController;
 use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\BackupController;
 use App\Http\Controllers\PostSearchController;
 use App\Models\Imovel;
 use App\Models\Politica;
 use App\Models\Termo;
-use App\Models\User;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,9 +43,9 @@ Route::get('/', function () {
         'recents' => Imovel::count() > 3 ?
             Imovel::orderBy('created_at', 'desc')
             ->with('ratings')
-    ->with('comentarios')
-    ->with('corretor')
-    ->take(3)->get() :
+            ->with('comentarios')
+            ->with('corretor')
+            ->take(3)->get() :
             Imovel::with('ratings')
             ->with('comentarios')
             ->with('corretor')
@@ -60,25 +57,25 @@ Route::get('/', function () {
 Route::controller(ImovelController::class)->group(function () {
     Route::get('/posts/{imovel}', 'show')->name('posts.show');
 });
-Route::get('/contacto',function(){
+Route::get('/contacto', function () {
     return view('website.contacto');
 })->name('contacto');
 
-Route::get('/sobre-nos',function(){
+Route::get('/sobre-nos', function () {
     return view('website.sobre');
 })->name('sobre');
-Route::get('/termos-e-condicoes',function(){
-    return view('website.termos')->with('termo' ,Termo::first());
+Route::get('/termos-e-condicoes', function () {
+    return view('website.termos')->with('termo', Termo::first());
 })->name('termos');
 
-Route::get('/politicas-de-privacidade',function(){
-    return view('website.politicas')->with('politica' ,Politica::first());
+Route::get('/politicas-de-privacidade', function () {
+    return view('website.politicas')->with('politica', Politica::first());
 })->name('politicas');
 
 
-Route::controller(PostSearchController::class)->group(function(){
-    Route::any('/posts-search','search')->name('posts.search');
-    Route::any('/posts','search')->name('posts');
+Route::controller(PostSearchController::class)->group(function () {
+    Route::any('/posts-search', 'search')->name('posts.search');
+    Route::any('/posts', 'search')->name('posts');
 });
 
 Auth::routes([
@@ -89,15 +86,28 @@ Auth::routes([
 ]);
 
 
-Route::prefix('/adminintration')->middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
+Route::prefix('/administration')->middleware(['auth',
+// 'role:Super-Admin|Admin|Admin_L2'
+])->group(function () {
     Route::resource('user', UserController::class);
-    Route::resource('agenda', AgendaController::class);
     Route::resource('cidade', CidadeController::class);
     Route::resource('bairro', BairroController::class);
     Route::resource('condicao', CondicaoController::class);
     Route::resource('status', StatusController::class);
     Route::resource('tipo_de_imovel', TipoDeImovelController::class);
+    Route::controller(TermosController::class)->group(function () {
+        Route::get('/termos', 'index')->name('termos.index');
+        Route::patch('/termos', 'update')->name('termos.update');
+    });
+    Route::controller(PoliticaController::class)->group(function () {
+        Route::get('/politicas', 'index')->name('politicas.index');
+        Route::patch('/politicas', 'update')->name('politicas.update');
+    });
+});
+
+Route::prefix('/administration')->middleware(['auth',
+//  'role:Super-Admin|Admin|Admin_L2|Corretor|Corretor_L2'
+ ])->group(function () {
     Route::resource('imovel', ImovelController::class);
     Route::controller(MediaController::class)->group(function () {
         Route::get('media', 'index')->name('media.index');
@@ -105,13 +115,9 @@ Route::prefix('/adminintration')->middleware(['auth'])->group(function () {
         Route::post('media/store/{imovel}', 'store')->name('media.store');
         Route::delete('media/{media}', 'destroy')->name('media.destroy');
     });
-    Route::controller(TermosController::class)->group(function(){
-        Route::get('/termos','index')->name('termos.index');
-        Route::patch('/termos','update')->name('termos.update');
-    });
-    Route::controller(PoliticaController::class)->group(function(){
-        Route::get('/politicas','index')->name('politicas.index');
-        Route::patch('/politicas','update')->name('politicas.update');
-    });
+    Route::resource('agenda', AgendaController::class);
 });
 
+Route::prefix('/administration')->middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
+});

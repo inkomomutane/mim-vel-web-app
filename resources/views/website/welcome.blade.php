@@ -204,7 +204,7 @@
 
                 @foreach ($recents as $imovel)
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                        <div class="card blog rounded border-0 shadow">
+                        <div class="card blog rounded border-0 shadow-lg">
                             <a href="{{ route('posts.show', $imovel->slug) }}">
                                 <div class="position-relative">
                                     @if ($imovel->getFirstMedia('posts'))

@@ -25,7 +25,8 @@
                     <div class="py-2 px-4 border-bottom  d-lg-block">
                         <div class="d-flex align-items-center py-1">
                             <div class="flex-grow-1 ps-3">
-                                <h4 class="text-muted"> <span class="badge badge-info rounded-circle">{{$unreadMsg}}</span> Messagens</h4>
+                                <h4 class="text-muted fw-bold"> 
+                                    Messagens</h4>
                             </div>
                         </div>
                     </div>

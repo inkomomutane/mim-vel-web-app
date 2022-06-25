@@ -25,7 +25,9 @@ class ImovelController extends Controller
     public function index()
     {
 
-        return view('backend.imovel.index')->with('imovels',Imovel::all());
+        return view('backend.imovel.index')->with('imovels',
+        auth()->user()->hasRole('Super-Admin') ? Imovel::all() : Imovel::where('id',auth()->user()->id)->get()
+    );
 
     }
 
@@ -89,8 +91,6 @@ class ImovelController extends Controller
         ->facebook()
         ->twitter()
         ->linkedin()
-        ->reddit()
-        ->telegram()
         ->whatsapp()->getRawLinks());
     }
 

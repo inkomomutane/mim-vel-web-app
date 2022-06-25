@@ -49,16 +49,18 @@
                                 @csrf
                                 <div class="row justify-content-between mb-3">
                                     <div class="col-12">
-                                      <div class="row my-3  p-0 m-0 justify-content-between">
-                                        <label for="politicas" class="col">Editar politicas de privacidade</label>
-                                        <input type="submit" class="btn btn-primary rounded-3 col-auto" value="Actualizar politicas">
-                                      </div>
+                                        <div class="row my-3  p-0 m-0 justify-content-between">
+                                            <label for="politicas" class="col">Editar politicas de privacidade</label>
+                                            <input type="submit" class="btn btn-primary rounded-3 col-auto"
+                                                value="Actualizar politicas">
+                                        </div>
                                         <textarea name="politicas" type="text" class="fcol-12 w-100 " placeholder="Editar politicas de privacidade" autofocus
                                             autocomplete="" required id="editor">
-                                        @if (old('politicas')){!! old('politicas') !!}
-                                        @elseif(request()->routeIs('politicas.index'))
-                                        {!! $politica->politicas !!}
-                                        @endif
+                                        @if (old('politicas'))
+{!! old('politicas') !!}
+@elseif(request()->routeIs('politicas.index'))
+{!! $politica->politicas !!}
+@endif
                                     </textarea>
                                     </div>
                                 </div>
@@ -70,4 +72,9 @@
     </div>
 @endsection
 @push('js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.ClassicEditor.create(document.querySelector('#editor'));
+        });
+    </script>
 @endpush

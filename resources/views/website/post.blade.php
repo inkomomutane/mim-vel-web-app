@@ -1,4 +1,3 @@
-
 @extends('website.layouts.website')
 @section('title', 'Imóveis')
 @section('seo')
@@ -60,7 +59,7 @@
         <!--end container-->
     </section>
     <section class="row justify-content-center" style="margin: -1.3rem; z-index:99; position: relative;">
-        <div aria-label="breadcrumb" class="d-inline-block col-5">
+        <div aria-label="breadcrumb" class="d-inline-block col-7">
             <ul class="breadcrumb bg-white rounded shadow mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Mimóvel</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('posts') }}">Posts</a></lt>
@@ -70,166 +69,271 @@
     </section>
 
     <!--end section-->
-    <section class="section">
+    <section class="section bg-facebook-darken p-5">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <!-- Share media -->
-                        <div class="col-md-2 d-none d-md-block">
-                            <ul class="list-unstyled text-center sticky-bar social-icon mb-0">
-                                <li class="mb-3 h6">Partilhar</li>
+            <div class="row justify-content-center ">
 
-                                @foreach ($socialMedias as $key => $socialMedia)
-                                    <li><a href=" {{ $socialMedia }}" target="_blank"
-                                            class="rounded">@svg('fab-' . $key, 'fea icon-sm')</i></a></li>
-                                @endforeach
-                                <li>
-                                    <h5 class="mt-4  text-center text-muted">
-                                        <strong> {{ number_format($imovel->preco,2) }} MZN </strong>
-                                    </h5>
-                                </li>
-                            </ul>
+                <div class="col-lg-8 row">
+                    <div class="col-12 rounded-3 p-2 bg-white">
+                        <div class="m-3">
+                            <span class="badge rounded-pill text-dark p-2  " style="background: #efefef">
+                                @if ($imovel->isForRent())
+                                    Para aluguel
+                                @else
+                                    Para compra
+                                @endif
+                            </span>
                         </div>
-                        <!-- End media -->
-
-                        <div class="col-md-7 row">
-                            <ul class="list-unstyled d-flex justify-content-between mt-0">
-                                <li class="list-inline-item user me-2">
-                                    <span class="text-muted"> <strong>Autor :</strong> &nbsp; <i
-                                            class="uil uil-user text-dark"></i> &nbsp;
-                                        {{ $imovel->corretor->name }}</span>
-                                </li>
-                                <li class="list-inline-item date text-muted"><i class="uil uil-calendar-alt text-dark"></i>
-                                    {{ date_format($imovel->created_at, 'j') . 'th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
-                                    {{ date_format($imovel->created_at, 'Y') }}</li>
-                            </ul>
-
-                            <div class="row justify-content-between">
-                                <h5 class="mt-1 col-8">
-                                    {{ $imovel->titulo }}
-                                </h5>
-                                <h5 class="mt-1 col-4 text-end text-muted ">
-                                    <strong> {{number_format($imovel->preco,2) }} MZN </strong>
-                                </h5>
-                            </div>
-                            <h6 class="mt-4">Descrição</h6>
-                            <div class="text-muted">
-                                {!! $imovel->descricao !!}
-                            </div>
+                        <div class="mx-3 w-100">
+                            <h5 class="text-dark fw-bolder">
+                                {{ Str::ucfirst($imovel->titulo) }}
+                            </h5>
+                        </div>
+                        <div class="mx-3 w-100">
+                            <h5 class="text-dark fs-6 fw-light">
+                                @svg('fluentui-location-12-o', 'fea icon-sm text-muted')
+                                {{ Str::ucfirst($imovel->endereco) }}
+                            </h5>
+                        </div>
+                        <div class="mx-3 w-100">
+                            <p class="text-success fw-bold">
+                                <small>MZN</small> <strong class="fs-4">
+                                    {{ number_format($imovel->preco, 2) }}</strong>
+                            </p>
+                        </div>
 
 
-                            <h6 class="mt-2">Propriedades</h6>
-                            <div class="text-muted text-dark">
-                                <div class="row justify-content-start p-3">
-                                    @if ($imovel->endereco)
-                                        <div class="col-md-4 py-1">
-                                            Endereço: <strong>&nbsp; {{ $imovel->endereco }}</strong>
-                                        </div>
-                                    @endif
-                                    @if ($imovel->bairro)
-                                        <div class="col-md-4 py-1">
-                                            Bairro: <strong> &nbsp; {{ $imovel->bairro->nome }}</strong>
-                                        </div>
-                                    @endif
-                                    @if ($imovel->bairro->cidade)
-                                        <div class="col-md-4 py-1">
-                                            Cidade: <strong>&nbsp; {{ $imovel->bairro->cidade->nome }}</strong>
-                                        </div>
-                                    @endif
+                    </div>
+                    <div class="accordion p-0 m-0 my-2" id="buyingquestion">
+                        <div class="accordion-item col-12 rounded-3 p-2 my-2 bg-white ">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button border-0 bg-white text-dark fw-bold" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    Propriedades
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse border-0 collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#buyingquestion">
+                                <div class="accordion-body text-muted bg-white">
+                                    <div class="text-muted text-dark">
+                                        <div class="row justify-content-start p-3">
+                                            @if ($imovel->endereco)
+                                                <div class="col-md-4 py-1">
+                                                    Endereço: <strong>&nbsp; {{ $imovel->endereco }}</strong>
+                                                </div>
+                                            @endif
+                                            @if ($imovel->bairro)
+                                                <div class="col-md-4 py-1">
+                                                    Bairro: <strong> &nbsp; {{ $imovel->bairro->nome }}</strong>
+                                                </div>
+                                            @endif
+                                            @if ($imovel->bairro->cidade)
+                                                <div class="col-md-4 py-1">
+                                                    Cidade: <strong>&nbsp; {{ $imovel->bairro->cidade->nome }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->tipo_de_imovel)
-                                        <div class="col-md-4  py-1">
-                                            Tipo: <strong>&nbsp; {{ $imovel->tipo_de_imovel->nome }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->tipo_de_imovel)
+                                                <div class="col-md-4  py-1">
+                                                    Tipo: <strong>&nbsp; {{ $imovel->tipo_de_imovel->nome }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->condicao)
-                                        <div class="col-md-4  py-1">
-                                            Condição : <strong>&nbsp; {{ $imovel->condicao->nome }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->condicao)
+                                                <div class="col-md-4  py-1">
+                                                    Condição : <strong>&nbsp; {{ $imovel->condicao->nome }}</strong>
+                                                </div>
+                                            @endif
 
 
-                                    @if ($imovel->ano)
-                                        <div class="col-md-4 py-1">
-                                            Ano de construção : <strong>&nbsp; {{ $imovel->ano }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->ano)
+                                                <div class="col-md-4 py-1">
+                                                    Ano de construção : <strong>&nbsp; {{ $imovel->ano }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->area)
-                                        <div class="col-md-4 py-1">
-                                            Área (m²) : <strong>&nbsp; {{ $imovel->area }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->area)
+                                                <div class="col-md-4 py-1">
+                                                    Área (m²) : <strong>&nbsp; {{ $imovel->area }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->quartos)
-                                        <div class="col-md-4 py-1">
-                                            Quartos : <strong>&nbsp; {{ $imovel->quartos }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->quartos)
+                                                <div class="col-md-4 py-1">
+                                                    Quartos : <strong>&nbsp; {{ $imovel->quartos }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->suites)
-                                        <div class="col-md-4 py-1">
-                                            Suites : <strong>&nbsp; {{ $imovel->suites }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->suites)
+                                                <div class="col-md-4 py-1">
+                                                    Suites : <strong>&nbsp; {{ $imovel->suites }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->banheiros)
-                                        <div class="col-md-4 py-1">
-                                            Banheiros : <strong>&nbsp; {{ $imovel->banheiros }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->banheiros)
+                                                <div class="col-md-4 py-1">
+                                                    Banheiros : <strong>&nbsp; {{ $imovel->banheiros }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->piscinas)
-                                        <div class="col-md-4 py-1">
-                                            Piscinas : <strong>&nbsp; {{ $imovel->piscinas }}</strong>
-                                        </div>
-                                    @endif
+                                            @if ($imovel->piscinas)
+                                                <div class="col-md-4 py-1">
+                                                    Piscinas : <strong>&nbsp; {{ $imovel->piscinas }}</strong>
+                                                </div>
+                                            @endif
 
-                                    @if ($imovel->garagens)
-                                        <div class="col-md-4 py-1">
-                                            Garagens : <strong>&nbsp; {{ $imovel->garagens }}</strong>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <h6 class="mt-4">Mapa</h6>
-                            @if ($imovel->mapa)
-                                <div class="col-sm-12 mb-4 ">
-                                    <div class="card map border-0">
-                                        <div class="card-body p-0 ratio ratio-16x9">
-                                            {!! $imovel->mapa !!}
+                                            @if ($imovel->garagens)
+                                                <div class="col-md-4 py-1">
+                                                    Garagens : <strong>&nbsp; {{ $imovel->garagens }}</strong>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                            @endif
-
-                            @livewire('comments', ['imovel' => $imovel])
-
+                            </div>
                         </div>
-                        <!-- Share media -->
-                        <div class="col-md-2 d-none d-md-block">
-                            <ul class="list-unstyled text-start sticky-bar  mb-0 pl-2 text-muted">
-                                <li class="mb-3 h6">Contactar corretor</li>
+                    </div>
+                    <div class="accordion p-0 m-0" id="descricao">
+                        <div class="accordion-item col-12 rounded-3 p-2 my-2 bg-white ">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button border-0 bg-white text-dark fw-bold" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#descricao_one" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    Descrição
+                                </button>
+                            </h2>
+                            <div id="descricao_one" class="accordion-collapse border-0 collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#descricao">
+                                <div class="accordion-body text-muted bg-white">
+                                    <div class="text-muted text-dark">
+                                        <div class="row justify-content-start p-3 ">
+                                            {!! $imovel->descricao !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if ($imovel->mapa)
+                        <div class="accordion p-0 m-0 my-2" id="mapa">
+                            <div class="accordion-item col-12 rounded-3 p-2 my-2 bg-white ">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button border-0 bg-white text-dark fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#mapa_one" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        Localização no Mapa
+                                    </button>
+                                </h2>
+                                <div id="mapa_one" class="accordion-collapse border-0 collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#mapa">
+                                    <div class="accordion-body text-muted bg-white">
+                                        <div class="text-muted text-dark">
+                                            <div class="row justify-content-start rounded-3">
+                                                {!! $imovel->mapa !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
-                                <li class="pb-3">
-                                    <a href="tel:{{ $imovel->corretor->contacto }}"
-                                        class="rounded mb-2">@svg('fluentui-call-outbound-28-o', 'fea icon-md text-muted')</i> &nbsp;
-                                        Chamada </a>
-                                </li>
-                                <li class="pb-3">
 
-                                    <a href=""  class="rounded mb-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">@svg('fluentui-calendar-chat-24-o', 'fea icon-md text-muted')</i> &nbsp; Mensagem </a>
+                    <div class="accordion p-0 m-0" id="comments">
+                        <div class="accordion-item col-12 rounded-3 p-0 m-0 bg-white ">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button border-0 bg-white text-dark fw-bold" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#comment" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    Comentários
+                                </button>
+                            </h2>
+                            <div id="comment" class="accordion-collapse border-0 collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#comments">
+                                <div class="accordion-body text-muted bg-white">
+                                    <div class="text-muted text-dark">
+                                        <div class="row justify-content-start rounded-3">
+                                            @livewire('comments', ['imovel' => $imovel])
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                </li>
-                                <li class="pb-3">
-                                    <a href="" class="rounded mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#avaliar">@svg('fluentui-star-24-o', 'fea icon-md text-muted')</i> &nbsp; Avaliar </a>
-                                    </li>
-                            </ul>
+                </div>
+                <div class="col-lg-4 row mx-2 ">
+                    <div class="col-12 rounded-3 p-0 m-0 px-2 ">
+                        <div class="sticky-bar">
+                            <div class="accordion p-0 m-0 my-2 " id="contact">
+                                <div class="accordion-item col-12 rounded-3 p-0 m-0 bg-white ">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button border-0 bg-white text-dark fw-bold"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#contact_one"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Contactar o corretor
+                                        </button>
+                                    </h2>
+                                    <div id="contact_one" class="accordion-collapse border-0 collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#contact">
+                                        <div class="accordion-body text-muted bg-white">
+                                            <h4 class="fs-4 fw-bolder">{{ $imovel->corretor->name }}</h4>
+
+                                            <div class="text-muted text-dark">
+                                                <div class="row justify-content-start rounded-3">
+                                                    <div class="p-2 rounded-3 bg-white col-12">
+                                                        <a href="tel:{{ $imovel->corretor->contacto }}"
+                                                            class="btn btn-outline-info rounded-pill">@svg('fluentui-call-outbound-28-o', 'fea   icon-sm')</i>
+                                                            &nbsp;
+                                                            Ligar para o corretor</a>
+                                                    </div>
+                                                    <div class="p-2 rounded-3 bg-white col-12">
+                                                        <a href="" class="btn  btn-outline-info rounded-pill"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal">@svg('fluentui-calendar-chat-24-o', 'fea  icon-sm')</i> &nbsp;
+                                                            Enviar uma mensagem </a>
+                                                    </div>
+                                                    <div class="p-2 rounded-3 bg-white col-12">
+                                                        <a href="" class="btn btn-outline-info rounded-pill"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#avaliar">@svg('fluentui-star-24-o', 'fea   icon-sm')</i> &nbsp; Avaliar
+                                                            o imóvel </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion p-0 m-0 " id="share">
+                                <div class="accordion-item col-12 rounded-3 p-0 m-0 bg-white ">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button border-0 bg-white text-dark fw-bold"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#share_one"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Partilhar Imóvel
+                                        </button>
+                                    </h2>
+                                    <div id="share_one" class="accordion-collapse border-0 collapse show"
+                                        aria-labelledby="share_one" data-bs-parent="#share">
+                                        <div class="accordion-body text-muted bg-white">
+                                            <div class="text-muted text-dark">
+                                                <div class="row justify-content-start rounded-3">
+                                                    @foreach ($socialMedias as $key => $socialMedia)
+                                                        <div class="p-2 rounded-3 bg-white col-6">
+                                                            <a href=" {{ $socialMedia }}" target="_blank"
+                                                                class="btn btn-outline-info rounded-pill">@svg('fab-' . $key, 'fea icon-sm')</i>&nbsp;
+                                                                {{ $key }} </a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -237,7 +341,7 @@
         </div>
     </section>
     @livewire('message-agenda', ['corretor_id' => $imovel->corretor_id, 'imovel_id' => $imovel->id])
-    @livewire('avaliar', [ 'imovel_id' => $imovel->id])
+    @livewire('avaliar', ['imovel_id' => $imovel->id])
 
 @endsection
 @push('css')

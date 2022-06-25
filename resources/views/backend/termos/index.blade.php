@@ -70,4 +70,8 @@
     </div>
 @endsection
 @push('js')
+<script>
+            document.addEventListener("DOMContentLoaded", function() {
+     window.ClassicEditor.create(document.querySelector('#editor'));});
+</script>
 @endpush

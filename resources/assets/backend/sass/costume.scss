@@ -39,3 +39,13 @@
     height: 150px !important;
 object-fit: cover !important;
 }
+.dropdown-item{
+margin-top: 3px;
+margin-bottom: 3px;;
+}
+.dropdown-item.active{
+    border-left: 3px solid #046fd2;
+    background: #c7e0f8;
+    color: #605d5d;
+    font-weight: 600;
+    }

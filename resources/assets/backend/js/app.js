@@ -22,7 +22,3 @@ import "./modules/datatables";
 
 
 
-//import "fontawesome-pro/js/all";
-
-
-
