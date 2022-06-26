@@ -59,6 +59,7 @@
         "feather-icons": "^4.28.0",
         "flatpickr": "^4.6.9",
         "glightbox": "^3.2.0",
+        "gumshoejs": "^5.1.2",
         "imask": "^6.4.2",
         "inputmask": "^5.0.7",
         "isotope": "^1.0.0-alpha.3",
@@ -73,7 +74,8 @@
         "select2": "^4.1.0-rc.0",
         "selectric": "^1.13.0",
         "simplebar": "^5.3.6",
-        "swiper": "^8.1.1",
-        "timepicker": "^1.13.18"
+        "swiper": "^8.2.4",
+        "timepicker": "^1.13.18",
+        "tiny-slider": "^2.9.4"
     }
 }
