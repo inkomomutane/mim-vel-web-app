@@ -345,9 +345,7 @@
 
 @endsection
 @push('css')
-    <link href="{{ asset('website/css/swiper.min.css') }}" rel="stylesheet" type="text/css" />
-@endpush
+ @endpush
 @push('js')
-    <script src="{{ asset('website/js/swiper.min.js') }}"></script>
     <script src="{{ asset('website/js/page/post.js') }}"></script>
 @endpush
