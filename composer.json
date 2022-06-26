@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
+        "masbug/flysystem-google-drive-ext": "^2.2",
         "overtrue/laravel-lang": "~6.0",
         "owenvoke/blade-fontawesome": "^2.0",
         "pavel-mironchik/laravel-backup-panel": "^2.2",
