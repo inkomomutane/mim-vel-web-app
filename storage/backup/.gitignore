@@ -1,0 +1,4 @@
+*.zip
+*.gzip
+*.rar
+!.gitignore

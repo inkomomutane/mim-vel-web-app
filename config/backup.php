@@ -8,8 +8,8 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => '',
 
+        'name' => '',
         'source' => [
 
             'files' => [
@@ -18,7 +18,7 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    storage_path('app'),
+                    storage_path('app/public'),
                 ],
 
                 /*
@@ -118,8 +118,8 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
-                'google'
+                'google',
+                'backup'
             ],
         ],
 
@@ -208,23 +208,20 @@ return [
     'monitor_backups' => [
         [
             'name' => '',
-            'disks' => ['local','google'],
+            'disks' => ['backup'],
             'health_checks' => [
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
+                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 2,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
             ],
         ],
-
-        /*
         [
-            'name' => 'name of the second app',
-            'disks' => ['local', 's3'],
+            'name' => '',
+            'disks' => ['google'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
             ],
         ],
-        */
     ],
 
     'cleanup' => [
