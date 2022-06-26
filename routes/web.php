@@ -79,10 +79,6 @@ Route::controller(PostSearchController::class)->group(function () {
     Route::any('/posts', 'search')->name('posts');
 });
 
-Route::get('test-drive', function() {
-    Storage::disk('google')->put('test.txt', 'Hello World');
-});
-
 Auth::routes([
     'register' => false,
     'reset' => false,
