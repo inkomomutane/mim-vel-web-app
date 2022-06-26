@@ -55,6 +55,7 @@
             <!-- swipper controls -->
             <div class="swiper-button-next border rounded-circle text-center"></div>
             <div class="swiper-button-prev border rounded-circle text-center"></div>
+            <div class="swiper-pagination"></div>
         </div>
         <!--end container-->
     </section>
