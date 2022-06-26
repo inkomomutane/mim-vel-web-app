@@ -1,1 +1,1 @@
-[".avaliar"].map((function(a){return new Choices(a,{})}));
+(()=>{[".avaliar"].map((function(e){return document.querySelector(e)?new Choices(e,{}):null}));window.onload=function(){new window.Swiper(".swiper-container",{speed:1200,spaceBetween:0,grabCursor:!0,loop:!0,autoplay:{delay:6500,disableOnInteraction:!1},pagination:{el:".swiper-pagination",clickable:!0},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}})}})();
