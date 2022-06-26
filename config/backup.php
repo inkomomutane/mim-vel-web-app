@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', ''),
+        'name' => '',
 
         'source' => [
 
@@ -119,14 +119,7 @@ return [
              */
             'disks' => [
                 'local',
-                'google' => [
-                    'driver' => 'google',
-                    'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
-                    'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
-                    'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
-                    'folder' => env('GOOGLE_DRIVE_FOLDER'), // without folder is root of drive or team drive
-                    //'teamDriveId' => env('GOOGLE_DRIVE_TEAM_DRIVE_ID'),
-                ],
+                'google'
             ],
         ],
 
