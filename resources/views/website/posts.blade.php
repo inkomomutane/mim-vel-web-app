@@ -64,12 +64,11 @@
     @endsection
 @push('js')
     <script>
-        easy_background("#posts", {
+         window.easy_background("#posts", {
             slide: ["{{ asset('website/images/real/p9 (3).jpg') }}"],
             delay: [200]
         });
     </script>
-    <script src="{{ asset('website/js/aos.js') }}"></script>
     <script src="{{ asset('website/js/page/posts.js') }}"></script>
 @endpush
 @section('seo')
@@ -81,5 +80,5 @@
     <meta name="website" content="{{ config('app.url') }}" />
 @endsection
 @push('css')
-    <link href="{{ asset('website/css/aos.css') }}" rel="stylesheet" type="text/css" />
+
 @endpush

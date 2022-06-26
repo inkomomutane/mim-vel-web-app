@@ -21,7 +21,9 @@
  *     06.  Active Sidebar Menu  *
  ================================*/
 
-
+ import './bootstrap';
+ import './modules';
+import './plugins.init';
 window.addEventListener('load',   fn , false )
 
 //  window.onload = function loader() {
@@ -202,7 +204,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 //small menu
 try {
-    var spy = new Gumshoe('#navmenu-nav a');
+    var spy = new window.Gumshoe('#navmenu-nav a');
 }catch(err) {
 
 }

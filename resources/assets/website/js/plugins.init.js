@@ -1,3 +1,6 @@
+
+
+
 /* Template Name: Landrick - Saas & Software Landing Page Template
    Author: Shreethemes
    E-mail: shreethemes@gmail.com
@@ -6,6 +9,9 @@
    Updated: March 2021
    File Description: Common JS file of the template(plugins.init.js)
 */
+
+
+
 
 
 /*********************************/
@@ -20,13 +26,17 @@
  *     07.  Gallery filter js    * (For Portfolio pages)
  *     08.  Tobii lightbox       * (For Portfolio pages)
  *     09.  CK Editor            * (For Compose mail)
- *     10.  Fade Animation       * 
- *     11.  Typed Text animation (animation) * 
+ *     10.  Fade Animation       *
+ *     11.  Typed Text animation (animation) *
  ================================*/
-         
+
 //=========================================//
 /*            01) Tiny slider              */
 //=========================================//
+
+
+
+
 
 if(document.getElementsByClassName('tiny-single-item').length > 0) {
     var slider = tns({
@@ -221,7 +231,7 @@ try {
     };
 
     // DATA BACKGROUND IMAGE
-    var swiper = new Swiper(".swiper-container", swiperOptions);
+    var swiper = new window.swiper(".swiper-container", swiperOptions);
 
     let data = document.querySelectorAll(".slide-bg-image")
     data.forEach((e) => {
@@ -341,16 +351,7 @@ try {
 }
 
 
-//=========================================//
-/*/*            06) Datepicker js*/
-//=========================================//
 
-try {
-    const start = datepicker('.start', { id: 1 })
-    const end = datepicker('.end', { id: 1 })
-} catch (err) {
-
-}
 
 
 //=========================================//
@@ -442,25 +443,11 @@ try {
 //=========================================//
 
 try {
-    const tobii = new Tobii()
+    const tobii = new window.Tobii()
 } catch (err) {
 
 }
 
-
-//=========================================//
-/*/*            09) CK Editor              */
-//=========================================//
-
-try {
-    ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch(error => {
-        console.error(error);
-    });
-} catch(err) {
-
-}
 
 
 //=========================================//
@@ -468,7 +455,7 @@ try {
 //=========================================//
 
 try {
-    AOS.init({
+    window.Aos.init({
         easing: 'ease-in-out-sine',
         duration: 1000
     });
@@ -540,3 +527,48 @@ try {
 } catch(err) {
 
 }
+
+
+(function($bs) {
+    const CLASS_NAME = 'has-child-dropdown-show';
+    $bs.Dropdown.prototype.toggle = function(_orginal) {
+        return function() {
+            document.querySelectorAll('.' + CLASS_NAME).forEach(function(e) {
+                e.classList.remove(CLASS_NAME);
+            });
+            let dd = this._element.closest('.dropdown').parentNode.closest('.dropdown');
+            for (; dd && dd !== document; dd = dd.parentNode.closest('.dropdown')) {
+                dd.classList.add(CLASS_NAME);
+            }
+            return _orginal.call(this);
+        }
+    }($bs.Dropdown.prototype.toggle);
+
+    document.querySelectorAll('.dropdown').forEach(function(dd) {
+        dd.addEventListener('hide.bs.dropdown', function(e) {
+            if (this.classList.contains(CLASS_NAME)) {
+                this.classList.remove(CLASS_NAME);
+                e.preventDefault();
+            }
+            e.stopPropagation(); // do not need pop in multi level mode
+        });
+    });
+
+
+    document.querySelectorAll('.dropdown-hover, .dropdown-hover-all .dropdown').forEach(function(dd) {
+        dd.addEventListener('mouseenter', function(e) {
+            let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');
+            if (!toggle.classList.contains('show')) {
+                $bs.Dropdown.getOrCreateInstance(toggle).toggle();
+                dd.classList.add(CLASS_NAME);
+                $bs.Dropdown.clearMenus();
+            }
+        });
+        dd.addEventListener('mouseleave', function(e) {
+            let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');
+            if (toggle.classList.contains('show')) {
+                $bs.Dropdown.getOrCreateInstance(toggle).toggle();
+            }
+        });
+    });
+})(bootstrap);

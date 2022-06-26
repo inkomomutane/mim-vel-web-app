@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="{{ asset('website/css/app.css') }}" defer>
     <link rel="stylesheet" href="{{ asset('website/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
-
-    <!-- Slider -->
-    <link rel="stylesheet" href="{{ asset('website/css/tiny-slider.css') }}" />
        @stack('css')
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireStyles
@@ -25,8 +22,8 @@
 
 <body>
             <!-- Loader -->
-        <div id="preloader" class="bg-light">
-            <div id="status" class="bg-light">
+        <div id="preloader">
+            <div id="status" >
                 <div class="spinner ">
                     <div class="double-bounce1"></div>
                     <div class="double-bounce2"></div>
@@ -57,25 +54,12 @@
 
     <!-- javascript -->
     <script src="{{ asset('website/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('website/js/easy_background.js') }}"></script>
 
-    <!-- SLIDER -->
-    <script src="{{ asset('website/js/tiny-slider.js ') }}"></script>
-    <!-- Icons -->
-    <script src="{{ asset('website/js/feather.min.js') }}"></script>
     <!-- Main Js -->
     @stack('js')
-
-    <script src="{{ asset('website/js/plugins.init.js') }}"></script>
-    <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
-    <script src="{{ asset('website/js/app.js') }}"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 
-    @livewire('livewire-ui-modal')
     @livewireScripts
-
-
-
 </body>
 
 </html>

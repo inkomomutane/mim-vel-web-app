@@ -38,7 +38,7 @@ let mixis =  mix.js('resources/assets/backend/js/app.js', 'public/backend/js')
 * |-----------------------------------------------------------------
 */
 // .copyDirectory('resources/assets/website','public/website')
-.js('resources/assets/website/js/bootstrap.js', 'public/website/js')
+.js('resources/assets/website/js/app.js', 'public/website/js/bootstrap.js')
 
 .sass('resources/assets/website/sass/app.scss', 'public/website/css')
 
