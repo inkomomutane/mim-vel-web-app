@@ -17,6 +17,7 @@ use App\Models\Politica;
 use App\Models\Termo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,10 @@ Route::get('/politicas-de-privacidade', function () {
 Route::controller(PostSearchController::class)->group(function () {
     Route::any('/posts-search', 'search')->name('posts.search');
     Route::any('/posts', 'search')->name('posts');
+});
+
+Route::get('test-drive', function() {
+    Storage::disk('google')->put('test.txt', 'Hello World');
 });
 
 Auth::routes([
