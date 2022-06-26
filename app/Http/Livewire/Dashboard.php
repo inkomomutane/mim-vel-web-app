@@ -18,23 +18,23 @@ class Dashboard extends Component
     public function mount()
     {
         $this->data = $this->getData();
-        $this->dates = "01-01-". now()->year . " A " . "31-12-" . now()->year; 
+        $this->dates = "01-01-". now()->year . " A " . "31-12-" . now()->year;
         $this->dateRangeLabels = [];
     }
-    
+
     public function render()
     {
         return view('livewire.dashboard',[
             'imoveis' => Imovel::count(),
             'users' => User::count(),
-            'visitas' => Visit::count(),
+            'visitas' => visits('App\Models\Imovel')->count(),
             'mensagens' => Agenda::where('is_readed',false)->count()
         ]);
     }
 
     public function setDates(string $dates)
     {
-      
+
         $this->dates = $dates;
     }
 
