@@ -1,42 +1,6 @@
 
 
 
-/* Template Name: Landrick - Saas & Software Landing Page Template
-   Author: Shreethemes
-   E-mail: shreethemes@gmail.com
-   Created: August 2019
-   Version: 3.1.1
-   Updated: March 2021
-   File Description: Common JS file of the template(plugins.init.js)
-*/
-
-
-
-
-
-/*********************************/
-/*         INDEX                 */
-/*================================
- *     01.  Tiny Slider          *
- *     02.  Swiper slider        *
- *     03.  Countdown Js         * (For Comingsoon pages)
- *     04.  Maintenance js       * (For Maintenance page)
- *     05.  Data Counter         *
- *     06.  Datepicker js        *
- *     07.  Gallery filter js    * (For Portfolio pages)
- *     08.  Tobii lightbox       * (For Portfolio pages)
- *     09.  CK Editor            * (For Compose mail)
- *     10.  Fade Animation       *
- *     11.  Typed Text animation (animation) *
- ================================*/
-
-//=========================================//
-/*            01) Tiny slider              */
-//=========================================//
-
-
-
-
 
 if(document.getElementsByClassName('tiny-single-item').length > 0) {
     var slider = tns({
@@ -171,81 +135,6 @@ if(document.getElementsByClassName('tiny-six-item').length > 0) {
     });
 };
 
-//=========================================//
-/*            02) Swiper slider            */
-//=========================================//
-
-// try {
-//     var menu = [];
-//     var interleaveOffset = 0.5;
-//     var swiperOptions = {
-//         loop: true,
-//         speed: 1000,
-//         parallax: true,
-//         autoplay: {
-//             delay: 6500,
-//             disableOnInteraction: false,
-//         },
-//         watchSlidesProgress: true,
-//         pagination: {
-//             el: '.swiper-pagination',
-//             clickable: true,
-//             renderBullet: function (index, className) {
-//                 return '<span class="' + className + '">' + 0 + (index + 1) + '</span>';
-//             },
-//         },
-
-//         navigation: {
-//             nextEl: '.swiper-button-next',
-//             prevEl: '.swiper-button-prev',
-//         },
-
-//         on: {
-//             progress: function () {
-//                 var swiper = this;
-//                 for (var i = 0; i < swiper.slides.length; i++) {
-//                     var slideProgress = swiper.slides[i].progress;
-//                     var innerOffset = swiper.width * interleaveOffset;
-//                     var innerTranslate = slideProgress * innerOffset;
-//                     swiper.slides[i].querySelector(".slide-inner").style.transform =
-//                         "translate3d(" + innerTranslate + "px, 0, 0)";
-//                 }
-//             },
-
-//             touchStart: function () {
-//                 var swiper = this;
-//                 for (var i = 0; i < swiper.slides.length; i++) {
-//                     swiper.slides[i].style.transition = "";
-//                 }
-//             },
-
-//             setTransition: function (speed) {
-//                 var swiper = this;
-//                 for (var i = 0; i < swiper.slides.length; i++) {
-//                     swiper.slides[i].style.transition = speed + "ms";
-//                     swiper.slides[i].querySelector(".slide-inner").style.transition =
-//                         speed + "ms";
-//                 }
-//             }
-//         }
-//     };
-
-//     // DATA BACKGROUND IMAGE
-//     var swiper = new window.swiper(".swiper-container", swiperOptions);
-
-//     let data = document.querySelectorAll(".slide-bg-image")
-//     data.forEach((e) => {
-//         e.style.backgroundImage =
-//         `url(${e.getAttribute('data-background')})`;
-//     })
-// } catch (err) {
-
-// }
-
-
-//=========================================//
-/*/*            03) Countdown js           */
-//=========================================//
 
 try {
     if(document.getElementById("days")){
@@ -572,3 +461,189 @@ try {
         });
     });
 })(bootstrap);
+
+window.addEventListener('load',   fn , false );
+
+//  window.onload = function loader() {
+function fn() {
+    // Preloader
+    if(document.getElementById('preloader')){
+        setTimeout(() => {
+            document.getElementById('preloader').style.visibility = 'hidden';
+            document.getElementById('preloader').style.opacity = '0';
+        }, 200);
+    }
+    // Menus
+    activateMenu();
+    // toggleMenu();
+}
+
+//Menu
+// Toggle menu
+window.toggleMenu  = function toggleMenu() {
+    document.getElementById('isToggle').classList.toggle('open');
+    var isOpen = document.getElementById('navigation')
+    if (isOpen.style.display === "block") {
+        isOpen.style.display = "none";
+    } else {
+        isOpen.style.display = "block";
+    }
+};
+
+//Menu Active
+function getClosest(elem, selector) {
+
+    // Element.matches() polyfill
+    if (!Element.prototype.matches) {
+        Element.prototype.matches =
+            Element.prototype.matchesSelector ||
+            Element.prototype.mozMatchesSelector ||
+            Element.prototype.msMatchesSelector ||
+            Element.prototype.oMatchesSelector ||
+            Element.prototype.webkitMatchesSelector ||
+            function (s) {
+                var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+                    i = matches.length;
+                while (--i >= 0 && matches.item(i) !== this) { }
+                return i > -1;
+            };
+    }
+
+    // Get the closest matching element
+    for (; elem && elem !== document; elem = elem.parentNode) {
+        if (elem.matches(selector)) return elem;
+    }
+    return null;
+
+};
+
+function activateMenu() {
+    var menuItems = document.getElementsByClassName("sub-menu-item");
+    if (menuItems) {
+
+        var matchingMenuItem = null;
+        for (var idx = 0; idx < menuItems.length; idx++) {
+            if (menuItems[idx].href === window.location.href) {
+                matchingMenuItem = menuItems[idx];
+            }
+        }
+
+        if (matchingMenuItem) {
+            matchingMenuItem.classList.add('active');
+            var immediateParent = getClosest(matchingMenuItem, 'li');
+            if (immediateParent) {
+                immediateParent.classList.add('active');
+            }
+
+            var parent = getClosest(matchingMenuItem, '.parent-menu-item');
+            if (parent) {
+                parent.classList.add('active');
+                var parentMenuitem = parent.querySelector('.menu-item');
+                if (parentMenuitem) {
+                    parentMenuitem.classList.add('active');
+                }
+                var parentOfParent = getClosest(parent, '.parent-parent-menu-item');
+                if (parentOfParent) {
+                    parentOfParent.classList.add('active');
+                }
+            } else {
+                var parentOfParent = getClosest(matchingMenuItem, '.parent-parent-menu-item');
+                if (parentOfParent) {
+                    parentOfParent.classList.add('active');
+                }
+            }
+        }
+    }
+}
+
+// Clickable Menu
+if(document.getElementById("navigation")){
+    var elements = document.getElementById("navigation").getElementsByTagName("a");
+    for(var i = 0, len = elements.length; i < len; i++) {
+        elements[i].onclick = function (elem) {
+            if(elem.target.getAttribute("href") === "javascript:void(0)") {
+                var submenu = elem.target.nextElementSibling.nextElementSibling;
+                submenu.classList.toggle('open');
+            }
+        }
+    }
+}
+
+// Menu sticky
+window.windowScroll  = function windowScroll() {
+    const navbar = document.getElementById("topnav");
+    if(navbar!=null){
+        if (
+            document.body.scrollTop >= 50 ||
+            document.documentElement.scrollTop >= 50
+        ) {
+            navbar.classList.add("nav-sticky");
+        } else {
+            navbar.classList.remove("nav-sticky");
+        }
+    }
+}
+
+window.addEventListener('scroll', (ev) => {
+    ev.preventDefault();
+    windowScroll();
+})
+
+// back-to-top
+var mybutton = document.getElementById("back-to-top");
+window.onscroll = function () {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    if(mybutton!=null){
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+
+
+//ACtive Sidebar
+(function () {
+    var current = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);;
+    if (current === "") return;
+    var menuItems = document.querySelectorAll('.sidebar-nav a');
+    for (var i = 0, len = menuItems.length; i < len; i++) {
+        if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
+            menuItems[i].parentElement.className += " active";
+        }
+    }
+})();
+
+//Feather icon
+feather.replace();
+
+// dd-menu
+var ddmenu = document.getElementsByClassName("dd-menu");
+for(var i = 0, len = ddmenu.length; i < len; i++) {
+    ddmenu[i].onclick = function (elem) {
+        elem.stopPropagation();
+    }
+}
+
+//Tooltip
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+});
+
+//small menu
+try {
+    var spy = new window.Gumshoe('#navmenu-nav a');
+}catch(err) {
+
+}

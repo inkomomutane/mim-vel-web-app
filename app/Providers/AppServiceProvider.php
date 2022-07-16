@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -72,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
                 return new \Illuminate\Filesystem\FilesystemAdapter($driver, $adapter);
             });
         } catch(\Exception $e) {
-            // your exception handling logic
+            throw $e;
         }
     }
 }
