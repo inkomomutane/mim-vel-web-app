@@ -118,8 +118,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'google',
-                'backup'
+                'backup','google'
             ],
         ],
 
@@ -208,20 +207,12 @@ return [
     'monitor_backups' => [
         [
             'name' => '',
-            'disks' => ['backup'],
+            'disks' => ['backup','google'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 2,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
             ],
-        ],
-        [
-            'name' => '',
-            'disks' => ['google'],
-            'health_checks' => [
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
-            ],
-        ],
+        ]
     ],
 
     'cleanup' => [
