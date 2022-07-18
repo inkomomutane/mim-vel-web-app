@@ -1,8 +1,9 @@
 <div>
     <div class="card blog rounded border-0 shadow overflow-hidden">
         <div class="row align-items-center g-0">
-            <div class="col-lg-3">
 
+            <div class="col-lg-3">
+                <a href="{{ $url }}">
 
                 {{ $image }}
 
@@ -18,6 +19,7 @@
 
                     </small>
                 </div>
+            </a>
             </div>
             <!--end col-->
             <div class="col-lg-9">
