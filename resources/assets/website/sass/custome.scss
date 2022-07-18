@@ -73,3 +73,17 @@ $value in $display-cover-sizes {
     background-color: #dde6e9 !important;
 
 }
+
+.splide__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .splide__slide {
+    opacity: 0.6;
+  }
+
+  .splide__slide.is-active {
+    opacity: 1;
+    border: none !important;
+  }

@@ -170,10 +170,13 @@ class Imovel extends Model implements HasMedia,Searchable
    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-        ->width('200')->nonQueued();
+        ->width('200')
+        ->nonQueued();
+
         $this->addMediaConversion('social-media')
         ->width('720')
         ->nonQueued();
+
         $this->addMediaCollection('posts');
     }
 

@@ -4,19 +4,29 @@
     {!! seo()->for($imovel) !!}
 @endsection
 @section('content')
-    <section class="swiper-slider-hero position-relative d-block" id="home" style="height: 75vh">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
+    <section class="splide swiper-slider-hero position-relative d-block" aria-labelledby="carousel-heading" id="home"
+        style="height: 75vh">
+        <div class="splide__track swiper-container">
+            <ul class="splide__list">
                 @forelse ($imovel->getMedia('posts') as $media)
-                    <div class="swiper-slide d-flex align-items-center overflow-hidden ">
+                    <div class="splide__slide d-flex align-items-center overflow-hidden">
                         @if ($media)
-                            {{ $media->img('', ['class' => 'slide-inner cover-slide-image']) }}
+                            @if (collect($media->responsive_images)->isEmpty())
+                                <img src="{{ $media->getUrl('thumb') }}" data-splide-lazy="{{ $media->getUrl() }}"
+                                    alt="{{ $media->name }}">
+                                {{ $media->img('', ['class' => 'cover-slide-image']) }}
+                            @else
+                                <img data-splide-lazy-srcset="{{ $media->getSrcset() }}" sizes="100vw"
+                                    data-splide-lazy="{{ $media->getUrl() }}" alt="{{ $media->name }}">
+                            @endif
                         @else
-                            <img src="{{ asset('website/images/placeholder.png') }}" class="slide-inner" alt="No Image">
+                            <img src="{{ asset('website/images/placeholder.png') }}" class="cover-slide-image"
+                                alt="Sem Imagem" loading="lazy">
                         @endif
                         <div class="bg-overlay">
+
                         </div>
-                        <div class="container">
+                        <div class="position-absolute top-50 start-50 translate-middle">
                             <div class="row justify-content-center">
                                 <div class="col-12">
                                     <div class="title-heading text-center">
@@ -31,11 +41,11 @@
                         <!-- end slide-inner -->
                     </div>
                 @empty
-                    <div class="swiper-slide d-flex align-items-center overflow-hidden">
-                        <img src="{{ asset('website/images/placeholder.png') }}" class="slide-inner" alt="No Image">
+                    <div class="splide__slide d-flex align-items-center overflow-hidden">
+                        <img src="{{ asset('website/images/placeholder.png') }}" class="slide-inner" alt="Sem Imagem">
                         <div class="bg-overlay">
                         </div>
-                        <div class="container">
+                        <div class="position-absolute top-50 start-50 translate-middle">
                             <div class="row justify-content-center">
                                 <div class="col-12">
                                     <div class="title-heading text-center">
@@ -49,25 +59,60 @@
                         </div>
                     </div>
                 @endforelse
-            </div>
-            <!-- end swiper-wrapper -->
+            </ul>
 
-            <!-- swipper controls -->
-            <div class="swiper-button-next border rounded-circle text-center"></div>
-            <div class="swiper-button-prev border rounded-circle text-center"></div>
-            <div class="swiper-pagination"></div>
+
         </div>
-        <!--end container-->
+        <div class="splide__progress">
+            <div class="splide__progress__bar">
+            </div>
+        </div>
+        <div class="splide__arrows splide__arrows--ltr">
+            <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous slide"
+                aria-controls="splide01-track">
+                <x-fluentui-arrow-right-16 />
+            </button>
+            <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next slide"
+                aria-controls="splide02-track">
+                @svg('fluentui-arrow-right-12')
+
+            </button>
+        </div>
     </section>
-    <section class="row justify-content-center" style="margin: -1.3rem; z-index:99; position: relative;">
-        <div aria-label="breadcrumb" class="d-inline-block col-7">
-            <ul class="breadcrumb bg-white rounded shadow mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Mimóvel</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('posts') }}">Posts</a></lt>
-                <li class="breadcrumb-item active" aria-current="page">{{ $imovel->titulo }}</li>
+    <section id="thumbnail-carousel" class="splide"
+        aria-label="The carousel with thumbnails. Selecting a thumbnail will change the Beautiful Gallery carousel.">
+        <div class="splide__track">
+            <ul class="splide__list justify-content-center">
+                @forelse ($imovel->getMedia('posts') as $media)
+                    <div class="splide__slide d-flex align-items-center overflow-hidden p-1">
+                        @if ($media)
+                            {{ $media->img('thumb', ['class' => 'cover-slide-image rounded-3']) }}
+                        @else
+                            <img src="{{ asset('website/images/placeholder.png') }}" class="cover-slide-image"
+                                alt="Sem Imagem" loading="lazy">
+                        @endif
+                        <!-- end slide-inner -->
+                    </div>
+                @empty
+                    <div class="splide__slide d-flex align-items-center overflow-hidden p-1">
+                        <img src="{{ asset('website/images/placeholder.png') }}" class="rounded-3" alt="Sem Imagem">
+                    </div>
+                @endforelse
             </ul>
         </div>
+        <div class="splide__arrows splide__arrows--ltr">
+            <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous slide"
+                aria-controls="splide01-track">
+                <x-fluentui-arrow-right-16 />
+            </button>
+            <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next slide"
+                aria-controls="splide02-track">
+                <x-fluentui-arrow-right-16 />
+
+            </button>
+        </div>
     </section>
+
 
     <!--end section-->
     <section class="section bg-facebook-darken p-5">
@@ -346,7 +391,7 @@
 
 @endsection
 @push('css')
- @endpush
+@endpush
 @push('js')
     <script src="{{ asset('website/js/page/post.js') }}"></script>
 @endpush
