@@ -1,1 +1,24 @@
+name: Install compoer dependeces
+on:
+  push:
+    branches:
+    - main
 
+env:
+  FIRST_NAME: Mimovel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependeces via composer 
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd /mimovel
+            php composer.phar install
+            exit 1
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          pass: ${{ secrets.PASS }}
+#          args: "-tt -vvv"
