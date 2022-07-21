@@ -16,9 +16,6 @@ jobs:
           command: |
             cd mimovel
             php composer.phar install
-            git pull 
-            echo ${{ secrets.USERNAME_ACCESS }}
-            echo ${{ secrets.TOKEN_ACCESS }}
             php artisan backup:run
             exit 1
           host: ${{ secrets.SSH_SERVER }}
