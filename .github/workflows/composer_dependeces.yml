@@ -21,4 +21,4 @@ jobs:
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           pass: ${{ secrets.SSH_PASS_KEY }}
-#          args: "-tt -vvv"
+          args: "-tt -vvv"
