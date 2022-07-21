@@ -20,5 +20,5 @@ jobs:
           host: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          pass: ${{ secrets.SSH_PASS_KEY }}
+#          pass: ${{ secrets.SSH_PASS_KEY }}
           args: "-tt -vvv"
