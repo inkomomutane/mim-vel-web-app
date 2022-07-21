@@ -16,7 +16,6 @@ jobs:
           command: |
             ls -a
             echo "env_var:$FIRST_NAME"
-            exit 1
           host: ${{ secrets.SSH_SERVER }}
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
