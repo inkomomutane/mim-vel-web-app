@@ -15,15 +15,10 @@ jobs:
         with:
           command: |
             cd mimovel
-            git config user.name github-actions
-            git config user.email github-actions@github.com
-            git fetch
-            inkommutane
-            git pull
             php composer.phar install
             exit 1
           host: ${{ secrets.SSH_SERVER }}
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
 #          pass: ${{ secrets.SSH_PASS_KEY }}
-          args: "-tt"
+#         args: "-tt"
