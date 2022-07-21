@@ -16,7 +16,6 @@ jobs:
           command: |
             cd mimovel
             ${{ secrets.FUN_GIT_PULL }}
-            php artisan migrate
             php composer.phar install
             exit 1
           host: ${{ secrets.SSH_SERVER }}
