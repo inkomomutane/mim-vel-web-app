@@ -17,9 +17,8 @@ jobs:
             cd mimovel
             ${{ secrets.FUN_GIT_PULL }}
             php composer.phar install
-            exit 1
           host: ${{ secrets.SSH_SERVER }}
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
 #          pass: ${{ secrets.SSH_PASS_KEY }}
-#         args: "-tt"
+          args: "-tt -vvv"
