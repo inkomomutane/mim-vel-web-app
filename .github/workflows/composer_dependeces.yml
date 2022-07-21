@@ -15,8 +15,11 @@ jobs:
         with:
           command: |
             cd mimovel
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git fetch
+            git pull
             php composer.phar install
-            php artisan backup:run
             exit 1
           host: ${{ secrets.SSH_SERVER }}
           user: ${{ secrets.SSH_USERNAME }}
