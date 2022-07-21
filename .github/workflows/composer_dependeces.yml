@@ -17,7 +17,7 @@ jobs:
             cd mimovel
             php composer.phar install
             exit 1
-          host: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.SSH_SERVER }}
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
 #          pass: ${{ secrets.SSH_PASS_KEY }}
