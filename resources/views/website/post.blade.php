@@ -30,7 +30,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-12">
                                     <div class="title-heading text-center">
-                                        <h1 class="heading text-white title-dark mb-4">Imóvel</h1>
+                                        <h1 class="heading text-white title-dark mb-4"><span style="color: rgb(6, 98, 149)">M</span><span style="color: rgb(254, 104, 1)">IMÓVEL</span><span style="color: rgb(6, 98, 149);font-size:30px">.COM</span></h1>
                                         <p class="para-desc mx-auto text-white-50">{{ $imovel->titulo }}</p>
                                     </div>
                                 </div>
@@ -391,6 +391,11 @@
 
 @endsection
 @push('css')
+<style>
+    .bg-overlay{
+        background: rgba(0,0,0,.3) !important;
+    }
+</style>
 @endpush
 @push('js')
     <script src="{{ asset('website/js/page/post.js') }}"></script>

@@ -71,16 +71,11 @@
         <!--end footer-->
         <footer class="footer footer-bar text-light border-0 p-3" style="background: #1b2132">
             <div class="container text-center">
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-center">
                     <div class="col-sm-6">
-                        <div class="text-sm-start">
+                        <div class="text-sm-center">
                             <p class="mb-0"> Copyright ©
-                                 {{ config('app.name', 'Mimóvel') }} <script>
-                                    document.write(new Date().getFullYear())
-                               </script> . Design with <i
-                                    class="mdi mdi-heart text-danger"></i>
-                                by <a href="https://www.conectaapps.com" target="_blank" class="text-light">Conecta
-                                    Aplicativos</a>.
+                                 {{ config('app.name', 'Mimóvel') }}  {{ now()->year }}
                             </p>
                         </div>
                     </div>

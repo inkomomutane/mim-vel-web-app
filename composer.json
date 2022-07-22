@@ -39,6 +39,7 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "beyondcode/laravel-query-detector": "^1.6",
         "fakerphp/faker": "^1.9.1",
+        "jn-jairo/laravel-ngrok": "^2.0",
         "kitloong/laravel-migrations-generator": "^5.2",
         "laravel-lang/lang": "^10.9",
         "laravel-lang/publisher": "^13.0",

@@ -8,7 +8,9 @@
             <div class="row mt-5 justify-content-center">
                 <div class="col-12">
                     <div class="title-heading text-center my-3">
-                        <h4 class="display-4 fw-bold text-white title-dark mb-3">Mimóvel</h4>
+                        <h4 class="display-4 fw-bold text-white title-dark mb-3">
+                            <img src="{{ asset('website/images/logo-light.png') }}" alt="Mimóvel" width="250">
+                        </h4>
                         {{-- <p class="para-desc text-white-50 mb-0 mx-auto">Agência Imobiliária: Intermediações na compra, venda
                             e arendamento de imóveis.</p> --}}
                     </div>
@@ -27,20 +29,9 @@
             <div class="row justify-content-center">
                 <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0 p-5">
 
-                    <div class="text-center features-absolute bg-dark-light p-5 rounded-3">
-                        <ul class="nav nav-pills shadow border-bottom flex-column flex-sm-row d-md-inline-flex nav-justified-start mb-0 bg-white rounded-top position-relative overflow-hidden"
-                            id="pills-tab" role="tablist">
-                            <li class="nav-item m-1">
-                                <div class="nav-link py-2 px-5  rounded-3" id="buy-login">
-                                    <div class="text-center">
-                                        <h6 class="mb-0">Comprar ou Alugar</h6>
-                                    </div>
-                                </div>
-                                <!--end nav link-->
-                            </li>
-                        </ul>
+                    <div class="text-center features-absolute bg-dark-light p-sm-0 p-md-2 p-lg-5 rounded-3">
 
-                        <div class="tab-content bg-white rounded-3 shadow" id="pills-tabContent">
+                        <div class="tab-content bg-white rounded-3 shadow">
 
                             <div class="card border-0 tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="rent-login">
                                 <form class="card-body text-start" action="{{ route('posts.search') }}" method="post">
