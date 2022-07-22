@@ -14,7 +14,7 @@
                 tipo="{{ $imovel->tipo_de_imovel->nome }}" :andares="$imovel->andares" :ano="$imovel->ano">
                 <x-slot:image>
                     @if ($imovel->getFirstMedia('posts'))
-                        {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'slide-inner image-fluid cover-image-5']) }}
+                        {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'slide-inner image-fluid cover-image-5'])->lazy() }}
                     @else
                         <img src="{{ asset('website/images/placeholder.png') }}"
                             class="slide-inner image-fluid cover-image-5" alt="No Image">
