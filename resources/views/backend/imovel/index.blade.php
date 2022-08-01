@@ -46,7 +46,7 @@
                             @foreach($imovels as $imovel)
                             <tr>
                                 <td>{{$imovel->id}}</td>
-                                <td>{{$imovel->titulo}}</td>
+                                <td class="text-truncate" style="max-width: 200px">{{$imovel->titulo}}</td>
                                 <td><a class="btn btn-purple" href="{{route('media.show',['imovel'=> $imovel->slug])}}">
                                     @svg('fluentui-image-multiple-28-o' ,'feather align-middle') Media
                                     </a></td>

@@ -2,7 +2,7 @@
 
 
     @foreach ($imovels as $imovel)
-        <div class="col-lg-12 col-12 mb-4 pb-2 " data-aos="fade-up" data-aos-duration="300">
+        <div class="col-lg-12 col-12 mb-4 pb-2 " data-aos="fade-up" data-aos-duration="300" >
             <x-post-card
             :imovel="$imovel"
             author="{{ $imovel->corretor->name }}" title="{{ $imovel->titulo }}" :description="$imovel->descricao"

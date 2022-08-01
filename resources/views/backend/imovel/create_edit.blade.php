@@ -51,8 +51,7 @@
                                     @method('PATCH')@csrf
                                     <input type="hidden" name="unique_hash" value="{{ encrypt($imovel->id) }}">
                                 @else
-                                    <form action="{{ route('imovel.store') }}" method="post"
-                                        enctype="multipart/form-data">
+                                    <form action="{{ route('imovel.store') }}" method="post" enctype="multipart/form-data">
                                         @method('POST')@csrf
                             @endif
 
@@ -76,10 +75,10 @@
                                 <label for="name">Descrição</label>
                                 <textarea class="col-12" name="descricao" id="editor" rows="14">
                                     @if (old('descricao'))
-{!! old('descricao') !!}
-@elseif(request()->routeIs('imovel.edit'))
-{!! $imovel->descricao !!}
-@endif
+                                    {!! old('descricao') !!}
+                                    @elseif(request()->routeIs('imovel.edit'))
+                                    {!! $imovel->descricao !!}
+                                    @endif
 
                                 </textarea>
                             </div>
@@ -88,7 +87,10 @@
                                     <label for="name">Bairro</label>
                                     <select name="bairro_id" id="bairro_id" class="form-control form-select">
                                         @foreach ($bairros as $bairro)
-                                            <option value="{{ $bairro->id }}">{{ $bairro->nome }}</option>
+                                            <option value="{{ $bairro->id }}"
+                                                @if (request()->routeIs('imovel.edit') && $imovel->bairro->id == $bairro->id)
+                                                selected class="option-selected"
+                                            @endif>{{ $bairro->nome }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -116,7 +118,12 @@
                                     <select name="tipo_de_imovel_id" id="tipo_de_imovel_id"
                                         class="form-control form-select">
                                         @foreach ($tipo_de_imovels as $tipo_de_imovel)
-                                            <option value="{{ $tipo_de_imovel->id }}">{{ $tipo_de_imovel->nome }}
+                                            <option value="{{ $tipo_de_imovel->id }}"
+
+                                                @if (request()->routeIs('imovel.edit') && $imovel->tipo_de_imovel->id == $tipo_de_imovel->id)
+                                                selected class="option-selected"
+                                            @endif
+                                                >{{ $tipo_de_imovel->nome }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -126,7 +133,12 @@
                                     <label for="name">Condição do imóvel</label>
                                     <select name="condicao_id" id="condicao_id" class="form-control form-select">
                                         @foreach ($condicaos as $condicao)
-                                            <option value="{{ $condicao->id }}">{{ $condicao->nome }}</option>
+                                            <option value="{{ $condicao->id }}"
+                                                @if (request()->routeIs('imovel.edit') && $imovel->condicao->id == $condicao->id)
+                                                selected class="option-selected"
+                                            @endif
+
+                                                >{{ $condicao->nome }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -136,7 +148,13 @@
                                     <label for="name">Estado do imóvel</label>
                                     <select name="status_id" id="status_id" class="form-control form-select">
                                         @foreach ($statuses as $status)
-                                            <option value="{{ $status->id }}">{{ $status->nome }}</option>
+                                            <option value="{{ $status->id }}"
+
+                                                @if (request()->routeIs('imovel.edit') && $imovel->status->id == $status->id)
+                                                selected class="option-selected"
+                                            @endif
+
+                                                >{{ $status->nome }}</option>
                                         @endforeach
                                     </select>
                                 </div>
