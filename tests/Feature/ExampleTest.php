@@ -16,6 +16,8 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
+        $data = (Object) [];
+
         $response->assertStatus(200);
     }
 }

@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('website/images/favicon.ico') }}">
     <!-- Bootstrap -->
 
-    <link rel="stylesheet" href="{{ asset('website/css/app.css') }}" defer>
+    <link rel="stylesheet" href="{{ asset('website/css/app.css') }}" >
     <link rel="stylesheet" href="{{ asset('website/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
        @stack('css')

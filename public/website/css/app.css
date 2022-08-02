@@ -16096,6 +16096,10 @@ p {
      object-fit: cover !important;
 }
 
+.text-truncate {
+  max-width: 200px;
+}
+
 .text-truncate-1 {
   overflow: hidden;
   vertical-align: middle;
@@ -16163,6 +16167,11 @@ p {
 .splide__slide.is-active {
   opacity: 1;
   border: none !important;
+}
+
+.option-selected {
+  background-color: rgb(87, 85, 85) !important;
+  color: #f6f6f6 !important;
 }
 
 .choices {

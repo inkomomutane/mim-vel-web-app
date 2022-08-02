@@ -1,4 +1,4 @@
-name: Install compoer dependeces
+name: 🚀 Install composer dependeces
 on:
   push:
     branches:

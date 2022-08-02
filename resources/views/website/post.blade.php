@@ -13,8 +13,7 @@
                         @if ($media)
                             @if (collect($media->responsive_images)->isEmpty())
                                 <img src="{{ $media->getUrl('thumb') }}" data-splide-lazy="{{ $media->getUrl() }}"
-                                    alt="{{ $media->name }}">
-                                {{ $media->img('', ['class' => 'cover-slide-image']) }}
+                                    alt="{{ $media->name }}" >
                             @else
                                 <img data-splide-lazy-srcset="{{ $media->getSrcset() }}" sizes="100vw"
                                     data-splide-lazy="{{ $media->getUrl() }}" alt="{{ $media->name }}">

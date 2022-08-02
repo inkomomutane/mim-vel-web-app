@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="card-body content p-4">
                                     <a href="{{ route('posts.show', $imovel->slug) }}"
-                                        class="text-dark product-name h6 d-inline-block text-truncate">{{ $imovel->titulo }}</a>
+                                        class="text-dark product-name h6 d-inline-block ">{{ $imovel->titulo }}</a>
                                     <div class="rating">
                                         <ul class="list-unstyled mb-0">
 
@@ -208,7 +208,7 @@
                             </a>
                             <div class="card-body content">
                                 <a href="{{ route('posts.show', $imovel->slug) }}"
-                                        class="text-dark product-name h6 d-inline-block text-truncate">{{ $imovel->titulo }}</a>
+                                        class="text-dark product-name h6 d-inline-block ">{{ $imovel->titulo }}</a>
                                 <div class="rating">
                                     <ul class="list-unstyled mb-0">
 
