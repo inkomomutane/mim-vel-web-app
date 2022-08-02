@@ -13,7 +13,7 @@
                         @if ($media)
                             @if (collect($media->responsive_images)->isEmpty())
                                 <img src="{{ $media->getUrl('thumb') }}" data-splide-lazy="{{ $media->getUrl() }}"
-                                    alt="{{ $media->name }}" >
+                                    alt="{{ $media->name }}">
                             @else
                                 <img data-splide-lazy-srcset="{{ $media->getSrcset() }}" sizes="100vw"
                                     data-splide-lazy="{{ $media->getUrl() }}" alt="{{ $media->name }}">
@@ -29,7 +29,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-12">
                                     <div class="title-heading text-center">
-                                        <h1 class="heading text-white title-dark mb-4" style="opacity: 0.5; font-family: 'Montserrat', sans-serif;"><span style="color: rgb(6, 98, 149)">M</span><span style="color: rgb(254, 104, 1)">IMÓVEL</span><span style="color: rgb(6, 98, 149);font-size:30px">.COM</span></h1>
+                                        <h1 class="heading text-white title-dark mb-4"
+                                            style="opacity: 0.5; font-family: 'Montserrat', sans-serif;"><span
+                                                style="color: rgb(6, 98, 149)">M</span><span
+                                                style="color: rgb(254, 104, 1)">IMÓVEL</span><span
+                                                style="color: rgb(6, 98, 149);font-size:30px">.COM</span></h1>
                                         <p class="para-desc mx-auto text-white-50">{{ $imovel->titulo }}</p>
                                     </div>
                                 </div>
@@ -111,8 +115,6 @@
             </button>
         </div>
     </section>
-
-
     <!--end section-->
     <section class="section bg-facebook-darken p-5">
         <div class="container">
@@ -388,13 +390,59 @@
     @livewire('message-agenda', ['corretor_id' => $imovel->corretor_id, 'imovel_id' => $imovel->id])
     @livewire('avaliar', ['imovel_id' => $imovel->id])
 
+    <section class="section bg-facebook-darken p-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-title mb-4 pb-2">
+                        <span class="badge rounded-pill bg-soft-warning">Imóveis relacionados</span>
+                        <h4 class="title mb-4 text-dark">Imóveis relacionados</h4>
+                        <p class="text-muted para-desc mx-auto mb-0"></p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <div class="tiny-four-item">
+                @foreach ($imovel->relectedImovels() as $imovel)
+                    <div class="tiny-slide">
+
+                        <div class="card blog border-0 shadow position-relative overflow-hidden m-2">
+                            <div class="shop-image position-relative overflow-hidden shadow">
+                                <a href="{{ route('posts.show', $imovel->slug) }}">
+                                    @if ($imovel->getFirstMedia('posts'))
+                                        {{ $imovel->getFirstMedia('posts')->img('', ['class' => 'cover-image']) }}
+                                    @else
+                                        <img src="{{ asset('website/images/placeholder.png') }}" class="cover-image"
+                                            alt="...">
+                                    @endif
+                                </a>
+                            </div>
+                            <div class="card-body content p-4">
+                                <a href="{{ route('posts.show', $imovel->slug) }}"
+                                    class="text-dark product-name h6 d-inline-block ">{{ $imovel->titulo }}</a>
+                            </div>
+                            <div class="author">
+                                <small class="text-light user d-block"><i class="uil uil-user"></i>
+                                    {{ $imovel->corretor->name }}</small>
+                                <small class="text-light date"><i
+                                        class="uil uil-calendar-alt"></i>{{ ' ' . date_format($imovel->created_at, 'j') . ' th, ' }}{{ __(date_format($imovel->created_at, 'F') . ', ') }}
+                                    {{ date_format($imovel->created_at, 'Y') }}</small>
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
 @endsection
 @push('css')
-<style>
-    .bg-overlay{
-        background: rgba(0,0,0,.3) !important;
-    }
-</style>
+    <style>
+        .bg-overlay {
+            background: rgba(0, 0, 0, .3) !important;
+        }
+    </style>
 @endpush
 @push('js')
     <script src="{{ asset('website/js/page/post.js') }}"></script>

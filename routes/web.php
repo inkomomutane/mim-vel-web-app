@@ -35,6 +35,7 @@ Route::get('/', function () {
         'destacados' => Imovel::count() > 8 ?
             Imovel::with('ratings')
             ->with('comentarios')
+            ->with('media')
             ->with('corretor')
             ->get()->take(8) :
             Imovel::with('ratings')
@@ -44,6 +45,7 @@ Route::get('/', function () {
         'recents' => Imovel::count() > 3 ?
             Imovel::orderBy('created_at', 'desc')
             ->with('ratings')
+            ->with('media')
             ->with('comentarios')
             ->with('corretor')
             ->take(3)->get() :
