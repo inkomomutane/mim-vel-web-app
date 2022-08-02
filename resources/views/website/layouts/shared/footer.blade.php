@@ -2,19 +2,22 @@
         <footer class="footer text-muted">
             <div class="container px-4 px-md-0">
                 <div class="row">
-                    <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                    <div class="col-lg-5 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                         <a href="{{ route('welcome') }}" class="logo-footer">
                             <img src="{{ asset('website/images/logo-light.png') }}" height="24" alt="">
                         </a>
-                        <p class="mt-4 lh-lg">Mimóvel é uma empresa de aluguel, compra de imóveis localizada na
-                            cidade da beira, reconhecida pelos seus excelentes edificios que superam as expectativas dos
-                            clientes.</p>
+                        <p class="mt-4 lh-lg">Se você pretende vender, arrendar, ou fazer investimentos imobiliários em
+                            Moçambique, especificamente nas grandes cidades Maputo, Beira, Nampula, Tete, Chimoio, etc.,
+                            quer se trate de casas/moradia, escritórios, armazéns, terrenos, lojas e muito mais, você
+                            pode fazê-lo através da mimóvel Imobiliária.<br>
+                           <strong class="text-warning fw-800"> Mimóvel | Meu Imóvel </strong> <br>
+                            <Strong style="font-style: italic" class="text-warning"> O seu imóvel na palma da sua mão</Strong>.</p>
 
                         <!--end icon-->
                     </div>
                     <!--end col-->
 
-                    <div class="col-lg-3 col-md-8 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
 
                         <h5 class="text-light footer-head">Links de navegação</h5>
                         <ul class="list-unstyled footer-list mt-4">
@@ -37,20 +40,20 @@
                     <!--end col-->
 
 
-                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                         <h5 class="text-light footer-head">Contactos</h5>
-                        <p>
-                            Beira, Chaimite <br><br>
-                            <strong>Telefone - 1:</strong>&nbsp;&nbsp;<a href="tel:+258869500900" class="text-muted"> (
-                                +258 ) 86 9500 900 </a><br>
-                            <strong>Telefone - 2:</strong>&nbsp;&nbsp;<a href="tel:+258849500900" class="text-muted"> (
-                                +258 ) 84 9500 900 </a><br>
+                        <p class="mt-4">
+                            <strong>Beira, Chaimite</strong> <br>
+                            <strong>Telefone - 1:</strong><br> <a href="tel:+258869500900" class="text-muted">
+                                <strong>(+258 ) </strong> 86 9500 900 </a><br>
+                            <strong>Telefone - 2:</strong><br>  <a href="tel:+258849500900" class="text-muted">
+                                <strong>( +258 )</strong> 84 9500 900 </a><br>
                             <strong>Email:</strong>&nbsp;&nbsp;<a href="mailto:support@mimovel.com"
                                 class="text-muted">Support@mimovel.com</a><br>
                         </p>
                     </div>
 
-                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                         <h5 class="text-light footer-head">Siga-nos</h5>
                         <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
                             <li class="list-inline-item"><a href="https://www.facebook.com/mimovel.meuimovel"
@@ -75,7 +78,7 @@
                     <div class="col-sm-6">
                         <div class="text-sm-center">
                             <p class="mb-0"> Copyright ©
-                                 {{ config('app.name', 'Mimóvel') }}  {{ now()->year }}
+                                {{ config('app.name', 'Mimóvel') }} {{ now()->year }}
                             </p>
                         </div>
                     </div>
