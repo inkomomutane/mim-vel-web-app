@@ -262,7 +262,7 @@
                             </div>
                         </div>
                     </div>
-                    @if ($imovel->mapa)
+                    {{-- @if ($imovel->mapa)
                         <div class="accordion p-0 m-0 my-2" id="mapa">
                             <div class="accordion-item col-12 rounded-3 p-2 my-2 bg-white ">
                                 <h2 class="accordion-header" id="headingOne">
@@ -284,7 +284,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
 
                     <div class="accordion p-0 m-0" id="comments">
