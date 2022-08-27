@@ -65,7 +65,6 @@ class Imovel extends Model implements HasMedia, Searchable
 
     protected $table = 'imovels';
 
-
     protected $casts = [
         'banheiros' => 'int',
         'preco' => 'float',
@@ -110,12 +109,18 @@ class Imovel extends Model implements HasMedia, Searchable
         'condicao_id',
         'tipo_de_imovel_id',
         'status_id',
-        'corretor_id'
+        'corretor_id',
+        'regra_de_negocio_id'
     ];
 
     public function bairro()
     {
         return $this->belongsTo(Bairro::class);
+    }
+
+    public function regraDeNegocio()
+    {
+        return $this->belongsTo(RegraDeNegocio::class);
     }
 
     public function condicao()

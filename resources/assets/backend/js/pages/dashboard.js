@@ -267,6 +267,8 @@ $(function () {
     datatable('#statuses_table');
     datatable('#tipo_de_imovels_table');
     datatable('#imovels_table');
+    datatable('#regra_de_negocios_table');
+
 
 
     // datatable('#class_rooms_table');

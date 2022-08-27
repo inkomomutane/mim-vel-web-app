@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ImovelController;
 use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\Pages\PoliticaController;
 use App\Http\Controllers\Backend\Pages\TermosController;
+use App\Http\Controllers\Backend\RegraDeNegocioController;
 use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
@@ -94,6 +95,7 @@ Route::prefix('/administration')->middleware(['auth',
 ])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('cidade', CidadeController::class);
+    Route::resource('regra_de_negocio', RegraDeNegocioController::class);
     Route::resource('bairro', BairroController::class);
     Route::resource('condicao', CondicaoController::class);
     Route::resource('status', StatusController::class);
