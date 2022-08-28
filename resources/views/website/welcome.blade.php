@@ -204,7 +204,7 @@
     @endif
 
 
-    @if ($icons)
+    @if (!$icons->isEmpty())
     <section class="section bg-facebook mt-0  bg-facebook">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
