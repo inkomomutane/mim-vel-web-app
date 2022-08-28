@@ -178,20 +178,69 @@
 
 
     @if(!is_null($banners))
-    <section class="section bg-dark p-0 pb-4">
-        <div class="tiny-single-item">
-            @foreach ($banners as $banner)
-            <div class="tiny-slide">
-                <div class="card blog border-0 shadow position-relative overflow-hidden m-0">
-                    <div class="shop-image position-relative overflow-hidden shadow">
-                        {{ $banner->img('', ['class' => 'cover-image-publicity']) }}
-                    </div>
+        <div class="row justify-content-center bg-facebook-darken">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+
+                    <h4 class="title my-4 text-dark">Anúncios destacados</h4>
+                    <p class="text-muted para-desc mx-auto mb-0"></p>
                 </div>
             </div>
-            @endforeach
+            <!--end col-->
         </div>
-    </section>
+        <section class="section bg-dark p-0 pb-4 mb-0">
+            <div class="tiny-single-item">
+                @foreach ($banners as $banner)
+                <div class="tiny-slide">
+                    <div class="card blog border-0 shadow position-relative overflow-hidden m-0">
+                        <div class="shop-image position-relative overflow-hidden shadow">
+                            {{ $banner->img('', ['class' => 'cover-image-publicity']) }}
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </section>
     @endif
+
+
+    <section class="section bg-facebook mt-0  bg-facebook">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+
+                    <h4 class="title my-4 text-dark">No <strong>Mimóvel</strong> vai encontrar</h4>
+                    <p class="text-muted para-desc mx-auto mb-0"></p>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-10 row justify-content-between w-80 align-self-center">
+                @foreach ($icons as $icon)
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+
+                        <div class="card  explore-feature border-0 rounded text-center bg-transparent" onclick="document.getElementById('icons_id_{{$icon->id}}').submit()">
+                            <div class="card-body">
+                                <div class="icon rounded-circle shadow-lg d-inline-block bg-white" style="width: 180px;line-height: 180px; height:180px">
+                                    <img src="{{$icon->getFirstMediaUrl('icons','thumb')}}" style="width: 100%;
+                                    height: auto;" class="p-4">
+                                </div>
+                                <h5 class="mt-3 title">{{$icon->nome}}</h5>
+                            </div>
+                        </div>
+
+                        <form action="{{ route('posts.search') }}" method="post" id="icons_id_{{$icon->id}}" >
+                            @csrf
+                            <input type="hidden" name="tipo_de_imovels[]" value="{{$icon->id}}">
+                        </form>
+
+                </div>
+                @endforeach
+             </div>
+        </div>
+
+    </section>
 
 
     <section class="section pt-5 bg-facebook-darken"

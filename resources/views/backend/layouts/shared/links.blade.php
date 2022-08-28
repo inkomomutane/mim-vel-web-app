@@ -39,6 +39,14 @@
     </a>
 </li>
 
+<li class="sidebar-item @if (request()->routeIs('imovel_for.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('imovel_for.index') }}">
+        @svg('fluentui-building-retail-toolbox-20-o' ,'feather align-middle')<span class="align-middle">Tipo de transação</span>
+    </a>
+</li>
+
+
+
 <li class="sidebar-item @if (request()->routeIs('bairro.*')) active @endif">
     <a class="sidebar-link " href="{{ route('bairro.index') }}">
         @svg('fluentui-building-16-o' ,'feather align-middle')<span class="align-middle">Bairro</span>

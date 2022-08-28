@@ -44,7 +44,9 @@ class ImovelCreateRequest extends FormRequest
 		'condicao_id' => 'numeric|nullable',
 		'tipo_de_imovel_id' => 'numeric|nullable',
 		'status_id'=> 'numeric|nullable',
-		'corretor_id' => 'numeric|nullable'
+		'corretor_id' => 'numeric|nullable',
+        'imovel_for_id' => 'numeric|nullable',
+        'regra_de_negocio_id' => 'numeric|nullable'
         ];
     }
 }

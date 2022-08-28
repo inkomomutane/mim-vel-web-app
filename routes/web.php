@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CidadeController;
 use App\Http\Controllers\Backend\CondicaoController;
 use App\Http\Controllers\Backend\ImovelController;
+use App\Http\Controllers\Backend\ImovelForController;
 use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\Pages\PoliticaController;
 use App\Http\Controllers\Backend\Pages\TermosController;
@@ -15,13 +16,11 @@ use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\PostSearchController;
 use App\Http\Controllers\SendMessageController;
-use App\Models\Banner;
-use App\Models\Imovel;
+use App\Http\Controllers\WelcomeController;
 use App\Models\Politica;
 use App\Models\Termo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,35 +33,11 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', function () {
-    return view('website.welcome', [
-        'destacados' => Imovel::count() > 8 ?
-            Imovel::with('ratings')
-            ->with('comentarios')
-            ->with('media')
-            ->with('corretor')
-            ->get()->take(8) :
-            Imovel::with('ratings')
-            ->with('comentarios')
-            ->with('corretor')
-            ->get(),
-        'recents' => Imovel::count() > 3 ?
-            Imovel::orderBy('created_at', 'desc')
-            ->with('ratings')
-            ->with('media')
-            ->with('comentarios')
-            ->with('corretor')
-            ->take(3)->get() :
-            Imovel::with('ratings')
-            ->with('comentarios')
-            ->with('corretor')
-            ->get(),
-        'banners' => !is_null(Banner::first()) ?
-            Banner::first()->media()->where('collection_name', 'banners')->get() :
-            null
-    ]);
-})->name('welcome');
 
+
+Route::controller(WelcomeController::class)->group(function () {
+    Route::get('/','index')->name('welcome');
+});
 
 Route::controller(ImovelController::class)->group(function () {
     Route::get('/posts/{imovel}', 'show')->name('posts.show');
@@ -109,6 +84,7 @@ Route::prefix('/administration')->middleware([
     Route::resource('user', UserController::class);
     Route::resource('cidade', CidadeController::class);
     Route::resource('regra_de_negocio', RegraDeNegocioController::class);
+    Route::resource('imovel_for',ImovelForController::class);
     Route::resource('bairro', BairroController::class);
     Route::resource('condicao', CondicaoController::class);
     Route::resource('status', StatusController::class);

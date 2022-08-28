@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use phpDocumentor\Reflection\Types\This;
 
 class UploadImages extends Component
 {
@@ -12,18 +13,21 @@ class UploadImages extends Component
 
     public $image;
     public $stored;
+    public $label;
+    public $multiple;
 
-    public function mount($stored = null){
+    public function mount($stored = null,$label = 'Imagens',$multiple = true){
         $this->stored = $stored;
+        $this->label = $label;
+        $this->multiple = $multiple;
     }
 
     public function updated(){
 
-    $this->validate(
-        [
-            'image.*' => 'required|image:'
-        ]
-    );
+       if ($this->multiple) {
+        $this->validate([
+                'image.*' => 'required|image:']);
+       }else{ $this->validate(['image' => 'required|image']);}
     }
 
     public function render()

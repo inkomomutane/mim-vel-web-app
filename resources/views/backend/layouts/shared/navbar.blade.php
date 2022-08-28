@@ -40,8 +40,10 @@
                                 @svg('fluentui-handshake-20-o', 'feather align-middle')<span class="align-middle mx-2">Regras de negociação</span>
                             </a>
 
-
-
+                            <a class="dropdown-item  rounded-3 fw-600 p-2 @if (request()->routeIs('imovel_for.*')) active @endif"
+                                href="{{ route('imovel_for.index') }}">
+                                @svg('fluentui-building-retail-toolbox-20-o', 'feather align-middle')<span class="align-middle mx-2">Tipo de transação</span>
+                            </a>
                         </div>
                         <div class="dropdown-mega-list mx-4 p-2">
                             <div class="dropdown-header rounded-3 fw-600 p-2">Imóveis e configurações</div>

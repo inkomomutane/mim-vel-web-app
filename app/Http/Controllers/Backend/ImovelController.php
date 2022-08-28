@@ -9,7 +9,9 @@ use App\Http\Requests\Imovel\ImovelUpdateRequest;
 use App\Models\Bairro;
 use App\Models\Comentario;
 use App\Models\Condicao;
+use App\Models\ImovelFor;
 use App\Models\Rating;
+use App\Models\RegraDeNegocio;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
 use Intervention\Image\Facades\Image;
@@ -42,7 +44,9 @@ class ImovelController extends Controller
             'bairros' => Bairro::all(),
             'condicaos' => Condicao::all(),
             'tipo_de_imovels' => TipoDeImovel::all(),
-            'statuses' => Status::all()
+            'statuses' => Status::all(),
+            'imovel_fors' => ImovelFor::all(),
+            'regra_de_negocios' => RegraDeNegocio::all()
         ]);
     }
 
@@ -107,7 +111,9 @@ class ImovelController extends Controller
             'bairros' => Bairro::all(),
             'condicaos' => Condicao::all(),
             'tipo_de_imovels' => TipoDeImovel::all(),
-            'statuses' => Status::all()
+            'statuses' => Status::all(),
+            'imovel_fors' => ImovelFor::all(),
+            'regra_de_negocios' => RegraDeNegocio::all()
         ])->with('imovel',$imovel);
     }
 

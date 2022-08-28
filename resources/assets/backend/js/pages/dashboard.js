@@ -268,6 +268,8 @@ $(function () {
     datatable('#tipo_de_imovels_table');
     datatable('#imovels_table');
     datatable('#regra_de_negocios_table');
+    datatable('#imovel_fors_table');
+
 
 
 

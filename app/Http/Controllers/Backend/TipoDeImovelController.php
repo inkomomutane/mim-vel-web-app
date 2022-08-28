@@ -17,8 +17,8 @@ class TipoDeImovelController extends Controller
     public function index()
     {
 
-        return view('backend.tipo_de_imovel.index')->with('tipo_de_imovels',TipoDeImovel::all());
-
+        return view('backend.tipo_de_imovel.index')
+        ->with('tipo_de_imovels',TipoDeImovel::with('media')->get());
     }
 
     /**
@@ -40,7 +40,11 @@ class TipoDeImovelController extends Controller
     public function store(TipoDeImovelCreateRequest $request)
     {
         try {
-            TipoDeImovel::create($request->all());
+           $tipo_de_imovel = TipoDeImovel::create($request->all());
+
+           if(request()->hasFile('image')){
+                $tipo_de_imovel->addMedia($request->image)->toMediaCollection('icons');
+            }
             session()->flash('success', 'Tipo De Imovel criado com sucesso.');
            return redirect()->route('tipo_de_imovel.index');
        } catch (\Throwable $e) {
@@ -70,7 +74,8 @@ class TipoDeImovelController extends Controller
      */
     public function edit(TipoDeImovel $tipo_de_imovel)
     {
-        return view('backend.tipo_de_imovel.create_edit')->with('tipo_de_imovel',$tipo_de_imovel);
+        return view('backend.tipo_de_imovel.create_edit')
+        ->with('tipo_de_imovel',$tipo_de_imovel);
     }
 
     /**
@@ -82,8 +87,17 @@ class TipoDeImovelController extends Controller
      */
     public function update(TipoDeImovelUpdateRequest $request, TipoDeImovel $tipo_de_imovel)
     {
-        try {
+
+
+        try
+        {
+
             $tipo_de_imovel->update($request->all());
+
+            if($request->hasFile('image')){
+                $tipo_de_imovel->addMedia($request->image)->toMediaCollection('icons');
+            }
+
             session()->flash('success', 'Tipo De Imovel actualizado com sucesso.');
             return redirect()->route('tipo_de_imovel.index');
         } catch (\Throwable $e) {

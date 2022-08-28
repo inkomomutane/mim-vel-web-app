@@ -110,7 +110,8 @@ class Imovel extends Model implements HasMedia, Searchable
         'tipo_de_imovel_id',
         'status_id',
         'corretor_id',
-        'regra_de_negocio_id'
+        'regra_de_negocio_id',
+        'imovel_for_id'
     ];
 
     public function bairro()
@@ -207,6 +208,11 @@ class Imovel extends Model implements HasMedia, Searchable
         return $this->for_rent  == true;
     }
 
+    public function imovelFor()
+    {
+        return $this->belongsTo(ImovelFor::class);
+    }
+
     public function stars(): int
     {
         return (int) $this->ratings->avg('rating');
@@ -232,15 +238,13 @@ class Imovel extends Model implements HasMedia, Searchable
     {
         return Imovel::
             where('tipo_de_imovel_id',$this->tipo_de_imovel_id)
+            ->orWhere('regra_de_negocio_id',$this->regra_de_negocio_id)
+            ->orWhere('imovel_for_id',$this->imovel_for_id)
             ->orWhere('condicao_id',$this->condicao_id)
-            ->orWhere('bairro_id',$this->bairro_id)
-            ->orWhere('status_id',$this->status_id)
             ->with('ratings')
-
             ->with('tipo_de_imovel')
             ->with('bairro')
             ->with('condicao')
-
             ->with('comentarios')
             ->with('media')
             ->with('corretor')
