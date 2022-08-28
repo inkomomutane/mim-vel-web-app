@@ -31,11 +31,16 @@
                                 href="{{ route('media.index') }}">
                                 @svg('fluentui-image-multiple-28-o', 'feather align-middle')<span class="align-middle mx-2">Multimedia</span>
                             </a>
-
-                            <a class="dropdown-item  rounded-3 fw-600 p-2 @if (request()->routeIs('agenda.*')) active @endif"
-                                href="{{ route('agenda.index') }}">
-                                @svg('fluentui-calendar-clock-24-o', 'feather align-middle')<span class="align-middle mx-2">Mensagens</span>
+                            <a class="dropdown-item  rounded-3 fw-600 p-2 @if (request()->routeIs('banner.*')) active @endif"
+                                href="{{ route('banner.index') }}">
+                                @svg('fluentui-image-multiple-28', 'feather align-middle')<span class="align-middle mx-2">Banner de publicidade</span>
                             </a>
+                            <a class="dropdown-item  rounded-3 fw-600 p-2 @if (request()->routeIs('regra_de_negocio.*')) active @endif"
+                                href="{{ route('regra_de_negocio.index') }}">
+                                @svg('fluentui-handshake-20-o', 'feather align-middle')<span class="align-middle mx-2">Regras de negociação</span>
+                            </a>
+
+
 
                         </div>
                         <div class="dropdown-mega-list mx-4 p-2">
@@ -65,6 +70,10 @@
                         <div class="dropdown-mega-list mx-4 p-2">
                             <div class="dropdown-header rounded-3 fw-600 p-2">Administração</div>
 
+                            <a class="dropdown-item  rounded-3 fw-600 p-2 @if (request()->routeIs('agenda.*')) active @endif"
+                                href="{{ route('agenda.index') }}">
+                                @svg('fluentui-calendar-clock-24-o', 'feather align-middle')<span class="align-middle mx-2">Mensagens</span>
+                            </a>
 
                             <a class="dropdown-item  rounded-3 fw-600 p-2  @if (request()->routeIs('user.*')) active @endif"
                                 href="{{ route('user.index') }}">

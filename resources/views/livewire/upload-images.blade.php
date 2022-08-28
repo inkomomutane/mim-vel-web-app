@@ -13,13 +13,10 @@
             <input class="form-control form-control-sm mt-3" type="file" id="image" placeholder="Upload image"
             wire:model='image' name="image[]" multiple accept="image/*">
                 <!-- Progress Bar -->
-
                 <div x-show="isUploading">
-                    <div class="progress">
+                    <div class="progress mt-4">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="progress" aria-valuemin="40" aria-valuemax="100" :style='"width:" +progress + "%"' x-text= 'progress + "%"'></div>
                       </div>
-
-
                 </div>
 
             </div>

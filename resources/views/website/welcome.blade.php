@@ -176,6 +176,24 @@
     <!--end section-->
     <!-- End -->
 
+
+    @if(!is_null($banners))
+    <section class="section bg-dark p-0 pb-4">
+        <div class="tiny-single-item">
+            @foreach ($banners as $banner)
+            <div class="tiny-slide">
+                <div class="card blog border-0 shadow position-relative overflow-hidden m-0">
+                    <div class="shop-image position-relative overflow-hidden shadow">
+                        {{ $banner->img('', ['class' => 'cover-image-publicity']) }}
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+    @endif
+
+
     <section class="section pt-5 bg-facebook-darken"
         style="background: url('{{ asset('website/images/real/build.png') }}') bottom no-repeat;">
         <div class="container">
@@ -293,6 +311,11 @@
     .bg-facebook-darken{
         background-color: #dde6e9 !important;
 
+    }
+    .cover-image-publicity{
+        height: 360px !important;
+        width: 100% !important;
+        object-fit: cover;
     }
 </style>
 @endpush

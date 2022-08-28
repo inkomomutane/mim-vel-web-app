@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AgendaController;
 use App\Http\Controllers\Backend\BairroController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CidadeController;
 use App\Http\Controllers\Backend\CondicaoController;
 use App\Http\Controllers\Backend\ImovelController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\PostSearchController;
 use App\Http\Controllers\SendMessageController;
+use App\Models\Banner;
 use App\Models\Imovel;
 use App\Models\Politica;
 use App\Models\Termo;
@@ -54,7 +56,10 @@ Route::get('/', function () {
             Imovel::with('ratings')
             ->with('comentarios')
             ->with('corretor')
-            ->get()
+            ->get(),
+        'banners' => !is_null(Banner::first()) ?
+            Banner::first()->media()->where('collection_name', 'banners')->get() :
+            null
     ]);
 })->name('welcome');
 
@@ -66,8 +71,8 @@ Route::get('/contacto', function () {
     return view('website.contacto');
 })->name('contacto');
 
-Route::controller(SendMessageController::class)->group(function (){
-    Route::post('/contacto/send_message','index')->name('contacto.sendMessage');
+Route::controller(SendMessageController::class)->group(function () {
+    Route::post('/contacto/send_message', 'index')->name('contacto.sendMessage');
 });
 
 
@@ -97,8 +102,9 @@ Auth::routes([
 ]);
 
 
-Route::prefix('/administration')->middleware(['auth',
-// 'role:Super-Admin|Admin|Admin_L2'
+Route::prefix('/administration')->middleware([
+    'auth',
+    // 'role:Super-Admin|Admin|Admin_L2'
 ])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('cidade', CidadeController::class);
@@ -117,9 +123,10 @@ Route::prefix('/administration')->middleware(['auth',
     });
 });
 
-Route::prefix('/administration')->middleware(['auth',
-//  'role:Super-Admin|Admin|Admin_L2|Corretor|Corretor_L2'
- ])->group(function () {
+Route::prefix('/administration')->middleware([
+    'auth',
+    //  'role:Super-Admin|Admin|Admin_L2|Corretor|Corretor_L2'
+])->group(function () {
     Route::resource('imovel', ImovelController::class);
     Route::controller(MediaController::class)->group(function () {
         Route::get('media', 'index')->name('media.index');
@@ -127,6 +134,13 @@ Route::prefix('/administration')->middleware(['auth',
         Route::post('media/store/{imovel}', 'store')->name('media.store');
         Route::delete('media/{media}', 'destroy')->name('media.destroy');
     });
+
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('banner', 'index')->name('banner.index');
+        Route::post('banner/store', 'store')->name('banner.store');
+        Route::delete('banner/{media}', 'destroy')->name('banner.destroy');
+    });
+
     Route::resource('agenda', AgendaController::class);
 });
 

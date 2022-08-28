@@ -14,6 +14,11 @@
         @svg('fluentui-image-multiple-28-o' ,'feather align-middle')<span class="align-middle">Media</span>
     </a>
 </li>
+<li class="sidebar-item @if (request()->routeIs('banner.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('banner.index') }}">
+        @svg('fluentui-image-multiple-28' ,'feather align-middle')<span class="align-middle">Banner de Publicidade</span>
+    </a>
+</li>
 
 <li class="sidebar-item @if (request()->routeIs('user.*')) active @endif">
     <a class="sidebar-link " href="{{ route('user.index') }}">
@@ -30,7 +35,7 @@
 
 <li class="sidebar-item @if (request()->routeIs('regra_de_negocio.*')) active @endif">
     <a class="sidebar-link " href="{{ route('regra_de_negocio.index') }}">
-        @svg('fluentui-handshake-20-o' ,'feather align-middle')<span class="align-middle">Regra de negociação</span>
+        @svg('fluentui-handshake-20-o' ,'feather align-middle')<span class="align-middle">Regras de negociação</span>
     </a>
 </li>
 
