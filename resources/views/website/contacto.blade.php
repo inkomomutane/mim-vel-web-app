@@ -90,7 +90,8 @@
                         <div class="card-body py-5">
                             <h4 class="card-title">Envie sua mensagem</h4>
                             <div class="custom-form mt-3">
-                                <form method="post" name="myForm" >
+                                <form method="post" action="{{ route('contacto.sendMessage') }}">
+                                    @csrf
                                     <p id="error-msg" class="mb-0"></p>
                                     <div id="simple-msg"></div>
                                     <div class="row">
@@ -129,7 +130,7 @@
                                                 <label class="form-label">Mensagem <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="message-circle" class="fea icon-sm icons clearfix"></i>
-                                                    <textarea name="comments" id="comments" rows="4" class="form-control ps-5" placeholder="Messagem :"></textarea>
+                                                    <textarea name="contactMessageText" id="contactMessageText" rows="4" class="form-control ps-5" placeholder="Messagem :"></textarea>
                                                 </div>
                                             </div>
                                         </div>

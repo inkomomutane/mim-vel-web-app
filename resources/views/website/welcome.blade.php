@@ -251,8 +251,8 @@
                     <!--end col-->
                 @endforeach
 
-                <div class="mt-4 d-none d-lg-block">
-                    <a href="{{ route('posts') }}" class="btn btn-warning">Ver mais</a>
+                <div class="mt-4 d-none d-lg-block col-12">
+                    <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóvels</a>
                 </div>
             </div>
             <!--end row-->

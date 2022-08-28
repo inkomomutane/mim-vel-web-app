@@ -24,6 +24,7 @@
         "overtrue/laravel-lang": "~6.0",
         "owenvoke/blade-fontawesome": "^2.0",
         "pavel-mironchik/laravel-backup-panel": "^2.2",
+        "php-flasher/flasher-laravel": "^1.7",
         "queueworker/sansdaemon": "^1.2",
         "ralphjsmit/laravel-seo": "^1.0",
         "spatie/laravel-backup": "^8.1",

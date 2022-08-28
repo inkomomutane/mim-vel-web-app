@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\PostSearchController;
+use App\Http\Controllers\SendMessageController;
 use App\Models\Imovel;
 use App\Models\Politica;
 use App\Models\Termo;
@@ -64,6 +65,12 @@ Route::controller(ImovelController::class)->group(function () {
 Route::get('/contacto', function () {
     return view('website.contacto');
 })->name('contacto');
+
+Route::controller(SendMessageController::class)->group(function (){
+    Route::post('/contacto/send_message','index')->name('contacto.sendMessage');
+});
+
+
 
 Route::get('/sobre-nos', function () {
     return view('website.sobre');
