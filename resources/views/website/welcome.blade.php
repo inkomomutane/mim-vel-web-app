@@ -204,6 +204,7 @@
     @endif
 
 
+    @if ($icons)
     <section class="section bg-facebook mt-0  bg-facebook">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
@@ -241,6 +242,8 @@
         </div>
 
     </section>
+    @endif
+
 
 
     <section class="section pt-5 bg-facebook-darken"
