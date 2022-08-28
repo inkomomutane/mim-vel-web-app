@@ -1,4 +1,4 @@
-name: 🚀 Install composer dependeces
+name: 🚀 Install composer dependeces and migrate changes
 on:
   push:
     branches:
