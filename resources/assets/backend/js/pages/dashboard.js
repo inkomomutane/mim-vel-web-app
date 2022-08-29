@@ -269,8 +269,7 @@ $(function () {
     datatable('#imovels_table');
     datatable('#regra_de_negocios_table');
     datatable('#imovel_fors_table');
-
-
+    datatable('#provinces_table');
 
 
     // datatable('#class_rooms_table');

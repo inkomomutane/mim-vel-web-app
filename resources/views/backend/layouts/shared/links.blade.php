@@ -27,6 +27,13 @@
     </a>
 </li>
 
+<li class="sidebar-item @if (request()->routeIs('province.*')) active @endif">
+    <a class="sidebar-link " href="{{ route('province.index') }}">
+        @svg('fluentui-city-24' ,'feather align-middle')<span class="align-middle">Província</span>
+    </a>
+</li>
+
+
 <li class="sidebar-item @if (request()->routeIs('cidade.*')) active @endif">
     <a class="sidebar-link " href="{{ route('cidade.index') }}">
         @svg('fluentui-city-16-o' ,'feather align-middle')<span class="align-middle">Cidade</span>

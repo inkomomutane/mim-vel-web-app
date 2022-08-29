@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cidade;
 use App\Http\Requests\Cidade\CidadeCreateRequest;
 use App\Http\Requests\Cidade\CidadeUpdateRequest;
+use App\Models\Province;
 
 class CidadeController extends Controller
 {
@@ -17,7 +18,10 @@ class CidadeController extends Controller
     public function index()
     {
 
-        return view('backend.cidade.index')->with('cidades',Cidade::with('bairros')->get());
+        return view('backend.cidade.index')
+        ->with('cidades',Cidade::with('bairros')
+       ->with('province')
+        ->get());
 
     }
 
@@ -28,7 +32,8 @@ class CidadeController extends Controller
      */
     public function create()
     {
-        return view('backend.cidade.create_edit');
+        return view('backend.cidade.create_edit')
+        ->with('provinces',Province::all());
     }
 
     /**
@@ -70,7 +75,9 @@ class CidadeController extends Controller
      */
     public function edit(Cidade $cidade)
     {
-        return view('backend.cidade.create_edit')->with('cidade',$cidade);
+        return view('backend.cidade.create_edit')
+        ->with('cidade',$cidade)
+        ->with('provinces',Province::all());
     }
 
     /**

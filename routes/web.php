@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ImovelForController;
 use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\Pages\PoliticaController;
 use App\Http\Controllers\Backend\Pages\TermosController;
+use App\Http\Controllers\Backend\ProvinceController;
 use App\Http\Controllers\Backend\RegraDeNegocioController;
 use App\Http\Controllers\Backend\StatusController;
 use App\Http\Controllers\Backend\TipoDeImovelController;
@@ -83,6 +84,7 @@ Route::prefix('/administration')->middleware([
 ])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('cidade', CidadeController::class);
+    Route::resource('province',ProvinceController::class);
     Route::resource('regra_de_negocio', RegraDeNegocioController::class);
     Route::resource('imovel_for',ImovelForController::class);
     Route::resource('bairro', BairroController::class);

@@ -1,4 +1,3 @@
-
 /**
  * | Choices for welcome page
  */
@@ -21,3 +20,9 @@ const choices = options.map((e) => new window.Choices(e, {
     allowHTML: false,
     duplicateItemsAllowed: false,
 }));
+
+const lightbox = new window.GLightbox({
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: true
+});

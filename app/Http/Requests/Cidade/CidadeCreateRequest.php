@@ -25,6 +25,7 @@ class CidadeCreateRequest extends FormRequest
     {
         return [
             'nome' => 'required|unique:cidades,nome',
+            'province_id' => 'required|numeric'
         ];
     }
 }

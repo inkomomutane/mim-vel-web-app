@@ -32,13 +32,20 @@ class Cidade extends Model implements Searchable
 	protected $table = 'cidades';
 
 	protected $fillable = [
-		'nome'
+		'nome','province_id'
 	];
 
 	public function bairros()
 	{
 		return $this->hasMany(Bairro::class);
 	}
+
+
+    public function province() 
+    {
+        return $this->belongsTo(Province::class);
+    }
+
     public function getSearchResult(): SearchResult
     {
         return new \Spatie\Searchable\SearchResult(

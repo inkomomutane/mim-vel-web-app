@@ -25,6 +25,7 @@ class CidadeUpdateRequest extends FormRequest
     {
         return [
             'nome' => 'required|unique:cidades,nome,'. $this->cidade->id,
+            'province_id' => 'required|numeric'
         ];
     }
 }

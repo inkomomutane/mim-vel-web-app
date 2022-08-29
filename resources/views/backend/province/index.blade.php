@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')
-@section('title','Cidades')
+@section('title','Províncias')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="row">
                 <div class="card">
                     <div class="card-header row justify-content-between">
-                        <h5 class="card-title col-auto">Cidades</h5>
-                        <a href="{{ route('cidade.create') }}" class="col-auto btn btn-purple">
-                            @svg('fluentui-city-16-o','feather align-middle') &nbsp; <span class="align-middle">Nova cidade</span>
+                        <h5 class="card-title col-auto">Províncias</h5>
+                        <a href="{{ route('province.create') }}" class="col-auto btn btn-purple">
+                            @svg('fluentui-city-24','feather align-middle') &nbsp; <span class="align-middle">Nova province</span>
                         </a>
                     </div>
                 </div>
@@ -24,25 +24,23 @@
                                 </div>
                             </div>
                         @endif
-                        <table id="cidades_table" class="table table-responsive display table-hover my-0 w-100">
+                        <table id="provinces_table" class="table table-responsive display table-hover my-0 w-100">
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cidade</th>
                                 <th>Província</th>
                                 <th>Editar</th>
                                 <th>Deletar</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($cidades as $cidade)
+                            @foreach($provinces as $province)
                             <tr>
-                                <td>{{$cidade->id}}</td>
-                                <td>{{$cidade->nome}}</td>
-                                <td>{{ is_null($cidade->province) ? '' : $cidade->province->name }}</td>
-                                <td><a class="btn btn-warning" href="{{route('cidade.edit',$cidade->id)}}">Editar</a></td>
-                                <td><button class="btn btn-danger" onclick="document.getElementById('cidade_{{$cidade->id}}_delete').submit()">Delete</button>
-                                    <form action="{{route('cidade.destroy',$cidade->id)}}" method="post" id="cidade_{{$cidade->id}}_delete">
+                                <td>{{$province->id}}</td>
+                                <td>{{$province->name}}</td>
+                                <td><a class="btn btn-warning" href="{{route('province.edit',$province->id)}}">Editar</a></td>
+                                <td><button class="btn btn-danger" onclick="document.getElementById('province_{{$province->id}}_delete').submit()">Delete</button>
+                                    <form action="{{route('province.destroy',$province->id)}}" method="post" id="province_{{$province->id}}_delete">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -54,7 +52,6 @@
 
                                     <tr>
                                         <th>Id</th>
-                                        <th>Cidade</th>
                                         <th>Província</th>
                                         <th>Editar</th>
                                         <th>Deletar</th>
