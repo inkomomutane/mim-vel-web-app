@@ -86,7 +86,7 @@
                                                     @if (request()->routeIs('imovel.edit') && (!is_null($imovel->regra_de_negocio))  && $imovel->regra_de_negocio->id == $regra_de_negocio->id)
                                                     selected class="option-selected"
                                                 @endif
-                                                    >{{ $regra_de_negocio->nome }}
+                                                    >{{ $regra_de_negocio->name }}
                                                 </option>
                                             @endforeach
                                         @endif
@@ -104,7 +104,7 @@
                                                     @if (request()->routeIs('imovel.edit') &&  (!is_null($imovel->imovel_for)) && $imovel->imovel_for->id == $imovel_for->id)
                                                     selected class="option-selected"
                                                 @endif
-                                                    >{{ $imovel_for->nome }}</option>
+                                                    >{{ $imovel_for->name }}</option>
                                             @endforeach
                                         @endif
 
