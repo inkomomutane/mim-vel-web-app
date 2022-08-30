@@ -100,7 +100,7 @@ class CondicaoController extends Controller
      */
     public function destroy(Condicao $condicao)
     {
-        if (!is_null($condicao) || $condicao->imovels->isEmpty()) {
+        if (!is_null($condicao) && $condicao->imovels->isEmpty()) {
             try {
                 $condicao->delete();
                 session()->flash('success', 'Condicao deletada com sucesso.');

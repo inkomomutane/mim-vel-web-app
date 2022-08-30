@@ -97,7 +97,7 @@ class ImovelForController extends Controller
      */
     public function destroy(ImovelFor $imovel_for)
     {
-        if (!is_null($imovel_for) || $imovel_for->imovels->isEmpty()) {
+        if (!is_null($imovel_for) && $imovel_for->imovels->isEmpty()) {
             try {
                 $imovel_for->delete();
                 session()->flash('success', 'Tipo de transação deletada com sucesso.');

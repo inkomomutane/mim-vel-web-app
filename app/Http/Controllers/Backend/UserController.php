@@ -129,7 +129,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (!is_null($user)) {
+        if (!is_null($user) && $user->imovels->isEmpty()) {
             try {
                 $user->syncRoles([]);
                 $user->delete();

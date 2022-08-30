@@ -114,7 +114,7 @@ class TipoDeImovelController extends Controller
      */
     public function destroy(TipoDeImovel $tipo_de_imovel)
     {
-        if (!is_null($tipo_de_imovel) || $tipo_de_imovel->bairros->isEmpty()) {
+        if (!is_null($tipo_de_imovel) && $tipo_de_imovel->bairros->isEmpty()) {
             try {
                 $tipo_de_imovel->delete();
                 session()->flash('success', 'Tipo De Imovel deletado com sucesso.');

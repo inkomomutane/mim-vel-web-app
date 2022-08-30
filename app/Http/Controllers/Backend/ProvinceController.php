@@ -100,17 +100,17 @@ class ProvinceController extends Controller
      */
     public function destroy(Province $province)
     {
-        if (!is_null($province) || $province->cidades->isEmpty()) {
+        if (!is_null($province) && $province->cidades->isEmpty()) {
             try {
                 $province->delete();
                 session()->flash('success', 'Província deletada com sucesso.');
                 return redirect()->route('province.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar província.');
+                session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
                 return redirect()->route('province.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            session()->flash('error', 'Erro ao deletar: Não pode deletar província que possuí cidades!');
             return redirect()->route('province.index');
         }
     }

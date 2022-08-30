@@ -124,27 +124,27 @@
                                 </textarea>
                             </div>
                             <div class="row justify-content-between my-3">
-                                <div class="col-sm-4">
-                                    <label for="name">Bairro</label>
-                                    <select name="bairro_id" id="bairro_id" class="form-control form-select">
-                                        @foreach ($bairros as $bairro)
-                                            <option value="{{ $bairro->id }}"
-                                                @if (request()->routeIs('imovel.edit') && $imovel->bairro->id == $bairro->id)
-                                                selected class="option-selected"
-                                            @endif>{{ $bairro->nome }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-8">
+
+                                @if (request()->routeIs('imovel.edit'))
+                                    @livewire('imovel-bairro-select',[
+                                        'bairroId' => $imovel->bairro->id
+                                    ])
+                                @else
+                                     @livewire('imovel-bairro-select')
+                                @endif
+
+
+                            </div>
+
+                            <div class="row justify-content-between my-3">
+
+                                <div class="col-sm-6">
                                     <label for="name">Endereço</label>
                                     <input type="text" name="endereco" id="endereco" class="form-control"
                                         placeholder="Endereço"
                                         value="@if (old('endereco')) {{ old('endereco') }}@elseif(request()->routeIs('imovel.edit')){{ $imovel->endereco }} @endif">
                                 </div>
-                            </div>
-
-                            <div class="row justify-content-between my-3">
-                                <div class="w-100">
+                                <div class="col-sm-6">
                                     <label for="name">Mapa da localização do imóvel.</label>
                                     <input type="text" name="mapa" id="mapa" class="form-control"
                                         placeholder=" Link do Mapa da localização do imóvel."
@@ -190,7 +190,6 @@
                                     <select name="status_id" id="status_id" class="form-control form-select">
                                         @foreach ($statuses as $status)
                                             <option value="{{ $status->id }}"
-
                                                 @if (request()->routeIs('imovel.edit') && $imovel->status->id == $status->id)
                                                 selected class="option-selected"
                                             @endif

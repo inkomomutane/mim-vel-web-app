@@ -4,10 +4,9 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class FilesystemTest extends TestCase
+class NullOrEmptyCollectionTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -16,12 +15,13 @@ class FilesystemTest extends TestCase
      */
     public function test_example()
     {
-    //    try {
-    //     // dd(Storage::disk('google')->allFiles());
-    //    } catch (\Throwable $th) {
-    //     throw $th;
-    //    }
+        $data = collect([1]);
+        $this->assertFalse($this->isNullOrEmpty($data));
+    }
 
-      $this->assertTrue(true);
+
+    private function isNullOrEmpty(mixed $collection) : bool
+    {
+        return (is_null($collection) ||  (count($collection) < 1 ) );
     }
 }

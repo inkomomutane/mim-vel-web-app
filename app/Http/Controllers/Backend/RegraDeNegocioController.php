@@ -97,7 +97,7 @@ class RegraDeNegocioController extends Controller
      */
     public function destroy(RegraDeNegocio $regraDeNegocio)
     {
-        if (!is_null($regraDeNegocio) || $regraDeNegocio->imovels->isEmpty()) {
+        if (!is_null($regraDeNegocio) && $regraDeNegocio->imovels->isEmpty()) {
             try {
                 $regraDeNegocio->delete();
                 session()->flash('success', 'Regra de negociação deletada com sucesso.');

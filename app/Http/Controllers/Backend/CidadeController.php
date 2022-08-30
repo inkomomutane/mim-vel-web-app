@@ -107,17 +107,17 @@ class CidadeController extends Controller
      */
     public function destroy(Cidade $cidade)
     {
-        if (!is_null($cidade) || $cidade->bairros->isEmpty()) {
+        if (!is_null($cidade) && $cidade->bairros->isEmpty()) {
             try {
                 $cidade->delete();
                 session()->flash('success', 'Cidade deletada com sucesso.');
                 return redirect()->route('cidade.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar cidade.');
+                session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema.".');
                 return redirect()->route('cidade.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            session()->flash('error', 'Erro ao deletar: Não pode deletar Cidade que possuí bairros!');
             return redirect()->route('cidade.index');
         }
     }

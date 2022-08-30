@@ -101,7 +101,7 @@ class BairroController extends Controller
      */
     public function destroy(Bairro $bairro)
     {
-        if (!is_null($bairro) || $bairro->imovels->isEmpty()) {
+        if (!is_null($bairro) && $bairro->imovels->isEmpty()) {
             try {
                 $bairro->delete();
                 session()->flash('success', 'Bairro deletado com sucesso.');

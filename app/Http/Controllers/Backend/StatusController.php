@@ -100,7 +100,7 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        if (!is_null($status) || $status->bairros->isEmpty()) {
+        if (!is_null($status) && $status->bairros->isEmpty()) {
             try {
                 $status->delete();
                 session()->flash('success', 'Status deletado com sucesso.');

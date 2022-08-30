@@ -31,7 +31,7 @@ class QueryTest extends TestCase
             'value' => 228
        )];
 
-       dd($this->filter($imovels,$requestArray));
+    //    dd($this->filter($imovels,$requestArray));
 
         if($this->filter($imovels,$requestArray) == []) $this->assertTrue(true);
         else $this->assertFalse(false);
