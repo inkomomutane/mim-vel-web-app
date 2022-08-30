@@ -34,7 +34,7 @@
                                                 style="color: rgb(6, 98, 149)">M</span><span
                                                 style="color: rgb(254, 104, 1)">IMÓVEL</span><span
                                                 style="color: rgb(6, 98, 149);font-size:30px">.COM</span></h1>
-                                        <p class="para-desc mx-auto text-white-50">{{ $imovel->titulo }}</p>
+                                        <p class="para-desc mx-auto text-white-50">{{ Str::ucfirst( ($imovel->imovelFor->slug_text ?? '') . ' ' . $imovel->titulo) }}</p>
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -53,7 +53,7 @@
                                 <div class="col-12">
                                     <div class="title-heading text-center">
                                         <h1 class="heading text-white title-dark mb-4">Imóvel</h1>
-                                        <p class="para-desc mx-auto text-white-50">{{ $imovel->titulo }}</p>
+                                        <p class="para-desc mx-auto text-white-50 text-capitalize">{{ ($imovel->imovelFor->slug_text ?? '') . ' ' . $imovel->titulo }}</p>
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -124,16 +124,12 @@
                     <div class="col-12 rounded-3 p-2 bg-white">
                         <div class="m-3">
                             <span class="badge rounded-pill text-dark p-2  " style="background: #efefef">
-                                @if ($imovel->isForRent())
-                                    Para aluguel
-                                @else
-                                    Para compra
-                                @endif
+                               {{$imovel->imovelFor->name ?? ' '}}
                             </span>
                         </div>
                         <div class="mx-3 w-100">
                             <h5 class="text-dark fw-bolder">
-                                {{ Str::ucfirst($imovel->titulo) }}
+                                {{ Str::ucfirst(($imovel->imovelFor->slug_text  ?? '')  . ' ' . $imovel->titulo) }}
                             </h5>
                         </div>
                         <div class="mx-3 w-100">

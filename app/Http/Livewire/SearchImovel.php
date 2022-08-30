@@ -56,6 +56,7 @@ public function updatedPage()
                 ->with('condicao')
                 ->with('media')
                 ->with('comentarios')
+                ->with('imovelFor')
                 ->when($this->posts, function ($query, $posts) {
                     return $query->whereIn('id',$posts->pluck('id'));
                 })

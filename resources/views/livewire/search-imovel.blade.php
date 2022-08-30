@@ -2,11 +2,9 @@
 
 
     @foreach ($imovels as $imovel)
-        <div class="col-lg-12 col-12 mb-4 pb-2 " data-aos="fade-up" data-aos-duration="300" >
-            <x-post-card
-            :imovel="$imovel"
-            author="{{ $imovel->corretor->name }}" title="{{ $imovel->titulo }}" :description="$imovel->descricao"
-                price="{{ $imovel->preco }}" :ratings="$imovel->stars()" quartos="{{ $imovel->quartos }}"
+        <div class="col-lg-12 col-12 mb-4 pb-2 " data-aos="fade-up" data-aos-duration="300">
+            <x-post-card :imovel="$imovel" author="{{ $imovel->corretor->name }}" title="{{ $imovel->titulo }}"
+                :description="$imovel->descricao" price="{{ $imovel->preco }}" :ratings="$imovel->stars()" quartos="{{ $imovel->quartos }}"
                 area="{{ $imovel->area }}" suites="{{ $imovel->suites }}" banheiros="{{ $imovel->banheiros }}"
                 piscinas="{{ $imovel->piscinas }}" garagens="{{ $imovel->garagens }}"
                 url="{{ route('posts.show', $imovel->slug) }}" :date="$imovel->created_at"

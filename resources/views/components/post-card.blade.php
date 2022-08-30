@@ -44,11 +44,11 @@
                             {{ $imovel->corretor->name }} </small>
                         <small class="badge badge-rounded-3 bg-success">
                             @svg('fluentui-money-20-o', 'fea icon-sm')
-                            {{ $imovel->isForRent() ? __('Para aluguar') : __('Para comprar') }} </small>
+                            {{   ($imovel->imovelFor->name ?? '') }} </small>
                     @endif
 
 
-                    <h5><a href="{{ $url }}" class="card-title title text-dark">{{ Str::ucfirst($title) }}</a></h5>
+                    <h5><a href="{{ $url }}" class="card-title title text-dark">{{ Str::ucfirst( ($imovel->imovelFor->slug_text ?? '') . ' ' . $imovel->titulo) }}</a></h5>
 
                     <ul class="list-unstyled h6 mb-0 text-warning">
                         @for ($i = 0; $i < $ratings; $i++)

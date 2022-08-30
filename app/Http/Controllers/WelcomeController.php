@@ -17,10 +17,12 @@ class WelcomeController extends Controller
                 ->with('comentarios')
                 ->with('media')
                 ->with('corretor')
+                ->with('imovelFor')
                 ->get()->take(8) :
                 Imovel::with('ratings')
                 ->with('comentarios')
                 ->with('corretor')
+                ->with('imovelFor')
                 ->get(),
             'recents' => Imovel::count() > 3 ?
                 Imovel::orderBy('created_at', 'desc')
@@ -28,9 +30,11 @@ class WelcomeController extends Controller
                 ->with('media')
                 ->with('comentarios')
                 ->with('corretor')
+                ->with('imovelFor')
                 ->take(3)->get() :
                 Imovel::with('ratings')
                 ->with('comentarios')
+                ->with('imovelFor')
                 ->with('corretor')
                 ->get(),
             'banners' => !is_null(Banner::first()) ?
