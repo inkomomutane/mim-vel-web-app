@@ -1,6 +1,6 @@
 
 
-<li class="sidebar-item">
+{{-- <li class="sidebar-item">
     <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
         <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
     </a>
@@ -16,7 +16,7 @@
                     class="sidebar-badge badge bg-primary">Pro</span></a></li>
         <li class="sidebar-item"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
     </ul>
-</li>
+</li> --}}
 
 
 <li class="sidebar-item @if (request()->routeIs('dashboard')) active @endif">
