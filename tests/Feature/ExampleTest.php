@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Tests\TestCase;
+use Spatie\Analytics\Period;
+use Spatie\Analytics\AnalyticsFacade;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
@@ -16,7 +19,9 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $data = (Object) [];
+        $data =  AnalyticsFacade::fetchVisitorsAndPageViews(Period::days(7));
+
+        // dd($data);
 
         $response->assertStatus(200);
     }

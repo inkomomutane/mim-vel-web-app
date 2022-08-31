@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "algolia/algoliasearch-client-php": "^3.3",
         "awssat/laravel-visits": "^3.0",
         "blade-ui-kit/blade-ui-kit": "^0.3.4",
         "codeat3/blade-fluentui-system-icons": "^1.24",
@@ -17,6 +18,7 @@
         "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
+        "laravel/scout": "^9.4",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
