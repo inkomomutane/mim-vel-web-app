@@ -1,1 +1,1 @@
-[".alugar"].map((function(e){return new window.Choices(e,{removeItems:!0,searchEnabled:!0,searchChoices:!0,renderChoiceLimit:2,maxItemCount:2,noResultsText:"Sem opções por selecionar",itemSelectText:"Selecionar",noChoicesText:"Sem opções por selecionar",classNames:{containerInner:["choices__inner text-truncate"]},allowHTML:!1,duplicateItemsAllowed:!1})})),new window.GLightbox({touchNavigation:!0,loop:!0,autoplayVideos:!0});
+new window.GLightbox({touchNavigation:!0,loop:!0,autoplayVideos:!0});

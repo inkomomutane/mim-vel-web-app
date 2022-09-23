@@ -3,46 +3,87 @@
         @csrf
         <input type="hidden" name="search" value="{{$search}}" readonly>
         <div class="col-sm-2">
-            <select class="form-control form-select bairros p-3 m-0 mx-3  w-100 rounded-3 bg-white"
-                aria-label="Default select example" multiple name="bairros[]">
-                <option placeholder class="bg-white">Bairros</option>
+            <select class="form-control w-100" multiple name="bairros[]"
+
+            data-none-selected-text="Bairros"
+            data-live-search="true"
+            data-live-search-normalize="true"
+            data-none-results-text="Nunhum bairro foi encontrado!"
+            data-actions-box="true"
+            data-width="auto"
+            data-selected-text-format="count > 3"
+            data-deselect-all-text="Clear"
+
+            >
                 @foreach ($bairros as $bairro)
-                    <option value="{{ $bairro->id }}" class="text-truncate">{{ $bairro->nome }}</option>
+                    <option value="{{ $bairro->id }}" >{{ $bairro->nome }}</option>
                 @endforeach
             </select>
         </div>
         <div class="col-sm-2">
-            <select class="form-control form-select tipos p-3 m-0 mx-3  w-100 rounded-3 bg-white"
-                aria-label="Default select example" multiple name="tipo_de_imovels[]">
-                <option placeholder class="bg-white">Tipo de Imóvel</option>
+            <select class="form-control w-100"
+                aria-label="Default select example" multiple name="tipo_de_imovels[]"
+
+                data-none-selected-text="Tipo de imóvel"
+                data-live-search="true"
+                data-live-search-normalize="true"
+                data-none-results-text="Nunhum tipo de imóvel foi encontrado!"
+                data-actions-box="true"
+                data-width="auto"
+                data-size="auto"
+                data-selected-text-format="count > 3"
+                data-deselect-all-text="Clear"
+                >
                 @foreach ($tipoDeImovels as $tipoDeImovel)
-                    <option value="{{ $tipoDeImovel->id }}" class="text-truncate">{{ $tipoDeImovel->nome }}</option>
+                    <option value="{{ $tipoDeImovel->id }}" >{{ $tipoDeImovel->nome }}</option>
                 @endforeach
             </select>
+
         </div>
         <div class="col-sm-2">
-            <select class="form-control form-select condicao p-3 m-0 mx-3  w-100 rounded-3 bg-white"
-                aria-label="Default select example" multiple name="condicaos[]">
-                <option placeholder class="bg-white">Condição</option>
+            <select class="form-control w-100" data-width="auto"
+                aria-label="Default select example" multiple name="condicaos[]"
+
+
+                data-none-selected-text="Condição do imóvel"
+                data-live-search="true"
+                data-live-search-normalize="true"
+                data-none-results-text="Nunhuma condição de imóvel foi encontrada!"
+                data-actions-box="true"
+                data-width="800"
+                data-size="auto"
+                data-selected-text-format="count > 3"
+                data-deselect-all-text="Clear"
+                >
+
                 @foreach ($condicaos as $condicao)
-                    <option value="{{ $condicao->id }}" class="text-truncate">{{ $condicao->nome }}</option>
+                    <option value="{{ $condicao->id }}">{{ $condicao->nome }}</option>
                 @endforeach
             </select>
         </div>
         <div class="col-sm-2">
-            <select class="form-control form-select estado p-3 m-0 mx-3  w-100 rounded-3 bg-white"
-                aria-label="Default select example" multiple name="estados[]">
-                <option placeholder class="bg-white">Estado</option>
+            <select class="form-control w-100"
+                aria-label="Default select example" multiple name="estados[]"
+
+                data-none-selected-text="Estado do imóvel"
+                data-live-search="true"
+                data-live-search-normalize="true"
+                data-none-results-text="Nunhum estado de imóvel foi encontrada!"
+                data-actions-box="true"
+                data-width="800"
+                data-selected-text-format="count > 3"
+                data-deselect-all-text="Clear"
+                >
                 @foreach ($estados as $estado)
                     <option value="{{ $estado->id }}">{{ $estado->nome }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="dropdown col-sm-1">
-            <button class="form-control dropdown-toggle p-2 text-start" type="text" placeholder="Filtro"
+        <div class="dropdown col-sm-2">
+            <button class="dropdown-toggle p-2 text-start btn btn-light btn-outline-light" type="button" placeholder="Filtro"
                 aria-label="dropdown" id="filtro" data-bs-toggle="dropdown" aria-expanded="false"
                 data-bs-auto-close="outside">
-                + Filtros
+                + Mais Filtros
             </button>
 
             <div class="dropdown-menu p-2 shadow-md border-0 dropdown-menu-start dropdown-menu-lg-end"
@@ -69,8 +110,16 @@
                             {{ number_format($precoMax, 2) }}</small>
                     </div>
                     <div class="col-4">
-                        <select name="rent[]" multiple class="alugar">
-                            <option placeholder>Alugar ou comprar</option>
+                        <select name="rent[]" multiple class="alugar"
+                        data-none-selected-text="Opções de negociação"
+                        data-live-search="true"
+                        data-live-search-normalize="true"
+                        data-none-results-text="Nenhuma opção encontrada!"
+                        data-actions-box="true"
+                        data-width="auto"
+                        data-selected-text-format="count > 3"
+                        data-deselect-all-text="Clear"
+                        >
                             <option value="1" selected>Alugar</option>
                             <option value="0" selected>Comprar</option>
                         </select>
@@ -121,16 +170,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3 row p-0 m-0">
-            <div class="col-6">
+        <div class="col-sm-2 row p-0 m-0">
+            <div class="col-12">
                 <button class="btn btn-outline-success w-100" type="submit">
                     @svg('fluentui-arrow-sync-circle-24', 'fea icon-sm fw-bold')
                     Pesquisar</button>
-            </div>
-            <div class="col-6">
-                <span class="btn btn-outline-danger w-100" id="clearFormChoices">
-                    @svg('fluentui-filter-dismiss-16', 'fea icon-sm')
-                    Limpar</span>
             </div>
 
         </div>

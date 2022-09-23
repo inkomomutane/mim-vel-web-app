@@ -6,3 +6,4 @@ import  './modules/mask';
 import './modules/easy_background';
 import './modules/aos';
 import "./modules/glightbox";
+import "bootstrap-select/js/bootstrap-select";
