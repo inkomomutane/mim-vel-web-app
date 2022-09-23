@@ -647,3 +647,8 @@ try {
 }catch(err) {
 
 }
+
+try {
+
+    window.$('select').selectpicker('setStyle', 'col-12', 'add');
+} catch (err) {}

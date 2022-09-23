@@ -19,7 +19,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $data =  AnalyticsFacade::fetchVisitorsAndPageViews(Period::days(7));
+        // $data =  AnalyticsFacade::fetchVisitorsAndPageViews(Period::days(7));
 
         // dd($data);
 
