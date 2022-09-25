@@ -13,7 +13,7 @@ class PostSearchController extends Controller
 
 
 
-        dd(request()->all());
+        // dd(request()->all());
 
 
         if (request()->home_link) {
