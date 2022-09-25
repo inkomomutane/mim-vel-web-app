@@ -11,6 +11,11 @@ class PostSearchController extends Controller
     public function search()
     {
 
+
+
+        dd(request()->all());
+
+
         if (request()->home_link) {
             return view('website.posts', [
                 'search' => request()->search
