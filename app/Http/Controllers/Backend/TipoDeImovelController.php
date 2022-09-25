@@ -95,12 +95,14 @@ class TipoDeImovelController extends Controller
             $tipo_de_imovel->update($request->all());
 
             if($request->hasFile('image')){
-                $tipo_de_imovel->addMedia($request->image)->toMediaCollection('icons');
+                $tipo_de_imovel->addMedia($request->image)
+                ->toMediaCollection('icons');
             }
 
             session()->flash('success', 'Tipo De Imovel actualizado com sucesso.');
             return redirect()->route('tipo_de_imovel.index');
         } catch (\Throwable $e) {
+            throw $e;
             session()->flash('error', 'Erro na actualização do tipo de imóvel.');
             return redirect()->route('tipo_de_imovel.index');
         }

@@ -58,11 +58,11 @@ class UserController extends Controller
             }
              $user = User::create($dataCreate);
              $user->assignRole(Role::where('id',$request->role_id)->pluck('name')->toArray());
-            session()->flash('success', 'User criado com sucesso.');
+            $this->flasher->addFlash('success', 'User criado com sucesso.');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
             throw $e;
-            session()->flash('error', 'Erro na criação do user.');
+            $this->flasher->addFlash('error', 'Erro na criação do user.');
             return redirect()->route('user.index');
         }
     }
@@ -113,10 +113,10 @@ class UserController extends Controller
             $user->update($dataUpdate);
             $user->syncRoles([]);
             $user->assignRole(Role::where('id',$request->role_id)->pluck('name')->toArray());
-            session()->flash('success', 'User actualizado com sucesso.');
+            $this->flasher->addFlash('success', 'User actualizado com sucesso.');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização do user.');
+            $this->flasher->addFlash('error', 'Erro na actualização do user.');
             return redirect()->route('user.index');
         }
     }
@@ -133,14 +133,14 @@ class UserController extends Controller
             try {
                 $user->syncRoles([]);
                 $user->delete();
-                session()->flash('success', 'Usuário deletado com sucesso.');
+                $this->flasher->addFlash('success', 'Usuário deletado com sucesso.');
                 return redirect()->route('user.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar user.');
+                $this->flasher->addFlash('error', 'Erro ao deletar user.');
                 return redirect()->route('user.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('user.index');
         }
     }

@@ -7,9 +7,14 @@ use App\Models\Bairro;
 use App\Http\Requests\Bairro\BairroCreateRequest;
 use App\Http\Requests\Bairro\BairroUpdateRequest;
 use App\Models\Cidade;
+use Flasher\Notyf\Prime\NotyfFactory;
+
 
 class BairroController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -42,11 +47,11 @@ class BairroController extends Controller
     {
         try {
             Bairro::create($request->all());
-            session()->flash('success', 'Bairro criado com sucesso.');
+            $this->flasher->addSuccess('Bairro criado com sucesso.');
            return redirect()->route('bairro.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação do bairro.');
+           $this->flasher->addError('Erro na criação do bairro.');
            return redirect()->route('bairro.index');
        }
     }
@@ -85,10 +90,10 @@ class BairroController extends Controller
     {
         try {
             $bairro->update($request->all());
-            session()->flash('success', 'Bairro actualizado com sucesso.');
+            $this->flasher->addSuccess('Bairro actualizado com sucesso.');
             return redirect()->route('bairro.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização do bairro.');
+            $this->flasher->addeError('Erro na actualização do bairro.');
             return redirect()->route('bairro.index');
         }
     }
@@ -99,19 +104,19 @@ class BairroController extends Controller
      * @param  \App\Models\Bairro  $bairro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bairro $bairro)
+    public function destroy(Bairro $bairro,NotyfFactory $flasher)
     {
         if (!is_null($bairro) && $bairro->imovels->isEmpty()) {
             try {
                 $bairro->delete();
-                session()->flash('success', 'Bairro deletado com sucesso.');
+                $flasher->addSuccess('Bairro deletado com sucesso.');
                 return redirect()->route('bairro.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar bairro.');
+                $flasher->addError('Erro ao deletar bairro.');
                 return redirect()->route('bairro.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $flasher->addError('Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('bairro.index');
         }
     }

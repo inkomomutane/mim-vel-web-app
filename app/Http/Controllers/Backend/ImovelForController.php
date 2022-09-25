@@ -39,11 +39,11 @@ class ImovelForController extends Controller
     {
         try {
             ImovelFor::create($request->all());
-            session()->flash('success', 'Tipo de trasação criada com sucesso.');
+            $this->flasher->addFlash('success', 'Tipo de trasação criada com sucesso.');
            return redirect()->route('imovel_for.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação da tipo de transação.');
+           $this->flasher->addFlash('error', 'Erro na criação da tipo de transação.');
            return redirect()->route('imovel_for.index');
        }
     }
@@ -81,10 +81,10 @@ class ImovelForController extends Controller
     {
         try {
             $imovel_for->update($request->all());
-            session()->flash('success', 'Tipo de transação actualizada com sucesso.');
+            $this->flasher->addFlash('success', 'Tipo de transação actualizada com sucesso.');
             return redirect()->route('imovel_for.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização do tipo de transação.');
+            $this->flasher->addFlash('error', 'Erro na actualização do tipo de transação.');
             return redirect()->route('imovel_for.index');
         }
     }
@@ -100,14 +100,14 @@ class ImovelForController extends Controller
         if (!is_null($imovel_for) && $imovel_for->imovels->isEmpty()) {
             try {
                 $imovel_for->delete();
-                session()->flash('success', 'Tipo de transação deletada com sucesso.');
+                $this->flasher->addFlash('success', 'Tipo de transação deletada com sucesso.');
                 return redirect()->route('imovel_for.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar tipo de transação.');
+                $this->flasher->addFlash('error', 'Erro ao deletar tipo de transação.');
                 return redirect()->route('imovel_for.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('imovel_for.index');
         }
     }

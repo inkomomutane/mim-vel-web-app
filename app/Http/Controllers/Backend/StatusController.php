@@ -41,11 +41,11 @@ class StatusController extends Controller
     {
         try {
             Status::create($request->all());
-            session()->flash('success', 'Status criado com sucesso.');
+            $this->flasher->addFlash('success', 'Status criado com sucesso.');
            return redirect()->route('status.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação do status.');
+           $this->flasher->addFlash('error', 'Erro na criação do status.');
            return redirect()->route('status.index');
        }
     }
@@ -84,10 +84,10 @@ class StatusController extends Controller
     {
         try {
             $status->update($request->all());
-            session()->flash('success', 'Status actualizado com sucesso.');
+            $this->flasher->addFlash('success', 'Status actualizado com sucesso.');
             return redirect()->route('status.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização do status.');
+            $this->flasher->addFlash('error', 'Erro na actualização do status.');
             return redirect()->route('status.index');
         }
     }
@@ -103,14 +103,14 @@ class StatusController extends Controller
         if (!is_null($status) && $status->bairros->isEmpty()) {
             try {
                 $status->delete();
-                session()->flash('success', 'Status deletado com sucesso.');
+                $this->flasher->addFlash('success', 'Status deletado com sucesso.');
                 return redirect()->route('status.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar status.');
+                $this->flasher->addFlash('error', 'Erro ao deletar status.');
                 return redirect()->route('status.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('status.index');
         }
     }

@@ -176,7 +176,7 @@
                 </div>
                 <!--end col-->
 
-                <div class="mt-4 d-none d-lg-block col-12">
+                <div class="mt-4 d-block col-12">
                     <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóvels</a>
                 </div>
             </div>
@@ -238,7 +238,7 @@
             <div class="row">
 
                 @foreach ($recents as $imovel)
-                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class=" col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="card blog rounded border-0 shadow-lg">
                             <a href="{{ route('posts.show', $imovel->slug) }}">
                                 <div class="position-relative">
@@ -296,7 +296,7 @@
                     <!--end col-->
                 @endforeach
 
-                <div class="mt-4 d-none d-lg-block col-12">
+                <div class="mt-4 d-block col-12">
                     <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóvels</a>
                 </div>
             </div>
@@ -327,7 +327,7 @@
                     @foreach ($icons as $icon)
                         <div class="col-6 col-sm-6 col-md-4 col-lg-3 mt-4 pt-2">
                             <div class="card  explore-feature border-0  rounded text-center bg-transparent" onclick="document.getElementById('icons_id_{{ $icon->id }}').submit()">
-                                <img src="{{ $icon->getFirstMediaUrl('icons', 'thumb') }}"
+                                <img src="{{ $icon->getFirstMediaUrl('icons') }}"
                                     class="rounded-circle card-img-top mt-3 mx-auto img-thumbnail">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">{{ $icon->nome }}</h5>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Banner;
 use App\Http\Controllers\Controller;
+use Flasher\Notyf\Prime\NotyfFactory;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -11,6 +12,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class BannerController extends Controller
 {
     private Banner $banner;
+
+
 
     public function __construct() {
         if(Banner::all()->isEmpty()) {Banner::create([]);}
@@ -37,7 +40,7 @@ class BannerController extends Controller
      * @param  \App\Http\Requests\StoreBannerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,FlasherInterface $flasher)
+    public function store(Request $request)
     {
         try {
             if($request->hasFile('image')){
@@ -47,11 +50,11 @@ class BannerController extends Controller
                     ->toMediaCollection('banners','banners');
                 }
              }
-             $flasher->addSuccess('Imagens adicionadas com sucesso!');
+             $this->flasher->addSuccess('Imagens adicionadas com sucesso!');
             return redirect()->route('banner.index');
         } catch (\Throwable $th) {
-            throw $th;
-            $flasher->addErr('Erro ao adicionar imagens! Por favor contacte o Técnico!');
+            // throw $th;
+            $this->flasher->addErr('Erro ao adicionar imagens! Por favor contacte o Técnico!');
             return redirect()->back();
         }
     }
@@ -65,15 +68,15 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media,FlasherInterface $flasher)
+    public function destroy(Media $media)
     {
         try {
             $media->delete();
-            $flasher->addSuccess('A imagem foi deletada com sucesso!');
+            $this->flasher->addSuccess('A imagem foi deletada com sucesso!');
             return redirect()->route('banner.index');
         } catch (\Throwable $th) {
             //throw $th;
-            $flasher->addErr('Erro ao deletar imagem por favor contacte o Técnico!');
+            $this->flasher->addErr('Erro ao deletar imagem por favor contacte o Técnico!');
             return redirect()->route('banner.index');
         }
     }
