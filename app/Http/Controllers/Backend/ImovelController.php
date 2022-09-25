@@ -14,7 +14,7 @@ use App\Models\Rating;
 use App\Models\RegraDeNegocio;
 use App\Models\Status;
 use App\Models\TipoDeImovel;
-use Intervention\Image\Facades\Image;
+use App\Models\User;
 use Jorenvh\Share\ShareFacade;
 
 class ImovelController extends Controller
@@ -27,10 +27,11 @@ class ImovelController extends Controller
     public function index()
     {
 
-        return view('backend.imovel.index')->with('imovels',
-        auth()->user()->hasRole('Super-Admin') ? Imovel::all() : Imovel::where('id',auth()->user()->id)->get()
-    );
-
+        return view('backend.imovel.index')->with(
+            'imovels',
+            User::find(auth()->user()->id)->hasRole('Super-Admin') ?
+                Imovel::all() : Imovel::where('id', auth()->user()->id)->get()
+        );
     }
 
     /**
@@ -40,7 +41,7 @@ class ImovelController extends Controller
      */
     public function create()
     {
-        return view('backend.imovel.create_edit',[
+        return view('backend.imovel.create_edit', [
             'bairros' => Bairro::all(),
             'condicaos' => Condicao::all(),
             'tipo_de_imovels' => TipoDeImovel::all(),
@@ -59,26 +60,26 @@ class ImovelController extends Controller
     public function store(ImovelCreateRequest $request)
     {
         try {
-           $data = $request->all();
-           $data['corretor_id'] = auth()->user()->id;
-           $data['preco']=  str_replace(['(MZN) ','.'],'',$data['preco']);
-           $data['preco']=  str_replace([','],'.',$data['preco']);
+            $data = $request->all();
+            $data['corretor_id'] = auth()->user()->id;
+            $data['preco'] =  str_replace(['(MZN) ', '.'], '', $data['preco']);
+            $data['preco'] =  str_replace([','], '.', $data['preco']);
 
-                $imovel = Imovel::create($data);
-                if(request()->hasFile('image')){
-                   foreach ($request->image as  $image) {
-                       $imovel->addMedia($image)
-                       ->withResponsiveImages()
-                       ->toMediaCollection('posts','posts');
-                   }
+            $imovel = Imovel::create($data);
+            if (request()->hasFile('image')) {
+                foreach ($request->image as  $image) {
+                    $imovel->addMedia($image)
+                        ->withResponsiveImages()
+                        ->toMediaCollection('posts', 'posts');
                 }
-            session()->flash('success', 'Imovel criado com sucesso.');
-           return redirect()->route('imovel.index');
-       } catch (\Throwable $e) {
-           throw $e;
-           session()->flash('error', 'Erro na criação do imovel.');
-           return redirect()->route('imovel.index');
-       }
+            }
+            $this->flasher->addFlash('success', 'Imovel criado com sucesso.');
+            return redirect()->route('imovel.index');
+        } catch (\Throwable $e) {
+            throw $e;
+            $this->flasher->addFlash('error', 'Erro na criação do imovel.');
+            return redirect()->route('imovel.index');
+        }
     }
 
     /**
@@ -90,13 +91,15 @@ class ImovelController extends Controller
     public function show(Imovel $imovel)
     {
         visits($imovel)->increment();
-         $imovel =  $imovel->with('media')->where('id',$imovel->id)->first();
-        return view('website.post')->with('imovel',$imovel)->with('socialMedias',
-        ShareFacade::page(route('posts.show',$imovel->slug), 'Share title')
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->whatsapp()->getRawLinks());
+        $imovel =  $imovel->with('media')->where('id', $imovel->id)->first();
+        return view('website.post')->with('imovel', $imovel)->with(
+            'socialMedias',
+            ShareFacade::page(route('posts.show', $imovel->slug), 'Share title')
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->whatsapp()->getRawLinks()
+        );
     }
 
     /**
@@ -107,14 +110,14 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
-        return view('backend.imovel.create_edit',[
+        return view('backend.imovel.create_edit', [
             'bairros' => Bairro::all(),
             'condicaos' => Condicao::all(),
             'tipo_de_imovels' => TipoDeImovel::all(),
             'statuses' => Status::all(),
             'imovel_fors' => ImovelFor::all(),
             'regra_de_negocios' => RegraDeNegocio::all()
-        ])->with('imovel',$imovel);
+        ])->with('imovel', $imovel);
     }
 
     /**
@@ -128,25 +131,25 @@ class ImovelController extends Controller
     {
         try {
             $data = $request->all();
-            $data['preco']=  str_replace(['(MZN) ','.'],'',$data['preco']);
-            $data['preco']=  str_replace([','],'.',$data['preco']);
+            $data['preco'] =  str_replace(['(MZN) ', '.'], '', $data['preco']);
+            $data['preco'] =  str_replace([','], '.', $data['preco']);
             $imovel->update($data);
-            if(request()->hasFile('image')){
+            if (request()->hasFile('image')) {
                 foreach ($request->image as  $image) {
-                 try {
-                    $imovel->addMedia($image)
-                    ->withResponsiveImages()
-                    ->toMediaCollection('posts','posts');
-                 } catch (\Throwable $th) {
-                     throw $th;
-                 }
+                    try {
+                        $imovel->addMedia($image)
+                            ->withResponsiveImages()
+                            ->toMediaCollection('posts', 'posts');
+                    } catch (\Throwable $th) {
+                        throw $th;
+                    }
                 }
-             }
-            session()->flash('success', 'Imovel actualizado com sucesso.');
+            }
+            $this->flasher->addFlash('success', 'Imovel actualizado com sucesso.');
             return redirect()->route('imovel.index');
         } catch (\Throwable $e) {
             throw $e;
-            session()->flash('error', 'Erro na actualização da imovel.');
+            $this->flasher->addFlash('error', 'Erro na actualização da imovel.');
             return redirect()->route('imovel.index');
         }
     }
@@ -164,19 +167,19 @@ class ImovelController extends Controller
             try {
                 visits($imovel)->reset();
 
-                Rating::whereIn('id',$imovel->ratings->pluck('id'))->delete();
-                Comentario::whereIn('id',$imovel->comentarios->pluck('id'))->delete();
+                Rating::whereIn('id', $imovel->ratings->pluck('id'))->delete();
+                Comentario::whereIn('id', $imovel->comentarios->pluck('id'))->delete();
                 $imovel->delete();
 
-                session()->flash('success', 'Imovel deletado com sucesso.');
+                $this->flasher->addFlash('success', 'Imovel deletado com sucesso.');
                 return redirect()->route('imovel.index');
             } catch (\Throwable $e) {
                 throw $e;
-                session()->flash('error', 'Erro ao deletar imovel.');
+                $this->flasher->addFlash('error', 'Erro ao deletar imovel.');
                 return redirect()->route('imovel.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('imovel.index');
         }
     }

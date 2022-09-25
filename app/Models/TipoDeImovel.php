@@ -41,10 +41,10 @@ class TipoDeImovel extends Model implements HasMedia
 		return $this->hasMany(Imovel::class);
 	}
 
-    public function registerMediaConversions(?Media $media = null): void
+        public function registerMediaCollections(): void
     {
-        $this->addMediaConversion('thumb')->width('200')->nonQueued();
-        $this->addMediaCollection('icons')
-        ->singleFile();
+        $this
+            ->addMediaCollection('icons')
+            ->singleFile();
     }
 }

@@ -1,5 +1,6 @@
 const { now } = require("lodash");
 const printJS = require("print-js");
+import "bootstrap-select/js/bootstrap-select";
 import "moment";
 import moment from "moment";
 $(function () {
@@ -331,3 +332,12 @@ $(function () {
     */
 });
 
+try {
+    window.$('select')
+    .selectpicker('setStyle', 'form-control', 'add')
+    .selectpicker('setStyle', 'p-2', 'add')
+    .selectpicker('setStyle', 'bg-white', 'add')
+    .selectpicker('setStyle', 'border', 'add')
+    .selectpicker('setStyle', 'border-1', 'add')
+    ;
+} catch (err) {}

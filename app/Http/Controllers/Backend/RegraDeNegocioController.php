@@ -39,11 +39,11 @@ class RegraDeNegocioController extends Controller
     {
         try {
             RegraDeNegocio::create($request->all());
-            session()->flash('success', 'Regra de negóciação criada com sucesso.');
+            $this->flasher->addFlash('success', 'Regra de negóciação criada com sucesso.');
            return redirect()->route('regra_de_negocio.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação da regra de nogociação.');
+           $this->flasher->addFlash('error', 'Erro na criação da regra de nogociação.');
            return redirect()->route('regra_de_negocio.index');
        }
     }
@@ -81,10 +81,10 @@ class RegraDeNegocioController extends Controller
     {
         try {
             $regraDeNegocio->update($request->all());
-            session()->flash('success', 'regra de negociação actualizada com sucesso.');
+            $this->flasher->addFlash('success', 'regra de negociação actualizada com sucesso.');
             return redirect()->route('regra_de_negocio.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização da regra de nociação.');
+            $this->flasher->addFlash('error', 'Erro na actualização da regra de nociação.');
             return redirect()->route('regra_de_negocio.index');
         }
     }
@@ -100,14 +100,14 @@ class RegraDeNegocioController extends Controller
         if (!is_null($regraDeNegocio) && $regraDeNegocio->imovels->isEmpty()) {
             try {
                 $regraDeNegocio->delete();
-                session()->flash('success', 'Regra de negociação deletada com sucesso.');
+                $this->flasher->addFlash('success', 'Regra de negociação deletada com sucesso.');
                 return redirect()->route('regra_de_negocio.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar regra de nogociação.');
+                $this->flasher->addFlash('error', 'Erro ao deletar regra de nogociação.');
                 return redirect()->route('regra_de_negocio.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('regra_de_negocio.index');
         }
     }

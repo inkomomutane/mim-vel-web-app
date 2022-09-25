@@ -41,11 +41,11 @@ class CondicaoController extends Controller
     {
         try {
             Condicao::create($request->all());
-            session()->flash('success', 'Condicao criada com sucesso.');
+            $this->flasher->addFlash('success', 'Condicao criada com sucesso.');
            return redirect()->route('condicao.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação da condicao.');
+           $this->flasher->addFlash('error', 'Erro na criação da condicao.');
            return redirect()->route('condicao.index');
        }
     }
@@ -84,10 +84,10 @@ class CondicaoController extends Controller
     {
         try {
             $condicao->update($request->all());
-            session()->flash('success', 'Condicao actualizada com sucesso.');
+            $this->flasher->addFlash('success', 'Condicao actualizada com sucesso.');
             return redirect()->route('condicao.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização da condicao.');
+            $this->flasher->addFlash('error', 'Erro na actualização da condicao.');
             return redirect()->route('condicao.index');
         }
     }
@@ -103,14 +103,14 @@ class CondicaoController extends Controller
         if (!is_null($condicao) && $condicao->imovels->isEmpty()) {
             try {
                 $condicao->delete();
-                session()->flash('success', 'Condicao deletada com sucesso.');
+                $this->flasher->addFlash('success', 'Condicao deletada com sucesso.');
                 return redirect()->route('condicao.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar condicao.');
+                $this->flasher->addFlash('error', 'Erro ao deletar condicao.');
                 return redirect()->route('condicao.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+            $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
             return redirect()->route('condicao.index');
         }
     }

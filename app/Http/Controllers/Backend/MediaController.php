@@ -26,13 +26,13 @@ class MediaController extends Controller
                     ->toMediaCollection('posts','posts');
                 }
              }
-            session()->flash('success', 'As imagens foram adicionadas com sucesso.');
+            $this->flasher->addFlash('success', 'As imagens foram adicionadas com sucesso.');
             return redirect()->route('media.show',[
                 'imovel' => $imovel
             ]);
         } catch (\Throwable $th) {
             //throw $th;
-            session()->flash('error', 'Erro ao adicionar imagens! Por favor contacte o Técnico.');
+            $this->flasher->addFlash('error', 'Erro ao adicionar imagens! Por favor contacte o Técnico.');
             return redirect()->route('media.show',[
                 'imovel' => $imovel
             ]);
@@ -51,11 +51,11 @@ class MediaController extends Controller
     {
         try {
             $media->delete();
-            session()->flash('success', 'A imagem foi deletada com sucesso.');
+            $this->flasher->addFlash('success', 'A imagem foi deletada com sucesso.');
             return redirect()->route('media.index');
         } catch (\Throwable $th) {
             //throw $th;
-            session()->flash('error', 'Erro ao deletar imagem por favor contacte o Técnico.');
+            $this->flasher->addFlash('error', 'Erro ao deletar imagem por favor contacte o Técnico.');
             return redirect()->route('media.index');
         }
     }

@@ -10,6 +10,8 @@ use App\Models\Province;
 
 class CidadeController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -46,11 +48,11 @@ class CidadeController extends Controller
     {
         try {
             Cidade::create($request->all());
-            session()->flash('success', 'Cidade criado com sucesso.');
+            $this->flasher->addFlash('success', 'Cidade criado com sucesso.');
            return redirect()->route('cidade.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação da cidade.');
+           $this->flasher->addFlash('error', 'Erro na criação da cidade.');
            return redirect()->route('cidade.index');
        }
     }
@@ -91,10 +93,10 @@ class CidadeController extends Controller
     {
         try {
             $cidade->update($request->all());
-            session()->flash('success', 'Cidade actualizada com sucesso.');
+            $this->flasher->addFlash('success', 'Cidade actualizada com sucesso.');
             return redirect()->route('cidade.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização da cidade.');
+            $this->flasher->addFlash('error', 'Erro na actualização da cidade.');
             return redirect()->route('cidade.index');
         }
     }
@@ -110,14 +112,14 @@ class CidadeController extends Controller
         if (!is_null($cidade) && $cidade->bairros->isEmpty()) {
             try {
                 $cidade->delete();
-                session()->flash('success', 'Cidade deletada com sucesso.');
+                $this->flasher->addFlash('success', 'Cidade deletada com sucesso.');
                 return redirect()->route('cidade.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema.".');
+                $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema.".');
                 return redirect()->route('cidade.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: Não pode deletar Cidade que possuí bairros!');
+            $this->flasher->addFlash('error', 'Erro ao deletar: Não pode deletar Cidade que possuí bairros!');
             return redirect()->route('cidade.index');
         }
     }

@@ -42,11 +42,11 @@ class ProvinceController extends Controller
     {
         try {
             Province::create($request->all());
-            session()->flash('success', 'Província criada com sucesso.');
+            $this->flasher->addFlash('success', 'Província criada com sucesso.');
            return redirect()->route('province.index');
        } catch (\Throwable $e) {
            throw $e;
-           session()->flash('error', 'Erro na criação da província.');
+           $this->flasher->addFlash('error', 'Erro na criação da província.');
            return redirect()->route('province.index');
        }
     }
@@ -84,10 +84,10 @@ class ProvinceController extends Controller
     {
         try {
             $province->update($request->all());
-            session()->flash('success', 'Província actualizada com sucesso.');
+            $this->flasher->addFlash('success', 'Província actualizada com sucesso.');
             return redirect()->route('province.index');
         } catch (\Throwable $e) {
-            session()->flash('error', 'Erro na actualização da província.');
+            $this->flasher->addFlash('error', 'Erro na actualização da província.');
             return redirect()->route('province.index');
         }
     }
@@ -103,14 +103,14 @@ class ProvinceController extends Controller
         if (!is_null($province) && $province->cidades->isEmpty()) {
             try {
                 $province->delete();
-                session()->flash('success', 'Província deletada com sucesso.');
+                $this->flasher->addFlash('success', 'Província deletada com sucesso.');
                 return redirect()->route('province.index');
             } catch (\Throwable $e) {
-                session()->flash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
+                $this->flasher->addFlash('error', 'Erro ao deletar: " Contacte o administrador do sistema."');
                 return redirect()->route('province.index');
             }
         } else {
-            session()->flash('error', 'Erro ao deletar: Não pode deletar província que possuí cidades!');
+            $this->flasher->addFlash('error', 'Erro ao deletar: Não pode deletar província que possuí cidades!');
             return redirect()->route('province.index');
         }
     }

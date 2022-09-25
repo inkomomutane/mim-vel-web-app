@@ -77,14 +77,24 @@
                                 <div class="col-sm-6">
                                     <label for="name">Regras de negociação</label>
                                     <select name="regra_de_negocio_id" id="regra_de_negocio_id"
-                                        class="form-control form-select">
+                                        class="form-control"
+                                        data-none-selected-text="Regras de negociação"
+                                        data-show-tick="true"
+                                        data-live-search="true"
+                                        data-live-search-normalize="true"
+                                        data-none-results-text="Nunhuma regras de negociação foi encontrada!"
+                                        data-actions-box="true"
+                                        data-width="auto"
+                                        data-selected-text-format="count > 3"
+                                        data-deselect-all-text="Clear"
+                                        >
 
                                         @if ($regra_de_negocios)
                                                 @foreach ($regra_de_negocios as $regra_de_negocio)
                                                 <option value="{{ $regra_de_negocio->id }}"
 
                                                     @if (request()->routeIs('imovel.edit') && (!is_null($imovel->regra_de_negocio))  && $imovel->regra_de_negocio->id == $regra_de_negocio->id)
-                                                    selected class="option-selected"
+                                                    selected class=""
                                                 @endif
                                                     >{{ $regra_de_negocio->name }}
                                                 </option>
@@ -102,7 +112,7 @@
                                                 @foreach ($imovel_fors as $imovel_for)
                                                 <option value="{{ $imovel_for->id }}"
                                                     @if (request()->routeIs('imovel.edit') &&  (!is_null($imovel->imovel_for)) && $imovel->imovel_for->id == $imovel_for->id)
-                                                    selected class="option-selected"
+                                                    selected class=""
                                                 @endif
                                                     >{{ $imovel_for->name }}</option>
                                             @endforeach
@@ -162,7 +172,7 @@
                                             <option value="{{ $tipo_de_imovel->id }}"
 
                                                 @if (request()->routeIs('imovel.edit') && $imovel->tipo_de_imovel->id == $tipo_de_imovel->id)
-                                                selected class="option-selected"
+                                                selected class=""
                                             @endif
                                                 >{{ $tipo_de_imovel->nome }}
                                             </option>
@@ -176,7 +186,7 @@
                                         @foreach ($condicaos as $condicao)
                                             <option value="{{ $condicao->id }}"
                                                 @if (request()->routeIs('imovel.edit') && $imovel->condicao->id == $condicao->id)
-                                                selected class="option-selected"
+                                                selected class=""
                                             @endif
 
                                                 >{{ $condicao->nome }}</option>
@@ -191,7 +201,7 @@
                                         @foreach ($statuses as $status)
                                             <option value="{{ $status->id }}"
                                                 @if (request()->routeIs('imovel.edit') && $imovel->status->id == $status->id)
-                                                selected class="option-selected"
+                                                selected class=""
                                             @endif
 
                                                 >{{ $status->nome }}</option>

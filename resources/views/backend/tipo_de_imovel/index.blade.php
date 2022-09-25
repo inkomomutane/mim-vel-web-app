@@ -40,7 +40,7 @@
                                 <td>{{$tipo_de_imovel->id}}</td>
                                 <td>{{$tipo_de_imovel->nome}}</td>
                                 <td>
-                                    <img class="img-fluid"  style="height: 25px" src="{{$tipo_de_imovel->getFirstMediaUrl('icons','thumb')}}">
+                                    <img class="img-fluid"  style="height: 25px" src="{{$tipo_de_imovel->getFirstMediaUrl('icons')}}">
                                 </td>
                                 <td><a class="btn btn-warning" href="{{route('tipo_de_imovel.edit',$tipo_de_imovel->id)}}">Editar</a></td>
                                 <td><button class="btn btn-danger" onclick="document.getElementById('tipo_de_imovel_{{$tipo_de_imovel->id}}_delete').submit()">Delete</button>
