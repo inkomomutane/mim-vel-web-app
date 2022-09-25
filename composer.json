@@ -10,6 +10,7 @@
         "awssat/laravel-visits": "^3.0",
         "blade-ui-kit/blade-ui-kit": "^0.3.4",
         "codeat3/blade-fluentui-system-icons": "^1.24",
+        "codeat3/blade-google-material-design-icons": "^1.14",
         "codeat3/blade-iconpark": "^1.4",
         "codeat3/blade-radix-icons": "^1.5",
         "codeat3/blade-teeny-icons": "^1.8",

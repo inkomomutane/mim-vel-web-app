@@ -66,8 +66,9 @@ Route::get('/politicas-de-privacidade', function () {
 
 
 Route::controller(PostSearchController::class)->group(function () {
-    Route::any('/posts-search', 'search')->name('posts.search');
-    Route::any('/posts', 'search')->name('posts');
+    Route::get('/pesquisar/posts', 'search')->name('posts.search');
+    Route::get('/posts', 'index')->name('posts');
+    Route::post('/pesquisar/posts/remover/filtros','clearFilters')->name('clear_filters');
 });
 
 Auth::routes([
