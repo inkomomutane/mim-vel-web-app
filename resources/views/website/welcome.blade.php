@@ -332,7 +332,7 @@
                                     <h5 class="card-title text-center">{{ $icon->nome }}</h5>
                                 </div>
                             </div>
-                            <form action="{{ route('posts.search') }}" method="post"
+                            <form action="{{ route('posts.search') }}" method="get"
                                 id="icons_id_{{ $icon->id }}">
                                 @csrf
                                 <input type="hidden" name="tipo_de_imovels[]" value="{{ $icon->id }}">
