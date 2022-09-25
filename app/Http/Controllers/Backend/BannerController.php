@@ -42,6 +42,7 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        
         try {
             if($request->hasFile('image')){
                 foreach ($request->image as  $image) {

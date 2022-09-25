@@ -35,17 +35,16 @@
 
                             <div class="card border-0 tab-pane fade show active" id="rent" role="tabpanel"
                                 aria-labelledby="rent-login">
-                                <form class="card-body text-start" action="{{ route('posts.search') }}" method="post">
+                                <form class="card-body text-start" action="{{ route('posts.search') }}" method="get">
                                     @csrf
-                                    <input type="hidden" name="home_link" id="home_link" readonly
-                                        value="{{ Hash::make('home_link') }}">
+
                                     <div class="row">
                                         <div class="col-lg-5 col-md-6 col-12">
                                             <div class="mb-3 text-start">
                                                 <div class="form-icon position-relative">
 
                                                     <i data-feather="search" class="fea icon-sm icons"></i>
-                                                    <input name="search" id="location" type="text"
+                                                    <input name="search_term" id="location" type="text"
                                                         class="form-control ps-5 fs-7 fw-bolder bg-light"
                                                         placeholder="Pesquisar por titulo, bairro, cidade... :">
 
@@ -177,7 +176,7 @@
                 <!--end col-->
 
                 <div class="mt-4 d-block col-12">
-                    <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóvels</a>
+                    <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóveis</a>
                 </div>
             </div>
             <!--end row-->
@@ -297,7 +296,7 @@
                 @endforeach
 
                 <div class="mt-4 d-block col-12">
-                    <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóvels</a>
+                    <a href="{{ route('posts') }}" class="w-100  btn btn-warning rounded-pill">Ver todos imóveis</a>
                 </div>
             </div>
             <!--end row-->

@@ -1,13 +1,13 @@
 <div class="w-100">
 
 
-    <form class="d-flex row justify-content-center" action="{{ route('posts.search') }}" method="POST" id="filterForm-mobile">
-        <div class="col-sm-12 py-2">
-            <span class="btn btn-outline-danger w-100" id="clearFormChoices">
-                @svg('fluentui-filter-dismiss-16', 'fea icon-sm')
-                Limpar</span>
+    <form class="d-flex row justify-content-center" action="{{ route('posts.search') }}" method="GET" id="filterForm-mobile">
+        <div class="col-sm-12 my-2">
+            <button class="btn btn-outline-danger w-100" type="button" onclick="clearPostsFilters()">
+                @svg('gmdi-filter-alt-off-tt', 'fea icon-sm fw-bold')
+                Remover filtros</button>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-12 my-2">
             <button class="btn btn-outline-success w-100" type="submit">
                 @svg('fluentui-arrow-sync-circle-24', 'fea icon-sm fw-bold')
                 Pesquisar</button>
@@ -15,7 +15,12 @@
 
 
         @csrf
-        <input type="hidden" name="search" value="{{$search}}" readonly>
+
+        <div class="col-sm-12 my-2">
+            <input type="text" name="search_term" value="{{ Str::ucfirst(( (object) request()->session()->get('filter_posts'))->search_term  ?? '') }}"
+            class="form-control fs-7 fw-bolder text-dark bg-white p-2 rounded-3 bg-light w-100" placeholder="Pesquisar ...">
+        </div>
+
         <div class="col-sm-12 my-2">
             <select class="form-control w-100 form-select bairros-mobile m-0 mr-3 w-100 rounded-3 bg-white"
                 aria-label="Default select example" multiple name="bairros[]"
@@ -29,7 +34,9 @@
                 data-deselect-all-text="Clear"
                 >
                  @foreach ($bairros as $bairro)
-                    <option value="{{ $bairro->id }}" >{{ $bairro->nome }}</option>
+                    <option value="{{ $bairro->id }}" @if (
+                        in_array($bairro->id,((object) request()->session()->get('filter_posts'))->bairros ?? [])) selected
+                            @endif>{{ $bairro->nome }}</option>
                 @endforeach
             </select>
         </div>
@@ -48,7 +55,9 @@
                 >
 
                 @foreach ($tipoDeImovels as $tipoDeImovel)
-                    <option value="{{ $tipoDeImovel->id }}" >{{ $tipoDeImovel->nome }}</option>
+                    <option value="{{ $tipoDeImovel->id }}" @if (
+                        in_array($tipoDeImovel->id,((object) request()->session()->get('filter_posts'))->tipo_de_imovels ?? [])) selected
+                            @endif>{{ $tipoDeImovel->nome }}</option>
                 @endforeach
             </select>
         </div>
@@ -67,7 +76,10 @@
 
                 >
                 @foreach ($condicaos as $condicao)
-                    <option value="{{ $condicao->id }}" >{{ $condicao->nome }}</option>
+                    <option value="{{ $condicao->id }}"
+                        @if (
+                        in_array($condicao->id,((object) request()->session()->get('filter_posts'))->condicaos ?? [])) selected
+                            @endif>{{ $condicao->nome }}</option>
                 @endforeach
             </select>
         </div>
@@ -85,7 +97,9 @@
 
                 >
                 @foreach ($estados as $estado)
-                    <option value="{{ $estado->id }}">{{ $estado->nome }}</option>
+                    <option value="{{ $estado->id }}" @if (
+                        in_array($estado->id,((object) request()->session()->get('filter_posts'))->estados ?? [])) selected
+                            @endif>{{ $estado->nome }}</option>
                 @endforeach
             </select>
         </div>
