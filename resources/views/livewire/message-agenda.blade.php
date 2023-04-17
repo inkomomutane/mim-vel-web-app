@@ -45,7 +45,8 @@
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Teu email <span class="text-danger">*</span></label>
+                                        <label class="form-label">Teu email  <span
+                                            class="text-muted">(Opcional)</span></label>
                                         <div class="form-icon position-relative">
                                             @svg('fluentui-mail-16-o', 'fea icon-sm icons')
                                             <input name="email" id="email" type="email"

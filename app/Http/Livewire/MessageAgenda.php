@@ -19,9 +19,9 @@ class MessageAgenda extends Component
     protected $rules =  [
         'nome_do_cliente' => 'required|string',
         'mensagem' => 'required|string|max:400',
-        'email' => 'required|email',
-        'contacto' => 'required|string|max:20',
-        'data_hora' => 'required|date',
+        'email' => 'email|nullable',
+        'contacto' => 'string|max:20|nullable',
+        'data_hora' => 'date|nullable',
     ];
 
 
@@ -44,9 +44,9 @@ class MessageAgenda extends Component
                 [
                     'nome_do_cliente' => 'required|string',
                     'mensagem' => 'required|string|max:400',
-                    'email' => 'required|email',
-                    'contacto' => 'required|string|max:20',
-                    'data_hora' => 'required|date',
+                    'email' => 'nullable|email',
+                    'contacto' => 'nullable|string|max:20',
+                    'data_hora' => 'nullable|date',
                 ]
                 );
 
