@@ -1,0 +1,55 @@
+<svg id="Agrupar_3" data-name="Agrupar 3" xmlns="http://www.w3.org/2000/svg" width="557" height="557" viewBox="0 0 5570 5570">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fe0d62;
+        stroke: #ffa7c6;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 1px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #3124e5;
+        stroke: #101098;
+      }
+
+      .cls-3 {
+        fill: #fec50b;
+        stroke: #f9bf15;
+      }
+
+      .cls-4 {
+        fill: none;
+        stroke: #fec50b;
+        stroke-width: 5px;
+        stroke-dasharray: 20 10;
+      }
+    </style>
+  </defs>
+  <g id="Agrupar_1" data-name="Agrupar 1">
+    <path id="Forma_6" data-name="Forma 6" class="cls-1" d="M1990.74,3969.56l-131.23-149.32,221.37-591.75-169.61-314.82,28.12-607.52,183.74,341.05-134.75-501.43,185.14,186.57-148.84-307.68C1823.49,1784.46,3710.36,100.991,3710.36,100.991L3411.94,989.536l-191.72,52.524,187.71,34.26L3192,1209.58l186.69,0.97L3211.8,2094.52l-498.46,268.55,436.94-100L2720.53,2562.3l343.01-83.26-316.67,509.11-518.64,262.5Z"/>
+    <path id="Forma_2" data-name="Forma 2" class="cls-2" d="M810.688,1747.85l460.682,2897,1832,230.17,2099.75-589.67S3832.79,1895.17,3804.11,1843.1s1062,2285.32,1062,2285.32L3080.14,4769.06,1570.02,4382.4Z"/>
+    <path id="Forma_3" data-name="Forma 3" class="cls-3" d="M993.289,1869.49L1769.4,2179.12l-638.78,39.51Z"/>
+    <path id="Forma_4" data-name="Forma 4" class="cls-3" d="M3720.43,2158.99L3227,2374.05l163.41-324.98Z"/>
+    <path id="Forma_5" data-name="Forma 5" class="cls-3" d="M487.891,2311.03L927.445,5134.79,3228.6,5264.52l1925.17-884.88L3163.98,5113.16,1225,4872.93Z"/>
+    <path id="Forma_7" data-name="Forma 7" class="cls-3" d="M2043.13,3975.18l-163.38,71.1"/>
+  </g>
+  <g id="Agrupar_2" data-name="Agrupar 2">
+    <path id="Forma_8" data-name="Forma 8" class="cls-4" d="M1614.93,4109.49l1230.49,238.4,1468.89-555.03"/>
+    <path id="Forma_8_copiar" data-name="Forma 8 copiar" class="cls-4" d="M1614.93,3900.89l1230.49,238.4,1468.89-555.03"/>
+    <path id="Forma_8_copiar_2" data-name="Forma 8 copiar 2" class="cls-4" d="M1602.52,3776.72l1230.49,238.4L4301.9,3460.1"/>
+    <path id="Forma_8_copiar_3" data-name="Forma 8 copiar 3" class="cls-4" d="M1614.93,3627.72l1230.49,238.4L4314.31,3311.1"/>
+  </g>
+  <g id="Agrupar_2_copiar" data-name="Agrupar 2 copiar">
+    <path id="Forma_8-2" data-name="Forma 8" class="cls-4" d="M1368.27,3312.32l1230.49,238.4L4067.65,2995.7"/>
+    <path id="Forma_8_copiar-2" data-name="Forma 8 copiar" class="cls-4" d="M1368.27,3103.72l1230.49,238.4L4067.65,2787.1"/>
+    <path id="Forma_8_copiar_2-2" data-name="Forma 8 copiar 2" class="cls-4" d="M1355.85,2979.56l1230.49,238.39,1468.89-555.02"/>
+    <path id="Forma_8_copiar_3-2" data-name="Forma 8 copiar 3" class="cls-4" d="M1368.27,2830.56l1230.49,238.39,1468.89-555.02"/>
+  </g>
+</svg>
