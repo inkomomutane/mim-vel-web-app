@@ -25,7 +25,7 @@
                     <div class="py-2 px-4 border-bottom  d-lg-block">
                         <div class="d-flex align-items-center py-1">
                             <div class="flex-grow-1 ps-3">
-                                <h4 class="text-muted fw-bold"> 
+                                <h4 class="text-muted fw-bold">
                                     Messagens</h4>
                             </div>
                         </div>
@@ -47,8 +47,9 @@
                                     <div
                                         class="card shadow-none flex-shrink-1 @if ($agenda->is_readed) bg-light @else bg-warning-light @endif rounded py-2 px-3 ms-3">
                                         <div class="card-header px-4 pt-4">
-                                            <div class="card-actions float-end">
-                                                <div class="dropdown position-relative">
+                                            <div class="card-actions float-end row">
+                                                <a href="{{ route('posts.show', ['imovel' => \App\Models\Imovel::find($agenda->imovel_id)->slug ]) }}" class="col btn btn-primary">Imóvel</a>
+                                                <div class="col dropdown position-relative">
                                                     <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
                                                         @svg('radix-dots-vertical', 'feather')
                                                     </a>

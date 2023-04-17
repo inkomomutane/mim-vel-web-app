@@ -28,7 +28,8 @@ class User extends Authenticatable implements HasMedia
         'password',
         'contacto',
         'location',
-        
+        'created_by_id'
+
     ];
 
     /**
@@ -79,4 +80,15 @@ class User extends Authenticatable implements HasMedia
     {
         return Static::all()->last();
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class,'created_by_id');
+    }
+
+    public function createdUsers()
+    {
+        return $this->hasMany(User::class,'created_by_id');
+    }
+
 }

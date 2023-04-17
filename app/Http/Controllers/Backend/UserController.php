@@ -47,7 +47,7 @@ class UserController extends Controller
         try {
             $data = $request->all();
 
-            $dataCreate  = array();
+            $dataCreate  = array('created_by_id' => auth()->user()->id);
             foreach ($data as $key => $value) {
                 if ($key == "password"  || $key == "password_confirmation" && $value) {
                     $value = Hash::make($value);
