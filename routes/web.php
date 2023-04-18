@@ -17,7 +17,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Website/Welcome');
+    $imovel = App\Models\Imovel::find(44)->load('media');
+    return Inertia::render('Website/Welcome',[
+        'imovel' => $imovel
+    ]);
 })->name('welcome');
 
 Route::get('/dashboard', function () {  return Inertia::render('Dashboard');

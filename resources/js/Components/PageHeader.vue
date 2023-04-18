@@ -41,7 +41,7 @@ window.addEventListener("scroll", () => {
 <template>
     <header>
         <nav
-            class="transition delay-150 duration-300 bg-white text-gray-800 lg:text-white text-sm font-semibold lg:bg-transparent px-4 lg:px-6 py-4 dark:bg-gray-800 w-full fixed z-20"
+            class="transition delay-150 duration-300 bg-white text-gray-800 lg:text-white text-sm font-semibold lg:bg-transparent px-4 lg:px-6 py-3 dark:bg-gray-800 w-full fixed z-20"
             id="navigation"
         >
             <div

@@ -3,10 +3,19 @@ import GuestLayout from "@/Layouts/GuestLayout.vue";
 import PageHeader from "@/Components/PageHeader.vue";
 import { Head } from "@inertiajs/vue3";
 import PageHero from "@/Components/PageHero.vue";
+import ResponsiveImage from "@/Components/ResponsiveImage.vue";
+
+defineProps({
+    imovel: {
+        type: Object,
+        required: false,
+    },
+});
 </script>
 <template>
     <GuestLayout>
         <Head title="Mimóvel" />
+
         <PageHeader />
         <PageHero>
             <template v-slot:coverImage>
@@ -37,6 +46,8 @@ import PageHero from "@/Components/PageHero.vue";
                 </div>
             </template>
         </PageHero>
+        <ResponsiveImage />
+        {{ $page.props.site }}
         <section style="height: 9000px" class="top-0"></section>
     </GuestLayout>
 </template>

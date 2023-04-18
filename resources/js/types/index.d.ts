@@ -11,4 +11,7 @@ export type PageProps<
     auth: {
         user: User;
     };
+    site: {
+        type: String;
+    };
 };

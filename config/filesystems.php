@@ -35,11 +35,44 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
+        'backup' => [
+            'driver' => 'local',
+            'root' => storage_path('backup'),
+            'throw' => false,
+        ],
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'posts' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/posts'),
+            'url' => env('APP_URL').'/storage/posts',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
+        'banners' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/banners'),
+            'url' => env('APP_URL').'/storage/banners',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
+        'avatars' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/avatars'),
+            'url' => env('APP_URL').'/storage/avatars',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'pages' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pages'),
+            'url' => env('APP_URL').'/storage/pages',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -55,8 +88,18 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'google' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folder' => env('GOOGLE_DRIVE_FOLDER'), // without folder is root of drive or team drive
+            //'teamDriveId' => env('GOOGLE_DRIVE_TEAM_DRIVE_ID'),
+        ],
 
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------

@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Permission\Traits\HasRoles;
 
-/** typescript */
-class User extends Authenticatable
+
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +26,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'contacto',
+        'location',
+        'created_by_id'
+
     ];
 
     /**
@@ -42,4 +50,45 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function agendas()
+	{
+		return $this->hasMany(Agenda::class, 'corretor_id');
+	}
+
+	public function imovels()
+	{
+		return $this->hasMany(Imovel::class, 'corretor_id');
+	}
+
+	public function receivedMessages()
+	{
+		return $this->hasMany(Message::class, 'to_id');
+	}
+
+    public function sentMessages()
+	{
+		return $this->hasMany(Message::class, 'from_id');
+	}
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->width('200')->nonQueued();
+    }
+
+    public static function last()
+    {
+        return Static::all()->last();
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class,'created_by_id');
+    }
+
+    public function createdUsers()
+    {
+        return $this->hasMany(User::class,'created_by_id');
+    }
+
 }
