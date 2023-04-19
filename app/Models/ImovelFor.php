@@ -5,6 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\ImovelFor
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $slug_text
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
+ * @property-read int|null $imovels_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereSlugText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class ImovelFor extends Model
 {
     use HasFactory;

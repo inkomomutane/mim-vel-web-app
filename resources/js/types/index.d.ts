@@ -23,11 +23,16 @@ export interface PaginatedData {
     };
 }
 
+export enum FlahserType {
+    success = "success",
+    error = "error",
+    warning = "warning",
+    info = "info",
+}
 
 export interface Provinces extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ProvinceData>;
 }
-
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>

@@ -16,12 +16,12 @@ class GetProvinces
 
     public function handle()
     {
-        return ProvinceData::collection(Province::paginate(5));
+        return ProvinceData::collection(Province::orderBy('created_at','desc')->paginate(5));
     }
 
     public function AsController() : \Inertia\Response
     {
-        return Inertia::render('Provinces',[
+        return Inertia::render('Province/Index',[
             'provinces' => $this->handle()
         ]);
     }

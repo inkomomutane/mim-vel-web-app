@@ -21,6 +21,7 @@
         "vue-tsc": "^1.2.0"
     },
     "dependencies": {
+        "@flasher/flasher": "^1.2.4",
         "flowbite": "^1.6.5",
         "format": "^0.2.2",
         "pinia": "^2.0.34",

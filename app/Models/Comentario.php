@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Comentario
- * 
+ *
  * @property int $id
  * @property string|null $comentario
  * @property Carbon|null $created_at
@@ -19,10 +19,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $nome
  * @property string|null $ip
  * @property int $imovel_id
- * 
  * @property Imovel $imovel
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereComentario($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereImovelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Comentario extends Model
 {

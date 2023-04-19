@@ -83,72 +83,80 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
-import { Link} from '@inertiajs/vue3'
-import Links from './Links.vue'
-import SidebarLinkGroup from './SidebarLinkGroup.vue'
+import { ref, onMounted, onUnmounted, watch } from "vue";
+import { Link } from "@inertiajs/vue3";
+import Links from "./Links.vue";
+import SidebarLinkGroup from "./SidebarLinkGroup.vue";
 
 export default {
-  name: 'Sidebar',
-  props: ['sidebarOpen'],
-  components: {
-    SidebarLinkGroup,
-    Link,
-    Links
-  },
-  setup(props, { emit }) {
+    name: "Sidebar",
+    props: ["sidebarOpen"],
+    components: {
+        SidebarLinkGroup,
+        Link,
+        Links,
+    },
+    setup(props, { emit }) {
+        const trigger = ref(null);
+        const sidebar = ref(null);
 
-    const trigger = ref(null)
-    const sidebar = ref(null)
+        const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
+        const sidebarExpanded = ref(
+            storedSidebarExpanded === null
+                ? false
+                : storedSidebarExpanded === "true"
+        );
 
-    const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
-    const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
+        const currentRoute = "/";
 
-    const currentRoute = '/';
+        // close on click outside
+        const clickHandler = ({ target }) => {
+            if (!sidebar.value || !trigger.value) return;
+            if (
+                !props.sidebarOpen ||
+                sidebar.value.contains(target) ||
+                trigger.value.contains(target)
+            )
+                return;
+            emit("close-sidebar");
+        };
 
-    // close on click outside
-    const clickHandler = ({ target }) => {
-      if (!sidebar.value || !trigger.value) return
-      if (
-        !props.sidebarOpen ||
-        sidebar.value.contains(target) ||
-        trigger.value.contains(target)
-      ) return
-      emit('close-sidebar')
-    }
+        // close if the esc key is pressed
+        const keyHandler = ({ keyCode }) => {
+            if (!props.sidebarOpen || keyCode !== 27) return;
+            emit("close-sidebar");
+        };
 
-    // close if the esc key is pressed
-    const keyHandler = ({ keyCode }) => {
-      if (!props.sidebarOpen || keyCode !== 27) return
-      emit('close-sidebar')
-    }
+        onMounted(() => {
+            document.addEventListener("click", clickHandler);
+            document.addEventListener("keydown", keyHandler);
+            document.querySelector("body")?.classList.add("sidebar-expanded");
+        });
 
-    onMounted(() => {
-      document.addEventListener('click', clickHandler)
-      document.addEventListener('keydown', keyHandler)
-      document.querySelector("body")?.classList.add("sidebar-expanded");
-    })
+        onUnmounted(() => {
+            document.removeEventListener("click", clickHandler);
+            document.removeEventListener("keydown", keyHandler);
+        });
 
-    onUnmounted(() => {
-      document.removeEventListener('click', clickHandler)
-      document.removeEventListener('keydown', keyHandler)
-    })
+        watch(sidebarExpanded, () => {
+            localStorage.setItem("sidebar-expanded", sidebarExpanded.value);
+            if (sidebarExpanded.value) {
+                document
+                    .querySelector("body")
+                    .classList.add("sidebar-expanded");
+            } else {
+                document
+                    .querySelector("body")
+                    .classList.remove("sidebar-expanded");
+            }
+        });
 
-    watch(sidebarExpanded, () => {
-      localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
-      if (sidebarExpanded.value) {
-        document.querySelector('body').classList.add('sidebar-expanded')
-      } else {
-        document.querySelector('body').classList.remove('sidebar-expanded')
-      }
-    })
-
-    return {
-      trigger,
-      sidebar,
-      sidebarExpanded,
-      currentRoute,
-    }
-  },
-}
+        return {
+            trigger,
+            sidebar,
+            sidebarExpanded,
+            currentRoute,
+        };
+    },
+};
 </script>

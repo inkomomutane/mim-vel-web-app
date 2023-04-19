@@ -20,10 +20,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $ip
  * @property string|null $nome
  * @property int $imovel_id
- *
  * @property Imovel $imovel
- *
  * @package App\Models
+ * @method static \Database\Factories\RatingFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereImovelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rating whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Rating extends Model
 {

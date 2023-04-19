@@ -18,6 +18,8 @@
         "laravel/tinker": "^2.8",
         "lorisleiva/laravel-actions": "^2.5",
         "masbug/flysystem-google-drive-ext": "^2.2",
+        "php-flasher/flasher-laravel": "^1.13",
+        "php-flasher/flasher-noty-laravel": "^1.13",
         "queueworker/sansdaemon": "^1.2",
         "ralphjsmit/laravel-seo": "^1.3",
         "spatie/enum": "^3.13",

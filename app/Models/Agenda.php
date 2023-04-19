@@ -21,10 +21,30 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $contacto
  * @property Carbon|null $data_hora
  * @property int $corretor_id
- *
  * @property User $user
- *
  * @package App\Models
+ * @property string $mensagem
+ * @property string $email
+ * @property int $imovel_id
+ * @property int $is_readed
+ * @property-read \App\Models\User $corretor
+ * @method static \Database\Factories\AgendaFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereContacto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereCorretorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereDataHora($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereImovelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereIsReaded($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereLocal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereMensagem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereNomeDoCliente($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Agenda extends Model
 {

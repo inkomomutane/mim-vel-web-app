@@ -20,10 +20,20 @@ use Spatie\Searchable\SearchResult;
  * @property string|null $nome
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Collection|Bairro[] $bairros
- *
  * @package App\Models
+ * @property int|null $province_id
+ * @property-read int|null $bairros_count
+ * @property-read \App\Models\Province|null $province
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereProvinceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Cidade extends Model implements Searchable
 {

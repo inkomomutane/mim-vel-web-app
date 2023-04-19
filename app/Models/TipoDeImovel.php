@@ -21,10 +21,19 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null $nome
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Collection|Imovel[] $imovels
- *
  * @package App\Models
+ * @property-read int|null $imovels_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class TipoDeImovel extends Model implements HasMedia
 {

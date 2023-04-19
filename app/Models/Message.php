@@ -19,10 +19,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool|null $readed
  * @property int $from_id
  * @property int $to_id
- *
  * @property User $user
- *
  * @package App\Models
+ * @property-read \App\Models\User $receiver
+ * @property-read \App\Models\User $sender
+ * @method static \Illuminate\Database\Eloquent\Builder|Message newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Message newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Message query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereFromId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereReaded($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereToId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Message extends Model
 {

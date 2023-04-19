@@ -48,7 +48,6 @@ use Spatie\Searchable\SearchResult;
  * @property int $tipo_de_imovel_id
  * @property int $status_id
  * @property int $corretor_id
- *
  * @property Bairro $bairro
  * @property Condicao $condicao
  * @property Status $status
@@ -56,8 +55,58 @@ use Spatie\Searchable\SearchResult;
  * @property User $user
  * @property Collection|Comentario[] $comentarios
  * @property Collection|Rating[] $ratings
- *
  * @package App\Models
+ * @property string|null $slug
+ * @property bool $for_rent
+ * @property int|null $regra_de_negocio_id
+ * @property int|null $imovel_for_id
+ * @property-read int|null $comentarios_count
+ * @property-read \App\Models\User $corretor
+ * @property-read \App\Models\ImovelFor|null $imovelFor
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @property-read int|null $ratings_count
+ * @property-read \App\Models\RegraDeNegocio|null $regraDeNegocio
+ * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
+ * @property-read int|null $tags_count
+ * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereAndares($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereAno($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereArea($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereBairroId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereBanheiros($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCondicaoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCorretorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDescricao($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereEndereco($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereForRent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereGaragens($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereImovelForId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereMapa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePiscinas($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePreco($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereQuartos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereRegraDeNegocioId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereSuites($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereTipoDeImovelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereTitulo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAllTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable
 {

@@ -19,8 +19,17 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null $nome
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @package App\Models
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Parceiro whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Parceiro extends Model implements HasMedia
 {
