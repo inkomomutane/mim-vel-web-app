@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\Province\GetProvinces;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {  return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/inqueritos', function () {  return Inertia::render('Inqueritos');
-})->middleware(['auth', 'verified'])->name('inqueritos');
+Route::get('/dashboard/provinces',GetProvinces::class)->middleware(['auth', 'verified'])->name('province.all');
 Route::get('/dashboard/data', function () {  return Inertia::render('Inquerito');
 })->middleware(['auth', 'verified'])->name('data');
 Route::get('/dashboard/configs', function () {  return Inertia::render('Inquerito');

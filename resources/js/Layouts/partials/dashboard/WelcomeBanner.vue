@@ -81,14 +81,7 @@
 
         <!-- Content -->
         <div class="relative">
-            <h1
-                class="text-2xl md:text-3xl text-gray-800 dark:text-gray-200 font-bold mb-1"
-            >
-                Bem vindo, Acme Inc. 👋
-            </h1>
-            <p class="dark:text-gray-300">
-                Here is what’s happening with your projects today:
-            </p>
+            <slot />
         </div>
     </div>
 </template>
