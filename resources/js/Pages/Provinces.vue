@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
-import WelcomeBanner from "@/Layouts/partials/dashboard/WelcomeBanner.vue";
 import { PropType } from "vue";
-import { PaginatedData } from "@/types/index";
+import { Provinces } from "@/types/index";
+import Modal from "@/Components/Modal.vue";
+import { ref } from "vue";
+
 onMounted(() => {
     initFlowbite();
 });
 
-interface Provinces extends Omit<PaginatedData, "data"> {
-    data: Array<App.Data.ProvinceData>;
-}
 
 const props = defineProps({
     provinces: {
@@ -20,88 +19,33 @@ const props = defineProps({
         required: true,
     },
 });
-const links = props.provinces.links;
 
-/**
- *  <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                >
-                                    <span class="sr-only">Previous</span>
-                                    <svg
-                                        class="w-5 h-5"
-                                        aria-hidden="true"
-                                        fill="currentColor"
-                                        viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    >1</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    >2</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    aria-current="page"
-                                    class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-slate-600 bg-slate-50 border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                                    >3</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    >...</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    >100</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                >
-                                    <span class="sr-only">Next</span>
-                                    <svg
-                                        class="w-5 h-5"
-                                        aria-hidden="true"
-                                        fill="currentColor"
-                                        viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
- */
+const links = props.provinces.links;
+const addProvence = ref(false);
+const nameInput = ref();
+
+const addProvenceTrigger = () => {
+    addProvence.value = true;
+}
+
+const closeCreateProvinceModal =  () => {
+    addProvence.value = false;
+}
+
+const form = useForm({
+    name: '',
+});
+
+const createProvince = () => {
+    form.post(route('province.store'), {
+        preserveScroll: true,
+        onSuccess: () => closeCreateProvinceModal(),
+        onError: () => nameInput.value.focus(),
+        onFinish: () => form.reset(),
+    });
+};
+
+
 </script>
 <template>
     <Head title="Inquéritos" />
@@ -152,6 +96,7 @@ const links = props.provinces.links;
                         >
                             <button
                                 type="button"
+                                @click="addProvenceTrigger"
                                 class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                             >
                                 <svg
@@ -225,7 +170,7 @@ const links = props.provinces.links;
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                            class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
+                                            class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -315,16 +260,17 @@ const links = props.provinces.links;
                             <li
                                 v-if="links[0].active"
                                 class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-
                             >
-                                <Link href="" class="flex  rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white  border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-
+                                <Link
+                                    href=""
+                                    class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                     >&laquo; Previous</Link
                                 >
                             </li>
-                            <li v-else >
-                                <Link class="flex  rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white  border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    :href="links[0].url"
+                            <li v-else>
+                                <Link
+                                    class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    :href="links[0].url?? ''"
                                     >&laquo; Previous</Link
                                 >
                             </li>
@@ -333,30 +279,36 @@ const links = props.provinces.links;
                                 :key="link.label"
                             >
                                 <Link
-                                class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white  border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                     v-if="!link.active"
-                                    :href="link.url"
+                                    :href="link.url ?? ''"
                                     >{{ link.label }}
-                                    </Link
+                                </Link>
+                                <span
+                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    v-else
+                                    :class="`${
+                                        link.active
+                                            ? 'bg-gray-700 dark:bg-slate-600 text-white dark:text-slate-100'
+                                            : ''
+                                    }`"
+                                    >{{ link.label }}</span
                                 >
-                                <span   class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white  border border-gray-300  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
- v-else :class="`${link.active ? 'bg-slate-500 dark:bg-slate-600 text-white dark:text-slate-100': ''}`" >{{
-                                    link.label
-                                }}</span>
                             </li>
                             <li
                                 v-if="links.slice(-1)[0].active"
-                                class="disabled  flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-
+                                class="disabled flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                             >
-                                <span  class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                               >Next &raquo;</span>
+                                <span
+                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >Next &raquo;</span
+                                >
                             </li>
-                            <li v-else class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                               >
-                                <Link
-
-                                    :href="links.slice(-1)[0].url"
+                            <li
+                                v-else
+                                class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            >
+                                <Link :href="links.slice(-1)[0].url ?? ''"
                                     >Next &raquo;</Link
                                 >
                             </li>
@@ -364,6 +316,26 @@ const links = props.provinces.links;
                     </nav>
                 </div>
             </div>
+
+            <Modal :show="addProvence" @close="closeCreateProvinceModal">
+                <div class="relative bg-white rounded shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"  @click="closeCreateProvinceModal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Nova província</h3>
+                <form class="space-y-6" @submit.prevent="createProvince" >
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
+                        <input type="text" name="name" v-model="form.name" ref="nameInput" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Nome da província">
+                        <span class="text-medium text-red-500 font-semibold">{{ form.errors.name }}</span>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">Salvar</button>
+                </form>
+            </div>
+        </div>
+            </Modal>
         </template>
     </AuthenticatedLayout>
 </template>

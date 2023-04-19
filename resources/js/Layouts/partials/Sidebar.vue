@@ -82,70 +82,73 @@
     </div>
 </template>
 
-<script lang="ts">
-import { ref, onMounted, onUnmounted, watch } from "vue";
-import SidebarLinkGroup from "./SidebarLinkGroup.vue";
-import Links from "./Links.vue";
-import { Link } from "@inertiajs/vue3";
+<script>
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { Link} from '@inertiajs/vue3'
+import Links from './Links.vue'
+import SidebarLinkGroup from './SidebarLinkGroup.vue'
 
 export default {
-    name: "Sidebar",
-    props: ["sidebarOpen"],
-    components: {
-        SidebarLinkGroup,
-        Link,
-        Links,
-    },
-    setup(props, { emit }) {
-        const trigger = ref<any>(null);
-        const sidebar = ref<any>(null);
-        const sidebarExpanded = ref(true);
+  name: 'Sidebar',
+  props: ['sidebarOpen'],
+  components: {
+    SidebarLinkGroup,
+    Link,
+    Links
+  },
+  setup(props, { emit }) {
 
-        // close on click outside
-        const clickHandler = ({ target }: { target: any }) => {
-            if (!sidebar.value || !trigger.value) return;
-            if (
-                !props.sidebarOpen ||
-                sidebar.value.contains(target) ||
-                trigger.value.contains(target)
-            )
-                return emit("close-sidebar");
-        };
+    const trigger = ref(null)
+    const sidebar = ref(null)
 
-        // close if the esc key is pressed
-        const keyHandler = ({ keyCode }: { keyCode: any }) => {
-            if (!props.sidebarOpen || keyCode !== 27) return;
-            emit("close-sidebar");
-        };
+    const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
+    const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
 
-        onMounted(() => {
-            document.addEventListener("click", clickHandler);
-            document.addEventListener("keydown", keyHandler);
-            document.querySelector("body")?.classList.add("sidebar-expanded");
-        });
+    const currentRoute = '/';
 
-        onUnmounted(() => {
-            document.removeEventListener("click", clickHandler);
-            document.removeEventListener("keydown", keyHandler);
-        });
+    // close on click outside
+    const clickHandler = ({ target }) => {
+      if (!sidebar.value || !trigger.value) return
+      if (
+        !props.sidebarOpen ||
+        sidebar.value.contains(target) ||
+        trigger.value.contains(target)
+      ) return
+      emit('close-sidebar')
+    }
 
-        watch(sidebarExpanded, () => {
-            if (sidebarExpanded.value) {
-                document
-                    .querySelector("body")
-                    ?.classList.add("sidebar-expanded");
-            } else {
-                document
-                    .querySelector("body")
-                    ?.classList.remove("sidebar-expanded");
-            }
-        });
+    // close if the esc key is pressed
+    const keyHandler = ({ keyCode }) => {
+      if (!props.sidebarOpen || keyCode !== 27) return
+      emit('close-sidebar')
+    }
 
-        return {
-            trigger,
-            sidebar,
-            sidebarExpanded,
-        };
-    },
-};
+    onMounted(() => {
+      document.addEventListener('click', clickHandler)
+      document.addEventListener('keydown', keyHandler)
+      document.querySelector("body")?.classList.add("sidebar-expanded");
+    })
+
+    onUnmounted(() => {
+      document.removeEventListener('click', clickHandler)
+      document.removeEventListener('keydown', keyHandler)
+    })
+
+    watch(sidebarExpanded, () => {
+      localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
+      if (sidebarExpanded.value) {
+        document.querySelector('body').classList.add('sidebar-expanded')
+      } else {
+        document.querySelector('body').classList.remove('sidebar-expanded')
+      }
+    })
+
+    return {
+      trigger,
+      sidebar,
+      sidebarExpanded,
+      currentRoute,
+    }
+  },
+}
 </script>

@@ -27,14 +27,5 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {  return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/provinces',GetProvinces::class)->middleware(['auth', 'verified'])->name('province.all');
-Route::get('/dashboard/data', function () {  return Inertia::render('Inquerito');
-})->middleware(['auth', 'verified'])->name('data');
-Route::get('/dashboard/configs', function () {  return Inertia::render('Inquerito');
-})->middleware(['auth', 'verified'])->name('configs');
-
-Route::get('/dashboard/charts', function () {  return Inertia::render('Inquerito');
-})->middleware(['auth', 'verified'])->name('charts');
-
-
 require __DIR__.'/auth.php';
+require __DIR__.'/dashboard/province.php';
