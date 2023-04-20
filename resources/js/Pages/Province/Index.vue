@@ -7,6 +7,7 @@ import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
 import CreateProvince from "./CreateProvince.vue";
+import EditProvince from "./EditProvince.vue";
 const props = defineProps({
     provinces: {
         type: Object as PropType<Provinces>,
@@ -16,6 +17,7 @@ const props = defineProps({
 });
 
 const links = ref(props.provinces.links);
+const editingProvince = ref<App.Data.ProvinceData|null>(null);
 
 watch(
     () => props.messages,
@@ -28,6 +30,11 @@ watch(
         });
     }
 );
+
+function openEditProvinceModal(province:App.Data.ProvinceData) {
+      editingProvince.value = province;
+}
+
 </script>
 <template>
     <Head title="Inquéritos" />
@@ -119,6 +126,7 @@ watch(
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
+                                             @click="openEditProvinceModal(province)"
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -265,6 +273,8 @@ watch(
                     </nav>
                 </div>
             </div>
+            <EditProvince :province="editingProvince" v-if="editingProvince !== null"/>
         </template>
     </AuthenticatedLayout>
+
 </template>

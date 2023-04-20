@@ -15,11 +15,7 @@ class CreateProvince
 
     public function handle(ProvinceData $province)
     {
-        try {
-            return Province::create($province->all());
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return Province::create($province->all());
     }
 
     public function rules()
