@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, router } from "@inertiajs/vue3";
 
 import { Provinces } from "@/types/index";
 import { ref, watch, PropType } from "vue";
@@ -8,16 +8,26 @@ import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
 import CreateProvince from "./CreateProvince.vue";
 import EditProvince from "./EditProvince.vue";
+import DeleteProvince from "./DeleteProvince.vue";
+
 const props = defineProps({
     provinces: {
         type: Object as PropType<Provinces>,
         required: true,
     },
+    search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
 const links = ref(props.provinces.links);
-const editingProvince = ref<App.Data.ProvinceData|null>(null);
+
+const editingProvinceTrigger = ref(false);
+const editingProvince = ref<App.Data.ProvinceData | null>(null);
+
+const deletingProvinceTrigger = ref(false);
+const deletingProvince = ref<App.Data.ProvinceData | null>(null);
+
+const searchTerm = ref("");
 
 watch(
     () => props.messages,
@@ -31,13 +41,52 @@ watch(
     }
 );
 
-function openEditProvinceModal(province:App.Data.ProvinceData) {
-      editingProvince.value = province;
+
+watch(
+    () => props.provinces.links,
+    (value) => {
+        links.value = value;
+    }
+);
+
+watch(searchTerm, (value) => {
+    router.visit(
+        route("province.all", {
+            search: value ?? "",
+        }),
+        {
+            only: ["provinces"],
+            replace: false,
+            preserveState: true,
+        },
+
+    );
+});
+
+
+function openEditProvinceModal(province: App.Data.ProvinceData) {
+    editingProvince.value = province;
+    editingProvinceTrigger.value = true;
 }
 
+function closeEditProvinceModal() {
+    editingProvince.value = null;
+    editingProvinceTrigger.value = false;
+}
+
+function openDeleteProvinceModal(province: App.Data.ProvinceData) {
+    deletingProvince.value = province;
+    deletingProvinceTrigger.value = true;
+}
+
+function closeDeleteProvinceModal() {
+    deletingProvince.value = null;
+    deletingProvinceTrigger.value = false;
+}
 </script>
+
 <template>
-    <Head title="Inquéritos" />
+    <Head title="Províncias" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
@@ -74,6 +123,7 @@ function openEditProvinceModal(province:App.Data.ProvinceData) {
                                     <input
                                         type="text"
                                         id="simple-search"
+                                        v-model="searchTerm"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"
                                         placeholder="Pesquisar..."
                                     />
@@ -94,10 +144,15 @@ function openEditProvinceModal(province:App.Data.ProvinceData) {
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                             >
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">Id</th>
                                     <th scope="col" class="px-4 py-3">
-                                        Nome da província
+                                        <div  class="flex items-center">Id
+                                         </div>
                                     </th>
+                                    <th scope="col" class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            Nome da província
+                                        </div>
+                                </th>
                                     <th scope="col" class="px-4 py-3">
                                         Editar
                                     </th>
@@ -113,6 +168,8 @@ function openEditProvinceModal(province:App.Data.ProvinceData) {
                                     :key="province.id"
                                 >
                                     <th
+
+
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
@@ -126,7 +183,9 @@ function openEditProvinceModal(province:App.Data.ProvinceData) {
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                             @click="openEditProvinceModal(province)"
+                                            @click="
+                                                openEditProvinceModal(province)
+                                            "
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -160,6 +219,11 @@ function openEditProvinceModal(province:App.Data.ProvinceData) {
                                     <td class="px-4 py-3 justify-end w-32">
                                         <button
                                             type="button"
+                                            @click="
+                                                openDeleteProvinceModal(
+                                                    province
+                                                )
+                                            "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -273,8 +337,18 @@ function openEditProvinceModal(province:App.Data.ProvinceData) {
                     </nav>
                 </div>
             </div>
-            <EditProvince :province="editingProvince" v-if="editingProvince !== null"/>
+            <EditProvince
+                v-if="editingProvince"
+                :province="editingProvince"
+                :openModal="editingProvinceTrigger"
+                :close="closeEditProvinceModal"
+            />
+            <DeleteProvince
+                v-if="deletingProvince"
+                :province="deletingProvince"
+                :openModal="deletingProvinceTrigger"
+                :close="closeDeleteProvinceModal"
+            />
         </template>
     </AuthenticatedLayout>
-
 </template>

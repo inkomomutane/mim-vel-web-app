@@ -37,6 +37,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Section whereSectionableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Section whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Section whereUpdatedAt($value)
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Section> $sections
  * @mixin \Eloquent
  */
 class Section extends Model implements HasMedia

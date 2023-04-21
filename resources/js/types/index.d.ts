@@ -30,6 +30,11 @@ export enum FlahserType {
     info = "info",
 }
 
+export enum OrderDataBy {
+    asc = 'asc',
+    desc = 'desc'
+}
+
 export interface Provinces extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ProvinceData>;
 }

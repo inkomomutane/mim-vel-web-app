@@ -21,6 +21,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereUpdatedAt($value)
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @mixin \Eloquent
  */
 class Banner extends Model implements HasMedia

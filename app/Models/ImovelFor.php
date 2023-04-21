@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereSlugText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @mixin \Eloquent
  */
 class ImovelFor extends Model
