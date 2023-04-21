@@ -31,12 +31,16 @@ export enum FlahserType {
 }
 
 export enum OrderDataBy {
-    asc = 'asc',
-    desc = 'desc'
+    asc = "asc",
+    desc = "desc",
 }
 
 export interface Provinces extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ProvinceData>;
+}
+
+export interface Cities extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.CityData>;
 }
 
 export type PageProps<

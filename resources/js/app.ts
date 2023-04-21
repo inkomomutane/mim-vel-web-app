@@ -1,12 +1,14 @@
 import "./bootstrap";
+import "primevue/resources/primevue.min.css";
 import "../css/app.css";
+
 
 import { createApp, h, DefineComponent } from "vue";
 import { createPinia } from "pinia";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
-
+import PrimeVue from 'primevue/config';
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 const pinia = createPinia();
@@ -21,6 +23,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(pinia)
+            .use(PrimeVue)
             .use(ZiggyVue, Ziggy)
             .mount(el);
     },

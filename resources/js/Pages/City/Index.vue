@@ -2,30 +2,34 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 
-import { Provinces } from "@/types/index";
+import { Cities } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
-import CreateProvince from "./CreateProvince.vue";
-import EditProvince from "./EditProvince.vue";
-import DeleteProvince from "./DeleteProvince.vue";
+import CreateCity from "./CreateCity.vue";
+import EditCity from "./EditCity.vue";
+import DeleteCity from "./DeleteCity.vue";
 
 const props = defineProps({
-    provinces: {
-        type: Object as PropType<Provinces>,
+    cities: {
+        type: Object as PropType<Cities>,
         required: true,
+    },
+    provinces:{
+        type: Array as PropType<App.Data.ProvinceData>,
+        required:true
     },
     search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.provinces.links);
+const links = ref(props.cities.links);
 
-const editingProvinceTrigger = ref(false);
-const editingProvince = ref<App.Data.ProvinceData | null>(null);
+const editingCityTrigger = ref(false);
+const editingCity = ref<App.Data.CityData | null>(null);
 
-const deletingProvinceTrigger = ref(false);
-const deletingProvince = ref<App.Data.ProvinceData | null>(null);
+const deletingCityTrigger = ref(false);
+const deletingCity = ref<App.Data.CityData | null>(null);
 
 const searchTerm = ref("");
 
@@ -42,7 +46,7 @@ watch(
 );
 
 watch(
-    () => props.provinces.links,
+    () => props.cities.links,
     (value) => {
         links.value = value;
     }
@@ -50,35 +54,35 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("province.all", {
+        route("city.all", {
             search: value ?? "",
         }),
         {
-            only: ["provinces"],
+            only: ["cities"],
             replace: false,
             preserveState: true,
         }
     );
 });
 
-function openEditProvinceModal(province: App.Data.ProvinceData) {
-    editingProvince.value = province;
-    editingProvinceTrigger.value = true;
+function openEditCityModal(city: App.Data.CityData) {
+    editingCity.value = city;
+    editingCityTrigger.value = true;
 }
 
-function closeEditProvinceModal() {
-    editingProvince.value = null;
-    editingProvinceTrigger.value = false;
+function closeEditCityModal() {
+    editingCity.value = null;
+    editingCityTrigger.value = false;
 }
 
-function openDeleteProvinceModal(province: App.Data.ProvinceData) {
-    deletingProvince.value = province;
-    deletingProvinceTrigger.value = true;
+function openDeleteCityModal(city: App.Data.CityData) {
+    deletingCity.value = city;
+    deletingCityTrigger.value = true;
 }
 
-function closeDeleteProvinceModal() {
-    deletingProvince.value = null;
-    deletingProvinceTrigger.value = false;
+function closeDeleteCityModal() {
+    deletingCity.value = null;
+    deletingCityTrigger.value = false;
 }
 </script>
 
@@ -130,7 +134,7 @@ function closeDeleteProvinceModal() {
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
                         >
-                            <CreateProvince />
+                            <CreateCity :provinces="props.provinces" />
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -143,6 +147,11 @@ function closeDeleteProvinceModal() {
                                 <tr>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">Id</div>
+                                    </th>
+                                    <th scope="col" class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            Nome da cidade
+                                        </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
@@ -160,25 +169,29 @@ function closeDeleteProvinceModal() {
                             <tbody>
                                 <tr
                                     class="border-b dark:border-gray-700"
-                                    v-for="province in provinces.data"
-                                    :key="province.id"
+                                    v-for="city in cities.data"
+                                    :key="city.id"
                                 >
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {{ province.id }}
+                                        {{ city.id }}
                                     </th>
 
                                     <td class="px-4 py-3">
-                                        {{ province.name }}
+                                        {{ city.nome }}
+                                    </td>
+
+                                    <td class="px-4 py-3">
+                                        {{ city.province.name }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
                                             @click="
-                                                openEditProvinceModal(province)
+                                                openEditCityModal(city)
                                             "
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
@@ -214,8 +227,8 @@ function closeDeleteProvinceModal() {
                                         <button
                                             type="button"
                                             @click="
-                                                openDeleteProvinceModal(
-                                                    province
+                                                openDeleteCityModal(
+                                                    city
                                                 )
                                             "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
@@ -259,8 +272,8 @@ function closeDeleteProvinceModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                                 >{{
-                                    `${provinces.meta.from ?? 0}-${
-                                        provinces.meta.to ?? 0
+                                    `${cities.meta.from ?? 0}-${
+                                        cities.meta.to ?? 0
                                     }`
                                 }}</span
                             >
@@ -268,7 +281,7 @@ function closeDeleteProvinceModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                             >
-                                {{ provinces.meta.total }}</span
+                                {{ cities.meta.total }}</span
                             >
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
@@ -331,17 +344,18 @@ function closeDeleteProvinceModal() {
                     </nav>
                 </div>
             </div>
-            <EditProvince
-                v-if="editingProvince"
-                :province="editingProvince"
-                :openModal="editingProvinceTrigger"
-                :close="closeEditProvinceModal"
+            <EditCity
+                v-if="editingCity"
+                :city="editingCity"
+                :openModal="editingCityTrigger"
+                :close="closeEditCityModal"
+                :provinces="props.provinces"
             />
-            <DeleteProvince
-                v-if="deletingProvince"
-                :province="deletingProvince"
-                :openModal="deletingProvinceTrigger"
-                :close="closeDeleteProvinceModal"
+            <DeleteCity
+                v-if="deletingCity"
+                :city="deletingCity"
+                :openModal="deletingCityTrigger"
+                :close="closeDeleteCityModal"
             />
         </template>
     </AuthenticatedLayout>
