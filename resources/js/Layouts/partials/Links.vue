@@ -33,7 +33,7 @@ watch(
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
-                            route().current('dashboard') ? ' bg-slate-950' : ''
+                            route().current('dashboard') ? ' bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <a
@@ -100,8 +100,7 @@ watch(
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
                             route().current('province.all')
-                                ? ' bg-slate-950'
-                                : ''
+                                ? 'bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <div
@@ -143,7 +142,7 @@ watch(
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
-                            route().current('city.all') ? ' bg-slate-950' : ''
+                            route().current('city.all') ? ' bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <div
@@ -230,7 +229,7 @@ watch(
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
-                            route().current('bairro.all') ? ' bg-slate-950' : ''
+                            route().current('bairro.all') ? ' bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <div
@@ -313,8 +312,7 @@ watch(
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
                             route().current('message.all')
-                                ? ' bg-slate-950'
-                                : ''
+                                ? 'bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <div
@@ -375,8 +373,7 @@ watch(
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
                             route().current('legal.policy')
-                                ? ' bg-slate-950'
-                                : ''
+                                ? 'bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <div
@@ -413,7 +410,7 @@ watch(
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
-                            route().current('legal.term') ? ' bg-slate-950' : ''
+                            route().current('legal.term') ? ' bg-slate-950' : 'hover:bg-slate-900'
                         "
                     >
                         <div
