@@ -5,6 +5,7 @@ import { Head, Link } from "@inertiajs/vue3";
 <template>
     <Head title="Dashboard" />
     <AuthenticatedLayout>
-        <template v-slot:content> </template>
+        <template v-slot:content>
+            </template>
     </AuthenticatedLayout>
 </template>

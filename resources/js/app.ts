@@ -8,6 +8,7 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import PrimeVue from "primevue/config";
+import Tooltip from 'primevue/tooltip';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -24,6 +25,7 @@ createInertiaApp({
             .use(plugin)
             .use(pinia)
             .use(PrimeVue)
+            .directive('tooltip',Tooltip)
             .use(CKEditor)
             .use(ZiggyVue, Ziggy)
             .mount(el);

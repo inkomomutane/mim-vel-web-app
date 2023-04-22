@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { tooltip } from "@/helprs";
 import { Link } from "@inertiajs/vue3";
 </script>
 <template>
@@ -17,7 +18,7 @@ import { Link } from "@inertiajs/vue3";
             </h3>
             <ul class="mt-3">
                 <!-- Dashboard -->
-                <Link :href="route('dashboard')">
+                <Link :href="route('dashboard')" v-tooltip.value="tooltip('Dashboard')">
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
@@ -80,7 +81,7 @@ import { Link } from "@inertiajs/vue3";
                         </a>
                     </li>
                 </Link>
-                <Link :href="route('province.all')">
+                <Link :href="route('province.all')" v-tooltip.value="tooltip('Províncias')">
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
@@ -121,7 +122,7 @@ import { Link } from "@inertiajs/vue3";
                         </div>
                     </li>
                 </Link>
-                <Link :href="route('city.all')">
+                <Link :href="route('city.all')" v-tooltip.value="tooltip('Cidades')" >
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
@@ -205,7 +206,7 @@ import { Link } from "@inertiajs/vue3";
                         </div>
                     </li>
                 </Link>
-                <Link :href="route('bairro.all')">
+                <Link :href="route('bairro.all')" v-tooltip.value="tooltip('Bairros')">
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
@@ -218,8 +219,8 @@ import { Link } from "@inertiajs/vue3";
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
                                     <svg
-                                        width="22"
-                                        height="22"
+                                        width="20"
+                                        height="20"
                                         stroke-width="1.5"
                                         viewBox="0 0 24 24"
                                         fill="none"
@@ -283,7 +284,19 @@ import { Link } from "@inertiajs/vue3";
                         </div>
                     </li>
                 </Link>
-                <Link :href="route('legal.policy')">
+            </ul>
+            <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3 mt-2">
+                <span
+                    class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
+                    aria-hidden="true"
+                    >•••</span
+                >
+                <span class="lg:hidden lg:sidebar-expanded:block 2xl:block"
+                    >Legalidade</span
+                >
+            </h3>
+            <ul class="mt-3">
+                <Link :href="route('legal.policy')" v-tooltip.value="tooltip('Políticas de privacidade')">
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
@@ -295,8 +308,8 @@ import { Link } from "@inertiajs/vue3";
                         >
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
-                                    <svg  xmlns="http://www.w3.org/2000/svg" width="22"
-                                        height="22" viewBox="0 0 16 16" fill="currentColor">
+                                    <svg  xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 16 16" fill="currentColor">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.246 14.713a27.792 27.792 0 0 1-1.505-.953c-.501-.34-.983-.707-1.444-1.1-.458-.395-.888-.82-1.288-1.274-.4-.455-.753-.95-1.05-1.478a7.8 7.8 0 0 1-.7-1.69A7.041 7.041 0 0 1 2 6.3V3.1l.5-.5c.333 0 .656-.011.97-.036.296-.023.591-.066.882-.128.284-.062.562-.148.832-.256.284-.118.557-.261.816-.427a4.83 4.83 0 0 1 1.184-.565 4.8 4.8 0 0 1 2-.142 4.018 4.018 0 0 1 1.237.383c.199.097.392.204.58.322.26.167.535.31.821.428.27.109.547.194.831.256.291.062.587.106.884.129.311.024.634.035.967.035l.5.5v3.2a7.043 7.043 0 0 1-.256 1.919 7.804 7.804 0 0 1-.7 1.69 8.751 8.751 0 0 1-1.05 1.478c-.4.452-.829.877-1.286 1.27a15.94 15.94 0 0 1-1.448 1.1 28.71 28.71 0 0 1-1.51.956h-.508zM3 3.59V6.3c-.004.555.07 1.11.22 1.645a6.7 6.7 0 0 0 .61 1.473c.263.467.575.905.93 1.308.37.417.766.81 1.188 1.174.432.368.883.712 1.352 1.03.4.267.8.523 1.2.769.4-.242.8-.498 1.2-.768.47-.319.923-.663 1.355-1.031.421-.364.817-.756 1.186-1.172a7.8 7.8 0 0 0 .93-1.308c.261-.465.466-.96.61-1.473.15-.537.223-1.09.22-1.647V3.59c-.159 0-.313-.012-.465-.023l-.079-.006a7.95 7.95 0 0 1-1.018-.147 6.112 6.112 0 0 1-1.976-.814 5.166 5.166 0 0 0-.482-.27 3.123 3.123 0 0 0-.943-.29 3.686 3.686 0 0 0-1.558.106c-.332.108-.649.26-.94.452-.312.2-.64.372-.983.513a6.4 6.4 0 0 1-1 .307c-.335.07-.675.12-1.017.146-.174.01-.355.02-.54.026zm6.065 4.3a1.5 1.5 0 1 0-1.13 0L7.5 10.5h2l-.435-2.61z"></path>
                                     </svg>
                                     <span
@@ -308,7 +321,7 @@ import { Link } from "@inertiajs/vue3";
                         </div>
                     </li>
                 </Link>
-                <Link :href="route('legal.term')">
+                <Link :href="route('legal.term')" v-tooltip.value="tooltip('Termos e condições')">
                     <li
                         class="px-3 py-2 rounded mb-0.5 last:mb-0"
                         :class="
@@ -320,7 +333,7 @@ import { Link } from "@inertiajs/vue3";
                         >
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
-                                    <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 14h4v.91l.09.09H2.5l-.5-.5v-13l.5-.5h7.72l.35.14 3.28 3.3.15.36v2.54a3.1 3.1 0 0 0-1-.94V6H9.5L9 5.5V2H3v12zm10-9l-3-3v3h3zm.5 4v1h1l.5.5v4l-.5.5h-6l-.5-.5v-4l.5-.5h1V9a2 2 0 0 1 4 0zm-2.707-.707A1 1 0 0 0 10.5 9v1h2V9a1 1 0 0 0-1.707-.707zM9 11v3h5v-3H9z"></path></svg>
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 14h4v.91l.09.09H2.5l-.5-.5v-13l.5-.5h7.72l.35.14 3.28 3.3.15.36v2.54a3.1 3.1 0 0 0-1-.94V6H9.5L9 5.5V2H3v12zm10-9l-3-3v3h3zm.5 4v1h1l.5.5v4l-.5.5h-6l-.5-.5v-4l.5-.5h1V9a2 2 0 0 1 4 0zm-2.707-.707A1 1 0 0 0 10.5 9v1h2V9a1 1 0 0 0-1.707-.707zM9 11v3h5v-3H9z"></path></svg>
                                    <span
                                         class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
                                         >Termos e condições</span
@@ -330,7 +343,7 @@ import { Link } from "@inertiajs/vue3";
                         </div>
                     </li>
                 </Link>
-                </ul>
+            </ul>
         </div>
     </div>
 </template>
