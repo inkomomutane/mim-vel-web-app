@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use App\Data\TermAndConditionData;
 use App\Data\TermoData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -33,9 +34,15 @@ class Termo extends Model
     use WithData;
 
 	protected $table = 'termos';
-    protected $dataClass = TermoData::class;
+    protected $dataClass = TermAndConditionData::class;
+    protected $appends = ['term'];
 
 	protected $fillable = [
 		'termos'
 	];
+
+    public function getTermAttribute()
+    {
+            return $this->termos;
+    }
 }

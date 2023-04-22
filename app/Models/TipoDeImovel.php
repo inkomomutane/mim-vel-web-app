@@ -34,6 +34,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereUpdatedAt($value)
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @mixin \Eloquent
  */
 class TipoDeImovel extends Model implements HasMedia

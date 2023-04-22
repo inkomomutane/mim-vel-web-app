@@ -2,34 +2,34 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 
-import { Cities } from "@/types/index";
+import { Bairros } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
-import CreateCity from "./CreateCity.vue";
-import EditCity from "./EditCity.vue";
-import DeleteCity from "./DeleteCity.vue";
+import CreateBairro from "./CreateBairro.vue";
+import EditBairro from "./EditBairro.vue";
+import DeleteBairro from "./DeleteBairro.vue";
 
 const props = defineProps({
-    cities: {
-        type: Object as PropType<Cities>,
+    bairros: {
+        type: Object as PropType<Bairros>,
         required: true,
     },
-    provinces: {
-        type: Array<App.Data.ProvinceData>,
+    cities: {
+        type: Array<App.Data.CityData>,
         required: true,
     },
     search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.cities.links);
+const links = ref(props.bairros.links);
 
-const editingCityTrigger = ref(false);
-const editingCity = ref<App.Data.CityData | null>(null);
+const editingBairroTrigger = ref(false);
+const editingBairro = ref<App.Data.BairroData | null>(null);
 
-const deletingCityTrigger = ref(false);
-const deletingCity = ref<App.Data.CityData | null>(null);
+const deletingBairroTrigger = ref(false);
+const deletingBairro = ref<App.Data.BairroData | null>(null);
 
 const searchTerm = ref("");
 
@@ -46,7 +46,7 @@ watch(
 );
 
 watch(
-    () => props.cities.links,
+    () => props.bairros.links,
     (value) => {
         links.value = value;
     }
@@ -54,35 +54,35 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("city.all", {
+        route("bairro.all", {
             search: value ?? "",
         }),
         {
-            only: ["cities"],
+            only: ["bairros"],
             replace: false,
             preserveState: true,
         }
     );
 });
 
-function openEditCityModal(city: App.Data.CityData) {
-    editingCity.value = city;
-    editingCityTrigger.value = true;
+function openEditBairroModal(bairro: App.Data.BairroData) {
+    editingBairro.value = bairro;
+    editingBairroTrigger.value = true;
 }
 
-function closeEditCityModal() {
-    editingCity.value = null;
-    editingCityTrigger.value = false;
+function closeEditBairroModal() {
+    editingBairro.value = null;
+    editingBairroTrigger.value = false;
 }
 
-function openDeleteCityModal(city: App.Data.CityData) {
-    deletingCity.value = city;
-    deletingCityTrigger.value = true;
+function openDeleteBairroModal(bairro: App.Data.BairroData) {
+    deletingBairro.value = bairro;
+    deletingBairroTrigger.value = true;
 }
 
-function closeDeleteCityModal() {
-    deletingCity.value = null;
-    deletingCityTrigger.value = false;
+function closeDeleteBairroModal() {
+    deletingBairro.value = null;
+    deletingBairroTrigger.value = false;
 }
 </script>
 
@@ -134,7 +134,7 @@ function closeDeleteCityModal() {
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
                         >
-                            <CreateCity :provinces="props.provinces" />
+                            <CreateBairro :cities="props.cities" />
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -150,12 +150,12 @@ function closeDeleteCityModal() {
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Nome da cidade
+                                            Nome do bairro
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Nome da província
+                                            Nome da cidade
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -169,28 +169,28 @@ function closeDeleteCityModal() {
                             <tbody>
                                 <tr
                                     class="border-b dark:border-gray-700"
-                                    v-for="city in cities.data"
-                                    :key="city.id"
+                                    v-for="bairro in bairros.data"
+                                    :key="bairro.id as number"
                                 >
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {{ city.id }}
+                                        {{ bairro.id }}
                                     </th>
 
                                     <td class="px-4 py-3">
-                                        {{ city.nome }}
+                                        {{ bairro.nome }}
                                     </td>
 
                                     <td class="px-4 py-3">
-                                        {{ city.province.name }}
+                                        {{ bairro.city.nome }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                            @click="openEditCityModal(city)"
+                                            @click="openEditBairroModal(bairro)"
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -224,7 +224,9 @@ function closeDeleteCityModal() {
                                     <td class="px-4 py-3 justify-end w-32">
                                         <button
                                             type="button"
-                                            @click="openDeleteCityModal(city)"
+                                            @click="
+                                                openDeleteBairroModal(bairro)
+                                            "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -266,8 +268,8 @@ function closeDeleteCityModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                                 >{{
-                                    `${cities.meta.from ?? 0}-${
-                                        cities.meta.to ?? 0
+                                    `${bairros.meta.from ?? 0}-${
+                                        bairros.meta.to ?? 0
                                     }`
                                 }}</span
                             >
@@ -275,7 +277,7 @@ function closeDeleteCityModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                             >
-                                {{ cities.meta.total }}</span
+                                {{ bairros.meta.total }}</span
                             >
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
@@ -338,18 +340,18 @@ function closeDeleteCityModal() {
                     </nav>
                 </div>
             </div>
-            <EditCity
-                v-if="editingCity"
-                :city="editingCity"
-                :openModal="editingCityTrigger"
-                :close="closeEditCityModal"
-                :provinces="props.provinces"
+            <EditBairro
+                v-if="editingBairro"
+                :bairro="editingBairro"
+                :openModal="editingBairroTrigger"
+                :close="closeEditBairroModal"
+                :cities="props.cities"
             />
-            <DeleteCity
-                v-if="deletingCity"
-                :city="deletingCity"
-                :openModal="deletingCityTrigger"
-                :close="closeDeleteCityModal"
+            <DeleteBairro
+                v-if="deletingBairro"
+                :bairro="deletingBairro"
+                :openModal="deletingBairroTrigger"
+                :close="closeDeleteBairroModal"
             />
         </template>
     </AuthenticatedLayout>

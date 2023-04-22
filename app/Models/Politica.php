@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Data\PolicyData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 
 /**
  * App\Models\Politica
@@ -25,7 +27,10 @@ use Illuminate\Database\Eloquent\Model;
 class Politica extends Model
 {
     use HasFactory;
+    use WithData;
+
     protected $table = 'politicas';
+    protected $dataClass = PolicyData::class;
 
 	protected $fillable = [
 		'politicas'

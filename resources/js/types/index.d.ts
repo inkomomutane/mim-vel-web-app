@@ -43,6 +43,11 @@ export interface Cities extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.CityData>;
 }
 
+export interface Bairros extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.BairroData>;
+}
+
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

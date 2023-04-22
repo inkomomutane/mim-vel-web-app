@@ -25,6 +25,7 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
  * @mixin \Eloquent
  */
 class Province extends Model

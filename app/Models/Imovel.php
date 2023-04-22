@@ -108,6 +108,8 @@ use Spatie\Searchable\SearchResult;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable

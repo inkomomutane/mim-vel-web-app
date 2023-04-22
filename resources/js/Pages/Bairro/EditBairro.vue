@@ -5,16 +5,16 @@ import { PropType, ref } from "vue";
 import Dropdown from "primevue/dropdown";
 
 const props = defineProps({
-    city: {
-        type: Object as PropType<App.Data.CityData>,
+    bairro: {
+        type: Object as PropType<App.Data.BairroData>,
         required: true,
     },
     close: {
         type: Function,
         required: true,
     },
-    provinces: {
-        type: Array<App.Data.ProvinceData>,
+    cities: {
+        type: Array<App.Data.CityData>,
         required: true,
     },
     openModal: {
@@ -23,18 +23,18 @@ const props = defineProps({
     },
 });
 
-const nomeInput = ref<String | any>(props.city.nome);
+const nomeInput = ref<String | any>(props.bairro.nome);
 
 const form = useForm({
-    id: props.city.id,
-    nome: props.city.nome,
-    province_id: props.city.province.id,
+    id: props.bairro.id,
+    nome: props.bairro.nome,
+    cidade_id: props.bairro.city.id,
 });
 
-const updateCity = () => {
+const updateBairro = () => {
     form.patch(
-        route("city.update", {
-            city: props.city.id as number,
+        route("bairro.update", {
+            bairro: props.bairro.id as number,
         }),
         {
             preserveScroll: true,
@@ -75,9 +75,9 @@ const updateCity = () => {
                 <h3
                     class="mb-4 text-xl font-medium text-gray-900 dark:text-white"
                 >
-                    Editar cidade
+                    Editar Bairro
                 </h3>
-                <form class="space-y-6" @submit.prevent="updateCity">
+                <form class="space-y-6" @submit.prevent="updateBairro">
                     <div>
                         <label
                             for="nome"
@@ -91,7 +91,7 @@ const updateCity = () => {
                             ref="nomeInput"
                             id="nome"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Nome da cidade"
+                            placeholder="Nome do bairro"
                         />
                         <span class="text-medium text-red-500 font-medium">{{
                             form.errors.nome
@@ -99,35 +99,35 @@ const updateCity = () => {
                     </div>
                     <div>
                         <label
-                            for="provincia"
+                            for="cidade"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Província</label
+                            >Cidade</label
                         >
 
                         <Dropdown
-                            v-model="form.province_id"
+                            v-model="form.cidade_id"
                             optionValue="id"
-                            :options="props.provinces"
-                            optionLabel="name"
-                            placeholder="Selecionar província"
+                            :options="props.cities"
+                            optionLabel="nome"
+                            placeholder="Selecionar cidade"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         >
                             <template #option="slotProps">
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                        form.province_id == slotProps.option.id
+                                        form.cidade_id == slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
                                 >
-                                    <div>{{ slotProps.option.name }}</div>
+                                    <div>{{ slotProps.option.nome }}</div>
                                 </div>
                             </template>
                         </Dropdown>
 
                         <span class="text-sm text-red-500 font-normal">{{
-                            form.errors.province_id
+                            form.errors.cidade_id
                         }}</span>
                     </div>
                     <button

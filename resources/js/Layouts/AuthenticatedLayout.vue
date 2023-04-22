@@ -7,7 +7,7 @@
         />
         <!-- Content area -->
         <div
-            class="relative bg-slate-100 dark:bg-slate-900 flex flex-col flex-1 overflow-y-auto overflow-x-hidden"
+            class="relative bg-slate-100 dark:bg-slate-900 flex flex-col flex-1 overflow-hidden overflow-y-auto overflow-x-hidden"
         >
             <!-- Site header -->
             <Header

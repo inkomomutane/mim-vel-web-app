@@ -27,8 +27,8 @@ const form = useForm({
 
 const updateProvince = () => {
     form.patch(
-        route("province.update", {
-            province: props.province.id,
+        route("province.update",  {
+            province: props.province.id as number,
         }),
         {
             preserveScroll: true,

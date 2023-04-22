@@ -5,9 +5,9 @@ namespace App\Data;
 use Spatie\LaravelData\Data;
 
 /** @typescript */
-class TermoData extends Data
+class PolicyData extends Data
 {
     public function __construct(
-     public String $termos
+      public readonly string $politicas
     ) {}
 }
