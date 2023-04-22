@@ -27,7 +27,7 @@ const form = useForm({
 
 const updateProvince = () => {
     form.patch(
-        route("province.update",  {
+        route("province.update", {
             province: props.province.id as number,
         }),
         {

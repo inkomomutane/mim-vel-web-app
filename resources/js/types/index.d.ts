@@ -1,3 +1,4 @@
+import { AgendaData } from "./generated.d";
 export interface User {
     id: number;
     name: string;
@@ -47,6 +48,9 @@ export interface Bairros extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.BairroData>;
 }
 
+export interface Mails extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.AgendaData>;
+}
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
@@ -56,5 +60,8 @@ export type PageProps<
     };
     site: {
         type: String;
+    };
+    mails: {
+        type: Number;
     };
 };

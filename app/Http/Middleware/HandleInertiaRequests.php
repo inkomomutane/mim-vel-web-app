@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Agenda;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -35,6 +36,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'messages' => flash()->render([], 'array'),
+            'mails' => Agenda::whereIsReaded(false)->count(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [

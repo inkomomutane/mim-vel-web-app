@@ -6,9 +6,11 @@
 
 namespace App\Models;
 
+use App\Data\AgendaData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 
 /**
  * Class Agenda
@@ -49,7 +51,10 @@ use Illuminate\Database\Eloquent\Model;
 class Agenda extends Model
 {
     use HasFactory;
+    use WithData;
 	protected $table = 'agendas';
+    protected $dataClass = AgendaData::class;
+    protected $appends = ['url'];
 
 	protected $casts = [
 		'corretor_id' => 'int',
@@ -70,8 +75,17 @@ class Agenda extends Model
         'imovel_id'
 	];
 
+    public function getUrlAttribute()
+    {
+            return  $this->imovel?->slug ?? '';
+    }
+
 	public function corretor()
 	{
 		return $this->belongsTo(User::class, 'corretor_id');
 	}
+
+    public function imovel(){
+        return $this->belongsTo(Imovel::class,'imovel_id');
+    }
 }
