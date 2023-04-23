@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use App\Data\CondicaoData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
 class Condicao extends Model
 {
 	protected $table = 'condicaos';
+    protected $dataClass = CondicaoData::class;
 
 	protected $fillable = [
 		'nome'

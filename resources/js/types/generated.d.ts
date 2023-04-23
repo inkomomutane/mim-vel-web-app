@@ -19,6 +19,10 @@ declare namespace App.Data {
         nome: string;
         province: App.Data.ProvinceData | null;
     };
+    export type CondicaoData = {
+        id: number | null;
+        nome: string | null;
+    };
     export type PolicyData = {
         politicas: string;
     };

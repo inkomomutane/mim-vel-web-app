@@ -60,6 +60,10 @@ export interface Statuses extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.StatusData>;
 }
 
+export interface Condicaos extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.CondicaoData>;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

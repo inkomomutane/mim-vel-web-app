@@ -2,30 +2,30 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 
-import { Statuses } from "@/types/index";
+import { Condicaos } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
-import CreateStatus from "./CreateStatus.vue";
-import EditStatus from "./EditStatus.vue";
-import DeleteStatus from "./DeleteStatus.vue";
+import CreateCondicao from "./CreateCondicao.vue";
+import EditCondicao from "./EditCondicao.vue";
+import DeleteCondicao from "./DeleteCondicao.vue";
 
 const props = defineProps({
-    statuses: {
-        type: Object as PropType<Statuses>,
+    condicaos: {
+        type: Object as PropType<Condicaos>,
         required: true,
     },
     search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.statuses.links);
+const links = ref(props.condicaos.links);
 
-const editingStatusTrigger = ref(false);
-const editingStatus = ref<App.Data.StatusData | null>(null);
+const editingCondicaoTrigger = ref(false);
+const editingCondicao = ref<App.Data.CondicaoData | null>(null);
 
-const deletingStatusTrigger = ref(false);
-const deletingStatus = ref<App.Data.StatusData | null>(null);
+const deletingCondicaoTrigger = ref(false);
+const deletingCondicao = ref<App.Data.CondicaoData | null>(null);
 
 const searchTerm = ref("");
 
@@ -42,7 +42,7 @@ watch(
 );
 
 watch(
-    () => props.statuses.links,
+    () => props.condicaos.links,
     (value) => {
         links.value = value;
     }
@@ -50,40 +50,40 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("status.all", {
+        route("condicao.all", {
             search: value ?? "",
         }),
         {
-            only: ["statuses"],
+            only: ["condicaos"],
             replace: false,
             preserveState: true,
         }
     );
 });
 
-function openEditStatusModal(status: App.Data.StatusData) {
-    editingStatus.value = status;
-    editingStatusTrigger.value = true;
+function openEditCondicaoModal(condicao: App.Data.CondicaoData) {
+    editingCondicao.value = condicao;
+    editingCondicaoTrigger.value = true;
 }
 
-function closeEditStatusModal() {
-    editingStatus.value = null;
-    editingStatusTrigger.value = false;
+function closeEditCondicaoModal() {
+    editingCondicao.value = null;
+    editingCondicaoTrigger.value = false;
 }
 
-function openDeleteStatusModal(status: App.Data.StatusData) {
-    deletingStatus.value = status;
-    deletingStatusTrigger.value = true;
+function openDeleteCondicaoModal(condicao: App.Data.CondicaoData) {
+    deletingCondicao.value = condicao;
+    deletingCondicaoTrigger.value = true;
 }
 
-function closeDeleteStatusModal() {
-    deletingStatus.value = null;
-    deletingStatusTrigger.value = false;
+function closeDeleteCondicaoModal() {
+    deletingCondicao.value = null;
+    deletingCondicaoTrigger.value = false;
 }
 </script>
 
 <template>
-    <Head title="Status do imóvel" />
+    <Head title="Condição do imóvel" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
@@ -130,7 +130,7 @@ function closeDeleteStatusModal() {
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
                         >
-                            <CreateStatus />
+                            <CreateCondicao />
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -146,7 +146,7 @@ function closeDeleteStatusModal() {
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Status do imóvel
+                                            Condição do imóvel
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -160,24 +160,24 @@ function closeDeleteStatusModal() {
                             <tbody>
                                 <tr
                                     class="border-b dark:border-gray-700"
-                                    v-for="status in statuses.data"
-                                    :key="(status.id as number)"
+                                    v-for="condicao in condicaos.data"
+                                    :key="(condicao.id as number)"
                                 >
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {{ status.id }}
+                                        {{ condicao.id }}
                                     </th>
 
                                     <td class="px-4 py-3">
-                                        {{ status.nome }}
+                                        {{ condicao.nome }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                            @click="openEditStatusModal(status)"
+                                            @click="openEditCondicaoModal(condicao)"
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -212,7 +212,7 @@ function closeDeleteStatusModal() {
                                         <button
                                             type="button"
                                             @click="
-                                                openDeleteStatusModal(status)
+                                                openDeleteCondicaoModal(condicao)
                                             "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
@@ -255,8 +255,8 @@ function closeDeleteStatusModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                                 >{{
-                                    `${statuses.meta.from ?? 0}-${
-                                        statuses.meta.to ?? 0
+                                    `${condicaos.meta.from ?? 0}-${
+                                        condicaos.meta.to ?? 0
                                     }`
                                 }}</span
                             >
@@ -264,7 +264,7 @@ function closeDeleteStatusModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                             >
-                                {{ statuses.meta.total }}</span
+                                {{ condicaos.meta.total }}</span
                             >
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
@@ -327,17 +327,17 @@ function closeDeleteStatusModal() {
                     </nav>
                 </div>
             </div>
-            <EditStatus
-                v-if="editingStatus"
-                :status="editingStatus"
-                :openModal="editingStatusTrigger"
-                :close="closeEditStatusModal"
+            <EditCondicao
+                v-if="editingCondicao"
+                :condicao="editingCondicao"
+                :openModal="editingCondicaoTrigger"
+                :close="closeEditCondicaoModal"
             />
-            <DeleteStatus
-                v-if="deletingStatus"
-                :status="deletingStatus"
-                :openModal="deletingStatusTrigger"
-                :close="closeDeleteStatusModal"
+            <DeleteCondicao
+                v-if="deletingCondicao"
+                :condicao="deletingCondicao"
+                :openModal="deletingCondicaoTrigger"
+                :close="closeDeleteCondicaoModal"
             />
         </template>
     </AuthenticatedLayout>

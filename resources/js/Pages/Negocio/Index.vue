@@ -146,7 +146,7 @@ function closeDeleteNegocioModal() {
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Nome da província
+                                            Regras de negociação
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">

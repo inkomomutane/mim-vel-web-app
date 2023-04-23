@@ -170,7 +170,7 @@ function closeDeleteBairroModal() {
                                 <tr
                                     class="border-b dark:border-gray-700"
                                     v-for="bairro in bairros.data"
-                                    :key="bairro.id as number"
+                                    :key="(bairro.id as number)"
                                 >
                                     <th
                                         scope="row"
