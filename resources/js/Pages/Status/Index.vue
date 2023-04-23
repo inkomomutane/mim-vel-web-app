@@ -2,30 +2,30 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 
-import { RegrasDeNegocioData } from "@/types/index";
+import { Statuses } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
-import CreateNegocio from "./CreateNegocio.vue";
-import EditNegocio from "./EditNegocio.vue";
-import DeleteNegocio from "./DeleteNegocio.vue";
+import CreateStatus from "./CreateStatus.vue";
+import EditStatus from "./EditStatus.vue";
+import DeleteStatus from "./DeleteStatus.vue";
 
 const props = defineProps({
-    regrasDeNegocio: {
-        type: Object as PropType<RegrasDeNegocioData>,
+    statuses: {
+        type: Object as PropType<Statuses>,
         required: true,
     },
     search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.regrasDeNegocio.links);
+const links = ref(props.statuses.links);
 
-const editingNegocioTrigger = ref(false);
-const editingNegocio = ref<App.Data.RegraDeNegocioData | null>(null);
+const editingStatusTrigger = ref(false);
+const editingStatus = ref<App.Data.StatusData | null>(null);
 
-const deletingNegocioTrigger = ref(false);
-const deletingNegocio = ref<App.Data.RegraDeNegocioData | null>(null);
+const deletingStatusTrigger = ref(false);
+const deletingStatus = ref<App.Data.StatusData | null>(null);
 
 const searchTerm = ref("");
 
@@ -42,7 +42,7 @@ watch(
 );
 
 watch(
-    () => props.regrasDeNegocio.links,
+    () => props.statuses.links,
     (value) => {
         links.value = value;
     }
@@ -50,40 +50,40 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("negocio.all", {
+        route("status.all", {
             search: value ?? "",
         }),
         {
-            only: ["regrasDeNegocio"],
+            only: ["statuses"],
             replace: false,
             preserveState: true,
         }
     );
 });
 
-function openEditNegocioModal(negocio: App.Data.RegraDeNegocioData) {
-    editingNegocio.value = negocio;
-    editingNegocioTrigger.value = true;
+function openEditStatusModal(status: App.Data.StatusData) {
+    editingStatus.value = status;
+    editingStatusTrigger.value = true;
 }
 
-function closeEditNegocioModal() {
-    editingNegocio.value = null;
-    editingNegocioTrigger.value = false;
+function closeEditStatusModal() {
+    editingStatus.value = null;
+    editingStatusTrigger.value = false;
 }
 
-function openDeleteNegocioModal(negocio: App.Data.RegraDeNegocioData) {
-    deletingNegocio.value = negocio;
-    deletingNegocioTrigger.value = true;
+function openDeleteStatusModal(status: App.Data.StatusData) {
+    deletingStatus.value = status;
+    deletingStatusTrigger.value = true;
 }
 
-function closeDeleteNegocioModal() {
-    deletingNegocio.value = null;
-    deletingNegocioTrigger.value = false;
+function closeDeleteStatusModal() {
+    deletingStatus.value = null;
+    deletingStatusTrigger.value = false;
 }
 </script>
 
 <template>
-    <Head title="Regras de negociação" />
+    <Head title="Províncias" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
@@ -130,7 +130,7 @@ function closeDeleteNegocioModal() {
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
                         >
-                            <CreateNegocio />
+                            <CreateStatus />
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -160,25 +160,25 @@ function closeDeleteNegocioModal() {
                             <tbody>
                                 <tr
                                     class="border-b dark:border-gray-700"
-                                    v-for="negocio in regrasDeNegocio.data"
-                                    :key="(negocio.id as number)"
+                                    v-for="status in statuses.data"
+                                    :key="(status.id as number)"
                                 >
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {{ negocio.id }}
+                                        {{ status.id }}
                                     </th>
 
                                     <td class="px-4 py-3">
-                                        {{ negocio.name }}
+                                        {{ status.nome }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
                                             @click="
-                                                openEditNegocioModal(negocio)
+                                                openEditStatusModal(status)
                                             "
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
@@ -214,7 +214,9 @@ function closeDeleteNegocioModal() {
                                         <button
                                             type="button"
                                             @click="
-                                                openDeleteNegocioModal(negocio)
+                                                openDeleteStatusModal(
+                                                    status
+                                                )
                                             "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
@@ -257,8 +259,8 @@ function closeDeleteNegocioModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                                 >{{
-                                    `${regrasDeNegocio.meta.from ?? 0}-${
-                                        regrasDeNegocio.meta.to ?? 0
+                                    `${statuses.meta.from ?? 0}-${
+                                        statuses.meta.to ?? 0
                                     }`
                                 }}</span
                             >
@@ -266,7 +268,7 @@ function closeDeleteNegocioModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                             >
-                                {{ regrasDeNegocio.meta.total }}</span
+                                {{ statuses.meta.total }}</span
                             >
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
@@ -329,17 +331,17 @@ function closeDeleteNegocioModal() {
                     </nav>
                 </div>
             </div>
-            <EditNegocio
-                v-if="editingNegocio"
-                :negocio="editingNegocio"
-                :openModal="editingNegocioTrigger"
-                :close="closeEditNegocioModal"
+            <EditStatus
+                v-if="editingStatus"
+                :status="editingStatus"
+                :openModal="editingStatusTrigger"
+                :close="closeEditStatusModal"
             />
-            <DeleteNegocio
-                v-if="deletingNegocio"
-                :negocio="deletingNegocio"
-                :openModal="deletingNegocioTrigger"
-                :close="closeDeleteNegocioModal"
+            <DeleteStatus
+                v-if="deletingStatus"
+                :status="deletingStatus"
+                :openModal="deletingStatusTrigger"
+                :close="closeDeleteStatusModal"
             />
         </template>
     </AuthenticatedLayout>

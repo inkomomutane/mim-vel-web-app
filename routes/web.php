@@ -1,8 +1,5 @@
 <?php
 
-use App\Actions\Province\GetProvinces;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,9 +16,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     $imovel = App\Models\Imovel::find(44)->load('media');
-    return Inertia::render('Website/Welcome',[
-        'imovel' => $imovel
-    ]);
+    return Inertia::render('Website/Welcome',['imovel' => $imovel]);
 })->name('welcome');
 
 Route::get('/dashboard', function () {  return Inertia::render('Dashboard');

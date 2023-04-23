@@ -30,6 +30,10 @@ export type RegraDeNegocioData = {
 id: number | null;
 name: string | null;
 };
+export type StatusData = {
+id: number | null;
+nome: string | null;
+};
 export type TermAndConditionData = {
 term: string;
 };

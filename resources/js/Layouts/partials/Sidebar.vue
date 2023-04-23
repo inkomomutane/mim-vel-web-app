@@ -91,7 +91,7 @@ import SidebarLinkGroup from "./SidebarLinkGroup.vue";
 export default {
     name: "Sidebar",
     props: {
-        sidebarOpen:Boolean
+        sidebarOpen: Boolean,
     },
     components: {
         SidebarLinkGroup,
@@ -99,14 +99,16 @@ export default {
         Links,
     },
     setup(props, { emit }) {
-        const trigger = ref<any|null>(null);
-        const sidebar = ref<any|null>(null);
+        const trigger = ref<any | null>(null);
+        const sidebar = ref<any | null>(true);
 
         const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
-        const sidebarExpanded = ref(storedSidebarExpanded === "true" );
+        const sidebarExpanded = ref(
+            storedSidebarExpanded == null || storedSidebarExpanded === "true"
+        );
 
         // close on click outside
-        const clickHandler = ({ target } : {target:any})  => {
+        const clickHandler = ({ target }: { target: any }) => {
             if (!sidebar.value || !trigger.value) return;
             if (
                 !props.sidebarOpen ||
@@ -118,7 +120,7 @@ export default {
         };
 
         // close if the esc key is pressed
-        const keyHandler = ({ keyCode } : { keyCode :any }) => {
+        const keyHandler = ({ keyCode }: { keyCode: any }) => {
             if (!props.sidebarOpen || keyCode !== 27) return;
             emit("close-sidebar");
         };
@@ -127,7 +129,7 @@ export default {
             document.addEventListener("click", clickHandler);
             document.addEventListener("keydown", keyHandler);
             document.querySelector("body")?.classList.add("sidebar-expanded");
-            localStorage.setItem("sidebar-expanded","true");
+            localStorage.setItem("sidebar-expanded", "true");
         });
 
         onUnmounted(() => {
@@ -136,11 +138,18 @@ export default {
         });
 
         watch(sidebarExpanded, () => {
-            localStorage.setItem("sidebar-expanded", `${sidebarExpanded.value}`);
+            localStorage.setItem(
+                "sidebar-expanded",
+                `${sidebarExpanded.value}`
+            );
             if (sidebarExpanded.value) {
-                document.querySelector("body")?.classList.add("sidebar-expanded");
+                document
+                    .querySelector("body")
+                    ?.classList.add("sidebar-expanded");
             } else {
-                document.querySelector("body")?.classList.remove("sidebar-expanded");
+                document
+                    .querySelector("body")
+                    ?.classList.remove("sidebar-expanded");
             }
         });
 
