@@ -32,7 +32,7 @@ watch(
 );
 </script>
 <template>
-    <Head title="Dashboard" />
+    <Head title="Politicas de privacidade" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div

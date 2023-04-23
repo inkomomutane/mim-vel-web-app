@@ -2,34 +2,30 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 
-import { Bairros } from "@/types/index";
+import { RegrasDeNegocioData } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
-import CreateBairro from "./CreateBairro.vue";
-import EditBairro from "./EditBairro.vue";
-import DeleteBairro from "./DeleteBairro.vue";
+import CreateNegocio from "./CreateNegocio.vue";
+import EditNegocio from "./EditNegocio.vue";
+import DeleteNegocio from "./DeleteNegocio.vue";
 
 const props = defineProps({
-    bairros: {
-        type: Object as PropType<Bairros>,
-        required: true,
-    },
-    cities: {
-        type: Array<App.Data.CityData>,
+    regrasDeNegocio: {
+        type: Object as PropType<RegrasDeNegocioData>,
         required: true,
     },
     search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.bairros.links);
+const links = ref(props.regrasDeNegocio.links);
 
-const editingBairroTrigger = ref(false);
-const editingBairro = ref<App.Data.BairroData | null>(null);
+const editingNegocioTrigger = ref(false);
+const editingNegocio = ref<App.Data.RegraDeNegocioData | null>(null);
 
-const deletingBairroTrigger = ref(false);
-const deletingBairro = ref<App.Data.BairroData | null>(null);
+const deletingNegocioTrigger = ref(false);
+const deletingNegocio = ref<App.Data.RegraDeNegocioData | null>(null);
 
 const searchTerm = ref("");
 
@@ -46,7 +42,7 @@ watch(
 );
 
 watch(
-    () => props.bairros.links,
+    () => props.regrasDeNegocio.links,
     (value) => {
         links.value = value;
     }
@@ -54,40 +50,40 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("bairro.all", {
+        route("negocio.all", {
             search: value ?? "",
         }),
         {
-            only: ["bairros"],
+            only: ["regrasDeNegocio"],
             replace: false,
             preserveState: true,
         }
     );
 });
 
-function openEditBairroModal(bairro: App.Data.BairroData) {
-    editingBairro.value = bairro;
-    editingBairroTrigger.value = true;
+function openEditNegocioModal(negocio: App.Data.RegraDeNegocioData) {
+    editingNegocio.value = negocio;
+    editingNegocioTrigger.value = true;
 }
 
-function closeEditBairroModal() {
-    editingBairro.value = null;
-    editingBairroTrigger.value = false;
+function closeEditNegocioModal() {
+    editingNegocio.value = null;
+    editingNegocioTrigger.value = false;
 }
 
-function openDeleteBairroModal(bairro: App.Data.BairroData) {
-    deletingBairro.value = bairro;
-    deletingBairroTrigger.value = true;
+function openDeleteNegocioModal(negocio: App.Data.RegraDeNegocioData) {
+    deletingNegocio.value = negocio;
+    deletingNegocioTrigger.value = true;
 }
 
-function closeDeleteBairroModal() {
-    deletingBairro.value = null;
-    deletingBairroTrigger.value = false;
+function closeDeleteNegocioModal() {
+    deletingNegocio.value = null;
+    deletingNegocioTrigger.value = false;
 }
 </script>
 
 <template>
-    <Head title="Bairros" />
+    <Head title="Regras de negociação" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
@@ -134,7 +130,7 @@ function closeDeleteBairroModal() {
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
                         >
-                            <CreateBairro :cities="props.cities" />
+                            <CreateNegocio />
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -150,12 +146,7 @@ function closeDeleteBairroModal() {
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Nome do bairro
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <div class="flex items-center">
-                                            Nome da cidade
+                                            Nome da província
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -169,28 +160,26 @@ function closeDeleteBairroModal() {
                             <tbody>
                                 <tr
                                     class="border-b dark:border-gray-700"
-                                    v-for="bairro in bairros.data"
-                                    :key="bairro.id as number"
+                                    v-for="negocio in regrasDeNegocio.data"
+                                    :key="(negocio.id as number)"
                                 >
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {{ bairro.id }}
+                                        {{ negocio.id }}
                                     </th>
 
                                     <td class="px-4 py-3">
-                                        {{ bairro.nome }}
-                                    </td>
-
-                                    <td class="px-4 py-3">
-                                        {{ bairro.city.nome }}
+                                        {{ negocio.name }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                            @click="openEditBairroModal(bairro)"
+                                            @click="
+                                                openEditNegocioModal(negocio)
+                                            "
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -225,7 +214,9 @@ function closeDeleteBairroModal() {
                                         <button
                                             type="button"
                                             @click="
-                                                openDeleteBairroModal(bairro)
+                                                openDeleteNegocioModal(
+                                                    negocio
+                                                )
                                             "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
@@ -268,8 +259,8 @@ function closeDeleteBairroModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                                 >{{
-                                    `${bairros.meta.from ?? 0}-${
-                                        bairros.meta.to ?? 0
+                                    `${regrasDeNegocio.meta.from ?? 0}-${
+                                        regrasDeNegocio.meta.to ?? 0
                                     }`
                                 }}</span
                             >
@@ -277,7 +268,7 @@ function closeDeleteBairroModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                             >
-                                {{ bairros.meta.total }}</span
+                                {{ regrasDeNegocio.meta.total }}</span
                             >
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
@@ -340,18 +331,17 @@ function closeDeleteBairroModal() {
                     </nav>
                 </div>
             </div>
-            <EditBairro
-                v-if="editingBairro"
-                :bairro="editingBairro"
-                :openModal="editingBairroTrigger"
-                :close="closeEditBairroModal"
-                :cities="props.cities"
+            <EditNegocio
+                v-if="editingNegocio"
+                :negocio="editingNegocio"
+                :openModal="editingNegocioTrigger"
+                :close="closeEditNegocioModal"
             />
-            <DeleteBairro
-                v-if="deletingBairro"
-                :bairro="deletingBairro"
-                :openModal="deletingBairroTrigger"
-                :close="closeDeleteBairroModal"
+            <DeleteNegocio
+                v-if="deletingNegocio"
+                :negocio="deletingNegocio"
+                :openModal="deletingNegocioTrigger"
+                :close="closeDeleteNegocioModal"
             />
         </template>
     </AuthenticatedLayout>

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Data\RegraDeNegocioData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 
 /**
  * App\Models\RegraDeNegocio
@@ -29,10 +31,13 @@ use Illuminate\Database\Eloquent\Model;
 class RegraDeNegocio extends Model
 {
     use HasFactory;
+    use WithData;
 
     protected $fillable = [
         'name'
     ];
+
+    protected $dataClass = RegraDeNegocioData::class;
 
     public function imovels()
     {

@@ -3,14 +3,14 @@ import Modal from "@/Components/Modal.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-const addProvence = ref(false);
+const addNegocio = ref(false);
 const nameInput = ref();
-const addProvenceTrigger = () => {
-    addProvence.value = true;
+const addNegocioTrigger = () => {
+    addNegocio.value = true;
 };
 
 const closeCreateProvinceModal = () => {
-    addProvence.value = false;
+    addNegocio.value = false;
 };
 
 const form = useForm({
@@ -18,7 +18,7 @@ const form = useForm({
 });
 
 const createProvince = () => {
-    form.post(route("province.store"), {
+    form.post(route("negocio.store"), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
@@ -32,7 +32,7 @@ const createProvince = () => {
 <template>
     <button
         type="button"
-        @click="addProvenceTrigger"
+        @click="addNegocioTrigger"
         class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
     >
         <svg
@@ -58,10 +58,10 @@ const createProvince = () => {
                 d="M12,2C9.239,2,7,4.239,7,7c0,1.977,2.001,4.704,3.471,6.441c0.799,0.944,2.259,0.944,3.058,0C14.999,11.704,17,8.977,17,7C17,4.239,14.761,2,12,2z M12,9.143c-1.183,0-2.143-0.959-2.143-2.143S10.817,4.857,12,4.857S14.143,5.817,14.143,7S13.183,9.143,12,9.143z"
             />
         </svg>
-        <span class="mx-4">Nova província</span>
+        <span class="mx-4">Nova regra de negociação</span>
     </button>
 
-    <Modal :show="addProvence" @close="closeCreateProvinceModal">
+    <Modal :show="addNegocio" @close="closeCreateProvinceModal">
         <div class="relative bg-white rounded shadow dark:bg-gray-700">
             <button
                 type="button"
@@ -87,14 +87,14 @@ const createProvince = () => {
                 <h3
                     class="mb-4 text-xl font-medium text-gray-900 dark:text-white"
                 >
-                    Nova província
+                    Nova regra de negociação
                 </h3>
                 <form class="space-y-6" @submit.prevent="createProvince">
                     <div>
                         <label
                             for="name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Nome</label
+                            >Regra de negociação</label
                         >
                         <input
                             type="text"
@@ -103,7 +103,7 @@ const createProvince = () => {
                             ref="nameInput"
                             id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Nome da província"
+                            placeholder="Regra de negociação"
                         />
                         <span class="text-medium text-red-500 font-semibold">{{
                             form.errors.name

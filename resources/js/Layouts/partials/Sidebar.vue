@@ -82,7 +82,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, onMounted, onUnmounted, watch } from "vue";
 import { Link } from "@inertiajs/vue3";
 import Links from "./Links.vue";
@@ -90,27 +90,23 @@ import SidebarLinkGroup from "./SidebarLinkGroup.vue";
 
 export default {
     name: "Sidebar",
-    props: ["sidebarOpen"],
+    props: {
+        sidebarOpen:Boolean
+    },
     components: {
         SidebarLinkGroup,
         Link,
         Links,
     },
     setup(props, { emit }) {
-        const trigger = ref(null);
-        const sidebar = ref(null);
+        const trigger = ref<any|null>(null);
+        const sidebar = ref<any|null>(null);
 
         const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
-        const sidebarExpanded = ref(
-            storedSidebarExpanded === null
-                ? false
-                : storedSidebarExpanded === "true"
-        );
-
-        const currentRoute = "/";
+        const sidebarExpanded = ref(storedSidebarExpanded === "true" );
 
         // close on click outside
-        const clickHandler = ({ target }) => {
+        const clickHandler = ({ target } : {target:any})  => {
             if (!sidebar.value || !trigger.value) return;
             if (
                 !props.sidebarOpen ||
@@ -122,7 +118,7 @@ export default {
         };
 
         // close if the esc key is pressed
-        const keyHandler = ({ keyCode }) => {
+        const keyHandler = ({ keyCode } : { keyCode :any }) => {
             if (!props.sidebarOpen || keyCode !== 27) return;
             emit("close-sidebar");
         };
@@ -131,6 +127,7 @@ export default {
             document.addEventListener("click", clickHandler);
             document.addEventListener("keydown", keyHandler);
             document.querySelector("body")?.classList.add("sidebar-expanded");
+            localStorage.setItem("sidebar-expanded","true");
         });
 
         onUnmounted(() => {
@@ -139,15 +136,11 @@ export default {
         });
 
         watch(sidebarExpanded, () => {
-            localStorage.setItem("sidebar-expanded", sidebarExpanded.value);
+            localStorage.setItem("sidebar-expanded", `${sidebarExpanded.value}`);
             if (sidebarExpanded.value) {
-                document
-                    .querySelector("body")
-                    .classList.add("sidebar-expanded");
+                document.querySelector("body")?.classList.add("sidebar-expanded");
             } else {
-                document
-                    .querySelector("body")
-                    .classList.remove("sidebar-expanded");
+                document.querySelector("body")?.classList.remove("sidebar-expanded");
             }
         });
 
@@ -155,7 +148,6 @@ export default {
             trigger,
             sidebar,
             sidebarExpanded,
-            currentRoute,
         };
     },
 };

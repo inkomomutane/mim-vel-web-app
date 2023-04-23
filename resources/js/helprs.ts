@@ -69,7 +69,7 @@ export const tooltip = (message: string) => {
     return {
         value: `<h4 class='text-white p-2 dark:text-slate-900 text-sm'>${message}</h4>`,
         escape: true,
-        
+
         class: "bg-slate-950 dark:bg-slate-100 ml-5 rounded ",
     };
 };

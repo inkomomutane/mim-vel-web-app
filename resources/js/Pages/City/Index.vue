@@ -87,7 +87,7 @@ function closeDeleteCityModal() {
 </script>
 
 <template>
-    <Head title="Províncias" />
+    <Head title="Cidades" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
@@ -170,7 +170,7 @@ function closeDeleteCityModal() {
                                 <tr
                                     class="border-b dark:border-gray-700"
                                     v-for="city in cities.data"
-                                    :key="city.id"
+                                    :key="(city.id as number)"
                                 >
                                     <th
                                         scope="row"
@@ -184,7 +184,7 @@ function closeDeleteCityModal() {
                                     </td>
 
                                     <td class="px-4 py-3">
-                                        {{ city.province.name }}
+                                        {{ city.province?.name }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">

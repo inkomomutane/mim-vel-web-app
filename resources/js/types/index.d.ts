@@ -52,6 +52,10 @@ export interface Mails extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.AgendaData>;
 }
 
+export interface RegrasDeNegocioData extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.RegraDeNegocioData>;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

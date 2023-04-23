@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, router} from "@inertiajs/vue3";
+import { Head, Link, router } from "@inertiajs/vue3";
 import { Mails } from "@/types/index";
 import { PropType } from "vue";
 import { ref, watch } from "vue";
@@ -29,14 +29,14 @@ const closeViewingMessage = () => {
 };
 
 const showViewingMessage = (mail: App.Data.AgendaData) => {
-
-    if(!mail.isReaded){
-        axios.patch(route("message.update", { agenda: mail as any }), {
-            is_readed: true,
-        }) .then(() => {
-
-            router.reload({ only: ["messages", "mails"] });
-        });
+    if (!mail.isReaded) {
+        axios
+            .patch(route("message.update", { agenda: mail as any }), {
+                is_readed: true,
+            })
+            .then(() => {
+                router.reload({ only: ["messages", "mails"] });
+            });
     }
     viewingMessage.value = true;
     loadedMessage.value = mail;
@@ -63,7 +63,7 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                     >
                         <button class="w-full text-left">
                             <li
-                                class="py-3 sm:py-4 px-8  border-b dark:border-b-slate-700"
+                                class="py-3 sm:py-4 px-8 border-b dark:border-b-slate-700"
                                 v-for="message in props.messages?.data"
                                 :class="
                                     message.isReaded
@@ -239,10 +239,7 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                     </ul>
                 </nav>
             </div>
-            <Modal
-                :show="viewingMessage"
-                @close="closeViewingMessage"
-            >
+            <Modal :show="viewingMessage" @close="closeViewingMessage">
                 <div
                     class="relative flex flex-col w-full h-full p-10 dark:bg-gray-700 dark:text-gray-200"
                 >
@@ -272,10 +269,13 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                                 />
                             </svg>
                             <div>
-                                <p class="capitalize my-auto ml-4 font-bold dark:text-slate-200">
+                                <p
+                                    class="capitalize my-auto ml-4 font-bold dark:text-slate-200"
+                                >
                                     {{ loadedMessage?.nomeDoCliente }}
                                 </p>
-                                <a  :href="'tel:'+ loadedMessage?.contacto"
+                                <a
+                                    :href="'tel:' + loadedMessage?.contacto"
                                     class="capitalize my-auto ml-4 text-sm flex flex-row dark:text-slate-200"
                                 >
                                     <svg
@@ -303,72 +303,127 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                         <div
                             class="flex border dark:border-gray-800 rounded-lg justify-end"
                         >
-                            <Link :href="route('bairro.all')" v-tooltip.value="tooltip('Ver o imóvel')" v-tooltip.bottom="true"   class="px-2 py-2" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20 19.725V18.725C20 18.125 19.6 17.725 19 17.725H5C4.4 17.725 4 18.125 4 18.725V19.725H3C2.4 19.725 2 20.125 2 20.725V21.725H22V20.725C22 20.125 21.6 19.725 21 19.725H20Z" />
-                                    <path opacity="0.5" d="M22 6.725V7.725C22 8.325 21.6 8.725 21 8.725H18C18.6 8.725 19 9.125 19 9.725C19 10.325 18.6 10.725 18 10.725V15.725C18.6 15.725 19 16.125 19 16.725V17.725H15V16.725C15 16.125 15.4 15.725 16 15.725V10.725C15.4 10.725 15 10.325 15 9.725C15 9.125 15.4 8.725 16 8.725H13C13.6 8.725 14 9.125 14 9.725C14 10.325 13.6 10.725 13 10.725V15.725C13.6 15.725 14 16.125 14 16.725V17.725H10V16.725C10 16.125 10.4 15.725 11 15.725V10.725C10.4 10.725 10 10.325 10 9.725C10 9.125 10.4 8.725 11 8.725H8C8.6 8.725 9 9.125 9 9.725C9 10.325 8.6 10.725 8 10.725V15.725C8.6 15.725 9 16.125 9 16.725V17.725H5V16.725C5 16.125 5.4 15.725 6 15.725V10.725C5.4 10.725 5 10.325 5 9.725C5 9.125 5.4 8.725 6 8.725H3C2.4 8.725 2 8.325 2 7.725V6.725L11 2.225C11.6 1.925 12.4 1.925 13.1 2.225L22 6.725ZM12 3.725C11.2 3.725 10.5 4.425 10.5 5.225C10.5 6.025 11.2 6.725 12 6.725C12.8 6.725 13.5 6.025 13.5 5.225C13.5 4.425 12.8 3.725 12 3.725Z" />
-                                </svg>
-                                </Link
+                            <Link
+                                :href="route('bairro.all')"
+                                v-tooltip.value="tooltip('Ver o imóvel')"
+                                v-tooltip.bottom="true"
+                                class="px-2 py-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M20 19.725V18.725C20 18.125 19.6 17.725 19 17.725H5C4.4 17.725 4 18.125 4 18.725V19.725H3C2.4 19.725 2 20.125 2 20.725V21.725H22V20.725C22 20.125 21.6 19.725 21 19.725H20Z"
+                                    />
+                                    <path
+                                        opacity="0.5"
+                                        d="M22 6.725V7.725C22 8.325 21.6 8.725 21 8.725H18C18.6 8.725 19 9.125 19 9.725C19 10.325 18.6 10.725 18 10.725V15.725C18.6 15.725 19 16.125 19 16.725V17.725H15V16.725C15 16.125 15.4 15.725 16 15.725V10.725C15.4 10.725 15 10.325 15 9.725C15 9.125 15.4 8.725 16 8.725H13C13.6 8.725 14 9.125 14 9.725C14 10.325 13.6 10.725 13 10.725V15.725C13.6 15.725 14 16.125 14 16.725V17.725H10V16.725C10 16.125 10.4 15.725 11 15.725V10.725C10.4 10.725 10 10.325 10 9.725C10 9.125 10.4 8.725 11 8.725H8C8.6 8.725 9 9.125 9 9.725C9 10.325 8.6 10.725 8 10.725V15.725C8.6 15.725 9 16.125 9 16.725V17.725H5V16.725C5 16.125 5.4 15.725 6 15.725V10.725C5.4 10.725 5 10.325 5 9.725C5 9.125 5.4 8.725 6 8.725H3C2.4 8.725 2 8.325 2 7.725V6.725L11 2.225C11.6 1.925 12.4 1.925 13.1 2.225L22 6.725ZM12 3.725C11.2 3.725 10.5 4.425 10.5 5.225C10.5 6.025 11.2 6.725 12 6.725C12.8 6.725 13.5 6.025 13.5 5.225C13.5 4.425 12.8 3.725 12 3.725Z"
+                                    />
+                                </svg> </Link
                             ><a
-
-                            v-if="loadedMessage?.contacto != undefined || loadedMessage?.contacto != null"
-
-                            :href="'tel:'+ loadedMessage?.contacto"
-
-
+                                v-if="
+                                    loadedMessage?.contacto != undefined ||
+                                    loadedMessage?.contacto != null
+                                "
+                                :href="'tel:' + loadedMessage?.contacto"
                                 class="px-2 py-2 my-auto border-r-2 border-l-2 dark:border-gray-800"
-                                v-tooltip.value="tooltip('Ligar para o cliente')" v-tooltip.bottom="true"
+                                v-tooltip.value="
+                                    tooltip('Ligar para o cliente')
+                                "
+                                v-tooltip.bottom="true"
                             >
-                            <svg
-                                            class="currentColor"
-
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
-                                            <path
-                                                class="currentColor"
-                                                d="M6 8.725C6 8.125 6.4 7.725 7 7.725H14L18 11.725V12.925L22 9.725L12.6 2.225C12.2 1.925 11.7 1.925 11.4 2.225L2 9.725L6 12.925V8.725Z"
-                                            ></path>
-                                            <path
-                                                class="currentColor"
-                                                opacity="0.3"
-                                                d="M22 9.72498V20.725C22 21.325 21.6 21.725 21 21.725H3C2.4 21.725 2 21.325 2 20.725V9.72498L11.4 17.225C11.8 17.525 12.3 17.525 12.6 17.225L22 9.72498ZM15 11.725H18L14 7.72498V10.725C14 11.325 14.4 11.725 15 11.725Z"
-                                            ></path>
-                                        </svg>
-                                </a
-                            >
-                            <a class="px-2 py-2 my-auto border-r-2  dark:border-gray-800"
-
-                            v-if="loadedMessage?.email != undefined || loadedMessage?.email != null"
-
-                            :href="'mail:'+ loadedMessage?.email ?? '' "
-
-                            v-tooltip.value="tooltip('Email')" v-tooltip.bottom="true"
-                            >
-
-                            <svg class="h-6 w-6 dark:text-slate-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path class="dark:text-slate-50" fill="currentColor"  opacity="0.3" d="M4.7 17.3V7.7C4.7 6.59543 5.59543 5.7 6.7 5.7H9.8C10.2694 5.7 10.65 5.31944 10.65 4.85C10.65 4.38056 10.2694 4 9.8 4H5C3.89543 4 3 4.89543 3 6V19C3 20.1046 3.89543 21 5 21H18C19.1046 21 20 20.1046 20 19V14.2C20 13.7306 19.6194 13.35 19.15 13.35C18.6806 13.35 18.3 13.7306 18.3 14.2V17.3C18.3 18.4046 17.4046 19.3 16.3 19.3H6.7C5.59543 19.3 4.7 18.4046 4.7 17.3Z" />
-                                <rect class="dark:text-slate-50"  fill="currentColor"  x="21.9497" y="3.46448" width="13" height="2" rx="1" transform="rotate(135 21.9497 3.46448)"/>
-                                <path class="dark:text-slate-50"  fill="currentColor"  d="M19.8284 4.97161L19.8284 9.93937C19.8284 10.5252 20.3033 11 20.8891 11C21.4749 11 21.9497 10.5252 21.9497 9.93937L21.9497 3.05029C21.9497 2.498 21.502 2.05028 20.9497 2.05028L14.0607 2.05027C13.4749 2.05027 13 2.52514 13 3.11094C13 3.69673 13.4749 4.17161 14.0607 4.17161L19.0284 4.17161C19.4702 4.17161 19.8284 4.52978 19.8284 4.97161Z" />
-                            </svg>
+                                <svg
+                                    class="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        class="currentColor"
+                                        d="M6 8.725C6 8.125 6.4 7.725 7 7.725H14L18 11.725V12.925L22 9.725L12.6 2.225C12.2 1.925 11.7 1.925 11.4 2.225L2 9.725L6 12.925V8.725Z"
+                                    ></path>
+                                    <path
+                                        class="currentColor"
+                                        opacity="0.3"
+                                        d="M22 9.72498V20.725C22 21.325 21.6 21.725 21 21.725H3C2.4 21.725 2 21.325 2 20.725V9.72498L11.4 17.225C11.8 17.525 12.3 17.525 12.6 17.225L22 9.72498ZM15 11.725H18L14 7.72498V10.725C14 11.325 14.4 11.725 15 11.725Z"
+                                    ></path>
+                                </svg>
                             </a>
-                             <button class="px-2 py-2"
-
-                            v-if="loadedMessage?.email != undefined || loadedMessage?.email != null"
-
-                            @click="closeViewingMessage"
-                            v-tooltip.value="tooltip('Close')" v-tooltip.bottom="true"
+                            <a
+                                class="px-2 py-2 my-auto border-r-2 dark:border-gray-800"
+                                v-if="
+                                    loadedMessage?.email != undefined ||
+                                    loadedMessage?.email != null
+                                "
+                                :href="'mail:' + loadedMessage?.email ?? ''"
+                                v-tooltip.value="tooltip('Email')"
+                                v-tooltip.bottom="true"
                             >
-                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <svg
+                                    class="h-6 w-6 dark:text-slate-50"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        class="dark:text-slate-50"
+                                        fill="currentColor"
+                                        opacity="0.3"
+                                        d="M4.7 17.3V7.7C4.7 6.59543 5.59543 5.7 6.7 5.7H9.8C10.2694 5.7 10.65 5.31944 10.65 4.85C10.65 4.38056 10.2694 4 9.8 4H5C3.89543 4 3 4.89543 3 6V19C3 20.1046 3.89543 21 5 21H18C19.1046 21 20 20.1046 20 19V14.2C20 13.7306 19.6194 13.35 19.15 13.35C18.6806 13.35 18.3 13.7306 18.3 14.2V17.3C18.3 18.4046 17.4046 19.3 16.3 19.3H6.7C5.59543 19.3 4.7 18.4046 4.7 17.3Z"
+                                    />
+                                    <rect
+                                        class="dark:text-slate-50"
+                                        fill="currentColor"
+                                        x="21.9497"
+                                        y="3.46448"
+                                        width="13"
+                                        height="2"
+                                        rx="1"
+                                        transform="rotate(135 21.9497 3.46448)"
+                                    />
+                                    <path
+                                        class="dark:text-slate-50"
+                                        fill="currentColor"
+                                        d="M19.8284 4.97161L19.8284 9.93937C19.8284 10.5252 20.3033 11 20.8891 11C21.4749 11 21.9497 10.5252 21.9497 9.93937L21.9497 3.05029C21.9497 2.498 21.502 2.05028 20.9497 2.05028L14.0607 2.05027C13.4749 2.05027 13 2.52514 13 3.11094C13 3.69673 13.4749 4.17161 14.0607 4.17161L19.0284 4.17161C19.4702 4.17161 19.8284 4.52978 19.8284 4.97161Z"
+                                    />
+                                </svg>
+                            </a>
+                            <button
+                                class="px-2 py-2"
+                                v-if="
+                                    loadedMessage?.email != undefined ||
+                                    loadedMessage?.email != null
+                                "
+                                @click="closeViewingMessage"
+                                v-tooltip.value="tooltip('Close')"
+                                v-tooltip.bottom="true"
+                            >
+                                <svg
+                                    aria-hidden="true"
+                                    class="w-5 h-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"
+                                    ></path>
+                                </svg>
                             </button>
-
                         </div>
                     </div>
-                    <div class="flex py-4 overflow-y-auto bg-slate-100 dark:bg-slate-800
-                     rounded-r-md my-6 border-l-2 border-slate-800 dark:border-current dark:border-l ">
+                    <div
+                        class="flex py-4 overflow-y-auto bg-slate-100 dark:bg-slate-800 rounded-r-md my-6 border-l-2 border-slate-800 dark:border-current dark:border-l"
+                    >
                         <p class="capitalize ml-4 text-justify text-sm">
                             {{ loadedMessage?.mensagem }}
                         </p>

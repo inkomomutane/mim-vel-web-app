@@ -173,15 +173,15 @@ class GetMessages
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Agenda $agenda)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Agenda $agenda)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Agenda $agenda)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Agenda $agenda)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Agenda $agenda)
- * @method static dispatchSync(\App\Models\Agenda $agenda)
- * @method static dispatchNow(\App\Models\Agenda $agenda)
- * @method static dispatchAfterResponse(\App\Models\Agenda $agenda)
- * @method static mixed run(\App\Models\Agenda $agenda)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Agenda $agenda, bool $isReaded)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Agenda $agenda, bool $isReaded)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Agenda $agenda, bool $isReaded)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Agenda $agenda, bool $isReaded)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Agenda $agenda, bool $isReaded)
+ * @method static dispatchSync(\App\Models\Agenda $agenda, bool $isReaded)
+ * @method static dispatchNow(\App\Models\Agenda $agenda, bool $isReaded)
+ * @method static dispatchAfterResponse(\App\Models\Agenda $agenda, bool $isReaded)
+ * @method static mixed run(\App\Models\Agenda $agenda, bool $isReaded)
  */
 class UpdateMassageReadState
 {
@@ -247,6 +247,22 @@ class GetProvinces
 /**
  */
 class UpdateProvince
+{
+}
+namespace App\Actions\RegraDeNegocio;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetRegrasDeNegocio
 {
 }
 namespace Lorisleiva\Actions\Concerns;
