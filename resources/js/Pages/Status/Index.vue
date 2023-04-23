@@ -177,9 +177,7 @@ function closeDeleteStatusModal() {
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                            @click="
-                                                openEditStatusModal(status)
-                                            "
+                                            @click="openEditStatusModal(status)"
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -214,9 +212,7 @@ function closeDeleteStatusModal() {
                                         <button
                                             type="button"
                                             @click="
-                                                openDeleteStatusModal(
-                                                    status
-                                                )
+                                                openDeleteStatusModal(status)
                                             "
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >

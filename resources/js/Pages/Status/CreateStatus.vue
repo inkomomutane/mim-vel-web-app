@@ -35,15 +35,38 @@ const createStatus = () => {
         @click="addStatusTrigger"
         class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
     >
-    <svg width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <circle cx="6" cy="6.5" r="2.4" fill="currentColor" />
-                                    <circle cx="3.6" cy="13.4" r="2.2" fill="currentColor" />
-                                    <circle cx="7.4" cy="19.7" r="1.9" opacity=".35" fill="currentColor" />
-                                    <circle cx="14.7" cy="20.6" r="1.7" opacity=".35" fill="currentColor" />
-                                    <circle cx="19.9" cy="15.4" r="1.5" opacity=".35" fill="currentColor" />
-                                    <circle cx="19.2" cy="8.1" r="2.9" fill="currentColor" />
-                                    <circle cx="13" cy="4.1" r="2.7" fill="currentColor" />
-                                    </svg>
+        <svg
+            width="20"
+            height="20"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+        >
+            <circle cx="6" cy="6.5" r="2.4" fill="currentColor" />
+            <circle cx="3.6" cy="13.4" r="2.2" fill="currentColor" />
+            <circle
+                cx="7.4"
+                cy="19.7"
+                r="1.9"
+                opacity=".35"
+                fill="currentColor"
+            />
+            <circle
+                cx="14.7"
+                cy="20.6"
+                r="1.7"
+                opacity=".35"
+                fill="currentColor"
+            />
+            <circle
+                cx="19.9"
+                cy="15.4"
+                r="1.5"
+                opacity=".35"
+                fill="currentColor"
+            />
+            <circle cx="19.2" cy="8.1" r="2.9" fill="currentColor" />
+            <circle cx="13" cy="4.1" r="2.7" fill="currentColor" />
+        </svg>
         <span class="mx-4">Novo status</span>
     </button>
 
