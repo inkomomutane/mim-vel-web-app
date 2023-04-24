@@ -432,6 +432,8 @@
         </div>
     </section>
 
+    <x-whatsapp-button href-link="https://wa.me/+258869500900?text=Olá%20agência%20Mimóvel!%0a%0aGostaria%20de%20ter%20mais%20informações%20sobre%20o%20imóvel%20do%20link: {{ URL::full() }}" />
+
 @endsection
 @push('css')
     <style>

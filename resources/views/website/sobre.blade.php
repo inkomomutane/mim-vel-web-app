@@ -82,6 +82,7 @@
         <!--end container-->
     </section>
     <!--end section-->
+    <x-whatsapp-button href-link="https://wa.me/+258869500900?text=Olá%20agência%20Mimóvel!%0a%0a" />
 @endsection
 @section('seo')
     <title>@yield('title')</title>

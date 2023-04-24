@@ -40,6 +40,8 @@
                     </div><!--end container-->
                 </section><!--end section-->
                 <!-- End Terms & Conditions -->
+
+                <x-whatsapp-button href-link="https://wa.me/+258869500900?text=Olá%20agência%20Mimóvel!%0a%0a" />
         @endsection
 @push('js')
 <script>

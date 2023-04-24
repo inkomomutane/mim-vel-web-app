@@ -89,6 +89,8 @@
     </div>
 
     <form action="{{ route('clear_filters') }}" id="clear_posts_filters" method="post">@csrf</form>
+
+    <x-whatsapp-button href-link="https://wa.me/+258869500900?text=Olá%20agência%20Mimóvel!%0a%0a" />
     @endsection
 @push('js')
     <script>
