@@ -1,5 +1,5 @@
 @extends('website.layouts.website')
-@section('title', 'Imóveis')
+@section('title', $imovel->titulo )
 @section('seo')
     {!! seo()->for($imovel) !!}
 @endsection

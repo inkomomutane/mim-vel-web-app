@@ -31,8 +31,13 @@
   fbq('init', '1133822068011030');
   fbq('track', 'PageView');
 </script>
+<script>
+    fbq('trackCustom', 'Viu a pániga {{ View::hasSection('title') ? View::getSection('title') : '' }}', {
+        dominio: '{{ URL::full() }}',
+        pagina: '{{ View::getSection('title') }}', fonte: 'Meta'}
+     );
+  </script>
 </head>
-
 <body>
             <!-- Loader -->
         <div id="preloader">
