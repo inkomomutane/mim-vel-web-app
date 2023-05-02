@@ -32,7 +32,7 @@ original_url: string | null;
 preview_url: string | null;
 size: number | null;
 custom_properties: Array<any> | null;
-responsive_images: App.Data.ResponsiveImageData | null;
+responsive_images: Array<any> | null;
 srcsets: string | null;
 };
 export type MediaLibraryOriginalData = {
@@ -60,5 +60,9 @@ nome: string | null;
 export type TermAndConditionData = {
 term: string;
 };
-export type MimeType = 'image/webp';
+export type TransactionTypeData = {
+id: number;
+name: string;
+slug_text: string;
+};
 }

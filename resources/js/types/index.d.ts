@@ -69,6 +69,10 @@ export interface Banners extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.MediaData>;
 }
 
+export interface TransactionTypes extends Omit<TransactionTypeData,"data">{
+    data : Array<App.Data.TransactionTypeData>
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

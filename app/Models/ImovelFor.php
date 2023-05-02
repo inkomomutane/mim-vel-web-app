@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Data\TransactionTypeData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 
 /**
  * App\Models\ImovelFor
@@ -33,12 +35,15 @@ use Illuminate\Database\Eloquent\Model;
 class ImovelFor extends Model
 {
     use HasFactory;
+    use WithData;
 
     protected $table = 'imovel_fors';
 
     protected $fillable = [
         'name', 'slug_text',
     ];
+
+    protected $dataClass = TransactionTypeData::class;
 
     public function imovels()
     {

@@ -113,11 +113,11 @@ watch(
                                 <div class="grow flex items-center">
 
                                     <svg width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <polygon points="20,21 4,15 4,9 20,3" opacity=".35" fill="currentColor" />
-  <path d="M5,14.5c0-0.386,0-4.614,0-5C5,8.672,4.328,8,3.5,8S2,8.672,2,9.5c0,0.386,0,4.614,0,5C2,15.328,2.672,16,3.5,16S5,15.328,5,14.5z" fill="currentColor" />
-  <path d="M22,20.5c0-0.386,0-16.614,0-17C22,2.672,21.328,2,20.5,2S19,2.672,19,3.5c0,0.386,0,16.614,0,17c0,0.828,0.672,1.5,1.5,1.5S22,21.328,22,20.5z" fill="currentColor" />
-  <path d="M7.995,16.498L7.96,16.591c-0.389,1.034,0.134,2.187,1.168,2.576L11,19.871c1.034,0.389,2.187-0.134,2.576-1.168l0.037-0.099L7.995,16.498z" fill="currentColor" />
-</svg>
+                                        <polygon points="20,21 4,15 4,9 20,3" opacity=".35" fill="currentColor" />
+                                        <path d="M5,14.5c0-0.386,0-4.614,0-5C5,8.672,4.328,8,3.5,8S2,8.672,2,9.5c0,0.386,0,4.614,0,5C2,15.328,2.672,16,3.5,16S5,15.328,5,14.5z" fill="currentColor" />
+                                        <path d="M22,20.5c0-0.386,0-16.614,0-17C22,2.672,21.328,2,20.5,2S19,2.672,19,3.5c0,0.386,0,16.614,0,17c0,0.828,0.672,1.5,1.5,1.5S22,21.328,22,20.5z" fill="currentColor" />
+                                        <path d="M7.995,16.498L7.96,16.591c-0.389,1.034,0.134,2.187,1.168,2.576L11,19.871c1.034,0.389,2.187-0.134,2.576-1.168l0.037-0.099L7.995,16.498z" fill="currentColor" />
+                                    </svg>
                                     <span
                                         class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
                                         >Banners pulicitários</span
@@ -127,6 +127,49 @@ watch(
                         </a>
                     </li>
                 </Link>
+
+                <Link
+                    :href="route('transaction.type.all')"
+                    v-tooltip.value="tooltip('Tipo de transação ')"
+                >
+                    <li
+                        class="px-3 py-2 rounded mb-0.5 last:mb-0"
+                        :class="
+                            route().current('transaction.type.all')
+                                ? 'bg-slate-950'
+                                : 'hover:bg-slate-900'
+                        "
+                    >
+                        <div
+                            class="block text-slate-200 truncate transition duration-150"
+                        >
+                            <div class="flex items-center justify-between">
+                                <div class="grow flex items-center">
+                                    <svg
+ width="20"
+            height="20"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            >
+  <path d="M22,7.652c0,0.308-0.372,0.463-0.591,0.247l-1.557-1.542c-0.198-0.196-0.198-0.517,0-0.713l1.557-1.542C21.628,3.884,22,4.039,22,4.348V7.652z" fill="currentColor" />
+  <path d="M2,16.348c0-0.308,0.372-0.463,0.591-0.247l1.557,1.542c0.198,0.196,0.198,0.517,0,0.713l-1.557,1.542C2.372,20.116,2,19.961,2,19.652V16.348z" fill="currentColor" />
+  <path d="M15,13H4c-1.105,0-2-0.895-2-2V4c0-1.105,0.895-2,2-2h11c1.105,0,2,0.895,2,2v7C17,12.105,16.105,13,15,13z" opacity=".35" fill="currentColor" />
+  <rect width="15" height="2" x="2" y="5" fill="currentColor" />
+  <path d="M20,11H9c-1.105,0-2,0.895-2,2v1h15v-1C22,11.895,21.105,11,20,11z" fill="currentColor" />
+  <path d="M7,20c0,1.105,0.895,2,2,2h11c1.105,0,2-0.895,2-2v-4H7V20z" fill="currentColor" />
+  <rect width="15" height="2" x="7" y="14" opacity=".35" fill="currentColor" />
+</svg>
+
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                                        >Tipo de transação </span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </Link>
+
 
                 <Link
                     :href="route('negocio.all')"
