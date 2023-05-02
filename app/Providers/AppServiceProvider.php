@@ -2,14 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\Sanctum;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
-use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -51,16 +49,15 @@ class AppServiceProvider extends ServiceProvider
                     );
                 }
             });
+
             return $this;
         });
 
-
-
         try {
-            \Storage::extend('google', function($app, $config) {
+            \Storage::extend('google', function ($app, $config) {
                 $options = [];
 
-                if (!empty($config['teamDriveId'] ?? null)) {
+                if (! empty($config['teamDriveId'] ?? null)) {
                     $options['teamDriveId'] = $config['teamDriveId'];
                 }
 
@@ -75,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
 
                 return new \Illuminate\Filesystem\FilesystemAdapter($driver, $adapter);
             });
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }

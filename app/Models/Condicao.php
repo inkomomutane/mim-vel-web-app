@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Collection|Imovel[] $imovels
- * @package App\Models
  * @property-read int|null $imovels_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao query()
@@ -28,19 +28,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Condicao extends Model
 {
-	protected $table = 'condicaos';
+    protected $table = 'condicaos';
+
     protected $dataClass = CondicaoData::class;
 
-	protected $fillable = [
-		'nome'
-	];
+    protected $fillable = [
+        'nome',
+    ];
 
-	public function imovels()
-	{
-		return $this->hasMany(Imovel::class);
-	}
+    public function imovels()
+    {
+        return $this->hasMany(Imovel::class);
+    }
 }

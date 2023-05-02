@@ -16,14 +16,16 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     $imovel = App\Models\Imovel::find(44)->load('media');
-    return Inertia::render('Website/Welcome',['imovel' => $imovel]);
+
+    return Inertia::render('Website/Welcome', ['imovel' => $imovel]);
 })->name('welcome');
 
-Route::get('/dashboard', function () {  return Inertia::render('Dashboard');
+Route::get('/dashboard', function () {
+return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
-foreach (new FilesystemIterator( __DIR__ .'/dashboard') as $fileinfo) {
+foreach (new FilesystemIterator(__DIR__.'/dashboard') as $fileinfo) {
     require $fileinfo->getPathname();
 }

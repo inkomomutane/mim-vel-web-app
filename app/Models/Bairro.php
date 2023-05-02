@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $cidade_id
  * @property Cidade $cidade
  * @property Collection|Imovel[] $imovels
- * @package App\Models
  * @property-read int|null $imovels_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro query()
@@ -31,29 +31,31 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Bairro extends Model
 {
     use HasFactory;
-	protected $table = 'bairros';
 
-	protected $casts = [
-		'cidade_id' => 'int'
-	];
+    protected $table = 'bairros';
 
-	protected $fillable = [
-		'nome',
-		'cidade_id'
-	];
+    protected $casts = [
+        'cidade_id' => 'int',
+    ];
 
-	public function cidade()
-	{
-		return $this->belongsTo(Cidade::class);
-	}
+    protected $fillable = [
+        'nome',
+        'cidade_id',
+    ];
 
-	public function imovels()
-	{
-		return $this->hasMany(Imovel::class);
-	}
+    public function cidade()
+    {
+        return $this->belongsTo(Cidade::class);
+    }
+
+    public function imovels()
+    {
+        return $this->hasMany(Imovel::class);
+    }
 }

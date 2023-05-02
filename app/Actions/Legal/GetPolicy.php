@@ -16,17 +16,17 @@ class GetPolicy
     {
         if (Politica::first() == null) {
             Politica::create([
-                'politicas' => ''
+                'politicas' => '',
             ]);
         }
+
         return Politica::first()->getData();
     }
 
     public function asController()
     {
-        return Inertia::render('Legal/Policy',[
-            'policy' => $this->handle()
+        return Inertia::render('Legal/Policy', [
+            'policy' => $this->handle(),
         ]);
     }
-
 }

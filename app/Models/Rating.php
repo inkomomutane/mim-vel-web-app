@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $nome
  * @property int $imovel_id
  * @property Imovel $imovel
- * @package App\Models
+ *
  * @method static \Database\Factories\RatingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Rating newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rating newQuery()
@@ -33,28 +33,29 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Rating whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rating whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rating whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Rating extends Model
 {
     use HasFactory;
-    
-	protected $table = 'ratings';
 
-	protected $casts = [
-		'rating' => 'float',
-		'imovel_id' => 'int'
-	];
+    protected $table = 'ratings';
 
-	protected $fillable = [
-		'rating',
-		'ip',
-		'nome',
-		'imovel_id'
-	];
+    protected $casts = [
+        'rating' => 'float',
+        'imovel_id' => 'int',
+    ];
 
-	public function imovel()
-	{
-		return $this->belongsTo(Imovel::class);
-	}
+    protected $fillable = [
+        'rating',
+        'ip',
+        'nome',
+        'imovel_id',
+    ];
+
+    public function imovel()
+    {
+        return $this->belongsTo(Imovel::class);
+    }
 }

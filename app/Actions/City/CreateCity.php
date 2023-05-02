@@ -21,7 +21,7 @@ class CreateCity
     {
         return [
             'nome' => 'required|unique:cidades,nome',
-            'province_id' => 'required|numeric'
+            'province_id' => 'required|numeric',
         ];
     }
 
@@ -29,6 +29,7 @@ class CreateCity
      {
         $this->handle($request->validated());
         flash()->addSuccess('Cidade criada com sucesso.');
+
         return \redirect()->back();
      }
 }

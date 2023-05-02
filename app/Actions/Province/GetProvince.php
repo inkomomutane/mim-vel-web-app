@@ -12,7 +12,7 @@ class GetProvince
     use AsAction;
     use AsController;
 
-    public function handle(int $id) : ?ProvinceData
+    public function handle(int $id): ?ProvinceData
     {
         return Province::find($id)?->getData();
     }

@@ -9,10 +9,10 @@ class UpdateProvince
 {
     use AsController;
 
-    function asController(Province $province)
+    public function asController(Province $province)
     {
         $validated = request()->validate([
-            'name' => 'required|unique:provinces,name,'. $province->id,
+            'name' => 'required|unique:provinces,name,'.$province->id,
         ]);
 
         try {
@@ -22,6 +22,7 @@ class UpdateProvince
         } catch (\Throwable $th) {
             flash()->addError('Erro na actualização da província.');
         }
+
         return \redirect()->back();
     }
 }

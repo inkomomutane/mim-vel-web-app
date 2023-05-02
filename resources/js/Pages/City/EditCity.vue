@@ -28,7 +28,7 @@ const nomeInput = ref<String | any>(props.city.nome);
 const form = useForm({
     id: props.city.id,
     nome: props.city.nome,
-    province_id: props.city.province.id,
+    province_id: props.city.province?.id,
 });
 
 const updateCity = () => {

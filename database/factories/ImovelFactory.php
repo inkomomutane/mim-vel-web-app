@@ -2,33 +2,31 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Imovel;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ImovelFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var  string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var  string
+     */
     protected $model = Imovel::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return  array
-    */
+     * Define the model's default state.
+     */
     public function definition(): array
     {
         return [
             'titulo' => $this->faker->realText(45),
             'descricao' => $this->faker->text(800),
             'banheiros' => $this->faker->randomNumber(1),
-            'preco' => $this->faker->randomFloat(2,6000,40000),
+            'preco' => $this->faker->randomFloat(2, 6000, 40000),
             'ano' => $this->faker->randomNumber(4),
             'andares' => $this->faker->randomNumber(1),
-            'area' => $this->faker->randomFloat(2,4,8),
+            'area' => $this->faker->randomFloat(2, 4, 8),
             'quartos' => $this->faker->randomNumber(),
             'suites' => $this->faker->randomNumber(),
             'garagens' => $this->faker->randomNumber(),
@@ -45,10 +43,9 @@ class ImovelFactory extends Factory
             'slug' => $this->faker->slug(),
         ];
 
-
     }
 
-        /**
+    /**
      * Configure the model factory.
      *
      * @return $this
@@ -58,11 +55,11 @@ class ImovelFactory extends Factory
         return $this->afterMaking(function (Imovel $imovel) {
             $imovel->addMediaFromUrl('https://picsum.photos/1080/420.jpg')
             ->withResponsiveImages()
-            ->toMediaCollection('posts','posts');
+            ->toMediaCollection('posts', 'posts');
         })->afterCreating(function (Imovel $imovel) {
             $imovel->addMediaFromUrl('https://picsum.photos/1080/420.jpg')
                        ->withResponsiveImages()
-                       ->toMediaCollection('posts','posts');
+                       ->toMediaCollection('posts', 'posts');
         });
     }
 }

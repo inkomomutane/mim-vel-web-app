@@ -9,11 +9,11 @@ class UpdateCity
 {
     use AsController;
 
-    function asController(Cidade $city)
+    public function asController(Cidade $city)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:cidades,nome,'. $city->id,
-            'province_id' => 'required|numeric'
+            'nome' => 'required|unique:cidades,nome,'.$city->id,
+            'province_id' => 'required|numeric',
         ]);
 
         try {
@@ -25,6 +25,7 @@ class UpdateCity
             throw $th;
             flash()->addError('Erro na actualização da cidade.');
         }
+
         return \redirect()->back();
     }
 }

@@ -20,14 +20,16 @@ class UpdatePolicy
            $politica->politicas = $policy->politicas;
            $politica->save();
            flash()->addSuccess('Politicas de privacidade actualizadas com sucesso.');
+
            return $politica->getData();
        } catch (\Throwable $e) {
            flash()->addError('Erro na actualização de politicas de privacidade.');
+
            return $politica->getData();
        }
    }
 
-   /**
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -42,7 +44,7 @@ class UpdatePolicy
    public function asController(ActionRequest $actionRequest)
    {
         $this->handle(new PolicyData($actionRequest->politicas));
+
         return redirect()->back();
    }
-
 }

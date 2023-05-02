@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('agendas', function (Blueprint $table) {
-            $table->string('mensagem',400);
-            $table->string('email',150);
+            $table->string('mensagem', 400);
+            $table->string('email', 150);
         });
     }
 
@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('agendas', function (Blueprint $table) {
             $table->dropColumn([
-                'mensagem','email'
+                'mensagem', 'email',
             ]);
         });
     }

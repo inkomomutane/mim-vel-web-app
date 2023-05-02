@@ -7,13 +7,12 @@ use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateStatus
 {
-
     use AsController;
 
-    function asController(Status $status)
+    public function asController(Status $status)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:statuses,nome,'. $status->id,
+            'nome' => 'required|unique:statuses,nome,'.$status->id,
         ]);
 
         try {
@@ -23,6 +22,7 @@ class UpdateStatus
         } catch (\Throwable $th) {
             flash()->addError('Erro na actualização do status.');
         }
+
         return \redirect()->back();
     }
 }

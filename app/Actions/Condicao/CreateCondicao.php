@@ -29,6 +29,7 @@ class CreateCondicao
      {
         $this->handle(CondicaoData::from($request->validated()));
         flash()->addSuccess('Condição do imóvel criada com sucesso.');
+
         return \redirect()->back();
      }
 }

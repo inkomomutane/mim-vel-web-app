@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $from_id
  * @property int $to_id
  * @property User $user
- * @package App\Models
  * @property-read \App\Models\User $receiver
  * @property-read \App\Models\User $sender
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Message newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Message newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Message query()
@@ -33,32 +33,33 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereReaded($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereToId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Message extends Model
 {
-	protected $table = 'messages';
+    protected $table = 'messages';
 
-	protected $casts = [
-		'readed' => 'bool',
-		'from_id' => 'int',
-		'to_id' => 'int'
-	];
+    protected $casts = [
+        'readed' => 'bool',
+        'from_id' => 'int',
+        'to_id' => 'int',
+    ];
 
-	protected $fillable = [
-		'message',
-		'readed',
-		'from_id',
-		'to_id'
-	];
+    protected $fillable = [
+        'message',
+        'readed',
+        'from_id',
+        'to_id',
+    ];
 
-	public function receiver()
-	{
-		return $this->belongsTo(User::class, 'to_id');
-	}
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'to_id');
+    }
 
     public function sender()
-	{
-		return $this->belongsTo(User::class, 'from_id');
-	}
+    {
+        return $this->belongsTo(User::class, 'from_id');
+    }
 }

@@ -7,19 +7,18 @@ use App\Models\RegraDeNegocio;
 use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
-use Response;
 
 class GetRegrasDeNegocio
 {
     use AsAction;
     use AsController;
 
-    public function handle(?String $term = null)
+    public function handle(?string $term = null)
     {
         return RegraDeNegocioData::collection(
             RegraDeNegocio::query()
-            ->when($term,function($query, $search) {
-                $query->where('name','like','%'.$search.'%');
+            ->when($term, function ($query, $search) {
+                $query->where('name', 'like', '%'.$search.'%');
             })->
             orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
@@ -27,9 +26,8 @@ class GetRegrasDeNegocio
 
     public function asController()
     {
-        return Inertia::render('Negocio/Index',[
-            'regrasDeNegocio' => $this->handle(request()->search)
+        return Inertia::render('Negocio/Index', [
+            'regrasDeNegocio' => $this->handle(request()->search),
         ]);
     }
-
 }

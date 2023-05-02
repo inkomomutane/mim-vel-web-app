@@ -36,6 +36,7 @@ export enum OrderDataBy {
     desc = "desc",
 }
 
+
 export interface Provinces extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ProvinceData>;
 }
@@ -62,6 +63,10 @@ export interface Statuses extends Omit<PaginatedData, "data"> {
 
 export interface Condicaos extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.CondicaoData>;
+}
+
+export interface Banners extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.MediaData>;
 }
 
 export type PageProps<

@@ -19,15 +19,16 @@ class GetBairros
     {
 
         $bairros = Bairro::query()
-        ->when($term,function($query, $search) {
-            $query->where('nome','like','%'.$search.'%');
+        ->when($term, function ($query, $search) {
+            $query->where('nome', 'like', '%'.$search.'%');
             $query->with('cidade');
         })->with('cidade')->
        orderBy('created_at', 'desc')->paginate(5)->withQueryString();
-       
+
        $bairros->each(function ($bairro) {
             $bairro->setRelation('city', $bairro->cidade);
             $bairro->unsetRelation('cidade');
+
             return $bairro;
         });
 
@@ -36,11 +37,11 @@ class GetBairros
         );
     }
 
-    public function AsController() : \Inertia\Response
+    public function AsController(): \Inertia\Response
     {
-        return Inertia::render('Bairro/Index',[
+        return Inertia::render('Bairro/Index', [
             'bairros' => $this->handle(request()->search),
-            'cities' => CityData::collection(Cidade::all())
+            'cities' => CityData::collection(Cidade::all()),
         ]);
     }
 }

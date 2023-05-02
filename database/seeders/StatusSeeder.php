@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Status;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StatusSeeder extends Seeder
@@ -19,19 +18,19 @@ class StatusSeeder extends Seeder
             [
                 'nome' => 'Não Iniciado',
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ],
             [
                 'nome' => 'Em construção',
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ],
             [
                 'nome' => 'Finalizado',
                 'created_at' => now(),
-                'updated_at' => now()
-            ]
-            ]
+                'updated_at' => now(),
+            ],
+        ]
         );
     }
 }

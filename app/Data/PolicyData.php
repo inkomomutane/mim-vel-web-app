@@ -9,5 +9,6 @@ class PolicyData extends Data
 {
     public function __construct(
       public readonly string $politicas
-    ) {}
+    ) {
+    }
 }

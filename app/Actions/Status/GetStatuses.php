@@ -17,16 +17,16 @@ class GetStatuses
     {
         return StatusData::collection(
             Status::query()
-            ->when($term,function($query, $search) {
-                $query->where('nome','like','%'.$search.'%');
+            ->when($term, function ($query, $search) {
+                $query->where('nome', 'like', '%'.$search.'%');
             })->
             orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }
 
-    public function AsController() : \Inertia\Response
+    public function AsController(): \Inertia\Response
     {
-        return Inertia::render('Status/Index',[
+        return Inertia::render('Status/Index', [
             'statuses' => $this->handle(request()->search),
         ]);
     }

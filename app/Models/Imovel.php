@@ -16,11 +16,11 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
 
 /**
  * Class Imovel
@@ -55,7 +55,6 @@ use Spatie\Searchable\SearchResult;
  * @property User $user
  * @property Collection|Comentario[] $comentarios
  * @property Collection|Rating[] $ratings
- * @package App\Models
  * @property string|null $slug
  * @property bool $for_rent
  * @property int|null $regra_de_negocio_id
@@ -70,6 +69,7 @@ use Spatie\Searchable\SearchResult;
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read int|null $tags_count
+ *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
@@ -106,10 +106,12 @@ use Spatie\Searchable\SearchResult;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
+ *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable
@@ -133,11 +135,11 @@ class Imovel extends Model implements HasMedia, Searchable
         'condicao_id' => 'int',
         'tipo_de_imovel_id' => 'int',
         'status_id' => 'int',
-        'corretor_id' => 'int'
+        'corretor_id' => 'int',
     ];
 
     protected $dates = [
-        'published_at'
+        'published_at',
     ];
 
     protected $fillable = [
@@ -164,7 +166,7 @@ class Imovel extends Model implements HasMedia, Searchable
         'status_id',
         'corretor_id',
         'regra_de_negocio_id',
-        'imovel_for_id'
+        'imovel_for_id',
     ];
 
     public function bairro()
@@ -240,8 +242,6 @@ class Imovel extends Model implements HasMedia, Searchable
         $this->addMediaCollection('posts');
     }
 
-
-
     public function getDynamicSEOData(): SEOData
     {
         return new SEOData(
@@ -258,7 +258,7 @@ class Imovel extends Model implements HasMedia, Searchable
 
     public function isForRent(): bool
     {
-        return $this->for_rent  == true;
+        return $this->for_rent == true;
     }
 
     public function imovelFor()
@@ -289,11 +289,10 @@ class Imovel extends Model implements HasMedia, Searchable
 
     public function relectedImovels()
     {
-        return Imovel::
-            where('tipo_de_imovel_id',$this->tipo_de_imovel_id)
-            ->orWhere('regra_de_negocio_id',$this->regra_de_negocio_id)
-            ->orWhere('imovel_for_id',$this->imovel_for_id)
-            ->orWhere('condicao_id',$this->condicao_id)
+        return Imovel::where('tipo_de_imovel_id', $this->tipo_de_imovel_id)
+            ->orWhere('regra_de_negocio_id', $this->regra_de_negocio_id)
+            ->orWhere('imovel_for_id', $this->imovel_for_id)
+            ->orWhere('condicao_id', $this->condicao_id)
             ->with('ratings')
             ->with('tipo_de_imovel')
             ->with('bairro')
@@ -302,7 +301,7 @@ class Imovel extends Model implements HasMedia, Searchable
             ->with('media')
             ->with('corretor')
             ->get()
-            ->where('id','<>',$this->id)
+            ->where('id', '<>', $this->id)
             ->take(10);
     }
 }

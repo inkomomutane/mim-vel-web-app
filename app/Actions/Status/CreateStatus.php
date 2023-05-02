@@ -29,6 +29,7 @@ class CreateStatus
      {
         $this->handle(StatusData::from($request->validated()));
         flash()->addSuccess('Status criado com sucesso.');
+
         return \redirect()->back();
      }
 }

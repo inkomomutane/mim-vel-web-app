@@ -22,10 +22,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Collection|Imovel[] $imovels
- * @package App\Models
  * @property-read int|null $imovels_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel query()
@@ -33,27 +33,29 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TipoDeImovel whereUpdatedAt($value)
+ *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ *
  * @mixin \Eloquent
  */
 class TipoDeImovel extends Model implements HasMedia
 {
     use HasFactory,InteractsWithMedia;
 
-	protected $table = 'tipo_de_imovels';
+    protected $table = 'tipo_de_imovels';
 
-	protected $fillable = [
-		'nome'
-	];
+    protected $fillable = [
+        'nome',
+    ];
 
-	public function imovels()
-	{
-		return $this->hasMany(Imovel::class);
-	}
+    public function imovels()
+    {
+        return $this->hasMany(Imovel::class);
+    }
 
         public function registerMediaCollections(): void
-    {
+        {
         $this
             ->addMediaCollection('icons')
             ->singleFile();

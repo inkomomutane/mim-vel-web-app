@@ -9,11 +9,11 @@ class UpdateBairro
 {
     use AsController;
 
-    function asController(Bairro $bairro)
+    public function asController(Bairro $bairro)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:bairros,nome,'. $bairro->id,
-            'cidade_id' => 'required|numeric'
+            'nome' => 'required|unique:bairros,nome,'.$bairro->id,
+            'cidade_id' => 'required|numeric',
         ]);
 
         try {
@@ -25,6 +25,7 @@ class UpdateBairro
             throw $th;
             flash()->addError('Erro na actualização do bairro.');
         }
+
         return \redirect()->back();
     }
 }

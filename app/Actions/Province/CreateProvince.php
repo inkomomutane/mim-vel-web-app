@@ -29,6 +29,7 @@ class CreateProvince
      {
         $this->handle(ProvinceData::from($request->validated()));
         flash()->addSuccess('Province created successfcul.');
+
         return \redirect()->back();
      }
 }

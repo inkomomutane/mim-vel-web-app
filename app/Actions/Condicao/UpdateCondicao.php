@@ -9,10 +9,10 @@ class UpdateCondicao
 {
     use AsController;
 
-    function asController(Condicao $condicao)
+    public function asController(Condicao $condicao)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:condicaos,nome,'. $condicao->id,
+            'nome' => 'required|unique:condicaos,nome,'.$condicao->id,
         ]);
 
         try {
@@ -22,6 +22,7 @@ class UpdateCondicao
         } catch (\Throwable $th) {
             flash()->addError('Erro na actualização da condição do imóvel.');
         }
+
         return \redirect()->back();
     }
 }

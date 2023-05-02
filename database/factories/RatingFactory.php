@@ -18,10 +18,10 @@ class RatingFactory extends Factory
     public function definition()
     {
         return [
-        'rating' => rand(1,5),
-		'ip' => '127.0.0.1',
-		'nome'=> $this->faker->name(),
-		'imovel_id' => Imovel::all()->random(5)->first()
+            'rating' => rand(1, 5),
+            'ip' => '127.0.0.1',
+            'nome' => $this->faker->name(),
+            'imovel_id' => Imovel::all()->random(5)->first(),
         ];
     }
 }

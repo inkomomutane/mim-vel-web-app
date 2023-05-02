@@ -24,12 +24,12 @@ use Spatie\LaravelData\WithData;
  * @property Carbon|null $data_hora
  * @property int $corretor_id
  * @property User $user
- * @package App\Models
  * @property string $mensagem
  * @property string $email
  * @property int $imovel_id
  * @property int $is_readed
  * @property-read \App\Models\User $corretor
+ *
  * @method static \Database\Factories\AgendaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newQuery()
@@ -46,46 +46,51 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereMensagem($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereNomeDoCliente($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Agenda extends Model
 {
     use HasFactory;
     use WithData;
-	protected $table = 'agendas';
+
+    protected $table = 'agendas';
+
     protected $dataClass = AgendaData::class;
+
     protected $appends = ['url'];
 
-	protected $casts = [
-		'corretor_id' => 'int',
-        'imovel_id' => 'int'
-	];
+    protected $casts = [
+        'corretor_id' => 'int',
+        'imovel_id' => 'int',
+    ];
 
-	protected $dates = [
-		'data_hora'
-	];
+    protected $dates = [
+        'data_hora',
+    ];
 
-	protected $fillable = [
-		'nome_do_cliente',
+    protected $fillable = [
+        'nome_do_cliente',
         'mensagem',
         'email',
-		'contacto',
-		'data_hora',
-		'corretor_id',
-        'imovel_id'
-	];
+        'contacto',
+        'data_hora',
+        'corretor_id',
+        'imovel_id',
+    ];
 
     public function getUrlAttribute()
     {
-            return  $this->imovel?->slug ?? '';
+            return $this->imovel?->slug ?? '';
     }
 
-	public function corretor()
-	{
-		return $this->belongsTo(User::class, 'corretor_id');
-	}
+    public function corretor()
+    {
+        return $this->belongsTo(User::class, 'corretor_id');
+    }
 
-    public function imovel(){
-        return $this->belongsTo(Imovel::class,'imovel_id');
+    public function imovel()
+    {
+        return $this->belongsTo(Imovel::class, 'imovel_id');
     }
 }

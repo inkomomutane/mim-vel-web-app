@@ -17,16 +17,16 @@ class GetCondicaos
     {
         return CondicaoData::collection(
             Condicao::query()
-            ->when($term,function($query, $search) {
-                $query->where('nome','like','%'.$search.'%');
+            ->when($term, function ($query, $search) {
+                $query->where('nome', 'like', '%'.$search.'%');
             })->
             orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }
 
-    public function AsController() : \Inertia\Response
+    public function AsController(): \Inertia\Response
     {
-        return Inertia::render('Condicao/Index',[
+        return Inertia::render('Condicao/Index', [
             'condicaos' => $this->handle(request()->search),
         ]);
     }

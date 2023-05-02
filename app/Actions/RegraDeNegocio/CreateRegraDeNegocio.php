@@ -29,6 +29,7 @@ class CreateRegraDeNegocio
      {
         $this->handle(RegraDeNegocioData::from($request->validated()));
         flash()->addSuccess('Regra de negóciação criada com sucesso.');
+
         return \redirect()->back();
      }
 }

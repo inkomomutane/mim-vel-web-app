@@ -8,6 +8,7 @@ use Spatie\LaravelData\Data;
 class TermAndConditionData extends Data
 {
     public function __construct(
-       public readonly String $term
-    ) {}
+       public readonly string $term
+    ) {
+    }
 }

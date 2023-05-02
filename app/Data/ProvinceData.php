@@ -9,6 +9,7 @@ class ProvinceData extends Data
 {
     public function __construct(
       public ?int $id,
-      public String $name
-    ) {}
+      public string $name
+    ) {
+    }
 }

@@ -9,7 +9,8 @@ class CityData extends Data
 {
     public function __construct(
       public ?int $id,
-      public String $nome,
+      public string $nome,
       public ProvinceData|null $province = null
-    ) {}
+    ) {
+    }
 }

@@ -20,15 +20,16 @@ class UpdateTermAndCondition
             $termo->termos = $term->term;
             $termo->save();
             flash()->addSuccess('Termos e condiçõs actualizadas com sucesso.');
+
            return $termo->getData();
        } catch (\Throwable $e) {
            flash()->addError('Erro na actualização de termos e condições');
+
            return $termo->getData();
        }
     }
 
-
-     /**
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -43,7 +44,7 @@ class UpdateTermAndCondition
     public function asController(ActionRequest $actionRequest)
     {
         $this->handle(new TermAndConditionData($actionRequest->termos));
+
         return redirect()->back();
     }
-
 }

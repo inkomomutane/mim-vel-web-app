@@ -12,14 +12,15 @@ class UpdateMassageReadState
     use AsAction;
     use AsController;
 
-    public function handle(Agenda $agenda,bool $isReaded)
+    public function handle(Agenda $agenda, bool $isReaded)
     {
         $agenda->is_readed = $isReaded;
         $agenda->save();
+
         return $agenda->getData();
     }
 
-     /**
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
@@ -27,13 +28,13 @@ class UpdateMassageReadState
     public function rules(): array
     {
         return [
-            'is_readed' => 'boolean'
+            'is_readed' => 'boolean',
         ];
     }
 
-    public function asController(Agenda $agenda,ActionRequest $actionRequest)
+    public function asController(Agenda $agenda, ActionRequest $actionRequest)
     {
-        return $this->handle($agenda,$actionRequest->is_readed);
+        return $this->handle($agenda, $actionRequest->is_readed);
 
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Actions\Legal;
 
-use App\Data\TermAndConditionData;
 use App\Models\Termo;
 use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -17,16 +16,17 @@ class GetTermAndCondition
     {
         if (Termo::first() == null) {
             Termo::create([
-                'termos' => ''
+                'termos' => '',
             ]);
         }
+
         return Termo::first()->getData();
     }
 
     public function asController()
     {
-        return Inertia::render('Legal/Terms',[
-            'term' => $this->handle()
+        return Inertia::render('Legal/Terms', [
+            'term' => $this->handle(),
         ]);
     }
 }

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor query()
@@ -23,8 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereSlugText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImovelFor whereUpdatedAt($value)
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
+ *
  * @mixin \Eloquent
  */
 class ImovelFor extends Model
@@ -34,7 +37,7 @@ class ImovelFor extends Model
     protected $table = 'imovel_fors';
 
     protected $fillable = [
-        'name','slug_text'
+        'name', 'slug_text',
     ];
 
     public function imovels()

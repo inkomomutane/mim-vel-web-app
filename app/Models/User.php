@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +10,6 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
-
 
 /**
  * App\Models\User
@@ -48,6 +46,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $sent_messages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -65,6 +64,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Agenda> $agendas
  * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $createdUsers
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
@@ -85,6 +85,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Message> $sentMessages
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements HasMedia
@@ -102,7 +103,7 @@ class User extends Authenticatable implements HasMedia
         'password',
         'contacto',
         'location',
-        'created_by_id'
+        'created_by_id',
 
     ];
 
@@ -126,24 +127,24 @@ class User extends Authenticatable implements HasMedia
     ];
 
     public function agendas()
-	{
-		return $this->hasMany(Agenda::class, 'corretor_id');
-	}
+    {
+        return $this->hasMany(Agenda::class, 'corretor_id');
+    }
 
-	public function imovels()
-	{
-		return $this->hasMany(Imovel::class, 'corretor_id');
-	}
+    public function imovels()
+    {
+        return $this->hasMany(Imovel::class, 'corretor_id');
+    }
 
-	public function receivedMessages()
-	{
-		return $this->hasMany(Message::class, 'to_id');
-	}
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'to_id');
+    }
 
     public function sentMessages()
-	{
-		return $this->hasMany(Message::class, 'from_id');
-	}
+    {
+        return $this->hasMany(Message::class, 'from_id');
+    }
 
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -152,17 +153,16 @@ class User extends Authenticatable implements HasMedia
 
     public static function last()
     {
-        return Static::all()->last();
+        return static::all()->last();
     }
 
     public function createdBy()
     {
-        return $this->belongsTo(User::class,'created_by_id');
+        return $this->belongsTo(User::class, 'created_by_id');
     }
 
     public function createdUsers()
     {
-        return $this->hasMany(User::class,'created_by_id');
+        return $this->hasMany(User::class, 'created_by_id');
     }
-
 }

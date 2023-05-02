@@ -21,7 +21,7 @@ class CreateBairro
     {
         return [
             'nome' => 'required|unique:bairros,nome',
-            'cidade_id' => 'required|numeric'
+            'cidade_id' => 'required|numeric',
         ];
     }
 
@@ -29,6 +29,7 @@ class CreateBairro
      {
         $this->handle($request->validated());
         flash()->addSuccess('Bairro criado com sucesso.');
+
         return \redirect()->back();
      }
 }
