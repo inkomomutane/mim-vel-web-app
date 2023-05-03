@@ -111,16 +111,91 @@ watch(
                         >
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
-
-                                    <svg width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <polygon points="20,21 4,15 4,9 20,3" opacity=".35" fill="currentColor" />
-                                        <path d="M5,14.5c0-0.386,0-4.614,0-5C5,8.672,4.328,8,3.5,8S2,8.672,2,9.5c0,0.386,0,4.614,0,5C2,15.328,2.672,16,3.5,16S5,15.328,5,14.5z" fill="currentColor" />
-                                        <path d="M22,20.5c0-0.386,0-16.614,0-17C22,2.672,21.328,2,20.5,2S19,2.672,19,3.5c0,0.386,0,16.614,0,17c0,0.828,0.672,1.5,1.5,1.5S22,21.328,22,20.5z" fill="currentColor" />
-                                        <path d="M7.995,16.498L7.96,16.591c-0.389,1.034,0.134,2.187,1.168,2.576L11,19.871c1.034,0.389,2.187-0.134,2.576-1.168l0.037-0.099L7.995,16.498z" fill="currentColor" />
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <polygon
+                                            points="20,21 4,15 4,9 20,3"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M5,14.5c0-0.386,0-4.614,0-5C5,8.672,4.328,8,3.5,8S2,8.672,2,9.5c0,0.386,0,4.614,0,5C2,15.328,2.672,16,3.5,16S5,15.328,5,14.5z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M22,20.5c0-0.386,0-16.614,0-17C22,2.672,21.328,2,20.5,2S19,2.672,19,3.5c0,0.386,0,16.614,0,17c0,0.828,0.672,1.5,1.5,1.5S22,21.328,22,20.5z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M7.995,16.498L7.96,16.591c-0.389,1.034,0.134,2.187,1.168,2.576L11,19.871c1.034,0.389,2.187-0.134,2.576-1.168l0.037-0.099L7.995,16.498z"
+                                            fill="currentColor"
+                                        />
                                     </svg>
                                     <span
                                         class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
                                         >Banners pulicitários</span
+                                    >
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </Link>
+
+                <Link
+                    :href="route('user.all')"
+                    v-tooltip.value="tooltip('Usuários')"
+                >
+                    <li
+                        class="px-3 py-2 rounded mb-0.5 last:mb-0"
+                        :class="
+                            route().current('user.all')
+                                ? ' bg-slate-950'
+                                : 'hover:bg-slate-900'
+                        "
+                    >
+                        <a
+                            class="block text-slate-200 truncate transition duration-150"
+                        >
+                            <div class="flex items-center justify-between">
+                                <div class="grow flex items-center">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            cx="7.5"
+                                            cy="6.5"
+                                            r="3.5"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <circle
+                                            cx="16.5"
+                                            cy="6.5"
+                                            r="3.5"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M10.5,14h8c1.93,0,3.5,1.57,3.5,3.5S20.43,21,18.5,21h-8V14z"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M14,17.5c0,1.93-1.57,3.5-3.5,3.5h-5c-0.96,0-1.84-0.39-2.47-1.03C2.39,19.34,2,18.46,2,17.5C2,15.57,3.57,14,5.5,14h5c0.96,0,1.84,0.39,2.47,1.03C13.61,15.66,14,16.54,14,17.5z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                                        >Usuários</span
                                     >
                                 </div>
                             </div>
@@ -146,30 +221,58 @@ watch(
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
                                     <svg
- width="20"
-            height="20"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            >
-  <path d="M22,7.652c0,0.308-0.372,0.463-0.591,0.247l-1.557-1.542c-0.198-0.196-0.198-0.517,0-0.713l1.557-1.542C21.628,3.884,22,4.039,22,4.348V7.652z" fill="currentColor" />
-  <path d="M2,16.348c0-0.308,0.372-0.463,0.591-0.247l1.557,1.542c0.198,0.196,0.198,0.517,0,0.713l-1.557,1.542C2.372,20.116,2,19.961,2,19.652V16.348z" fill="currentColor" />
-  <path d="M15,13H4c-1.105,0-2-0.895-2-2V4c0-1.105,0.895-2,2-2h11c1.105,0,2,0.895,2,2v7C17,12.105,16.105,13,15,13z" opacity=".35" fill="currentColor" />
-  <rect width="15" height="2" x="2" y="5" fill="currentColor" />
-  <path d="M20,11H9c-1.105,0-2,0.895-2,2v1h15v-1C22,11.895,21.105,11,20,11z" fill="currentColor" />
-  <path d="M7,20c0,1.105,0.895,2,2,2h11c1.105,0,2-0.895,2-2v-4H7V20z" fill="currentColor" />
-  <rect width="15" height="2" x="7" y="14" opacity=".35" fill="currentColor" />
-</svg>
+                                        width="20"
+                                        height="20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M22,7.652c0,0.308-0.372,0.463-0.591,0.247l-1.557-1.542c-0.198-0.196-0.198-0.517,0-0.713l1.557-1.542C21.628,3.884,22,4.039,22,4.348V7.652z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M2,16.348c0-0.308,0.372-0.463,0.591-0.247l1.557,1.542c0.198,0.196,0.198,0.517,0,0.713l-1.557,1.542C2.372,20.116,2,19.961,2,19.652V16.348z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M15,13H4c-1.105,0-2-0.895-2-2V4c0-1.105,0.895-2,2-2h11c1.105,0,2,0.895,2,2v7C17,12.105,16.105,13,15,13z"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <rect
+                                            width="15"
+                                            height="2"
+                                            x="2"
+                                            y="5"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M20,11H9c-1.105,0-2,0.895-2,2v1h15v-1C22,11.895,21.105,11,20,11z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M7,20c0,1.105,0.895,2,2,2h11c1.105,0,2-0.895,2-2v-4H7V20z"
+                                            fill="currentColor"
+                                        />
+                                        <rect
+                                            width="15"
+                                            height="2"
+                                            x="7"
+                                            y="14"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
 
                                     <span
                                         class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-                                        >Tipo de transação </span
-                                    >
+                                        >Tipo de transação
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </Link>
-
 
                 <Link
                     :href="route('negocio.all')"
@@ -251,12 +354,27 @@ watch(
                         >
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
-                                    <svg width="20" height="20"    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path d="M6,17V5c0-1.657,1.343-3,3-3h8c1.657,0,3,1.343,3,3v12c0,1.657-1.343,3-3,3H9C7.343,20,6,18.657,6,17z" opacity=".35" fill="currentColor" />
-                                            <path d="M9,20c-1.657,0-3-1.343-3-3V5C4.895,5,4,5.895,4,7v12c0,1.657,1.343,3,3,3h8c1.105,0,2-0.895,2-2H9z" fill="currentColor" />
-                                            <path d="M12.883,12.973h-0.006c-0.67,0-1.187-0.605-1.072-1.265c0.35-2.013,1.917-2.083,1.917-3.333c0-0.347-0.06-1.124-0.896-1.124c-0.452,0-0.718,0.289-0.873,0.597c-0.209,0.417-0.691,0.622-1.15,0.541l0,0C10.107,8.265,9.68,7.519,9.975,6.877C10.397,5.96,11.261,5,12.972,5c2.776,0,3.148,2.174,3.148,3.196c0,2.416-1.799,2.506-2.172,3.898C13.813,12.596,13.403,12.973,12.883,12.973z M14.325,15.533c0,0.412-0.127,0.76-0.382,1.043C13.687,16.858,13.352,17,12.94,17c-0.414,0-0.748-0.142-1.003-0.424c-0.255-0.283-0.384-0.631-0.384-1.043c0-0.403,0.129-0.75,0.384-1.045c0.255-0.293,0.589-0.439,1.003-0.439c0.412,0,0.747,0.146,1.003,0.439C14.198,14.783,14.325,15.131,14.325,15.533z" fill="currentColor" />
-                                            </svg>
-                                   <span
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M6,17V5c0-1.657,1.343-3,3-3h8c1.657,0,3,1.343,3,3v12c0,1.657-1.343,3-3,3H9C7.343,20,6,18.657,6,17z"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M9,20c-1.657,0-3-1.343-3-3V5C4.895,5,4,5.895,4,7v12c0,1.657,1.343,3,3,3h8c1.105,0,2-0.895,2-2H9z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M12.883,12.973h-0.006c-0.67,0-1.187-0.605-1.072-1.265c0.35-2.013,1.917-2.083,1.917-3.333c0-0.347-0.06-1.124-0.896-1.124c-0.452,0-0.718,0.289-0.873,0.597c-0.209,0.417-0.691,0.622-1.15,0.541l0,0C10.107,8.265,9.68,7.519,9.975,6.877C10.397,5.96,11.261,5,12.972,5c2.776,0,3.148,2.174,3.148,3.196c0,2.416-1.799,2.506-2.172,3.898C13.813,12.596,13.403,12.973,12.883,12.973z M14.325,15.533c0,0.412-0.127,0.76-0.382,1.043C13.687,16.858,13.352,17,12.94,17c-0.414,0-0.748-0.142-1.003-0.424c-0.255-0.283-0.384-0.631-0.384-1.043c0-0.403,0.129-0.75,0.384-1.045c0.255-0.293,0.589-0.439,1.003-0.439c0.412,0,0.747,0.146,1.003,0.439C14.198,14.783,14.325,15.131,14.325,15.533z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                    <span
                                         class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
                                         >Condição do imóvel</span
                                     >

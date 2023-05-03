@@ -33,7 +33,6 @@ class Banner extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $table = 'banners';
-    
 
     public function registerMediaConversions(?Media $media = null): void
     {

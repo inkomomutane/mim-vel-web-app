@@ -1,30 +1,32 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
+import Avatar from "primevue/avatar";
 
-import { TransactionTypes } from "@/types/index";
+import { Users } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
-import CreateTransactionType from "./CreateTransactionType.vue";
-import DeleteTransactionType from "./DeleteTransactionType.vue";
-import EditTransactionType from "./EditTransactionType.vue";
+import CreateUser from "./CreateUser.vue";
+import EditUser from "./EditUser.vue";
+import DeleteUser from "./DeleteUser.vue";
+
 const props = defineProps({
-    transactionTypes: {
-        type: Object as PropType<TransactionTypes>,
+    users: {
+        type: Object as PropType<Users>,
         required: true,
     },
     search: String,
     messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.transactionTypes.links);
+const links = ref(props.users.links);
 
-const editingTransactionTypeTrigger = ref(false);
-const editingTransactionType = ref<App.Data.TransactionTypeData | null>(null);
+const editingUserTrigger = ref(false);
+const editingUser = ref<App.Data.UserData | null>(null);
 
-const deletingTransactionTypeTrigger = ref(false);
-const deletingTransactionType = ref<App.Data.TransactionTypeData | null>(null);
+const deletingUserTrigger = ref(false);
+const deletingUser = ref<App.Data.UserData | null>(null);
 
 const searchTerm = ref("");
 
@@ -41,7 +43,7 @@ watch(
 );
 
 watch(
-    () => props.transactionTypes.links,
+    () => props.users.links,
     (value) => {
         links.value = value;
     }
@@ -49,40 +51,40 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("transaction.type.all", {
+        route("user.all", {
             search: value ?? "",
         }),
         {
-            only: ["transactionTypes"],
+            only: ["users"],
             replace: false,
             preserveState: true,
         }
     );
 });
 
-function openEditTransactionTypeModal(status: App.Data.TransactionTypeData) {
-    editingTransactionType.value = status;
-    editingTransactionTypeTrigger.value = true;
+function openEditUserModal(user: App.Data.UserData) {
+    editingUser.value = user;
+    editingUserTrigger.value = true;
 }
 
-function closeEditTransactionTypeModal() {
-    editingTransactionType.value = null;
-    editingTransactionTypeTrigger.value = false;
+function closeEditUserModal() {
+    editingUser.value = null;
+    editingUserTrigger.value = false;
 }
 
-function openDeleteTransactionTypeModal(status: App.Data.TransactionTypeData) {
-    deletingTransactionType.value = status;
-    deletingTransactionTypeTrigger.value = true;
+function openDeleteUserModal(user: App.Data.UserData) {
+    deletingUser.value = user;
+    deletingUserTrigger.value = true;
 }
 
-function closeDeleteTransactionTypeModal() {
-    deletingTransactionType.value = null;
-    deletingTransactionTypeTrigger.value = false;
+function closeDeleteUserModal() {
+    deletingUser.value = null;
+    deletingUserTrigger.value = false;
 }
 </script>
 
 <template>
-    <Head title="TransactionType do imóvel" />
+    <Head title="User do imóvel" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
@@ -129,7 +131,7 @@ function closeDeleteTransactionTypeModal() {
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
                         >
-                            <CreateTransactionType />
+                            <CreateUser />
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -141,16 +143,21 @@ function closeDeleteTransactionTypeModal() {
                             >
                                 <tr>
                                     <th scope="col" class="px-4 py-3">
-                                        <div class="flex items-center">Id</div>
+                                        <div class="flex items-center">Avatar</div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Tipo de transação
+                                            Nome
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Prefixo nos imóveis
+                                            Email
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            Previlêgio
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -164,32 +171,32 @@ function closeDeleteTransactionTypeModal() {
                             <tbody>
                                 <tr
                                     class="border-b dark:border-gray-700"
-                                    v-for="transactionType in transactionTypes.data"
-                                    :key="(transactionType.id as number)"
+                                    v-for="user in users.data"
+                                    :key="(user.id as number)"
                                 >
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {{ transactionType.id }}
+                                        <Avatar class="bg-gray-300 rounded text-gray-700 dark:text-white"  :label="user.name?.charAt(0)" size="xlarge" />
                                     </th>
 
                                     <td class="px-4 py-3">
-                                        {{ transactionType.name }}
+                                        {{ user.name }}
                                     </td>
 
                                     <td class="px-4 py-3">
-                                        {{ transactionType.slug_text }}
+                                        {{ user.email }}
+                                    </td>
+
+                                    <td class="px-4 py-3">
+                                        {{ user.role?.name }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <button
                                             type="button"
-                                            @click="
-                                                openEditTransactionTypeModal(
-                                                    transactionType
-                                                )
-                                            "
+                                            @click="openEditUserModal(user)"
                                             class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -223,11 +230,7 @@ function closeDeleteTransactionTypeModal() {
                                     <td class="px-4 py-3 justify-end w-32">
                                         <button
                                             type="button"
-                                            @click="
-                                                openDeleteTransactionTypeModal(
-                                                    transactionType
-                                                )
-                                            "
+                                            @click="openDeleteUserModal(user)"
                                             class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -269,8 +272,8 @@ function closeDeleteTransactionTypeModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                                 >{{
-                                    `${transactionTypes.meta.from ?? 0}-${
-                                        transactionTypes.meta.to ?? 0
+                                    `${users.meta.from ?? 0}-${
+                                        users.meta.to ?? 0
                                     }`
                                 }}</span
                             >
@@ -278,7 +281,7 @@ function closeDeleteTransactionTypeModal() {
                             <span
                                 class="font-semibold text-gray-900 dark:text-white"
                             >
-                                {{ transactionTypes.meta.total }}</span
+                                {{ users.meta.total }}</span
                             >
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
@@ -341,17 +344,17 @@ function closeDeleteTransactionTypeModal() {
                     </nav>
                 </div>
             </div>
-            <EditTransactionType
-                v-if="editingTransactionType"
-                :transactionType="editingTransactionType"
-                :openModal="editingTransactionTypeTrigger"
-                :close="closeEditTransactionTypeModal"
+            <EditUser
+                v-if="editingUser"
+                :user="editingUser"
+                :openModal="editingUserTrigger"
+                :close="closeEditUserModal"
             />
-            <DeleteTransactionType
-                v-if="deletingTransactionType"
-                :transactionType="deletingTransactionType"
-                :openModal="deletingTransactionTypeTrigger"
-                :close="closeDeleteTransactionTypeModal"
+            <DeleteUser
+                v-if="deletingUser"
+                :user="deletingUser"
+                :openModal="deletingUserTrigger"
+                :close="closeDeleteUserModal"
             />
         </template>
     </AuthenticatedLayout>

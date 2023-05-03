@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Data\UserData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -91,6 +93,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles,InteractsWithMedia;
+    use WithData;
 
     /**
      * The attributes that are mass assignable.
@@ -106,6 +109,8 @@ class User extends Authenticatable implements HasMedia
         'created_by_id',
 
     ];
+
+    protected $dataClass = UserData::class;
 
     /**
      * The attributes that should be hidden for serialization.

@@ -19,7 +19,7 @@ const props = defineProps({
 });
 
 const nameInput = ref<String | any>(props.transactionType.name);
-    const slugTextInput = ref<String | any>(props.transactionType.slug_text);
+const slugTextInput = ref<String | any>(props.transactionType.slug_text);
 
 const form = useForm({
     id: props.transactionType.id,

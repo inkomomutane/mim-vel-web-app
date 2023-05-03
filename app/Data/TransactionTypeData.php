@@ -9,7 +9,8 @@ class TransactionTypeData extends Data
 {
     public function __construct(
         public readonly ?int $id,
-        public readonly String $name,
-        public readonly String $slug_text
-    ) {}
+        public readonly string $name,
+        public readonly string $slug_text
+    ) {
+    }
 }

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import image from "primevue/image"
 import { PropType } from "vue";
 
 const props = defineProps({
@@ -28,5 +27,10 @@ const optimized = ref(props.responsive?.mime_type !== "image/webp");
         sizes="1px"
         onload="window.requestAnimationFrame(function(){if(!(size=getBoundingClientRect().width))return;onload=null;sizes=Math.ceil(size/window.innerWidth*100)+'vw';});"
     />
-    <img :class="class" v-else :src="responsive?.original_url ?? ''"  loading="lazy" />
+    <img
+        :class="class"
+        v-else
+        :src="responsive?.original_url ?? ''"
+        loading="lazy"
+    />
 </template>

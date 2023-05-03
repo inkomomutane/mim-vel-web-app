@@ -13,7 +13,7 @@ class CreateTransactionType
     use AsAction;
     use AsController;
 
-    public function handle(TransactionTypeData  $transactionTypeData)
+    public function handle(TransactionTypeData $transactionTypeData)
     {
         return ImovelFor::create($transactionTypeData->all());
     }

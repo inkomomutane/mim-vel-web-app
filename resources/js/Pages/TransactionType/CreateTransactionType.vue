@@ -39,20 +39,43 @@ const createTransactionType = () => {
         @click="addTransactionTypeTrigger"
         class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
     >
-    <svg
- width="20"
+        <svg
+            width="20"
             height="20"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            >
-  <path d="M22,7.652c0,0.308-0.372,0.463-0.591,0.247l-1.557-1.542c-0.198-0.196-0.198-0.517,0-0.713l1.557-1.542C21.628,3.884,22,4.039,22,4.348V7.652z" fill="currentColor" />
-  <path d="M2,16.348c0-0.308,0.372-0.463,0.591-0.247l1.557,1.542c0.198,0.196,0.198,0.517,0,0.713l-1.557,1.542C2.372,20.116,2,19.961,2,19.652V16.348z" fill="currentColor" />
-  <path d="M15,13H4c-1.105,0-2-0.895-2-2V4c0-1.105,0.895-2,2-2h11c1.105,0,2,0.895,2,2v7C17,12.105,16.105,13,15,13z" opacity=".35" fill="currentColor" />
-  <rect width="15" height="2" x="2" y="5" fill="currentColor" />
-  <path d="M20,11H9c-1.105,0-2,0.895-2,2v1h15v-1C22,11.895,21.105,11,20,11z" fill="currentColor" />
-  <path d="M7,20c0,1.105,0.895,2,2,2h11c1.105,0,2-0.895,2-2v-4H7V20z" fill="currentColor" />
-  <rect width="15" height="2" x="7" y="14" opacity=".35" fill="currentColor" />
-</svg>
+        >
+            <path
+                d="M22,7.652c0,0.308-0.372,0.463-0.591,0.247l-1.557-1.542c-0.198-0.196-0.198-0.517,0-0.713l1.557-1.542C21.628,3.884,22,4.039,22,4.348V7.652z"
+                fill="currentColor"
+            />
+            <path
+                d="M2,16.348c0-0.308,0.372-0.463,0.591-0.247l1.557,1.542c0.198,0.196,0.198,0.517,0,0.713l-1.557,1.542C2.372,20.116,2,19.961,2,19.652V16.348z"
+                fill="currentColor"
+            />
+            <path
+                d="M15,13H4c-1.105,0-2-0.895-2-2V4c0-1.105,0.895-2,2-2h11c1.105,0,2,0.895,2,2v7C17,12.105,16.105,13,15,13z"
+                opacity=".35"
+                fill="currentColor"
+            />
+            <rect width="15" height="2" x="2" y="5" fill="currentColor" />
+            <path
+                d="M20,11H9c-1.105,0-2,0.895-2,2v1h15v-1C22,11.895,21.105,11,20,11z"
+                fill="currentColor"
+            />
+            <path
+                d="M7,20c0,1.105,0.895,2,2,2h11c1.105,0,2-0.895,2-2v-4H7V20z"
+                fill="currentColor"
+            />
+            <rect
+                width="15"
+                height="2"
+                x="7"
+                y="14"
+                opacity=".35"
+                fill="currentColor"
+            />
+        </svg>
         <span class="mx-4">Novo tipo de transação</span>
     </button>
 

@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class MediaData extends Data
 {
     public function __construct(
-       public  readonly int $id,
+       public readonly int $id,
        public ?string $file_name,
        public ?string $name,
        public ?string $mime_type,
@@ -22,10 +22,11 @@ class MediaData extends Data
     ) {
     }
 
-    public static function fromModel(Media $media){
+    public static function fromModel(Media $media)
+    {
 
-        return new Self(
-            id:$media->id,
+        return new self(
+            id: $media->id,
             file_name: $media->file_name,
             name: $media->name,
             mime_type: $media->mime_type,
@@ -34,22 +35,26 @@ class MediaData extends Data
             size: $media->size,
             custom_properties: $media->custom_properties,
             responsive_images: $media->responsive_images,
-            srcsets:$media->getSrcset()
+            srcsets: $media->getSrcset()
         );
     }
 }
 
 /** @typescript */
-class ResponsiveImageData{
+class ResponsiveImageData
+{
 public function __construct(
     public ?MediaLibraryOriginalData $media_library_original
-) {}
+) {
+}
 }
 
 /** @typescript */
-class MediaLibraryOriginalData{
+class MediaLibraryOriginalData
+{
 public function __construct(
     public readonly ?string $base64svg,
     public readonly ?array $urls,
-) {}
+) {
+}
 }

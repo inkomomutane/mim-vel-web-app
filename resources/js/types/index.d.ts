@@ -36,7 +36,6 @@ export enum OrderDataBy {
     desc = "desc",
 }
 
-
 export interface Provinces extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ProvinceData>;
 }
@@ -69,8 +68,12 @@ export interface Banners extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.MediaData>;
 }
 
-export interface TransactionTypes extends Omit<TransactionTypeData,"data">{
-    data : Array<App.Data.TransactionTypeData>
+export interface TransactionTypes extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.TransactionTypeData>;
+}
+
+export interface Users extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.UserData>;
 }
 
 export type PageProps<
@@ -84,5 +87,8 @@ export type PageProps<
     };
     mails: {
         type: Number;
+    };
+    roles:{
+        type:Array<App.Data.RoleData>
     };
 };
