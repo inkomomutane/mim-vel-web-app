@@ -106,8 +106,8 @@ class User extends Authenticatable implements HasMedia
         'password',
         'contacto',
         'location',
+        'active',
         'created_by_id',
-
     ];
 
     protected $dataClass = UserData::class;

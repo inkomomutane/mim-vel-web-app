@@ -75,6 +75,7 @@ declare namespace App.Data {
         email: string | null;
         contacto: string | null;
         location: string | null;
+        active: boolean;
         role: App.Data.RoleData | null;
     };
 }

@@ -14,6 +14,7 @@ class UserData extends Data
         public readonly ?string $email,
         public readonly ?string $contacto,
         public readonly ?string $location,
+        public readonly bool $active,
         public readonly ?RoleData $role
     ) {
     }
@@ -26,6 +27,7 @@ class UserData extends Data
             email: $user->email,
             contacto: $user->contacto,
             location: $user->location,
+            active:$user->active,
             role: is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
         );
     }

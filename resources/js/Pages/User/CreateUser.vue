@@ -3,6 +3,7 @@ import Modal from "@/Components/Modal.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import Dropdown from "primevue/dropdown";
+import InputError from "@/Components/InputError.vue";
 
 const addUser = ref(false);
 const nameInput = ref();
@@ -118,9 +119,7 @@ const createUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Nome do usuário"
                             />
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.name
-                            }}</span>
+                            <InputError :message="form.errors.name"/>
                         </div>
                         <div>
                             <label
@@ -137,12 +136,9 @@ const createUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Email"
                             />
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.email
-                            }}</span>
+                            <InputError :message="form.errors.email"/>
                         </div>
                     </div>
-
                     <div class="grid  grid-cols-1 sm:grid-cols-2  gap-2 ">
                         <div>
                             <label
@@ -159,9 +155,7 @@ const createUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Contacto"
                             />
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.contacto
-                            }}</span>
+                            <InputError :message="form.errors.contacto"/>
                         </div>
                         <div>
                             <label
@@ -191,9 +185,7 @@ const createUser = () => {
                                 </div>
                             </template>
                         </Dropdown>
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.role
-                            }}</span>
+                        <InputError :message="form.errors.role"/>
                         </div>
                     </div>
                     <button

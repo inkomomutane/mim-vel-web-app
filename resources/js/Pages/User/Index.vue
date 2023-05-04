@@ -161,6 +161,11 @@ function closeDeleteUserModal() {
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            Estado do usuário
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-4 py-3">
                                         Editar
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -178,7 +183,7 @@ function closeDeleteUserModal() {
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        <Avatar class="bg-gray-300 rounded text-gray-700 dark:text-white"  :label="user.name?.charAt(0)" size="xlarge" />
+                                        <Avatar class="bg-gray-300 rounded text-gray-700 dark:bg-gray-900 dark:text-white"  :label="user.name?.charAt(0)" size="xlarge" />
                                     </th>
 
                                     <td class="px-4 py-3">
@@ -192,6 +197,14 @@ function closeDeleteUserModal() {
                                     <td class="px-4 py-3">
                                         {{ user.role?.name }}
                                     </td>
+
+                                    <td class="px-4 py-3">
+                                        <span v-if="user.active" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Activo</span>
+
+                                        <span v-else class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Inactivo</span>
+
+                                    </td>
+
 
                                     <td class="px-4 py-3 w-32">
                                         <button
@@ -231,30 +244,17 @@ function closeDeleteUserModal() {
                                         <button
                                             type="button"
                                             @click="openDeleteUserModal(user)"
-                                            class="flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
+                                            class="flex items-center justify-center
+                                             text-white bg-red-500 hover:bg-red-700
+                                             focus:ring-4 focus:ring-slate-300 font-medium rounded
+                                             text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700
+                                             focus:outline-none dark:focus:ring-slate-800"
+
+                                             :class=" ( user.active ? ' bg-red-500 hover:bg-red-700' : ' bg-blue-500 hover:bg-blue-700')"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    class="fill-current text-gray-100"
-                                                    d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
-                                                />
-                                                <path
-                                                    class="fill-current text-gray-100"
-                                                    opacity="0.5"
-                                                    d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
-                                                />
-                                                <path
-                                                    class="fill-current text-gray-100"
-                                                    opacity="0.5"
-                                                    d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
-                                                />
-                                            </svg>
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.093 3.093c-.465 4.275.885 7.46 2.513 9.589a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.32 11.32 0 0 0 1.733-1.525L1.093 3.093zm12.215 8.215L3.128 1.128A61.369 61.369 0 0 1 5.073.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.483 3.626-.332 6.491-1.551 8.616zm.338 3.046-13-13 .708-.708 13 13-.707.707z"></path>
+                                        </svg>
                                         </button>
                                     </td>
                                 </tr>

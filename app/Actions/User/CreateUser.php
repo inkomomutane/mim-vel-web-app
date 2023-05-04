@@ -21,7 +21,7 @@ class CreateUser
             'name' => $userData['name'],
             'email' => $userData['email'],
             'contacto' => $userData['contacto'],
-            'password' => Hash::make('password')
+            'password' => Hash::make('12345678')
         ])->assignRole(Role::findById($userData['role']));
     }
 
@@ -29,8 +29,8 @@ class CreateUser
     {
         return [
             'name' => [ 'required', 'string'],
-            'email' => ['required', 'string', 'email'],
-            'contacto' => [ 'required', 'string'],
+            'email' => ['required', 'string', 'email','unique:users,email'],
+            'contacto' => [ 'nullable', 'string'],
             'role' => [ 'required', 'numeric'],
         ];
     }

@@ -18,6 +18,11 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        watch: {
+          ignored: ["**/storage/**","**/vendor/**"],
+        },
+      },
     resolve: {
         alias: {
           '@': fileURLToPath(new URL('./resources/js', import.meta.url))

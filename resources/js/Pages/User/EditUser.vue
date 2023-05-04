@@ -76,7 +76,7 @@ const updateUser = () => {
                 <h3
                     class="mb-4 text-xl font-medium text-gray-900 dark:text-white"
                 >
-                    Editar user
+                    Editar usuário
                 </h3>
                 <form class="space-y-6" @submit.prevent="updateUser">
 
