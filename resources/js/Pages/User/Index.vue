@@ -5,7 +5,7 @@ import Avatar from "primevue/avatar";
 
 import { Users } from "@/types/index";
 import { ref, watch, PropType } from "vue";
-import Flasher from "@/helprs";
+import Flasher, { tooltip } from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
 import CreateUser from "./CreateUser.vue";
 import EditUser from "./EditUser.vue";
@@ -241,7 +241,7 @@ function closeDeleteUserModal() {
                                         </button>
                                     </td>
                                     <td class="px-4 py-3 justify-end w-32">
-                                        <button
+                                        <button  v-tooltip.bottom="tooltip( user.active ? 'Desabilitar': 'Habilitar')"
                                             type="button"
                                             @click="openDeleteUserModal(user)"
                                             class="flex items-center justify-center
@@ -252,10 +252,13 @@ function closeDeleteUserModal() {
 
                                              :class=" ( user.active ? ' bg-red-500 hover:bg-red-700' : ' bg-blue-500 hover:bg-blue-700')"
                                         >
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1.093 3.093c-.465 4.275.885 7.46 2.513 9.589a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.32 11.32 0 0 0 1.733-1.525L1.093 3.093zm12.215 8.215L3.128 1.128A61.369 61.369 0 0 1 5.073.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.483 3.626-.332 6.491-1.551 8.616zm.338 3.046-13-13 .708-.708 13 13-.707.707z"></path>
+                                        <svg v-if="user.active" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.093 3.093c-.465 4.275.885 7.46 2.513 9.589a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.32 11.32 0 0 0 1.733-1.525L1.093 3.093zm12.215 8.215L3.128 1.128A61.369 61.369 0 0 1 5.073.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.483 3.626-.332 6.491-1.551 8.616zm.338 3.046-13-13 .708-.708 13 13-.707.707z"></path>
                                         </svg>
-                                        </button>
+
+                                        <svg v-else  width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.488 21.754c.294.157.663.156.957-.001 8.012-4.304 8.581-12.713 8.574-15.104a.988.988 0 0 0-.596-.903l-8.05-3.566a1.005 1.005 0 0 0-.813.001L3.566 5.747a.99.99 0 0 0-.592.892c-.034 2.379.445 10.806 8.514 15.115zM8.674 10.293l2.293 2.293 4.293-4.293 1.414 1.414-5.707 5.707-3.707-3.707 1.414-1.414z"></path></svg>
+
+                                         </button>
                                     </td>
                                 </tr>
                             </tbody>
