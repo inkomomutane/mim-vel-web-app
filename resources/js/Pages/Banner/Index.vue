@@ -4,21 +4,45 @@ import { Banners } from "@/types";
 import SpatieResponsiveImage from "@/Components/ResponsiveImage.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import UploadBanners from "./UploadBanners.vue";
-import { PropType } from "vue";
+import { PropType, watch } from "vue";
 import { ref } from "vue";
+import { FlasherResponse } from "@flasher/flasher";
+import Flasher from "@/helprs";
 
 const props = defineProps({
     banners: Object as PropType<Banners>,
+        messages: Object as PropType<FlasherResponse>,
 });
 
+
+watch(
+    () => props.messages,
+    (value) => {
+        value?.envelopes.forEach((element) => {
+            Flasher.flash(
+                element.notification.type,
+                element.notification.message
+            );
+        });
+    }
+);
+
 const links = ref(props.banners?.links);
+
+watch(
+    () => props.banners?.links,
+    (value) => {
+        links.value = value;
+    }
+);
+
 </script>
 <template>
     <Head title="Banners publicitários" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <UploadBanners />
-            <div class="grid grid-cols-3 gap-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                 <div
                     class="mx-4"
                     v-for="media in props.banners?.data"
@@ -55,14 +79,14 @@ const links = ref(props.banners?.links);
                         <Link
                             href=""
                             class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >&laquo; Previous</Link
+                            >&laquo; <strong class="hidden md:inline ">Previous</strong></Link
                         >
                     </li>
                     <li v-else>
                         <Link
                             class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                             :href="links[0].url ?? ''"
-                            >&laquo; Previous</Link
+                            >&laquo; <strong class="hidden md:inline ">Previous</strong></Link
                         >
                     </li>
                     <li v-for="link in links.slice(1, -1)" :key="link.label">
@@ -87,9 +111,9 @@ const links = ref(props.banners?.links);
                         v-if="links.slice(-1)[0].active"
                         class="disabled flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                        <span
+                        <strong
                             class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >Next &raquo;</span
+                            ><strong class="hidden md:inline p-0">Next</strong> &raquo;</strong
                         >
                     </li>
                     <li
@@ -97,7 +121,7 @@ const links = ref(props.banners?.links);
                         class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                         <Link :href="links.slice(-1)[0].url ?? ''"
-                            >Next &raquo;</Link
+                            ><strong class="hidden md:inline p-0">Next</strong> &raquo;</Link
                         >
                     </li>
                 </ul>

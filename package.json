@@ -26,6 +26,7 @@
         "@ckeditor/ckeditor5-build-classic": "^37.1.0",
         "@ckeditor/ckeditor5-vue": "^5.1.0",
         "@flasher/flasher": "^1.2.4",
+        "collect.js": "^4.36.1",
         "flowbite": "^1.6.5",
         "format": "^0.2.2",
         "pinia": "^2.0.34",

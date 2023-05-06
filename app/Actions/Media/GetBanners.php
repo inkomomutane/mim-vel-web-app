@@ -22,7 +22,8 @@ class GetBanners
         return MediaData::collection(
             Banner::first()->media()
             ->where('collection_name', 'banners')
-            ->paginate(8)
+            ->orderBy('updated_at','desc')
+            ->paginate(3)
         );
     }
 

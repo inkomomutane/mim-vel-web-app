@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Modal from "@/Components/Modal.vue";
 import { useForm } from "@inertiajs/vue3";
-import { PropType } from "vue";
+import { PropType, ref } from "vue";
 
 const props = defineProps({
     user: {
@@ -17,6 +17,8 @@ const props = defineProps({
         required: true,
     },
 });
+
+const statusInput = ref();
 
 const form = useForm({
     id: props.user.id,
@@ -65,7 +67,7 @@ const deleteUser = () => {
                 <form class="space-y-6" @submit.prevent="deleteUser">
 
 
-                    <input :hidden="true" name="status" v-model="form.status"  />
+                    <input v-bind:ref="statusInput" :hidden="true" name="status" v-model="form.status"  />
 
                     <button type="submit"
                         :class="(props.user.active ? ' bg-red-500 hover:bg-red-600  focus:ring-red-300' : 'bg-blue-500 hover:bg-blue-600  focus:ring-blue-300')"
