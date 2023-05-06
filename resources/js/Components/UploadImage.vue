@@ -312,7 +312,7 @@
                         <span class="mx-4">Fazer upload</span>
                     </button>
                     <button
-                        @click="clearCallback()"
+                        @click="clearUplodingImages(clearCallback)"
                         :disabled="!files || files.length === 0"
                         class="flex items-center justify-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm pr-4 dark:bg-slate-600 dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-slate-800"
                     >
@@ -394,6 +394,13 @@ export default {
             callback();
         };
 
+        const clearUplodingImages = (callback) => {
+
+            files.value = collect([]).all();
+            emit("update:images", files.value);
+            callback();
+        }
+
         const formatSize = (bytes) => {
             if (bytes === 0) return "0 B";
             const k = 1024;
@@ -405,6 +412,7 @@ export default {
         };
         return {
             onRemoveTemplatingFile,
+            clearUplodingImages,
             onSelectedFiles,
             uploadEvent,
             formatSize,
