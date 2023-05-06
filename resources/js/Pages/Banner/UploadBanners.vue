@@ -89,6 +89,7 @@ const uploadImges = () => form.post(route('banners.store'),{
                 <UploadImage
                 @update:images="(files) => form.images = files"
                 :uploader="uploadImges"
+                :multiple="true"
                 :progressUploadImage="uploadBannersProgress"
                   />
             </div>

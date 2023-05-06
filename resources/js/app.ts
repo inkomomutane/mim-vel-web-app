@@ -10,6 +10,7 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import PrimeVue from "primevue/config";
 import Tooltip from "primevue/tooltip";
 import CKEditor from "@ckeditor/ckeditor5-vue";
+import ConfirmationService from 'primevue/confirmationservice';
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 const pinia = createPinia();
@@ -28,6 +29,7 @@ createInertiaApp({
             .directive("tooltip", Tooltip)
             .use(CKEditor)
             .use(ZiggyVue, Ziggy)
+            .use(ConfirmationService)
             .mount(el);
     },
     progress: {

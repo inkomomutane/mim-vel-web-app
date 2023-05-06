@@ -8,6 +8,8 @@ import { PropType, watch } from "vue";
 import { ref } from "vue";
 import { FlasherResponse } from "@flasher/flasher";
 import Flasher from "@/helprs";
+import { useConfirm } from "primevue/useconfirm";
+import ConfirmDialog from "primevue/confirmdialog"
 
 const props = defineProps({
     banners: Object as PropType<Banners>,
@@ -29,6 +31,8 @@ watch(
 
 const links = ref(props.banners?.links);
 
+const confirm = useConfirm();
+
 watch(
     () => props.banners?.links,
     (value) => {
@@ -36,22 +40,46 @@ watch(
     }
 );
 
+
+const showTemplate = () => {
+    confirm.require({
+        group: 'templating',
+        header: 'Terms and Conditions',
+        message: 'Do you accept that?',
+        icon: 'pi pi-question-circle',
+        acceptIcon: 'pi pi-check',
+        rejectIcon: 'pi pi-times',
+        accept: () => {
+            alert('acepted');
+        },
+        reject: () => {
+            alert('rejected');
+        }
+});
+}
 </script>
 <template>
+
     <Head title="Banners publicitários" />
     <AuthenticatedLayout>
+
         <template v-slot:content>
             <UploadBanners />
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
                 <div
                     class="mx-4"
                     v-for="media in props.banners?.data"
                     :key="media.id"
                 >
-                    <SpatieResponsiveImage
-                        class="w-full h-60 object-cover m-5 rounded-md"
+                <SpatieResponsiveImage
+                        class="w-full h-60 object-cover rounded-md"
                         :responsive="media"
                         :key="media.id"
+
+                        @click="showTemplate()"
+
+                        label="Confirm" :aria-expanded="true" :aria-controls="true ? 'confirm' : null"
                     />
                 </div>
             </div>

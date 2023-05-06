@@ -3,7 +3,7 @@
         <FileUpload
             customUpload
             @uploader="uploader"
-            :multiple="true"
+            :multiple="multiple"
             accept="image/*"
             :maxFileSize="9000000"
             @select="onSelectedFiles"
@@ -360,6 +360,10 @@ export default {
         uploader: Function,
         successEvent: Function,
         errorEvent: Function,
+        multiple: {
+            type:Boolean,
+            required:true
+        },
         progressUploadImage:Boolean
     },
     emits:['update:images'],
