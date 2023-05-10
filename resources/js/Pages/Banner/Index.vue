@@ -9,7 +9,6 @@ import { ref } from "vue";
 import { FlasherResponse } from "@flasher/flasher";
 import Flasher from "@/helprs";
 import { useConfirm } from "primevue/useconfirm";
-import ConfirmDialog from "primevue/confirmdialog"
 
 const props = defineProps({
     banners: Object as PropType<Banners>,

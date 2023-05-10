@@ -3,7 +3,8 @@ import GuestLayout from "@/Layouts/GuestLayout.vue";
 import PageHeader from "@/Components/PageHeader.vue";
 import { Head } from "@inertiajs/vue3";
 import PageHero from "@/Components/PageHero.vue";
-import ResponsiveImage from "@/Components/ResponsiveImage.vue";
+import { ref } from "vue";
+import Dropdown from "primevue/dropdown";
 
 defineProps({
     imovel: {
@@ -11,6 +12,17 @@ defineProps({
         required: false,
     },
 });
+
+
+const selectedCity = ref();
+const cities = ref([
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' }
+]);
+
 </script>
 <template>
     <GuestLayout>
@@ -29,7 +41,7 @@ defineProps({
             </template>
             <template v-slot:content>
                 <div
-                    class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12"
+                    class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:pt-16 lg:px-12"
                 >
                     <h1
                         class="mb-4 text-2xl font-extrabold tracking-tight leading-none text-white md:text-3xl dark:text-white"
@@ -42,12 +54,21 @@ defineProps({
                     </h1>
                     <p
                         class="mb-8 text-xs font-normal text-white lg:text-sm sm:px-16 xl:px-48 dark:text-gray-400"
-                    ></p>
+                    >
+                       <div class="bg-slate-50 p-8 ">
+                            <Dropdown v-model="selectedCity"
+                            :options="cities" optionLabel="name"
+                             placeholder="Select a City" class=" mr-4 border border-slate-600 p-2 px-6 text-slate-400 bg-white"
+                             />
+                             <Dropdown v-model="selectedCity"
+                            :options="cities" optionLabel="name"
+                             placeholder="Select a City" class="  border border-slate-600 p-2 px-6 text-slate-400 bg-white"
+                             />
+
+                        </div>
+                    </p>
                 </div>
             </template>
         </PageHero>
-        <ResponsiveImage />
-        {{ $page.props.site }}
-        <section style="height: 9000px" class="top-0"></section>
     </GuestLayout>
 </template>

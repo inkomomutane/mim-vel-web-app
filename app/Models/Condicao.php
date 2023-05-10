@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * @property Collection|Imovel[] $imovels
  * @property-read int|null $imovels_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao query()
@@ -28,7 +27,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Condicao extends Model

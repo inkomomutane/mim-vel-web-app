@@ -17,13 +17,15 @@ class MediaData extends Data
        public ?string $preview_url,
        public ?int $size,
        public ?array $custom_properties,
-       public ?array $responsive_images,
+       public null|array|ResponsiveImageData $responsive_images,
        public ?string $srcsets,
     ) {
     }
 
-    public static function fromModel(Media $media)
+    public static function fromModel(Media $media = null)
     {
+
+        if(is_null($media)) return null;
 
         return new self(
             id: $media->id,

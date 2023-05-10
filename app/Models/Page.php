@@ -6,8 +6,15 @@
 
 namespace App\Models;
 
+use App\Data\PageData;
+use App\Support\Enums\Pages;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Class Page
@@ -19,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Section> $sections
  * @property-read int|null $sections_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page query()
@@ -28,23 +34,66 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereRoute($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUrl($value)
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Section> $sections
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Section> $sections
- *
+ * @property string $content
+ * @property string $name
+ * @property string $slogan
+ * @property string $location
+ * @property string $email
+ * @property string $facebook
+ * @property string $instagram
+ * @property string $whatsapp
+ * @property string $tiktok
+ * @property array $contacts
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereContacts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereFacebook($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereInstagram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlogan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereTiktok($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereWhatsapp($value)
  * @mixin \Eloquent
  */
-class Page extends Model
+class Page extends Model implements HasMedia
 {
-    protected $table = 'pages';
+    use InteractsWithMedia;
+    use HasFactory;
+    use WithData;
 
-    protected $fillable = [
-        'route',
-        'url',
+    protected $table = 'pages';
+    protected $casts = [
+        'contacts' => 'array'
     ];
 
-    public function sections()
+    protected $fillable = [
+        'name',
+        'content',
+        'slogan',
+        'email',
+        'location',
+        'facebook',
+        'instagram',
+        'whatsapp',
+        'tiktok',
+        'contacts'
+    ];
+
+    protected $dataClass = PageData::class;
+
+    public function registerMediaConversions(?Media $media = null): void
     {
-        return $this->morphMany(Section::class, 'sectionable');
+        $this->addMediaCollection(Pages::HOME)->singleFile();
+        $this->addMediaCollection(Pages::IMOVELS)->singleFile();
+        $this->addMediaCollection(Pages::ABOUT)->singleFile();
+        $this->addMediaCollection(Pages::CONTACT)->singleFile();
+        $this->addMediaCollection(Pages::TERMS)->singleFile();
+        $this->addMediaCollection(Pages::POLICY)->singleFile();
     }
+
 }

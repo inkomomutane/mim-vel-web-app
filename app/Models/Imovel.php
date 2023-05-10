@@ -69,7 +69,6 @@ use Spatie\Tags\HasTags;
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read int|null $tags_count
- *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
@@ -106,12 +105,12 @@ use Spatie\Tags\HasTags;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
- *
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable

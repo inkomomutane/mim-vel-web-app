@@ -32,12 +32,31 @@ declare namespace App.Data {
         preview_url: string | null;
         size: number | null;
         custom_properties: Array<any> | null;
-        responsive_images: App.Data.ResponsiveImageData | null;
+        responsive_images: App.Data.ResponsiveImageData | Array<any> | null;
         srcsets: string | null;
     };
     export type MediaLibraryOriginalData = {
         base64svg: string | null;
         urls: Array<any> | null;
+    };
+    export type PageData = {
+        id: number | null;
+        name: string | null;
+        content: string | null;
+        slogan: string | null;
+        email: string | null;
+        location: string | null;
+        facebook: string | null;
+        instagram: string | null;
+        whatsapp: string | null;
+        tiktok: string | null;
+        contacts: Array<any> | null;
+        homeMedia: App.Data.MediaData | null;
+        imovelsMedia: App.Data.MediaData | null;
+        aboutMedia: App.Data.MediaData | null;
+        contactMedia: App.Data.MediaData | null;
+        termsMedia: App.Data.MediaData | null;
+        policyMedia: App.Data.MediaData | null;
     };
     export type PolicyData = {
         politicas: string;

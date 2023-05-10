@@ -14,7 +14,7 @@ defineProps({
         <!-- Overlay -->
         <div
             :class="`absolute top-0 left-0 w-full h-full ${
-                noOpacity ? 'bg-slate-600 opacity-25' : 'bg-black opacity-70'
+                noOpacity ? 'bg-slate-600 opacity-80' : 'bg-slate-800  opacity-60'
             }`"
         ></div>
         <!-- Hero content -->

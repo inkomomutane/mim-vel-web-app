@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Cidade $cidade
  * @property Collection|Imovel[] $imovels
  * @property-read int|null $imovels_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro query()
@@ -31,7 +30,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Bairro extends Model
