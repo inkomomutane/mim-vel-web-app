@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Data\RoleData;
 use App\Models\Agenda;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Spatie\Permission\Models\Role;
@@ -40,6 +41,7 @@ class HandleInertiaRequests extends Middleware
             'messages' => flash()->render([], 'array'),
             'roles' => RoleData::collection(Role::all()),
             'mails' => Agenda::whereIsReaded(false)->count(),
+            'globals' => Page::first()->getData(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [

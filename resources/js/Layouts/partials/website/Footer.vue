@@ -2,32 +2,26 @@
 import { Link } from '@inertiajs/vue3';
 </script>
 <template>
-   <footer>
-        <div class="bg-gray-950 py-10 px-6 md:py-20 dark:bg-gray-200">
+   <footer class="selection:bg-primary-700 selection:text-white">
+        <div class="bg-gray-950 p-10 md:p-20 dark:bg-gray-200">
             <div class="mx-auto max-w-screen-xl">
-                <div class="lg:grid lg:grid-cols-5 md:justify-between">
-                    <div class="col-span-2 mb-6 md:mb-0">
+                <div class="grid grid-col-2 sm:grid-cols-3 md:cols-5 lg:grid-cols-6 justify-center lg:justify-between">
+                    <div class="col-span-2 sm:col-span-3 mb-6 md:mb-0 text-center md:text-start">
                         <a href="" class="flex items-center">
                             <img
                             src=""
-                                class="mr-3 h-8 text-white"
-                                alt="Mimóvel imobiliária"
+                                class="mr-3 h-8 text-orange-400 font-semibold"
+                                :alt="$page.props.globals.name ?? ''"
                             />
                         </a>
                         <p
-                            class="text-gray-400 dark:text-white py-10 lg:pb-2 lg:pt-4 pe-4"
+                            class="text-gray-400  dark:text-white py-10 lg:pr-10 lg:pb-2 lg:pt-4 pe-4 text-justify leading-relaxed"
                         >
-                        Se você pretende vender, arrendar, ou fazer investimentos imobiliários em Moçambique,
-                        especificamente nas grandes cidades Maputo, Beira, Nampula, Tete, Chimoio, etc., quer
-                        se trate de casas/moradia,
-                        escritórios, armazéns, terrenos, lojas e muito mais, você pode
-                        fazê-lo através da mimóvel Imobiliária.
-                        </p>
+                        {{  $page.props.globals.content }} </p>
+                        <span class="text-orange-400  font-bold space-y-2  text-center lg:text-start"> {{  $page.props.globals.name }}</span> <br>
+                        <span class="text-orange-400  font-bold italic text-center lg:text-start" > {{  $page.props.globals.slogan }} </span>
                     </div>
-                    <div
-                        class="col-span-3 grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4"
-                    >
-                        <div>
+                        <div  class="col-span-3 md:col-span-1 mt-4 lg:mt-0 text-center md:text-start">
                             <h2
                                 class="mb-6 text-sm font-semibold dark:text-gray-900 capitalize text-white"
                             >
@@ -48,15 +42,6 @@ import { Link } from '@inertiajs/vue3';
                                         >Todos imóveis</Link
                                     >
                                 </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h2
-                                class="mb-6 text-sm font-semibold dark:text-gray-900 capitalize text-white"
-                            >
-                                Empresa
-                            </h2>
-                            <ul class="dark:text-white text-gray-400 text-sm">
                                 <li class="mb-4">
                                     <Link
                                         href=""
@@ -64,7 +49,7 @@ import { Link } from '@inertiajs/vue3';
                                         >Sobre nós</Link
                                     >
                                 </li>
-                                <li>
+                                <li class="mb-4">
                                     <Link
                                         href=""
                                         class="hover:underline"
@@ -73,32 +58,27 @@ import { Link } from '@inertiajs/vue3';
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div  class="col-span-3 md:col-span-1  mt-4 lg:mt-0 text-center md:text-start ">
                             <h2
                                 class="mb-6 text-sm font-semibold dark:text-gray-900 capitalize text-white"
                             >
-                            Siga-nos
+                            Contactos
                             </h2>
                             <ul
                                 class="dark:text-gray-600 text-gray-400 text-sm"
                             >
                                 <li class="mb-4">
-                                    <a
-                                        href="https://fb.me/agreed"
-                                        class="hover:underline"
-                                        >Facebook</a
-                                    >
+                                    <address> {{ $page.props.globals.location  }}</address>
                                 </li>
-                                <li>
-                                    <a
-                                        href="https://instagram.com/agreed"
-                                        class="hover:underline"
-                                        >Instagram</a
-                                    >
+                                <li class="mb-4">
+                                    <a :href="`mailto:${$page.props.globals.email}`"> Email:  {{ $page.props.globals.email  }}</a>
+                                </li>
+                                <li class="mb-4" v-for="(phone,index) in $page.props.globals.contacts" :key="index">
+                                    <a :href="`tel:${phone}`"> Telefone:  {{ phone }} </a>
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="col-span-3 md:col-span-1 sm:col-span-1 text-center md:text-start mt-4 lg:mt-0">
                             <h2
                                 class="mb-6 text-sm font-semibold dark:text-gray-900 capitalize text-white"
                             >
@@ -107,7 +87,7 @@ import { Link } from '@inertiajs/vue3';
                             <ul
                                 class="dark:text-gray-600 text-gray-400 text-sm"
                             >
-                                <li class="mb-4">
+                            <li class="mb-4">
                                     <Link href="" class="hover:underline"
                                         >Políticas de privacidade</Link
                                     >
@@ -119,7 +99,6 @@ import { Link } from '@inertiajs/vue3';
                                 </li>
                             </ul>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -138,7 +117,7 @@ import { Link } from '@inertiajs/vue3';
             </div>
             <div class="flex text-sm mt-4 space-x-6 justify-center sm:mt-0">
                 <a
-                    href=""
+                    :href="$page.props.globals.facebook ?? ''"
                     class="text-gray-500 text-xs hover:text-gray-100 dark:hover:text-white"
                 >
                     <svg
@@ -155,7 +134,7 @@ import { Link } from '@inertiajs/vue3';
                     </svg>
                 </a>
                 <a
-                    href=""
+                :href="$page.props.globals.instagram ?? ''"
                     class="text-gray-500 hover:text-gray-100 dark:hover:text-white"
                 >
                     <svg

@@ -5,6 +5,7 @@ import { Head } from "@inertiajs/vue3";
 import PageHero from "@/Components/PageHero.vue";
 import { ref } from "vue";
 import Dropdown from "primevue/dropdown";
+import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 
 defineProps({
     imovel: {
@@ -31,13 +32,9 @@ const cities = ref([
         <PageHeader />
         <PageHero>
             <template v-slot:coverImage>
-                <picture>
-                    <img
-                        alt="Imovel slider pulbicidade"
-                        src="@/images/3.jpg"
-                        class="w-full h-full object-cover hover:object-scale-down object-center"
-                    />
-                </picture>
+
+                <ResponsiveImage  class=" object-cover h-fit mx-auto"  v-if="$page.props.globals != null" :responsive="$page.props.globals.homeMedia ?? undefined" />
+
             </template>
             <template v-slot:content>
                 <div

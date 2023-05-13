@@ -5,7 +5,6 @@ import { PropType } from "vue";
 const props = defineProps({
     responsive: {
         type: Object as PropType<App.Data.MediaData>,
-        required: true,
     },
     class: String,
     alt:String
@@ -19,11 +18,7 @@ const optimized = ref(props.responsive?.mime_type !== "image/webp");
         v-if="optimized"
         :class="class"
         :srcset="responsive?.srcsets ?? ''"
-        :src="
-            responsive?.original_url ??
-            ''
-        "
-
+        :src="responsive?.original_url ?? ''"
         loading="lazy"
         :alt="alt"
         sizes="1px"

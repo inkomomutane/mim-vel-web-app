@@ -66,7 +66,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <Head title="Politicas de privacidade" />
+    <Head title="Mimóvel páginas" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">
