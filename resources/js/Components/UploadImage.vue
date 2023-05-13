@@ -4,10 +4,11 @@
             customUpload
             @uploader="uploader"
             :multiple="multiple"
-            accept="image/*"
+            :accept="mediaType"
             :maxFileSize="9000000"
             @select="onSelectedFiles"
             :disabled="progressUploadImage"
+            :file-limit="multiple ? 50 : 1"
 
         >
             <template
@@ -180,55 +181,13 @@
                 </div>
             </template>
             <template #empty >
-                <div v-if="progressUploadImage == false"
-                    class="grid grid-cols-1 gap-2 mt-4 border border-dashed border-gray-400 rounded text-center justify-center p-8 dark:text-gray-200"
-                >
-                    <span class="mx-auto">
-                        <svg
-                            class="w-10 h-10 mx-auto"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            version="1.1"
-                            viewBox="0 0 36 36"
-                            preserveAspectRatio="xMidYMid meet"
-                            fill="currentColor"
-                        >
-                            <path
-                                class="currentColor dark:text-gray-100"
-                                d="M32.12,10H3.88A1.88,1.88,0,0,0,2,11.88V30.12A1.88,1.88,0,0,0,3.88,32H32.12A1.88,1.88,0,0,0,34,30.12V11.88A1.88,1.88,0,0,0,32.12,10ZM32,30H4V12H32Z"
-                            ></path>
-                            <path
-                                class="currentColor dark:text-gray-100"
-                                d="M8.56,19.45a3,3,0,1,0-3-3A3,3,0,0,0,8.56,19.45Zm0-4.6A1.6,1.6,0,1,1,7,16.45,1.6,1.6,0,0,1,8.56,14.85Z"
-                            ></path>
-                            <path
-                                class="currentColor dark:text-gray-100"
-                                d="M7.9,28l6-6,3.18,3.18L14.26,28h2l7.46-7.46L30,26.77v-2L24.2,19a.71.71,0,0,0-1,0l-5.16,5.16L14.37,20.5a.71.71,0,0,0-1,0L5.92,28Z"
-                            ></path>
-                            <path
-                                class="currentColor dark:text-gray-100"
-                                d="M30.14,3h0a1,1,0,0,0-1-1h-22a1,1,0,0,0-1,1h0V4h24Z"
-                            ></path>
-                            <path
-                                class="currentColor dark:text-gray-100"
-                                d="M32.12,7V7a1,1,0,0,0-1-1h-26a1,1,0,0,0-1,1h0V8h28Z"
-                            ></path>
-                            <rect
-                                class="currentColor dark:text-gray-100"
-                                x="0"
-                                y="0"
-                                width="36"
-                                height="36"
-                                fill-opacity="0"
-                            ></rect>
-                        </svg>
-                    </span>
-                    <p class="py-2">Arraste as imagens para esta area</p>
+                <div v-if="progressUploadImage == false">
+                    <slot  name="files"/>
                 </div>
-                <div v-else role="status" class=" rounded p-8 mt-2 border border-dashed bg-orange-50 dark:bg-slate-700 dark:border-slate-400 border-orange-400">
+                <div v-else role="status" class=" rounded p-2 mt-2 border border-dashed bg-orange-50 dark:bg-slate-700 dark:border-slate-400 border-orange-400">
                                     <svg
                                         aria-hidden="true"
-                                        class=" mx-auto w-16 h-16 text-gray-200  animate-spin dark:text-orange-50 fill-orange-500 dark:fill-slate-700"
+                                        class=" mx-auto w-8 h-8 text-gray-200  animate-spin dark:text-orange-50 fill-orange-500 dark:fill-slate-700"
                                         viewBox="0 0 100 101"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -244,6 +203,7 @@
                                     </svg>
                                     <span class="sr-only">Pendente...</span>
                 </div>
+
             </template>
 
             <template
@@ -255,7 +215,10 @@
                 }"
             >
                 <div
-                    class=" grid grid-cols-1 sm:grid-cols-3 mt-6 gap-2 text-gray-50 text-base w-screen"
+                    class=" grid grid-cols-1 gap-2 text-gray-50 text-base w-screen"
+
+                    :class="`${(disabledUpload && disabledCancel) ? '' : (disabledUpload || disabledCancel)?
+                    'sm:grid-cols-2' : 'sm:grid-cols-3' }`"
                 >
                     <button
                         @click="chooseCallback()"
@@ -284,11 +247,13 @@
                                 opacity=".4"
                             ></path>
                         </svg>
-                        <span class="mx-4"> Escolher imagens</span>
+                        <span class="mx-4">{{  labelText ?? 'Upload image'  }} </span>
                     </button>
-                    <button
+                    <button v-if="!disabledUpload"
                         @click="uploadEvent(uploadCallback)"
-                        :disabled="!files || files.length === 0"
+                        :disabled="disabledUpload || !files || files.length === 0"
+
+                        :class="{disabledUpload: 'bg-transparent w-0'}"
                         class="flex items-center justify-center text-white bg-violet-700 hover:bg-violet-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm pr-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-slate-800"
                     >
                         <svg
@@ -309,9 +274,10 @@
                             <line x1="12" y1="3" x2="12" y2="15"></line>
                         </svg>
 
-                        <span class="mx-4">Fazer upload</span>
+                        <span class="mx-4">Upload</span>
                     </button>
                     <button
+                        v-if="!disabledCancel"
                         @click="clearUplodingImages(clearCallback)"
                         :disabled="!files || files.length === 0"
                         class="flex items-center justify-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm pr-4 dark:bg-slate-600 dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-slate-800"
@@ -340,7 +306,7 @@
                             ></rect>
                         </svg>
 
-                        <span class="px-4">Cancelar</span>
+                        <span class="px-4">Cancel</span>
                     </button>
                 </div>
             </template>
@@ -360,6 +326,16 @@ export default {
         uploader: Function,
         successEvent: Function,
         errorEvent: Function,
+        mediaType:String,
+        disabledUpload: {
+            type:Boolean,
+            required:true
+        },
+        labelText:String,
+        disabledCancel:{
+            type:Boolean,
+            required:true
+        },
         multiple: {
             type:Boolean,
             required:true
@@ -386,7 +362,13 @@ export default {
         };
 
         const onSelectedFiles = (event) => {
-            files.value = event.files;
+            if(props.multiple){
+                files.value = event.files;
+            }
+            else {
+                files.value = [collect(event.files).last()];
+            }
+
             files.value.forEach((file) => {
                 totalSize.value += parseInt(formatSize(file.size));
             });
@@ -423,6 +405,7 @@ export default {
             totalSize,
             totalSizePercent,
             files,
+
         }
     },
 };

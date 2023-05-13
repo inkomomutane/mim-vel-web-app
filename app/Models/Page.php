@@ -86,14 +86,13 @@ class Page extends Model implements HasMedia
 
     protected $dataClass = PageData::class;
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaCollections(): void
     {
-        $this->addMediaCollection(Pages::HOME)->singleFile();
-        $this->addMediaCollection(Pages::IMOVELS)->singleFile();
-        $this->addMediaCollection(Pages::ABOUT)->singleFile();
-        $this->addMediaCollection(Pages::CONTACT)->singleFile();
-        $this->addMediaCollection(Pages::TERMS)->singleFile();
-        $this->addMediaCollection(Pages::POLICY)->singleFile();
+        $this->addMediaCollection(Pages::HOME)->withResponsiveImages()->singleFile();
+        $this->addMediaCollection(Pages::IMOVELS)->withResponsiveImages()->singleFile();
+        $this->addMediaCollection(Pages::ABOUT)->withResponsiveImages()->singleFile();
+        $this->addMediaCollection(Pages::CONTACT)->withResponsiveImages()->singleFile();
+        $this->addMediaCollection(Pages::TERMS)->withResponsiveImages()->singleFile();
+        $this->addMediaCollection(Pages::POLICY)->withResponsiveImages()->singleFile();
     }
-
 }

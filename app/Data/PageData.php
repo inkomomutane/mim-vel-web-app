@@ -51,7 +51,6 @@ class PageData extends Data
             contactMedia: MediaData::fromModel($page->getFirstMedia(Pages::CONTACT)),
             termsMedia: MediaData::fromModel($page->getFirstMedia(Pages::TERMS)),
             policyMedia: MediaData::fromModel($page->getFirstMedia(Pages::POLICY))
-
         );
     }
 }
