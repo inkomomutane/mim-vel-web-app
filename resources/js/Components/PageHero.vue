@@ -7,7 +7,7 @@ defineProps({
     <div class="relative">
         <!-- Carousel background -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
-            <div class="carousel h-full">
+            <div class="carousel">
                 <slot name="coverImage"></slot>
             </div>
         </div>
@@ -18,10 +18,11 @@ defineProps({
             }`"
         ></div>
         <!-- Hero content -->
-        <div class="relative container mx-auto px-4 py-16 min-h-fit">
+        <div class="relative container mx-auto px-4  min-h-fit">
             <section class="bg-transparent">
                 <slot name="content"></slot>
             </section>
         </div>
+        <slot/>
     </div>
 </template>

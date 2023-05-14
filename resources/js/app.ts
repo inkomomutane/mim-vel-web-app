@@ -1,3 +1,4 @@
+import { SwiperOptions } from './../../node_modules/swiper/types/swiper-options.d';
 import "./bootstrap";
 import "primevue/resources/primevue.min.css";
 import "../css/app.css";
@@ -11,6 +12,11 @@ import PrimeVue from "primevue/config";
 import Tooltip from "primevue/tooltip";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ConfirmationService from 'primevue/confirmationservice';
+// import function to register Swiper custom elements
+import { register } from 'swiper/element';
+// register Swiper custom elements
+register();
+
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 const pinia = createPinia();

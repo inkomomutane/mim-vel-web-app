@@ -275,7 +275,7 @@ onMounted(() => {
                             >Imagem para slider da página home</label
                         >
                         <UploadImage
-                            @update:images="(files) => (form.homeMedia = files)"
+                            @update:images="(files:any) => (form.homeMedia = files)"
                             :multiple="false"
                             :disabledUpload="true"
                             :disabledCancel="true"
@@ -304,7 +304,7 @@ onMounted(() => {
                         >
                         <UploadImage
                             @update:images="
-                                (files) => (form.imovelsMedia = files)
+                                (files:any) => (form.imovelsMedia = files)
                             "
                             :multiple="false"
                             :disabledUpload="true"
@@ -332,7 +332,7 @@ onMounted(() => {
                         >
                         <UploadImage
                             @update:images="
-                                (files) => (form.aboutMedia = files)
+                                (files:any) => (form.aboutMedia = files)
                             "
                             :multiple="false"
                             :disabledUpload="true"
@@ -359,7 +359,7 @@ onMounted(() => {
                         >
                         <UploadImage
                             @update:images="
-                                (files) => (form.contactMedia = files)
+                                (files:any) => (form.contactMedia = files)
                             "
                             :multiple="false"
                             :disabledUpload="true"
@@ -388,7 +388,7 @@ onMounted(() => {
                         >
                         <UploadImage
                             @update:images="
-                                (files) => (form.termsMedia = files)
+                                (files:any) => (form.termsMedia = files)
                             "
                             :multiple="false"
                             :disabledUpload="true"
@@ -417,7 +417,7 @@ onMounted(() => {
                         >
                         <UploadImage
                             @update:images="
-                                (files) => (form.policyMedia = files)
+                                (files:any) => (form.policyMedia = files)
                             "
                             :multiple="false"
                             :disabledUpload="true"

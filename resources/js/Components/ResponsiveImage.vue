@@ -6,7 +6,9 @@ const props = defineProps({
     responsive: {
         type: Object as PropType<App.Data.MediaData>,
     },
+    //@deprecated
     class: String,
+    className: String,
     alt:String
 });
 
@@ -16,10 +18,11 @@ const optimized = ref(props.responsive?.mime_type !== "image/webp");
 <template>
     <img
         v-if="optimized"
-        :class="class"
+        :class="className"
         :srcset="responsive?.srcsets ?? ''"
         :src="responsive?.original_url ?? ''"
         loading="lazy"
+
         :alt="alt"
         sizes="1px"
         onload="window.requestAnimationFrame(function(){if(!(size=getBoundingClientRect().width))return;onload=null;sizes=Math.ceil(size/window.innerWidth*100)+'vw';});"

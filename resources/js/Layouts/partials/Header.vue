@@ -83,14 +83,6 @@
                             ></path>
                         </svg>
                     </button>
-
-                    <SearchModal
-                        id="search-modal"
-                        searchId="search"
-                        :modalOpen="searchModalOpen"
-                        @open-modal="searchModalOpen = true"
-                        @close-modal="searchModalOpen = false"
-                    />
                     <!-- Divider -->
                     <hr class="w-px h-6 bg-gray-200" />
                     <UserMenu align="right" />

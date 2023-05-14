@@ -24,7 +24,9 @@ module.exports = {
             },
             fontFamily: {
                 body: [
+
                     "Jost",
+                    "Open Sans",
                     "Noto Sans",
                     "ui-sans-serif",
                     "system-ui",
@@ -43,6 +45,7 @@ module.exports = {
                 ],
                 sans: [
                     "Jost",
+                    "Open Sans",
                     "Noto Sans",
                     "ui-sans-serif",
                     "system-ui",
@@ -123,6 +126,7 @@ module.exports = {
     plugins: [
         // eslint-disable-next-line global-require
         require("@tailwindcss/forms"),
+        require('@tailwindcss/typography'),
         require("flowbite/plugin"),
         // require('@tailwindcss/line-clamp'),
         // add custom variant for expanding sidebar

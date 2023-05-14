@@ -87,7 +87,7 @@ const uploadImges = () => form.post(route('banners.store'),{
             </button>
             <div class="px-6 py-6 lg:px-8 h-full">
                 <UploadImage
-                @update:images="(files) => form.images = files"
+                @update:images="(files : any) => form.images = files"
                 :uploader="uploadImges"
                 :multiple="true"
                 :disabledUpload="false"
