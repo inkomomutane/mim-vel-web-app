@@ -7,22 +7,19 @@ let showMenu = ref(false);
 const changeMenuStatus = () => (showMenu.value = !showMenu.value);
 
 const props = defineProps({
-    solidBg:Boolean
-})
+    solidBg: Boolean,
+});
 
 onMounted(() => {
     let navigatorText = document.querySelector("#navigation");
-    if(props.solidBg == true ){
+    if (props.solidBg == true) {
         navigatorText?.classList.remove(
             "lg:bg-transparent",
             "lg:text-white",
             "ease-in-out"
         );
-        navigatorText?.classList.add(
-            "lg:bg-white",
-            "lg:text-gray-700",
-        );
-    }else{
+        navigatorText?.classList.add("lg:bg-white", "lg:text-gray-700");
+    } else {
         navigatorText?.classList.remove(
             "lg:bg-white",
             "lg:text-gray-700",
@@ -34,7 +31,7 @@ onMounted(() => {
             "ease-in-out"
         );
     }
-})
+});
 
 const activeLinkCss =
     "uppercase text-orange-500  block py-2 pr-4 pl-3 rounded lg:bg-transparent lg:text-primary-550 lg:p-0 dark:text-white";
@@ -44,53 +41,52 @@ const linkCss =
 window.addEventListener("scroll", () => {
     const navigator = document.querySelector("#navigation");
 
-        let y = 1 + (window.scrollY || window.pageYOffset) / 150;
-        y = y < 1 ? 1 : y;
-            if (y > 1) {
-                if(props.solidBg != true ){
-                navigator?.classList.remove(
-                    "lg:bg-transparent",
-                    "lg:text-white",
-                    "ease-in-out"
-                );
-                navigator?.classList.add(
-                    "lg:bg-white",
-                    "lg:text-gray-700",
-                    "ease-in-out"
-                );
-                }else{
-                navigator?.classList.add(
-                    "lg:bg-white",
-                    "lg:text-gray-700",
-                    "ease-in-out"
-                );
-            }
-        }else{
-            if(props.solidBg == true ){
-                navigator?.classList.remove(
-                    "lg:bg-transparent",
-                    "lg:text-white",
-                    "ease-in-out"
-                );
-                navigator?.classList.add(
-                    "lg:bg-white",
-                    "lg:text-gray-700",
-                    "ease-in-out"
-                );
-                }   else{
-                navigator?.classList.remove(
-                    "lg:bg-white",
-                    "lg:text-gray-700",
-                    "ease-in-out"
-                );
-                navigator?.classList.add(
-                    "lg:bg-transparent",
-                    "lg:text-white",
-                    "ease-in-out"
-                );
-            }
-
+    let y = 1 + (window.scrollY || window.pageYOffset) / 150;
+    y = y < 1 ? 1 : y;
+    if (y > 1) {
+        if (props.solidBg != true) {
+            navigator?.classList.remove(
+                "lg:bg-transparent",
+                "lg:text-white",
+                "ease-in-out"
+            );
+            navigator?.classList.add(
+                "lg:bg-white",
+                "lg:text-gray-700",
+                "ease-in-out"
+            );
+        } else {
+            navigator?.classList.add(
+                "lg:bg-white",
+                "lg:text-gray-700",
+                "ease-in-out"
+            );
         }
+    } else {
+        if (props.solidBg == true) {
+            navigator?.classList.remove(
+                "lg:bg-transparent",
+                "lg:text-white",
+                "ease-in-out"
+            );
+            navigator?.classList.add(
+                "lg:bg-white",
+                "lg:text-gray-700",
+                "ease-in-out"
+            );
+        } else {
+            navigator?.classList.remove(
+                "lg:bg-white",
+                "lg:text-gray-700",
+                "ease-in-out"
+            );
+            navigator?.classList.add(
+                "lg:bg-transparent",
+                "lg:text-white",
+                "ease-in-out"
+            );
+        }
+    }
 });
 </script>
 <template>
@@ -109,7 +105,7 @@ window.addEventListener("scroll", () => {
                         alt="Mimóvel"
                     />
                 </Link>
-                <div class="flex items-center lg:order-2">
+                <section class="flex items-center lg:order-2">
                     <button
                         data-collapse-toggle="mobile-menu-2"
                         @click="changeMenuStatus"
@@ -143,8 +139,8 @@ window.addEventListener("scroll", () => {
                             ></path>
                         </svg>
                     </button>
-                </div>
-                <div
+                </section>
+                <section
                     :class="
                         !showMenu
                             ? 'hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1'
@@ -158,7 +154,11 @@ window.addEventListener("scroll", () => {
                         <li>
                             <Link
                                 :href="route('welcome')"
-                                :class="route().current('welcome') ? activeLinkCss : linkCss"
+                                :class="
+                                    route().current('welcome')
+                                        ? activeLinkCss
+                                        : linkCss
+                                "
                             >
                                 Início
                             </Link>
@@ -174,14 +174,22 @@ window.addEventListener("scroll", () => {
                         <li>
                             <Link
                                 :href="route('website.about')"
-                                :class="route().current('website.about') ? activeLinkCss : linkCss"
+                                :class="
+                                    route().current('website.about')
+                                        ? activeLinkCss
+                                        : linkCss
+                                "
                                 >Sobre nós</Link
                             >
                         </li>
                         <li>
                             <Link
                                 :href="route('website.contact')"
-                                :class="route().current('website.contact') ? activeLinkCss : linkCss"
+                                :class="
+                                    route().current('website.contact')
+                                        ? activeLinkCss
+                                        : linkCss
+                                "
                                 >Contactos</Link
                             >
                         </li>
@@ -189,19 +197,27 @@ window.addEventListener("scroll", () => {
                         <li v-show="route().current('website.terms')">
                             <Link
                                 :href="route('website.terms')"
-                                :class="route().current('website.terms') ? activeLinkCss : linkCss"
+                                :class="
+                                    route().current('website.terms')
+                                        ? activeLinkCss
+                                        : linkCss
+                                "
                                 >Termos e condições</Link
                             >
                         </li>
                         <li v-show="route().current('website.policy')">
                             <Link
                                 :href="route('website.policy')"
-                                :class="route().current('website.policy') ? activeLinkCss : linkCss"
+                                :class="
+                                    route().current('website.policy')
+                                        ? activeLinkCss
+                                        : linkCss
+                                "
                                 >Politicas de privacidade</Link
                             >
                         </li>
                     </ul>
-                </div>
+                </section>
             </div>
         </nav>
     </header>

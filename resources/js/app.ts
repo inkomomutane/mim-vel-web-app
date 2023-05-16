@@ -1,4 +1,4 @@
-import { SwiperOptions } from './../../node_modules/swiper/types/swiper-options.d';
+import { SwiperOptions } from "./../../node_modules/swiper/types/swiper-options.d";
 import "./bootstrap";
 import "primevue/resources/primevue.min.css";
 import "../css/app.css";
@@ -11,9 +11,9 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import PrimeVue from "primevue/config";
 import Tooltip from "primevue/tooltip";
 import CKEditor from "@ckeditor/ckeditor5-vue";
-import ConfirmationService from 'primevue/confirmationservice';
+import ConfirmationService from "primevue/confirmationservice";
 // import function to register Swiper custom elements
-import { register } from 'swiper/element';
+import { register } from "swiper/element";
 // register Swiper custom elements
 register();
 

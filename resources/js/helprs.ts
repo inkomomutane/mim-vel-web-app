@@ -65,7 +65,7 @@ bg-blue-400 dark:text-blue-100 dark:bg-gray-600" role="alert">
    <div class="ml-3 text-sm font-medium"> ${message} </div>
 </div>`;
 
-export const tooltip = (message: string,className:string = 'ml-5') => {
+export const tooltip = (message: string, className: string = "ml-5") => {
     return {
         value: `<h4 class='text-white p-2 dark:text-slate-900 text-sm'>${message}</h4>`,
         escape: true,
@@ -73,4 +73,3 @@ export const tooltip = (message: string,className:string = 'ml-5') => {
         class: `bg-slate-950 dark:bg-slate-100 ${className} rounded `,
     };
 };
-

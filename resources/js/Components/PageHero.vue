@@ -14,15 +14,17 @@ defineProps({
         <!-- Overlay -->
         <div
             :class="`absolute top-0 left-0 w-full h-full ${
-                noOpacity ? 'bg-slate-600 opacity-80' : 'bg-slate-800  opacity-60'
+                noOpacity
+                    ? 'bg-slate-600 opacity-80'
+                    : 'bg-slate-800  opacity-60'
             }`"
         ></div>
         <!-- Hero content -->
-        <div class="relative container mx-auto px-4  min-h-fit">
+        <div class="relative container mx-auto px-4 min-h-fit">
             <section class="bg-transparent">
                 <slot name="content"></slot>
             </section>
         </div>
-        <slot/>
+        <slot />
     </div>
 </template>

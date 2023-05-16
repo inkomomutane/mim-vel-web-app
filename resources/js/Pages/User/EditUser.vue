@@ -23,7 +23,6 @@ const nameInput = ref<String | any>(props.user.name);
 const emailInput = ref<String | any>(props.user.email);
 const contactoInput = ref<String | any>(props.user.contacto);
 
-
 const form = useForm({
     id: props.user.id,
     name: props.user.name,
@@ -79,8 +78,7 @@ const updateUser = () => {
                     Editar usuário
                 </h3>
                 <form class="space-y-6" @submit.prevent="updateUser">
-
-                    <div class="grid  grid-cols-1 sm:grid-cols-2  gap-2 ">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                             <label
                                 for="name"
@@ -96,9 +94,10 @@ const updateUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Nome do usuário"
                             />
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.name
-                            }}</span>
+                            <span
+                                class="text-medium text-red-500 font-semibold"
+                                >{{ form.errors.name }}</span
+                            >
                         </div>
                         <div>
                             <label
@@ -115,13 +114,14 @@ const updateUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Email"
                             />
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.email
-                            }}</span>
+                            <span
+                                class="text-medium text-red-500 font-semibold"
+                                >{{ form.errors.email }}</span
+                            >
                         </div>
                     </div>
 
-                    <div class="grid  grid-cols-1 sm:grid-cols-2  gap-2 ">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                             <label
                                 for="contacto"
@@ -137,9 +137,10 @@ const updateUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Contacto"
                             />
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.contacto
-                            }}</span>
+                            <span
+                                class="text-medium text-red-500 font-semibold"
+                                >{{ form.errors.contacto }}</span
+                            >
                         </div>
                         <div>
                             <label
@@ -148,30 +149,30 @@ const updateUser = () => {
                                 >Previlêgio</label
                             >
                             <Dropdown
-                            v-model="form.role"
-                            optionValue="id"
-                            :options="($page.props.roles as any)"
-                            optionLabel="name"
-                            placeholder="Previlêgio"
-
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        >
-                            <template #option="slotProps">
-                                <div
-                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
-                                    :class="
-                                        form.role == slotProps.option.id
-                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
-                                            : ''
-                                    "
-                                >
-                                    <div>{{ slotProps.option.name }}</div>
-                                </div>
-                            </template>
-                        </Dropdown>
-                            <span class="text-medium text-red-500 font-semibold">{{
-                                form.errors.role
-                            }}</span>
+                                v-model="form.role"
+                                optionValue="id"
+                                :options="($page.props.roles as any)"
+                                optionLabel="name"
+                                placeholder="Previlêgio"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            >
+                                <template #option="slotProps">
+                                    <div
+                                        class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                        :class="
+                                            form.role == slotProps.option.id
+                                                ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                                : ''
+                                        "
+                                    >
+                                        <div>{{ slotProps.option.name }}</div>
+                                    </div>
+                                </template>
+                            </Dropdown>
+                            <span
+                                class="text-medium text-red-500 font-semibold"
+                                >{{ form.errors.role }}</span
+                            >
                         </div>
                     </div>
 

@@ -88,8 +88,8 @@ export type PageProps<
     mails: {
         type: Number;
     };
-    globals : App.Data.PageData;
-    roles:{
-        type:Array<App.Data.RoleData>
+    globals: App.Data.PageData;
+    roles: {
+        type: Array<App.Data.RoleData>;
     };
 };

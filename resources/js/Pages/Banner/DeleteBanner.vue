@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Modal from "@/Components/Modal.vue";
 import { useForm } from "@inertiajs/vue3";
-import { PropType, ref } from "vue";
+import { PropType } from "vue";
 
 const props = defineProps({
-    user: {
-        type: Object as PropType<App.Data.UserData>,
+    banner: {
+        type: Object as PropType<App.Data.MediaData>,
         required: true,
     },
     close: {
@@ -18,17 +18,12 @@ const props = defineProps({
     },
 });
 
-const statusInput = ref();
+const form = useForm({id: props.banner.id});
 
-const form = useForm({
-    id: props.user.id,
-    status: !props.user.active,
-});
-
-const deleteUser = () => {
+const deleteBanner = () => {
     form.delete(
-        route("user.status", {
-            user: props.user.id as number,
+        route("banners.delete", {
+            media: props.banner.id as number,
         }),
         {
             preserveScroll: true,
@@ -36,6 +31,7 @@ const deleteUser = () => {
                 form.reset();
                 props.close();
             },
+            onFinish: () => form.reset(),
         }
     );
 };
@@ -64,27 +60,17 @@ const deleteUser = () => {
                 <span class="sr-only">Fechar</span>
             </button>
             <div class="px-6 py-6 lg:px-8">
-                <form class="space-y-6" @submit.prevent="deleteUser">
-                    <input
-                        v-bind:ref="statusInput"
-                        :hidden="true"
-                        name="status"
-                        v-model="form.status"
-                    />
-
+                <h3
+                    class="mb-4 text-md font-medium text-gray-900 dark:text-white"
+                >
+                    Tem certeza que quer excluir esse banner?
+                </h3>
+                <form class="space-y-6" @submit.prevent="deleteBanner">
                     <button
                         type="submit"
-                        :class="
-                            props.user.active
-                                ? ' bg-red-500 hover:bg-red-600  focus:ring-red-300'
-                                : 'bg-blue-500 hover:bg-blue-600  focus:ring-blue-300'
-                        "
-                        class="w-full mt-8 text-white focus:ring-4 focus:outline-none font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-800 dark:focus:ring-slate-200"
+                        class="w-full text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-800 dark:focus:ring-slate-200"
                     >
-                        <span v-if="props.user.active"
-                            >Bloquear conta deste usuário.</span
-                        >
-                        <span v-else>Habilitar conta deste usuário.</span>
+                        Confirmar
                     </button>
                 </form>
             </div>

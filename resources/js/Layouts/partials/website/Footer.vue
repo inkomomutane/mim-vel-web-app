@@ -1163,7 +1163,7 @@ import { Link } from "@inertiajs/vue3";
         class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
     >
         <div
-            class="mx-auto max-w-screen-xl  pb-6 pt-16 sm:px-6 lg:px-16 lg:pt-24"
+            class="mx-auto max-w-screen-xl pb-6 pt-16 sm:px-6 lg:px-16 lg:pt-24"
         >
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
                 <div class="lg:col-span-2">
@@ -1465,7 +1465,7 @@ import { Link } from "@inertiajs/vue3";
                             class="inline-block text-orange-600 underline transition hover:text-orange-600/75 dark:text-orange-500 dark:hover:text-orange-500/75"
                             :href="route('website.terms')"
                         >
-                        Termos & condições
+                            Termos & condições
                         </Link>
 
                         <span>&middot;</span>

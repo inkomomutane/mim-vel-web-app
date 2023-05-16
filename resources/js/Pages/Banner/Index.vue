@@ -2,19 +2,18 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Banners } from "@/types";
 import SpatieResponsiveImage from "@/Components/ResponsiveImage.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 import UploadBanners from "./UploadBanners.vue";
 import { PropType, watch } from "vue";
 import { ref } from "vue";
 import { FlasherResponse } from "@flasher/flasher";
 import Flasher from "@/helprs";
 import { useConfirm } from "primevue/useconfirm";
-
+import DeleteBanner from "./DeleteBanner.vue";
 const props = defineProps({
     banners: Object as PropType<Banners>,
-        messages: Object as PropType<FlasherResponse>,
+    messages: Object as PropType<FlasherResponse>,
 });
-
 
 watch(
     () => props.messages,
@@ -29,7 +28,8 @@ watch(
 );
 
 const links = ref(props.banners?.links);
-
+const deletingBannerTrigger = ref(false);
+const deletingBanner = ref<App.Data.MediaData | null>(null);
 const confirm = useConfirm();
 
 watch(
@@ -39,47 +39,81 @@ watch(
     }
 );
 
-
 const showTemplate = () => {
     confirm.require({
-        group: 'templating',
-        header: 'Terms and Conditions',
-        message: 'Do you accept that?',
-        icon: 'pi pi-question-circle',
-        acceptIcon: 'pi pi-check',
-        rejectIcon: 'pi pi-times',
+        group: "templating",
+        header: "Terms and Conditions",
+        message: "Do you accept that?",
+        icon: "pi pi-question-circle",
+        acceptIcon: "pi pi-check",
+        rejectIcon: "pi pi-times",
         accept: () => {
-            alert('acepted');
+            alert("acepted");
         },
         reject: () => {
-            alert('rejected');
-        }
-});
+            alert("rejected");
+        },
+    });
+};
+
+
+function openDeleteBannerModal(banner: App.Data.MediaData) {
+    deletingBanner.value = banner;
+    deletingBannerTrigger.value = true;
+}
+
+function closeDeleteBannerModal() {
+    deletingBanner.value = null;
+    deletingBannerTrigger.value = false;
 }
 </script>
-<template>
 
+<template>
     <Head title="Banners publicitários" />
     <AuthenticatedLayout>
-
         <template v-slot:content>
             <UploadBanners />
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5"
+            >
                 <div
-                    class="mx-4"
+                    class="mx-4 "
                     v-for="media in props.banners?.data"
                     :key="media.id"
                 >
-                <SpatieResponsiveImage
-                        class="w-full h-60 object-cover rounded-md"
-                        :responsive="media"
-                        :key="media.id"
+                    <button class="relative group hover:ring-2 hover:ring-red-400 rounded-md"
 
-                        @click="showTemplate()"
+                    @click="openDeleteBannerModal(media)">
+                        <SpatieResponsiveImage
+                            class-name="w-screen h-60 object-cover rounded-md hover:bg-slate-900 hover:opacity-90 hover:shadow-lg"
+                            :responsive="media"
+                            :key="media.id"
+                            @click="showTemplate()"
+                            label="Confirm"
+                            :aria-expanded="true"
+                            :aria-controls="true ? 'confirm' : null"
+                        />
 
-                        label="Confirm" :aria-expanded="true" :aria-controls="true ? 'confirm' : null"
-                    />
+                        <button
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 bg-red-500 text-white rounded-xl w-10 h-10 flex items-center justify-center transition duration-300 ease-in-out group-hover:opacity-100"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                class="h-6 w-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                ></path>
+                            </svg>
+                        </button>
+                    </button>
                 </div>
             </div>
             <nav
@@ -106,14 +140,20 @@ const showTemplate = () => {
                         <Link
                             href=""
                             class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >&laquo; <strong class="hidden md:inline ">Previous</strong></Link
+                            >&laquo;
+                            <strong class="hidden md:inline"
+                                >Previous</strong
+                            ></Link
                         >
                     </li>
                     <li v-else>
                         <Link
                             class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                             :href="links[0].url ?? ''"
-                            >&laquo; <strong class="hidden md:inline ">Previous</strong></Link
+                            >&laquo;
+                            <strong class="hidden md:inline"
+                                >Previous</strong
+                            ></Link
                         >
                     </li>
                     <li v-for="link in links.slice(1, -1)" :key="link.label">
@@ -140,7 +180,8 @@ const showTemplate = () => {
                     >
                         <strong
                             class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            ><strong class="hidden md:inline p-0">Next</strong> &raquo;</strong
+                            ><strong class="hidden md:inline p-0">Next</strong>
+                            &raquo;</strong
                         >
                     </li>
                     <li
@@ -148,11 +189,18 @@ const showTemplate = () => {
                         class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                         <Link :href="links.slice(-1)[0].url ?? ''"
-                            ><strong class="hidden md:inline p-0">Next</strong> &raquo;</Link
+                            ><strong class="hidden md:inline p-0">Next</strong>
+                            &raquo;</Link
                         >
                     </li>
                 </ul>
             </nav>
+            <DeleteBanner
+                v-if="deletingBanner"
+                :banner="deletingBanner"
+                :openModal="deletingBannerTrigger"
+                :close="closeDeleteBannerModal"
+            />
         </template>
     </AuthenticatedLayout>
 </template>

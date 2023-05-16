@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import Modal from "@/Components/Modal.vue";
-import { ref,PropType,watch } from "vue";
+import { ref, PropType, watch } from "vue";
 import UploadImage from "@/Components/UploadImage.vue";
 import { useForm } from "@inertiajs/vue3";
 
-
-
 const uploadBanners = ref(false);
 const uploadBannersProgress = ref(false);
-const form  = useForm({images:[]});
+const form = useForm({ images: [] });
 
 const uploadBannersTrigger = () => {
     uploadBanners.value = true;
@@ -20,9 +18,10 @@ const closeUloadBannersModal = () => {
     form.reset();
 };
 
-const uploadImges = () => form.post(route('banners.store'),{
-        forceFormData:true,
-        onProgress : () => uploadBannersProgress.value = true,
+const uploadImges = () =>
+    form.post(route("banners.store"), {
+        forceFormData: true,
+        onProgress: () => (uploadBannersProgress.value = true),
         onSuccess: () => {
             closeUloadBannersModal();
             form.reset();
@@ -87,14 +86,14 @@ const uploadImges = () => form.post(route('banners.store'),{
             </button>
             <div class="px-6 py-6 lg:px-8 h-full">
                 <UploadImage
-                @update:images="(files : any) => form.images = files"
-                :uploader="uploadImges"
-                :multiple="true"
-                :disabledUpload="false"
-                :disabledCancel="false"
-                mediaType="image/*"
-                :progressUploadImage="uploadBannersProgress"
-                  />
+                    @update:images="(files : any) => form.images = files"
+                    :uploader="uploadImges"
+                    :multiple="true"
+                    :disabledUpload="false"
+                    :disabledCancel="false"
+                    mediaType="image/*"
+                    :progressUploadImage="uploadBannersProgress"
+                />
             </div>
         </div>
     </Modal>

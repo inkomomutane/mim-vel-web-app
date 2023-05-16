@@ -29,7 +29,7 @@ const form = useForm({
 const createUser = () => {
     form.post(route("user.store"), {
         preserveScroll: true,
-        onSuccess: () =>  closeCreateUserModal(),
+        onSuccess: () => closeCreateUserModal(),
         onError: () => nameInput.value.focus(),
     });
 };
@@ -82,7 +82,7 @@ const createUser = () => {
             >
                 <svg
                     aria-hidden="true"
-                             class="w-5 h-5"
+                    class="w-5 h-5"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +102,7 @@ const createUser = () => {
                     Novo usuário
                 </h3>
                 <form class="space-y-6" @submit.prevent="createUser">
-
-                    <div class="grid  grid-cols-1 sm:grid-cols-2  gap-2 ">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                             <label
                                 for="name"
@@ -119,7 +118,7 @@ const createUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Nome do usuário"
                             />
-                            <InputError :message="form.errors.name"/>
+                            <InputError :message="form.errors.name" />
                         </div>
                         <div>
                             <label
@@ -136,10 +135,10 @@ const createUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Email"
                             />
-                            <InputError :message="form.errors.email"/>
+                            <InputError :message="form.errors.email" />
                         </div>
                     </div>
-                    <div class="grid  grid-cols-1 sm:grid-cols-2  gap-2 ">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                             <label
                                 for="contacto"
@@ -155,7 +154,7 @@ const createUser = () => {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Contacto"
                             />
-                            <InputError :message="form.errors.contacto"/>
+                            <InputError :message="form.errors.contacto" />
                         </div>
                         <div>
                             <label
@@ -164,28 +163,27 @@ const createUser = () => {
                                 >Previlêgio</label
                             >
                             <Dropdown
-                            v-model="form.role"
-                            optionValue="id"
-                            :options="($page.props.roles as any)"
-                            optionLabel="name"
-                            placeholder="Previlêgio"
-
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        >
-                            <template #option="slotProps">
-                                <div
-                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
-                                    :class="
-                                        form.role == slotProps.option.id
-                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
-                                            : ''
-                                    "
-                                >
-                                    <div>{{ slotProps.option.name }}</div>
-                                </div>
-                            </template>
-                        </Dropdown>
-                        <InputError :message="form.errors.role"/>
+                                v-model="form.role"
+                                optionValue="id"
+                                :options="($page.props.roles as any)"
+                                optionLabel="name"
+                                placeholder="Previlêgio"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            >
+                                <template #option="slotProps">
+                                    <div
+                                        class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                        :class="
+                                            form.role == slotProps.option.id
+                                                ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                                : ''
+                                        "
+                                    >
+                                        <div>{{ slotProps.option.name }}</div>
+                                    </div>
+                                </template>
+                            </Dropdown>
+                            <InputError :message="form.errors.role" />
                         </div>
                     </div>
                     <button

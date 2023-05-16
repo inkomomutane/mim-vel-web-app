@@ -57,7 +57,7 @@ const updateGlobalSiteData = () =>
             form.policyMedia = [];
         },
         forceFormData: true,
-        preserveState: (page) => Object.keys(page.props.errors).length  === 1,
+        preserveState: (page) => Object.keys(page.props.errors).length === 1,
     });
 onMounted(() => {
     props.messages?.envelopes.forEach((element) => {
@@ -284,11 +284,12 @@ onMounted(() => {
                             :progressUploadImage="false"
                         >
                             <template v-slot:files>
-                                <UploadedImageCover v-if="pageDatarefs?.homeMedia" :image="(pageDatarefs?.homeMedia as App.Data.MediaData)" />
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.homeMedia"
+                                    :image="(pageDatarefs?.homeMedia as App.Data.MediaData)"
+                                />
                             </template>
                         </UploadImage>
-
-
 
                         <InputError
                             v-if="form.errors.homeMedia"
@@ -313,9 +314,11 @@ onMounted(() => {
                             mediaType="image/*"
                             :progressUploadImage="false"
                         >
-
-                        <template v-slot:files>
-                                <UploadedImageCover v-if="pageDatarefs?.imovelsMedia" :image="(pageDatarefs?.imovelsMedia as App.Data.MediaData)" />
+                            <template v-slot:files>
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.imovelsMedia"
+                                    :image="(pageDatarefs?.imovelsMedia as App.Data.MediaData)"
+                                />
                             </template>
                         </UploadImage>
                         <InputError
@@ -341,8 +344,11 @@ onMounted(() => {
                             mediaType="image/*"
                             :progressUploadImage="false"
                         >
-                        <template v-slot:files>
-                                <UploadedImageCover v-if="pageDatarefs?.aboutMedia" :image="(pageDatarefs?.aboutMedia as App.Data.MediaData)" />
+                            <template v-slot:files>
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.aboutMedia"
+                                    :image="(pageDatarefs?.aboutMedia as App.Data.MediaData)"
+                                />
                             </template>
                         </UploadImage>
                         <InputError
@@ -368,9 +374,11 @@ onMounted(() => {
                             mediaType="image/*"
                             :progressUploadImage="false"
                         >
-
-                        <template v-slot:files>
-                                <UploadedImageCover v-if="pageDatarefs?.contactMedia" :image="(pageDatarefs?.contactMedia as App.Data.MediaData)" />
+                            <template v-slot:files>
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.contactMedia"
+                                    :image="(pageDatarefs?.contactMedia as App.Data.MediaData)"
+                                />
                             </template>
                         </UploadImage>
                         <InputError
@@ -397,9 +405,11 @@ onMounted(() => {
                             mediaType="image/*"
                             :progressUploadImage="false"
                         >
-
-                        <template v-slot:files>
-                                <UploadedImageCover v-if="pageDatarefs?.termsMedia" :image="(pageDatarefs?.termsMedia as App.Data.MediaData)" />
+                            <template v-slot:files>
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.termsMedia"
+                                    :image="(pageDatarefs?.termsMedia as App.Data.MediaData)"
+                                />
                             </template>
                         </UploadImage>
                         <InputError
@@ -426,8 +436,11 @@ onMounted(() => {
                             mediaType="image/*"
                             :progressUploadImage="false"
                         >
-                        <template v-slot:files>
-                                <UploadedImageCover v-if="pageDatarefs?.policyMedia" :image="(pageDatarefs?.policyMedia as App.Data.MediaData)" />
+                            <template v-slot:files>
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.policyMedia"
+                                    :image="(pageDatarefs?.policyMedia as App.Data.MediaData)"
+                                />
                             </template>
                         </UploadImage>
                         <InputError
