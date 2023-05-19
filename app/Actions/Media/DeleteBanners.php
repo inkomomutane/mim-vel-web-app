@@ -2,7 +2,6 @@
 
 namespace App\Actions\Media;
 
-use App\Models\Banner;
 use Lorisleiva\Actions\Concerns\AsController;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 

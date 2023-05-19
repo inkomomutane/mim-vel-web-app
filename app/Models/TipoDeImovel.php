@@ -6,10 +6,12 @@
 
 namespace App\Models;
 
+use App\Data\ImovelTypeData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -39,9 +41,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class TipoDeImovel extends Model implements HasMedia
 {
-    use HasFactory,InteractsWithMedia;
+    use HasFactory, InteractsWithMedia;
+    use WithData;
 
     protected $table = 'tipo_de_imovels';
+    protected $dataClass = ImovelTypeData::class;
 
     protected $fillable = [
         'nome',
@@ -52,10 +56,8 @@ class TipoDeImovel extends Model implements HasMedia
         return $this->hasMany(Imovel::class);
     }
 
-        public function registerMediaCollections(): void
-        {
-        $this
-            ->addMediaCollection('icons')
-            ->singleFile();
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('icons')->withResponsiveImages()->singleFile();
     }
 }

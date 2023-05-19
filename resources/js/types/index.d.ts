@@ -76,6 +76,10 @@ export interface Users extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.UserData>;
 }
 
+export interface ImovelTypes extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.ImovelTypeData>;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

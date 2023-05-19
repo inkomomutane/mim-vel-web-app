@@ -23,6 +23,11 @@ declare namespace App.Data {
         id: number | null;
         nome: string | null;
     };
+    export type ImovelTypeData = {
+        id: number;
+        name: string;
+        icon: App.Data.MediaData;
+    };
     export type MediaData = {
         id: number;
         file_name: string | null;
