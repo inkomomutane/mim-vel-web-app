@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('#mimovel@2021@project#'), // password
             'remember_token' => '92IXUNpkjO0rOQ5byMi',
         ]);
-         $admin->assignRole('Super-Admin');
+        $admin->assignRole('Super-Admin');
     }
 }

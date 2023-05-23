@@ -18,15 +18,15 @@ class PageFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'content'=> $this->faker->realText,
-            'slogan'=> $this->faker->text(120),
-            'email'=> $this->faker->freeEmail,
-            'facebook'=> $this->faker->url,
-            'location'=> $this->faker->address,
-            'instagram'=> $this->faker->url,
-            'whatsapp'=> $this->faker->url,
-            'tiktok'=> $this->faker->url,
-            'contacts'=> [$this->faker->phoneNumber,$this->faker->phoneNumber,$this->faker->phoneNumber]
+            'content' => $this->faker->realText,
+            'slogan' => $this->faker->text(120),
+            'email' => $this->faker->freeEmail,
+            'facebook' => $this->faker->url,
+            'location' => $this->faker->address,
+            'instagram' => $this->faker->url,
+            'whatsapp' => $this->faker->url,
+            'tiktok' => $this->faker->url,
+            'contacts' => [$this->faker->phoneNumber, $this->faker->phoneNumber, $this->faker->phoneNumber],
         ];
     }
 }

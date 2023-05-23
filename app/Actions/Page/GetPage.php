@@ -8,13 +8,14 @@ use Lorisleiva\Actions\Concerns\AsController;
 
 class GetPage
 {
-   use AsController;
+    use AsController;
 
-   public function asController()
-   {
-     $page = Page::first() ?? Page::create([]);
-       return Inertia::render('Page/Index',[
-        'pageData' => $page->getData()
-       ]);
-   }
+    public function asController()
+    {
+        $page = Page::first() ?? Page::create([]);
+
+        return Inertia::render('Page/Index', [
+            'pageData' => $page->getData(),
+        ]);
+    }
 }

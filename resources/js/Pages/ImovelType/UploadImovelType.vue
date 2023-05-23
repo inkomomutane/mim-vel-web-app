@@ -31,6 +31,7 @@ const uploadImges = () =>
             closeUloadImovelTypesModal();
             form.reset();
         },
+        onError: () => (uploadImovelTypesProgress.value = false),
     });
 </script>
 <template>
@@ -93,9 +94,9 @@ const uploadImges = () =>
                 <h3
                     class="mb-4 text-xl font-medium text-gray-900 dark:text-white"
                 >
-                Criar novo tipo de imóvel
+                    Criar novo tipo de imóvel
                 </h3>
-                <form class="space-y-6" @submit.prevent="uploadImges">
+                <div class="space-y-6">
                     <div>
                         <label
                             for="name"
@@ -111,7 +112,7 @@ const uploadImges = () =>
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             placeholder="Nome do tipo de imóvel"
                         />
-                        <InputError :message="form.errors.nome"/>
+                        <InputError :message="form.errors.nome" />
                     </div>
 
                     <div>
@@ -120,25 +121,27 @@ const uploadImges = () =>
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >Icon</label
                         >
+                        <UploadImage
+                            @update:images="(files : any) => form.images = files"
+                            :multiple="false"
+                            :uploader="uploadImges"
+                            :disabledUpload="true"
+                            :disabledCancel="true"
+                            mediaType="image/*"
+                            :progressUploadImage="uploadImovelTypesProgress"
+                        />
 
-                <UploadImage
-                    @update:images="(files : any) => form.images = files"
-                    :multiple="false"
-                    :disabledUpload="true"
-                    :disabledCancel="true"
-                    mediaType="image/*"
-                    :progressUploadImage="uploadImovelTypesProgress"/>
-
-                    <InputError :message="form.errors.images"/>
+                        <InputError :message="form.errors.images" />
                     </div>
 
                     <button
                         type="submit"
+                        @click="uploadImges"
                         class="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
                     >
                         Salvar
                     </button>
-                </form>
+                </div>
             </div>
         </div>
     </Modal>

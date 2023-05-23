@@ -8,7 +8,7 @@ const props = defineProps({
     },
     class: String,
     className: String,
-    caption:String,
+    caption: String,
     alt: String,
 });
 
@@ -34,6 +34,6 @@ const optimized = ref(props.responsive?.mime_type !== "image/webp");
             loading="lazy"
             :alt="alt"
         />
-        <figcaption v-if="caption"> {{  caption  }} </figcaption>
+        <figcaption v-if="caption">{{ caption }}</figcaption>
     </figure>
 </template>

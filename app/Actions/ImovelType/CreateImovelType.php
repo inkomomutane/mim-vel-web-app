@@ -9,7 +9,9 @@ use Lorisleiva\Actions\Concerns\AsController;
 class CreateImovelType
 {
     use AsController;
-    public function rules() : array {
+
+    public function rules(): array
+    {
         return [
             'nome' => 'required|string',
             'images' => 'required',
@@ -21,17 +23,16 @@ class CreateImovelType
     {
 
         $imovelType = TipoDeImovel::create([
-            'nome' => $actionRequest->nome
+            'nome' => $actionRequest->nome,
         ]);
 
         try {
 
-            if ($actionRequest->file('images')){
+            if ($actionRequest->file('images')) {
 
-                foreach($actionRequest->file('images') as $key => $file)
-                {
+                foreach ($actionRequest->file('images') as $key => $file) {
                     $imovelType->addMedia($file)
-                    ->toMediaCollection('icons');
+                        ->toMediaCollection('icons');
                 }
             }
 

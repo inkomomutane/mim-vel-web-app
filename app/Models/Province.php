@@ -16,6 +16,7 @@ use Spatie\LaravelData\WithData;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
  * @property-read int|null $cidades_count
+ *
  * @method static \Database\Factories\ProvinceFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Province newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Province newQuery()
@@ -24,9 +25,13 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereUpdatedAt($value)
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cidade> $cidades
+ *
  * @mixin \Eloquent
  */
 class Province extends Model

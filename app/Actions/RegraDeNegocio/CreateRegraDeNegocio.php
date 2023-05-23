@@ -27,9 +27,9 @@ class CreateRegraDeNegocio
 
      public function AsController(ActionRequest $request)
      {
-        $this->handle(RegraDeNegocioData::from($request->validated()));
-        flash()->addSuccess('Regra de negóciação criada com sucesso.');
+         $this->handle(RegraDeNegocioData::from($request->validated()));
+         flash()->addSuccess('Regra de negóciação criada com sucesso.');
 
-        return \redirect()->back();
+         return \redirect()->back();
      }
 }

@@ -9,12 +9,14 @@ use Spatie\LaravelData\Data;
 class ImovelTypeData extends Data
 {
     public function __construct(
-      public int $id,
-      public String $name,
-      public MediaData $icon,
-    ) {}
+        public int $id,
+        public string $name,
+        public MediaData $icon,
+    ) {
+    }
 
-    public static function fromModel(TipoDeImovel $tipoDeImovel){
+    public static function fromModel(TipoDeImovel $tipoDeImovel)
+    {
         return new self(
             id: $tipoDeImovel->id,
             name : $tipoDeImovel->nome,

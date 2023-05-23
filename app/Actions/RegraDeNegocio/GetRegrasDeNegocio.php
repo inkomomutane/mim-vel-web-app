@@ -17,9 +17,9 @@ class GetRegrasDeNegocio
     {
         return RegraDeNegocioData::collection(
             RegraDeNegocio::query()
-            ->when($term, function ($query, $search) {
-                $query->where('name', 'like', '%'.$search.'%');
-            })->
+                ->when($term, function ($query, $search) {
+                    $query->where('name', 'like', '%'.$search.'%');
+                })->
             orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }

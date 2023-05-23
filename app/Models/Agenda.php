@@ -29,6 +29,7 @@ use Spatie\LaravelData\WithData;
  * @property int $imovel_id
  * @property int $is_readed
  * @property-read \App\Models\User $corretor
+ *
  * @method static \Database\Factories\AgendaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newQuery()
@@ -45,8 +46,10 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereMensagem($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereNomeDoCliente($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereUpdatedAt($value)
+ *
  * @property-read mixed $url
  * @property-read \App\Models\Imovel|null $imovel
+ *
  * @mixin \Eloquent
  */
 class Agenda extends Model
@@ -81,7 +84,7 @@ class Agenda extends Model
 
     public function getUrlAttribute()
     {
-            return $this->imovel?->slug ?? '';
+        return $this->imovel?->slug ?? '';
     }
 
     public function corretor()

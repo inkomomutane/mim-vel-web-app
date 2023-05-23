@@ -19,10 +19,10 @@ class GetCities
     {
         return CityData::collection(
             Cidade::query()
-            ->when($term, function ($query, $search) {
-                $query->where('nome', 'like', '%'.$search.'%');
-                $query->with('province');
-            })->with('province')->
+                ->when($term, function ($query, $search) {
+                    $query->where('nome', 'like', '%'.$search.'%');
+                    $query->with('province');
+                })->with('province')->
             orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }

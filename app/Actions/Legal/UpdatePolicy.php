@@ -16,24 +16,24 @@ class UpdatePolicy
     public function handle(PolicyData $policy)
     {
         try {
-           $politica = Politica::first();
-           $politica->politicas = $policy->politicas;
-           $politica->save();
-           flash()->addSuccess('Politicas de privacidade actualizadas com sucesso.');
+            $politica = Politica::first();
+            $politica->politicas = $policy->politicas;
+            $politica->save();
+            flash()->addSuccess('Politicas de privacidade actualizadas com sucesso.');
 
-           return $politica->getData();
-       } catch (\Throwable $e) {
-           flash()->addError('Erro na actualização de politicas de privacidade.');
+            return $politica->getData();
+        } catch (\Throwable $e) {
+            flash()->addError('Erro na actualização de politicas de privacidade.');
 
-           return $politica->getData();
-       }
-   }
+            return $politica->getData();
+        }
+    }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+      * Get the validation rules that apply to the request.
+      *
+      * @return array
+      */
     public function rules()
     {
         return [
@@ -43,8 +43,8 @@ class UpdatePolicy
 
    public function asController(ActionRequest $actionRequest)
    {
-        $this->handle(new PolicyData($actionRequest->politicas));
+       $this->handle(new PolicyData($actionRequest->politicas));
 
-        return redirect()->back();
+       return redirect()->back();
    }
 }

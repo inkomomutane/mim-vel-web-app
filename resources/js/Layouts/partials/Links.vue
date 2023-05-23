@@ -327,6 +327,45 @@ watch(
                 </Link>
 
                 <Link
+                    :href="route('intermediation.all')"
+                    v-tooltip.value="tooltip('Regras de intermediação')"
+                >
+                    <li
+                        class="px-3 py-2 rounded mb-0.5 last:mb-0"
+                        :class="
+                            route().current('intermediation.all')
+                                ? 'bg-slate-950'
+                                : 'hover:bg-slate-900'
+                        "
+                    >
+                        <div
+                            class="block text-slate-200 truncate transition duration-150"
+                        >
+                            <div class="flex items-center justify-between">
+                                <div class="grow flex items-center">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        role="img"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="M2.284 22.158c.001.95.679 1.752 1.62 1.792 1.31.055 2.623.022 3.935.022.954 0 1.786-.865 1.76-1.954-.029-1.221.018-2.445.029-3.667l.045-4.988c.003-.305.046-.362.335-.44a4.242 4.242 0 0 1 2.013-.067c1.23.262 2.129 1.21 2.261 2.46.066.62.07 1.249.078 1.874.025 1.64.038 3.28.054 4.921.01 1.087.796 1.877 1.883 1.882 1.171.006 2.342.008 3.513.007 1.106-.002 1.895-.778 1.898-1.883.007-3.371.007-6.742.01-10.113 0-.052 0-.105-.005-.156-.03-.355-.169-.658-.483-.838a2.638 2.638 0 0 0-.695-.291 7.484 7.484 0 0 0-2.887-.123c-.743.113-1.476.293-2.213.442-.97.196-1.946.28-2.934.178-1.268-.129-2.37-.666-3.402-1.38a32.36 32.36 0 0 0-1.494-.984c-.62-.38-1.314-.505-2.03-.544-.77-.043-1.536-.063-2.293.111-.59.136-.899.479-.966 1.077a3.438 3.438 0 0 0-.021.379m7.337-6.184a3.675 3.675 0 1 0-7.35-.031 3.675 3.675 0 0 0 7.35.03zm8.335-1.81a3.673 3.673 0 0 0-3.69 3.652 3.672 3.672 0 0 0 3.67 3.697 3.678 3.678 0 0 0 3.68-3.665 3.677 3.677 0 0 0-3.66-3.685Z"
+                                        ></path>
+                                    </svg>
+
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                                        >Regras de intermediação</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </Link>
+                <Link
                     :href="route('negocio.all')"
                     v-tooltip.value="tooltip('Regras de negociação')"
                 >
@@ -389,6 +428,7 @@ watch(
                         </div>
                     </li>
                 </Link>
+
                 <Link
                     :href="route('condicao.all')"
                     v-tooltip.value="tooltip('Condição do imóvel')"
@@ -452,18 +492,31 @@ watch(
                         >
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
-                                   
-                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
                                         width="20"
                                         height="20"
-                                      viewBox="0 0 24 24"
-                                      >
-                                    <path d="M18,21H6a3,3,0,0,1-3-3V8.765A3,3,0,0,1,4.542,6.143l6-3.333a3,3,0,0,1,2.914,0l6,3.333A3,3,0,0,1,21,8.765V18A3,3,0,0,1,18,21Z" opacity=".35" fill="currentColor" />
-                                    <path d="M20.5,9.23a1.494,1.494,0,0,1-.727-.189l-6.839-3.8a1.909,1.909,0,0,0-1.864,0l-6.839,3.8A1.5,1.5,0,1,1,2.772,6.418l6.839-3.8a4.888,4.888,0,0,1,4.778,0l6.839,3.8A1.5,1.5,0,0,1,20.5,9.23Z" fill="currentColor" />
-                                    <polygon points="16 21 8 21 8 15 12 13 16 15 16 21" fill="currentColor" />
-                                    <path d="M16,16a1,1,0,0,1-.6-.2L12,13.25,8.6,15.8a1,1,0,0,1-1.2-1.6l4-3a1,1,0,0,1,1.2,0l4,3A1,1,0,0,1,16,16Z" fill="currentColor" />
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M18,21H6a3,3,0,0,1-3-3V8.765A3,3,0,0,1,4.542,6.143l6-3.333a3,3,0,0,1,2.914,0l6,3.333A3,3,0,0,1,21,8.765V18A3,3,0,0,1,18,21Z"
+                                            opacity=".35"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M20.5,9.23a1.494,1.494,0,0,1-.727-.189l-6.839-3.8a1.909,1.909,0,0,0-1.864,0l-6.839,3.8A1.5,1.5,0,1,1,2.772,6.418l6.839-3.8a4.888,4.888,0,0,1,4.778,0l6.839,3.8A1.5,1.5,0,0,1,20.5,9.23Z"
+                                            fill="currentColor"
+                                        />
+                                        <polygon
+                                            points="16 21 8 21 8 15 12 13 16 15 16 21"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M16,16a1,1,0,0,1-.6-.2L12,13.25,8.6,15.8a1,1,0,0,1-1.2-1.6l4-3a1,1,0,0,1,1.2,0l4,3A1,1,0,0,1,16,16Z"
+                                            fill="currentColor"
+                                        />
                                     </svg>
-                                     <span
+                                    <span
                                         class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
                                         >Tipo de imóvel</span
                                     >

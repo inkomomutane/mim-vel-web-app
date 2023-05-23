@@ -33,7 +33,7 @@ class DeleteStatus
 
     public function AsController(Status $status)
     {
-         $this->handle($status);
+        $this->handle($status);
 
         return redirect()->back();
     }

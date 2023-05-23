@@ -33,7 +33,7 @@ class DeleteCondicao
 
     public function AsController(Condicao $condicao)
     {
-         $this->handle($condicao);
+        $this->handle($condicao);
 
         return redirect()->back();
     }

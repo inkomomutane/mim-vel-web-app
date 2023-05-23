@@ -33,7 +33,7 @@ class DeleteTransactionType
 
     public function AsController(ImovelFor $transactionType)
     {
-         $this->handle($transactionType);
+        $this->handle($transactionType);
 
         return redirect()->back();
     }

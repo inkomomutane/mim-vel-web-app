@@ -33,7 +33,7 @@ class DeleteBairro
 
     public function AsController(Bairro $bairro)
     {
-         $this->handle($bairro);
+        $this->handle($bairro);
 
         return redirect()->back();
     }

@@ -16,14 +16,14 @@ class GetBanners
     public function handle()
     {
         if (Banner::first() == null) {
-        Banner::create([]);
+            Banner::create([]);
         }
 
         return MediaData::collection(
             Banner::first()->media()
-            ->where('collection_name', 'banners')
-            ->orderBy('updated_at','desc')
-            ->paginate(3)
+                ->where('collection_name', 'banners')
+                ->orderBy('updated_at', 'desc')
+                ->paginate(3)
         );
     }
 

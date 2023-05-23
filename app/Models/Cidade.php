@@ -24,6 +24,7 @@ use Spatie\Searchable\SearchResult;
  * @property int|null $province_id
  * @property-read int|null $bairros_count
  * @property-read \App\Models\Province|null $province
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade query()
@@ -32,6 +33,7 @@ use Spatie\Searchable\SearchResult;
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Cidade extends Model implements Searchable
@@ -57,8 +59,8 @@ class Cidade extends Model implements Searchable
     public function getSearchResult(): SearchResult
     {
         return new \Spatie\Searchable\SearchResult(
-           $this,
-           $this->nome,
+            $this,
+            $this->nome,
         );
     }
 }

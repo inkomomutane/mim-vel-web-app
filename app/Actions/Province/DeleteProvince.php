@@ -33,7 +33,7 @@ class DeleteProvince
 
     public function AsController(Province $province)
     {
-         $this->handle($province);
+        $this->handle($province);
 
         return redirect()->back();
     }

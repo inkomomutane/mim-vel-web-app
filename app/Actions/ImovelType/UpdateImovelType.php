@@ -9,7 +9,9 @@ use Lorisleiva\Actions\Concerns\AsController;
 class UpdateImovelType
 {
     use AsController;
-    public function rules() : array {
+
+    public function rules(): array
+    {
         return [
             'nome' => 'required|string',
             'images' => '',
@@ -17,19 +19,18 @@ class UpdateImovelType
         ];
     }
 
-    public function asController(TipoDeImovel $imovelType,ActionRequest $actionRequest)
+    public function asController(TipoDeImovel $imovelType, ActionRequest $actionRequest)
     {
 
         $imovelType->nome = $actionRequest->nome;
         $imovelType->save();
 
         try {
-            if ($actionRequest->file('images')){
+            if ($actionRequest->file('images')) {
 
-                foreach($actionRequest->file('images') as $key => $file)
-                {
+                foreach ($actionRequest->file('images') as $key => $file) {
                     $imovelType->addMedia($file)
-                    ->toMediaCollection('icons');
+                        ->toMediaCollection('icons');
                 }
             }
 

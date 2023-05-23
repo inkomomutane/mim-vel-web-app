@@ -27,7 +27,7 @@ class UserData extends Data
             email: $user->email,
             contacto: $user->contacto,
             location: $user->location,
-            active:$user->active,
+            active: $user->active,
             role: is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
         );
     }

@@ -17,9 +17,9 @@ class GetCondicaos
     {
         return CondicaoData::collection(
             Condicao::query()
-            ->when($term, function ($query, $search) {
-                $query->where('nome', 'like', '%'.$search.'%');
-            })->
+                ->when($term, function ($query, $search) {
+                    $query->where('nome', 'like', '%'.$search.'%');
+                })->
             orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }

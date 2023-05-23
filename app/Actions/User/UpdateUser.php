@@ -3,7 +3,6 @@
 namespace App\Actions\User;
 
 use App\Models\User;
-use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateUser
@@ -13,10 +12,10 @@ class UpdateUser
     public function asController(User $user)
     {
         $validated = request()->validate([
-            'name' => [ 'required', 'string'],
-            'email' => ['required', 'string', 'email','unique:users,email,'.$user->id],
-            'contacto' => [ 'nullable', 'string'],
-            'role' => [ 'required', 'numeric'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'unique:users,email,'.$user->id],
+            'contacto' => ['nullable', 'string'],
+            'role' => ['required', 'numeric'],
         ]);
 
         try {
@@ -24,7 +23,7 @@ class UpdateUser
             $user->email = $validated['email'];
             $user->contacto = $validated['contacto'];
             $user->syncRoles($validated['role'])
-            ->save();
+                ->save();
 
             flash()->addSuccess('Usuário actualizado com sucesso.');
         } catch (\Throwable $th) {

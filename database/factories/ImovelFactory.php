@@ -54,12 +54,12 @@ class ImovelFactory extends Factory
     {
         return $this->afterMaking(function (Imovel $imovel) {
             $imovel->addMediaFromUrl('https://picsum.photos/1080/420.jpg')
-            ->withResponsiveImages()
-            ->toMediaCollection('posts', 'posts');
+                ->withResponsiveImages()
+                ->toMediaCollection('posts', 'posts');
         })->afterCreating(function (Imovel $imovel) {
             $imovel->addMediaFromUrl('https://picsum.photos/1080/420.jpg')
-                       ->withResponsiveImages()
-                       ->toMediaCollection('posts', 'posts');
+                ->withResponsiveImages()
+                ->toMediaCollection('posts', 'posts');
         });
     }
 }

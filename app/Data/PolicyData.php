@@ -8,7 +8,7 @@ use Spatie\LaravelData\Data;
 class PolicyData extends Data
 {
     public function __construct(
-      public readonly string $politicas
+        public readonly string $politicas
     ) {
     }
 }

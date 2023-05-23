@@ -21,12 +21,12 @@ class UpdateTermAndCondition
             $termo->save();
             flash()->addSuccess('Termos e condiçõs actualizadas com sucesso.');
 
-           return $termo->getData();
-       } catch (\Throwable $e) {
-           flash()->addError('Erro na actualização de termos e condições');
+            return $termo->getData();
+        } catch (\Throwable $e) {
+            flash()->addError('Erro na actualização de termos e condições');
 
-           return $termo->getData();
-       }
+            return $termo->getData();
+        }
     }
 
     /**

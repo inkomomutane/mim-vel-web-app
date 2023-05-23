@@ -13,15 +13,15 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class AgendaData extends Data
 {
     public function __construct(
-      public readonly ?int $id = null,
-      public readonly ?string $nomeDoCliente = '',
-      public readonly ?string $mensagem = '',
-      public readonly ?string $email = '',
-      public readonly ?string $contacto = '',
-      public readonly ?bool $isReaded = null,
-      #[WithCast(DateTimeInterfaceCast::class, type: CarbonImmutable::class)]
-      public $dataHora = null,
-      public readonly ?string $url = ''
+        public readonly ?int $id = null,
+        public readonly ?string $nomeDoCliente = '',
+        public readonly ?string $mensagem = '',
+        public readonly ?string $email = '',
+        public readonly ?string $contacto = '',
+        public readonly ?bool $isReaded = null,
+        #[WithCast(DateTimeInterfaceCast::class, type: CarbonImmutable::class)]
+        public $dataHora = null,
+        public readonly ?string $url = ''
     ) {
     }
 }

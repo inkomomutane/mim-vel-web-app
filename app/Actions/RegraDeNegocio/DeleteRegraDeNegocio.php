@@ -33,7 +33,7 @@ class DeleteRegraDeNegocio
 
     public function AsController(RegraDeNegocio $regraDeNegocio)
     {
-         $this->handle($regraDeNegocio);
+        $this->handle($regraDeNegocio);
 
         return redirect()->back();
     }

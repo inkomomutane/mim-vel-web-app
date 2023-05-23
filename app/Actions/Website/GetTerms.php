@@ -12,8 +12,8 @@ class GetTerms
 
     public function asController()
     {
-        return Inertia::render('Website/Terms',[
-            'terms' => Termo::first()->getData()
+        return Inertia::render('Website/Terms', [
+            'terms' => Termo::first()->getData(),
         ]);
     }
 }

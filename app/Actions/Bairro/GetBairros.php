@@ -19,13 +19,13 @@ class GetBairros
     {
 
         $bairros = Bairro::query()
-        ->when($term, function ($query, $search) {
-            $query->where('nome', 'like', '%'.$search.'%');
-            $query->with('cidade');
-        })->with('cidade')->
+            ->when($term, function ($query, $search) {
+                $query->where('nome', 'like', '%'.$search.'%');
+                $query->with('cidade');
+            })->with('cidade')->
        orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
-       $bairros->each(function ($bairro) {
+        $bairros->each(function ($bairro) {
             $bairro->setRelation('city', $bairro->cidade);
             $bairro->unsetRelation('cidade');
 

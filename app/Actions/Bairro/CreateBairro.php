@@ -27,9 +27,9 @@ class CreateBairro
 
      public function AsController(ActionRequest $request)
      {
-        $this->handle($request->validated());
-        flash()->addSuccess('Bairro criado com sucesso.');
+         $this->handle($request->validated());
+         flash()->addSuccess('Bairro criado com sucesso.');
 
-        return \redirect()->back();
+         return \redirect()->back();
      }
 }

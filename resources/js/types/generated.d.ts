@@ -28,6 +28,12 @@ declare namespace App.Data {
         name: string;
         icon: App.Data.MediaData;
     };
+    export type IntermediationRuleData = {
+        id: number;
+        name: string;
+        code: string;
+        percentage: number;
+    };
     export type MediaData = {
         id: number;
         file_name: string | null;

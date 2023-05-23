@@ -296,7 +296,6 @@
                             width="20"
                             height="20"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
                             version="1.1"
                             viewBox="0 0 36 36"
                             preserveAspectRatio="xMidYMid meet"

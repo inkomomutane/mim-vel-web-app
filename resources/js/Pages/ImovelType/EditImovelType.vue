@@ -37,17 +37,21 @@ const closeUloadImovelTypesModal = () => {
 };
 
 const uploadImges = () =>
-    form.post(route("imovel_type.update",{
-        imovelType : props.imovelType?.id as number
-    }), {
-        forceFormData: true,
-        onProgress: () => (uploadImovelTypesProgress.value = true),
-        onSuccess: () => {
-            closeUloadImovelTypesModal();
-            props.close();
-            form.reset();
-        },
-    });
+    form.post(
+        route("imovel_type.update", {
+            imovelType: props.imovelType?.id as number,
+        }),
+        {
+            forceFormData: true,
+            onProgress: () => (uploadImovelTypesProgress.value = true),
+            onSuccess: () => {
+                closeUloadImovelTypesModal();
+                props.close();
+                form.reset();
+            },
+            onError: () => (uploadImovelTypesProgress.value = true),
+        }
+    );
 </script>
 <template>
     <button
@@ -111,7 +115,7 @@ const uploadImges = () =>
                 >
                     Criar novo tipo de imóvel
                 </h3>
-                <form class="space-y-6" @submit.prevent="uploadImges">
+                <div class="space-y-6">
                     <div>
                         <label
                             for="name"
@@ -146,7 +150,9 @@ const uploadImges = () =>
                             :progressUploadImage="uploadImovelTypesProgress"
                         >
                             <template v-slot:files>
-                                <div class="flex items-center space-x-4 w-full border-dashed border border-green-500 bg-green-100 mt-2 rounded-md">
+                                <div
+                                    class="flex items-center space-x-4 w-full border-dashed border border-green-500 bg-green-100 dark:bg-green-900 mt-2 rounded-md"
+                                >
                                     <div class="flex-shrink-0">
                                         <ResponsiveImage
                                             :responsive="imovelType?.icon"
@@ -194,11 +200,12 @@ const uploadImges = () =>
 
                     <button
                         type="submit"
+                        @click="uploadImges"
                         class="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
                     >
                         Salvar
                     </button>
-                </form>
+                </div>
             </div>
         </div>
     </Modal>

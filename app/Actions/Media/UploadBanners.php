@@ -4,13 +4,14 @@ namespace App\Actions\Media;
 
 use App\Models\Banner;
 use Lorisleiva\Actions\ActionRequest;
-use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UploadBanners
 {
     use AsController;
-    public function rules() : array {
+
+    public function rules(): array
+    {
         return [
             'images' => 'required',
             'images.*' => 'required|image|max:15360',
@@ -23,13 +24,12 @@ class UploadBanners
 
         try {
 
-            if ($actionRequest->file('images')){
+            if ($actionRequest->file('images')) {
 
-                foreach($actionRequest->file('images') as $key => $file)
-                {
+                foreach ($actionRequest->file('images') as $key => $file) {
                     $banner->addMedia($file)
-                    ->withResponsiveImages()
-                    ->toMediaCollection('banners','banners');
+                        ->withResponsiveImages()
+                        ->toMediaCollection('banners', 'banners');
                 }
             }
 

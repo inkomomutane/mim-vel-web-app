@@ -18,11 +18,11 @@ class PostSearchAspect extends SearchAspect
             'corretor',
             'tipo_de_imovel',
         ])
-        ->orWhere('titulo', 'like', '%'.$term.'%')
-        ->orWhere('descricao', 'like', '%'.$term.'%')
-        ->orWhereHas('bairro', function ($q) use ($term) {
-            $q->where('nome', 'like', '%'.$term.'%');
-        })
+            ->orWhere('titulo', 'like', '%'.$term.'%')
+            ->orWhere('descricao', 'like', '%'.$term.'%')
+            ->orWhereHas('bairro', function ($q) use ($term) {
+                $q->where('nome', 'like', '%'.$term.'%');
+            })
             ->orWhereHas('bairro.cidade', function ($q) use ($term) {
                 $q->where('nome', 'like', '%'.$term.'%');
             })

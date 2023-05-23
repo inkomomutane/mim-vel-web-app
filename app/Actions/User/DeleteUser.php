@@ -12,32 +12,32 @@ class DeleteUser
     use AsAction;
     use AsController;
 
-    public function handle(User $user,bool $status)
+    public function handle(User $user, bool $status)
     {
         $user->active = $status;
         $user->save();
+
         return $user->active;
     }
 
     public function rules()
     {
         return [
-            'status' => [ 'required', 'boolean'],
+            'status' => ['required', 'boolean'],
         ];
     }
 
-    public function asController(User $user,ActionRequest $request)
+    public function asController(User $user, ActionRequest $request)
     {
         try {
 
-            if($this->handle($user,$request->validated('status'))){
+            if ($this->handle($user, $request->validated('status'))) {
                 flash()->addSuccess('Usuário habilitado com sucesso.');
-            }else
-            flash()->addSuccess('Usuário desabilitado com sucesso.');
+            } else {
+                flash()->addSuccess('Usuário desabilitado com sucesso.');
+            }
         } catch (\Throwable $th) {
-            flash()->addError('Erro ao traocar o estado do usuario'. $th);
+            flash()->addError('Erro ao traocar o estado do usuario'.$th);
         }
     }
-
-
 }

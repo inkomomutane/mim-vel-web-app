@@ -18,7 +18,7 @@ const props = defineProps({
     },
 });
 
-const form = useForm({id: props.banner.id});
+const form = useForm({ id: props.banner.id });
 
 const deleteBanner = () => {
     form.delete(

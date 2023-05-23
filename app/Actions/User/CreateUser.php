@@ -2,7 +2,6 @@
 
 namespace App\Actions\User;
 
-use App\Data\UserData;
 use App\Models\User;
 use Hash;
 use Lorisleiva\Actions\ActionRequest;
@@ -21,28 +20,29 @@ class CreateUser
             'name' => $userData['name'],
             'email' => $userData['email'],
             'contacto' => $userData['contacto'],
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
         ])->assignRole(Role::findById($userData['role']));
     }
 
     public function rules()
     {
         return [
-            'name' => [ 'required', 'string'],
-            'email' => ['required', 'string', 'email','unique:users,email'],
-            'contacto' => [ 'nullable', 'string'],
-            'role' => [ 'required', 'numeric'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'unique:users,email'],
+            'contacto' => ['nullable', 'string'],
+            'role' => ['required', 'numeric'],
         ];
     }
 
      public function AsController(ActionRequest $request)
      {
-       try {
-        $this->handle($request->validated());
-        flash()->addSuccess('Usuario criado com sucesso.');
-       } catch (\Throwable $th) {
-        flash()->addError('Erro ao criar usuário.');
-       }
-        return \redirect()->back();
+         try {
+             $this->handle($request->validated());
+             flash()->addSuccess('Usuario criado com sucesso.');
+         } catch (\Throwable $th) {
+             flash()->addError('Erro ao criar usuário.');
+         }
+
+          return \redirect()->back();
      }
 }

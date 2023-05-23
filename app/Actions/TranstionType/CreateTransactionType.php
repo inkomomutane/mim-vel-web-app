@@ -28,9 +28,9 @@ class CreateTransactionType
 
      public function AsController(ActionRequest $request)
      {
-        $this->handle(TransactionTypeData::from($request->validated()));
-        flash()->addSuccess('Tipo de transação criada com sucesso.');
+         $this->handle(TransactionTypeData::from($request->validated()));
+         flash()->addSuccess('Tipo de transação criada com sucesso.');
 
-        return \redirect()->back();
+         return \redirect()->back();
      }
 }

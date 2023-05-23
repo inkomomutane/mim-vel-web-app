@@ -98,6 +98,95 @@ class GetCities
 class UpdateCity
 {
 }
+namespace App\Actions\Condicao;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\CondicaoData $condicaoData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\CondicaoData $condicaoData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\CondicaoData $condicaoData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\CondicaoData $condicaoData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\CondicaoData $condicaoData)
+ * @method static dispatchSync(\App\Data\CondicaoData $condicaoData)
+ * @method static dispatchNow(\App\Data\CondicaoData $condicaoData)
+ * @method static dispatchAfterResponse(\App\Data\CondicaoData $condicaoData)
+ * @method static mixed run(\App\Data\CondicaoData $condicaoData)
+ */
+class CreateCondicao
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Condicao $condicao)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Condicao $condicao)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Condicao $condicao)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Condicao $condicao)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Condicao $condicao)
+ * @method static dispatchSync(\App\Models\Condicao $condicao)
+ * @method static dispatchNow(\App\Models\Condicao $condicao)
+ * @method static dispatchAfterResponse(\App\Models\Condicao $condicao)
+ * @method static bool run(\App\Models\Condicao $condicao)
+ */
+class DeleteCondicao
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetCondicaos
+{
+}
+/**
+ */
+class UpdateCondicao
+{
+}
+namespace App\Actions\ImovelType;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static dispatchSync(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static dispatchNow(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static dispatchAfterResponse(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static bool run(\App\Models\TipoDeImovel $tipoDeImovel)
+ */
+class DeleteImovelType
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetImovelTypes
+{
+}
+/**
+ */
+class CreateImovelType
+{
+}
+/**
+ */
+class UpdateImovelType
+{
+}
 namespace App\Actions\Legal;
 
 /**
@@ -154,6 +243,32 @@ class UpdatePolicy
  * @method static mixed run(\App\Data\TermAndConditionData $term)
  */
 class UpdateTermAndCondition
+{
+}
+namespace App\Actions\Media;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob()
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean)
+ * @method static dispatchSync()
+ * @method static dispatchNow()
+ * @method static dispatchAfterResponse()
+ * @method static mixed run()
+ */
+class GetBanners
+{
+}
+/**
+ */
+class DeleteBanners
+{
+}
+/**
+ */
+class UploadBanners
 {
 }
 namespace App\Actions\Message;
@@ -252,6 +367,34 @@ class UpdateProvince
 namespace App\Actions\RegraDeNegocio;
 
 /**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static dispatchSync(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static dispatchNow(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static dispatchAfterResponse(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static mixed run(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ */
+class CreateRegraDeNegocio
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static dispatchSync(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static dispatchNow(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static dispatchAfterResponse(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static bool run(\App\Models\RegraDeNegocio $regraDeNegocio)
+ */
+class DeleteRegraDeNegocio
+{
+}
+/**
  * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
  * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
  * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
@@ -263,6 +406,201 @@ namespace App\Actions\RegraDeNegocio;
  * @method static mixed run(?string $term = null)
  */
 class GetRegrasDeNegocio
+{
+}
+/**
+ */
+class UpdateRegraDeNegocio
+{
+}
+namespace App\Actions\Status;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\StatusData $statusData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\StatusData $statusData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\StatusData $statusData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\StatusData $statusData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\StatusData $statusData)
+ * @method static dispatchSync(\App\Data\StatusData $statusData)
+ * @method static dispatchNow(\App\Data\StatusData $statusData)
+ * @method static dispatchAfterResponse(\App\Data\StatusData $statusData)
+ * @method static mixed run(\App\Data\StatusData $statusData)
+ */
+class CreateStatus
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Status $status)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Status $status)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Status $status)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Status $status)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Status $status)
+ * @method static dispatchSync(\App\Models\Status $status)
+ * @method static dispatchNow(\App\Models\Status $status)
+ * @method static dispatchAfterResponse(\App\Models\Status $status)
+ * @method static bool run(\App\Models\Status $status)
+ */
+class DeleteStatus
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetStatuses
+{
+}
+/**
+ */
+class UpdateStatus
+{
+}
+namespace App\Actions\TranstionType;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\TransactionTypeData $transactionTypeData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\TransactionTypeData $transactionTypeData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\TransactionTypeData $transactionTypeData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\TransactionTypeData $transactionTypeData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\TransactionTypeData $transactionTypeData)
+ * @method static dispatchSync(\App\Data\TransactionTypeData $transactionTypeData)
+ * @method static dispatchNow(\App\Data\TransactionTypeData $transactionTypeData)
+ * @method static dispatchAfterResponse(\App\Data\TransactionTypeData $transactionTypeData)
+ * @method static mixed run(\App\Data\TransactionTypeData $transactionTypeData)
+ */
+class CreateTransactionType
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\ImovelFor $imovelFor)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\ImovelFor $imovelFor)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\ImovelFor $imovelFor)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\ImovelFor $imovelFor)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\ImovelFor $imovelFor)
+ * @method static dispatchSync(\App\Models\ImovelFor $imovelFor)
+ * @method static dispatchNow(\App\Models\ImovelFor $imovelFor)
+ * @method static dispatchAfterResponse(\App\Models\ImovelFor $imovelFor)
+ * @method static bool run(\App\Models\ImovelFor $imovelFor)
+ */
+class DeleteTransactionType
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetTransactionTypes
+{
+}
+/**
+ */
+class UpdateTransactionType
+{
+}
+namespace App\Actions\User;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(array $userData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(array $userData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(array $userData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, array $userData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, array $userData)
+ * @method static dispatchSync(array $userData)
+ * @method static dispatchNow(array $userData)
+ * @method static dispatchAfterResponse(array $userData)
+ * @method static mixed run(array $userData)
+ */
+class CreateUser
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\User $user, bool $status)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\User $user, bool $status)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\User $user, bool $status)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\User $user, bool $status)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\User $user, bool $status)
+ * @method static dispatchSync(\App\Models\User $user, bool $status)
+ * @method static dispatchNow(\App\Models\User $user, bool $status)
+ * @method static dispatchAfterResponse(\App\Models\User $user, bool $status)
+ * @method static mixed run(\App\Models\User $user, bool $status)
+ */
+class DeleteUser
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetUsers
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob()
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean)
+ * @method static dispatchSync()
+ * @method static dispatchNow()
+ * @method static dispatchAfterResponse()
+ * @method static mixed run()
+ */
+class Profile
+{
+}
+/**
+ */
+class UpdateUser
+{
+}
+namespace App\Actions\Page;
+
+/**
+ */
+class GetPage
+{
+}
+/**
+ */
+class PageUpdate
+{
+}
+namespace App\Actions\Website;
+
+/**
+ */
+class Contact
+{
+}
+/**
+ */
+class GetPolicies
+{
+}
+/**
+ */
+class GetTerms
 {
 }
 namespace Lorisleiva\Actions\Concerns;

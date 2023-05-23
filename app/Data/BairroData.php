@@ -8,9 +8,9 @@ use Spatie\LaravelData\Data;
 class BairroData extends Data
 {
     public function __construct(
-      public ?int $id,
-      public string $nome,
-      public CityData $city
+        public ?int $id,
+        public string $nome,
+        public CityData $city
     ) {
     }
 }

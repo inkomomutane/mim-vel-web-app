@@ -17,6 +17,7 @@ class DeleteImovelType
             try {
                 $tipoDeImovel->delete();
                 flash()->addSuccess('Tipo de imóvel deletado com sucesso.');
+
                 return true;
             } catch (\Throwable $e) {
                 flash()->addError('Erro ao deletar: " Contacte o administrador do sistema.".');
@@ -33,6 +34,7 @@ class DeleteImovelType
     public function AsController(TipoDeImovel $imovelType)
     {
         $this->handle($imovelType);
+
         return redirect()->back();
     }
 }

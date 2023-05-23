@@ -18,7 +18,7 @@ const props = defineProps({
     },
 });
 
-const form = useForm({id: props.imovelType.id});
+const form = useForm({ id: props.imovelType.id });
 
 const deleteImovelType = () => {
     form.delete(

@@ -56,7 +56,6 @@ const showTemplate = () => {
     });
 };
 
-
 function openDeleteBannerModal(banner: App.Data.MediaData) {
     deletingBanner.value = banner;
     deletingBannerTrigger.value = true;
@@ -78,13 +77,14 @@ function closeDeleteBannerModal() {
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5"
             >
                 <div
-                    class="mx-4 "
+                    class="mx-4"
                     v-for="media in props.banners?.data"
                     :key="media.id"
                 >
-                    <button class="relative group hover:ring-2 hover:ring-red-400 rounded-md"
-
-                    @click="openDeleteBannerModal(media)">
+                    <button
+                        class="relative group hover:ring-2 hover:ring-red-400 rounded-md"
+                        @click="openDeleteBannerModal(media)"
+                    >
                         <SpatieResponsiveImage
                             class-name="w-screen h-60 object-cover rounded-md hover:bg-slate-900 hover:opacity-90 hover:shadow-lg"
                             :responsive="media"

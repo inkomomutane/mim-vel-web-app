@@ -10,7 +10,7 @@ use Spatie\LaravelData\Data;
 class PageData extends Data
 {
     public function __construct(
-        public  ?int $id,
+        public ?int $id,
         public ?string $name,
         public ?string $content,
         public ?string $slogan,
@@ -27,23 +27,23 @@ class PageData extends Data
         public ?MediaData $contactMedia,
         public ?MediaData $termsMedia,
         public ?MediaData $policyMedia,
-    ) {}
-
+    ) {
+    }
 
     public static function fromModel(Page $page)
     {
 
         return new self(
             id: $page->id,
-            name:$page->name,
+            name: $page->name,
             content: $page->content,
             slogan: $page->slogan,
-            email:$page->email,
+            email: $page->email,
             location: $page->location,
-            facebook:$page->facebook,
-            instagram:$page->instagram,
+            facebook: $page->facebook,
+            instagram: $page->instagram,
             whatsapp: $page->whatsapp,
-            tiktok:$page->tiktok,
+            tiktok: $page->tiktok,
             contacts: $page->contacts,
             homeMedia: MediaData::fromModel($page->getFirstMedia(Pages::HOME)),
             imovelsMedia: MediaData::fromModel($page->getFirstMedia(Pages::IMOVELS)),
