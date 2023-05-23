@@ -89,7 +89,7 @@ function closeDeleteIntermediationModal() {
 </script>
 
 <template>
-    <Head title="Províncias" />
+    <Head title="Regras de intermediação" />
     <AuthenticatedLayout>
         <template v-slot:content>
             <div class="mx-auto max-w-screen-xl">

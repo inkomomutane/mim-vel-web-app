@@ -2,6 +2,7 @@
 import Modal from "@/Components/Modal.vue";
 import { useForm } from "@inertiajs/vue3";
 import { PropType, ref } from "vue";
+import { vMaska } from "maska";
 
 const props = defineProps({
     intermediation: {
@@ -122,6 +123,9 @@ const updateIntermediation = () => {
                         >
                         <input
                             type="text"
+                            v-maska
+                            data-maska="000.99"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
                             name="percentage"
                             v-model="form.percentage"
                             ref="percentageInput"

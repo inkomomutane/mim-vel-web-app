@@ -31,6 +31,7 @@
         "collect.js": "^4.36.1",
         "flowbite": "^1.6.5",
         "format": "^0.2.2",
+        "maska": "^2.1.9",
         "pinia": "^2.0.34",
         "prettier": "^2.8.7",
         "primevue": "^3.27.0",
