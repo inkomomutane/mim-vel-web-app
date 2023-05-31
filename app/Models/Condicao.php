@@ -10,6 +10,7 @@ use App\Data\CondicaoData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 
 /**
  * Class Condicao
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Condicao extends Model
 {
+    use WithData;
+
     protected $table = 'condicaos';
 
     protected $dataClass = CondicaoData::class;

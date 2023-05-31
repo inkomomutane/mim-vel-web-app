@@ -187,6 +187,37 @@ class CreateImovelType
 class UpdateImovelType
 {
 }
+namespace App\Actions\IntermediationRule;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetIntermediationRules
+{
+}
+/**
+ */
+class CreateIntermediationRule
+{
+}
+/**
+ */
+class DeleteIntermediationRule
+{
+}
+/**
+ */
+class UpdateIntermediationRule
+{
+}
 namespace App\Actions\Legal;
 
 /**

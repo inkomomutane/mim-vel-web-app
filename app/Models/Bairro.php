@@ -6,10 +6,12 @@
 
 namespace App\Models;
 
+use App\Data\BairroData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 
 /**
  * Class Bairro
@@ -37,8 +39,11 @@ use Illuminate\Database\Eloquent\Model;
 class Bairro extends Model
 {
     use HasFactory;
+    use WithData;
 
     protected $table = 'bairros';
+
+    protected $dataClass = BairroData::class;
 
     protected $casts = [
         'cidade_id' => 'int',

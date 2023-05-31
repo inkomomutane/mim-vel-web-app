@@ -10,8 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-
-const props = defineProps({
+defineProps({
     imovel: {
         type: Object,
         required: false,
@@ -25,8 +24,7 @@ const items = ref([]);
 
 <template>
     <GuestLayout>
-        <Head title="Mimóvel" />
-
+        <Head title="Mimóvel"/>
         <PageHeader />
         <section class="relative">
             <ResponsiveImage

@@ -14,7 +14,7 @@ class UserData extends Data
         public readonly ?string $email,
         public readonly ?string $contacto,
         public readonly ?string $location,
-        public readonly bool $active,
+        public readonly ?bool $active,
         public readonly ?RoleData $role
     ) {
     }

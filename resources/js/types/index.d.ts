@@ -83,6 +83,10 @@ export interface Intermediations extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.IntermediationRuleData>;
 }
 
+export interface Imovels extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.ImovelData>;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

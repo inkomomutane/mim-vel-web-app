@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class MediaData extends Data
 {
     public function __construct(
-        public readonly int $id,
+        public readonly ?int $id,
         public ?string $file_name,
         public ?string $name,
         public ?string $mime_type,

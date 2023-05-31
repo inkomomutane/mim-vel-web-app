@@ -48,6 +48,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Section> $sections
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Section> $sections
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Section> $sections
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Section> $sections
  *
  * @mixin \Eloquent
  */

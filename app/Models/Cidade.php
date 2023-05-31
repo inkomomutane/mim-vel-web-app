@@ -6,10 +6,12 @@
 
 namespace App\Models;
 
+use App\Data\CityData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\WithData;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
@@ -39,8 +41,11 @@ use Spatie\Searchable\SearchResult;
 class Cidade extends Model implements Searchable
 {
     use HasFactory;
+    use WithData;
 
     protected $table = 'cidades';
+
+    protected $dataClass = CityData::class;
 
     protected $fillable = [
         'nome', 'province_id',

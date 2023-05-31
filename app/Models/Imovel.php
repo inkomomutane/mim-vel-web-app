@@ -6,13 +6,18 @@
 
 namespace App\Models;
 
+use App\Data\ImovelData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
+use RalphJSmit\Laravel\SEO\SchemaCollection;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\ImageMeta;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -122,13 +127,25 @@ use Spatie\Tags\HasTags;
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereIntermediationRuleId($value)
  *
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
+ *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable
 {
-    use InteractsWithMedia, HasTags, HasSlug, HasSEO, HasFactory;
+    use InteractsWithMedia;
+    use HasTags;
+    use HasSlug;
+    use HasSEO;
+    use HasFactory;
+    use WithData;
 
     protected $table = 'imovels';
+
+    protected $dataClass = ImovelData::class;
 
     protected $casts = [
         'banheiros' => 'int',
@@ -154,10 +171,10 @@ class Imovel extends Model implements HasMedia, Searchable
 
     protected $fillable = [
         'titulo',
+        'preco',
         'descricao',
         'slug',
         'banheiros',
-        'preco',
         'ano',
         'andares',
         'for_rent',
@@ -177,6 +194,7 @@ class Imovel extends Model implements HasMedia, Searchable
         'corretor_id',
         'regra_de_negocio_id',
         'imovel_for_id',
+        'intermediation_rule_id',
     ];
 
     public function bairro()
@@ -253,21 +271,32 @@ class Imovel extends Model implements HasMedia, Searchable
         $this->addMediaConversion('social-media')
             ->width('720')
             ->nonQueued();
+    }
 
-        $this->addMediaCollection('posts');
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('posts')->withResponsiveImages();
     }
 
     public function getDynamicSEOData(): SEOData
     {
         return new SEOData(
-            title: $this->titulo,
-            description: strip_tags($this->descricao),
-            author: $this->corretor->name,
+            title: Str::Ucfirst($this->titulo),
+            description: Str::Ucfirst(strip_tags($this->descricao)),
+            author: Str::Ucfirst($this->corretor->name),
             image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
             type: 'article',
             published_time: $this->published_at,
             modified_time: $this->updated_at,
+            section: Str::Ucfirst($this->tipo_de_imovel->nome ?? ''),
             imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl('social-media')) : null,
+            schema: SchemaCollection::initialize()->addArticle()->addBreadcrumbs(
+                function (BreadcrumbListSchema $breadcrumbs): BreadcrumbListSchema {
+                    return $breadcrumbs->prependBreadcrumbs([
+                        'Homepage' => route('welcome'),
+                    ]);
+                }
+            ),
         );
     }
 

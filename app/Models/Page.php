@@ -67,6 +67,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Database\Factories\PageFactory factory($count = null, $state = [])
  *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  *
  * @mixin \Eloquent
  */

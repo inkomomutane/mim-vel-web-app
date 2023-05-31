@@ -15,6 +15,7 @@ const cities = ref(props.provinces);
 
 const addCity = ref(false);
 const nameInput = ref();
+
 const addCityTrigger = () => {
     addCity.value = true;
 };
