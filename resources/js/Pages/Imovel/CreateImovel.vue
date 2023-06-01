@@ -22,8 +22,7 @@ const province = ref<App.Data.MultilevelProvinceData|null>(null);
 
 const cities = ref<Array<App.Data.CityData>|null>(null);
 const city = ref<App.Data.CityData|null>(null);
-const bairros = ref(null);
-const bairro = ref(null);
+const bairros = ref<Array<App.Data.BairroData>|null>(null);
 
 
 const form = useForm({
@@ -39,12 +38,15 @@ console.log(province.value);
 watch(() => province.value,(e) => {
     province.value = provinces.value?.findLast(prov => prov.id == e?.id ?? -1 ) ?? null;
     cities.value = province.value?.cidades ?? null;
+    bairros.value = null;
+    form.bairro_id = null;
 });
 
-
-
-
-
+watch(() => city.value,(e) => {
+    city.value = cities.value?.findLast(cty => cty.id == e?.id ?? -1 ) ?? null;
+    bairros.value = city.value?.bairros ?? null;
+    form.bairro_id = null;
+});
 
 </script>
 
@@ -209,7 +211,7 @@ watch(() => province.value,(e) => {
                         <label
                             for="province_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Província</label
+                            >Cidade</label
                         >
                         <Dropdown
 
@@ -217,6 +219,35 @@ watch(() => province.value,(e) => {
                             :options="cities?? []"
                             optionLabel="nome"
                             placeholder="Cidade"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        >
+                            <template #option="slotProps">
+                                <div
+                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                    :class="
+                                    city == slotProps.option
+                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                            : ''
+                                    "
+                                >
+                                    <div>{{ slotProps.option.nome }}</div>
+                                </div>
+                            </template>
+                        </Dropdown>
+                    </div>
+                    <div>
+                        <label
+                            for="bairro_id"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Bairro</label
+                        >
+                        <Dropdown
+
+                            v-model="form.bairro_id"
+                            :options="bairros?? []"
+                            optionValue="id"
+                            optionLabel="nome"
+                            placeholder="Bairro"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         >
                             <template #option="slotProps">
