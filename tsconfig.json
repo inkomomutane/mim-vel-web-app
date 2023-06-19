@@ -13,7 +13,10 @@
         "skipLibCheck": true,
         "paths": {
             "@/*": ["./resources/js/*"]
-        }
+        },
+        "typeRoots": ["./node_modules/@types", "./resources/js/types",
+        "./resources/js/website"]
+
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue"]
 }

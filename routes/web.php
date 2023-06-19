@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\Website\Welcome;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,11 +15,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    $imovel = App\Models\Imovel::find(44)->load('media');
+Route::get('/',Welcome::class)->name('welcome');
 
-    return Inertia::render('Website/Welcome', ['imovel' => $imovel]);
-})->name('welcome');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

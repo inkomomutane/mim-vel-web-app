@@ -128,6 +128,7 @@ module.exports = {
         require("@tailwindcss/forms"),
         require('@tailwindcss/typography'),
         require("flowbite/plugin"),
+        require('tailwind-scrollbar'),
         // require('@tailwindcss/line-clamp'),
         // add custom variant for expanding sidebar
         plugin(({ addVariant, e }) => {

@@ -18255,18 +18255,7 @@
      
 }
 
-        namespace Awssat\Visits { 
-            /**
-     * 
-     *
-     */ 
-        class Visits {
-         
-    }
-     
-}
-
-    namespace Barryvdh\Debugbar\Facades { 
+        namespace Barryvdh\Debugbar\Facades { 
             /**
      * 
      *
@@ -24010,7 +23999,6 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
-            class Visits extends \Awssat\Visits\Visits {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Image extends \Intervention\Image\Facades\Image {}
             class Share extends \Jorenvh\Share\ShareFacade {}

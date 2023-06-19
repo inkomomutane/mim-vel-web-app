@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 import { vMaska } from "maska";
 import Dropdown from "primevue/dropdown";
+import  ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { watch } from "vue";
 
 import { ref } from "vue";
@@ -11,7 +12,11 @@ import { ref } from "vue";
 const props = defineProps({
     regrasDeNegocio: Array<App.Data.RegraDeNegocioData>,
     transactionTypes: Array<App.Data.TransactionTypeData>,
-    provinces:Array<App.Data.MultilevelProvinceData>
+    provinces:Array<App.Data.MultilevelProvinceData>,
+
+    imovelsTypes:Array<App.Data.ImovelTypeData>,
+    imovelConditions:Array<App.Data.CondicaoData>,
+    statuses:Array<App.Data.StatusData>
 })
 
 const regrasDeNegocio = ref(props.regrasDeNegocio);
@@ -31,6 +36,12 @@ const form = useForm({
     regra_de_negocio_id:null,
     imovel_for_id:null,
     bairro_id:null,
+    descricao: '',
+
+    condicao_id:null,
+    tipo_de_imovel_id: null,
+    status_id:null
+
 });
 
 console.log(province.value);
@@ -265,7 +276,118 @@ watch(() => city.value,(e) => {
                         </Dropdown>
                     </div>
                 </div>
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
+                    <div>
+                        <label
+                            for="descricao"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Descrição</label
+                        >
+                        <ckeditor
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+
+                    :editor="ClassicEditor"
+                    v-model="form.descricao"
+                    :config="{}"
+                ></ckeditor>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
+                    <div>
+                        <label
+                            for="tipo_de_imovel_id"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Tipo de imovel</label
+                        >
+                        <Dropdown
+                            v-model="form.tipo_de_imovel_id"
+                            :options="imovelsTypes"
+                            optionValue="id"
+                            optionLabel="name"
+                            placeholder="Tipo de imóvel"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        >
+                            <template #option="slotProps">
+                                <div class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                    :class="form.tipo_de_imovel_id == slotProps.option.id
+                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                            : ''
+                                    ">
+                                    <div>{{ slotProps.option.name }}</div>
+                                </div>
+                            </template>
+                        </Dropdown>
+                        <InputError :message="form.errors.tipo_de_imovel_id ?? ''" />
+                    </div>
+                    <div>
+                        <label
+                            for="condicao_id"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Condição do imóvel</label
+                        >
+                        <Dropdown
+
+                            v-model="form.condicao_id"
+                            :options="imovelConditions?? []"
+                            optionLabel="nome"
+                            placeholder="Condição do imóvel"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        >
+                            <template #option="slotProps">
+                                <div
+                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                    :class="
+                                    form.condicao_id == slotProps.option.id
+                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                            : ''
+                                    "
+                                >
+                                    <div>{{ slotProps.option.nome }}</div>
+                                </div>
+                            </template>
+                        </Dropdown>
+                        <InputError :message="form.errors.condicao_id ?? ''" />
+                    </div>
+                    <div>
+                        <label
+                            for="bairro_id"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Estado do imóvel</label
+                        >
+                        <Dropdown
+
+                            v-model="form.status_id"
+                            :options="statuses ?? []"
+                            optionValue="id"
+                            optionLabel="nome"
+                            placeholder="Estado do imóvel"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        >
+                            <template #option="slotProps">
+                                <div
+                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                    :class="
+                                    form.status_id == slotProps.option.id
+                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                            : ''
+                                    "
+                                >
+                                    <div>{{ slotProps.option.nome }}</div>
+                                </div>
+                            </template>
+                        </Dropdown>
+                        <InputError :message="form.errors.status_id ?? ''" />
+                    </div>
+                </div>
             </div>
         </template>
     </AuthenticatedLayout>
 </template>
+
+<style>
+.ck-focused {
+   @apply  bg-gray-50 border border-gray-300 text-gray-900
+    focus:ring-slate-500 focus:border-slate-500 block w-full
+    dark:text-white !important
+}
+</style>

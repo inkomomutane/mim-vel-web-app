@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Page;
+use App\Models\TipoDeImovel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
@@ -30,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFive();
+        view()->share([
+            'globals' => Page::first()?->getData(),
+            'imovelTypes' => TipoDeImovel::all()
+        ]);
 
         Builder::macro('whereLike', function ($attributes, string $searchTerm) {
             $this->where(function (Builder $query) use ($attributes, $searchTerm) {
@@ -52,7 +58,6 @@ class AppServiceProvider extends ServiceProvider
 
             return $this;
         });
-
         try {
             \Storage::extend('google', function ($app, $config) {
                 $options = [];

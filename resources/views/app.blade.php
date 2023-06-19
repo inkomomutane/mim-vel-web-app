@@ -6,6 +6,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url('/favicon.ico') }}">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        
         <!-- Scripts -->
         @routes
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])

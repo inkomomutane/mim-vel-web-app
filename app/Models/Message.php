@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  * @property-read \App\Models\User $receiver
  * @property-read \App\Models\User $sender
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Message newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Message newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Message query()
@@ -33,7 +32,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereReaded($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereToId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Message extends Model
