@@ -11,6 +11,6 @@ class Contact
 
     public function asController()
     {
-        return Inertia::render('Website/Contact');
+        return view('website.contact');
     }
 }

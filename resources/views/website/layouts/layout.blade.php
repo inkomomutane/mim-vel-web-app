@@ -21,6 +21,5 @@
         </main>
         @include('website.layouts.footer')
         @stack('js')
-
     </body>
 </html>

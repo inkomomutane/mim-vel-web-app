@@ -2,8 +2,9 @@
 
 namespace App\Actions\Website;
 
+use App\Models\Page;
 use App\Models\Politica;
-use Inertia\Inertia;
+use App\Support\Enums\Pages;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class GetPolicies
@@ -12,8 +13,9 @@ class GetPolicies
 
     public function asController()
     {
-        return Inertia::render('Website/Policy', [
-            'policy' => Politica::first()->getData(),
+        return view('website.policy', [
+            'policy' => Politica::first(),
+            'page' => Page::with('media')->first()?->getFirstMedia(Pages::POLICY),
         ]);
     }
 }

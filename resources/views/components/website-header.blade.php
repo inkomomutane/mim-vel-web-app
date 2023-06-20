@@ -111,7 +111,7 @@
                                     : $linkCss }}
                             "
                             >Termos e condições</
-                        >
+                        ></a>
                     </li>
                     @endif
 
@@ -125,7 +125,7 @@
                                         : $linkCss }}
                                 "
                                 >Politicas de privacidade</
-                            >
+                            ></a>
                         </li>
                         @endif
                 </ul>

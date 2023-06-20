@@ -183,7 +183,7 @@ class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
+                                class="h-5 w-5 shrink-0 text-orange-400 dark:text-white"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -211,7 +211,7 @@ class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
+                                class="h-5 w-5 shrink-0 text-orange-400 dark:text-white"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -237,7 +237,7 @@ class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
+                                class="h-5 w-5 shrink-0 text-orange-400 dark:text-white"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -261,7 +261,7 @@ class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
+                            class="h-5 w-5 shrink-0 text-orange-400 dark:text-white"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"

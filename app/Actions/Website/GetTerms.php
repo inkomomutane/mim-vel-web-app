@@ -2,7 +2,9 @@
 
 namespace App\Actions\Website;
 
+use App\Models\Page;
 use App\Models\Termo;
+use App\Support\Enums\Pages;
 use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -12,8 +14,9 @@ class GetTerms
 
     public function asController()
     {
-        return Inertia::render('Website/Terms', [
-            'terms' => Termo::first()->getData(),
+        return view('website.terms', [
+            'terms' => Termo::first(),
+            'page' => Page::with('media')->first()?->getFirstMedia(Pages::TERMS),
         ]);
     }
 }
