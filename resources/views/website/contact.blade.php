@@ -128,8 +128,10 @@
                     <div>
                       <div class="bg-white rounded-sm p-4 px-4 md:p-8 mb-6">
                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-                          <div class="text-orange-400">
-                            <p class="font-medium text-lg">Mimóvel | Meu imovel</p>
+                          <div class="text-orange-400 hidden  lg:grid justify-center ">
+
+                            <img src="{{Vite::asset('resources/js/images/logo/logo.png')}}" alt="Mimóvel | Meu imovel"
+                            class="my-auto p-5 gap-8">
 
                           </div>
 
@@ -138,32 +140,32 @@
                               <div class="">
                                 <label for="full_name">Teu nome <strong class="-order-2 text-red-500">*</strong></label>
                                 <input type="text" name="nome_cliente" id="name" class="h-10 border mt-1 focus:ring-1
-                                 focus:ring-orange-500 focus:border-orange-500 rounded px-4 w-full bg-gray-50" value="" />
+                                 focus:ring-orange-500 border-orange-500 focus:border-orange-500 rounded px-4 w-full bg-gray-50" value="" />
                               </div>
                               <div class="">
                                 <label for="email">Teu email</label>
                                 <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 focus:ring-1
-                                focus:ring-orange-500 focus:border-orange-500" value="" placeholder="Exemplo@mimovel.com" />
+                                focus:ring-orange-500 border-orange-500 focus:border-orange-500" value="" placeholder="Exemplo@mimovel.com" />
                               </div>
                               <div class="">
                                 <label for="address">Contacto</label>
                                 <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full
-                                 bg-gray-50 focus:ring-1
+                                 bg-gray-50 focus:ring-1 border-orange-500
                                  focus:ring-orange-500 focus:border-orange-500" value="" placeholder="" />
                               </div>
 
                               <div class="">
                                 <label for="city">Assunto</label>
                                 <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full
-                                 bg-gray-50 focus:ring-1
-                                 focus:ring-orange-500 focus:border-orange-500" value="" placeholder="" />
+                                 bg-gray-50 focus:ring-1 border-orange-500
+                                 focus:ring-orange-500 focus:border-orange-500" value="" placeholder="Assunto" />
                               </div>
 
                               <div class="md:col-span-2">
                                 <label for="country">Mensagem</label>
                                 <div class="bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                                     <textarea name="" id="" cols="10" rows="3" class=" px-4 appearance-none outline-none
-                                    text-gray-800 w-full bg-transparent focus:ring-1
+                                    text-gray-800 w-full bg-transparent focus:ring-1 border-orange-500
                                     focus:ring-orange-500 focus:border-orange-500 rounded"></textarea>
                                 </div>
                               </div>

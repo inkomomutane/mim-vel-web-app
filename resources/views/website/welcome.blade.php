@@ -14,8 +14,8 @@
                             <img src="{{ Vite::asset('resources/js/images/logo/logo.png') }}"
                                 class="mx-auto mt-10 sm:m-auto w-60" alt="Mimóvel" />
                         </h1>
-                        <div
-                            class="my-8 rounded-sm text-xs font-normal text-white lg:text-sm dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-8 grid font-['Open_Sans']">
+                        <div id="welcome-search">
+
                         </div>
                     </div>
                 </div>
@@ -87,9 +87,40 @@
         </div>
     </section>
     <!-- End::Relevant-Imovels -->
+    <section class="py-8 px-8 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']">
+        <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mb-16">
+            Anúncios destacados
+        </h1>
+       <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            @foreach ($banners->getMedia('banners') as $banner)
+                <div class="swiper-slide">
+                    <!-- Hero -->
+                    <div class="" style="background-image: url('{{$banner->responsiveImages()->getPlaceholderSvg()}}');background-repeat: no-repeat;  background-size: cover; ">
+                        <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
+                            <div class="max-w-[85rem] mx-auto px-4 aspect-[95/70]
+                            md:aspect-[95/40] lg:aspect-[95/30] sm:px-6 lg:px-8 pt-1 grid justify-items-center">
+                                {{  $banner->img()->attributes(['class' => 'h-full object-contain w-auto'])->lazy() }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Hero -->
+                </div>
+            @endforeach
+        </div>
+        <div class="swiper-pagination"></div>
+       </div>
+    </section>
+
+
+
+
+    <!-- End:Banner-->
 
     <!-- Start::Latest-Imovels -->
-    <section class="py-16 px-8 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']" itemscope
+    <section class="pb-16 pt-8 px-8 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6">
             Novos imóveis
@@ -153,34 +184,39 @@
     <!-- End::Latest-Imovels -->
 
     <!-- Start::Type-of-Imovels -->
-    <section class="py-16 px-8 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope itemtype="http://schema.org/ItemList">
+    <section class="py-16 px-8 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
+        itemtype="http://schema.org/ItemList">
         <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2" itemprop="name">
-          No Mimóvel vai encontrar
+            No Mimóvel vai encontrar
         </h2>
         <div class="flex p-5">
-          <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full justify-between">
+            <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full justify-between">
 
-            @foreach ($imovelTypes as $type)
-            <li itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
-                <article class="text-center bg-white w-fit mx-auto p-4 rounded-2xl">
-                    @if ($type->getFirstMedia('icons'))
-                    {{ $type->getFirstMedia('icons')
-                        ?->img()->attributes(['class' => 'object-cover h-24 w-24 rounded-2xl', 'alt' =>  $type->nome ?? ''])->lazy() }}
-                @else
-                    <img class="object-cover h-24 w-24 rounded-2xl"
-                        src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
-                        alt="{{ $type->nome ?? '' }}">
-                @endif
-                </article>
-                <p class="text-center my-4 text-xl font-medium text-gray-700 " itemprop="name">
-                    <span itemprop="identifier">{{ $type->nome ?? '' }}</span>
-                  </p>
-              </li>
-            @endforeach
+                @foreach ($imovelTypes as $type)
+                    <li itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+                        <article class="text-center bg-white w-fit mx-auto p-4 rounded-2xl">
+                            @if ($type->getFirstMedia('icons'))
+                                {{ $type->getFirstMedia('icons')
+                                    ?->img()->attributes(['class' => 'object-cover h-24 w-24 rounded-2xl', 'alt' => $type->nome ?? ''])->lazy() }}
+                            @else
+                                <img class="object-cover h-24 w-24 rounded-2xl"
+                                    src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
+                                    alt="{{ $type->nome ?? '' }}">
+                            @endif
+                        </article>
+                        <p class="text-center my-4 text-xl font-medium text-gray-700 " itemprop="name">
+                            <span itemprop="identifier">{{ $type->nome ?? '' }}</span>
+                        </p>
+                    </li>
+                @endforeach
 
-          </ul>
+            </ul>
         </div>
-      </section>
+    </section>
 
     <!-- End::Type-of-Imovels -->
 @endsection
+
+@push('js')
+    @vite(['resources/js/website/vue/welcomeSearch.ts', 'resources/js/website/welcomeBanner.js'])
+@endpush

@@ -13,9 +13,6 @@ import Tooltip from "primevue/tooltip";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ConfirmationService from "primevue/confirmationservice";
 // import function to register Swiper custom elements
-import { register } from "swiper/element";
-// register Swiper custom elements
-register();
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
