@@ -118,7 +118,7 @@ class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
                         </li>
                         <li>
                             <a
-                                href=""
+                                href="{{ route('posts') }}"
                                 class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
                                 >Todos imóveis</a
                             >

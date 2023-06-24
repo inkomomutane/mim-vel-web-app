@@ -1,12 +1,13 @@
 @props([
-    'noOpacity' => false
+    'noOpacity' => false,
+    'styling' => 'h-96'
 ])
 
-<section class="relative h-96">
+<section class="relative {{ $styling }}">
     <!-- Carousel background -->
     <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
         <div class="carousel">
-            {{ $coverImage }}
+            {{ $coverImage ?? '' }}
         </div>
     </div>
     <!-- Overlay -->
@@ -17,8 +18,8 @@
     <!-- Hero content -->
     <div class="absolute container mx-auto px-4">
         <section class="bg-transparent">
-            {{ $content }}
+            {{ $content ?? '' }}
         </section>
     </div>
-    {{ $slot }}
+    {{ $slot ?? '' }}
 </section>

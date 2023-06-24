@@ -8,12 +8,11 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         @yield('seo')
         <!-- Scripts -->
-
         @routes
         @vite(['resources/js/website/app.ts', "resources/css/website.css"])
         @vite('resources/js/website/header.ts')
     </head>
-    <body class="font-sans  antialiased scroll-smooth selection:bg-orange-400 selection:text-white">
+    <body class=" font-sans  antialiased scroll-smooth selection:bg-orange-400 selection:text-white">
         @yield('header')
          @yield('hero')
         <main>

@@ -13,6 +13,7 @@ export default defineConfig({
                 'resources/js/website/header.ts',
                 'resources/js/website/vue/welcomeSearch.ts',
                 'resources/js/website/welcomeBanner.js',
+                'resources/js/website/vue/posts/app.ts',
                 'resources/js/images/placeholder.svg',
                 'resources/css/website.css',
         ],

@@ -14,7 +14,7 @@ class ImovelData extends Data
         public Lazy|null|string $titulo,
         public Lazy|null|string $descricao,
         public Lazy|null|int $banheiros,
-        public Lazy|null|int $preco,
+        public Lazy|null|int|string $preco,
         public Lazy|null|int $ano,
         public Lazy|null|int $andares,
         public Lazy|null|float $area,

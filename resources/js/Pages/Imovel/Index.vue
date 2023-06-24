@@ -193,8 +193,8 @@ function closeDeleteImovelModal() {
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
 
-                                    <ResponsiveImage v-if="imovel.media" :responsive="imovel.media" class-name="h-8 w-16 rounded-sm object-cover" />
-                                    <Avatar v-else label="M"  class="bg-slate-200" />
+                                    <ResponsiveImage  :responsive="imovel.media ?? undefined" class-name="h-8 w-16 rounded-sm object-cover" />
+
                                     </th>
 
                                     <td class="px-4 py-3">

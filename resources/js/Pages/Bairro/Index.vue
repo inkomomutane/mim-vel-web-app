@@ -184,7 +184,7 @@ function closeDeleteBairroModal() {
                                     </td>
 
                                     <td class="px-4 py-3">
-                                        {{ bairro.city.nome }}
+                                        {{ bairro.city?.nome }}
                                     </td>
 
                                     <td class="px-4 py-3 w-32">

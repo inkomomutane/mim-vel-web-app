@@ -12,13 +12,12 @@ const props = defineProps({
     alt: String,
 });
 
-const optimized = ref(props.responsive?.mime_type !== "image/webp");
+const optimized = ref<Boolean>(props.responsive?.mime_type !== "image/webp");
 </script>
 
 <template>
-    <figure>
         <img
-            v-if="optimized"
+            v-if="optimized && responsive != undefined"
             :class="className"
             :srcset="responsive?.srcsets ?? ''"
             :src="responsive?.original_url ?? ''"
@@ -29,11 +28,17 @@ const optimized = ref(props.responsive?.mime_type !== "image/webp");
         />
         <img
             :class="className"
-            v-else
+            v-else-if="responsive != undefined"
             :src="responsive?.original_url ?? ''"
             loading="lazy"
             :alt="alt"
         />
-        <figcaption v-if="caption">{{ caption }}</figcaption>
-    </figure>
+        <img
+            :class="`${className} object-left-top`"
+            v-else
+            src="@/images/placeholder.svg"
+            loading="lazy"
+            :alt="alt"
+        />
+
 </template>

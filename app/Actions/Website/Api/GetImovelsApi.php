@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Actions\Website;
+namespace App\Actions\Website\Api;
 
 use App\Data\ImovelData;
 use App\Models\Imovel;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Lorisleiva\Actions\Concerns\AsController;
 
-class GetImovels
+class GetImovelsApi
 {
     use AsController;
 
@@ -17,26 +17,25 @@ class GetImovels
             Imovel::query()
                 ->when($term, function ($query, $search) {
 
-                    $query->where('titulo', 'like', '%'.$search.'%')
-                        ->orWhereRelation('bairro', 'nome', 'like', '%'.$search.'%')
-                        ->orWhereRelation('bairro.cidade', 'nome', 'like', '%'.$search.'%')
-                        ->orWhereRelation('bairro.cidade.province', 'name', 'like', '%'.$search.'%');
+                    $query->where('titulo', 'like', '%' . $search . '%')
+                        ->orWhereRelation('bairro', 'nome', 'like', '%' . $search . '%')
+                        ->orWhereRelation('bairro.cidade', 'nome', 'like', '%' . $search . '%')
+                        ->orWhereRelation('bairro.cidade.province', 'name', 'like', '%' . $search . '%');
 
                     $query->with(['bairro', 'media' => function (MorphMany $query) {
                         $query->where('collection_name', 'posts')->first();
-                    }, ]);
-
+                    },]);
                 })->with(['bairro', 'media' => function (MorphMany $query) {
                     $query->where('collection_name', 'posts');
-                }, ])->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
+                },])->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }
 
 
     public function AsController()
     {
-        return view('website.posts',[
-            'imovels' => $this->handle(request()->search),
+        return response()->json([
+            'imovels' => $this->handle(request()->search)
         ]);
     }
 }
