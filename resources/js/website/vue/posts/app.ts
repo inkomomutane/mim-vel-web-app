@@ -4,4 +4,4 @@ import "primevue/resources/primevue.min.css";
 import { createPinia } from "pinia";
 const app = createApp(defineAsyncComponent(() => import ('./App.vue')))
 app.use(createPinia())
-app.use(PrimeVue).mount('#posts');
+app.use(PrimeVue).mount('#imoveis');

@@ -25,8 +25,9 @@ class ImovelData extends Data
         public Lazy|null|string $endereco,
         public Lazy|null|string $mapa,
         public Lazy|null|int $views,
-        public Lazy|null|BairroData $bairro,
+         /** @var CondicaoData * */
         public Lazy|null|CondicaoData $condicao,
+        public Lazy|null|BairroData $bairro,
         public Lazy|null|ImovelTypeData $tipo_de_imovel,
         public Lazy|null|StatusData $status,
         public Lazy|null|UserData $corretor,
@@ -58,19 +59,19 @@ class ImovelData extends Data
             endereco: $imovel->endereco,
             mapa: $imovel->mapa,
             views: $imovel->views,
-            bairro: Lazy::create(fn () => $imovel->bairro->getData()),
-            condicao: Lazy::create(fn () => $imovel->condicao->getData()),
-            tipo_de_imovel: Lazy::create(fn () => $imovel->tipo_de_imovel->getData()),
-            status: Lazy::create(fn () => $imovel->status->getData()),
-            corretor: Lazy::create(fn () => $imovel->corretor->getData()),
+            condicao: Lazy::whenLoaded('condicao',$imovel,fn() => $imovel->condicao->getData()),
+            bairro: Lazy::whenLoaded('bairro',$imovel,fn() => $imovel->bairro->getData()),
+            tipo_de_imovel: Lazy::whenLoaded('tipo_de_imovel',$imovel,fn () => $imovel->tipo_de_imovel->getData()),
+            status: Lazy::whenLoaded('status',$imovel,fn () => $imovel->status->getData()),
+            corretor: Lazy::whenLoaded('corretor',$imovel,fn () => $imovel->corretor->getData()),
             slug: $imovel->slug,
             for_rent: $imovel->for_rent,
-            regra_de_negocio: $imovel->regra_de_negocio,
-            imovel_for: $imovel->imovel_for,
-            intermediation_rule: $imovel->intermediation_rule,
-            media: ! is_null($imovel->getFirstMedia('posts')) ?
-                MediaData::fromModel($imovel->getFirstMedia('posts')) :
-                null,
+            regra_de_negocio:Lazy::whenLoaded('regraDeNegocio',$imovel,fn () => $imovel->regraDeNegocio->getData()),
+            imovel_for: Lazy::whenLoaded('imovelFor',$imovel,fn () => $imovel->imovelFor->getData()),
+            intermediation_rule:Lazy::whenLoaded('intermediationRule',$imovel,fn () => $imovel->intermediationRule->getData()),
+            media:Lazy::whenLoaded('media',$imovel,fn () =>  ! is_null($imovel->getFirstMedia('posts')) ?
+            MediaData::fromModel($imovel->getFirstMedia('posts')) :
+            null),
 
         );
     }

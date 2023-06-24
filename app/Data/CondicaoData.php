@@ -8,8 +8,8 @@ use Spatie\LaravelData\Data;
 class CondicaoData extends Data
 {
     public function __construct(
-        public readonly ?int $id,
-        public readonly ?string $nome,
+        public  ?int $id,
+        public  ?string $nome,
     ) {
     }
 }

@@ -11,31 +11,25 @@ class GetImovelsApi
 {
     use AsController;
 
-    public function handle(?string $term = null)
+    public function handle()
     {
-        return ImovelData::collection(
-            Imovel::query()
-                ->when($term, function ($query, $search) {
-
-                    $query->where('titulo', 'like', '%' . $search . '%')
-                        ->orWhereRelation('bairro', 'nome', 'like', '%' . $search . '%')
-                        ->orWhereRelation('bairro.cidade', 'nome', 'like', '%' . $search . '%')
-                        ->orWhereRelation('bairro.cidade.province', 'name', 'like', '%' . $search . '%');
-
-                    $query->with(['bairro', 'media' => function (MorphMany $query) {
-                        $query->where('collection_name', 'posts')->first();
-                    },]);
-                })->with(['bairro', 'media' => function (MorphMany $query) {
+        // 'bairro',
+        //         'condicao',
+        //         'tipo_de_imovel',
+        //         'status',
+        //         'corretor',
+        //         'imovelFor',
+        return \App\Data\ImovelData::collection(
+            \App\Models\Imovel::with([ 'bairro.cidade','condicao','imovelFor', 'media' => function (\Illuminate\Database\Eloquent\Relations\MorphMany $query) {
                     $query->where('collection_name', 'posts');
-                },])->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
-        );
+                },])->paginate(9));
     }
 
 
     public function AsController()
     {
         return response()->json([
-            'imovels' => $this->handle(request()->search)
+            'imovels' => $this->handle()
         ]);
     }
 }

@@ -2,4 +2,4 @@
 
 use App\Actions\Website\GetImovels;
 
-Route::get('posts',GetImovels::class)->name('posts');
+Route::get('todos-imoveis',GetImovels::class)->name('imoveis');

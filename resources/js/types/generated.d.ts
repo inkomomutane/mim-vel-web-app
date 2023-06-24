@@ -29,7 +29,7 @@ declare namespace App.Data {
         titulo: any | string | null;
         descricao: any | string | null;
         banheiros: any | number | null;
-        preco: any | number | null;
+        preco: any | string | number | null;
         ano: any | number | null;
         andares: any | number | null;
         area: any | number | null;

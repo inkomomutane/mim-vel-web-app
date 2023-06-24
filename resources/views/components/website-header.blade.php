@@ -77,8 +77,8 @@
 
                     <li>
                         <a
-                            href="{{ route('posts') }}"
-                            class="{{ Request::routeIs('posts') ? $activeLinkCss : $linkCss }}"
+                            href="{{ route('imoveis') }}"
+                            class="{{ Request::routeIs('imoveis') ? $activeLinkCss : $linkCss }}"
                             >
                             Todos imoveis
 

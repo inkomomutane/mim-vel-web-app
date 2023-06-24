@@ -7,7 +7,7 @@
 <x-website-hero styling="h-8" />
 @endsection
 @section('content')
-<div id="posts"></div>
+<div id="imoveis"></div>
 @endsection
 @push('js')
 @vite(['resources/js/website/vue/posts/app.ts'])

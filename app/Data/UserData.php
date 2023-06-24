@@ -4,6 +4,7 @@ namespace App\Data;
 
 use App\Models\User;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Lazy;
 
 /** @typescript */
 class UserData extends Data
@@ -15,7 +16,7 @@ class UserData extends Data
         public readonly ?string $contacto,
         public readonly ?string $location,
         public readonly ?bool $active,
-        public readonly ?RoleData $role
+        public readonly Lazy|null|RoleData $role
     ) {
     }
 
@@ -28,7 +29,8 @@ class UserData extends Data
             contacto: $user->contacto,
             location: $user->location,
             active: $user->active,
-            role: is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
-        );
+            role: Lazy::whenLoaded('role',$user,fn()=> is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
+        )
+    );
     }
 }
