@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Actions\Message\MessageCount;
 use App\Data\RoleData;
-use App\Models\Agenda;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -36,11 +36,11 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => $request->user()?->load('roles')->getData(),
             ],
             'messages' => flash()->render([], 'array'),
             'roles' => RoleData::collection(Role::all()),
-            'mails' => Agenda::whereIsReaded(false)->count(),
+            'mails' => MessageCount::run(),
             'globals' => Page::first()->getData(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {

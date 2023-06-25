@@ -7,87 +7,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('backend/errors/errors.css') }}">
-
+    @vite(['resources/js/errors.js','resources/css/website.css'])
 </head>
-<style>
-    @font-face {
-        font-family: 'Ubuntu';
-        src: url("{{ asset('backend/errors/fonts/ubuntu.ttf') }}") format('truetype'), ;
-        font-weight: normal;
-        font-style: normal;
-    }
+<body class="font-sans  antialiased scroll-smooth selection:bg-orange-400 selection:text-white md:selection:text-orange-400 md:selection:bg-white">
+    <article class="grid grid-cols-1 md:grid-cols-2 bg-orange-100 min-h-screen">
+        <img id="error" src="" data-image="@yield('image')" alt="@yield('message')"
+        class="h-72 self-center mx-auto">
+        <div class="md:bg-orange-500 text-orange-50 grid justify-items-center">
+            <div class="self-center grid justify-center px-8">
+                <h1 class="text-center self-center text-3xl text-orange-500 md:text-white font-extrabold md:py-8"> Error @yield('code') | @yield('message')</h1>
+                <a href="{{ URL::previous() }}" class="text-center w-fit h-fit bg-orange-500 md:bg-orange-50 py-2 px-8
+                my-4 md:text-orange-500 mx-auto rounded text-lg font-bold">Return</a>
+            </div>
+            </div>
 
-    body {
-        background-color: #e0eaff;
-        font-family: 'Ubuntu';
-        color: #3f3d56;
-    }
-
-    section {
-        width: 400px;
-        margin: auto;
-        margin-top: auto;
-        margin-top: 70px;
-    }
-
-    section img {
-        width: 100%;
-    }
-
-    .message {
-        width: 100%;
-        display: flex;
-        margin: 10px;
-    }
-
-    .message h1 {
-        align-self: auto;
-        margin: auto;
-    }
-
-    section .home {
-        box-sizing: border-box;
-        display: flex;
-        margin: 25px;
-           }
-
-    section .home a {
-        box-sizing: border-box;
-        font-family: 'Ubuntu';
-
-        border-radius: 4px;
-        color: #fff;
-        overflow: hidden;
-        text-decoration: none;
-        background-color: #2d3748;
-        border-bottom: 8px solid #2d3748;
-        border-left: 18px solid #2d3748;
-        border-right: 18px solid #2d3748;
-        border-top: 8px solid #2d3748;
-        align-self: auto;
-        margin: auto;
-        padding: 3px;
-        font-weight: 600;
-    }
-
-</style>
-
-<body>
-
-    <section>
-        <img src="{{ asset('backend/errors/svgs') }}/@yield('image')" alt="" srcset="">
-        <div class="message">
-            <h1> Erro @yield('code') | @yield('message')</h1>
-        </div>
-        <div class="home">
-            <a href="{{ URL::previous()}}">
-                <i class="align-middle" data-feather="corner-up-left"></i>
-                &nbsp; Voltar</a>
-        </div>
-
-    </section>
-    <script src="{{ asset('backend/errors/errors.js') }}"></script>
+    </article>
 </body>
-
 </html>

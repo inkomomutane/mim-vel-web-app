@@ -9,6 +9,12 @@ watch(
     () => usePage().props.mails,
     (mailsNumber) => (mails.value = mailsNumber)
 );
+
+const authorized = () => {
+    const $userRole = usePage().props.auth.user?.role.name;
+    return $userRole == 'Super-Admin' || $userRole == 'Admin';
+};
+
 </script>
 <template>
     <div class="space-y-8">
@@ -197,7 +203,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('mimovel')"
                     v-tooltip.value="tooltip('Mimóvel páginas')"
                 >
@@ -248,7 +254,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('banners.all')"
                     v-tooltip.value="tooltip('Banners pulicitários')"
                 >
@@ -299,7 +305,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('user.all')"
                     v-tooltip.value="tooltip('Usuários')"
                 >
@@ -357,7 +363,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('transaction.type.all')"
                     v-tooltip.value="tooltip('Tipo de transação ')"
                 >
@@ -428,7 +434,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('intermediation.all')"
                     v-tooltip.value="tooltip('Regras de intermediação')"
                 >
@@ -467,7 +473,7 @@ watch(
                         </div>
                     </li>
                 </Link>
-                <Link
+                <Link v-if="authorized()"
                     :href="route('negocio.all')"
                     v-tooltip.value="tooltip('Regras de negociação')"
                 >
@@ -531,7 +537,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('condicao.all')"
                     v-tooltip.value="tooltip('Condição do imóvel')"
                 >
@@ -577,7 +583,7 @@ watch(
                         </div>
                     </li>
                 </Link>
-                <Link
+                <Link v-if="authorized()"
                     :href="route('imovel_type.all')"
                     v-tooltip.value="tooltip('Tipo de imóvel')"
                 >
@@ -627,7 +633,7 @@ watch(
                         </div>
                     </li>
                 </Link>
-                <Link
+                <Link v-if="authorized()"
                     :href="route('status.all')"
                     v-tooltip.value="tooltip('Status do imóvel')"
                 >
@@ -705,7 +711,7 @@ watch(
                         </div>
                     </li>
                 </Link>
-                <Link
+                <Link v-if="authorized()"
                     :href="route('province.all')"
                     v-tooltip.value="tooltip('Províncias')"
                 >
@@ -755,7 +761,7 @@ watch(
                     </li>
                 </Link>
 
-                <Link
+                <Link v-if="authorized()"
                     :href="route('city.all')"
                     v-tooltip.value="tooltip('Cidades')"
                 >
@@ -844,7 +850,7 @@ watch(
                         </div>
                     </li>
                 </Link>
-                <Link
+                <Link v-if="authorized()"
                     :href="route('bairro.all')"
                     v-tooltip.value="tooltip('Bairros')"
                 >
@@ -979,7 +985,7 @@ watch(
             </ul>
             <h3
                 class="text-xs uppercase text-slate-500 font-semibold pl-3 mt-2"
-            >
+                v-if="authorized()">
                 <span
                     class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
                     aria-hidden="true"
@@ -989,7 +995,7 @@ watch(
                     >Legalidade</span
                 >
             </h3>
-            <ul class="mt-3">
+            <ul class="mt-3" v-if="authorized()">
                 <Link
                     :href="route('legal.policy')"
                     v-tooltip.value="tooltip('Políticas de privacidade')"

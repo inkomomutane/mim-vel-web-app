@@ -34,6 +34,7 @@ class UpdateMassageReadState
 
     public function asController(Agenda $agenda, ActionRequest $actionRequest)
     {
+
         return $this->handle($agenda, $actionRequest->is_readed);
 
     }

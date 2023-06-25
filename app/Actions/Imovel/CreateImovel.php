@@ -29,7 +29,7 @@ class CreateImovel
             'provinces' => MultilevelProvinceData::collection(Province::with('cidades.bairros')->get()),
             'imovelsTypes' => ImovelTypeData::collection(TipoDeImovel::all()),
             'imovelConditions' => CondicaoData::collection(Condicao::all()),
-            'statuses' => StatusData::collection(Status::all())
+            'statuses' => StatusData::collection(Status::all()),
         ]);
     }
 }

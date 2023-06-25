@@ -147,6 +147,42 @@ class GetCondicaos
 class UpdateCondicao
 {
 }
+namespace App\Actions\Imovel;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
+ * @method static dispatchSync(?string $term = null)
+ * @method static dispatchNow(?string $term = null)
+ * @method static dispatchAfterResponse(?string $term = null)
+ * @method static mixed run(?string $term = null)
+ */
+class GetImovels
+{
+}
+/**
+ */
+class CreateImovel
+{
+}
+/**
+ */
+class DeleteImovel
+{
+}
+/**
+ */
+class StoreImovel
+{
+}
+/**
+ */
+class UpdateImovel
+{
+}
 namespace App\Actions\ImovelType;
 
 /**
@@ -316,6 +352,20 @@ namespace App\Actions\Message;
  * @method static mixed run()
  */
 class GetMessages
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob()
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean)
+ * @method static dispatchSync()
+ * @method static dispatchNow()
+ * @method static dispatchAfterResponse()
+ * @method static int run()
+ */
+class MessageCount
 {
 }
 /**
@@ -605,6 +655,22 @@ class Profile
 class UpdateUser
 {
 }
+namespace App\Actions;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\User $user)
+ * @method static dispatchSync(\App\Models\User $user)
+ * @method static dispatchNow(\App\Models\User $user)
+ * @method static dispatchAfterResponse(\App\Models\User $user)
+ * @method static mixed run(\App\Models\User $user)
+ */
+class UserTreeInIdArray
+{
+}
 namespace App\Actions\Page;
 
 /**
@@ -617,11 +683,23 @@ class GetPage
 class PageUpdate
 {
 }
+namespace App\Actions\Website\Api;
+
+/**
+ */
+class GetImovelsApi
+{
+}
 namespace App\Actions\Website;
 
 /**
  */
 class Contact
+{
+}
+/**
+ */
+class GetImovels
 {
 }
 /**
@@ -632,6 +710,11 @@ class GetPolicies
 /**
  */
 class GetTerms
+{
+}
+/**
+ */
+class Welcome
 {
 }
 namespace Lorisleiva\Actions\Concerns;

@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="{{ url('/favicon.ico') }}">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
-        
+
         <!-- Scripts -->
         @routes
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])

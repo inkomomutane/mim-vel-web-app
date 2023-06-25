@@ -2,7 +2,6 @@
 
 namespace App\Actions\Website;
 
-use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class Contact

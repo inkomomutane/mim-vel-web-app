@@ -19,12 +19,13 @@ class CityData extends Data
     ) {
     }
 
-    public static function fromModel(Cidade $cidade){
+    public static function fromModel(Cidade $cidade)
+    {
         return new self(
-            id:$cidade->id,
-            nome:$cidade->nome,
-            province: Lazy::whenLoaded('province',$cidade,fn() => $cidade->province->getData()),
-            bairros: Lazy::whenLoaded('bairros',$cidade,fn() => BairroData::collection($cidade->bairros))
+            id: $cidade->id,
+            nome: $cidade->nome,
+            province: Lazy::whenLoaded('province', $cidade, fn () => $cidade->province->getData()),
+            bairros: Lazy::whenLoaded('bairros', $cidade, fn () => BairroData::collection($cidade->bairros))
         );
     }
 }

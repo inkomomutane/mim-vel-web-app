@@ -12,7 +12,7 @@ declare namespace App.Data {
     export type BairroData = {
         id: number | null;
         nome: string;
-        city: App.Data.CityData | null;
+        city: any | App.Data.CityData | null;
     };
     export type CityData = {
         id: number | null;
@@ -40,8 +40,8 @@ declare namespace App.Data {
         endereco: any | string | null;
         mapa: any | string | null;
         views: any | number | null;
+        condicao: App.Data.CondicaoData | null;
         bairro: any | App.Data.BairroData | null;
-        condicao: any | App.Data.CondicaoData | null;
         tipo_de_imovel: any | App.Data.ImovelTypeData | null;
         status: any | App.Data.StatusData | null;
         corretor: any | App.Data.UserData | null;
@@ -140,6 +140,6 @@ declare namespace App.Data {
         contacto: string | null;
         location: string | null;
         active: boolean | null;
-        role: App.Data.RoleData | null;
+        role: any | App.Data.RoleData | null;
     };
 }

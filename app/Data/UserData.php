@@ -29,8 +29,8 @@ class UserData extends Data
             contacto: $user->contacto,
             location: $user->location,
             active: $user->active,
-            role: Lazy::whenLoaded('role',$user,fn()=> is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
-        )
-    );
+            role: Lazy::whenLoaded('roles', $user, fn () => is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
+            )
+        );
     }
 }

@@ -67,12 +67,16 @@
                     @focusout="dropdownOpen = false"
                 >
                     <li>
-                        <Link
-                            class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-                            href="/"
+                        <button
+                            class="font-medium text-sm w-full text-indigo-500 hover:text-indigo-600
+                            hover:bg-slate-100 flex items-center py-1 px-3"
+
                             @click="logout"
-                            >Sign Out</Link
+                            >Sign Out</button
                         >
+                        <form :action="route('logout')" method="post" id="logout">
+                            <input type="hidden" name="_token" :value="token">
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -82,11 +86,15 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
+const token = document.getElementById('token').getAttribute('content');
 
-const form = useForm({});
+const form = useForm({
 
-const logout = () => form.post(route("logout"), {});
+});
+
+// axios.
+const logout = () => document.getElementById('logout').submit();
 defineProps({
     align: String,
 });

@@ -18,5 +18,5 @@
         "./resources/js/website"]
 
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue", "resources/js/website/welcomeBanner.js"]
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue", "resources/js/website/welcomeBanner.js", "resources/js/errors.js"]
 }

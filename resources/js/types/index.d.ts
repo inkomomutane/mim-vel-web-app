@@ -1,10 +1,4 @@
 import { AgendaData } from "./generated.d";
-export interface User {
-    id: number;
-    name: string;
-    email: string;
-    email_verified_at: string;
-}
 
 export interface PaginatedData {
     data: Array;
@@ -91,7 +85,7 @@ export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
     auth: {
-        user: User;
+        user: App.Data.UserData;
     };
     site: {
         type: String;

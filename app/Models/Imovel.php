@@ -77,6 +77,7 @@ use Spatie\Tags\HasTags;
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read int|null $tags_count
+ *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
@@ -113,6 +114,7 @@ use Spatie\Tags\HasTags;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
@@ -125,7 +127,9 @@ use Spatie\Tags\HasTags;
  * @property int $intermediation_rule_id
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereIntermediationRuleId($value)
+ *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
@@ -133,12 +137,14 @@ use Spatie\Tags\HasTags;
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property Collection<int, \Spatie\Tags\Tag> $tags
  * @property-read int|null $views_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+ *
  * @mixin \Eloquent
  */
-class Imovel extends Model implements HasMedia, Searchable,Viewable
+class Imovel extends Model implements HasMedia, Searchable, Viewable
 {
     use InteractsWithMedia;
     use HasTags;
@@ -206,15 +212,13 @@ class Imovel extends Model implements HasMedia, Searchable,Viewable
 
     public function getPrecoAttribute($value)
     {
-        return (new NumberFormatter('MZ', NumberFormatter::CURRENCY))->formatCurrency($value,'MZN');
+        return (new NumberFormatter('MZ', NumberFormatter::CURRENCY))->formatCurrency($value, 'MZN');
     }
 
     public function bairro()
     {
         return $this->belongsTo(Bairro::class);
     }
-
-
 
     public function regraDeNegocio()
     {
@@ -329,7 +333,6 @@ class Imovel extends Model implements HasMedia, Searchable,Viewable
     {
         return (int) $this->ratings->avg('rating');
     }
-
 
     public function getSearchResult(): SearchResult
     {

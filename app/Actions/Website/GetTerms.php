@@ -5,7 +5,6 @@ namespace App\Actions\Website;
 use App\Models\Page;
 use App\Models\Termo;
 use App\Support\Enums\Pages;
-use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class GetTerms

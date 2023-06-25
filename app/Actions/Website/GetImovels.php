@@ -32,10 +32,9 @@ class GetImovels
         );
     }
 
-
     public function AsController()
     {
-        return view('website.posts',[
+        return view('website.posts', [
             'imovels' => $this->handle(request()->search),
         ]);
     }

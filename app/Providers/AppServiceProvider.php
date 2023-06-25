@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         view()->share([
             'globals' => Page::first()?->getData(),
-            'imovelTypes' => TipoDeImovel::all()
+            'imovelTypes' => TipoDeImovel::all(),
         ]);
 
         Builder::macro('whereLike', function ($attributes, string $searchTerm) {

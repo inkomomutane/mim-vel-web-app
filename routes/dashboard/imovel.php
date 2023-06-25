@@ -6,7 +6,7 @@ use App\Actions\Imovel\GetImovels;
 use App\Actions\Imovel\StoreImovel;
 use App\Actions\Imovel\UpdateImovel;
 
-Route::prefix('dashboard/')->middleware([ 'auth','verified'])->group(function () {
+Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/imovel', GetImovels::class)->name('imovel.all');
 
     Route::get('/imovel/create', CreateImovel::class)->name('imovel.create');
