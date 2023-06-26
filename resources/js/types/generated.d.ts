@@ -28,8 +28,10 @@ declare namespace App.Data {
         id: any | number | null;
         titulo: any | string | null;
         descricao: any | string | null;
+        details: any | string | null;
         banheiros: any | number | null;
         preco: any | string | number | null;
+        price: any | string | number | null;
         ano: any | number | null;
         andares: any | number | null;
         area: any | number | null;
@@ -51,6 +53,7 @@ declare namespace App.Data {
         imovel_for: any | App.Data.TransactionTypeData | null;
         intermediation_rule: any | App.Data.IntermediationRuleData | null;
         media: App.Data.MediaData | null;
+        images: Array<App.Data.MediaData> | null;
     };
     export type ImovelTypeData = {
         id: number;
@@ -132,6 +135,10 @@ declare namespace App.Data {
         id: number | null;
         name: string;
         slug_text: string;
+    };
+    export type UserChildrenData = {
+        id: number | null;
+        users: Array<App.Data.UserChildrenData> | null;
     };
     export type UserData = {
         id: number | null;

@@ -13,6 +13,6 @@ class UserTreeInIdArray
 
     public function handle(User $user)
     {
-        return Arr::flatten(UserChildrenData::fromModel($user->load('createdUsers'))->toArray());
+        return Arr::flatten(UserChildrenData::fromModel($user)->toArray());
     }
 }

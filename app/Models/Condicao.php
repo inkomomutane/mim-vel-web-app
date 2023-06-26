@@ -11,17 +11,15 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
-
 /**
- * Class Condicao
+ * App\Models\Condicao
  *
  * @property int $id
  * @property string|null $nome
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property Collection|Imovel[] $imovels
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao query()
@@ -29,7 +27,8 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Condicao whereUpdatedAt($value)
- *
+ * @property-read Collection<int, \App\Models\Imovel> $imovels
+ * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @mixin \Eloquent
  */
 class Condicao extends Model

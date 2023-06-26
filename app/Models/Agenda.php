@@ -13,23 +13,23 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
 /**
- * Class Agenda
+ * App\Models\Agenda
  *
  * @property int $id
  * @property string|null $nome_do_cliente
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $local
  * @property string|null $contacto
- * @property Carbon|null $data_hora
+ * @property string|null $data_hora
  * @property int $corretor_id
- * @property User $user
  * @property string $mensagem
  * @property string $email
  * @property int $imovel_id
  * @property int $is_readed
  * @property-read \App\Models\User $corretor
- *
+ * @property-read mixed $url
+ * @property-read \App\Models\Imovel|null $imovel
  * @method static \Database\Factories\AgendaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newQuery()
@@ -46,10 +46,6 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereMensagem($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereNomeDoCliente($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereUpdatedAt($value)
- *
- * @property-read mixed $url
- * @property-read \App\Models\Imovel|null $imovel
- *
  * @mixin \Eloquent
  */
 class Agenda extends Model

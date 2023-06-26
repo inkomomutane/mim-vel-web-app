@@ -8,15 +8,21 @@ import  ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { watch } from "vue";
 
 import { ref } from "vue";
+import UploadImage from "@/Components/UploadImage.vue";
+import { onMounted } from "vue";
+import { PropType } from "vue";
+import { FlasherResponse } from "@flasher/flasher";
+import Flasher from "@/helprs";
 
 const props = defineProps({
     regrasDeNegocio: Array<App.Data.RegraDeNegocioData>,
     transactionTypes: Array<App.Data.TransactionTypeData>,
     provinces:Array<App.Data.MultilevelProvinceData>,
-
     imovelsTypes:Array<App.Data.ImovelTypeData>,
     imovelConditions:Array<App.Data.CondicaoData>,
-    statuses:Array<App.Data.StatusData>
+    intermediationRules:Array<App.Data.IntermediationRuleData>,
+    statuses:Array<App.Data.StatusData>,
+    messages: Object as PropType<FlasherResponse>,
 })
 
 const regrasDeNegocio = ref(props.regrasDeNegocio);
@@ -36,15 +42,25 @@ const form = useForm({
     regra_de_negocio_id:null,
     imovel_for_id:null,
     bairro_id:null,
+    endereco: '',
     descricao: '',
-
+    details: '',
     condicao_id:null,
     tipo_de_imovel_id: null,
-    status_id:null
-
+    intermediation_rule_id:null,
+    status_id:null,
+    ano:null,
+    andares:null,
+    banheiros:null,
+    area:null,
+    quartos:null,
+    suites:null,
+    garagens:null,
+    piscinas:null,
+    mapa:'',
+    images:[]
 });
 
-console.log(province.value);
 
 watch(() => province.value,(e) => {
     province.value = provinces.value?.findLast(prov => prov.id == e?.id ?? -1 ) ?? null;
@@ -59,6 +75,17 @@ watch(() => city.value,(e) => {
     form.bairro_id = null;
 });
 
+onMounted(() => {
+    props.messages?.envelopes.forEach((element) => {
+        Flasher.flash(element.notification.type, element.notification.message);
+    });
+});
+const storeImovel = () => form.post(route("imovel.store"), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+        }
+    });
 </script>
 
 <template>
@@ -69,7 +96,8 @@ watch(() => city.value,(e) => {
                 class="flex flex-col md:flex-row items-end justify-end space-b-3 md:space-y-0 md:space-x-4 p-4"
             >
                 <button
-                    @click=""
+
+                    @click="storeImovel()"
                     type="button"
                     class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                 >
@@ -130,7 +158,7 @@ watch(() => city.value,(e) => {
                         <InputError :message="form.errors.preco" />
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 py-2">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
                     <div>
                         <label
                             for="regra_de_negocio_id"
@@ -159,6 +187,35 @@ watch(() => city.value,(e) => {
                             </template>
                         </Dropdown>
                         <InputError :message="form.errors.regra_de_negocio_id" />
+                    </div>
+                    <div>
+                        <label
+                            for="intermediation_rule_id"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Regra de intermediação</label
+                        >
+                        <Dropdown
+                            v-model="form.intermediation_rule_id"
+                            optionValue="id"
+                            :options="intermediationRules"
+                            optionLabel="name"
+                            placeholder="Regra de intermediação"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        >
+                            <template #option="slotProps">
+                                <div
+                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                    :class="
+                                        form.intermediation_rule_id == slotProps.option.id
+                                            ? 'bg-slate-800 dark:bg-slate-900 text-white'
+                                            : ''
+                                    "
+                                >
+                                    <div>{{ slotProps.option.name }}</div>
+                                </div>
+                            </template>
+                        </Dropdown>
+                        <InputError :message="form.errors.intermediation_rule_id" />
                     </div>
                     <div>
                         <label
@@ -274,8 +331,29 @@ watch(() => city.value,(e) => {
                                 </div>
                             </template>
                         </Dropdown>
+                        <InputError :message="form.errors.bairro_id ?? ''" />
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 gap-2">
+                    <div>
+                        <label
+                            for="endereco"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Endereço</label
+                        >
+                        <input
+                            type="text"
+                            name="endereco"
+                            v-model="form.endereco"
+                            id="endereco"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Endereço"
+                        />
+                        <InputError :message="form.errors.endereco" />
+                    </div>
+                    </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
                     <div>
                         <label
@@ -290,8 +368,44 @@ watch(() => city.value,(e) => {
                     v-model="form.descricao"
                     :config="{}"
                 ></ckeditor>
+                <InputError :message="form.errors.descricao ?? ''" />
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
+                    <div>
+                        <label
+                            for="Mapa"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white capitalize"
+                            >Iframe do imovel no mapa</label
+                        >
+                        <textarea
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    v-model="form.mapa"
+                ></textarea>
+                <InputError :message="form.errors.mapa ?? ''" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
+                    <div>
+                        <label
+                            for="descricao"
+                            class="block mb-2 text-sm font-medium bg-orange-300 text-gray-900 dark:text-white"
+                            >Detalhes do imovel (Só para o corretor do imóvel) </label
+                        >
+                        <ckeditor
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+
+                    :editor="ClassicEditor"
+                    v-model="form.details"
+                    :config="{}"
+                ></ckeditor>
+                <InputError :message="form.errors.details ?? ''" />
+                    </div>
+                </div>
+
+
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
                     <div>
                         <label
@@ -329,6 +443,7 @@ watch(() => city.value,(e) => {
 
                             v-model="form.condicao_id"
                             :options="imovelConditions?? []"
+                            optionValue="id"
                             optionLabel="nome"
                             placeholder="Condição do imóvel"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -350,7 +465,7 @@ watch(() => city.value,(e) => {
                     </div>
                     <div>
                         <label
-                            for="bairro_id"
+                            for="status_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >Estado do imóvel</label
                         >
@@ -377,6 +492,192 @@ watch(() => city.value,(e) => {
                             </template>
                         </Dropdown>
                         <InputError :message="form.errors.status_id ?? ''" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-2 py-2">
+                    <div>
+                        <label
+                            for="images"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Fotos do imóvel</label
+                        >
+                        <UploadImage
+                            @update:images="
+                                (files:any) => (form.images = files)
+                            "
+                            :multiple="true"
+                            :disabledUpload="true"
+                            :disabledCancel="true"
+                            label-text="Fotos do imóvel"
+                            mediaType="image/*"
+                            :progressUploadImage="false"
+                        >
+                            <template v-slot:files></template>
+                        </UploadImage>
+                        <InputError :message="form.errors.images ?? ''" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 py-2">
+                    <div>
+                        <label
+                            for="Ano de construção"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Ano de construção</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="0000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="ano"
+                            v-model="form.ano"
+                            id="ano"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Ano de construção"
+                        />
+                        <InputError :message="form.errors.ano" />
+                    </div>
+
+                    <div>
+                        <label
+                            for="Àreia"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Àreia <small class="order-1">(m2)</small></label
+                        >
+                        <input
+                        v-maska
+                            data-maska="00000000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="area"
+                            v-model="form.area"
+                            id="area"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Àreia"
+                        />
+                        <InputError :message="form.errors.area" />
+                    </div>
+
+                    <div>
+                        <label
+                            for="Quartos"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Quartos</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="quartos"
+                            v-model="form.quartos"
+                            id="quartos"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Quartos"
+                        />
+                        <InputError :message="form.errors.quartos" />
+                    </div>
+
+                    <div>
+                        <label
+                            for="Suites"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Suites</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="quartos"
+                            v-model="form.suites"
+                            id="suites"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Suites"
+                        />
+                        <InputError :message="form.errors.suites" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 py-2">
+                    <div>
+                        <label
+                            for="Banheiros"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Banheiros</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="0000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="banheiros"
+                            v-model="form.banheiros"
+                            id="banheiros"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Banheiros"
+                        />
+                        <InputError :message="form.errors.banheiros" />
+                    </div>
+
+                    <div>
+                        <label
+                            for="piscinas"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Piscinas</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="00000000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="piscinas"
+                            v-model="form.piscinas"
+                            id="piscinas"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Piscinas"
+                        />
+                        <InputError :message="form.errors.piscinas" />
+                    </div>
+
+                    <div>
+                        <label
+                            for="Garagens"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Garagens</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="garagens"
+                            v-model="form.garagens"
+                            id="garagens"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Garagens"
+                        />
+                        <InputError :message="form.errors.garagens" />
+                    </div>
+
+                    <div>
+                        <label
+                            for="Andares"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Andares</label
+                        >
+                        <input
+                        v-maska
+                            data-maska="000"
+                            data-maska-tokens="0:\d:optional|9:\d:optional"
+                            type="text"
+                            name="andares"
+                            v-model="form.andares"
+                            id="andares"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Andares"
+                        />
+                        <InputError :message="form.errors.andares" />
                     </div>
                 </div>
             </div>

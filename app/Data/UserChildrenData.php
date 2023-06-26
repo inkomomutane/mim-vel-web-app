@@ -21,7 +21,7 @@ class UserChildrenData extends Data
     {
         return new self(
             id: $user->id,
-            users: Lazy::whenLoaded('createdUsers', $user->load('createdUsers'), fn () => UserChildrenData::collection($user->createdUsers))
+            users: Lazy::whenLoaded('createdUsers', $user, fn () => UserChildrenData::collection($user->createdUsers))
         );
     }
 }

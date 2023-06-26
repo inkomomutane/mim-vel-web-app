@@ -13,8 +13,10 @@ class ImovelData extends Data
         public Lazy|null|int $id,
         public Lazy|null|string $titulo,
         public Lazy|null|string $descricao,
+        public Lazy|null|string $details,
         public Lazy|null|int $banheiros,
         public Lazy|null|int|string $preco,
+        public Lazy|null|int|string $price,
         public Lazy|null|int $ano,
         public Lazy|null|int $andares,
         public Lazy|null|float $area,
@@ -38,6 +40,8 @@ class ImovelData extends Data
         public Lazy|null|IntermediationRuleData $intermediation_rule,
         /** @var MediaData * */
         public Lazy|null|MediaData $media,
+        /** @var MediaData[] * */
+        public Lazy|null|MediaData $images,
     ) {
     }
 
@@ -47,8 +51,10 @@ class ImovelData extends Data
             id: $imovel->id,
             titulo: $imovel->titulo,
             descricao: $imovel->descricao,
+            details: $imovel->details,
             banheiros: $imovel->banheiros,
             preco: $imovel->preco,
+            price: $imovel->price,
             ano: $imovel->ano,
             andares: $imovel->andares,
             area: $imovel->area,
@@ -72,7 +78,7 @@ class ImovelData extends Data
             media: Lazy::whenLoaded('media', $imovel, fn () => ! is_null($imovel->getFirstMedia('posts')) ?
             MediaData::fromModel($imovel->getFirstMedia('posts')) :
             null),
-
+            images: Lazy::whenLoaded('media', $imovel, fn () => MediaData::collection($imovel->getMedia('posts'))),
         );
     }
 }

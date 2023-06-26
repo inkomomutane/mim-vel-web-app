@@ -29,16 +29,15 @@ use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
-
 /**
- * Class Imovel
+ * App\Models\Imovel
  *
  * @property int $id
  * @property string|null $titulo
  * @property string|null $descricao
  * @property int|null $banheiros
  * @property float|null $preco
- * @property Carbon|null $ano
+ * @property int|null $ano
  * @property int|null $andares
  * @property float|null $area
  * @property int|null $quartos
@@ -47,40 +46,45 @@ use Spatie\Tags\HasTags;
  * @property int|null $piscinas
  * @property string|null $endereco
  * @property string|null $mapa
- * @property Carbon|null $published_at
+ * @property string|null $published_at
  * @property int|null $views
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $bairro_id
  * @property int $condicao_id
  * @property int $tipo_de_imovel_id
  * @property int $status_id
  * @property int $corretor_id
- * @property Bairro $bairro
- * @property Condicao $condicao
- * @property Status $status
- * @property TipoDeImovel $tipo_de_imovel
- * @property User $user
- * @property Collection|Comentario[] $comentarios
- * @property Collection|Rating[] $ratings
  * @property string|null $slug
  * @property bool $for_rent
  * @property int|null $regra_de_negocio_id
  * @property int|null $imovel_for_id
+ * @property int $intermediation_rule_id
+ * @property string|null $details
+ * @property-read \App\Models\Bairro $bairro
+ * @property-read Collection<int, \App\Models\Comentario> $comentarios
  * @property-read int|null $comentarios_count
+ * @property-read \App\Models\Condicao $condicao
  * @property-read \App\Models\User $corretor
+ * @property-read float $price
  * @property-read \App\Models\ImovelFor|null $imovelFor
+ * @property-read \App\Models\IntermediationRule|null $intermediationRule
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ * @property-read Collection<int, \App\Models\Rating> $ratings
  * @property-read int|null $ratings_count
  * @property-read \App\Models\RegraDeNegocio|null $regraDeNegocio
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @property Collection<int, \Spatie\Tags\Tag> $tags
+ * @property-read \App\Models\Status $status
  * @property-read int|null $tags_count
- *
+ * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
+ * @property-read int|null $views_count
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel query()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereAndares($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereAno($value)
@@ -91,11 +95,13 @@ use Spatie\Tags\HasTags;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCorretorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDescricao($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDetails($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereEndereco($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereForRent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereGaragens($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereImovelForId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereIntermediationRuleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereMapa($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePiscinas($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePreco($value)
@@ -113,35 +119,8 @@ use Spatie\Tags\HasTags;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAllTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- *
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property-read \App\Models\IntermediationRule|null $intermediationRule
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property int $intermediation_rule_id
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereIntermediationRuleId($value)
- *
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @property-read int|null $views_count
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
- *
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable
@@ -159,6 +138,9 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
     protected $dataClass = ImovelData::class;
 
     protected $removeViewsOnDelete = true;
+    protected $append = [
+        'price'
+    ];
 
     protected $casts = [
         'banheiros' => 'int',
@@ -176,6 +158,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
         'tipo_de_imovel_id' => 'int',
         'status_id' => 'int',
         'corretor_id' => 'int',
+        'price' => 'float'
     ];
 
     protected $dates = [
@@ -210,9 +193,9 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
         'intermediation_rule_id',
     ];
 
-    public function getPrecoAttribute($value)
+    public function getPriceAttribute()
     {
-        return (new NumberFormatter('MZ', NumberFormatter::CURRENCY))->formatCurrency($value, 'MZN');
+        return (new NumberFormatter('MZ', NumberFormatter::CURRENCY))->formatCurrency($this->preco, 'MZN');
     }
 
     public function bairro()
