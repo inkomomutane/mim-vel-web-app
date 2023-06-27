@@ -12,8 +12,6 @@ class GetImovelsApi
 
     public function handle()
     {
-        Vite::asset('');
-
         return \App\Data\ImovelData::collection(
             \App\Models\Imovel::with(['bairro.cidade', 'condicao', 'imovelFor', 'media' => function (MorphMany $query) {
                 $query->where('collection_name', 'posts');

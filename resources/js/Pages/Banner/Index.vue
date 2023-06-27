@@ -79,7 +79,7 @@ function closeDeleteBannerModal() {
                 <div
                     class="mx-4"
                     v-for="media in props.banners?.data"
-                    :key="media.id"
+                    :key="media.id ?? undefined"
                 >
                     <button
                         class="relative group hover:ring-2 hover:ring-red-400 rounded-md"
@@ -88,7 +88,7 @@ function closeDeleteBannerModal() {
                         <SpatieResponsiveImage
                             class-name="w-screen h-60 object-cover rounded-md hover:bg-slate-900 hover:opacity-90 hover:shadow-lg"
                             :responsive="media"
-                            :key="media.id"
+                            :key="media.id ?? undefined"
                             @click="showTemplate()"
                             label="Confirm"
                             :aria-expanded="true"

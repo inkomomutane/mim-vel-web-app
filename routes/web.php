@@ -16,7 +16,6 @@ use Inertia\Inertia;
 */
 
 Route::get('/', Welcome::class)->name('welcome');
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -15,11 +15,7 @@
                 itemtype="http://schema.org/ListItem"
             >
                 <article
-                    class="w-full  bg-white dark:bg-gray-700
-                    dark:border-gray-700 transition-transform duration-300 transform-gpu
-                    hover:scale-105
-                    hover:shadow-2xl hover:shadow-gray-200 hover:rounded
-                    "
+                    class="w-full bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-gray-200 hover:rounded"
                 >
                     <header>
                         <a href="#" itemprop="url">
@@ -76,75 +72,67 @@
             </li>
         </ul>
         <nav
-                        class="flex flex-col md:flex-row justify-end items-start md:items-center space-y-3 md:space-y-0 p-4"
-                        aria-label="Table navigation"
+            class="flex flex-col md:flex-row justify-end items-start md:items-center space-y-3 md:space-y-0 p-4"
+            aria-label="Table navigation"
+        >
+            <ul class="inline-flex items-stretch -space-x-px">
+                <li
+                    v-if="links !== null ? links[0]?.active : false"
+                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                    <button
+                        class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                        <ul class="inline-flex items-stretch -space-x-px">
-                            <li
-                                v-if="links!== null ? links[0]?.active : false"
-                                class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                                <button
-                                    class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    >&laquo;</button
-                                >
-                            </li>
-                            <li v-else>
-                                <button
-                                    class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-
-                                    @click="changeImovels(links[0].url ?? '')"
-                                    >&laquo;</button
-                                >
-                            </li>
-                            <li
-                                v-for="link in links?.slice(1, -1)"
-                                :key="link.label"
-                            >
-                                <button
-                                    class="flex items-center justify-center
-                                     h-full py-1.5 px-3 ml-0 text-gray-500
-                                      bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    v-if="!link.active"
-                                    @click="changeImovels(link.url ?? '')"
-                                    >{{ link.label }}
-                                </button>
-                                <span
-                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 border border-orange-400 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    v-else
-                                    :class="`${
-                                        link.active
-                                            ? 'bg-orange-500 dark:bg-slate-600 text-white dark:text-slate-100'
-                                            : ''
-                                    }`"
-                                    >{{ link.label }}</span
-                                >
-                            </li>
-                            <li
-                                v-if="links?.slice(-1)[0].active"
-                                class="disabled flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border
-                                 border-orange-300 hover:bg-orange-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                                <span
-                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                                    > &raquo;</span
-                                >
-                            </li>
-                            <li
-                                v-else
-                                 >
-                                <button
-                                @click="changeImovels(links.slice(-1)[0].url ?? '')"
-                                class="flex rounded-r-lg items-center justify-center h-full py-1.5 px-3 ml-0
-                                 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100
-                                  hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700
-                                   dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-
-                                    >&raquo;</button
-                                >
-                            </li>
-                        </ul>
-                    </nav>
+                        &laquo;
+                    </button>
+                </li>
+                <li v-else>
+                    <button
+                        class="flex rounded-l-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        @click="changeImovels(links[0].url ?? '')"
+                    >
+                        &laquo;
+                    </button>
+                </li>
+                <li v-for="link in links?.slice(1, -1)" :key="link.label">
+                    <button
+                        class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        v-if="!link.active"
+                        @click="changeImovels(link.url ?? '')"
+                    >
+                        {{ link.label }}
+                    </button>
+                    <span
+                        class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 border border-orange-400 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        v-else
+                        :class="`${
+                            link.active
+                                ? 'bg-orange-500 dark:bg-slate-600 text-white dark:text-slate-100'
+                                : ''
+                        }`"
+                        >{{ link.label }}</span
+                    >
+                </li>
+                <li
+                    v-if="links?.slice(-1)[0].active"
+                    class="disabled flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-orange-300 hover:bg-orange-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                    <span
+                        class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                        &raquo;</span
+                    >
+                </li>
+                <li v-else>
+                    <button
+                        @click="changeImovels(links.slice(-1)[0].url ?? '')"
+                        class="flex rounded-r-lg items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                        &raquo;
+                    </button>
+                </li>
+            </ul>
+        </nav>
     </section>
 </template>
 <script setup lang="ts">

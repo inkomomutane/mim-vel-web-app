@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 import { vMaska } from "maska";
 import Dropdown from "primevue/dropdown";
-import  ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import { watch } from "vue";
 
 import { ref } from "vue";
@@ -13,78 +13,86 @@ import { onMounted } from "vue";
 import { PropType } from "vue";
 import { FlasherResponse } from "@flasher/flasher";
 import Flasher from "@/helprs";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const props = defineProps({
     regrasDeNegocio: Array<App.Data.RegraDeNegocioData>,
     transactionTypes: Array<App.Data.TransactionTypeData>,
-    provinces:Array<App.Data.MultilevelProvinceData>,
-    imovelsTypes:Array<App.Data.ImovelTypeData>,
-    imovelConditions:Array<App.Data.CondicaoData>,
-    intermediationRules:Array<App.Data.IntermediationRuleData>,
-    statuses:Array<App.Data.StatusData>,
+    provinces: Array<App.Data.MultilevelProvinceData>,
+    imovelsTypes: Array<App.Data.ImovelTypeData>,
+    imovelConditions: Array<App.Data.CondicaoData>,
+    intermediationRules: Array<App.Data.IntermediationRuleData>,
+    statuses: Array<App.Data.StatusData>,
     messages: Object as PropType<FlasherResponse>,
-})
+});
 
 const regrasDeNegocio = ref(props.regrasDeNegocio);
 const transactionTypes = ref(props.transactionTypes);
 
 const provinces = ref(props.provinces);
-const province = ref<App.Data.MultilevelProvinceData|null>(null);
+const province = ref<App.Data.MultilevelProvinceData | null>(null);
 
-const cities = ref<Array<App.Data.CityData>|null>(null);
-const city = ref<App.Data.CityData|null>(null);
-const bairros = ref<Array<App.Data.BairroData>|null>(null);
-
+const cities = ref<Array<App.Data.CityData> | null>(null);
+const city = ref<App.Data.CityData | null>(null);
+const bairros = ref<Array<App.Data.BairroData> | null>(null);
 
 const form = useForm({
     titulo: "",
     preco: null,
-    regra_de_negocio_id:null,
-    imovel_for_id:null,
-    bairro_id:null,
-    endereco: '',
-    descricao: '',
-    details: '',
-    condicao_id:null,
+    regra_de_negocio_id: null,
+    imovel_for_id: null,
+    bairro_id: null,
+    endereco: "",
+    descricao: "",
+    details: "",
+    condicao_id: null,
     tipo_de_imovel_id: null,
-    intermediation_rule_id:null,
-    status_id:null,
-    ano:null,
-    andares:null,
-    banheiros:null,
-    area:null,
-    quartos:null,
-    suites:null,
-    garagens:null,
-    piscinas:null,
-    mapa:'',
-    images:[]
+    intermediation_rule_id: null,
+    status_id: null,
+    ano: null,
+    andares: null,
+    banheiros: null,
+    area: null,
+    quartos: null,
+    suites: null,
+    garagens: null,
+    piscinas: null,
+    mapa: "",
+    images: [],
 });
 
+watch(
+    () => province.value,
+    (e) => {
+        province.value =
+            provinces.value?.findLast((prov) => prov.id == e?.id ?? -1) ?? null;
+        cities.value = province.value?.cidades ?? null;
+        bairros.value = null;
+        form.bairro_id = null;
+    }
+);
 
-watch(() => province.value,(e) => {
-    province.value = provinces.value?.findLast(prov => prov.id == e?.id ?? -1 ) ?? null;
-    cities.value = province.value?.cidades ?? null;
-    bairros.value = null;
-    form.bairro_id = null;
-});
-
-watch(() => city.value,(e) => {
-    city.value = cities.value?.findLast(cty => cty.id == e?.id ?? -1 ) ?? null;
-    bairros.value = city.value?.bairros ?? null;
-    form.bairro_id = null;
-});
+watch(
+    () => city.value,
+    (e) => {
+        city.value =
+            cities.value?.findLast((cty) => cty.id == e?.id ?? -1) ?? null;
+        bairros.value = city.value?.bairros ?? null;
+        form.bairro_id = null;
+    }
+);
 
 onMounted(() => {
     props.messages?.envelopes.forEach((element) => {
         Flasher.flash(element.notification.type, element.notification.message);
     });
 });
-const storeImovel = () => form.post(route("imovel.store"), {
+const storeImovel = () =>
+    form.post(route("imovel.store"), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
-        }
+        },
     });
 </script>
 
@@ -96,7 +104,6 @@ const storeImovel = () => form.post(route("imovel.store"), {
                 class="flex flex-col md:flex-row items-end justify-end space-b-3 md:space-y-0 md:space-x-4 p-4"
             >
                 <button
-
                     @click="storeImovel()"
                     type="button"
                     class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
@@ -145,7 +152,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Preço do imóvel</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="000000000000000000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -177,7 +184,8 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                        form.regra_de_negocio_id == slotProps.option.id
+                                        form.regra_de_negocio_id ==
+                                        slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -186,7 +194,9 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 </div>
                             </template>
                         </Dropdown>
-                        <InputError :message="form.errors.regra_de_negocio_id" />
+                        <InputError
+                            :message="form.errors.regra_de_negocio_id"
+                        />
                     </div>
                     <div>
                         <label
@@ -206,7 +216,8 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                        form.intermediation_rule_id == slotProps.option.id
+                                        form.intermediation_rule_id ==
+                                        slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -215,7 +226,9 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 </div>
                             </template>
                         </Dropdown>
-                        <InputError :message="form.errors.intermediation_rule_id" />
+                        <InputError
+                            :message="form.errors.intermediation_rule_id"
+                        />
                     </div>
                     <div>
                         <label
@@ -235,7 +248,8 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                        form.imovel_for_id == slotProps.option.id
+                                        form.imovel_for_id ==
+                                        slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -265,7 +279,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                    province == slotProps.option
+                                        province == slotProps.option
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -282,9 +296,8 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Cidade</label
                         >
                         <Dropdown
-
                             v-model="city"
-                            :options="cities?? []"
+                            :options="cities ?? []"
                             optionLabel="nome"
                             placeholder="Cidade"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -293,7 +306,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                    city == slotProps.option
+                                        city == slotProps.option
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -310,9 +323,8 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Bairro</label
                         >
                         <Dropdown
-
                             v-model="form.bairro_id"
-                            :options="bairros?? []"
+                            :options="bairros ?? []"
                             optionValue="id"
                             optionLabel="nome"
                             placeholder="Bairro"
@@ -322,7 +334,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                    city == slotProps.option
+                                        city == slotProps.option
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -352,7 +364,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                         />
                         <InputError :message="form.errors.endereco" />
                     </div>
-                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
                     <div>
@@ -362,13 +374,11 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Descrição</label
                         >
                         <ckeditor
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-
-                    :editor="ClassicEditor"
-                    v-model="form.descricao"
-                    :config="{}"
-                ></ckeditor>
-                <InputError :message="form.errors.descricao ?? ''" />
+                            :editor="ClassicEditor"
+                            v-model="form.descricao"
+                            :config="{}"
+                        ></ckeditor>
+                        <InputError :message="form.errors.descricao ?? ''" />
                     </div>
                 </div>
 
@@ -380,10 +390,10 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Iframe do imovel no mapa</label
                         >
                         <textarea
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    v-model="form.mapa"
-                ></textarea>
-                <InputError :message="form.errors.mapa ?? ''" />
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            v-model="form.mapa"
+                        ></textarea>
+                        <InputError :message="form.errors.mapa ?? ''" />
                     </div>
                 </div>
 
@@ -392,19 +402,16 @@ const storeImovel = () => form.post(route("imovel.store"), {
                         <label
                             for="descricao"
                             class="block mb-2 text-sm font-medium bg-orange-300 text-gray-900 dark:text-white"
-                            >Detalhes do imovel (Só para o corretor do imóvel) </label
-                        >
+                            >Detalhes do imovel (Só para o corretor do imóvel)
+                        </label>
                         <ckeditor
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-
-                    :editor="ClassicEditor"
-                    v-model="form.details"
-                    :config="{}"
-                ></ckeditor>
-                <InputError :message="form.errors.details ?? ''" />
+                            :editor="ClassicEditor"
+                            v-model="form.details"
+                            :config="{}"
+                        ></ckeditor>
+                        <InputError :message="form.errors.details ?? ''" />
                     </div>
                 </div>
-
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
                     <div>
@@ -422,16 +429,22 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         >
                             <template #option="slotProps">
-                                <div class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
-                                    :class="form.tipo_de_imovel_id == slotProps.option.id
+                                <div
+                                    class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
+                                    :class="
+                                        form.tipo_de_imovel_id ==
+                                        slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
-                                    ">
+                                    "
+                                >
                                     <div>{{ slotProps.option.name }}</div>
                                 </div>
                             </template>
                         </Dropdown>
-                        <InputError :message="form.errors.tipo_de_imovel_id ?? ''" />
+                        <InputError
+                            :message="form.errors.tipo_de_imovel_id ?? ''"
+                        />
                     </div>
                     <div>
                         <label
@@ -440,9 +453,8 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Condição do imóvel</label
                         >
                         <Dropdown
-
                             v-model="form.condicao_id"
-                            :options="imovelConditions?? []"
+                            :options="imovelConditions ?? []"
                             optionValue="id"
                             optionLabel="nome"
                             placeholder="Condição do imóvel"
@@ -452,7 +464,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                    form.condicao_id == slotProps.option.id
+                                        form.condicao_id == slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -470,7 +482,6 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Estado do imóvel</label
                         >
                         <Dropdown
-
                             v-model="form.status_id"
                             :options="statuses ?? []"
                             optionValue="id"
@@ -482,7 +493,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                    form.status_id == slotProps.option.id
+                                        form.status_id == slotProps.option.id
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -526,7 +537,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Ano de construção</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="0000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -546,7 +557,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Àreia <small class="order-1">(m2)</small></label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="00000000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -566,7 +577,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Quartos</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -586,7 +597,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Suites</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -607,7 +618,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Banheiros</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="0000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -627,7 +638,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Piscinas</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="00000000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -647,7 +658,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Garagens</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -667,7 +678,7 @@ const storeImovel = () => form.post(route("imovel.store"), {
                             >Andares</label
                         >
                         <input
-                        v-maska
+                            v-maska
                             data-maska="000"
                             data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
@@ -684,11 +695,15 @@ const storeImovel = () => form.post(route("imovel.store"), {
         </template>
     </AuthenticatedLayout>
 </template>
-
 <style>
+.ck-editor__editable {
+    @apply !bg-gray-50 !border !border-gray-300 !text-gray-900 !text-sm !rounded-b focus:!ring-slate-500 focus:!border-slate-500 !block !w-full !p-2.5 dark:!bg-gray-600 dark:!border-gray-500 dark:!placeholder-gray-400 dark:!text-white;
+}
+
 .ck-focused {
-   @apply  bg-gray-50 border border-gray-300 text-gray-900
-    focus:ring-slate-500 focus:border-slate-500 block w-full
-    dark:text-white !important
+    @apply !shadow-none ring-1 focus:!ring-gray-800 focus-within:!ring-gray-600 focus-visible:!ring-gray-600;
+}
+.ck-toolbar {
+    @apply dark:!text-white dark:!bg-gray-300 dark:!border-gray-500;
 }
 </style>

@@ -70,8 +70,6 @@ window.addEventListener("scroll", () => {
             );
         }
     } else {
-
-
         if (solidBg == true) {
             navigator?.classList.remove(
                 "lg:bg-transparent",

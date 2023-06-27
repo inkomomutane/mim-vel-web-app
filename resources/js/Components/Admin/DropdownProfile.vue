@@ -68,11 +68,11 @@
                 >
                     <li>
                         <button
-                            class="font-medium text-sm w-full text-indigo-500 hover:text-indigo-600
-                            hover:bg-slate-100 flex items-center py-1 px-3"
+                            class="font-medium text-sm w-full text-indigo-500 hover:text-indigo-600 hover:bg-slate-100 flex items-center py-1 px-3"
                             @click="logout(this)"
-                            >Sign Out</button
                         >
+                            Sign Out
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -85,7 +85,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 const form = useForm({});
-const logout = (e) => form.post(route('logout'));
+const logout = (e) => form.post(route("logout"));
 
 defineProps({
     align: String,

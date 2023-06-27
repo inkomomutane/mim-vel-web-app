@@ -12,9 +12,8 @@ watch(
 
 const authorized = () => {
     const $userRole = usePage().props.auth.user?.role.name;
-    return $userRole == 'Super-Admin' || $userRole == 'Admin';
+    return $userRole == "Super-Admin" || $userRole == "Admin";
 };
-
 </script>
 <template>
     <div class="space-y-8">
@@ -203,7 +202,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('mimovel')"
                     v-tooltip.value="tooltip('Mimóvel páginas')"
                 >
@@ -254,7 +254,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('banners.all')"
                     v-tooltip.value="tooltip('Banners pulicitários')"
                 >
@@ -305,7 +306,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('user.all')"
                     v-tooltip.value="tooltip('Usuários')"
                 >
@@ -363,7 +365,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('transaction.type.all')"
                     v-tooltip.value="tooltip('Tipo de transação ')"
                 >
@@ -434,7 +437,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('intermediation.all')"
                     v-tooltip.value="tooltip('Regras de intermediação')"
                 >
@@ -473,7 +477,8 @@ const authorized = () => {
                         </div>
                     </li>
                 </Link>
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('negocio.all')"
                     v-tooltip.value="tooltip('Regras de negociação')"
                 >
@@ -537,7 +542,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('condicao.all')"
                     v-tooltip.value="tooltip('Condição do imóvel')"
                 >
@@ -583,7 +589,8 @@ const authorized = () => {
                         </div>
                     </li>
                 </Link>
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('imovel_type.all')"
                     v-tooltip.value="tooltip('Tipo de imóvel')"
                 >
@@ -633,7 +640,8 @@ const authorized = () => {
                         </div>
                     </li>
                 </Link>
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('status.all')"
                     v-tooltip.value="tooltip('Status do imóvel')"
                 >
@@ -711,7 +719,8 @@ const authorized = () => {
                         </div>
                     </li>
                 </Link>
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('province.all')"
                     v-tooltip.value="tooltip('Províncias')"
                 >
@@ -761,7 +770,8 @@ const authorized = () => {
                     </li>
                 </Link>
 
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('city.all')"
                     v-tooltip.value="tooltip('Cidades')"
                 >
@@ -850,7 +860,8 @@ const authorized = () => {
                         </div>
                     </li>
                 </Link>
-                <Link v-if="authorized()"
+                <Link
+                    v-if="authorized()"
                     :href="route('bairro.all')"
                     v-tooltip.value="tooltip('Bairros')"
                 >
@@ -985,7 +996,8 @@ const authorized = () => {
             </ul>
             <h3
                 class="text-xs uppercase text-slate-500 font-semibold pl-3 mt-2"
-                v-if="authorized()">
+                v-if="authorized()"
+            >
                 <span
                     class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
                     aria-hidden="true"

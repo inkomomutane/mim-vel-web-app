@@ -1,6 +1,4 @@
 import { register } from "swiper/element";
-import './header';
-
-
+import "./header";
 
 register();

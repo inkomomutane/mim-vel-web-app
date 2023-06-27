@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
-import BalloonEditor from "@ckeditor/ckeditor5-build-balloon";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { PropType, watch } from "vue";
 import { FlasherResponse } from "@flasher/flasher";
 import Flasher from "@/helprs";
@@ -65,8 +65,7 @@ watch(
             >
                 {{ form.errors.politicas }}
                 <ckeditor
-                    class="border-none shadow-none shadow-transparent"
-                    :editor="BalloonEditor"
+                    :editor="ClassicEditor"
                     v-model="form.politicas"
                     :config="{}"
                 ></ckeditor>
@@ -75,8 +74,14 @@ watch(
     </AuthenticatedLayout>
 </template>
 <style>
+.ck-editor__editable {
+    @apply !bg-gray-50 !border !border-gray-300 !text-gray-900 !text-sm !rounded-b focus:!ring-slate-500 focus:!border-slate-500 !block !w-full !p-2.5 dark:!bg-gray-600 dark:!border-gray-500 dark:!placeholder-gray-400 dark:!text-white;
+}
+
 .ck-focused {
-    border: none !important;
-    box-shadow: none !important;
+    @apply !shadow-none ring-1 focus:!ring-gray-800 focus-within:!ring-gray-600 focus-visible:!ring-gray-600;
+}
+.ck-toolbar {
+    @apply dark:!text-white dark:!bg-gray-300 dark:!border-gray-500;
 }
 </style>

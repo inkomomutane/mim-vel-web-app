@@ -12,10 +12,11 @@ import PrimeVue from "primevue/config";
 import Tooltip from "primevue/tooltip";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ConfirmationService from "primevue/confirmationservice";
-// import function to register Swiper custom elements
+import.meta.glob([
+    '../errors/svgs/**',
+    '../js/images/**'
+  ]);
 
-const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 const pinia = createPinia();
 createInertiaApp({
     title: (title) => `${title}`,
