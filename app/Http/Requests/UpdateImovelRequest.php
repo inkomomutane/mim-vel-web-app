@@ -1,6 +1,6 @@
 <?php
-namespace App\Http\Requests;
 
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class UpdateImovelRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|string|unique:imovels,titulo,'. $this->imovel->id,
+            'titulo' => 'required|string|unique:imovels,titulo,'.$this->imovel->id,
             'descricao' => 'string|nullable',
             'details' => 'string|nullable',
             'slug' => 'string|nullable',
@@ -48,7 +48,7 @@ class UpdateImovelRequest extends FormRequest
             'corretor_id' => 'numeric|nullable',
             'imovel_for_id' => 'required|numeric',
             'regra_de_negocio_id' => 'required|numeric',
-            'intermediation_rule_id' => 'required|numeric'
+            'intermediation_rule_id' => 'required|numeric',
 
         ];
     }

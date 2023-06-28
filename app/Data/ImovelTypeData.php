@@ -21,7 +21,7 @@ class ImovelTypeData extends Data
         return new self(
             id: $tipoDeImovel->id,
             name : $tipoDeImovel->nome,
-            icon:  Lazy::whenLoaded('media', $tipoDeImovel ,fn() => MediaData::fromModel($tipoDeImovel->getFirstMedia('icons')) )
+            icon: Lazy::whenLoaded('media', $tipoDeImovel, fn () => MediaData::fromModel($tipoDeImovel->getFirstMedia('icons')))
         );
     }
 }

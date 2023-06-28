@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputError from "@/Components/InputError.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 import { vMaska } from "maska";
 import Dropdown from "primevue/dropdown";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -139,8 +139,44 @@ const storeImovel = () =>
     <AuthenticatedLayout>
         <template v-slot:content>
             <div
-                class="flex flex-col md:flex-row items-end justify-end space-b-3 md:space-y-0 md:space-x-4 p-4"
+                class="flex flex-col md:flex-row items-end justify-between space-b-3 md:space-y-0 md:space-x-4 p-4"
             >
+                <Link
+                    :href="
+                        route('imovel.image.all', {
+                            imovel: imovel?.slug,
+                        })
+                    "
+                    class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
+                >
+                    <svg
+                        width="20"
+                        height="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M16,19H6c-1.657,0-3-1.343-3-3V6c0-1.657,1.343-3,3-3h10c1.657,0,3,1.343,3,3v10C19,17.657,17.657,19,16,19z"
+                            opacity=".35"
+                            fill="currentColor"
+                        />
+                        <path
+                            d="M18.86,5.14C18.942,5.414,19,5.699,19,6v10c0,1.657-1.343,3-3,3H6c-0.301,0-0.586-0.058-0.86-0.14C5.512,20.095,6.644,21,8,21h10c1.657,0,3-1.343,3-3V8C21,6.644,20.095,5.512,18.86,5.14z"
+                            fill="currentColor"
+                        />
+                        <circle
+                            cx="13.5"
+                            cy="8.5"
+                            r="1.5"
+                            fill="currentColor"
+                        />
+                        <path
+                            d="M6,15.375C6,15.717,6.28,16,6.625,16h8.75C15.72,16,16,15.722,16,15.375C16,14.523,15.528,12,14.5,12c-0.507,0-1.295,1-2,1c-1.4,0-2.75-3-4-3S6,13.726,6,15.375z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                    <span class="mx-4">Gestor de media</span>
+                </Link>
                 <button
                     @click="storeImovel()"
                     type="button"

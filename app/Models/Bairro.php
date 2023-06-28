@@ -7,12 +7,10 @@
 namespace App\Models;
 
 use App\Data\BairroData;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
-
 
 /**
  * App\Models\Bairro
@@ -25,6 +23,7 @@ use Spatie\LaravelData\WithData;
  * @property-read \App\Models\Cidade $cidade
  * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro query()
@@ -33,8 +32,11 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereUpdatedAt($value)
+ *
  * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read Collection<int, \App\Models\Imovel> $imovels
+ * @property-read Collection<int, \App\Models\Imovel> $imovels
+ *
  * @mixin \Eloquent
  */
 class Bairro extends Model

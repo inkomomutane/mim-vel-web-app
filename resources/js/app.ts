@@ -12,10 +12,7 @@ import PrimeVue from "primevue/config";
 import Tooltip from "primevue/tooltip";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ConfirmationService from "primevue/confirmationservice";
-import.meta.glob([
-    '../errors/svgs/**',
-    '../js/images/**'
-  ]);
+import.meta.glob(["../errors/svgs/**", "../js/images/**"]);
 
 const pinia = createPinia();
 createInertiaApp({

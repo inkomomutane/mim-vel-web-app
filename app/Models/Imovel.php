@@ -7,12 +7,12 @@
 namespace App\Models;
 
 use App\Data\ImovelData;
-use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use NumberFormatter;
 use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
@@ -29,6 +29,7 @@ use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+
 /**
  * App\Models\Imovel
  *
@@ -80,6 +81,7 @@ use Spatie\Tags\HasTags;
  * @property-read int|null $tags_count
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
+ *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
@@ -121,6 +123,18 @@ use Spatie\Tags\HasTags;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ *
+ * @property \Illuminate\Support\Carbon $deleted_at
+ * @property-read Collection<int, \App\Models\Comentario> $comentarios
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read Collection<int, \App\Models\Rating> $ratings
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable
@@ -132,14 +146,16 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
     use HasFactory;
     use WithData;
     use InteractsWithViews;
+    use SoftDeletes;
 
     protected $table = 'imovels';
 
     protected $dataClass = ImovelData::class;
 
     protected $removeViewsOnDelete = true;
+
     protected $append = [
-        'price'
+        'price',
     ];
 
     protected $casts = [
@@ -158,7 +174,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
         'tipo_de_imovel_id' => 'int',
         'status_id' => 'int',
         'corretor_id' => 'int',
-        'price' => 'float'
+        'price' => 'float',
     ];
 
     protected $dates = [

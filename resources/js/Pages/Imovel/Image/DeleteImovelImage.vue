@@ -4,8 +4,12 @@ import { useForm } from "@inertiajs/vue3";
 import { PropType } from "vue";
 
 const props = defineProps({
+    image: {
+        type: Object as PropType<App.Data.MediaData>,
+        required: true,
+    },
     imovel: {
-        type: Object as PropType<App.Data.ImovelData>,
+        type: String,
         required: true,
     },
     close: {
@@ -18,15 +22,12 @@ const props = defineProps({
     },
 });
 
-const form = useForm({
-    id: props.imovel.id,
-    titulo: props.imovel.titulo,
-});
+const form = useForm({ id: props.image.id });
 
-const deleteImovel = () => {
+const deleteImage = () => {
     form.delete(
-        route("imovel.delete", {
-            imovel: props.imovel.slug,
+        route("imovel.image.delete", {
+            media: props.image.id as number,
         }),
         {
             preserveScroll: true,
@@ -66,9 +67,9 @@ const deleteImovel = () => {
                 <h3
                     class="mb-4 text-md font-medium text-gray-900 dark:text-white"
                 >
-                    Tem certeza que quer excluir esse imóvel?
+                    Tem certeza que quer excluir essa imagem?
                 </h3>
-                <form class="space-y-6" @submit.prevent="deleteImovel">
+                <form class="space-y-6" @submit.prevent="deleteImage">
                     <button
                         type="submit"
                         class="w-full text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-800 dark:focus:ring-slate-200"

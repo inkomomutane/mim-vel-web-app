@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use App\Data\AgendaData;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
@@ -30,6 +29,7 @@ use Spatie\LaravelData\WithData;
  * @property-read \App\Models\User $corretor
  * @property-read mixed $url
  * @property-read \App\Models\Imovel|null $imovel
+ *
  * @method static \Database\Factories\AgendaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda newQuery()
@@ -46,6 +46,7 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereMensagem($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereNomeDoCliente($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agenda whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Agenda extends Model

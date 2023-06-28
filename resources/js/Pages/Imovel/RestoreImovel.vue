@@ -23,10 +23,10 @@ const form = useForm({
     titulo: props.imovel.titulo,
 });
 
-const deleteImovel = () => {
-    form.delete(
-        route("imovel.delete", {
-            imovel: props.imovel.slug,
+const restoreImovel = () => {
+    form.post(
+        route("imovel.delete.restore", {
+            imovel: props.imovel.id,
         }),
         {
             preserveScroll: true,
@@ -66,14 +66,14 @@ const deleteImovel = () => {
                 <h3
                     class="mb-4 text-md font-medium text-gray-900 dark:text-white"
                 >
-                    Tem certeza que quer excluir esse imóvel?
+                    Deseja restorar esse imóvel?
                 </h3>
-                <form class="space-y-6" @submit.prevent="deleteImovel">
+                <form class="space-y-6" @submit.prevent="restoreImovel">
                     <button
                         type="submit"
-                        class="w-full text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-800 dark:focus:ring-slate-200"
+                        class="w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-800 dark:focus:ring-slate-200"
                     >
-                        Confirmar
+                        Restorar
                     </button>
                 </form>
             </div>

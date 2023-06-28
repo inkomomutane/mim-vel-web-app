@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
-
 /**
  * App\Models\IntermediationRule
  *
@@ -19,6 +18,7 @@ use Spatie\LaravelData\WithData;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
+ *
  * @method static \Database\Factories\IntermediationRuleFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|IntermediationRule newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IntermediationRule newQuery()
@@ -29,8 +29,11 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|IntermediationRule whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IntermediationRule wherePercentage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IntermediationRule whereUpdatedAt($value)
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
+ *
  * @mixin \Eloquent
  */
 class IntermediationRule extends Model

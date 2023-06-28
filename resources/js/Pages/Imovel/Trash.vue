@@ -4,11 +4,13 @@ import { Head, Link, router } from "@inertiajs/vue3";
 import { Imovels } from "@/types/index";
 import { ref, watch, PropType } from "vue";
 import ViewImovel from "./ViewImovel.vue";
-import DeleteImovel from "./DeleteImovel.vue";
+import ApproveImovelDeletion from "./ApproveImovelDeletion.vue";
+import RestoreImovel from "./RestoreImovel.vue";
 import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
 import { onMounted } from "vue";
+import { onUpdated } from "vue";
 
 const props = defineProps({
     imovels: {
@@ -25,18 +27,6 @@ onMounted(() => {
     });
 });
 
-watch(
-    () => props.messages,
-    (value) => {
-        value?.envelopes.forEach((element) => {
-            Flasher.flash(
-                element.notification.type,
-                element.notification.message
-            );
-        });
-    }
-);
-
 const links = ref(props.imovels.links);
 
 const editingImovelTrigger = ref(false);
@@ -44,6 +34,9 @@ const editingImovel = ref<App.Data.ImovelData | null>(null);
 
 const deletingImovelTrigger = ref(false);
 const deletingImovel = ref<App.Data.ImovelData | null>(null);
+
+const restoringImovelTrigger = ref(false);
+const restoringImovel = ref<App.Data.ImovelData | null>(null);
 
 const searchTerm = ref("");
 
@@ -56,7 +49,7 @@ watch(
 
 watch(searchTerm, (value) => {
     router.visit(
-        route("imovel.all", {
+        route("imovel.all.trash", {
             search: value ?? "",
         }),
         {
@@ -85,6 +78,16 @@ function openDeleteImovelModal(imovel: App.Data.ImovelData) {
 function closeDeleteImovelModal() {
     deletingImovel.value = null;
     deletingImovelTrigger.value = false;
+}
+
+function openRestoreImovelModal(imovel: App.Data.ImovelData) {
+    restoringImovel.value = imovel;
+    restoringImovelTrigger.value = true;
+}
+
+function closeRestoreImovelModal() {
+    restoringImovel.value = null;
+    restoringImovelTrigger.value = false;
 }
 </script>
 
@@ -133,91 +136,6 @@ function closeDeleteImovelModal() {
                                 </div>
                             </form>
                         </div>
-                        <div
-                            class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
-                        >
-                            <Link
-                                :href="route('imovel.create')"
-                                class="flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
-                            >
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        d="M15,12h-2v-2h2V12z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M19,12h-2v-2h2V12z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M5,6H3V4h2V6z"
-                                        opacity=".35"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M20,7V5c0-1.105-0.895-2-2-2h-8C9.262,3,8.624,3.405,8.277,4H7v2h1v1C6.895,7,6,7.895,6,9v12 c0,1.105,0.895,2,2,2h12c1.105,0,2-0.895,2-2V9C22,7.895,21.105,7,20,7z"
-                                        opacity=".35"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        width="2"
-                                        height="2"
-                                        x="3"
-                                        y="8"
-                                        opacity=".35"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M15,23h-2v-5h2V23z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M13,7h-2V5h2V7z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M17,7h-2V5h2V7z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M11,12H9v-2h2V12z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M11,16H9v-2h2V16z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M15,16h-2v-2h2V16z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M19,16h-2v-2h2V16z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M19,20h-2v-2h2V20z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M11,20H9v-2h2V20z"
-                                        fill="currentColor"
-                                    />
-                                    <g>
-                                        <path
-                                            d="M8,7V6H7V4h1.277C8.624,3.405,9.262,3,10,3h1c0-1.105-0.895-2-2-2H3C1.895,1,1,1.895,1,3v8c0,1.105,0.895,2,2,2h3V9 C6,7.895,6.895,7,8,7z M5,10H3V8h2V10z M5,6H3V4h2V6z"
-                                            fill="currentColor"
-                                        />
-                                    </g>
-                                </svg>
-                                <span class="mx-4">Novo imóvel</span>
-                            </Link>
-                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table
@@ -229,7 +147,7 @@ function closeDeleteImovelModal() {
                                 <tr>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
-                                            Image
+                                            Imagem
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -247,14 +165,18 @@ function closeDeleteImovelModal() {
                                             Província
                                         </div>
                                     </th>
+                                    <th scope="col" class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            Corretor
+                                        </div>
+                                    </th>
 
-                                    <th>Media</th>
+                                    <th>Restorar</th>
                                     <th scope="col" class="py-3">
                                         <div class="flex items-center">Ver</div>
                                     </th>
-                                    <th scope="col" class="py-3">Editar</th>
                                     <th scope="col" class="py-3 px-4">
-                                        Excluir
+                                        Excluir permanentemente
                                     </th>
                                 </tr>
                             </thead>
@@ -287,43 +209,34 @@ function closeDeleteImovelModal() {
                                             imovel.bairro?.city?.province?.name
                                         }}
                                     </td>
+                                    <td class="px-4 py-3">
+                                        {{ imovel.corretor?.name }}
+                                    </td>
 
                                     <td>
-                                        <Link
-                                            :href="
-                                                route('imovel.image.all', {
-                                                    imovel: imovel?.slug,
-                                                })
+                                        <button
+                                            type="button"
+                                            @click="
+                                                openRestoreImovelModal(imovel)
                                             "
-                                            class="w-fit flex items-center justify-center text-white bg-slate-600 hover:bg-slate-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
+                                            class="flex items-center justify-center text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
                                                 width="24"
                                                 height="24"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
+                                                fill="currentColor"
                                             >
                                                 <path
-                                                    d="M16,19H6c-1.657,0-3-1.343-3-3V6c0-1.657,1.343-3,3-3h10c1.657,0,3,1.343,3,3v10C19,17.657,17.657,19,16,19z"
-                                                    opacity=".35"
-                                                    fill="currentColor"
-                                                />
+                                                    d="M0 0h24v24H0z"
+                                                    fill="none"
+                                                ></path>
                                                 <path
-                                                    d="M18.86,5.14C18.942,5.414,19,5.699,19,6v10c0,1.657-1.343,3-3,3H6c-0.301,0-0.586-0.058-0.86-0.14C5.512,20.095,6.644,21,8,21h10c1.657,0,3-1.343,3-3V8C21,6.644,20.095,5.512,18.86,5.14z"
-                                                    fill="currentColor"
-                                                />
-                                                <circle
-                                                    cx="13.5"
-                                                    cy="8.5"
-                                                    r="1.5"
-                                                    fill="currentColor"
-                                                />
-                                                <path
-                                                    d="M6,15.375C6,15.717,6.28,16,6.625,16h8.75C15.72,16,16,15.722,16,15.375C16,14.523,15.528,12,14.5,12c-0.507,0-1.295,1-2,1c-1.4,0-2.75-3-4-3S6,13.726,6,15.375z"
-                                                    fill="currentColor"
-                                                />
+                                                    d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
+                                                ></path>
                                             </svg>
-                                        </Link>
+                                        </button>
                                     </td>
 
                                     <td class="py-3">
@@ -345,44 +258,6 @@ function closeDeleteImovelModal() {
                                                 ></path>
                                             </svg>
                                         </button>
-                                    </td>
-                                    <td class="py-3">
-                                        <Link
-                                            type="button"
-                                            :href="
-                                                route('imovel.edit', {
-                                                    imovel: imovel.slug,
-                                                })
-                                            "
-                                            class="w-fit flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    class="fill-current text-gray-100"
-                                                    opacity="0.3"
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z"
-                                                    fill="black"
-                                                />
-                                                <path
-                                                    class="fill-current text-gray-100"
-                                                    d="M10.9256 11.1882C10.5351 10.7977 10.5351 10.1645 10.9256 9.77397L18.0669 2.6327C18.8479 1.85165 20.1143 1.85165 20.8953 2.6327L21.3665 3.10391C22.1476 3.88496 22.1476 5.15129 21.3665 5.93234L14.2252 13.0736C13.8347 13.4641 13.2016 13.4641 12.811 13.0736L10.9256 11.1882Z"
-                                                    fill="black"
-                                                />
-                                                <path
-                                                    class="fill-current text-gray-100"
-                                                    d="M8.82343 12.0064L8.08852 14.3348C7.8655 15.0414 8.46151 15.7366 9.19388 15.6242L11.8974 15.2092C12.4642 15.1222 12.6916 14.4278 12.2861 14.0223L9.98595 11.7221C9.61452 11.3507 8.98154 11.5055 8.82343 12.0064Z"
-                                                    fill="black"
-                                                />
-                                            </svg>
-                                        </Link>
                                     </td>
                                     <td class="py-3 justify-end px-4">
                                         <button
@@ -509,11 +384,18 @@ function closeDeleteImovelModal() {
                 :openModal="editingImovelTrigger"
                 :close="closeViewImovelModal"
             />
-            <DeleteImovel
+            <ApproveImovelDeletion
                 v-if="deletingImovel"
                 :imovel="deletingImovel"
                 :openModal="deletingImovelTrigger"
                 :close="closeDeleteImovelModal"
+            />
+
+            <RestoreImovel
+                v-if="restoringImovel"
+                :imovel="restoringImovel"
+                :openModal="restoringImovelTrigger"
+                :close="closeRestoreImovelModal"
             />
         </template>
     </AuthenticatedLayout>

@@ -4,7 +4,6 @@ namespace App\Actions\Website\Api;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Lorisleiva\Actions\Concerns\AsController;
-use Vite;
 
 class GetImovelsApi
 {

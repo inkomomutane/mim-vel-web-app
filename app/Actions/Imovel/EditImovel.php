@@ -39,7 +39,7 @@ class EditImovel
             'imovelFor',
             'media' => function (MorphMany $query) {
                 $query->where('collection_name', 'posts');
-            }
+            },
         ]);
 
         return Inertia::render('Imovel/EditImovel', [
@@ -50,7 +50,7 @@ class EditImovel
             'imovelsTypes' => ImovelTypeData::collection(TipoDeImovel::all()),
             'imovelConditions' => CondicaoData::collection(Condicao::all()),
             'statuses' => StatusData::collection(Status::all()),
-            'intermediationRules' => IntermediationRuleData::collection(IntermediationRule::all())
+            'intermediationRules' => IntermediationRuleData::collection(IntermediationRule::all()),
         ]);
     }
 }

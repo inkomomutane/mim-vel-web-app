@@ -39,29 +39,30 @@ class StoreImovel
             'corretor_id' => 'numeric|nullable',
             'imovel_for_id' => 'required|numeric',
             'regra_de_negocio_id' => 'required|numeric',
-            'intermediation_rule_id' => 'required|numeric'
+            'intermediation_rule_id' => 'required|numeric',
         ];
     }
-
 
     public function AsController(ActionRequest $actionRequest)
     {
         $data = collect($actionRequest->all())
-        ->put('corretor_id',$actionRequest->user()->id)
-        ->put('published_at',now())
-        ->except('images')->toArray();
+            ->put('corretor_id', $actionRequest->user()->id)
+            ->put('published_at', now())
+            ->except('images')->toArray();
         try {
             $imovel = Imovel::create($data);
             if (request()->hasFile('images')) {
-                foreach ($actionRequest->images as  $image) {
+                foreach ($actionRequest->images as $image) {
                     $imovel->addMedia($image)->toMediaCollection('posts', 'posts');
                 }
             }
             flash()->addSuccess('Imovel criado com sucesso.');
+
             return to_route('imovel.all');
         } catch (\Throwable $e) {
             throw $e;
             flash()->addError('Erro na criação do imovel.');
+
             return to_route('imovel.all');
         }
     }

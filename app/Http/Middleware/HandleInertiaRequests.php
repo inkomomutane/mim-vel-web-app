@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Actions\Imovel\ImovelTrashCount;
 use App\Actions\Message\MessageCount;
 use App\Data\RoleData;
 use App\Models\Page;
@@ -41,6 +42,7 @@ class HandleInertiaRequests extends Middleware
             'messages' => flash()->render([], 'array'),
             'roles' => RoleData::collection(Role::all()),
             'mails' => MessageCount::run(),
+            'trash' => ImovelTrashCount::run($request->user()),
             'globals' => Page::first()->getData(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {

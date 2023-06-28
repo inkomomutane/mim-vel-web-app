@@ -150,17 +150,55 @@ class UpdateCondicao
 namespace App\Actions\Imovel;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null, \App\Models\User $user)
+ * @method static dispatchSync(?string $term = null, \App\Models\User $user)
+ * @method static dispatchNow(?string $term = null, \App\Models\User $user)
+ * @method static dispatchAfterResponse(?string $term = null, \App\Models\User $user)
+ * @method static mixed run(?string $term = null, \App\Models\User $user)
+ */
+class GetDeletedImovels
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null, \App\Models\User $user)
+ * @method static dispatchSync(?string $term = null, \App\Models\User $user)
+ * @method static dispatchNow(?string $term = null, \App\Models\User $user)
+ * @method static dispatchAfterResponse(?string $term = null, \App\Models\User $user)
+ * @method static mixed run(?string $term = null, \App\Models\User $user)
  */
 class GetImovels
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\User $user)
+ * @method static dispatchSync(\App\Models\User $user)
+ * @method static dispatchNow(\App\Models\User $user)
+ * @method static dispatchAfterResponse(\App\Models\User $user)
+ * @method static mixed run(\App\Models\User $user)
+ */
+class ImovelTrashCount
+{
+}
+/**
+ */
+class StoreImovel
+{
+}
+/**
+ */
+class ApproveImovelDeletion
 {
 }
 /**
@@ -175,12 +213,43 @@ class DeleteImovel
 }
 /**
  */
-class StoreImovel
+class EditImovel
+{
+}
+/**
+ */
+class RestoreDeletedImovel
 {
 }
 /**
  */
 class UpdateImovel
+{
+}
+namespace App\Actions\Imovel\image;
+
+/**
+ */
+class AddImovelImages
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Imovel $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Imovel $imovel)
+ * @method static dispatchSync(\App\Models\Imovel $imovel)
+ * @method static dispatchNow(\App\Models\Imovel $imovel)
+ * @method static dispatchAfterResponse(\App\Models\Imovel $imovel)
+ * @method static mixed run(\App\Models\Imovel $imovel)
+ */
+class GetImovelImages
+{
+}
+/**
+ */
+class DeleteImovelImages
 {
 }
 namespace App\Actions\ImovelType;

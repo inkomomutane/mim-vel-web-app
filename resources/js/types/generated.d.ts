@@ -58,7 +58,7 @@ declare namespace App.Data {
     export type ImovelTypeData = {
         id: number;
         name: string;
-        icon: App.Data.MediaData;
+        icon: any | App.Data.MediaData;
     };
     export type IntermediationRuleData = {
         id: number;

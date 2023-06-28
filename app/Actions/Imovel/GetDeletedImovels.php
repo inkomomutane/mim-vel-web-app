@@ -6,14 +6,13 @@ use App\Actions\UserTreeInIdArray;
 use App\Data\ImovelData;
 use App\Models\Imovel;
 use App\Models\User;
-use Auth;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
-class GetImovels
+class GetDeletedImovels
 {
     use AsAction;
     use AsController;
@@ -22,11 +21,11 @@ class GetImovels
     {
         if ($user->hasAnyRole('Super-Admin', 'Admin')) {
             return ImovelData::collection(
-                $this->getImovels($term)->paginate(5)->withQueryString()
+                $this->getTrashedImovels($term)->paginate(5)->withQueryString()
             );
         } else {
             /** @var Collection<Imovel> $imovels */
-            $imovels = $this->getImovels($term);
+            $imovels = $this->getTrashedImovels($term);
 
             return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user
                 ->load('createdUsers')))->paginate(5)->withQueryString());
@@ -37,25 +36,22 @@ class GetImovels
      * @return Collection<Imovel>
      *
      **/
-    private function getImovels(?string $term = null)
+    private function getTrashedImovels(?string $term = null)
     {
         return Imovel::query()
             ->when($term, function ($query, $search) {
-                $query->where('titulo', 'like', '%'.$search.'%')
-                    ->orWhereRelation('bairro', 'nome', 'like', '%'.$search.'%')
-                    ->orWhereRelation('bairro.cidade', 'nome', 'like', '%'.$search.'%')
-                    ->orWhereRelation('bairro.cidade.province', 'name', 'like', '%'.$search.'%');
+                $query->where('titulo', 'like', '%'.$search.'%');
                 $query->with(['corretor', 'regraDeNegocio', 'intermediationRule', 'bairro.cidade.province', 'media' => function (MorphMany $query) {
                     $query->where('collection_name', 'posts')->first();
                 }, ]);
             })->with(['corretor', 'regraDeNegocio', 'bairro.cidade.province', 'intermediationRule', 'media' => function (MorphMany $query) {
                 $query->where('collection_name', 'posts');
-            }, ])->orderBy('updated_at', 'desc')->get();
+            }, ])->onlyTrashed()->orderBy('updated_at', 'desc')->get();
     }
 
     public function AsController(): \Inertia\Response
     {
-        return Inertia::render('Imovel/Index', [
+        return Inertia::render('Imovel/Trash', [
             'imovels' => $this->handle(request()->search, Auth::user()),
         ]);
     }

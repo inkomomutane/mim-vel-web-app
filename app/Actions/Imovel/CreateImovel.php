@@ -32,7 +32,7 @@ class CreateImovel
             'imovelsTypes' => ImovelTypeData::collection(TipoDeImovel::all()),
             'imovelConditions' => CondicaoData::collection(Condicao::all()),
             'statuses' => StatusData::collection(Status::all()),
-            'intermediationRules' => IntermediationRuleData::collection(IntermediationRule::all())
+            'intermediationRules' => IntermediationRuleData::collection(IntermediationRule::all()),
         ]);
     }
 }

@@ -6,9 +6,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-
 
 /**
  * App\Models\Comentario
@@ -21,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $ip
  * @property int $imovel_id
  * @property-read \App\Models\Imovel $imovel
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Comentario newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comentario newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comentario query()
@@ -31,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comentario whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Comentario extends Model

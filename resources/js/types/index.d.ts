@@ -80,6 +80,9 @@ export interface Intermediations extends Omit<PaginatedData, "data"> {
 export interface Imovels extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ImovelData>;
 }
+export interface ImovelImages extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.MediaData>;
+}
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
@@ -91,6 +94,9 @@ export type PageProps<
         type: String;
     };
     mails: {
+        type: Number;
+    };
+    trash: {
         type: Number;
     };
     globals: App.Data.PageData;
