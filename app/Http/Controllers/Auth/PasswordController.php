@@ -24,6 +24,7 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
+        flash()->addSuccess('Senha actualizada com sucesso.');
         return back();
     }
 }

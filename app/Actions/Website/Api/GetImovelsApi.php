@@ -14,7 +14,7 @@ class GetImovelsApi
         return \App\Data\ImovelData::collection(
             \App\Models\Imovel::with(['bairro.cidade', 'condicao', 'imovelFor', 'media' => function (MorphMany $query) {
                 $query->where('collection_name', 'posts');
-            }, ])->paginate(9));
+            }, ])->paginate(12));
     }
 
     public function AsController()
