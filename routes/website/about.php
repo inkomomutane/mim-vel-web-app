@@ -1,5 +1,4 @@
 <?php
 
-use Inertia\Inertia;
-
-Route::get('sobre-nos', fn () => Inertia::render('Website/About'))->name('website.about');
+use App\Actions\Website\About;
+Route::get('sobre-nos',About::class )->name('website.about');
