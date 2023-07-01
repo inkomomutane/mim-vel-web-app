@@ -33,6 +33,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            Route::middleware('web_without_inertia')
+                ->group(base_path('routes/web_without_inertia.php'));
         });
     }
 

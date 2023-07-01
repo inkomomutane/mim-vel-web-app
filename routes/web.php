@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Welcome::class)->name('welcome');
 require __DIR__.'/auth.php';
 
 foreach (new FilesystemIterator(__DIR__.'/dashboard') as $fileinfo) {
     require $fileinfo->getPathname();
 }
 
-foreach (new FilesystemIterator(__DIR__.'/website') as $fileinfo) {
-    require $fileinfo->getPathname();
-}

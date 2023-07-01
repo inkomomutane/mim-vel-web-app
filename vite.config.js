@@ -13,6 +13,8 @@ export default defineConfig({
                 'resources/js/website/vue/welcomeSearch.ts',
                 'resources/js/website/welcomeBanner.js',
                 'resources/js/website/vue/posts/app.ts',
+                'resources/js/flasher/flasher-noty.min.js',
+                'resources/js/flasher/flasher.min.js',
                 'resources/css/website.css',
         ],
             refresh: true,
