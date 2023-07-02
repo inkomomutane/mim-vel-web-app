@@ -119,7 +119,7 @@
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mb-16">
             Anúncios destacados
         </h1>
-        <div class="swiper">
+        <div class="swiper default">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->

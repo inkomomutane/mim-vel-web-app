@@ -15,6 +15,7 @@ export default defineConfig({
                 'resources/js/website/vue/posts/app.ts',
                 'resources/js/flasher/flasher-noty.min.js',
                 'resources/js/flasher/flasher.min.js',
+                'resources/js/website/gallery.js',
                 'resources/css/website.css',
         ],
             refresh: true,

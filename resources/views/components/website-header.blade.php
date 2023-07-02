@@ -77,11 +77,18 @@
 
                     <li>
                         <a
-                            href="{{ route('imoveis') }}"
-                            class="{{ Request::routeIs('imoveis') ? $activeLinkCss : $linkCss }}"
+                            href="@if (Request::routeIs('post.imovel.show'))
+                             {{ Request::url() }}
+                            @else
+                            {{ route('imoveis') }}
+                            @endif "
+                            class="{{ (Request::routeIs('imoveis') || Request::routeIs('post.imovel.show')) ? $activeLinkCss : $linkCss }}"
                             >
-                            Todos imoveis
-
+                            @if (Request::routeIs('post.imovel.show'))
+                                Imóvel
+                            @else
+                                Todos imoveis
+                            @endif
                         </a>
                     </li>
                     <li>

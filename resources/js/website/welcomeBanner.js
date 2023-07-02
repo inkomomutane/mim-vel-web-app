@@ -2,11 +2,11 @@ import Swiper, { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-new Swiper(".swiper", {
+new Swiper(".default", {
     modules: [Pagination, Autoplay],
     loop: true,
     speed: 400,
+    spaceBetween: 0,
     grabCursor: true,
     autoplay: {
         delay: 3000,
@@ -17,3 +17,5 @@ new Swiper(".swiper", {
         dynamicBullets: true,
     },
 });
+
+

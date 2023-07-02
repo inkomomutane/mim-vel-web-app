@@ -347,18 +347,15 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
     public function relectedImovels()
     {
         return Imovel::where('tipo_de_imovel_id', $this->tipo_de_imovel_id)
-            ->orWhere('regra_de_negocio_id', $this->regra_de_negocio_id)
-            ->orWhere('imovel_for_id', $this->imovel_for_id)
-            ->orWhere('condicao_id', $this->condicao_id)
             ->with('ratings')
             ->with('tipo_de_imovel')
-            ->with('bairro')
+            ->with('bairro.cidade')
             ->with('condicao')
             ->with('comentarios')
             ->with('media')
-            ->with('corretor')
+            ->with(['corretor','imovelFor','status'])
             ->get()
             ->where('id', '<>', $this->id)
-            ->take(10);
+            ->take(6);
     }
 }
