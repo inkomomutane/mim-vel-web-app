@@ -1,7 +1,7 @@
 @extends('website.layouts.layout')
 
 @section('seo')
-{!! seo()->for($imovel) !!}
+    {!! seo()->for($imovel) !!}
 @endsection
 @section('header')
     <x-website-header solidBg="true" />
@@ -33,8 +33,43 @@
 @endsection
 
 @section('content')
+
+
     <section class="px-4 md:px-24 bg-slate-100 p-16 grid grid-cols-12 gap-8 text-gray-700">
+
+
+
         <div class=" col-span-12 md:col-span-8 relative h-fit">
+            <div class="relative h-fit">
+                @if(session('success'))
+                <div id="alert-border-3" class="flex p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+                    <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <div class="ml-3 text-sm font-medium">
+                        {{ session('success') }}
+                    </div>
+                </div>
+            @elseif(session('error'))
+            <div id="alert-border-2" class="flex p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+                <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                <div class="ml-3 text-sm font-medium">
+                    {{ session('error') }}
+                </div>
+            </div>
+            @endif
+
+            @if ($errors->any())
+            <div id="alert-border-2" class="flex p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+                <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                <div class="ml-3 text-sm font-medium">
+                    <ul>
+                    @foreach ($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            </div>
+            @endif
+            </div>
             <div class="bg-white rounded-sm p-8 mb-2 w-full">
                 <h1 class="text-2xl font-semibold py-2 first-letter:uppercase lowercase">
                     {{ $imovel->imovelFor->slug_text . ' ' . $imovel->titulo }}</h1>
@@ -60,12 +95,14 @@
                     &nbsp; <strong class="text-2xl font-bold text-green-400">{{ $imovel->price }}</strong>
                 </div>
                 <div>
-                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900
+                    <span
+                        class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900
                     dark:text-yellow-300 uppercase">
-                       {{ $imovel->regraDeNegocio->name ?? '' }}
-                   </span>
+                        {{ $imovel->regraDeNegocio->name ?? '' }}
+                    </span>
 
-                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900
+                    <span
+                        class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900
                      dark:text-yellow-300 uppercase">
                         {{ $imovel->intermediationRule->code ?? '' }}
                     </span> &nbsp;
@@ -152,87 +189,102 @@
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Comentários</h1>
 
                 <div>
-                @if(session('success'))
-                    <div id="alert-border-3" class="flex p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
-                        <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <div class="ml-3 text-sm font-medium">
-                            {{ session('success') }}
+                    @if (session('success'))
+                        <div id="alert-border-3"
+                            class="flex p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
+                            role="alert">
+                            <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <div class="ml-3 text-sm font-medium">
+                                {{ session('success') }}
+                            </div>
                         </div>
-                    </div>
-                @elseif(session('error'))
-                <div id="alert-border-2" class="flex p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
-                    <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                    <div class="ml-3 text-sm font-medium">
-                        {{ session('error') }}
-                    </div>
-                </div>
-                @endif
-                    <form action="{{ route('post.imovel.comment',['imovel' => $imovel->slug])}}" method="post">
+                    @elseif(session('error'))
+                        <div id="alert-border-2"
+                            class="flex p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+                            role="alert">
+                            <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <div class="ml-3 text-sm font-medium">
+                                {{ session('error') }}
+                            </div>
+                        </div>
+                    @endif
+                    <form action="{{ route('post.imovel.comment', ['imovel' => $imovel->slug]) }}" method="post">
                         @csrf
                         <div class="mb-6">
-                          <input type="text"  name="nome" id="nome" class="bg-gray-50 border border-gray-300 text-gray-900
+                            <input type="text" name="nome" id="nome"
+                                class="bg-gray-50 border border-gray-300 text-gray-900
                            text-sm rounded-sm focus:ring-gray-400 focus:border-gray-500 block
                            w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                             dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
-                            placeholder="Teu nome">
+                                placeholder="Teu nome">
                             @error('nome')
-                            <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
-                           @enderror
+                                <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                            @enderror
 
                         </div>
                         <div class="mb-6">
-                            <textarea id="comentario" name="comentario" class="bg-gray-50 border border-gray-300 text-gray-900
+                            <textarea id="comentario" name="comentario"
+                                class="bg-gray-50 border border-gray-300 text-gray-900
                             text-sm rounded-sm focus:ring-gray-400 focus:border-gray-500 block
                             w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                              dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
-                             placeholder="comentario"></textarea>
-                             @error('nome')
-                             <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                                placeholder="comentario"></textarea>
+                            @error('nome')
+                                <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
                             @enderror
                         </div>
-                        <button type="submit" class="flex-1 text-white bg-gray-500 hover:bg-gray-800/90
+                        <button type="submit"
+                            class="flex-1 text-white bg-gray-500 hover:bg-gray-800/90
                         focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-sm
                         text-sm px-5 py-2.5 text-center inline-flex items-center
                         dark:focus:ring-gray-800 mr-2 mb-2">
-                        <svg class="w-4 h-4 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512">
-                        <!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
-                        </path>
-                    </svg>
-                        Comentar</button>
-                      </form>
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512">
+                                <!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
+                                </path>
+                            </svg>
+                            Comentar</button>
+                    </form>
                 </div>
                 @if ($imovel->comentarios->isNotEmpty())
-
                     @foreach ($imovel->comentarios->sortByDesc('created_at') as $comment)
-                    <div class="flex-col w-full py-1 mx-auto mt-3 bg-gray-50 sm:px-4  md:px-4  mb-2 ">
-                        <div class="flex flex-row md-10 my-3 ">
-                            <svg class="w-12 h-12 fill-gray-400 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                                <defs></defs>
-                                <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" transform="translate(0 0)"></path>
-                                <path
-                                    d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z"
-                                    transform="translate(0 0)"></path>
-                                <rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1"
-                                    width="32" height="32" style="fill: none"></rect>
-                            </svg>
-                            <div class="flex-col mt-1">
-                                <div class="flex items-center flex-1 px-4 font-bold leading-tight">
-                                    {{ $comment->nome ?? 'Anónimo' }}
-                                    <span
-                                        class="ml-2 text-xs font-normal text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
-                                </div>
-                                <div class="flex-1 px-2 ml-2 text-sm font-medium leading-loose text-gray-600">
-                                    {{ $comment->comentario }}
+                        <div class="flex-col w-full py-1 mx-auto mt-3 bg-gray-50 sm:px-4  md:px-4  mb-2 ">
+                            <div class="flex flex-row md-10 my-3 ">
+                                <svg class="w-12 h-12 fill-gray-400 " xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 32 32">
+                                    <defs></defs>
+                                    <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" transform="translate(0 0)"></path>
+                                    <path
+                                        d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z"
+                                        transform="translate(0 0)"></path>
+                                    <rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1"
+                                        width="32" height="32" style="fill: none"></rect>
+                                </svg>
+                                <div class="flex-col mt-1">
+                                    <div class="flex items-center flex-1 px-4 font-bold leading-tight">
+                                        {{ $comment->nome ?? 'Anónimo' }}
+                                        <span
+                                            class="ml-2 text-xs font-normal text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
+                                    </div>
+                                    <div class="flex-1 px-2 ml-2 text-sm font-medium leading-loose text-gray-600">
+                                        {{ $comment->comentario }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                        @endforeach
-
+                    @endforeach
                 @endif
             </div>
         </div>
@@ -240,22 +292,20 @@
             <div class=" bg-white px-4 lg:p-8  py-4 w-full grid  ">
                 <h1 class="text-base font-semibold  text-orange-500">Partilhar o imóvel</h1>
                 <div class="py-2 grid grid-cols-1 lg:grid-cols-2">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{Request::url()}}"
-                     target="_blank"
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}" target="_blank"
                         class=" text-white bg-[#3b5998] hover:bg-blue-900
                     focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-sm
                     text-sm px-5 py-2.5 text-center inline-flex items-center
                     dark:focus:ring-[#3b5998]/55 mr-2 mb-2">
-                        <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 8 19">
+                        <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 8 19">
                             <path fill-rule="evenodd"
                                 d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
                                 clip-rule="evenodd" />
                         </svg>
                         Facebook
                     </a>
-                    <a href="https://wa.me/?text={{Request::url()}}"
-                    target="_blank"
+                    <a href="https://wa.me/?text={{ Request::url() }}" target="_blank"
                         class=" text-white bg-[#25d366] hover:bg-green-600
                   focus:ring-4 focus:outline-none focus:ring-[#25d366]/50 font-medium rounded-sm
                   text-sm px-5 py-2.5 text-center inline-flex items-center
@@ -287,7 +337,7 @@
                         </svg>
                         Ligar
                     </a>
-                    <button type="button"
+                    <button type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                         class="text-white bg-gray-500 hover:bg-gray-800/90
                 focus:ring-0 focus:outline-none focus:ring-gray-800 font-medium rounded-sm
                 text-sm px-5 py-2.5 text-center inline-flex items-center
@@ -394,30 +444,100 @@
     <!-- End::Relevant-Ads -->
 
     <div class="fixed inset-x-0 bottom-0 grid md:hidden grid-cols-2 justify-center z-50">
-        <a href="tel:{{$imovel->corretor->contacto}}" class="flex bg-orange-500 hover:bg-orange-400 text-white border-r border-white text-lg font-semibold text-center py-4 px-4 ">
+        <a href="tel:{{ $imovel->corretor->contacto }}"
+            class="flex bg-orange-500 hover:bg-orange-400 text-white border-r border-white text-lg font-semibold text-center py-4 px-4 ">
             <svg class="w-5 h-5 mr-2 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M17.5 4.842C15.976 4.337 14.146 4 12 4c-2.145 0-3.976.337-5.5.842m11 0c3.021 1 4.835 2.66 5.5 3.658L20.5 11l-3-2V4.842zm-11 0c-3.021 1-4.835 2.66-5.5 3.658L3.5 11l3-2V4.842zM10 7v3m0 0-5.414 5.414A2 2 0 0 0 4 16.828V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.172a2 2 0 0 0-.586-1.414L14 10m-4 0h4m0 0V7">
                 </path>
-                <circle cx="12" cy="15" r="2" stroke="currentColor"
-                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+                <circle cx="12" cy="15" r="2" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2"></circle>
             </svg>
-          Ligar
+            Ligar
 
         </a>
-        <button class="flex bg-orange-500 hover:bg-orange-400 text-white py-4 px-4 text-lg font-semibold text-center">
-            <svg class="w-5 h-5 mr-2 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512">
-            <!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
-            <path
-                d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
-            </path>
-        </svg>
-        Mensangem
+        <button type="button"  data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="flex bg-orange-500 hover:bg-orange-400 text-white py-4 px-4 text-lg font-semibold text-center">
+            <svg class="w-5 h-5 mr-2 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                    d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
+                </path>
+            </svg>
+            Mensangem
         </button>
-      </div>
-@endsection
+    </div>
 
+    <section>
+  <!-- Main modal -->
+  <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative transition duration-150 ease-in-out bg-white rounded-sm shadow dark:bg-gray-700">
+              <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+              <div class="px-6 py-6 lg:px-8">
+                <form action="{{ route('post.imovel.message',[
+                    'imovel' =>$imovel->slug
+                ])}}" method="post">
+                    @csrf
+                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-2 justify-items-stretch">
+                    <div class="mb-2">
+                      <label for="nome_do_cliente">Teu nome <strong class="-order-2 text-red-500">*</strong></label>
+                      <input type="text" name="nome_do_cliente" id="nome_do_cliente" class="h-10 border mt-1 focus:ring-1
+                       focus:ring-gray-500 border-gray-500 focus:border-gray-500 rounded p-6
+                       px-4 w-full " value="" placeholder="Teu nome" />
+                       @error('nome_do_cliente')
+                       <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <div class="mb-2">
+                      <label for="email">Teu email</label>
+                      <input type="text" name="email" id="email" class="h-10 border mt-1
+                       rounded p-6 px-4 w-full  focus:ring-1
+                      focus:ring-gray-500 border-gray-500 focus:border-gray-500" value="" placeholder="Exemplo@mimovel.com" />
+                      @error('email')
+                       <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                      @enderror
+
+                    </div>
+                    <div class="md:col-span-2 mb-2">
+                      <label for="contacto">Contacto</label>
+                      <input type="text" name="contacto" id="contacto" class="h-10 border mt-1 rounded p-6 px-4 w-full
+                        focus:ring-1 border-gray-500
+                       focus:ring-gray-400 focus:border-gray-500" value="" placeholder="Contacto" />
+                       @error('contacto')
+                       <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <div class="md:col-span-2 mb-2">
+                      <label for="mensagem">Mensagem</label>
+                      <div class=" flex  items-center mt-1">
+                          <textarea name="mensagem" id="mensagem" cols="10" rows="5" class=" px-4 appearance-none outline-none
+                          text-gray-800 w-full bg-transparent focus:ring-1 border-gray-500
+                          focus:ring-gray-500 focus:border-gray-500 rounded" placeholder="Mensagem..." ></textarea>
+                      </div>
+                      @error('mensagem')
+                      <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                     @enderror
+                    </div>
+                    <div class="md:col-span-2 text-right mb-2">
+                      <div class="">
+                        <button type="submit" class="bg-orange-400 hover:ring-1 hover:ring-orange-500 text-white font-bold py-3 px-4 rounded-sm w-full">Enviar mensagem</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    </section>
+@endsection
 @push('js')
-    @vite(['resources/js/website/welcomeBanner.js', 'resources/js/website/gallery.js'])
+    @vite(['resources/js/website/welcomeBanner.js',
+    'resources/js/website/gallery.js','resources/js/website/imovel.ts'])
 @endpush
