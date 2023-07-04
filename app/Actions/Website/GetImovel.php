@@ -13,7 +13,7 @@ class GetImovel
     public function asController(Imovel $imovel)
     {
         return view('website.imovel',[
-            'imovel' => $imovel
+            'imovel' => $imovel->load('media')
         ]);
     }
 }

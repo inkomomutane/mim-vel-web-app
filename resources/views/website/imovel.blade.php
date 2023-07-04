@@ -1,4 +1,8 @@
 @extends('website.layouts.layout')
+
+@section('seo')
+{!! seo()->for($imovel) !!}
+@endsection
 @section('header')
     <x-website-header solidBg="true" />
 @endsection
@@ -91,6 +95,12 @@
                 @if ($imovel->area)
                     <div class="text-sm py-1">
                         Área (m²) : <strong>&nbsp; {{ $imovel->area }}</strong>
+                    </div>
+                @endif
+
+                @if ($imovel->andares)
+                    <div class="text-sm py-1">
+                        Andares : <strong>&nbsp; {{ $imovel->andares }}</strong>
                     </div>
                 @endif
 
@@ -226,15 +236,16 @@
                 @endif
             </div>
         </div>
-        <div class=" col-span-12 md:col-span-4 h-fit md:sticky md:top-20 ">
-            <div class=" bg-white p-8 py-4 w-full  ">
+        <div class=" col-span-12 md:col-span-4 h-fit md:sticky md:top-20  ">
+            <div class=" bg-white px-4 lg:p-8  py-4 w-full grid  ">
                 <h1 class="text-base font-semibold  text-orange-500">Partilhar o imóvel</h1>
-                <div class="py-2 flex">
-                    <a type="button"
-                        class="flex-1 text-white bg-[#3b5998] hover:bg-[#3b5998]/90
-                 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-sm
-                 text-sm px-5 py-2.5 text-center inline-flex items-center
-                 dark:focus:ring-[#3b5998]/55 mr-2 mb-2">
+                <div class="py-2 grid grid-cols-1 lg:grid-cols-2">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{Request::url()}}"
+                     target="_blank"
+                        class=" text-white bg-[#3b5998] hover:bg-blue-900
+                    focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-sm
+                    text-sm px-5 py-2.5 text-center inline-flex items-center
+                    dark:focus:ring-[#3b5998]/55 mr-2 mb-2">
                         <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 8 19">
                             <path fill-rule="evenodd"
@@ -243,11 +254,12 @@
                         </svg>
                         Facebook
                     </a>
-                    <a type="button"
-                        class="flex-1 text-white bg-[#25d366] hover:bg-[#25d366]/90
-                focus:ring-4 focus:outline-none focus:ring-[#25d366]/50 font-medium rounded-sm
-                text-sm px-5 py-2.5 text-center inline-flex items-center
-                dark:focus:ring-[#25d366]/55 mr-2 mb-2">
+                    <a href="https://wa.me/?text={{Request::url()}}"
+                    target="_blank"
+                        class=" text-white bg-[#25d366] hover:bg-green-600
+                  focus:ring-4 focus:outline-none focus:ring-[#25d366]/50 font-medium rounded-sm
+                  text-sm px-5 py-2.5 text-center inline-flex items-center
+                  dark:focus:ring-[#25d366]/55 mr-2 mb-2">
                         <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none"
                             viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -258,12 +270,12 @@
                     </a>
                 </div>
             </div>
-            <div class=" bg-white p-8 py-2 my-2 w-full  ">
+            <div class=" bg-white px-4 lg:p-8 py-2 my-2 w-full  hidden md:grid">
                 <h1 class="text-base font-semibold  text-orange-500">Contactar o corretor</h1>
-                <div class="py-2 flex">
-                    <a type="button"
-                        class="flex-1 text-white bg-gray-500 hover:bg-gray-800/90
-                focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-sm
+                <div class="py-2 grid grid-cols-1 lg:grid-cols-2">
+                    <a href="tel:{{ $imovel->corretor->contacto }}"
+                        class=" text-white bg-gray-500 hover:bg-gray-800/90
+                focus:ring-0 focus:outline-none focus:ring-gray-800 font-medium rounded-sm
                 text-sm px-5 py-2.5 text-center inline-flex items-center
                 dark:focus:ring-gray-800 mr-2 mb-2">
                         <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
@@ -275,9 +287,9 @@
                         </svg>
                         Ligar
                     </a>
-                    <a type="button"
-                        class="flex-1 text-white bg-gray-500 hover:bg-gray-800/90
-                focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-sm
+                    <button type="button"
+                        class="text-white bg-gray-500 hover:bg-gray-800/90
+                focus:ring-0 focus:outline-none focus:ring-gray-800 font-medium rounded-sm
                 text-sm px-5 py-2.5 text-center inline-flex items-center
                 dark:focus:ring-gray-800 mr-2 mb-2">
                         <svg class="w-4 h-4 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
@@ -288,7 +300,7 @@
                             </path>
                         </svg>
                         Mensangem
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -380,6 +392,30 @@
         </ul>
     </section>
     <!-- End::Relevant-Ads -->
+
+    <div class="fixed inset-x-0 bottom-0 grid md:hidden grid-cols-2 justify-center z-50">
+        <a href="tel:{{$imovel->corretor->contacto}}" class="flex bg-orange-500 hover:bg-orange-400 text-white border-r border-white text-lg font-semibold text-center py-4 px-4 ">
+            <svg class="w-5 h-5 mr-2 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.5 4.842C15.976 4.337 14.146 4 12 4c-2.145 0-3.976.337-5.5.842m11 0c3.021 1 4.835 2.66 5.5 3.658L20.5 11l-3-2V4.842zm-11 0c-3.021 1-4.835 2.66-5.5 3.658L3.5 11l3-2V4.842zM10 7v3m0 0-5.414 5.414A2 2 0 0 0 4 16.828V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.172a2 2 0 0 0-.586-1.414L14 10m-4 0h4m0 0V7">
+                </path>
+                <circle cx="12" cy="15" r="2" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+            </svg>
+          Ligar
+
+        </a>
+        <button class="flex bg-orange-500 hover:bg-orange-400 text-white py-4 px-4 text-lg font-semibold text-center">
+            <svg class="w-5 h-5 mr-2 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512">
+            <!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+            <path
+                d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
+            </path>
+        </svg>
+        Mensangem
+        </button>
+      </div>
 @endsection
 
 @push('js')

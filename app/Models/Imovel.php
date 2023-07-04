@@ -303,7 +303,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
             author: Str::Ucfirst($this->corretor->name),
             image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
             type: 'article',
-            // canonical_url: route(''),
+            canonical_url: route('post.imovel.show',['imovel' => $this->slug]),
             published_time: $this->published_at,
             modified_time: $this->updated_at,
             section: Str::Ucfirst($this->tipo_de_imovel->nome ?? ''),
