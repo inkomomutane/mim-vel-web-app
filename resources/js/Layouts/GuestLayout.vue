@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Footer from "./partials/website/Footer.vue";
+import Header from "./partials/website/Header.vue";
 defineProps({
     showFooter: {
         type: Boolean,
@@ -7,7 +8,8 @@ defineProps({
 });
 </script>
 <template>
-    <div class="bg-orange-100 dark:bg-slate-700 selection:bg-primary-500">
+    <Header :solid-bg="true"/>
+    <div class="bg-slate-50 dark:bg-slate-700 selection:bg-primary-500">
         <slot />
     </div>
     <Footer

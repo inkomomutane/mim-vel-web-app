@@ -14,6 +14,7 @@ import CKEditor from "@ckeditor/ckeditor5-vue";
 import ConfirmationService from "primevue/confirmationservice";
 import.meta.glob(["../errors/svgs/**", "../js/images/**"]);
 
+
 const pinia = createPinia();
 createInertiaApp({
     title: (title) => `${title}`,

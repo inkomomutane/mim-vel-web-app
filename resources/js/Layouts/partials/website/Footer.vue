@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
 </script>
 <template>
     <a
@@ -1270,31 +1269,32 @@ import { Link } from "@inertiajs/vue3";
                         <nav aria-label="Footer Navigation Nav" class="mt-8">
                             <ul class="space-y-4 text-sm">
                                 <li>
-                                    <Link
-                                        href=""
+                                    <a
+                                        :href="route('welcome')"
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                                        >Início</Link
+                                        >Início</a
                                     >
                                 </li>
                                 <li>
-                                    <Link
-                                        href=""
+                                    <a
+                                        :href="route('imoveis')"
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                                        >Todos imóveis</Link
+                                        >Todos imóveis</a
                                     >
                                 </li>
                                 <li>
-                                    <Link
-                                        href=""
+                                    <a
+                                        :href="route('website.about')
+                                        "
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                                        >Sobre nós</Link
+                                        >Sobre nós</a
                                     >
                                 </li>
                                 <li>
-                                    <Link
-                                        href=""
+                                    <a
+                                        :href="route('website.contact')"
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                                        >Contacte nos</Link
+                                        >Contacte nos</a
                                     >
                                 </li>
                             </ul>
@@ -1311,17 +1311,17 @@ import { Link } from "@inertiajs/vue3";
                         <nav aria-label="Footer Services Nav" class="mt-8">
                             <ul class="space-y-4 text-sm">
                                 <li>
-                                    <Link
+                                    <a
                                         :href="route('website.policy')"
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                                        >Políticas de privacidade</Link
+                                        >Políticas de privacidade</a
                                     >
                                 </li>
                                 <li>
-                                    <Link
+                                    <a
                                         :href="route('website.terms')"
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                                        >Termos &amp; condições</Link
+                                        >Termos &amp; condições</a
                                     >
                                 </li>
                             </ul>
@@ -1461,21 +1461,21 @@ import { Link } from "@inertiajs/vue3";
                             >Todos direitos reservados.</span
                         >
 
-                        <Link
+                        <a
                             class="inline-block text-orange-600 underline transition hover:text-orange-600/75 dark:text-orange-500 dark:hover:text-orange-500/75"
                             :href="route('website.terms')"
                         >
                             Termos & condições
-                        </Link>
+                        </a>
 
                         <span>&middot;</span>
 
-                        <Link
+                        <a
                             class="inline-block text-orange-600 underline transition hover:text-orange-600/75 dark:text-orange-500 dark:hover:text-orange-500/75"
                             :href="route('website.policy')"
                         >
                             Políticas de privacidade
-                        </Link>
+                        </a>
                     </p>
 
                     <p

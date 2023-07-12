@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use NumberFormatter;
 use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
@@ -297,6 +298,9 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
 
     public function getDynamicSEOData(): SEOData
     {
+
+
+
         return new SEOData(
             title: Str::Ucfirst($this->titulo),
             description: Str::Ucfirst(strip_tags($this->descricao)),
@@ -304,7 +308,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
             image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
             type: 'article',
             canonical_url: route('post.imovel.show',['imovel' => $this->slug]),
-            published_time: $this->published_at,
+            published_time: $this->created_at,
             modified_time: $this->updated_at,
             section: Str::Ucfirst($this->tipo_de_imovel->nome ?? ''),
             imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl('social-media')) : null,

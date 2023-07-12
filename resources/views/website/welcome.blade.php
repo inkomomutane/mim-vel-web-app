@@ -36,7 +36,7 @@
         </p>
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
             @foreach ($relevantImovels as $imovel)
-                <li class="p-5 group mr-0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <li class="p-5 group mr-0" itemprop="itemListElement" data-aos-offset="20" data-aos="fade-up" data-aos-duration="{{  2000 + ($loop->index * 100 )   }}" itemscope itemtype="http://schema.org/ListItem">
                     <a href="{{ route('post.imovel.show', [
                         'imovel' => $imovel->slug,
                     ]) }}"
@@ -107,7 +107,7 @@
                 </li>
             @endforeach
         </ul>
-        <div class="flex mx-5">
+        <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 rounded text-center">
                 Ver todos imóveis
@@ -121,7 +121,7 @@
         </h1>
         <div class="swiper default">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
                 <!-- Slides -->
                 @foreach ($banners->getMedia('banners') as $banner)
                     <div class="swiper-slide">
@@ -161,7 +161,7 @@
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
 
             @foreach ($lastestImovels as $imovel)
-                <li class="p-5 group mr-0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <li class="p-5 group mr-0" itemprop="itemListElement"  data-aos-offset="20" data-aos="fade-up" data-aos-duration="{{  2000 + ($loop->index * 100 )   }}"  itemscope itemtype="http://schema.org/ListItem">
                     <a href="{{ route('post.imovel.show', [
                         'imovel' => $imovel->slug,
                     ]) }}"
@@ -232,7 +232,7 @@
                 </li>
             @endforeach
         </ul>
-        <div class="flex mx-5">
+        <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000" >
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 rounded text-center">
                 Ver todos imóveis
@@ -242,12 +242,12 @@
     <!-- End::Latest-Imovels -->
 
     <!-- Start::Type-of-Imovels -->
-    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
+    <section  class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
-        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2" itemprop="name">
+        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2" itemprop="name" data-aos-offset="1" data-aos="zoom-in" data-aos-duration="5000">
             No Mimóvel vai encontrar
         </h2>
-        <div class="flex p-5">
+        <div class="flex p-5" data-aos-offset="50" data-aos="zoom-in" data-aos-duration="5000">
             <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full justify-between">
 
                 @foreach ($imovelTypes as $type)

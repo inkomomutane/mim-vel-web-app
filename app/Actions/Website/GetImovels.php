@@ -5,6 +5,7 @@ namespace App\Actions\Website;
 use App\Data\ImovelData;
 use App\Models\Imovel;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class GetImovels
@@ -26,16 +27,16 @@ class GetImovels
                         $query->where('collection_name', 'posts')->first();
                     }, ]);
 
-                })->with(['bairro', 'media' => function (MorphMany $query) {
+                })->with(['bairro.cidade','regraDeNegocio', 'media' => function (MorphMany $query) {
                     $query->where('collection_name', 'posts');
-                }, ])->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
+                }, ])->orderBy('created_at', 'desc')->paginate(12)->withQueryString()
         );
     }
 
     public function AsController()
     {
-        return view('website.posts', [
-            'imovels' => $this->handle(request()->search),
+        return Inertia::render('Website/Imovels',[
+            'imovels' => $this->handle()
         ]);
     }
 }

@@ -39,7 +39,7 @@
 
 
 
-        <div class=" col-span-12 md:col-span-8 relative h-fit">
+        <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="relative h-fit">
                 @if(session('success'))
                 <div id="alert-border-3" class="flex p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
@@ -70,7 +70,7 @@
             </div>
             @endif
             </div>
-            <div class="bg-white rounded-sm p-8 mb-2 w-full">
+            <div class="bg-white rounded-sm p-8 mb-2 w-full" data-aos-offset="10" data-aos="fade-in" data-aos-duration="4000>
                 <h1 class="text-2xl font-semibold py-2 first-letter:uppercase lowercase">
                     {{ $imovel->imovelFor->slug_text . ' ' . $imovel->titulo }}</h1>
                 <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" itemprop="address"
@@ -109,7 +109,7 @@
 
                 </div>
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full grid grid-cols-3 gap-4">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full grid grid-cols-3 gap-4" data-aos-offset="50" data-aos="fade-right" data-aos-duration="1000">
                 @if ($imovel->tipo_de_imovel)
                     <div class="text-sm py-1">
                         Tipo: <strong>&nbsp; {{ $imovel->tipo_de_imovel->nome }}</strong>
@@ -171,11 +171,11 @@
                     </div>
                 @endif
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-left" data-aos-offset="50" data-aos-duration="1000">
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Descrição</h1>
                 {!! $imovel->descricao !!}
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-right"  data-aos-offset="50" data-aos-duration="1000">
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Galeria</h1>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 justify-center justify-items-center gap-4 ">
                     @foreach ($imovel->getMedia('posts') as $image)
@@ -185,7 +185,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full" id="comments">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full" id="comments" data-aos-offset="50" data-aos="fade-up" data-aos-duration="1000">
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Comentários</h1>
 
                 <div>
@@ -320,7 +320,7 @@
                     </a>
                 </div>
             </div>
-            <div class=" bg-white px-4 lg:p-8 py-2 my-2 w-full  hidden md:grid">
+            <div class=" bg-white px-4 lg:p-8 py-2 my-2 w-full  hidden md:grid" data-aos-offset="10" data-aos="fade-up" data-aos-duration="4000>
                 <h1 class="text-base font-semibold  text-orange-500">Contactar o corretor</h1>
                 <div class="py-2 grid grid-cols-1 lg:grid-cols-2">
                     <a href="tel:{{ $imovel->corretor->contacto }}"
@@ -359,7 +359,7 @@
 
 
     <!-- Start::Relevant-Imovels -->
-    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
+    <section   class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6" itemprop="name">
             Imóveis relacionados
@@ -369,7 +369,7 @@
         </p>
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
             @foreach ($imovel->relectedImovels() as $imovel)
-                <li class="p-5 group mr-0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <li class="p-5 group mr-0" data-aos="fade-up" data-aos-duration="{{  200 + ($loop->index * 100 )   }}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                     <a href="{{ route('post.imovel.show', [
                         'imovel' => $imovel->slug,
                     ]) }}"
@@ -540,4 +540,5 @@
 @push('js')
     @vite(['resources/js/website/welcomeBanner.js',
     'resources/js/website/gallery.js','resources/js/website/imovel.ts'])
+
 @endpush

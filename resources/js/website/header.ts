@@ -1,6 +1,6 @@
 let showMenu = true;
 
-const changeMenuStatus = () => {
+export const changeMenuStatus = () => {
     showMenu = !showMenu;
     const menuNavigation = document.querySelector("#mobile-menu-2");
 
@@ -101,3 +101,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.changeMenuStatus = changeMenuStatus;
+
+
+
