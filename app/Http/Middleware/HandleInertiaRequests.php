@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Actions\Imovel\ImovelTrashCount;
 use App\Actions\Message\MessageCount;
+use App\Actions\Page\GetPage;
 use App\Data\RoleData;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user()?->load('roles')->getData(),
@@ -43,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             'roles' => RoleData::collection(Role::all()),
             'mails' => MessageCount::run(),
             'trash' => ImovelTrashCount::run($request->user()),
-            'globals' => Page::first()->getData(),
+            'globals' =>  GetPage::run()->getData(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
