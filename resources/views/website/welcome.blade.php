@@ -6,7 +6,7 @@
     <section class="relative ">
         {{ $page->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
         <div class="relative bg-slate-950 bg-opacity-40 h-full pt-20">
-            <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-36">
                 <div class="flex flex-col items-center justify-between xl:flex-row">
                     <div class="px-2 text-center w-full md:px-16">
                         <h1
