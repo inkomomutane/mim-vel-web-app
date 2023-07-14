@@ -14,9 +14,9 @@
                             <img src="{{ Vite::asset('resources/js/images/logo/logo.png') }}"
                                 class="mx-auto mt-10 sm:m-auto w-60" alt="Mimóvel" />
                         </h1>
-                        <div id="welcome-search">
+                        {{-- <div id="welcome-search">
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -252,6 +252,7 @@
 
                 @foreach ($imovelTypes as $type)
                     <li itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+                    <a href="{{ route('imoveis',['imovel_types' => [$type->id] ])}}">
                         <article class="text-center bg-white w-fit mx-auto p-4 rounded-2xl">
                             @if ($type->getFirstMedia('icons'))
                                 {{ $type->getFirstMedia('icons')
@@ -265,6 +266,8 @@
                         <p class="text-center my-4 text-xl font-medium text-gray-700 " itemprop="name">
                             <span itemprop="identifier">{{ $type->nome ?? '' }}</span>
                         </p>
+
+                </a>
                     </li>
                 @endforeach
 
