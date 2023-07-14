@@ -11,7 +11,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
+      - name: Install composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          dev: no
+          php_version: "8.1"
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
