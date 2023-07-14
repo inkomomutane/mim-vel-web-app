@@ -16,7 +16,7 @@ jobs:
         with:
           dev: no
           php_version: "8.1.7"
-          php_extensions: redis exif ext-zip
+          php_extensions: ext-zip
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
