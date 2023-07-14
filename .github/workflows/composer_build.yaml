@@ -1,0 +1,24 @@
+name: 🚀 Install composer dependeces and migrate changes
+on:
+  push:
+    branches:
+    - main
+env:
+  FIRST_NAME: Mimovel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependeces via composer
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd mimovel
+            ${{ secrets.FUN_GIT_PULL }}
+            php artisan migrate --force
+            php composer.phar install
+          host: ${{ secrets.SSH_SERVER }}
+          user: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          #pass: ${{ secrets.SSH_PASS_KEY }}
+          args: "-tt -vvv"

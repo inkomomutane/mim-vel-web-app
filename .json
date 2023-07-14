@@ -1,0 +1,37 @@
+[
+    {
+        "@context": "https:\/\/schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/127.0.0.1:8000\/imoveis-post\/terreno-no-estoril"
+        },
+        "datePublished": "2022-08-07T13:08:55+00:00",
+        "dateModified": "2022-09-22T09:57:24+00:00",
+        "headline": "Terreno no estoril\/\/",
+        "author": {
+            "@type": "Person",
+            "name": "Nelson Mutane"
+        },
+        "description": "Com muro de veda\u00e7\u00e3o&nbsp;Sem aterroVeja melhor no video clicando no link abaixohttps:\/\/vm.tiktok.com\/ZMNg9Ta88\/?k=1#Casa_moradia_Resid\u00eancia_terreno_constru\u00e7\u00e3o",
+        "image": "http:\/\/127.0.0.1:8000\/storage\/posts\/308\/conversions\/IMG-20220807-WA0007-social-media.jpg"
+    },
+    {
+        "@context": "https:\/\/schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Homepage",
+                "item": "http:\/\/127.0.0.1:8000"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Terreno no estoril\/\/",
+                "item": "http:\/\/127.0.0.1:8000\/imoveis-post\/terreno-no-estoril"
+            }
+        ]
+    }
+]
