@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49e4beee8991b4093588b9d2e543989c",
+    "content-hash": "9590797d307add3284cc108438279574",
     "packages": [
         {
             "name": "beyondcode/laravel-query-detector",
@@ -4606,6 +4606,77 @@
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/1.22.0"
             },
             "time": "2023-06-01T12:35:21+00:00"
+        },
+        {
+            "name": "pricecurrent/laravel-eloquent-filters",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pricecurrent/laravel-eloquent-filters.git",
+                "reference": "399aeb8e1179bbd82352d91ac75135a108f4a613"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pricecurrent/laravel-eloquent-filters/zipball/399aeb8e1179bbd82352d91ac75135a108f4a613",
+                "reference": "399aeb8e1179bbd82352d91ac75135a108f4a613",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0|^9.0|^10.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^7.4|^8.0",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^6.23|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pricecurrent\\LaravelEloquentFilters\\EloquentFiltersServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pricecurrent\\LaravelEloquentFilters\\": "src",
+                    "Pricecurrent\\LaravelEloquentFilters\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Malinnikov",
+                    "email": "code.bright.anywhere@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Advanced Laravel models filtering capabilities",
+            "homepage": "https://github.com/pricecurrent/laravel-eloquent-filters",
+            "keywords": [
+                "eloquent-filters",
+                "laravel",
+                "laravel-eloquent-filters",
+                "model-filters",
+                "pricecurrent"
+            ],
+            "support": {
+                "issues": "https://github.com/pricecurrent/laravel-eloquent-filters/issues",
+                "source": "https://github.com/pricecurrent/laravel-eloquent-filters/tree/0.1.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/pricecurrent",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-05-22T16:22:06+00:00"
         },
         {
             "name": "psr/cache",

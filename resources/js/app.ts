@@ -1,4 +1,3 @@
-import { SwiperOptions } from "./../../node_modules/swiper/types/swiper-options.d";
 import "./bootstrap";
 import "primevue/resources/primevue.min.css";
 import "../css/app.css";

@@ -20,6 +20,7 @@
         "masbug/flysystem-google-drive-ext": "^2.2",
         "php-flasher/flasher-laravel": "^1.13",
         "php-flasher/flasher-noty-laravel": "^1.13",
+        "pricecurrent/laravel-eloquent-filters": "^0.1.3",
         "queueworker/sansdaemon": "^1.2",
         "ralphjsmit/laravel-seo": "^1.3",
         "spatie/enum": "^3.13",

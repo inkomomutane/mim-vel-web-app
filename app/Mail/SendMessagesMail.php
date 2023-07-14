@@ -5,20 +5,21 @@ namespace App\Mail;
 use App\Models\Agenda;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Address;
 
 class SendMessagesMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public readonly Agenda $agenda;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Agenda  $agenda)
+    public function __construct(Agenda $agenda)
     {
         $this->agenda = $agenda;
     }

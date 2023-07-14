@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use NumberFormatter;
+use Pricecurrent\LaravelEloquentFilters\Filterable;
 use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
@@ -136,6 +136,13 @@ use Spatie\Tags\HasTags;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTrashed()
  *
+ * @property-read Collection<int, \App\Models\Comentario> $comentarios
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read Collection<int, \App\Models\Rating> $ratings
+ * @property Collection<int, \Spatie\Tags\Tag> $tags
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable
@@ -148,6 +155,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
     use WithData;
     use InteractsWithViews;
     use SoftDeletes;
+    use Filterable;
 
     protected $table = 'imovels';
 
@@ -299,15 +307,13 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
     public function getDynamicSEOData(): SEOData
     {
 
-
-
         return new SEOData(
             title: Str::Ucfirst($this->titulo),
             description: Str::Ucfirst(strip_tags($this->descricao)),
             author: Str::Ucfirst($this->corretor->name),
             image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
             type: 'article',
-            canonical_url: route('post.imovel.show',['imovel' => $this->slug]),
+            canonical_url: route('post.imovel.show', ['imovel' => $this->slug]),
             published_time: $this->created_at,
             modified_time: $this->updated_at,
             section: Str::Ucfirst($this->tipo_de_imovel->nome ?? ''),
@@ -357,7 +363,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
             ->with('condicao')
             ->with('comentarios')
             ->with('media')
-            ->with(['corretor','imovelFor','status'])
+            ->with(['corretor', 'imovelFor', 'status'])
             ->get()
             ->where('id', '<>', $this->id)
             ->take(6);

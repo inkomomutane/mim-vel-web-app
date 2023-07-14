@@ -117,6 +117,11 @@ declare namespace App.Data {
         id: number | null;
         name: string | null;
     };
+    export type RequestFiltersData = {
+        imovelTypes: null | Array<number>;
+        title: string | null;
+        bairros: Array<any> | null;
+    };
     export type ResponsiveImageData = {
         media_library_original: App.Data.MediaLibraryOriginalData | null;
     };

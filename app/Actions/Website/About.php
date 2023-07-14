@@ -12,9 +12,9 @@ class About
 
     public function asController()
     {
-        return view('website.about',[
+        return view('website.about', [
             'page' => Page::with('media')
-            ->first()?->getFirstMedia(Pages::ABOUT),
+                ->first()?->getFirstMedia(Pages::ABOUT),
         ]);
     }
 }

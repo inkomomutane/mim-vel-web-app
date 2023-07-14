@@ -25,11 +25,11 @@ class CreateStatus
         ];
     }
 
-     public function AsController(ActionRequest $request)
-     {
-         $this->handle(StatusData::from($request->validated()));
-         flash()->addSuccess('Status criado com sucesso.');
+    public function AsController(ActionRequest $request)
+    {
+        $this->handle(StatusData::from($request->validated()));
+        flash()->addSuccess('Status criado com sucesso.');
 
-         return \redirect()->back();
-     }
+        return \redirect()->back();
+    }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Actions\Website;
 
+use App\Data\ImovelTypeData;
 use App\Models\Imovel;
-use Lorisleiva\Actions\Concerns\AsAction;
+use App\Models\TipoDeImovel;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class GetImovel
@@ -12,8 +13,8 @@ class GetImovel
 
     public function asController(Imovel $imovel)
     {
-        return view('website.imovel',[
-            'imovel' => $imovel->load('media')
+        return view('website.imovel', [
+            'imovel' => $imovel->load('media'),
         ]);
     }
 }

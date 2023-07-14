@@ -30,6 +30,7 @@ use Spatie\LaravelData\WithData;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  *
  * @mixin \Eloquent
  */

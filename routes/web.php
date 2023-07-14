@@ -1,8 +1,8 @@
 <?php
 
-use App\Actions\Website\Welcome;
-use Illuminate\Support\Facades\Route;
 use App\Actions\Website\GetImovels;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +16,8 @@ use App\Actions\Website\GetImovels;
 
 require __DIR__.'/auth.php';
 
-
-
 Route::get('todos-imoveis', GetImovels::class)->name('imoveis');
 
 foreach (new FilesystemIterator(__DIR__.'/dashboard') as $fileinfo) {
     require $fileinfo->getPathname();
 }
-

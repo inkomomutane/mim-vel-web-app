@@ -41,10 +41,10 @@ class UpdatePolicy
         ];
     }
 
-   public function asController(ActionRequest $actionRequest)
-   {
-       $this->handle(new PolicyData($actionRequest->politicas));
+    public function asController(ActionRequest $actionRequest)
+    {
+        $this->handle(new PolicyData($actionRequest->politicas));
 
-       return redirect()->back();
-   }
+        return redirect()->back();
+    }
 }

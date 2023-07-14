@@ -14,8 +14,7 @@
         "paths": {
             "@/*": ["./resources/js/*"]
         },
-        "typeRoots": ["./node_modules/@types", "./resources/js/types",
-        "./resources/js/website"]
+        "typeRoots": ["./node_modules/@types", "./resources/js/types","./resources/js/website"]
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue", "resources/js/website/welcomeBanner.js", "resources/js/errors.js"]
 }

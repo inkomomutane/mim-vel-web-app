@@ -36,6 +36,7 @@ use Spatie\LaravelData\WithData;
  * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read Collection<int, \App\Models\Imovel> $imovels
+ * @property-read Collection<int, \App\Models\Imovel> $imovels
  *
  * @mixin \Eloquent
  */

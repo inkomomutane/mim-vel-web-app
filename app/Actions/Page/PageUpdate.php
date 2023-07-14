@@ -72,7 +72,7 @@ class PageUpdate
 
             if ($actionRequest->file('imovelsMedia')) {
 
-                foreach ($actionRequest->file('imovelsMedia')  as $file) {
+                foreach ($actionRequest->file('imovelsMedia') as $file) {
                     $page->addMedia($file)
                         ->toMediaCollection(Pages::IMOVELS, 'pages');
                 }

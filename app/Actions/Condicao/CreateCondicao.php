@@ -25,11 +25,11 @@ class CreateCondicao
         ];
     }
 
-     public function AsController(ActionRequest $request)
-     {
-         $this->handle(CondicaoData::from($request->validated()));
-         flash()->addSuccess('Condição do imóvel criada com sucesso.');
+    public function AsController(ActionRequest $request)
+    {
+        $this->handle(CondicaoData::from($request->validated()));
+        flash()->addSuccess('Condição do imóvel criada com sucesso.');
 
-         return \redirect()->back();
-     }
+        return \redirect()->back();
+    }
 }

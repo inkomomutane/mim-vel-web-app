@@ -15,37 +15,38 @@ class SendMessage
     use AsAction;
     use AsController;
 
-    public function handle(Agenda $agenda) :bool
+    public function handle(Agenda $agenda): bool
     {
         try {
             Mail::queue(new SendMessagesMail($agenda));
+
             return true;
         } catch (\Throwable $th) {
             return false;
         }
     }
 
-
-    public function rules() :array
+    public function rules(): array
     {
         return [
             'nome_do_cliente' => 'required|string|max:125',
             'email' => 'email|nullable',
             'contacto' => 'string|max:125|nullable',
-            'mensagem' => 'required|string'
+            'mensagem' => 'required|string',
         ];
     }
 
     public function asController(ActionRequest $actionRequest)
     {
-       $message =  collect($actionRequest->all())
-        ->put('corretor_id',User::first()->id)
-        ->put('data_hora',now())
-        ->put('imovel_id',null)->toArray();
+        $message = collect($actionRequest->all())
+            ->put('corretor_id', User::first()->id)
+            ->put('data_hora', now())
+            ->put('imovel_id', null)->toArray();
 
-        if($this->handle(Agenda::create($message))) {
-            return back()->with('success','A sua mensagem foi enviada com sucesso');
+        if ($this->handle(Agenda::create($message))) {
+            return back()->with('success', 'A sua mensagem foi enviada com sucesso');
         }
-        return back()->with('error','Erro ao envia sua mensagem, Tente mais tarde!');
+
+        return back()->with('error', 'Erro ao envia sua mensagem, Tente mais tarde!');
     }
 }

@@ -25,11 +25,11 @@ class CreateProvince
         ];
     }
 
-     public function AsController(ActionRequest $request)
-     {
-         $this->handle(ProvinceData::from($request->validated()));
-         flash()->addSuccess('Province created successfcul.');
+    public function AsController(ActionRequest $request)
+    {
+        $this->handle(ProvinceData::from($request->validated()));
+        flash()->addSuccess('Province created successfcul.');
 
-         return \redirect()->back();
-     }
+        return \redirect()->back();
+    }
 }

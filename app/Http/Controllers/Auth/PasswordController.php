@@ -25,6 +25,7 @@ class PasswordController extends Controller
         ]);
 
         flash()->addSuccess('Senha actualizada com sucesso.');
+
         return back();
     }
 }

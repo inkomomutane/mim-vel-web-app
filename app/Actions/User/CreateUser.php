@@ -36,15 +36,15 @@ class CreateUser
         ];
     }
 
-     public function AsController(ActionRequest $request)
-     {
-         try {
-             $this->handle($request->validated());
-             flash()->addSuccess('Usuario criado com sucesso.');
-         } catch (\Throwable $th) {
-             flash()->addError('Erro ao criar usuário.');
-         }
+    public function AsController(ActionRequest $request)
+    {
+        try {
+            $this->handle($request->validated());
+            flash()->addSuccess('Usuario criado com sucesso.');
+        } catch (\Throwable $th) {
+            flash()->addError('Erro ao criar usuário.');
+        }
 
-          return \redirect()->back();
-     }
+         return \redirect()->back();
+    }
 }

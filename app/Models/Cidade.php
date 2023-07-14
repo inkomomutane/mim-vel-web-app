@@ -37,6 +37,7 @@ use Spatie\Searchable\SearchResult;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
  *
  * @mixin \Eloquent
  */

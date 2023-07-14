@@ -8,8 +8,8 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'laravel-backup'),
 
+        'name' => '',
         'source' => [
 
             'files' => [
@@ -18,7 +18,7 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path(),
+                    storage_path('app/public'),
                 ],
 
                 /*
@@ -28,6 +28,8 @@ return [
                  */
                 'exclude' => [
                     base_path('vendor'),
+                    base_path('.git'),
+                    base_path('public'),
                     base_path('node_modules'),
                 ],
 
@@ -95,7 +97,7 @@ return [
          *
          * If you do not want any compressor at all, set it to null.
          */
-        'database_dump_compressor' => null,
+        'database_dump_compressor' => Spatie\DbDumper\Compressors\GzipCompressor::class,
 
         /*
          * The file extension used for the database dump files.
@@ -116,7 +118,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
+                'backup',
             ],
         ],
 
@@ -166,11 +168,11 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => 'your@example.com',
+            'to' => 'nelsonmutane@gmail.com',
 
             'from' => [
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Example'),
+                'name' => env('MAIL_FROM_NAME', 'Mimóvel'),
             ],
         ],
 
@@ -191,15 +193,9 @@ return [
         'discord' => [
             'webhook_url' => '',
 
-            /*
-             * If this is an empty string, the name field on the webhook will be used.
-             */
-            'username' => '',
+            'username' => null,
 
-            /*
-             * If this is an empty string, the avatar on the webhook will be used.
-             */
-            'avatar_url' => '',
+            'avatar_url' => null,
         ],
     ],
 
@@ -210,24 +206,13 @@ return [
      */
     'monitor_backups' => [
         [
-            'name' => env('APP_NAME', 'laravel-backup'),
-            'disks' => ['local'],
+            'name' => '',
+            'disks' => ['backup'],
             'health_checks' => [
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
+                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 2,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
             ],
         ],
-
-        /*
-        [
-            'name' => 'name of the second app',
-            'disks' => ['local', 's3'],
-            'health_checks' => [
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
-            ],
-        ],
-        */
     ],
 
     'cleanup' => [
@@ -252,7 +237,7 @@ return [
             /*
              * The number of days for which daily backups must be kept.
              */
-            'keep_daily_backups_for_days' => 16,
+            'keep_daily_backups_for_days' => 3,
 
             /*
              * The number of weeks for which one weekly backup must be kept.
@@ -273,7 +258,7 @@ return [
              * After cleaning up the backups remove the oldest backup until
              * this amount of megabytes has been reached.
              */
-            'delete_oldest_backups_when_using_more_megabytes_than' => 5000,
+            'delete_oldest_backups_when_using_more_megabytes_than' => 500,
         ],
     ],
 
