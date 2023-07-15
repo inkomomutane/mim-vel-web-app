@@ -4,13 +4,13 @@ namespace App\Mail;
 
 use App\Models\Agenda;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendMessagesMail extends Mailable
+class SendMessagesMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -29,13 +29,7 @@ class SendMessagesMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            to: new Address(
-                address: config('MAIL_RECEIVER_EMAIL', 'nelsonmutane@gmail.com'),
-                name: config('MAIL_RECEIVER_NAME', 'nelsonmutane@gmail.com')
-            ),
-            subject: 'Mensagem',
-        );
+        return new Envelope( subject: 'Mensagem');
     }
 
     /**
@@ -57,4 +51,6 @@ class SendMessagesMail extends Mailable
     {
         return [];
     }
+
+
 }
