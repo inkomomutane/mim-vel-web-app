@@ -4,7 +4,12 @@
 @endsection
 @section('hero')
     <section class="relative ">
+        @if (!is_null($page?->img()))
         {{ $page->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
+        @else
+        <img src="{{Vite::asset('resources/js/images/placeholder.svg')}}"
+        alt="Politicas de privacidade"  class="absolute object-cover inset-0 w-full h-full">
+      @endif
         <div class="relative bg-slate-950 bg-opacity-40 h-full pt-20">
             <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-36">
                 <div class="flex flex-col items-center justify-between xl:flex-row">
