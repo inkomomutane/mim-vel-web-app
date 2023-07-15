@@ -8,11 +8,18 @@
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Scripts -->
+        <script>
+            window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            preloader?.classList.add('hidden');
+            });
+        </script>
         @routes
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
     <body class="font-sans  antialiased scroll-smooth ">
+        <x-preloader/>
         @inertia
     </body>
 </html>

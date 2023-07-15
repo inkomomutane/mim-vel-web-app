@@ -19,7 +19,7 @@ class GetImovelTypes
         $bairros = TipoDeImovel::query()
             ->when($term, function ($query, $search) {
                 $query->where('nome', 'like', '%'.$search.'%');
-            })->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
+            })->with('media')->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
         return ImovelTypeData::collection(
             $bairros

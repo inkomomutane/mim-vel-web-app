@@ -8,37 +8,50 @@
 @endsection
 @section('hero')
     <section class="relative bg-gray-950 pt-14 px-0  ">
-        <div class="swiper default ">
-            <div class="swiper-wrapper w-full">
+        <div class="splide default " data-splide='{"type":"loop","autoplay":true,"pagination":false}'>
+            <div class="splide__track w-full">
+                <ul class="splide__list">
                 @foreach ($imovel->getMedia('posts') as $banner)
-                    <div class="swiper-slide !w-screen">
+                    <li class="splide__slide !w-screen" data-splide-interval="3000">
                         <!-- Hero -->
-                        <div class="w-full"
-                            style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}')
+                        <div class="w-full" style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}')
                         ;background-repeat: no-repeat;  background-size: cover; ">
                             <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent ">
                                 <div
-                                    class="!w-screen mx-auto aspect-[95/70] md:aspect-[95/40] lg:aspect-[95/30] sm:px-6 lg:px-8  grid justify-items-center">
-                                    {{ $banner->img()->attributes(['class' => 'h-full object-contain w-auto'])->lazy() }}
+                                    class="!w-screen mx-auto h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8  grid justify-items-center">
+                                    {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
                                 </div>
                             </div>
                         </div>
                         <!-- End Hero -->
-                    </div>
+                    </li>
                 @endforeach
+                </ul>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </section>
+    <section class="!max-h-16">
+        <div    id="thumbnail-slide"    class="relative splide "
+        aria-label="Carousel thumbs"
+        >
+        <div class="splide__track !h-16 w-full">
+                <ul class="splide__list  justify-center items-center">
+                    @foreach ($imovel->getMedia('posts') as $thumb)
+                    <li class="splide__slide w-28 h-12 my-auto ">
+                        {{ $thumb->img()->attributes(['class' => 'h-full w-full   object-fill '])->lazy() }}
+                    </li>
+                    @endforeach
+                </ul>
+        </div>
+    </div>
+    </section>
+
 @endsection
 
 @section('content')
 
 
     <section class="px-4 md:px-24 bg-slate-100 p-16 grid grid-cols-12 gap-8 text-gray-700">
-
-
-
         <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="relative h-fit">
                 @if(session('success'))
@@ -356,8 +369,6 @@
         </div>
     </section>
 
-
-
     <!-- Start::Relevant-Imovels -->
     <section   class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
         itemtype="http://schema.org/ItemList">
@@ -538,7 +549,7 @@
     </section>
 @endsection
 @push('js')
-    @vite(['resources/js/website/welcomeBanner.js',
+    @vite(['resources/js/website/welcomeBanner.ts',
     'resources/js/website/gallery.js','resources/js/website/imovel.ts'])
 
 @endpush

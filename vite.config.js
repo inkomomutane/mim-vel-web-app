@@ -12,7 +12,7 @@ export default defineConfig({
                 'resources/js/website/header.ts',
                 'resources/js/website/vue/welcomeSearch.ts',
                 'resources/js/website/imovel.ts',
-                'resources/js/website/welcomeBanner.js',
+                'resources/js/website/welcomeBanner.ts',
                 'resources/js/website/vue/posts/app.ts',
                 'resources/js/website/gallery.js',
                 'resources/css/website.css',

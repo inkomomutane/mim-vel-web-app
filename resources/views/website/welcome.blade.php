@@ -124,28 +124,26 @@
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mb-16">
             Anúncios destacados
         </h1>
-        <div class="swiper default">
+        <div class="splide default" data-splide='{"type":"loop","autoplay":true}'>
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
+            <div class="splide__track" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
                 <!-- Slides -->
+                <ul class="splide__list">
                 @foreach ($banners->getMedia('banners') as $banner)
-                    <div class="swiper-slide">
+                    <li class="splide__slide">
                         <!-- Hero -->
-                        <div class=""
-                            style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
+                        <div class="" style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
                             <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
-                                <div
-                                    class="max-w-[85rem] mx-auto px-4 aspect-[95/70]
-                            md:aspect-[95/40] lg:aspect-[95/30] sm:px-6 lg:px-8 pt-1 grid justify-items-center">
-                                    {{ $banner->img()->attributes(['class' => 'h-full object-contain w-auto'])->lazy() }}
+                                <div class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
+                                    {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy()}}
                                 </div>
                             </div>
                         </div>
                         <!-- End Hero -->
-                    </div>
+                    </li>
                 @endforeach
+                </ul>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </section>
 
@@ -284,5 +282,5 @@
 @endsection
 
 @push('js')
-    @vite(['resources/js/website/vue/welcomeSearch.ts', 'resources/js/website/welcomeBanner.js'])
+    @vite(['resources/js/website/vue/welcomeSearch.ts', 'resources/js/website/welcomeBanner.ts'])
 @endpush

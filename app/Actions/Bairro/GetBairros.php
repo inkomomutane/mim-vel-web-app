@@ -24,14 +24,6 @@ class GetBairros
                 $query->with('cidade');
             })->with('cidade')->
        orderBy('created_at', 'desc')->paginate(5)->withQueryString();
-
-        $bairros->each(function ($bairro) {
-            $bairro->setRelation('city', $bairro->cidade);
-            $bairro->unsetRelation('cidade');
-
-            return $bairro;
-        });
-
         return BairroData::collection(
             $bairros
         );

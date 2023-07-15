@@ -13,8 +13,16 @@
         @vite(['resources/js/website/app.ts', "resources/css/website.css"])
         @vite('resources/js/website/header.ts')
         @include('website.layouts.pixels')
+        <script>
+            window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            preloader?.classList.add('hidden');
+            });
+        </script>
     </head>
     <body class=" font-sans  antialiased scroll-smooth selection:bg-orange-400 selection:text-white">
+         <!-- Preloader element -->
+         <x-preloader/>
         @yield('header')
          @yield('hero')
         <main>

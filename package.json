@@ -32,6 +32,7 @@
         "@flasher/flasher": "^1.2.4",
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^2.0.18",
+        "@splidejs/splide": "^4.1.4",
         "@types/aos": "^3.0.4",
         "@vueuse/core": "^10.2.1",
         "aos": "^2.3.4",
@@ -43,7 +44,6 @@
         "pinia": "^2.0.34",
         "prettier": "^2.8.7",
         "primevue": "^3.27.0",
-        "swiper": "^9.3.1",
         "vue-multiselect": "^3.0.0-beta.1"
     }
 }
