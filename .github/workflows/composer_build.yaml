@@ -1,24 +1,16 @@
-name: 🚀 Install composer dependeces and migrate changes
+name: Test ssh action
 on:
   push:
     branches:
-    - main
+    - actions
 env:
-  FIRST_NAME: Mimovel
+  FIRST_NAME: Build
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: install dependeces via composer
-        uses: fifsky/ssh-action@master
-        with:
-          command: |
-            cd mimovel
-            ${{ secrets.FUN_GIT_PULL }}
-            php artisan migrate --force
-            php composer.phar install
-          host: ${{ secrets.SSH_SERVER }}
-          user: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          #pass: ${{ secrets.SSH_PASS_KEY }}
-          args: "-tt -vvv"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH client
+        run:  ssh -o StrictHostKeyChecking=no \-i ${{ secrets.SSH_PRIVATE_KEY }} \ mimovel1@mimovel.com
