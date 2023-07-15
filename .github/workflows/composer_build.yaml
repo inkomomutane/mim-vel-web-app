@@ -1,16 +1,20 @@
-name: Test ssh action
+name: 🚀 Install composer dependeces and migrate changes
 on:
   push:
     branches:
-    - actions
+    - main
 env:
-  FIRST_NAME: Build
+  FIRST_NAME: Mimovel
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install SSH client
-        run:  ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: install dependeces via composer
+        uses: fifsky/ssh-action@master
+        with:
+          command: echo
+          host: ${{ secrets.SSH_SERVER }}
+          user: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          #pass: ${{ secrets.SSH_PASS_KEY }}
+          args: "-tt -vvv"
