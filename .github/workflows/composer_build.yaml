@@ -2,7 +2,7 @@ name: 🚀 Install composer dependeces and migrate changes
 on:
   push:
     branches:
-    - main
+    - actions
 env:
   FIRST_NAME: Mimovel
 jobs:
