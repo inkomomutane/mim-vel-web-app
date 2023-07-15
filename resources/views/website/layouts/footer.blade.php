@@ -51,7 +51,7 @@ class="bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
 
                 <li>
                     <a
-                        :href="{{ $globals->instagram ?? ''}}"
+                        href="{{ $globals->instagram ?? ''}}"
                         rel="noreferrer"
                         target="_blank"
                         class="text-orange-500 transition hover:text-orange-500/75 dark:text-orange-500 dark:hover:text-orange-500/75"
