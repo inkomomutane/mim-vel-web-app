@@ -14,8 +14,9 @@ class GetPage
 
 
     public function handle() :Page {
-
-        return  Page::first() ?? Page::create([]);
+        /**@var Page $page  */
+        $page = Page::first() ?? Page::create([]);
+        return  $page;
     }
 
 
@@ -24,7 +25,7 @@ class GetPage
     public function asController()
     {
         return Inertia::render('Page/Index', [
-            'pageData' => $this->handle()->getData(),
+            'pageData' => $this->handle()->load('media')->getData(),
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Data;
 use App\Models\Page;
 use App\Support\Enums\Pages;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Lazy;
 
 /** @typescript */
 class PageData extends Data
@@ -21,12 +22,12 @@ class PageData extends Data
         public ?string $whatsapp,
         public ?string $tiktok,
         public ?array $contacts,
-        public ?MediaData $homeMedia,
-        public ?MediaData $imovelsMedia,
-        public ?MediaData $aboutMedia,
-        public ?MediaData $contactMedia,
-        public ?MediaData $termsMedia,
-        public ?MediaData $policyMedia,
+        public null|MediaData|Lazy $homeMedia,
+        public null|MediaData|Lazy $imovelsMedia,
+        public null|MediaData|Lazy $aboutMedia,
+        public null|MediaData|Lazy $contactMedia,
+        public null|MediaData|Lazy $termsMedia,
+        public null|MediaData|Lazy $policyMedia,
     ) {
     }
 
@@ -45,12 +46,18 @@ class PageData extends Data
             whatsapp: $page->whatsapp,
             tiktok: $page->tiktok,
             contacts: $page->contacts,
-            homeMedia: MediaData::fromModel($page->getFirstMedia(Pages::HOME)),
-            imovelsMedia: MediaData::fromModel($page->getFirstMedia(Pages::IMOVELS)),
-            aboutMedia: MediaData::fromModel($page->getFirstMedia(Pages::ABOUT)),
-            contactMedia: MediaData::fromModel($page->getFirstMedia(Pages::CONTACT)),
-            termsMedia: MediaData::fromModel($page->getFirstMedia(Pages::TERMS)),
-            policyMedia: MediaData::fromModel($page->getFirstMedia(Pages::POLICY))
+            homeMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::HOME)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::HOME)) : null),
+            imovelsMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::IMOVELS)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::IMOVELS)) : null),
+            aboutMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::ABOUT)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::ABOUT)) : null),
+            contactMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::CONTACT)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::CONTACT)) : null),
+            termsMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::TERMS)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::TERMS)) : null),
+            policyMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::POLICY)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::POLICY)) : null),
         );
     }
 }

@@ -6,7 +6,12 @@
 @section('hero')
 <x-website-hero>
 <x-slot:coverImage>
+    @if (!is_null($page->img()))
     {{ $page->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
+    @else
+        <img src="{{Vite::asset('resources/js/images/placeholder.svg')}}"
+        alt="Politicas de privacidade"  class="absolute object-cover inset-0 w-full h-full">
+    @endif
 </x-slot:coverImage>
 <x-slot:content>
     <div
