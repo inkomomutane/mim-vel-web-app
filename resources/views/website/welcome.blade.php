@@ -1,4 +1,8 @@
 @extends('website.layouts.layout')
+
+@section('seo')
+  {!! seo($seoData)!!}
+@endsection
 @section('header')
     <x-website-header />
 @endsection

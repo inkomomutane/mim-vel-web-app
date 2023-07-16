@@ -31,15 +31,15 @@ class DeleteBairro
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetBairros
 {
@@ -80,15 +80,15 @@ class DeleteCity
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetCities
 {
@@ -129,15 +129,15 @@ class DeleteCondicao
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetCondicaos
 {
@@ -150,45 +150,64 @@ class UpdateCondicao
 namespace App\Actions\Imovel;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null, \App\Models\User $user)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null, \App\Models\User $user)
- * @method static dispatchSync(?string $term = null, \App\Models\User $user)
- * @method static dispatchNow(?string $term = null, \App\Models\User $user)
- * @method static dispatchAfterResponse(?string $term = null, \App\Models\User $user)
- * @method static mixed run(?string $term = null, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static dispatchSync(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static dispatchNow(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static dispatchAfterResponse(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static mixed run(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ */
+class FilteredImovel
+{
+}
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term, \App\Models\User $user)
+ * @method static dispatchSync(?string $term, \App\Models\User $user)
+ * @method static dispatchNow(?string $term, \App\Models\User $user)
+ * @method static dispatchAfterResponse(?string $term, \App\Models\User $user)
+ * @method static mixed run(?string $term, \App\Models\User $user)
  */
 class GetDeletedImovels
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null, \App\Models\User $user)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null, \App\Models\User $user)
- * @method static dispatchSync(?string $term = null, \App\Models\User $user)
- * @method static dispatchNow(?string $term = null, \App\Models\User $user)
- * @method static dispatchAfterResponse(?string $term = null, \App\Models\User $user)
- * @method static mixed run(?string $term = null, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term, \App\Models\User $user)
+ * @method static dispatchSync(?string $term, \App\Models\User $user)
+ * @method static dispatchNow(?string $term, \App\Models\User $user)
+ * @method static dispatchAfterResponse(?string $term, \App\Models\User $user)
+ * @method static mixed run(?string $term, \App\Models\User $user)
  */
 class GetImovels
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\User $user)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\User $user)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\User $user)
- * @method static dispatchSync(\App\Models\User $user)
- * @method static dispatchNow(\App\Models\User $user)
- * @method static dispatchAfterResponse(\App\Models\User $user)
- * @method static mixed run(\App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\User $user = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\User $user = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\User $user = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\User $user = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\User $user = null)
+ * @method static dispatchSync(\App\Models\User $user = null)
+ * @method static dispatchNow(\App\Models\User $user = null)
+ * @method static dispatchAfterResponse(\App\Models\User $user = null)
+ * @method static mixed run(\App\Models\User $user = null)
  */
 class ImovelTrashCount
+{
+}
+/**
+ */
+class SendMessageFromImovel
 {
 }
 /**
@@ -199,6 +218,11 @@ class StoreImovel
 /**
  */
 class ApproveImovelDeletion
+{
+}
+/**
+ */
+class CommentImovel
 {
 }
 /**
@@ -269,15 +293,15 @@ class DeleteImovelType
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetImovelTypes
 {
@@ -295,15 +319,15 @@ class UpdateImovelType
 namespace App\Actions\IntermediationRule;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetIntermediationRules
 {
@@ -451,6 +475,27 @@ class MessageCount
 class UpdateMassageReadState
 {
 }
+namespace App\Actions\Page;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob()
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch()
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean)
+ * @method static dispatchSync()
+ * @method static dispatchNow()
+ * @method static dispatchAfterResponse()
+ * @method static \App\Models\Page run()
+ */
+class GetPage
+{
+}
+/**
+ */
+class PageUpdate
+{
+}
 namespace App\Actions\Province;
 
 /**
@@ -496,15 +541,15 @@ class GetProvince
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetProvinces
 {
@@ -545,15 +590,15 @@ class DeleteRegraDeNegocio
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetRegrasDeNegocio
 {
@@ -594,15 +639,15 @@ class DeleteStatus
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetStatuses
 {
@@ -643,15 +688,15 @@ class DeleteTransactionType
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetTransactionTypes
 {
@@ -692,15 +737,15 @@ class DeleteUser
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term = null)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term = null)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term = null)
- * @method static dispatchSync(?string $term = null)
- * @method static dispatchNow(?string $term = null)
- * @method static dispatchAfterResponse(?string $term = null)
- * @method static mixed run(?string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(string $term = null)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, string $term = null)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, string $term = null)
+ * @method static dispatchSync(string $term = null)
+ * @method static dispatchNow(string $term = null)
+ * @method static dispatchAfterResponse(string $term = null)
+ * @method static mixed run(string $term = null)
  */
 class GetUsers
 {
@@ -740,30 +785,35 @@ namespace App\Actions;
 class UserTreeInIdArray
 {
 }
-namespace App\Actions\Page;
-
-/**
- */
-class GetPage
-{
-}
-/**
- */
-class PageUpdate
-{
-}
-namespace App\Actions\Website\Api;
-
-/**
- */
-class GetImovelsApi
-{
-}
 namespace App\Actions\Website;
 
 /**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Agenda $agenda)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Agenda $agenda)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Agenda $agenda)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Agenda $agenda)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Agenda $agenda)
+ * @method static dispatchSync(\App\Models\Agenda $agenda)
+ * @method static dispatchNow(\App\Models\Agenda $agenda)
+ * @method static dispatchAfterResponse(\App\Models\Agenda $agenda)
+ * @method static bool run(\App\Models\Agenda $agenda)
+ */
+class SendMessage
+{
+}
+/**
+ */
+class About
+{
+}
+/**
  */
 class Contact
+{
+}
+/**
+ */
+class GetImovel
 {
 }
 /**
@@ -784,6 +834,13 @@ class GetTerms
 /**
  */
 class Welcome
+{
+}
+namespace App\Actions\Website\Api;
+
+/**
+ */
+class GetImovelsApi
 {
 }
 namespace Lorisleiva\Actions\Concerns;

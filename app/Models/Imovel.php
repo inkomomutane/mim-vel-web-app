@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use NumberFormatter;
 use Pricecurrent\LaravelEloquentFilters\Filterable;
@@ -30,6 +31,8 @@ use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 
 /**
  * App\Models\Imovel
@@ -145,7 +148,7 @@ use Spatie\Tags\HasTags;
  *
  * @mixin \Eloquent
  */
-class Imovel extends Model implements HasMedia, Searchable, Viewable
+class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
 {
     use InteractsWithMedia;
     use HasTags;
@@ -276,6 +279,15 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
         return SlugOptions::create()
             ->generateSlugsFrom(['titulo'])
             ->saveSlugsTo('slug');
+    }
+
+    public function toSitemapTag(): Url | string | array
+    {
+        return Url::create(route('post.imovel.show', $this))
+            ->setLastModificationDate(Carbon::create($this->updated_at))
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : '')
+            ->setPriority(0.1);
     }
 
     /**

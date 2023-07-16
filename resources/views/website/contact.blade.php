@@ -2,6 +2,9 @@
 @section('header')
     <x-website-header solidBg="true" />
 @endsection
+@section('seo')
+  {!! seo($seoData)!!}
+@endsection
 
 @section('hero')
 <div class="h-96 ml-0 pt-14">

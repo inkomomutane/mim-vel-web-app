@@ -2,7 +2,9 @@
 @section('header')
     <x-website-header />
 @endsection
-
+@section('seo')
+  {!! seo($seoData)!!}
+@endsection
 @section('hero')
 <x-website-hero>
 <x-slot:coverImage>

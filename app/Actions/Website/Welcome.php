@@ -7,6 +7,9 @@ use App\Models\Banner;
 use App\Models\Imovel;
 use App\Support\Enums\Pages;
 use Lorisleiva\Actions\Concerns\AsController;
+use RalphJSmit\Laravel\SEO\SchemaCollection;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Vite;
 
 class Welcome
 {
@@ -14,13 +17,22 @@ class Welcome
 
     public function asController()
     {
-        //
+        $page  = GetPage::run();
         return view('website.welcome', [
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME),
             'thumb' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME)?->responsiveImages()?->getPlaceholderSvg(),
             'relevantImovels' => $this->getRelevantImovels(),
             'lastestImovels' => Imovel::with(['bairro.cidade', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(6),
             'banners' => Banner::with('media')->first(),
+            'seoData' => new SEOData(
+                title:$page->name,
+                description:$page->content,
+                site_name:'Mimóvel',
+                url: route('welcome'),
+                canonical_url:route('welcome'),
+                image: Vite::asset('resources/js/images/logo/logo.png'),
+                favicon:Vite::asset('resources/js/images/logo/favicon.ico'),
+            )
         ]);
     }
 
