@@ -60,7 +60,7 @@
                     </svg>
                 </button>
             </section>
-            <section class=""
+            <section class="menu-traslate-header"
                 id="mobile-menu-2"
             >
                 <ul
@@ -135,6 +135,16 @@
                             ></a>
                         </li>
                         @endif
+
+                        <li class="flex justify-center items-center" ><a href="#googtrans/en" >
+                            <img src="{{Vite::asset('resources/js/images/en.png')}}" alt="English translation"  class="w-5 h-5">
+                        </a></li>
+                        <li class="flex justify-center items-center" ><a href="#googtrans/fr" >
+                            <img src="{{Vite::asset('resources/js/images/fr.png')}}" alt="Francaise translation"  class="w-4 h-4">
+                        </a></li>
+                        <li class="flex justify-center items-center" ><a href="#googtrans/pt" >
+                            <img src="{{Vite::asset('resources/js/images/pt.png')}}" alt="Português translation"  class="w-5 h-5">
+                        </a></li>
                 </ul>
             </section>
         </div>

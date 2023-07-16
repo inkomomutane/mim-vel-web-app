@@ -22,6 +22,7 @@
 
 <body class="font-sans  antialiased scroll-smooth ">
     <x-preloader />
+    @include('website.layouts.translator')
     @inertia
 </body>
 

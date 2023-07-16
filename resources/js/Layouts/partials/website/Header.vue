@@ -70,7 +70,7 @@ const linkCss = `block  tracking-wide text-base font-medium py-2 pr-4 pl-3 hover
                         </svg>
                     </button>
                 </section>
-                <section class="hidden lg:flex" id="mobile-menu-2">
+                <section class="hidden lg:flex menu-traslate-header" id="mobile-menu-2">
                     <ul
                         class="flex flex-col mt-4 lg:flex-row lg:space-x-8 lg:mt-0"
                     >
@@ -155,6 +155,15 @@ const linkCss = `block  tracking-wide text-base font-medium py-2 pr-4 pl-3 hover
                                 >Politicas de privacidade</a
                             >
                         </li>
+                        <li class="flex w-fit justify-center items-center" ><a href="#googtrans/en" >
+                            <img src="@/images/en.png" alt="English translation"  class="w-5 h-5">
+                        </a></li>
+                        <li class="flex w-fit justify-center items-center" ><a href="#googtrans/fr" >
+                            <img src="@/images/fr.png" alt="Francaise translation"  class="w-4 h-4">
+                        </a></li>
+                        <li class="flex w-fit justify-center items-center" ><a href="#googtrans/pt" >
+                            <img src="@/images/pt.png" alt="Português translation"  class="w-5 h-5">
+                        </a></li>
                     </ul>
                 </section>
             </div>

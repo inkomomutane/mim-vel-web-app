@@ -63,7 +63,7 @@
                             </header>
                             <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
                                 <div class="flex justify-between">
-                                    <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1">
+                                    <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
                                         {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
                                     </h1>
                                 </div>
@@ -80,7 +80,7 @@
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                             stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="line-clamp-1">
+                                    <p class="line-clamp-1 first-letter:uppercase">
                                         &nbsp;
                                         {{ ($imovel->bairro?->nome ? $imovel->bairro?->nome . ', ' : '') .
                                             $imovel->bairro->cidade?->nome .
@@ -90,9 +90,9 @@
                                 </div>
 
                                 <div class="font-semibold text-sm text-gray-600 grid grid-cols-2">
-                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1">
+                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1 first-letter:uppercase">
                                         {{ $imovel->tipo_de_imovel->nome }}</p>
-                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1 ">
+                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1 first-letter:uppercase ">
                                         {{ $imovel->status->nome }}</p>
 
                                 </div>
@@ -103,7 +103,7 @@
                                 <a href="{{ route('post.imovel.show', [
                                     'imovel' => $imovel->slug,
                                 ]) }}"
-                                    class="bg-orange-400 text-center  rounded-sm text-white py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:shadow-2xl hover:z-10 hover:bg-orange-500">
+                                    class="bg-orange-400 text-center  rounded-sm text-white py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:shadow-2xl hover:z-10 hover:bg-orange-500 first-letter:uppercase">
                                     Ver imovel
                                 </a>
                             </div>
@@ -114,14 +114,16 @@
         </ul>
         <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
             <a href="{{ route('imoveis') }}"
-                class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 rounded text-center">
+                class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300
+                font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none
+                 dark:focus:ring-slate-800 rounded text-center first-letter:uppercase">
                 Ver todos imóveis
             </a>
         </div>
     </section>
     <!-- End::Relevant-Ads -->
     <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']">
-        <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mb-16">
+        <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mb-16 first-letter:uppercase">
             Anúncios destacados
         </h1>
         <div class="splide default" data-splide='{"type":"loop","autoplay":true}'>
@@ -155,10 +157,10 @@
     <!-- Start::Latest-Imovels -->
     <section class="pb-16 pt-8 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
-        <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6">
+        <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6 first-letter:uppercase">
             Novos imóveis
         </h1>
-        <p class="mx-6 mt-2 dark:text-white">
+        <p class="mx-6 mt-2 dark:text-white first-letter:uppercase">
             Imóveis publicados recentemente no website.
         </p>
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
@@ -247,7 +249,7 @@
     <!-- Start::Type-of-Imovels -->
     <section  class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
-        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2" itemprop="name" data-aos-offset="1" data-aos="zoom-in" data-aos-duration="5000">
+        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2 first-letter:uppercase" itemprop="name" data-aos-offset="1" data-aos="zoom-in" data-aos-duration="5000">
             No Mimóvel vai encontrar
         </h2>
         <div class="flex p-5" data-aos-offset="50" data-aos="zoom-in" data-aos-duration="5000">
@@ -266,7 +268,7 @@
                                     alt="{{ $type->nome ?? '' }}">
                             @endif
                         </article>
-                        <p class="text-center my-4 text-xl font-medium text-gray-700 " itemprop="name">
+                        <p class="text-center my-4 text-xl font-medium text-gray-700 first-letter:uppercase" itemprop="name">
                             <span itemprop="identifier">{{ $type->nome ?? '' }}</span>
                         </p>
 
