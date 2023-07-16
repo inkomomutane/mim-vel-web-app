@@ -33,6 +33,7 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
+use Vite;
 
 /**
  * App\Models\Imovel
@@ -286,7 +287,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
         return Url::create(route('post.imovel.show', $this))
             ->setLastModificationDate(Carbon::create($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : '')
+            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg') )
             ->setPriority(0.1);
     }
 
