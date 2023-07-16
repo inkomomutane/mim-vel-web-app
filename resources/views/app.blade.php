@@ -22,7 +22,6 @@
 
 <body class="font-sans  antialiased scroll-smooth ">
     <x-preloader />
-    <div id="google_translate_element" class="!hidden"></div>
     @inertia
 </body>
 

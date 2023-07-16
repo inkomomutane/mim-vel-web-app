@@ -6,6 +6,7 @@ import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 import { Link, Head, useForm } from "@inertiajs/vue3";
 import MultiSelect from "primevue/multiselect";
 import { onUnmounted } from "vue";
+import Translator from "./Translator.vue";
 
 const props = defineProps({
     imovels: {
@@ -37,6 +38,7 @@ const filterImovels = () =>
 </script>
 
 <template>
+    <Translator/>
     <Head title="Todos imoveis"/>
     <GuestLayout :show-footer="true">
         <section
