@@ -19,16 +19,14 @@
             preloader?.classList.add('hidden');
             });
         </script>
-        <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');
-            }
-            </script>
-            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
     <body class=" font-sans  antialiased scroll-smooth selection:bg-orange-400 selection:text-white">
          <!-- Preloader element -->
+
          <x-preloader/>
+@include('website.layouts.translator')
+
         @yield('header')
          @yield('hero')
         <main>

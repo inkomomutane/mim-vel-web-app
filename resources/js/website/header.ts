@@ -46,7 +46,6 @@ export const changeMenuStatus = () => {
 window.addEventListener("scroll", () => {
     const navigator = document.querySelector("#navigation");
     const solidBg: boolean = navigator?.getAttribute("data-bg") === "true";
-    console.log(navigator?.getAttribute("data-bg"));
 
     let y = 1 + (window.scrollY || window.pageYOffset) / 150;
     y = y < 1 ? 1 : y;

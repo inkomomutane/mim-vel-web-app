@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import { Imovels } from "@/types";
-import { ref, PropType } from "vue";
+import { ref, PropType, onMounted } from "vue";
 import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 import { Link, Head, useForm } from "@inertiajs/vue3";
 import MultiSelect from "primevue/multiselect";
+import { onUnmounted } from "vue";
 
 const props = defineProps({
     imovels: {
@@ -34,8 +35,9 @@ const filterImovels = () =>
         preserveState: false,
     });
 </script>
+
 <template>
-    <Head title="Todos imoveis" />
+    <Head title="Todos imoveis"/>
     <GuestLayout :show-footer="true">
         <section
             class="border-t sticky top-0 z-30 bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
