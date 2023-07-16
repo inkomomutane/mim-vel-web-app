@@ -6,12 +6,12 @@
 
 import axios from "axios";
 import Aos from "aos";
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
 window.Aos = Aos;
 
-window.addEventListener('load',function(){
+window.addEventListener("load", function () {
     window.Aos.init();
-})
+});
 
 window.axios = axios;
 

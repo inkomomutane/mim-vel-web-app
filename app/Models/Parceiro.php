@@ -58,7 +58,7 @@ class Parceiro extends Model implements HasMedia
         'nome',
     ];
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }

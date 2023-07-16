@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use DB;
-use Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -25,6 +23,6 @@ class UserSeeder extends Seeder
                 'contacto' => '847607095',
                 'location' => 'Beira',
                 'active' => true,
-        ]]);
+            ]]);
     }
 }

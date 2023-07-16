@@ -305,10 +305,17 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                             class="flex border dark:border-gray-800 rounded-lg justify-end"
                         >
                             <a
-                                v-if="loadedMessage?.url !=null || loadedMessage?.url"
-                                :href="loadedMessage?.url ? route('post.imovel.show',{
-                                    imovel: loadedMessage?.url
-                                })  : ''"
+                                v-if="
+                                    loadedMessage?.url != null ||
+                                    loadedMessage?.url
+                                "
+                                :href="
+                                    loadedMessage?.url
+                                        ? route('post.imovel.show', {
+                                              imovel: loadedMessage?.url,
+                                          })
+                                        : ''
+                                "
                                 v-tooltip.value="tooltip('Ver o imóvel')"
                                 v-tooltip.bottom="true"
                                 class="px-2 py-2"

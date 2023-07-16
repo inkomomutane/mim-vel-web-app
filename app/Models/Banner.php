@@ -36,7 +36,7 @@ class Banner extends Model implements HasMedia
 
     protected $table = 'banners';
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width('200')

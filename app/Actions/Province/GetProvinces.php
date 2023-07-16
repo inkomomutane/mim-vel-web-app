@@ -13,7 +13,7 @@ class GetProvinces
     use AsAction;
     use AsController;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
         return ProvinceData::collection(
             Province::query()

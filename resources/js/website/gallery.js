@@ -1,1 +1,1 @@
-import 'fslightbox';
+import "fslightbox";

@@ -1,13 +1,12 @@
-name: 🚀 Build assets 🔥🔥🔥 🦅
+name: 🦅🚀🔥 Deploy 🔥🚀🦅
 on:
   push:
     branches:
       - main
 jobs:
-  build:
+  buildAssets:
     name: Build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -41,9 +40,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./public/build/
           server-dir: ./build/
-  deploy:
+  deployAssets:
     name: Deploy
-    needs: build
+    needs: buildAssets
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
@@ -53,3 +52,25 @@ jobs:
         with:
           name: mimovel-production-files
           path: ./public/build
+  buildApp:
+    name: Build app to server
+    needs: deployAssets
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependeces via composer
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd mimovel
+            ${{ secrets.FUN_GIT_PULL }}
+            php composer.phar install --optimize-autoloader --no-dev
+            php artisan migrate --force
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+          host: ${{ secrets.SSH_SERVER }}
+          user: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          #pass: ${{ secrets.SSH_PASS_KEY }}
+          args: "-tt -vvv"

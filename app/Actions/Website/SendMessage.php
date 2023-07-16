@@ -19,11 +19,13 @@ class SendMessage
     {
         try {
             Mail::to(config('MAIL_RECEIVER_EMAIL', 'nelsonmutane@gmail.com'))
-            ->cc('nelsonmutane@gmail.com')
-            ->send(new SendMessagesMail($agenda));
+                ->cc('nelsonmutane@gmail.com')
+                ->send(new SendMessagesMail($agenda));
+
             return true;
         } catch (\Throwable $th) {
             throw $th;
+
             return false;
         }
     }

@@ -2,9 +2,7 @@
 
 namespace App\Actions\Website;
 
-use App\Data\ImovelTypeData;
 use App\Models\Imovel;
-use App\Models\TipoDeImovel;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class GetImovel

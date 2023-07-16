@@ -13,7 +13,7 @@ class GetUsers
     use AsAction;
     use AsController;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
         return UserData::collection(
             User::query()

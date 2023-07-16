@@ -8,19 +8,15 @@ use App\Data\ImovelData;
 use App\Data\ImovelTypeData;
 use App\Data\RequestFiltersData;
 use App\Filters\ImovelBairroFilter;
-use App\Filters\ImovelPriceFilter;
 use App\Filters\ImovelTipoDeImovelFilter;
 use App\Filters\ImovelTitleFilter;
 use App\Models\Bairro;
-use App\Models\Imovel;
 use App\Models\TipoDeImovel;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 use Pricecurrent\LaravelEloquentFilters\EloquentFilters;
-use Request;
 
 class GetImovels
 {
@@ -47,25 +43,26 @@ class GetImovels
                 bairros: collect($actionRequest->bairros)->map(function ($number) {
                     return (int) $number;
                 })->toArray(),
-            )
+            ),
         ]);
     }
 
     private function FiltersBinder(ActionRequest $actionRequest): array
     {
-        /** @var  Collection<AbstractEloquentFilter> filters */
+        /** @var Collection<AbstractEloquentFilter> filters */
         $filters = collect([]);
-        if (!is_null($actionRequest->imovel_types) && is_array($actionRequest->imovel_types) && count($actionRequest->imovel_types) > 0) {
+        if (! is_null($actionRequest->imovel_types) && is_array($actionRequest->imovel_types) && count($actionRequest->imovel_types) > 0) {
             $filters = $filters->push(new ImovelTipoDeImovelFilter($actionRequest->imovel_types));
         }
 
-        if (!is_null($actionRequest->bairros) && is_array($actionRequest->bairros) && count($actionRequest->bairros) > 0) {
+        if (! is_null($actionRequest->bairros) && is_array($actionRequest->bairros) && count($actionRequest->bairros) > 0) {
             $filters = $filters->push(new ImovelBairroFilter($actionRequest->bairros));
         }
 
-        if (!is_null($actionRequest->title) && is_string($actionRequest->title)) {
+        if (! is_null($actionRequest->title) && is_string($actionRequest->title)) {
             $filters = $filters->push(new ImovelTitleFilter($actionRequest->title));
         }
+
         return $filters->toArray();
     }
 }

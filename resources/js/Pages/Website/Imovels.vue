@@ -21,21 +21,18 @@ const props = defineProps({
     filters: Object as PropType<App.Data.RequestFiltersData>,
 });
 
-
-
-
 const links = ref(props.imovels.links);
 
-const form  = useForm({
-    imovel_types : props.filters?.imovelTypes,
-    bairros : props.filters?.bairros,
-    title: props.filters?.title ?? ''
+const form = useForm({
+    imovel_types: props.filters?.imovelTypes,
+    bairros: props.filters?.bairros,
+    title: props.filters?.title ?? "",
 });
 
-const filterImovels = () => form.get(route('imoveis'),{
-    preserveState : false
-})
-
+const filterImovels = () =>
+    form.get(route("imoveis"), {
+        preserveState: false,
+    });
 </script>
 <template>
     <Head title="Todos imoveis" />
@@ -44,28 +41,25 @@ const filterImovels = () => form.get(route('imoveis'),{
             class="border-t sticky top-0 z-30 bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
         >
             <div
-                class="w-full hidden md:flex md:grid-cols-6  pb-4 px-4 sm:px-6 lg:px-16 pt-4 mx-auto max-w-screen-xl  gap-3"
+                class="w-full hidden md:flex md:grid-cols-6 pb-4 px-4 sm:px-6 lg:px-16 pt-4 mx-auto max-w-screen-xl gap-3"
             >
-            <input
+                <input
                     id="title"
                     v-model="form.title"
                     type="text"
                     placeholder="Pesquisar imóvel"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm
-                     focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500
-                       dark:focus:border-gray-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
                     autocomplete="title"
                 />
                 <MultiSelect
-                v-model="form.imovel_types"
-                :options="imovelTypes"
-                filter
-                optionLabel="name"
-                optionValue="id"
-                placeholder="Tipo de imóvel"
-                :maxSelectedLabels="3"
-                :pt="{
+                    v-model="form.imovel_types"
+                    :options="imovelTypes"
+                    filter
+                    optionLabel="name"
+                    optionValue="id"
+                    placeholder="Tipo de imóvel"
+                    :maxSelectedLabels="3"
+                    :pt="{
                     root:{ class :'flex w-fit cursor-pointer  border bg-gray-50  border-gray-300 dark:bg-gray-600 dark:border-gray-500 rounded-sm focus:ring-slate-500 focus:border-slate-500 p-2.5'},
                     panel:{ class: 'bg-white shadow-lg border border-1  p-2 overflow-auto'},
                     trigger: {class: 'pl-4 pr-2 mx-3'},
@@ -95,53 +89,145 @@ const filterImovels = () => form.get(route('imoveis'),{
                         {class:'mx-2 ml-3'},
                     }"
                 >
-
-                <template #itemcheckboxicon="slotProps" @click.native.stop>
-                    <div v-if="slotProps.selected" :class="slotProps.class">
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500  bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <template #itemcheckboxicon="slotProps" @click.native.stop>
+                        <div v-if="slotProps.selected" :class="slotProps.class">
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500 bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div v-else>
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border focus:ring-2 focus:ring-gray-500  bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div v-else>
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border focus:ring-2 focus:ring-gray-500 bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                </template>
-                <template #headercheckboxicon="slotProps">
-                    <div v-if="slotProps.allSelected" >
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500  bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </template>
+                    <template #headercheckboxicon="slotProps">
+                        <div v-if="slotProps.allSelected">
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500 bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div v-else>
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border focus:ring-2 focus:ring-gray-500  bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div v-else>
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border focus:ring-2 focus:ring-gray-500 bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                </template>
-
+                    </template>
                 </MultiSelect>
 
                 <MultiSelect
-                v-model="form.bairros"
-                :options="bairros"
-                filter
-                optionLabel="nome"
-                optionValue="id"
-                placeholder="Bairros"
-                :maxSelectedLabels="3"
-                :pt="{
+                    v-model="form.bairros"
+                    :options="bairros"
+                    filter
+                    optionLabel="nome"
+                    optionValue="id"
+                    placeholder="Bairros"
+                    :maxSelectedLabels="3"
+                    :pt="{
                     root:{ class :'flex w-fit cursor-pointer  border bg-gray-50  border-gray-300 dark:bg-gray-600 dark:border-gray-500 rounded-sm focus:ring-slate-500 focus:border-slate-500 p-2.5'},
                     panel:{ class: 'bg-white shadow-lg border border-1  p-2 overflow-auto'},
                     trigger: {class: 'pl-4 pr-2 mx-3'},
@@ -171,57 +257,183 @@ const filterImovels = () => form.get(route('imoveis'),{
                         {class:'mx-2 ml-3'},
                     }"
                 >
-
-                <template #itemcheckboxicon="slotProps" @click.native.stop>
-                    <div v-if="slotProps.selected" :class="slotProps.class">
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500  bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <template #itemcheckboxicon="slotProps" @click.native.stop>
+                        <div v-if="slotProps.selected" :class="slotProps.class">
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500 bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div v-else>
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border focus:ring-2 focus:ring-gray-500  bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div v-else>
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border focus:ring-2 focus:ring-gray-500 bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                </template>
-                <template #headercheckboxicon="slotProps">
-                    <div v-if="slotProps.allSelected" >
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500  bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </template>
+                    <template #headercheckboxicon="slotProps">
+                        <div v-if="slotProps.allSelected">
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border-2 focus:ring-2 focus:ring-orange-500 bg-orange-400 text-white border-orange-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div v-else>
-                        <div class="inline-block relative mr-1">
-                            <div class="w-5 h-5 border focus:ring-2 focus:ring-gray-500  bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center">
-                                <svg class="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div v-else>
+                            <div class="inline-block relative mr-1">
+                                <div
+                                    class="w-5 h-5 border focus:ring-2 focus:ring-gray-500 bg-gray-100 text-transparent border-gray-400 rounded flex justify-center items-center"
+                                >
+                                    <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 48 48"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="white"
+                                            fill-opacity="0.01"
+                                        ></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z"
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                </template>
-
+                    </template>
                 </MultiSelect>
 
-                <button type="button" @click="filterImovels" class="text-white bg-green-500 hover:bg-green-600
-                focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
-                rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700
-                 dark:focus:ring-green-800">
-                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="currentColor"><g><path d="M0,0h24 M24,24H0" fill="none"></path><path d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"></path><path d="M0,0h24v24H0V0z" fill="none"></path></g></svg>
-                <span class="sr-only">Filtrar</span>
+                <button
+                    type="button"
+                    @click="filterImovels"
+                    class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        enable-background="new 0 0 24 24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <g>
+                            <path d="M0,0h24 M24,24H0" fill="none"></path>
+                            <path
+                                d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"
+                            ></path>
+                            <path d="M0,0h24v24H0V0z" fill="none"></path>
+                        </g>
+                    </svg>
+                    <span class="sr-only">Filtrar</span>
                 </button>
-                <Link :href="route('imoveis')" type="button"  class="text-white bg-red-500 hover:bg-red-600
-                focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
-                rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-red-500 dark:hover:bg-red-600
-                 dark:focus:ring-green-800">
-                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="currentColor"><g><rect fill="none" height="24" width="24"></rect></g><g><g><path d="M16.95,6l-3.57,4.55l1.43,1.43c1.03-1.31,4.98-6.37,4.98-6.37C20.3,4.95,19.83,4,19,4H6.83l2,2H16.95z"></path><path d="M2.81,2.81L1.39,4.22L10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-2.17l5.78,5.78l1.41-1.41L2.81,2.81z"></path></g></g></svg>
-                <span class="sr-only">Limpar Filtros</span>
+                <Link
+                    :href="route('imoveis')"
+                    type="button"
+                    class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-green-800"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        enable-background="new 0 0 24 24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <g><rect fill="none" height="24" width="24"></rect></g>
+                        <g>
+                            <g>
+                                <path
+                                    d="M16.95,6l-3.57,4.55l1.43,1.43c1.03-1.31,4.98-6.37,4.98-6.37C20.3,4.95,19.83,4,19,4H6.83l2,2H16.95z"
+                                ></path>
+                                <path
+                                    d="M2.81,2.81L1.39,4.22L10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-2.17l5.78,5.78l1.41-1.41L2.81,2.81z"
+                                ></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="sr-only">Limpar Filtros</span>
                 </Link>
             </div>
         </section>

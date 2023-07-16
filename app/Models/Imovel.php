@@ -288,7 +288,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable
         return 'slug';
     }
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width('200')

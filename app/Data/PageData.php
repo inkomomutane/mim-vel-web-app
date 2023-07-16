@@ -46,17 +46,17 @@ class PageData extends Data
             whatsapp: $page->whatsapp,
             tiktok: $page->tiktok,
             contacts: $page->contacts,
-            homeMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::HOME)) ?
+            homeMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::HOME)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::HOME)) : null),
-            imovelsMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::IMOVELS)) ?
+            imovelsMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::IMOVELS)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::IMOVELS)) : null),
-            aboutMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::ABOUT)) ?
+            aboutMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::ABOUT)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::ABOUT)) : null),
-            contactMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::CONTACT)) ?
+            contactMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::CONTACT)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::CONTACT)) : null),
-            termsMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::TERMS)) ?
+            termsMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::TERMS)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::TERMS)) : null),
-            policyMedia: Lazy::whenLoaded('media', $page, fn () => !is_null($page->getFirstMedia(Pages::POLICY)) ?
+            policyMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::POLICY)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::POLICY)) : null),
         );
     }

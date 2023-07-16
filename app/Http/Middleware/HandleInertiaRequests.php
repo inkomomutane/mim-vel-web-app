@@ -24,7 +24,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      */
-    public function version(Request $request): string|null
+    public function version(Request $request): ?string
     {
         return parent::version($request);
     }
@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             'roles' => RoleData::collection(Role::all()),
             'mails' => MessageCount::run(),
             'trash' => ImovelTrashCount::run($request->user()),
-            'globals' =>  GetPage::run()->getData(),
+            'globals' => GetPage::run()->getData(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [

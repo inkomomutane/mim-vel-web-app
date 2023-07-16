@@ -23,7 +23,7 @@ class FilteredImovel
                     'imovelFor',
                     'bairro.cidade.province',
                     'intermediationRule',
-                    'media'
+                    'media',
                 ]
             );
     }

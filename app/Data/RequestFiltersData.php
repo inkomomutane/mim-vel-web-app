@@ -3,7 +3,6 @@
 namespace App\Data;
 
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Normalizers\ArrayNormalizer;
 
 /** @typescript **/
 class RequestFiltersData extends Data
@@ -13,5 +12,6 @@ class RequestFiltersData extends Data
         public ?array $imovelTypes,
         public ?string $title,
         public ?array $bairros
-    ) {}
+    ) {
+    }
 }

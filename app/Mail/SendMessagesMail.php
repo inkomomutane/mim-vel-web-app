@@ -29,7 +29,7 @@ class SendMessagesMail extends Mailable implements ShouldQueue
      */
     public function envelope(): Envelope
     {
-        return new Envelope( subject: 'Mensagem');
+        return new Envelope(subject: 'Mensagem');
     }
 
     /**
@@ -51,6 +51,4 @@ class SendMessagesMail extends Mailable implements ShouldQueue
     {
         return [];
     }
-
-
 }

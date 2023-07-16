@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <template>
     <a
         href="https://wa.me/+258869500900?text=Ol%C3%A1%20ag%C3%AAncia%20Mim%C3%B3vel!%0a%0a"
@@ -1284,8 +1283,7 @@
                                 </li>
                                 <li>
                                     <a
-                                        :href="route('website.about')
-                                        "
+                                        :href="route('website.about')"
                                         class="hover:underline text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
                                         >Sobre nós</a
                                     >

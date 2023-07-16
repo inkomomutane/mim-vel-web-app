@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Actions\Page\GetPage;
-use App\Models\Page;
 use App\Models\TipoDeImovel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
@@ -34,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         view()->share([
-            'globals' =>  GetPage::run()?->getData(),
+            'globals' => GetPage::run()?->getData(),
             'imovelTypes' => TipoDeImovel::all(),
         ]);
 

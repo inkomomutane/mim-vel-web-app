@@ -13,7 +13,7 @@ class GetIntermediationRules
     use AsController;
     use AsAction;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
         $intermediations = IntermediationRule::query()
             ->when($term, function ($query, $search) {

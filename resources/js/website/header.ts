@@ -101,6 +101,3 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.changeMenuStatus = changeMenuStatus;
-
-
-

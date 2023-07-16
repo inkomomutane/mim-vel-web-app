@@ -15,7 +15,7 @@ class GetBairros
     use AsAction;
     use AsController;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
 
         $bairros = Bairro::query()
@@ -24,6 +24,7 @@ class GetBairros
                 $query->with('cidade');
             })->with('cidade')->
        orderBy('created_at', 'desc')->paginate(5)->withQueryString();
+
         return BairroData::collection(
             $bairros
         );

@@ -285,7 +285,7 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Message::class, 'from_id');
     }
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }

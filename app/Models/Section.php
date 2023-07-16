@@ -93,7 +93,7 @@ class Section extends Model implements HasMedia
         return $this->morphMany(Section::class, 'sectionable');
     }
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }

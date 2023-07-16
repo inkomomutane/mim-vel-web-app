@@ -12,15 +12,13 @@ class GetPage
     use AsController;
     use AsAction;
 
-
-    public function handle() :Page {
-        /**@var Page $page  */
+    public function handle(): Page
+    {
+        /** @var Page $page */
         $page = Page::first() ?? Page::create([]);
-        return  $page;
+
+        return $page;
     }
-
-
-
 
     public function asController()
     {

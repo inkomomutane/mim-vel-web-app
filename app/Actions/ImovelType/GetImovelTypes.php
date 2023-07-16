@@ -13,7 +13,7 @@ class GetImovelTypes
     use AsController;
     use AsAction;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
 
         $bairros = TipoDeImovel::query()

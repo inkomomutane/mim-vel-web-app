@@ -13,7 +13,7 @@ class GetRegrasDeNegocio
     use AsAction;
     use AsController;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
         return RegraDeNegocioData::collection(
             RegraDeNegocio::query()

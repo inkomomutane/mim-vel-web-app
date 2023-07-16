@@ -37,7 +37,7 @@ class GetImovels
      * @return Collection<Imovel>
      *
      **/
-    private function getImovels(?string $term = null)
+    private function getImovels(string $term = null)
     {
         return Imovel::query()
             ->when($term, function ($query, $search) {

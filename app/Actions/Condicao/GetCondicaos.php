@@ -13,7 +13,7 @@ class GetCondicaos
     use AsAction;
     use AsController;
 
-    public function handle(?string $term = null)
+    public function handle(string $term = null)
     {
         return CondicaoData::collection(
             Condicao::query()

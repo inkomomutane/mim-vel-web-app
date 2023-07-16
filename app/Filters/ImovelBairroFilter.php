@@ -7,7 +7,6 @@ use Pricecurrent\LaravelEloquentFilters\AbstractEloquentFilter;
 
 class ImovelBairroFilter extends AbstractEloquentFilter
 {
-
     /** @var array<int> bairros */
     protected array $bairros;
 
