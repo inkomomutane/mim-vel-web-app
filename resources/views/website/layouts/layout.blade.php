@@ -34,6 +34,8 @@
         </main>
       @include('website.layouts.whatsapp')
         @include('website.layouts.footer')
+
+        @stack('bottom-butons')
         @stack('js')
     </body>
 </html>

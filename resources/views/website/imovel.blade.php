@@ -45,13 +45,11 @@
         </div>
     </div>
     </section>
-
 @endsection
 
 @section('content')
 
-
-    <section class="px-4 md:px-24 bg-slate-100 p-16 grid grid-cols-12 gap-8 text-gray-700">
+    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-slate-100 grid grid-cols-12 gap-8 text-gray-700">
         <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="relative h-fit">
                 @if(session('success'))
@@ -122,7 +120,7 @@
 
                 </div>
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full grid grid-cols-3 gap-4" data-aos-offset="50" data-aos="fade-right" data-aos-duration="1000">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full grid grid-cols-3 gap-4" data-aos-offset="50" data-aos="fade-up" data-aos-duration="1000">
                 @if ($imovel->tipo_de_imovel)
                     <div class="text-sm py-1">
                         Tipo: <strong>&nbsp; {{ $imovel->tipo_de_imovel->nome }}</strong>
@@ -184,11 +182,11 @@
                     </div>
                 @endif
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-left" data-aos-offset="50" data-aos-duration="1000">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-up" data-aos-offset="50" data-aos-duration="1000">
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Descrição</h1>
                 {!! $imovel->descricao !!}
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-right"  data-aos-offset="50" data-aos-duration="1000">
+            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-up"  data-aos-offset="50" data-aos-duration="1000">
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Galeria</h1>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 justify-center justify-items-center gap-4 ">
                     @foreach ($imovel->getMedia('posts') as $image)
@@ -454,28 +452,6 @@
     </section>
     <!-- End::Relevant-Ads -->
 
-    <div class="fixed inset-x-0 bottom-0 grid md:hidden grid-cols-2 justify-center z-50">
-        <a href="tel:{{ $imovel->corretor->contacto }}"
-            class="flex bg-orange-500 hover:bg-orange-400 text-white border-r border-white text-lg font-semibold text-center py-4 px-4 ">
-            <svg class="w-5 h-5 mr-2 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17.5 4.842C15.976 4.337 14.146 4 12 4c-2.145 0-3.976.337-5.5.842m11 0c3.021 1 4.835 2.66 5.5 3.658L20.5 11l-3-2V4.842zm-11 0c-3.021 1-4.835 2.66-5.5 3.658L3.5 11l3-2V4.842zM10 7v3m0 0-5.414 5.414A2 2 0 0 0 4 16.828V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.172a2 2 0 0 0-.586-1.414L14 10m-4 0h4m0 0V7">
-                </path>
-                <circle cx="12" cy="15" r="2" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="2"></circle>
-            </svg>
-            Ligar
-
-        </a>
-        <button type="button"  data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="flex bg-orange-500 hover:bg-orange-400 text-white py-4 px-4 text-lg font-semibold text-center">
-            <svg class="w-5 h-5 mr-2 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path
-                    d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
-                </path>
-            </svg>
-            Mensangem
-        </button>
-    </div>
 
     <section>
   <!-- Main modal -->
@@ -546,10 +522,34 @@
       </div>
   </div>
 
+
     </section>
 @endsection
 @push('js')
     @vite(['resources/js/website/welcomeBanner.ts',
     'resources/js/website/gallery.js','resources/js/website/imovel.ts'])
+@endpush
 
+@push('bottom-butons')
+<div class="sticky  bottom-0  inset-x-0 grid md:hidden grid-cols-2 justify-center z-50">
+    <a href="tel:{{ $imovel->corretor->contacto }}"
+        class="flex bg-orange-500 hover:bg-orange-400 text-white border-r border-white text-lg font-semibold text-center py-4 px-4 ">
+        <svg class="w-5 h-5 mr-2 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.5 4.842C15.976 4.337 14.146 4 12 4c-2.145 0-3.976.337-5.5.842m11 0c3.021 1 4.835 2.66 5.5 3.658L20.5 11l-3-2V4.842zm-11 0c-3.021 1-4.835 2.66-5.5 3.658L3.5 11l3-2V4.842zM10 7v3m0 0-5.414 5.414A2 2 0 0 0 4 16.828V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.172a2 2 0 0 0-.586-1.414L14 10m-4 0h4m0 0V7">
+            </path>
+            <circle cx="12" cy="15" r="2" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2"></circle>
+        </svg>
+        Ligar
+    </a>
+    <button type="button"  data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="flex bg-orange-500 hover:bg-orange-400 text-white py-4 px-4 text-lg font-semibold text-center">
+        <svg class="w-5 h-5 mr-2 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path
+                d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z">
+            </path>
+        </svg>
+        Mensangem
+    </button>
+</div>
 @endpush
