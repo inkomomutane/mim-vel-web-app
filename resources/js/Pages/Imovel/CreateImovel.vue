@@ -552,9 +552,9 @@ const storeImovel = () =>
 
                     <div>
                         <label
-                            for="Àreia"
+                            for="Área"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Àreia <small class="order-1">(m2)</small></label
+                            >Área <small class="order-1">(m2)</small></label
                         >
                         <input
                             v-maska
@@ -565,7 +565,7 @@ const storeImovel = () =>
                             v-model="form.area"
                             id="area"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Àreia"
+                            placeholder="Área"
                         />
                         <InputError :message="form.errors.area" />
                     </div>

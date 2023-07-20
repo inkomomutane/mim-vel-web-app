@@ -22,7 +22,7 @@ class Welcome
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME),
             'thumb' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME)?->responsiveImages()?->getPlaceholderSvg(),
             'relevantImovels' => $this->getRelevantImovels(),
-            'lastestImovels' => Imovel::with(['bairro.cidade', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(6),
+            'lastestImovels' => Imovel::with(['bairro.cidade', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(3),
             'banners' => Banner::with('media')->first(),
             'seoData' => new SEOData(
                 title:$page->name,

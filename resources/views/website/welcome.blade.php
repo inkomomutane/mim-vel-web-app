@@ -35,7 +35,7 @@
 
 @section('content')
     <!-- Start::Relevant-Imovels -->
-    <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-200 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
+    {{-- <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-200 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6" itemprop="name">
             Imóveis destacados
@@ -124,7 +124,7 @@
                 Ver todos imóveis
             </a>
         </div>
-    </section>
+    </section> --}}
     <!-- End::Relevant-Ads -->
     <section class="py-1 pb-0 px-2 sm:px-6 lg:px-24 bg-gray-100 dark:bg-gray-700 font-['Open_Sans']">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mt-4 first-letter:uppercase">
@@ -173,12 +173,12 @@
                     ]) }}"
                         itemprop="url">
                         <article
-                            class="w-full bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
+                            class="w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
                             <header class="bg-gray-500">
                                 @if ($imovel->getFirstMedia('posts'))
                                     {{ $imovel->getFirstMedia('posts')
                                         ?->img()->attributes([
-                                            'class' => 'col-span-1 sm:col-span-3 w-full h-72 sm:h-40 md:h-64 object-cover rounded-t',
+                                            'class' => 'col-span-1 sm:col-span-3 w-full h-44 object-cover rounded-t',
                                             'alt' => $imovel->titulo ?? '',
                                         ])->lazy() }}
                                 @else
@@ -214,14 +214,6 @@
                                     </p>
 
                                 </div>
-
-                                <div class="font-semibold text-sm text-gray-600 grid grid-cols-2">
-                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1">
-                                        {{ $imovel->tipo_de_imovel->nome }}</p>
-                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1 ">
-                                        {{ $imovel->status->nome }}</p>
-
-                                </div>
                                 <div class="my-2 flex text-gray-500">
                                     &nbsp; <strong>{{ $imovel->price }}</strong>
                                 </div>
@@ -229,7 +221,7 @@
                                 <a href="{{ route('post.imovel.show', [
                                     'imovel' => $imovel->slug,
                                 ]) }}"
-                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase">
+                                    class="text-center  rounded-sm text-orange-400  py-0 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase">
                                     Ver mais
                                 </a>
                             </div>
