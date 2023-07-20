@@ -2,6 +2,14 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/css";
 window.addEventListener("load", function () {
     const thumb = this.document.getElementById("thumbnail-slide");
+    const relevantImovels = this.document.getElementById("relevant-imovels");
+
+    if(relevantImovels !=null){
+        const relevantImovelsSlide = new Splide("#relevant-imovels", {
+            arrows: false,
+        });
+        relevantImovelsSlide.mount();
+    }
 
     if (thumb != null) {
         const splide = new Splide(".default", {
