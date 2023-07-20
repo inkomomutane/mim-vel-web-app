@@ -45,7 +45,7 @@
         </p>
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
             @foreach ($relevantImovels as $imovel)
-                <li class="p-5 group mr-0" itemprop="itemListElement" data-aos-offset="20" data-aos="fade-up" data-aos-duration="{{  2000 + ($loop->index * 100 )   }}" itemscope itemtype="http://schema.org/ListItem">
+                <li class="p-5 group mr-0" itemprop="itemListElement" data-aos-offset="20" data-aos="fade-up" data-aos-duration="{{  200 + ($loop->index * 100 )   }}" itemscope itemtype="http://schema.org/ListItem">
                     <a href="{{ route('post.imovel.show', [
                         'imovel' => $imovel->slug,
                     ]) }}"
@@ -107,8 +107,8 @@
                                 <a href="{{ route('post.imovel.show', [
                                     'imovel' => $imovel->slug,
                                 ]) }}"
-                                    class="bg-orange-400 text-center  rounded-sm text-white py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:shadow-2xl hover:z-10 hover:bg-orange-500 first-letter:uppercase">
-                                    Ver imovel
+                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase">
+                                    Ver mais
                                 </a>
                             </div>
                         </article>
@@ -116,7 +116,7 @@
                 </li>
             @endforeach
         </ul>
-        <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
+        <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="500">
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300
                 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none
@@ -132,7 +132,7 @@
         </h1>
         <div class="splide default" data-splide='{"type":"loop","autoplay":true}'>
             <!-- Additional required wrapper -->
-            <div class="splide__track" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000">
+            <div class="splide__track" data-aos-offset="20" data-aos="fade-in" data-aos-duration="500">
                 <!-- Slides -->
                 <ul class="splide__list">
                 @foreach ($banners->getMedia('banners') as $banner)
@@ -232,8 +232,8 @@
                                 <a href="{{ route('post.imovel.show', [
                                     'imovel' => $imovel->slug,
                                 ]) }}"
-                                    class="bg-orange-400 text-center  rounded-sm text-white py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:shadow-2xl hover:z-10 hover:bg-orange-500">
-                                    Ver imovel
+                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase">
+                                    Ver mais
                                 </a>
                             </div>
                         </article>
@@ -241,7 +241,7 @@
                 </li>
             @endforeach
         </ul>
-        <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="1000" >
+        <div class="flex mx-5" data-aos-offset="20" data-aos="fade-in" data-aos-duration="500" >
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 rounded text-center">
                 Ver todos imóveis
@@ -253,10 +253,10 @@
     <!-- Start::Type-of-Imovels -->
     <section  class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
-        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2 first-letter:uppercase" itemprop="name" data-aos-offset="1" data-aos="zoom-in" data-aos-duration="5000">
+        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2 first-letter:uppercase" itemprop="name" data-aos-offset="1" data-aos="zoom-in" data-aos-duration="500">
             No Mimóvel vai encontrar
         </h2>
-        <div class="flex p-5" data-aos-offset="50" data-aos="zoom-in" data-aos-duration="5000">
+        <div class="flex p-5" data-aos-offset="50" data-aos="zoom-in" data-aos-duration="500">
             <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full justify-between">
 
                 @foreach ($imovelTypes as $type)

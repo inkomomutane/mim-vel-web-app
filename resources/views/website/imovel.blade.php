@@ -440,8 +440,8 @@
                                 <a href="{{ route('post.imovel.show', [
                                     'imovel' => $imovel->slug,
                                 ]) }}"
-                                    class="bg-orange-400 text-center  rounded-sm text-white py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:shadow-2xl hover:z-10 hover:bg-orange-500">
-                                    Ver imovel
+                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase">
+                                    Ver mais
                                 </a>
                             </div>
                         </article>

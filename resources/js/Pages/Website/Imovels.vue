@@ -606,9 +606,9 @@ const filterImovels = () =>
                                 </div>
 
                                 <button
-                                    class="bg-orange-400 rounded-sm text-white py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:shadow-2xl hover:z-10 hover:bg-orange-500"
+                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
                                 >
-                                    Ver imovel
+                                    Ver mais
                                 </button>
                             </div>
                         </article>

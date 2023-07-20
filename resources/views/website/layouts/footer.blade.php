@@ -11,7 +11,7 @@
             </div>
 
                 <p
-                    class="mt-6 leading-relaxed text-center sm:text-justify text-gray-500 dark:text-gray-400 max-w-5xl"
+                    class="mt-6 leading-relaxed text-sm text-justify text-gray-500 dark:text-gray-400 max-w-5xl"
                 >
                     {{ $globals->content ?? '' }}
                 </p>
