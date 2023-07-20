@@ -379,6 +379,6 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
             ->with(['corretor', 'imovelFor', 'status'])
             ->get()
             ->where('id', '<>', $this->id)
-            ->take(6);
+            ->take(4);
     }
 }

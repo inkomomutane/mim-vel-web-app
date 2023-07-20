@@ -135,7 +135,7 @@ const linkCss = `block  tracking-wide text-base font-medium py-2 pr-4 pl-3 hover
                                         : linkCss
                                 "
                             >
-                                <span>Todos imoveis</span>
+                                <span>Todos imóveis</span>
                             </a>
                         </li>
                         <li>

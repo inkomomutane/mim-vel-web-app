@@ -49,7 +49,7 @@
 
 @section('content')
 
-    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-200 grid grid-cols-12 gap-8 text-gray-700">
+    <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-200 grid grid-cols-12 gap-8 text-gray-700">
         <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="relative h-fit">
                 @if(session('success'))
@@ -81,7 +81,7 @@
             </div>
             @endif
             </div>
-            <div class="bg-white rounded-sm p-8 mb-2 w-full" data-aos-offset="10" data-aos="fade-in" data-aos-duration="4000>
+            <div class="bg-white rounded-sm p-4 px-8 mb-2 w-full" >
                 <h1 class="text-2xl font-semibold py-2 first-letter:uppercase lowercase">
                     {{ $imovel->imovelFor->slug_text . ' ' . $imovel->titulo }}</h1>
                 <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" itemprop="address"
@@ -120,83 +120,84 @@
 
                 </div>
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full grid grid-cols-3 gap-4" data-aos-offset="50" data-aos="fade-up" data-aos-duration="1000">
-                @if ($imovel->tipo_de_imovel)
-                    <div class="text-sm py-1">
-                        Tipo: <strong>&nbsp; {{ $imovel->tipo_de_imovel->nome }}</strong>
-                    </div>
-                @endif
-
-                @if ($imovel->condicao)
-                    <div class="text-sm  py-1">
-                        Condição : <strong>&nbsp; {{ $imovel->condicao->nome }}</strong>
-                    </div>
-                @endif
-
-
+            <div class="bg-white rounded-sm p-4 px-8 mb-2 w-full grid grid-cols-2 gap-2" >
+              <div class="col-span-2">
+                <h1 class="text-2xl font-semibold py-2 first-letter:uppercase lowercase ">Propriedades</h1>
+              </div>
                 @if ($imovel->ano)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Ano de construção : <strong>&nbsp; {{ $imovel->ano }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->area)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Área (m²) : <strong>&nbsp; {{ $imovel->area }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->andares)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Andares : <strong>&nbsp; {{ $imovel->andares }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->quartos)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Quartos : <strong>&nbsp; {{ $imovel->quartos }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->suites)
-                    <div class="text-sm py-1">
-                        Suites : <strong>&nbsp; {{ $imovel->suites }}</strong>
+                    <div class="text-sm">
+                        Suítes : <strong>&nbsp; {{ $imovel->suites }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->banheiros)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Banheiros : <strong>&nbsp; {{ $imovel->banheiros }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->piscinas)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Piscinas : <strong>&nbsp; {{ $imovel->piscinas }}</strong>
                     </div>
                 @endif
 
                 @if ($imovel->garagens)
-                    <div class="text-sm py-1">
+                    <div class="text-sm">
                         Garagens : <strong>&nbsp; {{ $imovel->garagens }}</strong>
                     </div>
                 @endif
+                @if ($imovel->tipo_de_imovel)
+                    <div class="text-sm">
+                        Tipo: <strong>&nbsp; {{ $imovel->tipo_de_imovel->nome }}</strong>
+                    </div>
+                @endif
+
+                @if ($imovel->condicao)
+                    <div class="text-sm">
+                        Condição : <strong>&nbsp; {{ $imovel->condicao->nome }}</strong>
+                    </div>
+                @endif
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-up" data-aos-offset="50" data-aos-duration="1000">
+            <div class="bg-white rounded-sm p-1 px-8 mb-2 w-full" >
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Descrição</h1>
                 {!! $imovel->descricao !!}
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full" data-aos="fade-up"  data-aos-offset="50" data-aos-duration="1000">
+            <div class="bg-white rounded-sm p-1 px-8 mb-2 w-full" >
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Galeria</h1>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 justify-center justify-items-center gap-4 ">
+                <div class="grid grid-cols-8 sm:grid-cols-10 justify-center justify-items-center gap-4 ">
                     @foreach ($imovel->getMedia('posts') as $image)
                         <a data-fslightbox href="{{ $image->getUrl() }}" class="aspect-square">
-                            {{ $image->img()->attributes(['class' => 'h-32  object-contain   p-0 m-0 transition-transform duration-300 transform-gpu hover:scale-110'])->lazy() }}
+                            {{ $image->img()->attributes(['class' => ' object-contain   p-0 m-0 transition-transform duration-300 transform-gpu hover:scale-110'])->lazy() }}
                         </a>
                     @endforeach
                 </div>
             </div>
-            <div class="bg-white rounded-sm p-8 mb-4 w-full" id="comments" data-aos-offset="50" data-aos="fade-up" data-aos-duration="1000">
+            <div class="bg-white rounded-sm p-4 px-8 mb-2 w-full" id="comments">
                 <h1 class="text-xl font-semibold py-2 text-orange-500">Comentários</h1>
 
                 <div>
@@ -249,7 +250,7 @@
                             text-sm rounded-sm focus:ring-gray-400 focus:border-gray-500 block
                             w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                              dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
-                                placeholder="comentario"></textarea>
+                                placeholder="comentário"></textarea>
                             @error('nome')
                                 <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
                             @enderror
@@ -300,7 +301,7 @@
             </div>
         </div>
         <div class=" col-span-12 md:col-span-4 h-fit md:sticky md:top-20  ">
-            <div class=" bg-white px-4 lg:p-8  py-4 w-full grid  ">
+            <div class=" bg-white p-4 px-4 lg:p-8  lg:py-2 w-full grid  ">
                 <h1 class="text-base font-semibold  text-orange-500">Partilhar o imóvel</h1>
                 <div class="py-2 grid grid-cols-1 lg:grid-cols-2">
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}" target="_blank"
@@ -331,7 +332,7 @@
                     </a>
                 </div>
             </div>
-            <div class=" bg-white px-4 lg:p-8 py-2 my-2 w-full  hidden md:grid" data-aos-offset="10" data-aos="fade-up" data-aos-duration="4000>
+            <div class=" bg-white p-4 px-4 lg:p-8 lg:py-2 my-2 w-full  hidden md:grid" >
                 <h1 class="text-base font-semibold  text-orange-500">Contactar o corretor</h1>
                 <div class="py-2 grid grid-cols-1 lg:grid-cols-2">
                     <a href="tel:{{ $imovel->corretor->contacto }}"
@@ -367,8 +368,8 @@
         </div>
     </section>
 
-    <!-- Start::Relevant-Imovels -->
-    <section   class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
+    <!-- Start::related-Imovels -->
+    <section   class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-100 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6" itemprop="name">
             Imóveis relacionados
@@ -376,24 +377,26 @@
         <p class="mx-6 mt-2 dark:text-white">
             Imóveis relacionados ao visitado
         </p>
-        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
+        <ul class="grid grid-cols-2 lg:grid-cols-4 justify-between">
             @foreach ($imovel->relectedImovels() as $imovel)
-                <li class="p-5 group mr-0" data-aos="fade-up" data-aos-duration="{{  200 + ($loop->index * 100 )   }}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <li class="py-2 px-1 group mr-0"  itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                     <a href="{{ route('post.imovel.show', [
                         'imovel' => $imovel->slug,
                     ]) }}"
                         itemprop="url">
                         <article
-                            class="w-full bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
+                            class="w-full bg-white dark:bg-gray-700 dark:border-gray-700
+                            transition-transform duration-300 transform-gpu hover:scale-105
+                             hover:shadow-none hover:shadow-gray-400 hover:rounded">
                             <header class="bg-gray-500">
                                 @if ($imovel->getFirstMedia('posts'))
                                     {{ $imovel->getFirstMedia('posts')
                                         ?->img()->attributes([
-                                            'class' => 'col-span-1 sm:col-span-3 w-full h-72 sm:h-40 md:h-64 object-cover rounded-t',
+                                            'class' => 'col-span-1 sm:col-span-3 w-full h-32 sm:h-40  object-cover rounded-t',
                                             'alt' => $imovel->titulo ?? '',
                                         ])->lazy() }}
                                 @else
-                                    <img class="col-span-1 sm:col-span-3 w-full h-72 sm:h-40 md:h-64 object-cover rounded-t"
+                                    <img class="col-span-1 sm:col-span-3 w-full h-32 sm:h-40 object-cover rounded-t"
                                         src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
                                         alt="{{ $imovel->titulo ?? '' }}">
                                 @endif
@@ -450,7 +453,7 @@
             @endforeach
         </ul>
     </section>
-    <!-- End::Relevant-Ads -->
+    <!-- End::related-Imovels -->
 
 
     <section>

@@ -113,7 +113,7 @@
                             @if (Request::routeIs('post.imovel.show'))
                                 Imóvel
                             @else
-                                Todos imoveis
+                                Todos imóveis
                             @endif
                         </a>
                     </li>
