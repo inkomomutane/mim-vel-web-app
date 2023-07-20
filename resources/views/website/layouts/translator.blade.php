@@ -3,7 +3,7 @@
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'pt',
-            includedLanguages: 'en,pt,fr',
+            includedLanguages: 'en,fr,zh-CN,ur',
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             multilanguagePage: true,
             gaTrack: true,

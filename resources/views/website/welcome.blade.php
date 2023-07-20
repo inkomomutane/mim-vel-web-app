@@ -35,7 +35,7 @@
 
 @section('content')
     <!-- Start::Relevant-Imovels -->
-    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
+    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-200 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6" itemprop="name">
             Imóveis mais destacados
@@ -126,7 +126,7 @@
         </div>
     </section>
     <!-- End::Relevant-Ads -->
-    <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']">
+    <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gray-100 dark:bg-gray-700 font-['Open_Sans']">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white my-8 mb-16 first-letter:uppercase">
             Anúncios destacados
         </h1>
@@ -159,7 +159,7 @@
     <!-- End:Banner-->
 
     <!-- Start::Latest-Imovels -->
-    <section class="pb-16 pt-8 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans']" itemscope
+    <section class="pb-16 pt-8 px-2 sm:px-6 lg:px-24 bg-gray-200 dark:bg-gray-700 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6 first-letter:uppercase">
             Novos imóveis

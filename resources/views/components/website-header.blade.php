@@ -25,6 +25,19 @@
                     alt="Mimóvel"
                 />
             </a>
+
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/en" >
+                <img src="{{Vite::asset('resources/js/images/en.png')}}" alt="English translation"  class="w-5 h-5">
+            </a></li>
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/fr" >
+                <img src="{{Vite::asset('resources/js/images/fr.png')}}" alt="Francaise translation"  class="w-4 h-4">
+            </a></li>
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/zh-CN" >
+                <img src="{{Vite::asset('resources/js/images/zh.png')}}" alt="Chineses translation"  class="w-6 h-5">
+            </a></li>
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/ur" >
+                <img src="{{Vite::asset('resources/js/images/ur.png')}}" alt="Urdu translation"  class="w-8 h-5">
+            </a></li>
             <section class="flex items-center lg:order-2">
                 <button
                     data-collapse-toggle="mobile-menu-2"
@@ -66,6 +79,19 @@
                 <ul
                     class="flex flex-col mt-4 lg:flex-row lg:space-x-8 lg:mt-0"
                 >
+                <li class="hidden lg:flex justify-center items-center" ><a href="#googtrans/en" >
+                    <img src="{{Vite::asset('resources/js/images/en.png')}}" alt="English translation"  class="w-5 h-5">
+                </a></li>
+                <li class="hidden lg:flex justify-center items-center" ><a href="#googtrans/fr" >
+                    <img src="{{Vite::asset('resources/js/images/fr.png')}}" alt="Francaise translation"  class="w-4 h-4">
+                </a></li>
+                <li class="hidden lg:flex justify-center items-center" ><a href="#googtrans/zh-CN" >
+                    <img src="{{Vite::asset('resources/js/images/zh.png')}}" alt="Chineses translation"  class="w-6 h-5">
+                </a></li>
+                <li class="hidden lg:flex justify-center items-center" ><a href="#googtrans/ur" >
+                    <img src="{{Vite::asset('resources/js/images/ur.png')}}" alt="Urdu translation"  class="w-8 h-5">
+                </a></li>
+
                     <li>
                         <a
                             href="{{ route('welcome') }}"
@@ -136,15 +162,7 @@
                         </li>
                         @endif
 
-                        <li class="flex justify-center items-center" ><a href="#googtrans/en" >
-                            <img src="{{Vite::asset('resources/js/images/en.png')}}" alt="English translation"  class="w-5 h-5">
-                        </a></li>
-                        <li class="flex justify-center items-center" ><a href="#googtrans/fr" >
-                            <img src="{{Vite::asset('resources/js/images/fr.png')}}" alt="Francaise translation"  class="w-4 h-4">
-                        </a></li>
-                        <li class="flex justify-center items-center" ><a href="#googtrans/pt" >
-                            <img src="{{Vite::asset('resources/js/images/pt.png')}}" alt="Português translation"  class="w-5 h-5">
-                        </a></li>
+
                 </ul>
             </section>
         </div>

@@ -49,7 +49,7 @@
 
 @section('content')
 
-    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-slate-100 grid grid-cols-12 gap-8 text-gray-700">
+    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-200 grid grid-cols-12 gap-8 text-gray-700">
         <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="relative h-fit">
                 @if(session('success'))
@@ -368,7 +368,7 @@
     </section>
 
     <!-- Start::Relevant-Imovels -->
-    <section   class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-50 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
+    <section   class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 dark:bg-gray-700 font-['Open_Sans'] text-gray-700" itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6" itemprop="name">
             Imóveis relacionados

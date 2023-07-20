@@ -440,7 +440,7 @@ const filterImovels = () =>
         </section>
 
         <section
-            class="py-16 px-1 sm:px-2 lg:px-24 bg-zinc-50 dark:bg-gray-700 font-['Open_Sans']"
+            class="py-16 px-1 sm:px-2 lg:px-24 bg-zinc-100 dark:bg-gray-700 font-['Open_Sans']"
             itemscope
             itemtype="http://schema.org/ItemList"
         >
