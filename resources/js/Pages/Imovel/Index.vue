@@ -227,6 +227,11 @@ function closeDeleteImovelModal() {
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                             >
                                 <tr>
+                                    <th scope="col" class="px-2 py-3">
+                                        <div class="flex justify-center items-center text-center">
+                                            <span>#</span>
+                                        </div>
+                                    </th>
                                     <th scope="col" class="px-4 py-3">
                                         <div class="flex items-center">
                                             Image
@@ -264,6 +269,12 @@ function closeDeleteImovelModal() {
                                     v-for="imovel in imovels.data"
                                     :key="(imovel.id as number)"
                                 >
+                                <th
+                                        scope="row"
+                                        class=" flex justify-center px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                    {{  imovel.id }}
+                                    </th>
                                     <th
                                         scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
