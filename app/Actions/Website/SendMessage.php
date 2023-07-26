@@ -18,13 +18,13 @@ class SendMessage
     public function handle(Agenda $agenda): bool
     {
         try {
-            Mail::to(env('MAIL_RECEIVER_EMAIL'))
-                ->cc('nelsonmutane@gmail.com')
+            Mail::to( $agenda->corretor->email ?? env('MAIL_RECEIVER_EMAIL'))
+                ->cc(env('MAIL_ADMIN_RECEIVER_EMAIL'))
+                ->bcc(env('MAIL_DEV_RECEIVER_EMAIL'))
                 ->send(new SendMessagesMail($agenda));
             return true;
         } catch (\Throwable $th) {
             throw $th;
-
             return false;
         }
     }
