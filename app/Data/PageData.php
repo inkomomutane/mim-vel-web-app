@@ -28,6 +28,7 @@ class PageData extends Data
         public null|MediaData|Lazy $contactMedia,
         public null|MediaData|Lazy $termsMedia,
         public null|MediaData|Lazy $policyMedia,
+        public null|MediaData|Lazy $logoMedia,
     ) {
     }
 
@@ -58,6 +59,8 @@ class PageData extends Data
                 MediaData::fromModel($page->getFirstMedia(Pages::TERMS)) : null),
             policyMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::POLICY)) ?
                 MediaData::fromModel($page->getFirstMedia(Pages::POLICY)) : null),
+            logoMedia: Lazy::whenLoaded('media', $page, fn () => ! is_null($page->getFirstMedia(Pages::LOGO)) ?
+                MediaData::fromModel($page->getFirstMedia(Pages::LOGO)) : null),
         );
     }
 }

@@ -22,4 +22,6 @@ final class Pages
     public final const TERMS = 'terms';
 
     public final const POLICY = 'policy';
+
+    public final const LOGO  = 'logo';
 }

@@ -105,6 +105,7 @@ declare namespace App.Data {
         contactMedia: App.Data.MediaData | null;
         termsMedia: App.Data.MediaData | null;
         policyMedia: App.Data.MediaData | null;
+        logoMedia: App.Data.MediaData | null;
     };
     export type PolicyData = {
         politicas: string;

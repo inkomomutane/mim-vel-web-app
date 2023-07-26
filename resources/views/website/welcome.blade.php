@@ -19,9 +19,13 @@
                 <div class="flex flex-col items-center justify-between xl:flex-row">
                     <div class="px-2 text-center w-full md:px-16">
                         <h1
-                            class="text-2xl font-extrabold tracking-tight leading-none text-white md:text-3xl dark:text-white">
-                            <img src="{{ Vite::asset('resources/js/images/logo/logo.png') }}"
-                                class="mx-auto mt-10 sm:m-auto w-60" alt="Mimóvel" />
+                            class="text-2xl font-extrabold tracking-tight leading-none   text-white md:text-3xl dark:text-white">
+                                @if($logo)
+                                {{ $logo->img()->attributes(['class' => 'mx-auto mt-10 sm:m-auto h-28 w-fit','alt' => 'Mimóvel']) }}
+                                @else
+                                <img src="{{ Vite::asset('resources/js/images/logo/logo.png') }}"
+                                class="mx-auto mt-10 sm:m-auto w-60 h-40" alt="Mimóvel" />
+                                @endif
                         </h1>
                         {{-- <div id="welcome-search">
 

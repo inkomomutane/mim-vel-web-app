@@ -115,5 +115,6 @@ class Page extends Model implements HasMedia
         $this->addMediaCollection(Pages::CONTACT)->withResponsiveImages()->singleFile();
         $this->addMediaCollection(Pages::TERMS)->withResponsiveImages()->singleFile();
         $this->addMediaCollection(Pages::POLICY)->withResponsiveImages()->singleFile();
+        $this->addMediaCollection(Pages::LOGO)->withResponsiveImages()->singleFile();
     }
 }

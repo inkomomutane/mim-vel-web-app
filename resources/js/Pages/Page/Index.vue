@@ -34,6 +34,7 @@ const form = useForm({
     contactMedia: [],
     termsMedia: [],
     policyMedia: [],
+    logoMedia: [],
 });
 
 const updateGlobalSiteData = () =>
@@ -55,6 +56,7 @@ const updateGlobalSiteData = () =>
             form.contactMedia = [];
             form.termsMedia = [];
             form.policyMedia = [];
+            form.logoMedia = [];
         },
         forceFormData: true,
         preserveState: (page) => Object.keys(page.props.errors).length === 1,
@@ -267,6 +269,36 @@ onMounted(() => {
                             :message="form.errors.instagram"
                         />
                     </div>
+
+                    <div class="sm:col-span-3">
+                        <label
+                            for="instagram"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Logotipo do slider da página home</label
+                        >
+                        <UploadImage
+                            @update:images="(files:any) => (form.logoMedia = files)"
+                            :multiple="false"
+                            :disabledUpload="true"
+                            :disabledCancel="true"
+                            label-text="Fazer upload da imagem para slider da página home"
+                            mediaType="image/*"
+                            :progressUploadImage="false"
+                        >
+                            <template v-slot:files>
+                                <UploadedImageCover
+                                    v-if="pageDatarefs?.logoMedia"
+                                    :image="(pageDatarefs?.logoMedia as App.Data.MediaData)"
+                                />
+                            </template>
+                        </UploadImage>
+
+                        <InputError
+                            v-if="form.errors.homeMedia"
+                            :message="form.errors.homeMedia"
+                        />
+                    </div>
+
 
                     <div class="sm:col-span-3">
                         <label

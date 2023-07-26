@@ -43,6 +43,9 @@ class PageUpdate
 
             'policyMedia' => 'nullable',
             'policyMedia.*' => 'nullable|image|max:15360',
+
+            'logoMedia' => 'nullable',
+            'logoMedia.*' => 'nullable|image|max:15360',
         ];
     }
 
@@ -115,13 +118,19 @@ class PageUpdate
 
             }
 
+            if ($actionRequest->file('logoMedia')) {
+
+                foreach ($actionRequest->file('logoMedia') as $file) {
+                    $page->addMedia($file)
+                        ->toMediaCollection(Pages::LOGO, 'pages');
+                }
+            }
             flash()->addSuccess('Dados globais do site actualizados com sucesso.');
 
         } catch (\Throwable $th) {
             throw $th;
             flash()->addErro('Erro ao actualizar dados globais do site.');
         }
-
          return to_route('mimovel');
     }
 }
