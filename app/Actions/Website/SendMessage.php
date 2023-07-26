@@ -18,10 +18,9 @@ class SendMessage
     public function handle(Agenda $agenda): bool
     {
         try {
-            Mail::to(config('MAIL_RECEIVER_EMAIL', 'nelsonmutane@gmail.com'))
+            Mail::to(env('MAIL_RECEIVER_EMAIL'))
                 ->cc('nelsonmutane@gmail.com')
                 ->send(new SendMessagesMail($agenda));
-
             return true;
         } catch (\Throwable $th) {
             throw $th;
