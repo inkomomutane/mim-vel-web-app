@@ -1,24 +1,38 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, router } from "@inertiajs/vue3";
+import { Head, Link, router,useForm } from "@inertiajs/vue3";
 import { Mails } from "@/types/index";
 import { PropType } from "vue";
 import { ref, watch } from "vue";
 import Modal from "@/Components/Modal.vue";
 import axios from "axios";
-import { tooltip } from "@/helprs";
+import Flasher, { tooltip } from "@/helprs";
+import { FlasherResponse } from "@flasher/flasher";
 
 const props = defineProps({
-    messages: Object as PropType<Mails>,
+    messages_agendas: Object as PropType<Mails>,
     mails: Number,
+    messages: Object as PropType<FlasherResponse>,
 });
 
-const links = ref(props.messages?.links);
+watch(
+    () => props.messages,
+    (value) => {
+        value?.envelopes.forEach((element) => {
+            Flasher.flash(
+                element.notification.type,
+                element.notification.message
+            );
+        });
+    }
+);
+
+const links = ref(props.messages_agendas?.links);
 const viewingMessage = ref(false);
 const loadedMessage = ref<App.Data.AgendaData | null>(null);
 
 watch(
-    () => props.messages?.links,
+    () => props.messages_agendas?.links,
     (value) => {
         links.value = value;
     }
@@ -35,12 +49,32 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                 is_readed: true,
             })
             .then(() => {
-                router.reload({ only: ["messages", "mails"] });
+                router.reload({ only: ["messages_agendas", "mails"] });
             });
     }
     viewingMessage.value = true;
     loadedMessage.value = mail;
 };
+
+const form  = useForm({
+    agenda : null
+});
+
+const deleteMessage = ( mail: App.Data.AgendaData ) => {
+    form.delete(
+        route("message.delete", {
+            agenda: mail.id as number,
+        }),
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                viewingMessage.value = false;
+                form.reset();
+            },
+            onFinish: () => form.reset(),
+        }
+    );
+}
 </script>
 <template>
     <Head title="Messanges do website" />
@@ -64,7 +98,7 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                         <button class="w-full text-left">
                             <li
                                 class="py-3 sm:py-4 px-8 border-b dark:border-b-slate-700"
-                                v-for="message in props.messages?.data"
+                                v-for="message in props.messages_agendas?.data"
                                 :class="
                                     message.isReaded
                                         ? 'bg-slate-100 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-900'
@@ -168,8 +202,8 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                         <span
                             class="font-semibold text-gray-900 dark:text-white"
                             >{{
-                                `${messages?.meta.from ?? 0}-${
-                                    messages?.meta.to ?? 0
+                                `${messages_agendas?.meta.from ?? 0}-${
+                                    messages_agendas?.meta.to ?? 0
                                 }`
                             }}</span
                         >
@@ -177,7 +211,7 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                         <span
                             class="font-semibold text-gray-900 dark:text-white"
                         >
-                            {{ messages?.meta.total }}</span
+                            {{ messages_agendas?.meta.total }}</span
                         >
                     </span>
                     <ul class="inline-flex items-stretch -space-x-px">
@@ -412,6 +446,18 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
                                     />
                                 </svg>
                             </a>
+                            <button
+                                class="px-2 py-2 border-r-2 "
+                                v-if="
+                                    loadedMessage?.email != undefined ||
+                                    loadedMessage?.email != null
+                                "
+                                @click="deleteMessage(loadedMessage)"
+                                v-tooltip.value="tooltip('Apagar mensagem')"
+                                v-tooltip.bottom="true"
+                            >
+                                <svg   class="w-5 h-5 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"></path></svg>
+                            </button>
                             <button
                                 class="px-2 py-2"
                                 v-if="

@@ -33,7 +33,7 @@ class GetMessages
     public function asController()
     {
         return Inertia::render('Message/Index', [
-            'messages' => $this->handle(),
+            'messages_agendas' => $this->handle(),
         ]);
     }
 }

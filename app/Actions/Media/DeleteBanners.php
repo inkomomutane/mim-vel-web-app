@@ -17,7 +17,6 @@ class DeleteBanners
         } catch (\Throwable $th) {
             flash()->addError('Erro ao deletar banner!');
         }
-
         return redirect()->back();
     }
 }
