@@ -28,5 +28,5 @@
 import { ref } from "vue";
 import Sidebar from "./partials/Sidebar.vue";
 import Header from "./partials/Header.vue";
-const sidebarOpen = ref(true);
+const sidebarOpen = ref(false);
 </script>
