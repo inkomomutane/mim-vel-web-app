@@ -26,7 +26,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Section> $sections
  * @property-read int|null $sections_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page query()
@@ -35,7 +34,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereRoute($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUrl($value)
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Section> $sections
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Section> $sections
  * @property string $content
@@ -50,7 +48,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property array $contacts
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereContacts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereEmail($value)
@@ -61,11 +58,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlogan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereTiktok($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereWhatsapp($value)
- *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- *
  * @method static \Database\Factories\PageFactory factory($count = null, $state = [])
- *
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
@@ -77,7 +71,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- *
  * @mixin \Eloquent
  */
 class Page extends Model implements HasMedia

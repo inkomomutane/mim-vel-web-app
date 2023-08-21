@@ -86,7 +86,6 @@ use Vite;
  * @property-read int|null $tags_count
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
- *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
@@ -128,25 +127,20 @@ use Vite;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- *
  * @property \Illuminate\Support\Carbon $deleted_at
  * @property-read Collection<int, \App\Models\Comentario> $comentarios
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read Collection<int, \App\Models\Rating> $ratings
  * @property Collection<int, \Spatie\Tags\Tag> $tags
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTrashed()
- *
  * @property-read Collection<int, \App\Models\Comentario> $comentarios
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read Collection<int, \App\Models\Rating> $ratings
  * @property Collection<int, \Spatie\Tags\Tag> $tags
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
- *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
