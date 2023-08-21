@@ -136,6 +136,12 @@ class User extends Authenticatable implements HasMedia
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }
 
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatars')->withResponsiveImages()->singleFile();
+    }
+
     public static function last()
     {
         return static::all()->last();

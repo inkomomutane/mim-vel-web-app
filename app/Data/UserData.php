@@ -16,7 +16,9 @@ class UserData extends Data
         public readonly ?string $contacto,
         public readonly ?string $location,
         public readonly ?bool $active,
-        public readonly Lazy|null|RoleData $role
+        public readonly Lazy|null|RoleData $role,
+        /** @var MediaData * */
+        public Lazy|null|MediaData $logo,
     ) {
     }
 
@@ -29,7 +31,13 @@ class UserData extends Data
             contacto: $user->contacto,
             location: $user->location,
             active: $user->active,
-            role: Lazy::whenLoaded('roles', $user, fn () => is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
+            logo: Lazy::whenLoaded('media', $user, fn () => ! is_null($user->getFirstMedia('avatars')) ?
+            MediaData::fromModel($user->getFirstMedia('avatars')) :
+            null),
+            role: Lazy::whenLoaded(
+                'roles',
+                $user,
+                fn () => is_null($user->roles()->first()) ? null : RoleData::fromModel($user->roles()->first())
             )
         );
     }

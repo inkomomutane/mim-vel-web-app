@@ -6,7 +6,6 @@ use App\Actions\Imovel\ImovelTrashCount;
 use App\Actions\Message\MessageCount;
 use App\Actions\Page\GetPage;
 use App\Data\RoleData;
-use App\Models\Page;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Spatie\Permission\Models\Role;
@@ -39,7 +38,7 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user()?->load('roles')->getData(),
+                'user' => $request->user()?->load(['roles','media'])->getData(),
             ],
             'messages' => flash()->render([], 'array'),
             'roles' => RoleData::collection(Role::all()),

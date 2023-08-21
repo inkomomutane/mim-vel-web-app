@@ -99,13 +99,13 @@ declare namespace App.Data {
         whatsapp: string | null;
         tiktok: string | null;
         contacts: Array<any> | null;
-        homeMedia: App.Data.MediaData | null;
-        imovelsMedia: App.Data.MediaData | null;
-        aboutMedia: App.Data.MediaData | null;
-        contactMedia: App.Data.MediaData | null;
-        termsMedia: App.Data.MediaData | null;
-        policyMedia: App.Data.MediaData | null;
-        logoMedia: App.Data.MediaData | null;
+        homeMedia: App.Data.MediaData | any | null;
+        imovelsMedia: App.Data.MediaData | any | null;
+        aboutMedia: App.Data.MediaData | any | null;
+        contactMedia: App.Data.MediaData | any | null;
+        termsMedia: App.Data.MediaData | any | null;
+        policyMedia: App.Data.MediaData | any | null;
+        logoMedia: App.Data.MediaData | any | null;
     };
     export type PolicyData = {
         politicas: string;
@@ -154,5 +154,6 @@ declare namespace App.Data {
         location: string | null;
         active: boolean | null;
         role: any | App.Data.RoleData | null;
+        logo: App.Data.MediaData | null;
     };
 }

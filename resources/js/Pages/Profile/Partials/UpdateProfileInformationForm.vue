@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import InputError from "@/Components/InputError.vue";
 import { Link, useForm, usePage } from "@inertiajs/vue3";
+import LogoUpload from "../LogoUpload.vue";
 
 defineProps<{
     mustVerifyEmail?: Boolean;
@@ -28,10 +29,12 @@ const form = useForm({
                 conta.
             </p>
             <p
-                class="p-1 text-sm bg-green-500 w-fit rounded-sm font-semibold mt-4 text-white px-4"
+                class="p-1 text-sm bg-green-500 w-fit rounded-sm font-semibold my-4 text-white px-4"
             >
                 {{ user.role?.name }}
             </p>
+
+            <LogoUpload  :user="user"/>
         </header>
 
         <form
