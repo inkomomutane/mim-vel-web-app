@@ -21,12 +21,12 @@ use Spatie\LaravelData\WithData;
  * @property string|null $local
  * @property string|null $contacto
  * @property string|null $data_hora
- * @property int $corretor_id
+ * @property int|null $corretor_id
  * @property string $mensagem
- * @property string $email
- * @property int $imovel_id
+ * @property string|null $email
+ * @property int|null $imovel_id
  * @property int $is_readed
- * @property-read \App\Models\User $corretor
+ * @property-read \App\Models\User|null $corretor
  * @property-read mixed $url
  * @property-read \App\Models\Imovel|null $imovel
  * @method static \Database\Factories\AgendaFactory factory($count = null, $state = [])

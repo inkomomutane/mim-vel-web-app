@@ -53,9 +53,9 @@ use Vite;
  * @property string|null $endereco
  * @property string|null $mapa
  * @property string|null $published_at
- * @property int|null $views
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Collection<int, \CyrildeWit\EloquentViewable\View> $views
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $bairro_id
  * @property int $condicao_id
  * @property int $tipo_de_imovel_id
@@ -67,12 +67,13 @@ use Vite;
  * @property int|null $imovel_for_id
  * @property int $intermediation_rule_id
  * @property string|null $details
+ * @property Carbon|null $deleted_at
  * @property-read \App\Models\Bairro $bairro
  * @property-read Collection<int, \App\Models\Comentario> $comentarios
  * @property-read int|null $comentarios_count
  * @property-read \App\Models\Condicao $condicao
  * @property-read \App\Models\User $corretor
- * @property-read float $price
+ * @property-read mixed $price
  * @property-read \App\Models\ImovelFor|null $imovelFor
  * @property-read \App\Models\IntermediationRule|null $intermediationRule
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
@@ -87,8 +88,10 @@ use Vite;
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel query()
@@ -100,6 +103,7 @@ use Vite;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCondicaoId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCorretorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDescricao($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDetails($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereEndereco($value)
@@ -125,22 +129,10 @@ use Vite;
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAllTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imovel withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @property \Illuminate\Support\Carbon $deleted_at
- * @property-read Collection<int, \App\Models\Comentario> $comentarios
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property-read Collection<int, \App\Models\Rating> $ratings
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTrashed()
- * @property-read Collection<int, \App\Models\Comentario> $comentarios
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property-read Collection<int, \App\Models\Rating> $ratings
- * @property Collection<int, \Spatie\Tags\Tag> $tags
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable

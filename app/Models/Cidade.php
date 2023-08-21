@@ -32,10 +32,6 @@ use Spatie\Searchable\SearchResult;
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cidade whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bairro> $bairros
  * @mixin \Eloquent
  */
 class Cidade extends Model implements Searchable

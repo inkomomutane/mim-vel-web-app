@@ -11,16 +11,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Rating
+ * App\Models\Rating
  *
  * @property int $id
  * @property float|null $rating
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $ip
  * @property string|null $nome
  * @property int $imovel_id
- * @property Imovel $imovel
+ * @property-read \App\Models\Imovel $imovel
  * @method static \Database\Factories\RatingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Rating newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rating newQuery()

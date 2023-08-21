@@ -31,10 +31,6 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereUpdatedAt($value)
- * @property-read Collection<int, \App\Models\Imovel> $imovels
- * @property-read Collection<int, \App\Models\Imovel> $imovels
- * @property-read Collection<int, \App\Models\Imovel> $imovels
- * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @mixin \Eloquent
  */
 class Bairro extends Model

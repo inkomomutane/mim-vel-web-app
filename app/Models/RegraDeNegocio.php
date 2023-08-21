@@ -24,21 +24,6 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|RegraDeNegocio whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RegraDeNegocio whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RegraDeNegocio whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @mixin \Eloquent
  */
 class RegraDeNegocio extends Model

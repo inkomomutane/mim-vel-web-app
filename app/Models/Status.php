@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
 /**
- * Class Status
+ * App\Models\Status
  *
  * @property int $id
  * @property string|null $nome
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property Collection|Imovel[] $imovels
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
  * @method static \Illuminate\Database\Eloquent\Builder|Status newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Status newQuery()
