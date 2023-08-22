@@ -17,15 +17,15 @@ class About
         return view('website.about', [
             'page' => GetPage::run()->with('media')
                 ->first()?->getFirstMedia(Pages::ABOUT),
-                'seoData' => new SEOData(
-                    title: 'Sobre-nos',
-                    description:'Sobre-nos',
-                    site_name:'Sobre-nos',
-                    url: route('website.about'),
-                    canonical_url:route('website.about'),
-                    image: Vite::asset('resources/js/images/logo/logo.png'),
-                    favicon:Vite::asset('resources/js/images/logo/favicon.ico'),
-                )
+            'seoData' => new SEOData(
+                title: 'Sobre-nos',
+                description: 'Sobre-nos',
+                site_name: 'Sobre-nos',
+                url: route('website.about'),
+                canonical_url: route('website.about'),
+                image: Vite::asset('resources/js/images/logo/logo.png'),
+                favicon: Vite::asset('resources/js/images/logo/favicon.ico'),
+            ),
         ]);
     }
 }

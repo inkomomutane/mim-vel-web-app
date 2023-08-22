@@ -8,7 +8,6 @@ namespace App\Models;
 
 use App\Data\PageData;
 use App\Support\Enums\Pages;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
@@ -34,6 +33,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property array|null $contacts
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ *
  * @method static \Database\Factories\PageFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
@@ -51,6 +51,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereTiktok($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereWhatsapp($value)
+ *
  * @mixin \Eloquent
  */
 class Page extends Model implements HasMedia

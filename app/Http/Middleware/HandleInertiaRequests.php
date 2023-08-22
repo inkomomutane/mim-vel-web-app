@@ -38,7 +38,7 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user()?->load(['roles','media'])->getData(),
+                'user' => $request->user()?->load(['roles', 'media'])->getData(),
             ],
             'messages' => flash()->render([], 'array'),
             'roles' => RoleData::collection(Role::all()),

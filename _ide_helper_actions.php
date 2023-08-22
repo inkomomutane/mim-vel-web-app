@@ -150,6 +150,20 @@ class UpdateCondicao
 namespace App\Actions\Imovel;
 
 /**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Imovel $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Imovel $imovel)
+ * @method static dispatchSync(\App\Models\Imovel $imovel)
+ * @method static dispatchNow(\App\Models\Imovel $imovel)
+ * @method static dispatchAfterResponse(\App\Models\Imovel $imovel)
+ * @method static bool run(\App\Models\Imovel $imovel)
+ */
+class ApproveImovel
+{
+}
+/**
  * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
@@ -206,6 +220,20 @@ class ImovelTrashCount
 {
 }
 /**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Imovel $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Imovel $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Imovel $imovel)
+ * @method static dispatchSync(\App\Models\Imovel $imovel)
+ * @method static dispatchNow(\App\Models\Imovel $imovel)
+ * @method static dispatchAfterResponse(\App\Models\Imovel $imovel)
+ * @method static bool run(\App\Models\Imovel $imovel)
+ */
+class RefuseImovel
+{
+}
+/**
  */
 class SendMessageFromImovel
 {
@@ -238,6 +266,11 @@ class DeleteImovel
 /**
  */
 class EditImovel
+{
+}
+/**
+ */
+class ImovelApprovement
 {
 }
 /**
@@ -473,6 +506,11 @@ class MessageCount
  * @method static mixed run(\App\Models\Agenda $agenda, bool $isReaded)
  */
 class UpdateMassageReadState
+{
+}
+/**
+ */
+class DeleteMessage
 {
 }
 namespace App\Actions\Page;
@@ -783,6 +821,16 @@ namespace App\Actions;
  * @method static mixed run(\App\Models\User $user)
  */
 class UserTreeInIdArray
+{
+}
+/**
+ */
+class ApproveAllImovels
+{
+}
+/**
+ */
+class SitemapGeneratorCommand
 {
 }
 namespace App\Actions\Website;

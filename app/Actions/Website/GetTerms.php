@@ -20,13 +20,13 @@ class GetTerms
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::TERMS),
             'seoData' => new SEOData(
                 title: 'Termos & condições',
-                description:'Termos & condições',
-                site_name:'Termos & condições',
+                description: 'Termos & condições',
+                site_name: 'Termos & condições',
                 url: route('website.terms'),
-                canonical_url:route('website.terms'),
+                canonical_url: route('website.terms'),
                 image: Vite::asset('resources/js/images/logo/logo.png'),
-                favicon:Vite::asset('resources/js/images/logo/favicon.ico'),
-            )
+                favicon: Vite::asset('resources/js/images/logo/favicon.ico'),
+            ),
         ]);
     }
 }

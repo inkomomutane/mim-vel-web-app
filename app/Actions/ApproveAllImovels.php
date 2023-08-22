@@ -17,7 +17,7 @@ class ApproveAllImovels
         Imovel::withoutApproved()->update([
             'approved' => true,
             'approved_at' => now(),
-            'approved_by_id' => 1
+            'approved_by_id' => 1,
         ]);
     }
 
@@ -30,6 +30,7 @@ class ApproveAllImovels
             $command->error('Error approving properties.');
         }
     }
+
     public function getCommandDescription(): string
     {
         return 'Approve all properties using super-admin role-permission.';

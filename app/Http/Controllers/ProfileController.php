@@ -73,9 +73,11 @@ class ProfileController extends Controller
                 }
             }
             flash()->addSuccess('Logotipo adicionado com sucesso.');
+
             return \back();
         } catch (\Throwable $th) {
             flash()->addError('Erro ao adicionar o logotipo.');
+
             return \back();
         }
     }

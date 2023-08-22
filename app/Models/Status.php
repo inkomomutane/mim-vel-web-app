@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use App\Data\StatusData;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +21,7 @@ use Spatie\LaravelData\WithData;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Status newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Status newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Status query()
@@ -29,6 +29,7 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Status extends Model

@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use App\Data\ImovelData;
-use App\Models\Scopes\ApprovalScope;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,11 +29,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
-use Spatie\Sitemap\Contracts\Sitemapable;
-use Spatie\Sitemap\Tags\Url;
 use Vite;
 
 /**
@@ -92,6 +91,7 @@ use Vite;
  * @property-read int|null $tags_count
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
+ *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static Builder|Imovel newModelQuery()
@@ -143,6 +143,7 @@ use Vite;
  * @method static Builder|Imovel withoutApproved()
  * @method static Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static Builder|Imovel withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapable
@@ -219,17 +220,8 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
         'intermediation_rule_id',
         'approved',
         'approved_by_id',
-        'approved_at'
+        'approved_at',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope('withApproved', function ($query) {
-            $query->withApproved();
-        });
-    }
 
     public function getPriceAttribute()
     {
@@ -291,7 +283,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
             ->saveSlugsTo('slug');
     }
 
-    public function toSitemapTag(): Url | string | array
+    public function toSitemapTag(): Url|string|array
     {
         return Url::create(route('post.imovel.show', $this))
             ->setLastModificationDate(Carbon::create($this->updated_at))
@@ -398,7 +390,6 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
     {
         $builder->where('approved', '=', true);
     }
-
 
     /**
      * Scope a query to only include popular users.

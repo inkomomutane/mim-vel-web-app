@@ -131,6 +131,7 @@ class PageUpdate
             throw $th;
             flash()->addErro('Erro ao actualizar dados globais do site.');
         }
+
          return to_route('mimovel');
     }
 }

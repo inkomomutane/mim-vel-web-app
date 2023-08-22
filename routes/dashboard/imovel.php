@@ -6,12 +6,14 @@ use App\Actions\Imovel\DeleteImovel;
 use App\Actions\Imovel\EditImovel;
 use App\Actions\Imovel\GetDeletedImovels;
 use App\Actions\Imovel\GetImovels;
+use App\Actions\Imovel\GetNotApprovedImovels;
 use App\Actions\Imovel\RestoreDeletedImovel;
 use App\Actions\Imovel\StoreImovel;
 use App\Actions\Imovel\UpdateImovel;
 
 Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/imovel', GetImovels::class)->name('imovel.all');
+    Route::get('/imovel/not/approved', GetNotApprovedImovels::class)->name('imovel.not.approved.all');
     Route::get('/imovel/trash', GetDeletedImovels::class)->name('imovel.all.trash');
     Route::get('/imovel/create', CreateImovel::class)->name('imovel.create');
     Route::get('/imovel/edit/{imovel}', EditImovel::class)->name('imovel.edit');

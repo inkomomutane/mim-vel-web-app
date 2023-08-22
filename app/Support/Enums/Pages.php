@@ -23,5 +23,5 @@ final class Pages
 
     public final const POLICY = 'policy';
 
-    public final const LOGO  = 'logo';
+    public final const LOGO = 'logo';
 }

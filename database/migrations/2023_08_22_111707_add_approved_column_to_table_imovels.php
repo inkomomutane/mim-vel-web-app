@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::table('imovels', function (Blueprint $table) {
             $table->boolean('approved')->default(false);
             $table->foreignIdFor(User::class, 'approved_by_id')->nullable()->default(null);
-            $table->dateTime('approved_at')->nullable()->default(null);;
+            $table->dateTime('approved_at')->nullable()->default(null);
         });
     }
 

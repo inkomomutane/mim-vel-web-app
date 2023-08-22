@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         /** @var User[] $users */
-        $users  = User::with('roles')->get();
+        $users = User::with('roles')->get();
         foreach ($users as $user) {
 
             if ($user->hasAnyRole('Visitor')) {
@@ -27,10 +27,9 @@ class RolesTableSeeder extends Seeder
 
         Role::whereName('Visitor')->delete();
 
-
         DB::table('roles')->updateOrInsert(
             [
-                'id' => 1
+                'id' => 1,
             ],
             [
                 'id' => 1,
@@ -42,7 +41,7 @@ class RolesTableSeeder extends Seeder
         );
         DB::table('roles')->updateOrInsert(
             [
-                'id' => 2
+                'id' => 2,
             ],
             [
                 'id' => 2,
@@ -55,7 +54,7 @@ class RolesTableSeeder extends Seeder
 
         DB::table('roles')->updateOrInsert(
             [
-                'id' => 3
+                'id' => 3,
             ],
             [
                 'id' => 3,
@@ -68,7 +67,7 @@ class RolesTableSeeder extends Seeder
 
         DB::table('roles')->updateOrInsert(
             [
-                'id' => 4
+                'id' => 4,
             ],
             [
                 'id' => 4,
@@ -81,7 +80,7 @@ class RolesTableSeeder extends Seeder
 
         DB::table('roles')->updateOrInsert(
             [
-                'id' => 5
+                'id' => 5,
             ],
             [
                 'id' => 5,
