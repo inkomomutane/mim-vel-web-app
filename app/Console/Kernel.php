@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Actions\ApproveAllImovels;
 use App\Actions\SitemapGeneratorCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -10,7 +11,8 @@ class Kernel extends ConsoleKernel
 {
 
     protected $commands = [
-        SitemapGeneratorCommand::class
+        SitemapGeneratorCommand::class,
+        ApproveAllImovels::class,
     ];
 
     /**

@@ -7,8 +7,10 @@
 namespace App\Models;
 
 use App\Data\ImovelData;
+use App\Models\Scopes\ApprovalScope;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -68,6 +70,9 @@ use Vite;
  * @property int $intermediation_rule_id
  * @property string|null $details
  * @property Carbon|null $deleted_at
+ * @property bool $approved
+ * @property int|null $approved_by_id
+ * @property string|null $approved_at
  * @property-read \App\Models\Bairro $bairro
  * @property-read Collection<int, \App\Models\Comentario> $comentarios
  * @property-read int|null $comentarios_count
@@ -88,54 +93,59 @@ use Vite;
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel query()
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereAndares($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereAno($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereArea($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereBairroId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereBanheiros($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCondicaoId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCorretorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDescricao($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereDetails($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereEndereco($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereForRent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereGaragens($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereImovelForId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereIntermediationRuleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereMapa($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePiscinas($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePreco($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel wherePublishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereQuartos($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereRegraDeNegocioId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereStatusId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereSuites($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereTipoDeImovelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereTitulo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel whereViews($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAllTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Imovel withoutTrashed()
+ * @method static Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
+ * @method static Builder|Imovel newModelQuery()
+ * @method static Builder|Imovel newQuery()
+ * @method static Builder|Imovel onlyTrashed()
+ * @method static Builder|Imovel orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static Builder|Imovel orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+ * @method static Builder|Imovel query()
+ * @method static Builder|Imovel whereAndares($value)
+ * @method static Builder|Imovel whereAno($value)
+ * @method static Builder|Imovel whereApproved($value)
+ * @method static Builder|Imovel whereApprovedAt($value)
+ * @method static Builder|Imovel whereApprovedById($value)
+ * @method static Builder|Imovel whereArea($value)
+ * @method static Builder|Imovel whereBairroId($value)
+ * @method static Builder|Imovel whereBanheiros($value)
+ * @method static Builder|Imovel whereCondicaoId($value)
+ * @method static Builder|Imovel whereCorretorId($value)
+ * @method static Builder|Imovel whereCreatedAt($value)
+ * @method static Builder|Imovel whereDeletedAt($value)
+ * @method static Builder|Imovel whereDescricao($value)
+ * @method static Builder|Imovel whereDetails($value)
+ * @method static Builder|Imovel whereEndereco($value)
+ * @method static Builder|Imovel whereForRent($value)
+ * @method static Builder|Imovel whereGaragens($value)
+ * @method static Builder|Imovel whereId($value)
+ * @method static Builder|Imovel whereImovelForId($value)
+ * @method static Builder|Imovel whereIntermediationRuleId($value)
+ * @method static Builder|Imovel whereMapa($value)
+ * @method static Builder|Imovel wherePiscinas($value)
+ * @method static Builder|Imovel wherePreco($value)
+ * @method static Builder|Imovel wherePublishedAt($value)
+ * @method static Builder|Imovel whereQuartos($value)
+ * @method static Builder|Imovel whereRegraDeNegocioId($value)
+ * @method static Builder|Imovel whereSlug($value)
+ * @method static Builder|Imovel whereStatusId($value)
+ * @method static Builder|Imovel whereSuites($value)
+ * @method static Builder|Imovel whereTipoDeImovelId($value)
+ * @method static Builder|Imovel whereTitulo($value)
+ * @method static Builder|Imovel whereUpdatedAt($value)
+ * @method static Builder|Imovel whereViews($value)
+ * @method static Builder|Imovel withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static Builder|Imovel withAllTagsOfAnyType($tags)
+ * @method static Builder|Imovel withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static Builder|Imovel withAnyTagsOfAnyType($tags)
+ * @method static Builder|Imovel withApproved()
+ * @method static Builder|Imovel withTrashed()
+ * @method static Builder|Imovel withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+ * @method static Builder|Imovel withoutApproved()
+ * @method static Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static Builder|Imovel withoutTrashed()
  * @mixin \Eloquent
  */
-class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
+class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapable
 {
     use InteractsWithMedia;
     use HasTags;
@@ -174,6 +184,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
         'status_id' => 'int',
         'corretor_id' => 'int',
         'price' => 'float',
+        'approved' => 'bool',
     ];
 
     protected $dates = [
@@ -206,7 +217,19 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
         'regra_de_negocio_id',
         'imovel_for_id',
         'intermediation_rule_id',
+        'approved',
+        'approved_by_id',
+        'approved_at'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('withApproved', function ($query) {
+            $query->withApproved();
+        });
+    }
 
     public function getPriceAttribute()
     {
@@ -273,7 +296,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
         return Url::create(route('post.imovel.show', $this))
             ->setLastModificationDate(Carbon::create($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg') )
+            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg'))
             ->setPriority(0.1);
     }
 
@@ -366,5 +389,23 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable,Sitemapable
             ->get()
             ->where('id', '<>', $this->id)
             ->take(4);
+    }
+
+    /**
+     * Scope a query to only include popular users.
+     */
+    public function scopeWithApproved(Builder $builder): void
+    {
+        $builder->where('approved', '=', true);
+    }
+
+
+    /**
+     * Scope a query to only include popular users.
+     */
+    public function scopeWithoutApproved(Builder $builder): void
+    {
+        $builder->withoutGlobalScope('withApproved')
+            ->where('approved', '=', false);
     }
 }
