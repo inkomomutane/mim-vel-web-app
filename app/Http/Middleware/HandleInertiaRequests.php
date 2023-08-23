@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Actions\Imovel\CountNotApprovedImovels;
 use App\Actions\Imovel\ImovelTrashCount;
 use App\Actions\Message\MessageCount;
 use App\Actions\Page\GetPage;
@@ -44,6 +45,7 @@ class HandleInertiaRequests extends Middleware
             'roles' => RoleData::collection(Role::all()),
             'mails' => MessageCount::run(),
             'trash' => ImovelTrashCount::run($request->user()),
+            'notAprrovedImovels' => CountNotApprovedImovels::run($request->user()),
             'globals' => GetPage::run()->getData(),
             'site' => config('app.url'),
             'ziggy' => function () use ($request) {

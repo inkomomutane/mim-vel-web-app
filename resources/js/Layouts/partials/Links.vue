@@ -13,6 +13,12 @@ watch(
 );
 
 watch(
+    () => usePage().props.notAprrovedImovels,
+    (notAprrovedImovelsNumber) =>
+        (notAprrovedImovels.value = notAprrovedImovelsNumber)
+);
+
+watch(
     () => usePage().props.trash,
     (trashLenght) => (trash.value = trashLenght)
 );

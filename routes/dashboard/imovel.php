@@ -7,6 +7,7 @@ use App\Actions\Imovel\EditImovel;
 use App\Actions\Imovel\GetDeletedImovels;
 use App\Actions\Imovel\GetImovels;
 use App\Actions\Imovel\GetNotApprovedImovels;
+use App\Actions\Imovel\ImovelApprovement;
 use App\Actions\Imovel\RestoreDeletedImovel;
 use App\Actions\Imovel\StoreImovel;
 use App\Actions\Imovel\UpdateImovel;
@@ -22,4 +23,5 @@ Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function ()
     Route::delete('/imovel/{imovel}', DeleteImovel::class)->name('imovel.delete');
     Route::delete('/imovel/trash/{imovel}', ApproveImovelDeletion::class)->name('imovel.delete.trash');
     Route::post('/imovel/restore/trashed/{imovel}', RestoreDeletedImovel::class)->name('imovel.delete.restore');
+    Route::post('/imovel/approve-or-refuse/{imovel}',ImovelApprovement::class)->name('imovel.approvment');
 });

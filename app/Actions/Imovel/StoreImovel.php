@@ -58,12 +58,12 @@ class StoreImovel
             }
             flash()->addSuccess('Imovel criado com sucesso.');
 
-            return to_route('imovel.all');
+            return to_route('imovel.not.approved.all');
         } catch (\Throwable $e) {
             throw $e;
             flash()->addError('Erro na criação do imovel.');
 
-            return to_route('imovel.all');
+            return back();
         }
     }
 }

@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, router } from "@inertiajs/vue3";
+import { Head, Link, router, useForm } from "@inertiajs/vue3";
 import { Imovels } from "@/types/index";
 import { ref, watch, PropType } from "vue";
-import ViewImovel from "./ViewImovel.vue";
-import DeleteImovel from "./DeleteImovel.vue";
 import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 import Flasher from "@/helprs";
 import { FlasherResponse } from "@flasher/flasher";
@@ -43,12 +41,6 @@ watch(
 
 const links = ref(props.imovels.links);
 
-const editingImovelTrigger = ref(false);
-const editingImovel = ref<App.Data.ImovelData | null>(null);
-
-const deletingImovelTrigger = ref(false);
-const deletingImovel = ref<App.Data.ImovelData | null>(null);
-
 const searchTerm = ref("");
 
 watch(
@@ -71,25 +63,22 @@ watch(searchTerm, (value) => {
     );
 });
 
-function openViewImovelModal(imovel: App.Data.ImovelData) {
-    editingImovel.value = imovel;
-    editingImovelTrigger.value = true;
-}
-
-function closeViewImovelModal() {
-    editingImovel.value = null;
-    editingImovelTrigger.value = false;
-}
-
-function openDeleteImovelModal(imovel: App.Data.ImovelData) {
-    deletingImovel.value = imovel;
-    deletingImovelTrigger.value = true;
-}
-
-function closeDeleteImovelModal() {
-    deletingImovel.value = null;
-    deletingImovelTrigger.value = false;
-}
+const refuseImovel = (imovel: App.Data.ImovelData) =>
+    useForm({
+        approve: false,
+    }).post(
+        route("imovel.approvment", {
+            imovel: imovel.slug,
+        })
+    );
+const approveImovel = (imovel: App.Data.ImovelData) =>
+    useForm({
+        approve: true,
+    }).post(
+        route("imovel.approvment", {
+            imovel: imovel.slug,
+        })
+    );
 </script>
 
 <template>
@@ -182,7 +171,11 @@ function closeDeleteImovelModal() {
                                             Aprovar
                                         </div>
                                     </th>
-                                    <th scope="col" class="py-3 px-4" v-if="can">
+                                    <th
+                                        scope="col"
+                                        class="py-3 px-4"
+                                        v-if="can"
+                                    >
                                         Recusar
                                     </th>
                                 </tr>
@@ -302,7 +295,7 @@ function closeDeleteImovelModal() {
                                     <td class="py-3" v-if="can">
                                         <button
                                             type="button"
-                                            @click="openViewImovelModal(imovel)"
+                                            @click="approveImovel(imovel)"
                                             class="flex items-center justify-center text-white bg-green-600 hover:bg-green-950 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -319,12 +312,13 @@ function closeDeleteImovelModal() {
                                             </svg>
                                         </button>
                                     </td>
-                                    <td class="py-3 justify-end px-4" v-if="can">
+                                    <td
+                                        class="py-3 justify-end px-4"
+                                        v-if="can"
+                                    >
                                         <button
                                             type="button"
-                                            @click="
-                                                openDeleteImovelModal(imovel)
-                                            "
+                                            @click="refuseImovel(imovel)"
                                             class="w-fit flex items-center justify-center text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
                                             <svg
@@ -427,18 +421,6 @@ function closeDeleteImovelModal() {
                     </nav>
                 </div>
             </div>
-            <ViewImovel
-                v-if="editingImovel"
-                :imovel="editingImovel"
-                :openModal="editingImovelTrigger"
-                :close="closeViewImovelModal"
-            />
-            <DeleteImovel
-                v-if="deletingImovel"
-                :imovel="deletingImovel"
-                :openModal="deletingImovelTrigger"
-                :close="closeDeleteImovelModal"
-            />
         </template>
     </AuthenticatedLayout>
 </template>

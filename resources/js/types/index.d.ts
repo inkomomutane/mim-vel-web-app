@@ -99,6 +99,9 @@ export type PageProps<
     trash: {
         type: Number;
     };
+    notAprrovedImovels: {
+        type: Number;
+    };
     globals: App.Data.PageData;
     roles: {
         type: Array<App.Data.RoleData>;
