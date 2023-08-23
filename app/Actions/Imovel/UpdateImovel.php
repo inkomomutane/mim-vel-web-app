@@ -24,10 +24,9 @@ class UpdateImovel
             }
             flash()->addSuccess('Imovel actualizado com sucesso.');
 
-            return to_route($imovel->approved  ? 'imovel.all' : 'imovel.not.approved.all');
+            return to_route($imovel->approved ? 'imovel.all' : 'imovel.not.approved.all');
         } catch (\Throwable $e) {
             throw $e;
-
             flash()->addError('Erro na actualização do imovel.');
 
             return back();

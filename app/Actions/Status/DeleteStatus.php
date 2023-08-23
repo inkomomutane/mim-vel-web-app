@@ -3,6 +3,8 @@
 namespace App\Actions\Status;
 
 use App\Models\Status;
+use App\Support\Enums\SystemRoles;
+use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -10,6 +12,17 @@ class DeleteStatus
 {
     use AsAction;
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN
+        );
+    }
 
     public function handle(Status $status): bool
     {

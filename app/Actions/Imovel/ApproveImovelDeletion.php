@@ -5,11 +5,26 @@ namespace App\Actions\Imovel;
 use App\Models\Comentario;
 use App\Models\Imovel;
 use App\Models\Rating;
+use App\Support\Enums\SystemRoles;
+use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class ApproveImovelDeletion
 {
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN,
+            SystemRoles::SUBADMIN,
+            SystemRoles::REALSTATEAGENCY
+        );
+    }
 
     public function AsController(int $imovel)
     {

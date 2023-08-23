@@ -4,7 +4,9 @@ namespace App\Actions\IntermediationRule;
 
 use App\Data\IntermediationRuleData;
 use App\Models\IntermediationRule;
+use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
+use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -12,6 +14,17 @@ class GetIntermediationRules
 {
     use AsController;
     use AsAction;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN
+        );
+    }
 
     public function handle(string $term = null)
     {

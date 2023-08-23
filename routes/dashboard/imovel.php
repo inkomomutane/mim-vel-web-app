@@ -23,5 +23,5 @@ Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function ()
     Route::delete('/imovel/{imovel}', DeleteImovel::class)->name('imovel.delete');
     Route::delete('/imovel/trash/{imovel}', ApproveImovelDeletion::class)->name('imovel.delete.trash');
     Route::post('/imovel/restore/trashed/{imovel}', RestoreDeletedImovel::class)->name('imovel.delete.restore');
-    Route::post('/imovel/approve-or-refuse/{imovel}',ImovelApprovement::class)->name('imovel.approvment');
+    Route::post('/imovel/approve-or-refuse/{imovel}', ImovelApprovement::class)->name('imovel.approvment');
 });

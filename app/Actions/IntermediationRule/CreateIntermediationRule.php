@@ -3,12 +3,24 @@
 namespace App\Actions\IntermediationRule;
 
 use App\Models\IntermediationRule;
+use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class CreateIntermediationRule
 {
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN
+        );
+    }
 
     public function rules(): array
     {

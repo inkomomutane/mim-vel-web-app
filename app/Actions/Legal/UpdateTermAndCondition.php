@@ -4,6 +4,7 @@ namespace App\Actions\Legal;
 
 use App\Data\TermAndConditionData;
 use App\Models\Termo;
+use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -12,6 +13,17 @@ class UpdateTermAndCondition
 {
     use AsAction;
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN
+        );
+    }
 
     public function handle(TermAndConditionData $term)
     {

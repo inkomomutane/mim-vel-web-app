@@ -3,11 +3,26 @@
 namespace App\Actions\User;
 
 use App\Models\User;
+use App\Support\Enums\SystemRoles;
+use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateUser
 {
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN,
+            SystemRoles::SUBADMIN,
+            SystemRoles::REALSTATEAGENCY
+        );
+    }
 
     public function asController(User $user)
     {

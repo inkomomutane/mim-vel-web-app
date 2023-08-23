@@ -3,12 +3,25 @@
 namespace App\Actions\Imovel;
 
 use App\Models\Imovel;
+use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class ImovelApprovement
 {
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN,
+            SystemRoles::SUBADMIN,
+        );
+    }
 
     public function rules()
     {

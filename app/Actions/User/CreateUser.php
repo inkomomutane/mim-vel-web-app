@@ -3,6 +3,7 @@
 namespace App\Actions\User;
 
 use App\Models\User;
+use App\Support\Enums\SystemRoles;
 use Auth;
 use Hash;
 use Lorisleiva\Actions\ActionRequest;
@@ -14,6 +15,19 @@ class CreateUser
 {
     use AsAction;
     use AsController;
+
+    public function authorize(ActionRequest $request): bool
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasAnyRole(
+            SystemRoles::SUPERADMIN,
+            SystemRoles::ADMIN,
+            SystemRoles::SUBADMIN,
+            SystemRoles::REALSTATEAGENCY
+        );
+    }
 
     public function handle(array $userData)
     {
@@ -45,6 +59,6 @@ class CreateUser
             flash()->addError('Erro ao criar usuário.');
         }
 
-         return \redirect()->back();
+        return \redirect()->back();
     }
 }

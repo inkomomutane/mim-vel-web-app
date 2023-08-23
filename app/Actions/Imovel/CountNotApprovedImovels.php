@@ -22,7 +22,7 @@ class CountNotApprovedImovels
         /** @var Collection<Imovel> $imovels */
         $imovels = Imovel::withoutApproved()->get();
 
-        if ($user->hasAnyRole(SystemRoles::SUBADMIN,SystemRoles::ADMIN,SystemRoles::SUBADMIN)) {
+        if ($user->hasAnyRole(SystemRoles::SUBADMIN, SystemRoles::ADMIN, SystemRoles::SUBADMIN)) {
             return $imovels->count();
         }
 
