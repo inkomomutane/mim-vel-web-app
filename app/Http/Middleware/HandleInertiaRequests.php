@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Actions\Authorization\GetRolesBellowAuthenticatedUser;
 use App\Actions\Imovel\CountNotApprovedImovels;
 use App\Actions\Imovel\ImovelTrashCount;
 use App\Actions\Message\MessageCount;
@@ -42,7 +43,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user()?->load(['roles', 'media'])->getData(),
             ],
             'messages' => flash()->render([], 'array'),
-            'roles' => RoleData::collection(Role::all()),
+            'roles' => RoleData::collection(GetRolesBellowAuthenticatedUser::run()),
             'mails' => MessageCount::run(),
             'trash' => ImovelTrashCount::run($request->user()),
             'notAprrovedImovels' => CountNotApprovedImovels::run($request->user()),

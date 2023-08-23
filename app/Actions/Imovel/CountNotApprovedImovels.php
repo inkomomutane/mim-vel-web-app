@@ -12,7 +12,7 @@ class CountNotApprovedImovels
 {
     use AsAction;
 
-    public function handle(User $user)
+    public function handle(?User $user)
     {
 
         if (is_null($user)) {
