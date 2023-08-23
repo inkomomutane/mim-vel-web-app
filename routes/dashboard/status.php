@@ -8,6 +8,6 @@ use App\Actions\Status\UpdateStatus;
 Route::middleware(['roles:Admin|Super-Admin', 'auth', 'verified'])->group(function () {
     Route::get('/dashboard/statuses', GetStatuses::class)->name('status.all');
     Route::post('/dashboard/status', CreateStatus::class)->name('status.store');
-    Route::match(['put', 'patch'], '/dashboard/status/{status}', UpdateStatus::class)->middleware(['auth', 'verified'])->name('status.update');
+    Route::match(['put', 'patch'], '/dashboard/status/{status}', UpdateStatus::class)->name('status.update');
     Route::delete('/dashboard/status/{status}', DeleteStatus::class)->name('status.delete');
 });

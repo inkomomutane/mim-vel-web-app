@@ -3,6 +3,7 @@
 namespace App\Actions\City;
 
 use App\Models\Cidade;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateCity
@@ -12,7 +13,7 @@ class UpdateCity
     public function asController(Cidade $city)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:cidades,nome,'.$city->id,
+            'nome' => ['required',Rule::unique(Cidade::class,'nome')->ignore($city->id,'id')],
             'province_id' => 'required|numeric',
         ]);
 

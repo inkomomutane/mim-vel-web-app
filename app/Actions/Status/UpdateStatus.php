@@ -4,6 +4,7 @@ namespace App\Actions\Status;
 
 use App\Models\Status;
 use App\Support\Enums\SystemRoles;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -25,7 +26,7 @@ class UpdateStatus
     public function asController(Status $status)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:statuses,nome,'.$status->id,
+            'nome' => ['required',Rule::unique(Status::class,'nome')->ignore($status->id,'id')]
         ]);
 
         try {

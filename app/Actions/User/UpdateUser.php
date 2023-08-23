@@ -4,6 +4,7 @@ namespace App\Actions\User;
 
 use App\Models\User;
 use App\Support\Enums\SystemRoles;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -28,7 +29,7 @@ class UpdateUser
     {
         $validated = request()->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', Rule::unique(User::class,'email')->ignore($user->id,'id')],
             'contacto' => ['nullable', 'string'],
             'role' => ['required', 'numeric'],
         ]);

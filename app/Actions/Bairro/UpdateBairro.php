@@ -3,6 +3,7 @@
 namespace App\Actions\Bairro;
 
 use App\Models\Bairro;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateBairro
@@ -12,7 +13,7 @@ class UpdateBairro
     public function asController(Bairro $bairro)
     {
         $validated = request()->validate([
-            'nome' => 'required|unique:bairros,nome,'.$bairro->id,
+            'nome' => ['require', Rule::unique(Bairro::class,'nome')->ignore($bairro->id,'id')],
             'cidade_id' => 'required|numeric',
         ]);
 

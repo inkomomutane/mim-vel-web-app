@@ -4,6 +4,7 @@ namespace App\Actions\TranstionType;
 
 use App\Models\ImovelFor;
 use App\Support\Enums\SystemRoles;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -25,8 +26,8 @@ class UpdateTransactionType
     public function asController(ImovelFor $transactionType)
     {
         $validated = request()->validate([
-            'name' => 'required|unique:imovel_fors,name,'.$transactionType->id,
-            'slug_text' => 'required|unique:imovel_fors,slug_text,'.$transactionType->id,
+            'name' => ['required',Rule::unique(ImovelFor::class,'name')->ignore($transactionType->id,'id')],
+            'slug_text' => ['required',Rule::unique(ImovelFor::class,'slug_text')->ignore($transactionType->id,'id')],
         ]);
 
         try {

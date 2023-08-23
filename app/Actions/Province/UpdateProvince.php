@@ -3,6 +3,7 @@
 namespace App\Actions\Province;
 
 use App\Models\Province;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateProvince
@@ -12,7 +13,7 @@ class UpdateProvince
     public function asController(Province $province)
     {
         $validated = request()->validate([
-            'name' => 'required|unique:provinces,name,'.$province->id,
+            'name' => ['required',Rule::unique(Province::class,'name')->ignore($province->id,'id')],
         ]);
 
         try {
