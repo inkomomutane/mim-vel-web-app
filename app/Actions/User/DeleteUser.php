@@ -6,7 +6,6 @@ use App\Models\User;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
-
 class DeleteUser
 {
     use AsAction;
@@ -29,6 +28,7 @@ class DeleteUser
 
     public function asController(User $user, ActionRequest $request)
     {
+
         try {
 
             if ($this->handle($user, $request->validated('status'))) {

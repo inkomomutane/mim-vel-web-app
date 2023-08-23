@@ -5,9 +5,9 @@ use App\Actions\Condicao\DeleteCondicao;
 use App\Actions\Condicao\GetCondicaos;
 use App\Actions\Condicao\UpdateCondicao;
 
-Route::middleware(['roles:Admin|Super-Admin'])->group(function () {
-    Route::get('/dashboard/condicaos', GetCondicaos::class)->middleware(['auth', 'verified'])->name('condicao.all');
-    Route::post('/dashboard/condicao', CreateCondicao::class)->middleware(['auth', 'verified'])->name('condicao.store');
-    Route::match(['put', 'patch'], '/dashboard/condicao/{condicao}', UpdateCondicao::class)->middleware(['auth', 'verified'])->name('condicao.update');
-    Route::delete('/dashboard/condicao/{condicao}', DeleteCondicao::class)->middleware(['auth', 'verified'])->name('condicao.delete');
+Route::middleware(['roles:Admin|Super-Admin','auth','verified'])->group(function () {
+    Route::get('/dashboard/condicaos', GetCondicaos::class)->name('condicao.all');
+    Route::post('/dashboard/condicao', CreateCondicao::class)->name('condicao.store');
+    Route::match(['put', 'patch'], '/dashboard/condicao/{condicao}', UpdateCondicao::class)->name('condicao.update');
+    Route::delete('/dashboard/condicao/{condicao}', DeleteCondicao::class)->name('condicao.delete');
 });
