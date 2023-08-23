@@ -31,13 +31,18 @@ class CreateUser
 
     public function handle(array $userData)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $userData['name'],
             'email' => $userData['email'],
             'contacto' => $userData['contacto'],
             'password' => Hash::make('12345678'),
             'created_by_id' => Auth::user()->id,
-        ])->assignRole(Role::findById($userData['role']));
+        ]);
+        /** @var User $user  */
+        $user = User::whereId($user->id)->first();
+        $user->assignRole(Role::findById($userData['role']));
+        $user->parent()->associate($user->createdBy)->save();
+        return $user;
     }
 
     public function rules()

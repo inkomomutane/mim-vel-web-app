@@ -27,7 +27,6 @@ class ImovelTrashCount
             return $imovels->count();
         }
 
-        return $imovels->whereIn('corretor_id', UserTreeInIdArray::run($user
-            ->load('createdUsers')))->count();
+        return $imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->count();
     }
 }

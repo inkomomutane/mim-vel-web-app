@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
+use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * App\Models\User
@@ -28,10 +29,15 @@ use Spatie\Permission\Traits\HasRoles;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $created_by_id
  * @property int $active
+ * @property int $_lft
+ * @property int $_rgt
+ * @property int|null $parent_id
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Agenda> $agendas
  * @property-read int|null $agendas_count
+ * @property-read \Kalnoy\Nestedset\Collection<int, User> $children
+ * @property-read int|null $children_count
  * @property-read User|null $createdBy
- * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $createdUsers
+ * @property-read \Kalnoy\Nestedset\Collection<int, User> $createdUsers
  * @property-read int|null $created_users_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
@@ -39,6 +45,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $media_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read User|null $parent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Message> $receivedMessages
@@ -49,32 +56,75 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $sent_messages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- *
+ * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsAndSelf($id, array $columns = [])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsOf($id, array $columns = [])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User applyNestedSetScope(?string $table = null)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User countErrors()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User d()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User defaultOrder(string $dir = 'asc')
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User descendantsAndSelf($id, array $columns = [])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User descendantsOf($id, array $columns = [], $andSelf = false)
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereContacto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedById($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- *
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User fixSubtree($root)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User fixTree($root = null)
+ * @method static \Kalnoy\Nestedset\Collection<int, static> get($columns = ['*'])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User getNodeData($id, $required = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User getPlainNodeData($id, $required = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User getTotalErrors()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User hasChildren()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User hasParent()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User isBroken()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User leaves(array $columns = [])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User makeGap(int $cut, int $height)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User moveNode($key, $position)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User newModelQuery()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User newQuery()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User orWhereAncestorOf(bool $id, bool $andSelf = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User orWhereDescendantOf($id)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User orWhereNodeBetween($values)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User orWhereNotDescendantOf($id)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User permission($permissions)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User query()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User rebuildSubtree($root, array $data, $delete = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User rebuildTree(array $data, $delete = false, $root = null)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User reversed()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User role($roles, $guard = null)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User root(array $columns = [])
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereActive($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereAncestorOf($id, $andSelf = false, $boolean = 'and')
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereAncestorOrSelf($id)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereContacto($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereCreatedAt($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereCreatedById($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereDescendantOf($id, $boolean = 'and', $not = false, $andSelf = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereDescendantOrSelf(string $id, string $boolean = 'and', string $not = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereEmail($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereEmailVerifiedAt($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereId($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereIsAfter($id, $boolean = 'and')
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereIsBefore($id, $boolean = 'and')
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereIsLeaf()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereIsRoot()
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereLft($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereLocation($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereName($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereNodeBetween($values, $boolean = 'and', $not = false)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereNotDescendantOf($id)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereParentId($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User wherePassword($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereRememberToken($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereRgt($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User whereUpdatedAt($value)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User withDepth(string $as = 'depth')
+ * @method static \Kalnoy\Nestedset\QueryBuilder|User withoutRoot()
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles,InteractsWithMedia;
     use WithData;
+    use NodeTrait;
 
     /**
      * The attributes that are mass assignable.

@@ -13,6 +13,6 @@ class UserTreeInIdArray
 
     public function handle(User $user)
     {
-        return Arr::flatten(UserChildrenData::fromModel($user)->toArray());
+        return  User::whereDescendantOf(id: $user->id, andSelf: true)->get()->pluck('id')->toArray();
     }
 }

@@ -40,8 +40,7 @@ class GetNotApprovedImovels
             /** @var Collection<Imovel> $imovels */
             $imovels = $this->getImovels(term: $term, approved: false);
 
-            return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user
-                ->load('createdUsers')))->paginate(5)->withQueryString());
+            return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
         }
     }
 

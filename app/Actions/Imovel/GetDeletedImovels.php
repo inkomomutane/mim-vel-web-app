@@ -27,8 +27,7 @@ class GetDeletedImovels
             /** @var Collection<Imovel> $imovels */
             $imovels = $this->getTrashedImovels($term);
 
-            return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user
-                ->load('createdUsers')))->paginate(5)->withQueryString());
+            return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
         }
     }
 
