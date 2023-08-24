@@ -49,8 +49,7 @@ class GetUsers
             return UserData::collection(
                 User::query()
                     ->when($term, function ($query, $search) {
-                        $query->where('name', 'like', '%'.$search.'%')
-                            ->orWhere('email', 'like', '%'.$search.'%');
+                        $query->where('name', 'like', '%'.$search.'%');
                         $query->with('roles');
                     })
                     ->whereDoesntHave('roles', function (Builder $query) {
@@ -63,8 +62,7 @@ class GetUsers
         return UserData::collection(
             User::query()
                 ->when($term, function ($query, $search) {
-                    $query->where('name', 'like', '%'.$search.'%')
-                        ->orWhere('email', 'like', '%'.$search.'%');
+                    $query->where('name', 'like', '%'.$search.'%');
                     $query->with('roles');
                 })->with('roles')
                 ->whereIn('id', UserTreeInIdArray::run(Auth::user()->load('createdUsers')))
