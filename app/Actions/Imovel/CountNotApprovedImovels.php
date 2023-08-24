@@ -20,7 +20,11 @@ class CountNotApprovedImovels
         }
 
         /** @var Collection<Imovel> $imovels */
-        $imovels = Imovel::withoutApproved()->get();
+        $imovels = Imovel::withoutApproved();
+
+        if ($user->hasAnyRole(SystemRoles::SUPERADMIN, SystemRoles::ADMIN)) {
+            return $imovels->count();
+        }
 
         return $imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->count();
     }

@@ -6,6 +6,7 @@ use App\Actions\UserTreeInIdArray;
 use App\Data\ImovelData;
 use App\Models\Imovel;
 use App\Models\User;
+use App\Support\Enums\SystemRoles;
 use App\Support\Traits\GetImovelsWithSearchScope;
 use Auth;
 use Illuminate\Support\Collection;
@@ -21,11 +22,12 @@ class GetImovels
 
     public function handle(?string $term, User $user)
     {
-        if ($user->hasAnyRole('Super-Admin', 'Admin')) {
+        if ($user->hasAnyRole(SystemRoles::SUPERADMIN,SystemRoles::ADMIN)) {
             return ImovelData::collection(
                 $this->getImovels($term)->paginate(5)->withQueryString()
             );
         } else {
+            
             /** @var Collection<Imovel> $imovels */
             $imovels = $this->getImovels($term);
 

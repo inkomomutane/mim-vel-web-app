@@ -7,10 +7,12 @@ use App\Data\UserData;
 use App\Models\User;
 use App\Support\Enums\SystemRoles;
 use Auth;
+use Illuminate\Database\Eloquent\Builder;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
+use Spatie\Permission\Models\Role;
 
 class GetUsers
 {
@@ -33,28 +35,42 @@ class GetUsers
     public function handle(string $term = null)
     {
 
-        if(Auth::user()->hasRole(SystemRoles::SUPERADMIN)){
+        if (Auth::user()->hasRole(SystemRoles::SUPERADMIN)) {
             return UserData::collection(
                 User::query()
                     ->when($term, function ($query, $search) {
-                        $query->where('name', 'like', '%'.$search.'%')
-                            ->orWhere('email', 'like', '%'.$search.'%');
+                        $query->where('name', 'like', '%' . $search . '%')
+                            ->orWhere('email', 'like', '%' . $search . '%');
                         $query->with('roles');
-                    })->with('roles')->
-                orderBy('created_at', 'desc')->paginate(5)->withQueryString()
+                    })->with('roles')->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
+            );
+        }
+
+        if (Auth::user()->hasRole(SystemRoles::ADMIN)) {
+            return UserData::collection(
+                User::query()
+                    ->when($term, function ($query, $search) {
+                        $query->where('name', 'like', '%' . $search . '%')
+                            ->orWhere('email', 'like', '%' . $search . '%');
+                        $query->with('roles');
+                    })
+                    ->whereDoesntHave('roles', function (Builder $query) {
+                        $query->whereIn('name', [SystemRoles::SUPERADMIN, SystemRoles::ADMIN]);
+                    })
+                    ->with('roles')->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
             );
         }
 
         return  UserData::collection(
             User::query()
                 ->when($term, function ($query, $search) {
-                    $query->where('name', 'like', '%'.$search.'%')
-                        ->orWhere('email', 'like', '%'.$search.'%');
+                    $query->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('email', 'like', '%' . $search . '%');
                     $query->with('roles');
-                })->with('roles')->
-                whereIn('id',UserTreeInIdArray::run(Auth::user()->load('createdUsers')))
-                ->
-            orderBy('created_at', 'desc')->paginate(5)->withQueryString()
+                })->with('roles')
+                ->whereIn('id', UserTreeInIdArray::run(Auth::user()->load('createdUsers')))
+                ->whereNot('id', Auth::user()->id)
+                ->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
         );
     }
 

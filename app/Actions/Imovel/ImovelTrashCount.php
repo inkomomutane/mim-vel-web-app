@@ -22,7 +22,7 @@ class ImovelTrashCount
         }
 
         /** @var Collection<Imovel> $imovels */
-        $imovels = Imovel::onlyTrashed()->get();
+        $imovels = Imovel::onlyTrashed();
         if ($user->hasAnyRole('Super-Admin', 'Admin')) {
             return $imovels->count();
         }
