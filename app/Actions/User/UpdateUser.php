@@ -29,7 +29,7 @@ class UpdateUser
     {
         $validated = request()->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', Rule::unique(User::class,'email')->ignore($user->id,'id')],
+            'email' => ['required', 'string', 'email', Rule::unique(User::class, 'email')->ignore($user->id, 'id')],
             'contacto' => ['nullable', 'string'],
             'role' => ['required', 'numeric'],
         ]);

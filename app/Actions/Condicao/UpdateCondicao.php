@@ -26,7 +26,7 @@ class UpdateCondicao
     public function asController(Condicao $condicao)
     {
         $validated = request()->validate([
-            'nome' => ['required',Rule::unique(Condicao::class,'nome')->ignore($condicao->id,'id')],
+            'nome' => ['required', Rule::unique(Condicao::class, 'nome')->ignore($condicao->id, 'id')],
         ]);
 
         try {

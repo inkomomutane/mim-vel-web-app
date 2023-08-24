@@ -23,7 +23,6 @@ class UpdateBairro
             $bairro->cidade_id = $validated['cidade_id'];
             $bairro->save();
 
-
             flash()->addSuccess('Bairro actualizado com sucesso.');
         } catch (\Throwable $th) {
             throw $th;

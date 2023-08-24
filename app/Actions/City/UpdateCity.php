@@ -13,7 +13,7 @@ class UpdateCity
     public function asController(Cidade $city)
     {
         $validated = request()->validate([
-            'nome' => ['required',Rule::unique(Cidade::class,'nome')->ignore($city->id,'id')],
+            'nome' => ['required', Rule::unique(Cidade::class, 'nome')->ignore($city->id, 'id')],
             'province_id' => 'required|numeric',
         ]);
 

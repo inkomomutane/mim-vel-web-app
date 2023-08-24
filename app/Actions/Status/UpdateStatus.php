@@ -26,7 +26,7 @@ class UpdateStatus
     public function asController(Status $status)
     {
         $validated = request()->validate([
-            'nome' => ['required',Rule::unique(Status::class,'nome')->ignore($status->id,'id')]
+            'nome' => ['required', Rule::unique(Status::class, 'nome')->ignore($status->id, 'id')],
         ]);
 
         try {

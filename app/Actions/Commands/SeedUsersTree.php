@@ -12,14 +12,13 @@ class SeedUsersTree
 
     public string $commandSignature = 'users-tree:generate';
 
-
     public function handle()
     {
         foreach (User::all() as $user) {
-            /** @var User $user  */
-            if(is_null($user->created_by_id)){
+            /** @var User $user */
+            if (is_null($user->created_by_id)) {
                 $user->saveAsRoot();
-            }else{
+            } else {
                 $user->parent()->associate($user->createdBy)->save();
             }
         }

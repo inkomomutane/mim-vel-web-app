@@ -13,7 +13,7 @@ class UpdateProvince
     public function asController(Province $province)
     {
         $validated = request()->validate([
-            'name' => ['required',Rule::unique(Province::class,'name')->ignore($province->id,'id')],
+            'name' => ['required', Rule::unique(Province::class, 'name')->ignore($province->id, 'id')],
         ]);
 
         try {

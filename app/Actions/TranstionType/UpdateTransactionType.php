@@ -26,8 +26,8 @@ class UpdateTransactionType
     public function asController(ImovelFor $transactionType)
     {
         $validated = request()->validate([
-            'name' => ['required',Rule::unique(ImovelFor::class,'name')->ignore($transactionType->id,'id')],
-            'slug_text' => ['required',Rule::unique(ImovelFor::class,'slug_text')->ignore($transactionType->id,'id')],
+            'name' => ['required', Rule::unique(ImovelFor::class, 'name')->ignore($transactionType->id, 'id')],
+            'slug_text' => ['required', Rule::unique(ImovelFor::class, 'slug_text')->ignore($transactionType->id, 'id')],
         ]);
 
         try {

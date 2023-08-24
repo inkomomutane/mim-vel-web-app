@@ -12,7 +12,6 @@ use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
-use Spatie\Permission\Models\Role;
 
 class GetUsers
 {
@@ -39,8 +38,8 @@ class GetUsers
             return UserData::collection(
                 User::query()
                     ->when($term, function ($query, $search) {
-                        $query->where('name', 'like', '%' . $search . '%')
-                            ->orWhere('email', 'like', '%' . $search . '%');
+                        $query->where('name', 'like', '%'.$search.'%')
+                            ->orWhere('email', 'like', '%'.$search.'%');
                         $query->with('roles');
                     })->with('roles')->orderBy('created_at', 'desc')->paginate(5)->withQueryString()
             );
@@ -50,8 +49,8 @@ class GetUsers
             return UserData::collection(
                 User::query()
                     ->when($term, function ($query, $search) {
-                        $query->where('name', 'like', '%' . $search . '%')
-                            ->orWhere('email', 'like', '%' . $search . '%');
+                        $query->where('name', 'like', '%'.$search.'%')
+                            ->orWhere('email', 'like', '%'.$search.'%');
                         $query->with('roles');
                     })
                     ->whereDoesntHave('roles', function (Builder $query) {
@@ -61,11 +60,11 @@ class GetUsers
             );
         }
 
-        return  UserData::collection(
+        return UserData::collection(
             User::query()
                 ->when($term, function ($query, $search) {
-                    $query->where('name', 'like', '%' . $search . '%')
-                        ->orWhere('email', 'like', '%' . $search . '%');
+                    $query->where('name', 'like', '%'.$search.'%')
+                        ->orWhere('email', 'like', '%'.$search.'%');
                     $query->with('roles');
                 })->with('roles')
                 ->whereIn('id', UserTreeInIdArray::run(Auth::user()->load('createdUsers')))

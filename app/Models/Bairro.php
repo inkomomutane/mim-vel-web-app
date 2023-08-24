@@ -23,6 +23,7 @@ use Spatie\LaravelData\WithData;
  * @property-read \App\Models\Cidade $cidade
  * @property-read Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro query()
@@ -31,6 +32,7 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bairro whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Bairro extends Model

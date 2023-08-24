@@ -10,7 +10,6 @@ use App\Actions\Page\GetPage;
 use App\Data\RoleData;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Spatie\Permission\Models\Role;
 use Tightenco\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware

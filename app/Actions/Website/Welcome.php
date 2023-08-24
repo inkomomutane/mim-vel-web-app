@@ -22,7 +22,7 @@ class Welcome
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME),
             'thumb' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME)?->responsiveImages()?->getPlaceholderSvg(),
             'relevantImovels' => $this->getRelevantImovels(),
-            'lastestImovels' => Imovel::withApproved()->with(['bairro.cidade','media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(3),
+            'lastestImovels' => Imovel::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(3),
             'banners' => Banner::with('media')->first(),
             'logo' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::LOGO),
             'seoData' => new SEOData(
@@ -39,6 +39,6 @@ class Welcome
 
     private function getRelevantImovels()
     {
-        return Imovel::withApproved()->with(['bairro.cidade','media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->orderByUniqueViews()->get()->take(6);
+        return Imovel::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->orderByUniqueViews()->get()->take(6);
     }
 }

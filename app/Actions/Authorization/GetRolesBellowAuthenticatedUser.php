@@ -11,7 +11,6 @@ class GetRolesBellowAuthenticatedUser
 {
     use AsAction;
 
-
     public function handle()
     {
         $user = Auth::user();

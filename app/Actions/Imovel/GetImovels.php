@@ -22,12 +22,12 @@ class GetImovels
 
     public function handle(?string $term, User $user)
     {
-        if ($user->hasAnyRole(SystemRoles::SUPERADMIN,SystemRoles::ADMIN)) {
+        if ($user->hasAnyRole(SystemRoles::SUPERADMIN, SystemRoles::ADMIN)) {
             return ImovelData::collection(
                 $this->getImovels($term)->paginate(5)->withQueryString()
             );
         } else {
-            
+
             /** @var Collection<Imovel> $imovels */
             $imovels = $this->getImovels($term);
 

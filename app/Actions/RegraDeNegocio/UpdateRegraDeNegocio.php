@@ -26,7 +26,7 @@ class UpdateRegraDeNegocio
     public function asController(RegraDeNegocio $regraDeNegocio)
     {
         $validated = request()->validate([
-            'name' => ['required',Rule::unique(RegraDeNegocio::class,'name')->ignore($regraDeNegocio->id,'id')],
+            'name' => ['required', Rule::unique(RegraDeNegocio::class, 'name')->ignore($regraDeNegocio->id, 'id')],
         ]);
 
         try {

@@ -13,7 +13,7 @@ class FilteredImovel
     public function handle(EloquentFilters $filters)
     {
         return Imovel::filter($filters)
-        ->withApproved()
+            ->withApproved()
             ->with(
                 [
                     'corretor',

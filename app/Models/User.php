@@ -6,13 +6,13 @@ use App\Data\UserData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Kalnoy\Nestedset\NodeTrait;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * App\Models\User
@@ -56,6 +56,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property-read int|null $sent_messages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsAndSelf($id, array $columns = [])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsOf($id, array $columns = [])
@@ -118,6 +119,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @method static \Kalnoy\Nestedset\QueryBuilder|User whereUpdatedAt($value)
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withDepth(string $as = 'depth')
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withoutRoot()
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements HasMedia
