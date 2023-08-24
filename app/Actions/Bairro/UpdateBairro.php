@@ -13,14 +13,17 @@ class UpdateBairro
     public function asController(Bairro $bairro)
     {
         $validated = request()->validate([
-            'nome' => ['require', Rule::unique(Bairro::class,'nome')->ignore($bairro->id,'id')],
+            'nome' => ['required', Rule::unique(Bairro::class, 'nome')->ignore($bairro->id, 'id')],
             'cidade_id' => 'required|numeric',
         ]);
 
         try {
+
             $bairro->nome = $validated['nome'];
             $bairro->cidade_id = $validated['cidade_id'];
             $bairro->save();
+
+
             flash()->addSuccess('Bairro actualizado com sucesso.');
         } catch (\Throwable $th) {
             throw $th;

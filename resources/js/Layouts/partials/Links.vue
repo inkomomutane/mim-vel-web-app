@@ -17,6 +17,7 @@ import CitiesLink from "./Links/CitiesLink.vue";
 import NeighborhoodsLink from "./Links/NeighborhoodsLink.vue";
 import LegalPoliciesLink from "./Links/LegalPoliciesLink.vue";
 import LegaltermsLink from "./Links/LegaltermsLink.vue";
+import MessagesLink from "./Links/MessagesLink.vue";
 </script>
 <template>
     <div class="space-y-8">
@@ -37,7 +38,7 @@ import LegaltermsLink from "./Links/LegaltermsLink.vue";
                 <ImovelsLink />
                 <NotAprrovedImovelsLink />
                 <ImovelsTrashLink />
-                <MessagesLinkVue />
+                <MessagesLink />
                 <PaginasLink />
                 <BannersLink />
                 <UsersLink />

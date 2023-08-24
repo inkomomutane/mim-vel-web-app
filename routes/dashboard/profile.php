@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ProfileController;
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
     Route::get('/dashboard', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/dashboard', [ProfileController::class, 'update'])->name('profile.update');
