@@ -26,7 +26,9 @@ class GetNotApprovedImovels
         return $user->hasAnyRole(
             SystemRoles::SUPERADMIN,
             SystemRoles::ADMIN,
-            SystemRoles::SUBADMIN
+            SystemRoles::SUBADMIN,
+            SystemRoles::REALSTATEAGENCY,
+            SystemRoles::REALSTATEAGENT
         );
     }
 

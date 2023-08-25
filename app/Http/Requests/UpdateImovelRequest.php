@@ -25,8 +25,9 @@ class UpdateImovelRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'titulo' => ['required', 'string', Rule::unique(Imovel::class, 'titulo')->ignore($this->id, 'id')],
+            'titulo' => ['required', 'string', Rule::unique(Imovel::class, 'titulo')->ignore($this->imovel->id, 'id')],
             'descricao' => 'string|nullable',
             'details' => 'string|nullable',
             'slug' => 'string|nullable',

@@ -10,14 +10,7 @@ watch(
         (notAprrovedImovels.value = notAprrovedImovelsNumber)
 );
 
-const authorized = () => {
-    const $userRole = usePage().props.auth.user?.role.name;
-    return (
-        $userRole == "Super-Admin" ||
-        $userRole == "Admin" ||
-        $userRole == "Sub-Admin"
-    );
-};
+const authorized = () => true;
 </script>
 <template>
     <Link
