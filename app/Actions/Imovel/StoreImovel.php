@@ -56,7 +56,7 @@ class StoreImovel
                     $imovel->addMedia($image)->toMediaCollection('posts', 'posts');
                 }
             }
-            flash()->addSuccess('Imovel criado com sucesso.');
+            flash()->addSuccess('Imovel criado com sucesso - aguarde pela aprovação.');
 
             return to_route('imovel.not.approved.all');
         } catch (\Throwable $e) {
