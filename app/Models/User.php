@@ -124,7 +124,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles,InteractsWithMedia;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
     use WithData;
     use NodeTrait;
 
@@ -141,6 +141,11 @@ class User extends Authenticatable implements HasMedia
         'location',
         'active',
         'created_by_id',
+    ];
+
+
+    protected $appends = [
+        'avatar'
     ];
 
     protected $dataClass = UserData::class;
@@ -194,6 +199,11 @@ class User extends Authenticatable implements HasMedia
         $this->addMediaCollection('avatars')->withResponsiveImages()->singleFile();
     }
 
+    public function getAvatarAttribute()
+    {
+        return $this->getFirstMedia('avatars');
+    }
+
     public static function last()
     {
         return static::all()->last();
@@ -203,6 +213,8 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(User::class, 'created_by_id');
     }
+
+
 
     public function createdUsers()
     {
