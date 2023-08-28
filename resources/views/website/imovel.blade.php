@@ -364,14 +364,18 @@
                         Mensangem
                     </button>
                 </div>
-                @if( $imovel->corretor->avatar)
-
-                <div>
-                    {{ $imovel->corretor->avatar?->img()->attributes(['class' => 'object-cover w-auto h-16']) }}
-               </div>
-                @endif
-
             </div>
+            @if( $imovel->corretor->avatar)
+
+            <div class="bg-white p-4 mt-2 lg:mt-0 px-4 lg:p-8  lg:py-2 w-full grid">
+                <h2 class=" font-semibold text-orange-500 my-2 ">
+                    Detalhes do corretor
+                </h2>
+                {{ $imovel->corretor->avatar?->img()->attributes(['class' => 'object-cover w-full h-auto']) }}
+           </div>
+            @endif
+
+
         </div>
     </section>
 
