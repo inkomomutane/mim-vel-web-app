@@ -7,6 +7,7 @@
 import axios from "axios";
 import Aos from "aos";
 import "aos/dist/aos.css";
+
 window.Aos = Aos;
 
 window.addEventListener("load", function () {

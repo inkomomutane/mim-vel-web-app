@@ -41,6 +41,7 @@
         "format": "^0.2.2",
         "fslightbox": "^3.4.1",
         "maska": "^2.1.9",
+        "nice-select2": "^2.1.0",
         "pinia": "^2.0.34",
         "prettier": "^2.8.7",
         "primevue": "^3.27.0",

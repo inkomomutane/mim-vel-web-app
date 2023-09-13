@@ -34,6 +34,7 @@ class Welcome
                 image: Vite::asset('resources/js/images/logo/logo.png'),
                 favicon: Vite::asset('resources/js/images/logo/favicon.ico'),
             ),
+            'imovels_count' => Imovel::count()
         ]);
     }
 

@@ -16,6 +16,8 @@ export default defineConfig({
                 'resources/js/website/vue/posts/app.ts',
                 'resources/js/website/gallery.js',
                 'resources/css/website.css',
+                'resources/css/nice-select.css',
+                'resources/js/nice-selectjs.js',
         ],
             refresh: true,
         }),

@@ -16,5 +16,5 @@
         },
         "typeRoots": ["./node_modules/@types", "./resources/js/types","./resources/js/website"]
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue", "resources/js/website/welcomeBanner.ts", "resources/js/errors.js"]
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue", "resources/js/website/welcomeBanner.ts", "resources/js/errors.js", "resources/js/nice-selectjs.js"]
 }

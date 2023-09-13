@@ -374,8 +374,6 @@
                 {{ $imovel->corretor->avatar?->img()->attributes(['class' => 'object-cover w-full h-auto']) }}
            </div>
             @endif
-
-
         </div>
     </section>
 

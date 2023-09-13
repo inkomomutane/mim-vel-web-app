@@ -12,6 +12,7 @@
         @routes
         @vite(['resources/js/website/app.ts', "resources/css/website.css"])
         @vite('resources/js/website/header.ts')
+        @vite(['resources/js/nice-selectjs.js','resources/css/nice-select.css'])
         @include('website.layouts.pixels')
         <script>
             window.addEventListener('load', () => {

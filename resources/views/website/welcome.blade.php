@@ -1,7 +1,7 @@
 @extends('website.layouts.layout')
 
 @section('seo')
-  {!! seo($seoData)!!}
+    {!! seo($seoData) !!}
 @endsection
 @section('header')
     <x-website-header />
@@ -9,23 +9,23 @@
 @section('hero')
     <section class="relative ">
         @if (!is_null($page?->img()))
-        {{ $page->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
+            {{ $page->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
         @else
-        <img src="{{Vite::asset('resources/js/images/placeholder.svg')}}"
-        alt="Politicas de privacidade"  class="absolute object-cover inset-0 w-full h-full">
-      @endif
+            <img src="{{ Vite::asset('resources/js/images/placeholder.svg') }}" alt="Politicas de privacidade"
+                class="absolute object-cover inset-0 w-full h-full">
+        @endif
         <div class="relative bg-slate-950 bg-opacity-40 h-full pt-20">
             <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-36">
                 <div class="flex flex-col items-center justify-between xl:flex-row">
                     <div class="px-2 text-center w-full md:px-16">
                         <h1
                             class="text-2xl font-extrabold tracking-tight leading-none   text-white md:text-3xl dark:text-white">
-                                @if($logo)
-                                {{ $logo->img()->attributes(['class' => 'mx-auto mt-10 sm:m-auto h-28 w-fit','alt' => 'Mimóvel']) }}
-                                @else
+                            @if ($logo)
+                                {{ $logo->img()->attributes(['class' => 'mx-auto mt-10 sm:m-auto h-28 w-fit', 'alt' => 'Mimóvel']) }}
+                            @else
                                 <img src="{{ Vite::asset('resources/js/images/logo/logo.png') }}"
-                                class="mx-auto mt-10 sm:m-auto w-60 h-40" alt="Mimóvel" />
-                                @endif
+                                    class="mx-auto mt-10 sm:m-auto w-60 h-40" alt="Mimóvel" />
+                            @endif
                         </h1>
                         {{-- <div id="welcome-search">
 
@@ -33,6 +33,30 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section class="bg-gray-200 grid justify-center items-center">
+        <div class="p-8 -translate-y-16 bg-white md:first:rounded md:shadow-2xl w-screen md:w-fit mx-1 md:mx-4">
+            <form action="{{route('imoveis')}}" method="get">
+                @csrf
+            <div class="grid md:grid-cols-5 gap-4 ">
+                    <div class="md:col-span-4">
+                        <label for="name"
+                            class="block mb-2 text-xs font-semibold text-gray-500 dark:text-white uppercase">Pesquisar </label>
+                        <input id="title" name="tilte" type="text"
+                            placeholder="Tente pesquisar por zona, cidade ou tipo do imóvel"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-gray-500 focus:border-gray-500 block w-full h-[38px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+                            autocomplete="title" />
+                    </div>
+                    <div class="">
+                        <label for="name"
+                            class="hidden md:block md:invisible  mb-2 text-xs font-semibold text-gray-500 dark:text-white uppercase">Pesquisar
+                            imóvel</label>
+                        <button type="submit"
+                            class="bg-primary-500  text-white font-medium text-sm rounded-sm focus:ring-gray-500 focus:border-gray-500 block w-full h-[38px]">Procurar</button>
+                    </div>
+            </div>
+        </form>
         </div>
     </section>
 @endsection
@@ -50,53 +74,56 @@
 
         <div class="splide" id="relevant-imovels" data-splide='{"type":"loop","autoplay":true}'>
             <!-- Additional required wrapper -->
-            <div class="splide__track" >
+            <div class="splide__track">
                 <!-- Slides -->
                 <ul class="splide__list">
-                @foreach ($relevantImovels as $imovel)
-                    <li class="splide__slide p-5 group mr-0 grid justify-center items-center" itemprop="itemListElement"  itemscope itemtype="http://schema.org/ListItem">
-                        <a href="{{ route('post.imovel.show', [
-                            'imovel' => $imovel->slug,
-                        ]) }}"
-                            itemprop="url">
-                            <article
-                                class="w-full sm:w-fit bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
-                                <header class="bg-gray-500">
-                                    @if ($imovel->getFirstMedia('posts'))
-                                        {{ $imovel->getFirstMedia('posts')
-                                            ?->img()->attributes([
-                                                'class' => 'col-span-1 sm:col-span-3 w-full h-32 sm:h-40 md:h-64 object-cover rounded-t',
-                                                'alt' => $imovel->titulo ?? '',
-                                            ])->lazy() }}
-                                    @else
-                                        <img class="col-span-1 sm:col-span-3 w-full h-32 sm:h-40 md:h-64 object-cover rounded-t"
-                                            src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
-                                            alt="{{ $imovel->titulo ?? '' }}">
-                                    @endif
-                                </header>
-                                <div class="w-full px-4 pb-0 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
-                                    <div class="flex justify-between">
-                                        <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
-                                            {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
-                                        </h1>
+                    @foreach ($relevantImovels as $imovel)
+                        <li class="splide__slide p-5 group mr-0 grid justify-center items-center" itemprop="itemListElement"
+                            itemscope itemtype="http://schema.org/ListItem">
+                            <a href="{{ route('post.imovel.show', [
+                                'imovel' => $imovel->slug,
+                            ]) }}"
+                                itemprop="url">
+                                <article
+                                    class="w-full sm:w-fit bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
+                                    <header class="bg-gray-500">
+                                        @if ($imovel->getFirstMedia('posts'))
+                                            {{ $imovel->getFirstMedia('posts')
+                                                ?->img()->attributes([
+                                                    'class' => 'col-span-1 sm:col-span-3 w-full h-32 sm:h-40 md:h-64 object-cover rounded-t',
+                                                    'alt' => $imovel->titulo ?? '',
+                                                ])->lazy() }}
+                                        @else
+                                            <img class="col-span-1 sm:col-span-3 w-full h-32 sm:h-40 md:h-64 object-cover rounded-t"
+                                                src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
+                                                alt="{{ $imovel->titulo ?? '' }}">
+                                        @endif
+                                    </header>
+                                    <div
+                                        class="w-full px-4 pb-0 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
+                                        <div class="flex justify-between">
+                                            <h1
+                                                class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
+                                                {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
+                                            </h1>
+                                        </div>
+                                        <div class="my-0 flex text-gray-500">
+                                            &nbsp; <strong>{{ $imovel->price }}</strong>
+                                        </div>
                                     </div>
-                                    <div class="my-0 flex text-gray-500">
-                                        &nbsp; <strong>{{ $imovel->price }}</strong>
-                                    </div>
-                                </div>
-                            </article>
-                        </a>
-                    </li>
-                @endforeach
+                                </article>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
-        <div class="flex mx-5" >
+        <div class="flex mx-5">
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300
                 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none
                  dark:focus:ring-slate-800 rounded text-center first-letter:uppercase">
-                Ver todos imóveis
+                Ver todos imóveis ( {{ $imovels_count}} )
             </a>
         </div>
     </section>
@@ -107,22 +134,24 @@
         </h1>
         <div class="splide default" data-splide='{"type":"loop","autoplay":true}'>
             <!-- Additional required wrapper -->
-            <div class="splide__track" >
+            <div class="splide__track">
                 <!-- Slides -->
                 <ul class="splide__list">
-                @foreach ($banners->getMedia('banners') as $banner)
-                    <li class="splide__slide">
-                        <!-- Hero -->
-                        <div class="" style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
-                            <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
-                                <div class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
-                                    {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy()}}
+                    @foreach ($banners->getMedia('banners') as $banner)
+                        <li class="splide__slide">
+                            <!-- Hero -->
+                            <div class=""
+                                style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
+                                <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
+                                    <div
+                                        class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
+                                        {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Hero -->
-                    </li>
-                @endforeach
+                            <!-- End Hero -->
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -142,7 +171,7 @@
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
 
             @foreach ($lastestImovels as $imovel)
-                <li class="p-5 group mr-0" itemprop="itemListElement"   itemscope itemtype="http://schema.org/ListItem">
+                <li class="p-5 group mr-0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                     <a href="{{ route('post.imovel.show', [
                         'imovel' => $imovel->slug,
                     ]) }}"
@@ -205,42 +234,43 @@
                 </li>
             @endforeach
         </ul>
-        <div class="flex mx-5" >
+        <div class="flex mx-5">
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 rounded text-center">
-                Ver todos imóveis
+                Ver todos imóveis ( {{ $imovels_count}} )
             </a>
         </div>
     </section>
     <!-- End::Latest-Imovels -->
 
     <!-- Start::Type-of-Imovels -->
-    <section  class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
+    <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope
         itemtype="http://schema.org/ItemList">
-        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2 first-letter:uppercase" itemprop="name" >
+        <h2 class="font-semibold text-2xl text-slate-700 mx-6 mb-2 first-letter:uppercase" itemprop="name">
             Veja por categorias
         </h2>
-        <div class="flex p-5" >
+        <div class="flex p-5">
             <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full justify-between">
 
                 @foreach ($imovelTypes as $type)
                     <li itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
-                    <a href="{{ route('imoveis',['imovel_types' => [$type->id] ])}}">
-                        <article class="text-center bg-white w-fit mx-auto p-4 rounded-2xl">
-                            @if ($type->getFirstMedia('icons'))
-                                {{ $type->getFirstMedia('icons')
-                                    ?->img()->attributes(['class' => 'object-cover h-24 w-24 rounded-2xl', 'alt' => $type->nome ?? ''])->lazy() }}
-                            @else
-                                <img class="object-cover h-24 w-24 rounded-2xl"
-                                    src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
-                                    alt="{{ $type->nome ?? '' }}">
-                            @endif
-                        </article>
-                        <p class="text-center my-4 text-xl font-medium text-gray-700 first-letter:uppercase" itemprop="name">
-                            <span itemprop="identifier">{{ $type->nome ?? '' }}</span>
-                        </p>
+                        <a href="{{ route('imoveis', ['imovel_types' => [$type->id]]) }}">
+                            <article class="text-center bg-white w-fit mx-auto p-4 rounded-2xl">
+                                @if ($type->getFirstMedia('icons'))
+                                    {{ $type->getFirstMedia('icons')
+                                        ?->img()->attributes(['class' => 'object-cover h-24 w-24 rounded-2xl', 'alt' => $type->nome ?? ''])->lazy() }}
+                                @else
+                                    <img class="object-cover h-24 w-24 rounded-2xl"
+                                        src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
+                                        alt="{{ $type->nome ?? '' }}">
+                                @endif
+                            </article>
+                            <p class="text-center my-4 text-xl font-medium text-gray-700 first-letter:uppercase"
+                                itemprop="name">
+                                <span itemprop="identifier">{{ $type->nome ?? '' }}</span>
+                            </p>
 
-                </a>
+                        </a>
                     </li>
                 @endforeach
 
