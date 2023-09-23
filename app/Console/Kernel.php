@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Actions\ApproveAllImovels;
+use App\Actions\Commands\BackupEmptyGoogleTrash;
 use App\Actions\Commands\SeedUsersTree;
 use App\Actions\SitemapGeneratorCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -14,6 +15,7 @@ class Kernel extends ConsoleKernel
         SitemapGeneratorCommand::class,
         ApproveAllImovels::class,
         SeedUsersTree::class,
+        BackupEmptyGoogleTrash::class,
     ];
 
     /**
@@ -29,7 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
         require base_path('routes/console.php');
     }
 }
