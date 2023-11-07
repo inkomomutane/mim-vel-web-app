@@ -9,6 +9,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
@@ -80,5 +81,11 @@ class AppServiceProvider extends ServiceProvider
         } catch (\Exception $e) {
             throw $e;
         }
+
+        Str::macro('currencyFormat', function ($amount, $currencySymbol = 'MZN ', $decimals = 2) {
+            $formattedAmount = number_format($amount, $decimals);
+            $formattedAmount = $currencySymbol . $formattedAmount;
+            return $formattedAmount;
+        });
     }
 }

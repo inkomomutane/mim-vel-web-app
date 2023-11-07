@@ -34,6 +34,7 @@ use Spatie\Sitemap\Tags\Url;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+
 use Vite;
 
 /**
@@ -225,7 +226,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
 
     public function getPriceAttribute()
     {
-        return (new NumberFormatter('MZ', NumberFormatter::CURRENCY))->formatCurrency($this->preco, 'MZN');
+        return Str::currencyFormat($this->preco, 'MZN ', 2);
     }
 
     public function bairro()
