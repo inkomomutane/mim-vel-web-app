@@ -24,6 +24,22 @@ declare namespace App.Data {
         id: number | null;
         nome: string | null;
     };
+    export type HotelData = {
+        id: number | null;
+        price: string | null;
+        hotelMetaData: any | App.Data.HotelMetaDataDtoData | null;
+        media: App.Data.MediaData | null;
+    };
+    export type HotelMetaDataDtoData = {
+        id: number | null;
+        title: string | null;
+        address: string | null;
+        description: string | null;
+        imovelTypeData: any | App.Data.ImovelTypeData | null;
+        condicaoData: any | App.Data.CondicaoData | null;
+        statusData: any | App.Data.StatusData | null;
+        bairroData: any | App.Data.BairroData | null;
+    };
     export type ImovelData = {
         id: any | number | null;
         titulo: any | string | null;

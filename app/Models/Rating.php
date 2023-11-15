@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $nome
  * @property int $imovel_id
  * @property-read \App\Models\Imovel $imovel
- *
  * @method static \Database\Factories\RatingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Rating newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rating newQuery()
@@ -32,7 +31,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Rating whereNome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rating whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rating whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Rating extends Model

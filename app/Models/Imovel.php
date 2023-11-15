@@ -92,7 +92,6 @@ use Vite;
  * @property-read int|null $tags_count
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
- *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static Builder|Imovel newModelQuery()
@@ -144,7 +143,6 @@ use Vite;
  * @method static Builder|Imovel withoutApproved()
  * @method static Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static Builder|Imovel withoutTrashed()
- *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapable

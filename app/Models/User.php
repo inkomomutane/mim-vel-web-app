@@ -39,6 +39,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read User|null $createdBy
  * @property-read \Kalnoy\Nestedset\Collection<int, User> $createdUsers
  * @property-read int|null $created_users_count
+ * @property-read mixed $avatar
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Imovel> $imovels
  * @property-read int|null $imovels_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
@@ -56,7 +57,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $sent_messages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- *
  * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsAndSelf($id, array $columns = [])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsOf($id, array $columns = [])
@@ -119,7 +119,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Kalnoy\Nestedset\QueryBuilder|User whereUpdatedAt($value)
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withDepth(string $as = 'depth')
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withoutRoot()
- *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements HasMedia
