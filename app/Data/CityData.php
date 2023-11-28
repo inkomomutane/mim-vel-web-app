@@ -24,7 +24,11 @@ class CityData extends Data
         return new self(
             id: $cidade->id,
             nome: $cidade->nome,
-            province: Lazy::whenLoaded('province', $cidade, fn () => $cidade->province->getData()),
+            province: Lazy::whenLoaded(
+                'province',
+                $cidade,
+                fn () => $cidade->province->getData()
+            ),
             bairros: Lazy::whenLoaded('bairros', $cidade, fn () => BairroData::collection($cidade->bairros))
         );
     }

@@ -20,7 +20,7 @@ class HotelData extends Data
     }
 
 
-    public function fromModel(Hotel $hotel): self
+    public static function fromModel(Hotel $hotel): self
     {
 
         return new self(

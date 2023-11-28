@@ -14,7 +14,7 @@ class HotelMetaDataDtoData extends Data
         public readonly ?string $title,
         public readonly ?string $address,
         public readonly ?string $description,
-        public readonly Lazy|ImovelTypeData|null $imovelTypeData,
+        public readonly Lazy|ImovelTypeData $imovelTypeData,
         public readonly Lazy|CondicaoData|null $condicaoData,
         public readonly Lazy|StatusData|null $statusData,
         public readonly Lazy|BairroData|null $bairroData,
@@ -23,7 +23,7 @@ class HotelMetaDataDtoData extends Data
     }
 
 
-    public function fromModel(HotelMetaData $hotelMetaData): self
+    public static function fromModel(HotelMetaData $hotelMetaData): self
     {
         return new self(
             id: $hotelMetaData->id,

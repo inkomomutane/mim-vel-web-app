@@ -39,6 +39,7 @@ class HotelMetaData extends Model
     ];
 
     protected $dataClass = HotelMetaDataDtoData::class;
+    protected $table = 'hotel_meta_datas';
 
 
     public function tipoDeImovel(): BelongsTo
