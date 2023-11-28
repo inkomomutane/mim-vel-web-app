@@ -15,12 +15,20 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var menuItems = document.querySelectorAll('.menu-traslate-header ul li a');
-
         menuItems.forEach(function(item) {
             item.addEventListener('click', function(event) {
-                window.location = this.getAttribute('href');
-                location.reload();
+                event.preventDefault();
+                var href = this.getAttribute('href');
+                window.location.href = href;
+                window.location.reload();
             });
         });
     });
+
+    function mobilePageTranslator(event) {
+        var href = event.getAttribute('href');
+        window.location.href = href;
+        console.log(window.location);
+        window.location.reload();
+    }
 </script>

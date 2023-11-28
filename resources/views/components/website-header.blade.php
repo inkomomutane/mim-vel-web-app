@@ -26,16 +26,16 @@
                 />
             </a>
 
-            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/en" >
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/en" onclick="mobilePageTranslator(this)" >
                 <img src="{{Vite::asset('resources/js/images/en.png')}}" alt="English translation"  class="w-5 h-5">
             </a></li>
-            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/fr" >
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/fr" onclick="mobilePageTranslator(this)" >
                 <img src="{{Vite::asset('resources/js/images/fr.png')}}" alt="Francaise translation"  class="w-4 h-4">
             </a></li>
-            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/zh-CN" >
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/zh-CN" onclick="mobilePageTranslator(this)" >
                 <img src="{{Vite::asset('resources/js/images/zh.png')}}" alt="Chineses translation"  class="w-6 h-5">
             </a></li>
-            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/ur" >
+            <li class="flex lg:hidden justify-center items-center" ><a href="#googtrans/ur"  onclick="mobilePageTranslator(this)">
                 <img src="{{Vite::asset('resources/js/images/ur.png')}}" alt="Urdu translation"  class="w-8 h-5">
             </a></li>
             <section class="flex items-center lg:order-2">

@@ -4,17 +4,25 @@ let tipoDeImovelOptions = {
     searchable: true,
     placeholder: "Tipo de imóvel",
     searchtext: "Pesquisar...",
-    selectedtext: 'selected'
+    selectedtext: "selected",
 };
-NiceSelect.bind(
-    document.getElementById("tipo-de-imovel-select"),
-    tipoDeImovelOptions
-);
+
+if (document.getElementById("tipo-de-imovel-select")) {
+    NiceSelect.bind(
+        document.getElementById("tipo-de-imovel-select"),
+        tipoDeImovelOptions
+    );
+}
 
 let bairrosOptions = {
     searchable: true,
     placeholder: "Bairros",
     searchtext: "Pesquisar...",
-    selectedtext: 'selected'
+    selectedtext: "selected",
 };
-NiceSelect.bind(document.getElementById("bairros-select"), bairrosOptions);
+if (document.getElementById("bairros-select")) {
+    NiceSelect.bind(document.getElementById("bairros-select"), bairrosOptions);
+}
+
+
+
