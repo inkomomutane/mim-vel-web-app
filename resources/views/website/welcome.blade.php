@@ -136,21 +136,24 @@
             <div class="splide__track">
                 <!-- Slides -->
                 <ul class="splide__list">
-                    @foreach ($banners->getMedia('banners') as $banner)
-                        <li class="splide__slide">
-                            <!-- Hero -->
-                            <div class=""
-                                style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
-                                <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
-                                    <div
-                                        class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
-                                        {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
+                    @if($banners)
+                        @foreach ($banners->getMedia('banners') as $banner)
+                            <li class="splide__slide">
+                                <!-- Hero -->
+                                <div class=""
+                                     style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
+                                    <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
+                                        <div
+                                            class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
+                                            {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Hero -->
-                        </li>
-                    @endforeach
+                                <!-- End Hero -->
+                            </li>
+                        @endforeach
+                    @endif
+
                 </ul>
             </div>
         </div>

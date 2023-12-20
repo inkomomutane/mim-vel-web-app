@@ -14,21 +14,28 @@
 </script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        var menuItems = document.querySelectorAll('.menu-traslate-header ul li a');
+        const menuItems = document.querySelectorAll('.menu-traslate-header ul li a');
         menuItems.forEach(function(item) {
             item.addEventListener('click', function(event) {
                 event.preventDefault();
-                var href = this.getAttribute('href');
+                const href = this.getAttribute('href');
                 window.location.href = href;
-                window.location.reload();
+                if(href.includes('#')) {
+                    window.location.reload();
+                }else {
+                    console.log(href);
+                }
             });
         });
     });
 
     function mobilePageTranslator(event) {
-        var href = event.getAttribute('href');
+        const href = event.getAttribute('href');
         window.location.href = href;
-        console.log(window.location);
-        window.location.reload();
+        if(href.includes('#')) {
+            window.location.reload();
+        }else {
+            console.log(href);
+        }
     }
 </script>
