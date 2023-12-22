@@ -1,10 +1,11 @@
 <?php
 
 use App\Actions\Hotel\CreateHotel;
+use App\Actions\Hotel\GetHotels;
 use App\Actions\Hotel\StoreHotel;
 
 Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function () {
-    // Route::get('/imovel', GetImovels::class)->name('imovel.all');
+    Route::get('/hotel', GetHotels::class)->name('hotel.all');
     // Route::get('/imovel/not/approved', GetNotApprovedImovels::class)->name('imovel.not.approved.all');
     // Route::get('/imovel/trash', GetDeletedImovels::class)->name('imovel.all.trash');
     Route::get('/hotel/create', CreateHotel::class)->name('hotel.create');

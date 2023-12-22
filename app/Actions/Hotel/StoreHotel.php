@@ -27,8 +27,8 @@ class StoreHotel
     {
 
         try {
-            $imovel = HotelMetaData::create($actionRequest->validated());
 
+            HotelMetaData::create($actionRequest->validated());
             flash()->addSuccess('Quarto criado com sucesso.');
 
             return to_route('hotel.create');

@@ -44,7 +44,10 @@ class Hotel extends Model implements HasMedia
 
     protected $dataClass = HotelData::class;
 
-    protected $fillable = ['price', 'hotel_meta_data_id'];
+    protected $fillable = [
+        'price',
+        'hotel_meta_data_id'
+    ];
 
 
     public function hotelMetaData(): BelongsTo
