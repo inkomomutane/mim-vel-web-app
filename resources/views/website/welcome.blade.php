@@ -137,6 +137,7 @@
             <div class="splide__track">
                 <!-- Slides -->
                 <ul class="splide__list">
+                    @if($banners)
                     @foreach ($banners->getMedia('banners') as $banner)
                         <li class="splide__slide">
                             <!-- Hero -->
@@ -152,6 +153,7 @@
                             <!-- End Hero -->
                         </li>
                     @endforeach
+                        @endif
                 </ul>
             </div>
         </div>

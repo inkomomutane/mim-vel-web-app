@@ -3,7 +3,9 @@
 namespace App\Actions\Hotel;
 
 use App\Data\HotelData;
+use App\Data\HotelMetaDataDtoData;
 use App\Models\Hotel;
+use App\Models\HotelMetaData;
 use App\Models\User;
 use App\Support\Enums\SystemRoles;
 use App\Support\Traits\GetHotelWithSearchScope;
@@ -21,7 +23,7 @@ class GetHotels
     public function handle(?string $term, User $user)
     {
         if ($user->hasAnyRole(SystemRoles::SUPERADMIN, SystemRoles::ADMIN)) {
-            return HotelData::collection(
+            return HotelMetaDataDtoData::collection(
                 $this->getHotels($term)->paginate(5)->withQueryString()
             );
         } else {

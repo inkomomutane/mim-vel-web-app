@@ -84,6 +84,10 @@ export interface ImovelImages extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.MediaData>;
 }
 
+export interface Hotels extends Omit<PaginatedData, "data"> {
+    data : Array<App.Data.HotelMetaDataDtoData>;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
