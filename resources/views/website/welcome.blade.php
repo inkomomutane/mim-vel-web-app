@@ -38,12 +38,11 @@
     <section class="bg-gray-200 grid justify-center items-center">
         <div class="p-8 -translate-y-16 bg-white md:first:rounded md:shadow-2xl w-screen md:w-fit mx-1 md:mx-4">
             <form action="{{route('imoveis')}}" method="get">
-                @csrf
             <div class="grid md:grid-cols-5 gap-4 ">
                     <div class="md:col-span-4">
                         <label for="name"
                             class="block mb-2 text-xs font-semibold text-gray-500 dark:text-white uppercase">Pesquisar </label>
-                        <input id="title" name="tilte" type="text"
+                        <input id="title" name="title" type="text"
                             placeholder="Tente pesquisar por zona, cidade ou tipo do imóvel"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-gray-500 focus:border-gray-500 block w-full h-[38px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
                             autocomplete="title" />
@@ -138,22 +137,23 @@
                 <!-- Slides -->
                 <ul class="splide__list">
                     @if($banners)
-                    @foreach ($banners->getMedia('banners') as $banner)
-                        <li class="splide__slide">
-                            <!-- Hero -->
-                            <div class=""
-                                style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
-                                <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
-                                    <div
-                                        class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
-                                        {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
+                        @foreach ($banners->getMedia('banners') as $banner)
+                            <li class="splide__slide">
+                                <!-- Hero -->
+                                <div class=""
+                                     style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}');background-repeat: no-repeat;  background-size: cover; ">
+                                    <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent">
+                                        <div
+                                            class="max-w-[85rem] mx-auto px-4 h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8 pt-1 grid justify-items-center">
+                                            {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Hero -->
-                        </li>
-                    @endforeach
-                        @endif
+                                <!-- End Hero -->
+                            </li>
+                        @endforeach
+                    @endif
+
                 </ul>
             </div>
         </div>

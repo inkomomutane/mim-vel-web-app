@@ -91,6 +91,6 @@ class RolesTableSeeder extends Seeder
             ]
         );
 
-        User::whereId(1)->first()->roles()->sync([1]);
+        User::whereId(1)?->first()?->roles()->sync([1]);
     }
 }

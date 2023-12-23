@@ -16,6 +16,11 @@ class ImovelTitleFilter extends AbstractEloquentFilter
 
     public function apply(Builder $query): Builder
     {
-        return $query->where('titulo', 'like', "%{$this->title}%");
+        return $query->where('titulo', 'like', "%{$this->title}%")
+            ->orWhere('descricao','like', "%{$this->title}%")
+            ->orWhere('endereco','like', "%{$this->title}%")
+            ->orWhereRelation('bairro', 'nome', 'like', "%{$this->title}%")
+            ->orWhereRelation('bairro.cidade', 'nome', 'like', "%{$this->title}%")
+            ->orWhereRelation('bairro.cidade.province', 'name', 'like',"%{$this->title}%");
     }
 }
