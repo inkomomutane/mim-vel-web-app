@@ -4,7 +4,7 @@ window.addEventListener("load", function () {
     const thumb = this.document.getElementById("thumbnail-slide");
     const relevantImovels = this.document.getElementById("relevant-imovels");
 
-    if(relevantImovels !=null){
+    if (relevantImovels != null) {
         const relevantImovelsSlide = new Splide("#relevant-imovels", {
             arrows: false,
         });

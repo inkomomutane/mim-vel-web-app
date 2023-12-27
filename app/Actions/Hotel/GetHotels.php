@@ -24,7 +24,9 @@ class GetHotels
     {
         if ($user->hasAnyRole(SystemRoles::SUPERADMIN, SystemRoles::ADMIN)) {
             return HotelMetaDataDtoData::collection(
-                $this->getHotels($term)->paginate(5)->withQueryString()
+                $this->getHotels($term)
+
+                    ->paginate(5)->withQueryString()
             );
         } else {
             return abort(401);

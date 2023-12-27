@@ -35,20 +35,43 @@ const linkCss = `block  tracking-wide text-base font-medium py-2 pr-4 pl-3 hover
                         alt="Mimóvel"
                     />
                 </a>
-                <li class="flex lg:hidden  w-fit justify-center items-center" ><a href="#googtrans/en" >
-                            <img src="@/images/en.png" alt="English translation"  class="w-5 h-5">
-                        </a></li>
-                        <li class="flex lg:hidden  w-fit justify-center items-center" ><a href="#googtrans/fr" >
-                            <img src="@/images/fr.png" alt="Francaise translation"  class="w-4 h-4">
-                        </a></li>
-                        <li class="flex lg:hidden  w-fit justify-center items-center" ><a href="#googtrans/zh-CN" >
-                            <img src="@/images/zh.png" alt="Chineses translation"  class="w-5 h-5">
-                        </a></li>
-                        <li class="flex lg:hidden  w-fit justify-center items-center" ><a href="#googtrans/ur" >
-                            <img src="@/images/ur.png" alt="Urdu translation"  class="w-5 h-5">
-                        </a></li>
+                <li class="flex lg:hidden w-fit justify-center items-center">
+                    <a href="#googtrans/en">
+                        <img
+                            src="@/images/en.png"
+                            alt="English translation"
+                            class="w-5 h-5"
+                        />
+                    </a>
+                </li>
+                <li class="flex lg:hidden w-fit justify-center items-center">
+                    <a href="#googtrans/fr">
+                        <img
+                            src="@/images/fr.png"
+                            alt="Francaise translation"
+                            class="w-4 h-4"
+                        />
+                    </a>
+                </li>
+                <li class="flex lg:hidden w-fit justify-center items-center">
+                    <a href="#googtrans/zh-CN">
+                        <img
+                            src="@/images/zh.png"
+                            alt="Chineses translation"
+                            class="w-5 h-5"
+                        />
+                    </a>
+                </li>
+                <li class="flex lg:hidden w-fit justify-center items-center">
+                    <a href="#googtrans/ur">
+                        <img
+                            src="@/images/ur.png"
+                            alt="Urdu translation"
+                            class="w-5 h-5"
+                        />
+                    </a>
+                </li>
                 <section class="flex items-center lg:order-2">
-
                     <button
                         data-collapse-toggle="mobile-menu-2"
                         @click="changeMenuStatus"
@@ -83,24 +106,57 @@ const linkCss = `block  tracking-wide text-base font-medium py-2 pr-4 pl-3 hover
                         </svg>
                     </button>
                 </section>
-                <section class="hidden lg:flex menu-traslate-header" id="mobile-menu-2">
+                <section
+                    class="hidden lg:flex menu-traslate-header"
+                    id="mobile-menu-2"
+                >
                     <ul
                         class="flex flex-col mt-4 lg:flex-row lg:space-x-8 lg:mt-0"
                     >
-
-                    <li class="hidden lg:flex  w-fit justify-center items-center" ><a href="#googtrans/en" >
-                            <img src="@/images/en.png" alt="English translation"  class="w-5 h-5">
-                        </a></li>
-                        <li class="hidden lg:flex  w-fit justify-center items-center" ><a href="#googtrans/fr" >
-                            <img src="@/images/fr.png" alt="Francaise translation"  class="w-4 h-4">
-                        </a></li>
-                        <li class="hidden lg:flex w-fit justify-center items-center" ><a href="#googtrans/zh-CN" >
-                            <img src="@/images/zh.png" alt="Chineses translation"  class="w-7 h-5">
-                        </a></li>
-                        <li class="hidden lg:flex  w-fit justify-center items-center" ><a href="#googtrans/ur" >
-                            <img src="@/images/ur.png" alt="Urdu translation"  class="w-7 h-5">
-                        </a></li>
-
+                        <li
+                            class="hidden lg:flex w-fit justify-center items-center"
+                        >
+                            <a href="#googtrans/en">
+                                <img
+                                    src="@/images/en.png"
+                                    alt="English translation"
+                                    class="w-5 h-5"
+                                />
+                            </a>
+                        </li>
+                        <li
+                            class="hidden lg:flex w-fit justify-center items-center"
+                        >
+                            <a href="#googtrans/fr">
+                                <img
+                                    src="@/images/fr.png"
+                                    alt="Francaise translation"
+                                    class="w-4 h-4"
+                                />
+                            </a>
+                        </li>
+                        <li
+                            class="hidden lg:flex w-fit justify-center items-center"
+                        >
+                            <a href="#googtrans/zh-CN">
+                                <img
+                                    src="@/images/zh.png"
+                                    alt="Chineses translation"
+                                    class="w-7 h-5"
+                                />
+                            </a>
+                        </li>
+                        <li
+                            class="hidden lg:flex w-fit justify-center items-center"
+                        >
+                            <a href="#googtrans/ur">
+                                <img
+                                    src="@/images/ur.png"
+                                    alt="Urdu translation"
+                                    class="w-7 h-5"
+                                />
+                            </a>
+                        </li>
 
                         <li>
                             <a
@@ -183,7 +239,6 @@ const linkCss = `block  tracking-wide text-base font-medium py-2 pr-4 pl-3 hover
                                 >Politicas de privacidade</a
                             >
                         </li>
-
                     </ul>
                 </section>
             </div>

@@ -228,7 +228,9 @@ function closeDeleteImovelModal() {
                             >
                                 <tr>
                                     <th scope="col" class="px-2 py-3">
-                                        <div class="flex justify-center items-center text-center">
+                                        <div
+                                            class="flex justify-center items-center text-center"
+                                        >
                                             <span>#</span>
                                         </div>
                                     </th>
@@ -269,11 +271,11 @@ function closeDeleteImovelModal() {
                                     v-for="imovel in imovels.data"
                                     :key="(imovel.id as number)"
                                 >
-                                <th
+                                    <th
                                         scope="row"
-                                        class=" flex justify-center px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                        class="flex justify-center px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                    {{  imovel.id }}
+                                        {{ imovel.id }}
                                     </th>
                                     <th
                                         scope="row"

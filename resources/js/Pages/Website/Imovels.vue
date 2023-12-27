@@ -36,7 +36,7 @@ const filterImovels = () =>
 </script>
 
 <template>
-    <Head title="Todos imoveis"/>
+    <Head title="Todos imoveis" />
     <GuestLayout :show-footer="true">
         <section
             class="border-t sticky top-0 z-30 bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
@@ -444,9 +444,7 @@ const filterImovels = () =>
             itemscope
             itemtype="http://schema.org/ItemList"
         >
-            <ul
-                class="grid grid-cols-1 sm:grid-cols-2  justify-between"
-            >
+            <ul class="grid grid-cols-1 sm:grid-cols-2 justify-between">
                 <li
                     class="p-5 group"
                     v-for="(imovel, index) in imovels?.data"
@@ -487,40 +485,54 @@ const filterImovels = () =>
                                 class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3"
                             >
                                 <div class="grid justify-between">
-                                    <div class="w-full inline-flex items-baseline h-fit">
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.tipo_de_imovel.name }}
+                                    <div
+                                        class="w-full inline-flex items-baseline h-fit"
+                                    >
+                                        <div
+                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
+                                        >
+                                            {{ imovel.tipo_de_imovel.name }}
                                         </div>
 
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.condicao?.nome }}
+                                        <div
+                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
+                                        >
+                                            {{ imovel.condicao?.nome }}
                                         </div>
 
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.bairro?.nome }}
+                                        <div
+                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
+                                        >
+                                            {{ imovel.bairro?.nome }}
                                         </div>
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.bairro?.city?.nome }}
+                                        <div
+                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
+                                        >
+                                            {{ imovel.bairro?.city?.nome }}
                                         </div>
 
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.bairro?.city?.province?.name }}
+                                        <div
+                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
+                                        >
+                                            {{
+                                                imovel.bairro?.city?.province
+                                                    ?.name
+                                            }}
                                         </div>
                                     </div>
 
                                     <div class="w-full">
                                         <h1
-                                        class="w-full  text-lg font-semibold line-clamp-1 normal-case py-1"
-                                    >
-                                        {{
-                                            (imovel.imovel_for?.slug_text ??
-                                                "") +
-                                                " " +
-                                                imovel.titulo ?? ""
-                                        }}
-                                    </h1>
+                                            class="w-full text-lg font-semibold line-clamp-1 normal-case py-1"
+                                        >
+                                            {{
+                                                (imovel.imovel_for?.slug_text ??
+                                                    "") +
+                                                    " " +
+                                                    imovel.titulo ?? ""
+                                            }}
+                                        </h1>
                                     </div>
-
                                 </div>
                                 <div
                                     class="my-2 flex text-gray-500 line-clamp-1"
@@ -529,7 +541,7 @@ const filterImovels = () =>
                                 </div>
 
                                 <button
-                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
+                                    class="text-center rounded-sm text-orange-400 py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
                                 >
                                     Ver mais
                                 </button>

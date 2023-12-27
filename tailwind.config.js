@@ -1,5 +1,6 @@
 const plugin = require("tailwindcss/plugin");
 const colors = require('tailwindcss/colors')
+const animate = require("tailwindcss-animate");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: "class",
@@ -120,7 +121,28 @@ module.exports = {
             colors:{
                 primary: {"50":"#fff7ed","100":"#ffedd5","200":"#fed7aa","300":"#fdba74","400":"#fb923c","500":"#f97316","600":"#ea580c","700":"#c2410c","800":"#9a3412","900":"#7c2d12"},
 
-            }
+            },
+            keyframes: {
+                "accordion-down": {
+                    from: { height: 0 },
+                    to: { height: "var(--radix-accordion-content-height)" },
+                },
+                "accordion-up": {
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: 0 },
+                },
+            },
+            animation: {
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
+            },
+        },
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
         },
     },
     plugins: [
@@ -129,7 +151,7 @@ module.exports = {
         require('@tailwindcss/typography'),
         require("flowbite/plugin"),
         require('tailwind-scrollbar'),
-        // require('@tailwindcss/line-clamp'),
+        animate,
         // add custom variant for expanding sidebar
         plugin(({ addVariant, e }) => {
             addVariant("sidebar-expanded", ({ modifySelectors, separator }) => {

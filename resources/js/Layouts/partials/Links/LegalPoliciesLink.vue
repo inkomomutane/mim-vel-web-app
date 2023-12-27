@@ -4,14 +4,12 @@ import { Link, usePage } from "@inertiajs/vue3";
 
 const authorized = () => {
     const $userRole = usePage().props.auth.user?.role.name;
-    return (
-        $userRole == "Super-Admin" ||
-        $userRole == "Admin"
-    );
+    return $userRole == "Super-Admin" || $userRole == "Admin";
 };
 </script>
 <template>
-    <Link v-if="authorized()"
+    <Link
+        v-if="authorized()"
         :href="route('legal.policy')"
         v-tooltip.value="tooltip('Políticas de privacidade')"
     >

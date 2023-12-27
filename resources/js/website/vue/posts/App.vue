@@ -143,7 +143,7 @@
                             </div>
 
                             <button
-                                class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
+                                class="text-center rounded-sm text-orange-400 py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
                             >
                                 Ver mais
                             </button>

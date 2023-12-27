@@ -4,18 +4,29 @@ namespace App\Support\Traits;
 
 use App\Models\Hotel;
 use App\Models\HotelMetaData;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\HigherOrderWhenProxy;
 
 trait GetHotelWithSearchScope
 {
     /**
-     * @return Collection<Hotel>
+     * @return array|HotelMetaData[]|Builder[]|Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection|HigherOrderWhenProxy[]
      *
      **/
-    private function getHotels(string $term = null, bool $approved = true)
+    private function getHotels(string $term = null): array|Collection|\Illuminate\Support\Collection
     {
 
-        $query = HotelMetaData::query()->with([
+        $query = HotelMetaData::query()
+            ->
+            when($term,function (Builder $query,$term){
+                $query->where('title','like' ,"%${term}%")
+                ->orWhere('address','like',"%${term}%")
+                ->orWhere('description','like',"%${term}%")
+                    ->orWhereRelation('bairro','nome',
+                        'like',"%${term}%");
+            })->with([
             'tipoDeImovel',
             'condicao',
             'status',

@@ -7,7 +7,10 @@
             @click.prevent="dropdownOpen = !dropdownOpen"
             :aria-expanded="dropdownOpen"
         >
-           <ResponsiveImage :responsive="$page.props.auth.user.logo"  class-name="w-8 h-8 p-[2px] rounded-full ring-2 ring-green-400 dark:ring-slate-400"  ></ResponsiveImage>
+            <ResponsiveImage
+                :responsive="$page.props.auth.user.logo"
+                class-name="w-8 h-8 p-[2px] rounded-full ring-2 ring-green-400 dark:ring-slate-400"
+            ></ResponsiveImage>
             <div class="flex items-center truncate">
                 <span
                     class="truncate capitalize ml-2 text-sm font-medium dark:text-gray-200 group-hover:text-gray-800 dark:group-hover:text-gray-400"

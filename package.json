@@ -2,6 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
+        "serve": "php artisan serve",
         "build": "vite build",
         "format": "prettier --write resources/"
     },
@@ -32,10 +33,13 @@
         "@flasher/flasher": "^1.2.4",
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^2.0.18",
+        "@radix-icons/vue": "^1.0.0",
         "@splidejs/splide": "^4.1.4",
         "@types/aos": "^3.0.4",
         "@vueuse/core": "^10.2.1",
         "aos": "^2.3.4",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.0.0",
         "collect.js": "^4.36.1",
         "flowbite": "^1.6.5",
         "format": "^0.2.2",
@@ -45,6 +49,10 @@
         "pinia": "^2.0.34",
         "prettier": "^2.8.7",
         "primevue": "^3.27.0",
+        "radix-vue": "^1.2.5",
+        "tailwind-merge": "^2.2.0",
+        "tailwindcss-animate": "^1.0.7",
+        "ulid": "^2.3.0",
         "vue-multiselect": "^3.0.0-beta.1"
     }
 }

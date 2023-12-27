@@ -42,7 +42,7 @@ class Hotel extends Model implements HasMedia
     use WithData;
 
 
-    protected $dataClass = HotelData::class;
+    protected string $dataClass = HotelData::class;
 
     protected $fillable = [
         'price',
