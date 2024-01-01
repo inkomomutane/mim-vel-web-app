@@ -3,6 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
+        "serve" : "php artisan serve",
         "format": "prettier --write resources/"
     },
     "devDependencies": {
