@@ -2,7 +2,9 @@
 
 namespace App\Actions\Hotel;
 
+use App\Models\Hotel;
 use App\Models\HotelMetaData;
+use DB;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -28,10 +30,31 @@ class StoreHotel
 
         try {
 
-            HotelMetaData::create($actionRequest->validated());
+
+            DB::beginTransaction();
+
+            $hotelData =   HotelMetaData::create($actionRequest->validated());
+            foreach ($actionRequest->rooms as $room) {
+
+                $roomUpdated =  Hotel::create(
+                    [
+                        'price' => $room['price'],
+                        'hotel_meta_data_id' => $hotelData->id
+                    ]
+                );
+
+                if ($room['images'] && is_array($room['images'])) {
+                    foreach ($room['images'] as $image) {
+                        $roomUpdated->addMedia($image)->toMediaCollection('hotels', 'hotels');
+                    }
+                }
+            }
+
+            DB::commit();
+
             flash()->addSuccess('Quarto criado com sucesso.');
 
-            return to_route('hotel.create');
+            return to_route('hotel.all');
         } catch (\Throwable $e) {
             throw $e;
             flash()->addError('Erro na criação do quarto.');

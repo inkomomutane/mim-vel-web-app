@@ -119,28 +119,26 @@ const addRoomToHotel  = () => {
     roomPrice.value = 0;
     roomPictures.value = [];
 }
-const formatSize = (bytes) => {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return (
-        parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
-    );
-};
+// const formatSize = (bytes) => {
+//     if (bytes === 0) return "0 B";
+//     const k = 1024;
+//     const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+//     const i = Math.floor(Math.log(bytes) / Math.log(k));
+//     return (
+//         parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+//     );
+// };
 
+const removeRoomFromHotel = (id :string) => {
+    form.rooms = collect(form.rooms).filter((room) => room.id != id).all();
+}
 
 const removeImageFromRoom = (id :string,index:number)  => {
-    const rooms = collect(form.rooms);
-    const room = rooms.where('id',id).first();
-
-    let auxRooms = [];
-    for (let i = 0; i < room.images.length ; i++) {
-       if(i!= index) {
-           auxRooms[i] =  room.images[i];
+   form.rooms = collect(form.rooms).each((room) => {
+       if(room.id == id){
+           room.images.splice(index,1);
        }
-    }
-    room.images  = auxRooms ;
+   }).all();
 }
 </script>
 
@@ -543,9 +541,15 @@ const removeImageFromRoom = (id :string,index:number)  => {
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-2 py-2">
-                    <div v-for="room in form.rooms" class=" rounded-[2px] mb-2  ">
-                        <h2 class="p-1 text-sm bg-green-500 w-fit rounded-sm font-semibold my-4 text-white px-4">Preço: {{ room.price }}</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3 gap-x-8 ">
+                    <div v-for="room in form.rooms" class=" rounded-[2px] mb-2 flex flex-col bg-slate-50">
+                        <div class="flex gap-2 my-2"> <button
+                            class="bg-red-500 rounded-sm text-white px-2 "
+                            @click="removeRoomFromHotel(room.id)" >
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M7 11h10v2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>
+                        </button>
+                            <h2 class="p-1 text-sm bg-green-500 w-fit rounded-sm font-semibold  text-white px-4">Preço: {{ room.price }}</h2>
+                        </div>
+                       <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3 gap-x-8 ">
                             <div v-for="(file,index) in room.images" class="grid grid-cols-3 md:grid-cols-4 items-center content-between space-x-4 w-full bg-red-200 dark:bg-slate-800 pr-2 py-0.5">
                                 <div class="flex-shrink-0">
                                     <img

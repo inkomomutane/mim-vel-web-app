@@ -4,17 +4,21 @@ import { Hotels } from "@/types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import CreateUser from "@/Pages/User/CreateUser.vue";
-import { tooltip } from "@/helprs";
+import Flasher, { tooltip } from "@/helprs";
 import Avatar from "primevue/avatar";
+import { FlasherResponse } from "@flasher/flasher";
 
 const props = defineProps({
     hotels: {
         type: Object as PropType<Hotels>,
         required: true,
+        search: String,
     },
+    messages: Object as PropType<FlasherResponse>,
 });
 const links = ref(props.hotels.links);
 const searchTerm = ref("");
+
 watch(searchTerm, (value) => {
     router.visit(
         route("hotel.all", {
@@ -32,6 +36,18 @@ watch(
     () => props.hotels.links,
     (value) => {
         links.value = value;
+    }
+);
+
+watch(
+    () => props.messages,
+    (value) => {
+        value?.envelopes.forEach((element) => {
+            Flasher.flash(
+                element.notification.type,
+                element.notification.message
+            );
+        });
     }
 );
 </script>

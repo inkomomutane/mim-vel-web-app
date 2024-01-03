@@ -361,6 +361,7 @@ export default {
         const totalSize = ref(0);
         const totalSizePercent = ref(0);
         const files = ref([]);
+
         const onRemoveTemplatingFile = (file, removeFileCallback, index) => {
             removeFileCallback(index);
             files.value = collect(files.value).except(file).all();
