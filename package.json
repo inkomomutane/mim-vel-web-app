@@ -4,6 +4,7 @@
         "dev": "vite",
         "serve": "php artisan serve",
         "build": "vite build",
+        "serve" : "php artisan serve",
         "format": "prettier --write resources/"
     },
     "devDependencies": {

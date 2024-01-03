@@ -17,7 +17,6 @@ const props = defineProps({
     bairros: {
         type: Array<App.Data.BairroData>,
     },
-
     filters: Object as PropType<App.Data.RequestFiltersData>,
 });
 
@@ -391,51 +390,10 @@ const filterImovels = () =>
                 <button
                     type="button"
                     @click="filterImovels"
-                    class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                 >
-                    <svg
-                        class="w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        enable-background="new 0 0 24 24"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <g>
-                            <path d="M0,0h24 M24,24H0" fill="none"></path>
-                            <path
-                                d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"
-                            ></path>
-                            <path d="M0,0h24v24H0V0z" fill="none"></path>
-                        </g>
-                    </svg>
-                    <span class="sr-only">Filtrar</span>
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path></svg>
                 </button>
-                <Link
-                    :href="route('imoveis')"
-                    type="button"
-                    class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-green-800"
-                >
-                    <svg
-                        class="w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        enable-background="new 0 0 24 24"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <g><rect fill="none" height="24" width="24"></rect></g>
-                        <g>
-                            <g>
-                                <path
-                                    d="M16.95,6l-3.57,4.55l1.43,1.43c1.03-1.31,4.98-6.37,4.98-6.37C20.3,4.95,19.83,4,19,4H6.83l2,2H16.95z"
-                                ></path>
-                                <path
-                                    d="M2.81,2.81L1.39,4.22L10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-2.17l5.78,5.78l1.41-1.41L2.81,2.81z"
-                                ></path>
-                            </g>
-                        </g>
-                    </svg>
-                    <span class="sr-only">Limpar Filtros</span>
-                </Link>
             </div>
         </section>
 
@@ -444,7 +402,9 @@ const filterImovels = () =>
             itemscope
             itemtype="http://schema.org/ItemList"
         >
-            <ul class="grid grid-cols-1 sm:grid-cols-2 justify-between">
+            <ul
+                class="grid grid-cols-1 sm:grid-cols-2  justify-between"
+            >
                 <li
                     class="p-5 group"
                     v-for="(imovel, index) in imovels?.data"
@@ -476,7 +436,8 @@ const filterImovels = () =>
                                         :alt="imovel.titulo"
                                         :responsive="imovel.media ?? undefined"
                                         class-name="col-span-1 sm:col-span-3
-                                w-full h-72 sm:h-40 md:h-64 xl:h-40 object-cover
+                                w-full h-64 xl:h-72 object-cover
+
                                 rounded-t "
                                     />
                                 </a>
@@ -485,66 +446,53 @@ const filterImovels = () =>
                                 class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3"
                             >
                                 <div class="grid justify-between">
-                                    <div
-                                        class="w-full inline-flex items-baseline h-fit"
-                                    >
-                                        <div
-                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
-                                        >
-                                            {{ imovel.tipo_de_imovel.name }}
+                                    <div class="w-full inline-flex items-baseline h-fit">
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
+                                            {{  imovel.tipo_de_imovel.name }}
                                         </div>
 
-                                        <div
-                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
-                                        >
-                                            {{ imovel.condicao?.nome }}
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
+                                            {{  imovel.condicao?.nome }}
                                         </div>
 
-                                        <div
-                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
-                                        >
-                                            {{ imovel.bairro?.nome }}
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
+                                            {{  imovel.bairro?.nome }}
                                         </div>
-                                        <div
-                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
-                                        >
-                                            {{ imovel.bairro?.city?.nome }}
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
+                                            {{  imovel.bairro?.city?.nome }}
                                         </div>
 
-                                        <div
-                                            class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm w-fit"
-                                        >
-                                            {{
-                                                imovel.bairro?.city?.province
-                                                    ?.name
-                                            }}
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
+                                            {{  imovel.bairro?.city?.province?.name }}
                                         </div>
                                     </div>
 
                                     <div class="w-full">
                                         <h1
-                                            class="w-full text-lg font-semibold line-clamp-1 normal-case py-1"
-                                        >
-                                            {{
-                                                (imovel.imovel_for?.slug_text ??
-                                                    "") +
-                                                    " " +
-                                                    imovel.titulo ?? ""
-                                            }}
-                                        </h1>
+                                        class="w-full  text-lg font-semibold line-clamp-1 normal-case py-1"
+                                    >
+                                        {{
+                                            (imovel.imovel_for?.slug_text ??
+                                                "") +
+                                                " " +
+                                                imovel.titulo ?? ""
+                                        }}
+                                    </h1>
                                     </div>
                                 </div>
-                                <div
-                                    class="my-2 flex text-gray-500 line-clamp-1"
-                                >
-                                    <strong>{{ imovel.price }}</strong>
-                                </div>
+
+                                <div class="grid grid-cols-3 gap-8 mt-2">
+
 
                                 <button
-                                    class="text-center rounded-sm text-orange-400 py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
+                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
                                 >
                                     Ver mais
                                 </button>
+                                    <div class="my-2 flex text-gray-500 col-span-2">
+                                        &nbsp; <strong>{{ imovel.price }}</strong>
+                                    </div>
+                                </div>
                             </div>
                         </article>
                     </a>

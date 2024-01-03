@@ -27,9 +27,6 @@
                                     class="mx-auto mt-10 sm:m-auto w-60 h-40" alt="Mimóvel" />
                             @endif
                         </h1>
-                        {{-- <div id="welcome-search">
-
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -84,31 +81,71 @@
                             ]) }}"
                                 itemprop="url">
                                 <article
-                                    class="w-full sm:w-fit bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
+                                    class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
+
                                     <header class="bg-gray-500">
-                                        @if ($imovel->getFirstMedia('posts'))
-                                            {{ $imovel->getFirstMedia('posts')
-                                                ?->img()->attributes([
-                                                    'class' => 'col-span-1 sm:col-span-3 w-full h-32 sm:h-40 md:h-64 object-cover rounded-t',
-                                                    'alt' => $imovel->titulo ?? '',
-                                                ])->lazy() }}
-                                        @else
-                                            <img class="col-span-1 sm:col-span-3 w-full h-32 sm:h-40 md:h-64 object-cover rounded-t"
-                                                src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
-                                                alt="{{ $imovel->titulo ?? '' }}">
-                                        @endif
+                                        <a href="{{ route('post.imovel.show', [ 'imovel' => $imovel->slug ]) }}">
+                                            @if ($imovel->getFirstMedia('posts'))
+                                                {{ $imovel->getFirstMedia('posts')
+                                                    ?->img()->attributes([
+                                                        'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 object-cover rounded-t',
+                                                        'alt' => $imovel->titulo ?? '',
+                                                    ])->lazy() }}
+                                            @else
+                                                <img class="col-span-1 sm:col-span-3  h-72 sm:h-40 md:h-64 object-cover rounded-t"
+                                                     src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
+                                                     alt="{{ $imovel->titulo ?? '' }}">
+                                            @endif
+                                        </a>
                                     </header>
-                                    <div
-                                        class="w-full px-4 pb-0 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
+
+                                    <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
                                         <div class="flex justify-between">
-                                            <h1
-                                                class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
-                                                {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
-                                            </h1>
+                                            <a href="{{ route('post.imovel.show', [ 'imovel' => $imovel->slug ]) }}">
+                                                <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
+                                                    {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
+                                                </h1>
+                                            </a>
                                         </div>
-                                        <div class="my-0 flex text-gray-500">
-                                            &nbsp; <strong>{{ $imovel->price }}</strong>
+
+                                        <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1"
+                                             itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                            <svg class="text-gray-400" width="20" height="20"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                 stroke="currentColor">
+                                                <circle cx="12" cy="10" r="3" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                <path
+                                                    d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </svg>
+                                            <p class="line-clamp-1">
+                                                &nbsp;
+                                                {{ ($imovel->bairro?->nome ? $imovel->bairro?->nome . ', ' : '') .
+                                                    $imovel->bairro->cidade?->nome .
+                                                    ($imovel->endereco ? ', ' . $imovel->endereco : '') }}
+                                            </p>
+
                                         </div>
+                                        <div class="grid grid-cols-3 gap-8 mt-2">
+
+                                            <a href="{{ route('post.imovel.show', [ 'imovel' => $imovel->slug ]) }}"
+                                               class="flex
+                                       bg-orange-950  items-center justify-center
+                                       text-center  rounded-sm text-orange-50
+                                       py-0 font-medium text-sm transition-transform duration-300 transform-gpu
+                                        hover:z-10 hover:text-orange-100 uppercase
+                                        col-span-1
+                                        ">
+
+                                                Ver mais
+                                            </a>
+                                            <div class="my-2 flex text-gray-500 col-span-2">
+                                                &nbsp; <strong>{{ $imovel->price }}</strong>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </article>
                             </a>
@@ -162,7 +199,7 @@
     <!-- End:Banner-->
 
     <!-- Start::Latest-Imovels -->
-    <section class="pb-8 pt-8 px-2 sm:px-6 lg:px-24 bg-gray-200 dark:bg-gray-700 font-['Open_Sans']" itemscope
+    <section class="pb-8 pt-8 px-2 sm:px-6 lg:px-24 bg-gray-200 dark:bg-gray-700 font-['Open_Sans']  " itemscope
         itemtype="http://schema.org/ItemList">
         <h1 class="font-semibold text-2xl text-slate-700 dark:text-white mx-6 first-letter:uppercase">
             Novos imóveis
@@ -170,80 +207,105 @@
         <p class="mx-6 mt-2 dark:text-white first-letter:uppercase">
             Imóveis publicados recentemente no website.
         </p>
-        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
+        <!--- End::Latest-Imovels-Slide-that shown only on small screens -->
+        <div class="splide" id="new-added-houses" data-splide='{"type":"loop","autoplay":true}'>
+            <!-- Additional required wrapper -->
+            <div class="splide__track">
+                <!-- Slides -->
+                <ul class="splide__list">
+                    @foreach ($lastestImovels as $imovel)
+                        <li class="splide__slide p-5 group mr-0 grid justify-center items-center" itemprop="itemListElement"
+                            itemscope itemtype="http://schema.org/ListItem">
+                            <a href="{{ route('post.imovel.show', [
+                                'imovel' => $imovel->slug,
+                            ]) }}"
+                               itemprop="url">
+                                <article
+                                    class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
 
-            @foreach ($lastestImovels as $imovel)
-                <li class="p-5 group mr-0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                    <a href="{{ route('post.imovel.show', [
-                        'imovel' => $imovel->slug,
-                    ]) }}"
-                        itemprop="url">
-                        <article
-                            class="w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
-                            <header class="bg-gray-500">
-                                @if ($imovel->getFirstMedia('posts'))
-                                    {{ $imovel->getFirstMedia('posts')
-                                        ?->img()->attributes([
-                                            'class' => 'col-span-1 sm:col-span-3 w-full h-44 object-cover rounded-t',
-                                            'alt' => $imovel->titulo ?? '',
-                                        ])->lazy() }}
-                                @else
-                                    <img class="col-span-1 sm:col-span-3 w-full h-72 sm:h-40 md:h-64 object-cover rounded-t"
-                                        src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
-                                        alt="{{ $imovel->titulo ?? '' }}">
-                                @endif
-                            </header>
-                            <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
-                                <div class="flex justify-between">
-                                    <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1">
-                                        {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
-                                    </h1>
-                                </div>
+                                    <header class="bg-gray-500">
+                                        <a href="{{ route('post.imovel.show', [ 'imovel' => $imovel->slug ]) }}">
+                                            @if ($imovel->getFirstMedia('posts'))
+                                                {{ $imovel->getFirstMedia('posts')
+                                                    ?->img()->attributes([
+                                                        'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 object-cover rounded-t',
+                                                        'alt' => $imovel->titulo ?? '',
+                                                    ])->lazy() }}
+                                            @else
+                                                <img class="col-span-1 sm:col-span-3  h-72 sm:h-40 md:h-64 object-cover rounded-t"
+                                                     src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
+                                                     alt="{{ $imovel->titulo ?? '' }}">
+                                            @endif
+                                        </a>
+                                    </header>
 
-                                <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1"
-                                    itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                    <svg class="text-gray-400" width="20" height="20"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor">
-                                        <circle cx="12" cy="10" r="3" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
-                                        <path
-                                            d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                    <p class="line-clamp-1">
-                                        &nbsp;
-                                        {{ ($imovel->bairro?->nome ? $imovel->bairro?->nome . ', ' : '') .
-                                            $imovel->bairro->cidade?->nome .
-                                            ($imovel->endereco ? ', ' . $imovel->endereco : '') }}
-                                    </p>
+                                    <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
+                                        <div class="flex justify-between">
+                                            <a href="{{ route('post.imovel.show', [ 'imovel' => $imovel->slug ]) }}">
+                                                <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
+                                                    {{ $imovel->imovelFor?->slug_text }} {{ $imovel->titulo }}
+                                                </h1>
+                                            </a>
+                                        </div>
 
-                                </div>
-                                <div class="my-2 flex text-gray-500">
-                                    &nbsp; <strong>{{ $imovel->price }}</strong>
-                                </div>
+                                        <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1"
+                                             itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                            <svg class="text-gray-400" width="20" height="20"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                 stroke="currentColor">
+                                                <circle cx="12" cy="10" r="3" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                <path
+                                                    d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </svg>
+                                            <p class="line-clamp-1">
+                                                &nbsp;
+                                                {{ ($imovel->bairro?->nome ? $imovel->bairro?->nome . ', ' : '') .
+                                                    $imovel->bairro->cidade?->nome .
+                                                    ($imovel->endereco ? ', ' . $imovel->endereco : '') }}
+                                            </p>
 
-                                <a href="{{ route('post.imovel.show', [
-                                    'imovel' => $imovel->slug,
-                                ]) }}"
-                                    class="text-center  rounded-sm text-orange-400  py-0 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase">
-                                    Ver mais
-                                </a>
-                            </div>
-                        </article>
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-        <div class="flex mx-5">
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-8 mt-2">
+
+                                            <a href="{{ route('post.imovel.show', [ 'imovel' => $imovel->slug ]) }}"
+                                               class="flex
+                                       bg-orange-950  items-center justify-center
+                                       text-center  rounded-sm text-orange-50
+                                       py-0 font-medium text-sm transition-transform duration-300 transform-gpu
+                                        hover:z-10 hover:text-orange-100 uppercase
+                                        col-span-1
+                                        ">
+
+                                                Ver mais
+                                            </a>
+                                            <div class="my-2 flex text-gray-500 col-span-2">
+                                                &nbsp; <strong>{{ $imovel->price }}</strong>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </article>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <!-- End::Latest-Imovels -->
+
+        <div class="flex mx-5 ">
             <a href="{{ route('imoveis') }}"
                 class="w-screen text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-bold text-sm py-2.5 mr-2 mb-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 rounded text-center">
                 Ver todos imóveis ( {{ $imovels_count}} )
             </a>
         </div>
     </section>
-    <!-- End::Latest-Imovels -->
+
+    <!--- Start::Latest-Imovels-Slide-that shown only on small screens -->
+
 
     <!-- Start::Type-of-Imovels -->
     <section class="py-16 px-2 sm:px-6 lg:px-24 bg-gray-100 font-['Open_Sans']" itemscope

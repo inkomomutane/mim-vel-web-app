@@ -3,13 +3,85 @@ import "@splidejs/splide/css";
 window.addEventListener("load", function () {
     const thumb = this.document.getElementById("thumbnail-slide");
     const relevantImovels = this.document.getElementById("relevant-imovels");
+    const newAddedHouses  = this.document.getElementById("new-added-houses");
+    const relatedHouses  = this.document.getElementById("relatedHouses");
 
     if (relevantImovels != null) {
         const relevantImovelsSlide = new Splide("#relevant-imovels", {
             arrows: false,
+            perPage: 4,
+            gap: 5,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                    width: 768,
+                    mediaQuery: 'max'
+                },
+                1280 : {
+                    perPage: 2,
+                    width: 1280,
+                    mediaQuery: 'max'
+                },
+                1536 : {
+                    perPage: 3,
+                    width: 1536,
+                    mediaQuery: 'max'
+                }
+            }
         });
         relevantImovelsSlide.mount();
     }
+    if(newAddedHouses !=null){
+        const newAddedHousesSlide = new Splide("#new-added-houses", {
+            arrows: false,
+            perPage: 4,
+            gap: 5,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                    width: 768,
+                    mediaQuery: 'max'
+                },
+                1280 : {
+                    perPage: 2,
+                    width: 1280,
+                    mediaQuery: 'max'
+                },
+                1536 : {
+                    perPage: 3,
+                    width: 1536,
+                    mediaQuery: 'max'
+                }
+            }
+        });
+        newAddedHousesSlide.mount();
+    }
+    if(relatedHouses !=null){
+        const relatedHousesSlide = new Splide("#relatedHouses", {
+            arrows: false,
+            perPage: 4,
+            gap: 5,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                    width: 768,
+                    mediaQuery: 'max'
+                },
+                1280 : {
+                    perPage: 2,
+                    width: 1280,
+                    mediaQuery: 'max'
+                },
+                1536 : {
+                    perPage: 3,
+                    width: 1536,
+                    mediaQuery: 'max'
+                }
+            }
+        });
+        relatedHousesSlide.mount();
+    }
+
 
     if (thumb != null) {
         const splide = new Splide(".default", {
