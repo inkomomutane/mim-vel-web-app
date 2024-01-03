@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\Hotel\CreateHotel;
+use App\Actions\Hotel\EditHotel;
 use App\Actions\Hotel\GetHotels;
 use App\Actions\Hotel\StoreHotel;
 
@@ -9,7 +10,7 @@ Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function ()
     // Route::get('/imovel/not/approved', GetNotApprovedImovels::class)->name('imovel.not.approved.all');
     // Route::get('/imovel/trash', GetDeletedImovels::class)->name('imovel.all.trash');
     Route::get('/hotel/create', CreateHotel::class)->name('hotel.create');
-    // Route::get('/imovel/edit/{imovel}', EditImovel::class)->name('imovel.edit');
+    Route::get('/hotel/edit/{hotel}', EditHotel::class)->name('hotel.edit');
     Route::post('/hotel/store', StoreHotel::class)->name('hotel.store');
     // Route::post('/imovel/{imovel}/update', UpdateImovel::class)->name('imovel.update');
     // Route::delete('/imovel/{imovel}', DeleteImovel::class)->name('imovel.delete');
