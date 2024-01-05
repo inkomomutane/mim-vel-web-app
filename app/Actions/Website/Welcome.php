@@ -4,6 +4,8 @@ namespace App\Actions\Website;
 
 use App\Actions\Page\GetPage;
 use App\Models\Banner;
+use App\Models\Hotel;
+use App\Models\HotelMetaData;
 use App\Models\Imovel;
 use App\Support\Enums\Pages;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -20,6 +22,7 @@ class Welcome
 
         return view('website.welcome', [
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME),
+            'hotels' => $this->getRelevantHotelsRooms(),
             'thumb' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME)?->responsiveImages()?->getPlaceholderSvg(),
             'relevantImovels' => $this->getRelevantImovels(),
             'lastestImovels' => Imovel::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(10),
@@ -28,14 +31,20 @@ class Welcome
             'seoData' => new SEOData(
                 title: $page->name,
                 description: $page->content,
-                site_name: 'Mimóvel',
-                url: route('welcome'),
-                canonical_url: route('welcome'),
                 image: Vite::asset('resources/js/images/logo/logo.png'),
+                url: route('welcome'),
+                site_name: 'Mimóvel',
                 favicon: Vite::asset('resources/js/images/logo/favicon.ico'),
+                canonical_url: route('welcome'),
             ),
-            'imovels_count' => Imovel::count()
+            'imovels_count' => Imovel::count(),
+            'hotels_count' => HotelMetaData::count()
         ]);
+    }
+    private function getRelevantHotelsRooms () {
+
+      return HotelMetaData::with('hotels.media')->whereHas('hotels')->take(10)->get();
+
     }
 
     private function getRelevantImovels()

@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Spatie\LaravelData\WithData;
+use Spatie\Sitemap\Tags\Url;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
+use Vite;
 
 /**
  * App\Models\HotelMetaData
@@ -47,6 +53,8 @@ class HotelMetaData extends Model
 {
     use HasFactory;
     use WithData;
+    use HasTags;
+    use HasSlug;
 
     protected $fillable = [
         'title',
@@ -55,7 +63,8 @@ class HotelMetaData extends Model
         'tipo_de_imovel_id',
         'condicao_id',
         'status_id',
-        'bairro_id'
+        'bairro_id',
+        'slug'
     ];
 
     protected $dataClass = HotelMetaDataDtoData::class;
@@ -91,5 +100,34 @@ class HotelMetaData extends Model
     public function hotels(): HasMany
     {
         return $this->hasMany(Hotel::class);
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+//    public function toSitemapTag(): Url|string|array
+//    {
+//        return Url::create(route('post.imovel.show', $this))
+//            ->setLastModificationDate(Carbon::create($this->updated_at))
+//            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+//            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg'))
+//            ->setPriority(0.1);
+//    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

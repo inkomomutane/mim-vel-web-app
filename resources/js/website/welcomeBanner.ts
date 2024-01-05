@@ -5,6 +5,7 @@ window.addEventListener("load", function () {
     const relevantImovels = this.document.getElementById("relevant-imovels");
     const newAddedHouses  = this.document.getElementById("new-added-houses");
     const relatedHouses  = this.document.getElementById("relatedHouses");
+    const relevantHotels = this.document.getElementById("relevantHotels");
 
     if (relevantImovels != null) {
         const relevantImovelsSlide = new Splide("#relevant-imovels", {
@@ -80,6 +81,31 @@ window.addEventListener("load", function () {
             }
         });
         relatedHousesSlide.mount();
+    }
+    if(relevantHotels != null ){
+        const relevantHotelsSlide = new Splide("#relevantHotels", {
+            arrows: false,
+            perPage: 4,
+            gap: 5,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                    width: 768,
+                    mediaQuery: 'max'
+                },
+                1280 : {
+                    perPage: 2,
+                    width: 1280,
+                    mediaQuery: 'max'
+                },
+                1536 : {
+                    perPage: 3,
+                    width: 1536,
+                    mediaQuery: 'max'
+                }
+            }
+        });
+        relevantHotelsSlide.mount();
     }
 
 

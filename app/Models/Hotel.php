@@ -6,6 +6,7 @@ use App\Data\HotelData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 use Pricecurrent\LaravelEloquentFilters\Filterable;
 use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
@@ -54,7 +55,10 @@ class Hotel extends Model implements HasMedia
     {
         return $this->belongsTo(HotelMetaData::class);
     }
-
+    public function getPrecoAttribute()
+    {
+        return Str::currencyFormat($this->price, 'MZN ', 2);
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {
