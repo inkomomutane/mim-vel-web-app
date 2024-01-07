@@ -444,7 +444,6 @@
     </section>
     <!-- End::Type-of-Imovels -->
 
-
 @endsection
 @push('js')
     @vite(['resources/js/website/vue/welcomeSearch.ts', 'resources/js/website/welcomeBanner.ts'])

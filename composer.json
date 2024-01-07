@@ -47,6 +47,7 @@
         "nunomaduro/collision": "^7.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
+        "reliese/laravel": "^1.2",
         "spatie/laravel-ignition": "^2.0",
         "spatie/laravel-web-tinker": "^1.8",
         "wulfheart/laravel-actions-ide-helper": "^0.5.0"

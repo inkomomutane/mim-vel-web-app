@@ -2,7 +2,7 @@
 import { PropType, watch, ref } from "vue";
 import { Hotels } from "@/types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, router } from "@inertiajs/vue3";
+import {Head, Link, router, useForm} from "@inertiajs/vue3";
 import CreateUser from "@/Pages/User/CreateUser.vue";
 import Flasher, { tooltip } from "@/helprs";
 import Avatar from "primevue/avatar";
@@ -50,6 +50,8 @@ watch(
         });
     }
 );
+
+const deleteHotel = (hotel : App.Data.HotelMetaDataDtoData) => useForm({}).delete( route('hotel.delete', {hotel: hotel.slug ?? '' }));
 </script>
 
 <template>
@@ -200,9 +202,7 @@ watch(
                                                 tooltip('Editar hotel', 'mt-1 ')
                                             "
                                             :href="
-                                                route('hotel.edit', {
-                                                    hotel: hotel.id,
-                                                })
+                                                route('hotel.edit', {hotel: hotel.slug })
                                             "
                                             class="w-fit flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
@@ -243,6 +243,7 @@ watch(
                                                 )
                                             "
                                             type="button"
+                                            @click="deleteHotel(hotel)"
                                             class="flex items-center justify-center text-white focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800 bg-red-500 hover:bg-red-700"
                                         >
                                             <svg

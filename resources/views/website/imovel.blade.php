@@ -488,75 +488,73 @@
 
 
     <section>
-  <!-- Main modal -->
-  <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative w-full max-w-md max-h-full">
-          <!-- Modal content -->
-          <div class="relative transition duration-150 ease-in-out bg-white rounded-sm shadow dark:bg-gray-700">
-              <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
-                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                  </svg>
-                  <span class="sr-only">Close modal</span>
-              </button>
-              <div class="px-6 py-6 lg:px-8">
-                <form action="{{ route('post.imovel.message',[
-                    'imovel' =>$imovel->slug
-                ])}}" method="post">
-                    @csrf
-                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-2 justify-items-stretch">
-                    <div class="mb-2">
-                      <label for="nome_do_cliente">Teu nome <strong class="-order-2 text-red-500">*</strong></label>
-                      <input type="text" name="nome_do_cliente" id="nome_do_cliente" class="h-10 border mt-1 focus:ring-1
-                       focus:ring-gray-500 border-gray-500 focus:border-gray-500 rounded p-6
-                       px-4 w-full " value="" placeholder="Teu nome" />
-                       @error('nome_do_cliente')
-                       <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
-                      @enderror
-                    </div>
-                    <div class="mb-2">
-                      <label for="email">Teu email</label>
-                      <input type="text" name="email" id="email" class="h-10 border mt-1
-                       rounded p-6 px-4 w-full  focus:ring-1
-                      focus:ring-gray-500 border-gray-500 focus:border-gray-500" value="" placeholder="Exemplo@mimovel.com" />
-                      @error('email')
-                       <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
-                      @enderror
+      <!-- Main modal -->
+      <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+          <div class="relative w-full max-w-md max-h-full">
+              <!-- Modal content -->
+              <div class="relative transition duration-150 ease-in-out bg-white rounded-sm shadow dark:bg-gray-700">
+                  <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+                  <div class="px-6 py-6 lg:px-8">
+                    <form action="{{ route('post.imovel.message',[
+                        'imovel' =>$imovel->slug
+                    ])}}" method="post">
+                        @csrf
+                    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-2 justify-items-stretch">
+                        <div class="mb-2">
+                          <label for="nome_do_cliente">Teu nome <strong class="-order-2 text-red-500">*</strong></label>
+                          <input type="text" name="nome_do_cliente" id="nome_do_cliente" class="h-10 border mt-1 focus:ring-1
+                           focus:ring-gray-500 border-gray-500 focus:border-gray-500 rounded p-6
+                           px-4 w-full " value="" placeholder="Teu nome" />
+                           @error('nome_do_cliente')
+                           <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                          @enderror
+                        </div>
+                        <div class="mb-2">
+                          <label for="email">Teu email</label>
+                          <input type="text" name="email" id="email" class="h-10 border mt-1
+                           rounded p-6 px-4 w-full  focus:ring-1
+                          focus:ring-gray-500 border-gray-500 focus:border-gray-500" value="" placeholder="Exemplo@mimovel.com" />
+                          @error('email')
+                           <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                          @enderror
 
-                    </div>
-                    <div class="md:col-span-2 mb-2">
-                      <label for="contacto">Contacto</label>
-                      <input type="text" name="contacto" id="contacto" class="h-10 border mt-1 rounded p-6 px-4 w-full
-                        focus:ring-1 border-gray-500
-                       focus:ring-gray-400 focus:border-gray-500" value="" placeholder="Contacto" />
-                       @error('contacto')
-                       <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
-                      @enderror
-                    </div>
-                    <div class="md:col-span-2 mb-2">
-                      <label for="mensagem">Mensagem</label>
-                      <div class=" flex  items-center mt-1">
-                          <textarea name="mensagem" id="mensagem" cols="10" rows="5" class=" px-4 appearance-none outline-none
-                          text-gray-800 w-full bg-transparent focus:ring-1 border-gray-500
-                          focus:ring-gray-500 focus:border-gray-500 rounded" placeholder="Mensagem..." ></textarea>
+                        </div>
+                        <div class="md:col-span-2 mb-2">
+                          <label for="contacto">Contacto</label>
+                          <input type="text" name="contacto" id="contacto" class="h-10 border mt-1 rounded p-6 px-4 w-full
+                            focus:ring-1 border-gray-500
+                           focus:ring-gray-400 focus:border-gray-500" value="" placeholder="Contacto" />
+                           @error('contacto')
+                           <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                          @enderror
+                        </div>
+                        <div class="md:col-span-2 mb-2">
+                          <label for="mensagem">Mensagem</label>
+                          <div class=" flex  items-center mt-1">
+                              <textarea name="mensagem" id="mensagem" cols="10" rows="5" class=" px-4 appearance-none outline-none
+                              text-gray-800 w-full bg-transparent focus:ring-1 border-gray-500
+                              focus:ring-gray-500 focus:border-gray-500 rounded" placeholder="Mensagem..." ></textarea>
+                          </div>
+                          @error('mensagem')
+                          <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
+                         @enderror
+                        </div>
+                        <div class="md:col-span-2 text-right mb-2">
+                          <div class="">
+                            <button type="submit" class="bg-orange-400 hover:ring-1 hover:ring-orange-500 text-white font-bold py-3 px-4 rounded-sm w-full">Enviar mensagem</button>
+                          </div>
+                        </div>
                       </div>
-                      @error('mensagem')
-                      <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
-                     @enderror
-                    </div>
-                    <div class="md:col-span-2 text-right mb-2">
-                      <div class="">
-                        <button type="submit" class="bg-orange-400 hover:ring-1 hover:ring-orange-500 text-white font-bold py-3 px-4 rounded-sm w-full">Enviar mensagem</button>
-                      </div>
-                    </div>
+                    </form>
                   </div>
-                </form>
               </div>
           </div>
       </div>
-  </div>
-
-
     </section>
 @endsection
 @push('js')

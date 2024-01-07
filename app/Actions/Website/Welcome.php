@@ -38,12 +38,12 @@ class Welcome
                 canonical_url: route('welcome'),
             ),
             'imovels_count' => Imovel::count(),
-            'hotels_count' => HotelMetaData::count()
+            'hotels_count' => HotelMetaData::whereHas('hotels')->count()
         ]);
     }
     private function getRelevantHotelsRooms () {
 
-      return HotelMetaData::with('hotels.media')->whereHas('hotels')->take(10)->get();
+      return HotelMetaData::with('hotels.media')->whereHas('hotels')->get();
 
     }
 

@@ -15,6 +15,7 @@ class HotelMetaDataDtoData extends Data
         public readonly ?string $title,
         public readonly ?string $address,
         public readonly ?string $description,
+        public readonly ?string $slug,
         public readonly Lazy|ImovelTypeData $imovelTypeData,
         public readonly Lazy|CondicaoData|null $condicaoData,
         public readonly Lazy|StatusData|null $statusData,
@@ -33,6 +34,7 @@ class HotelMetaDataDtoData extends Data
             title: $hotelMetaData->title,
             address: $hotelMetaData->address,
             description: $hotelMetaData->description,
+            slug: $hotelMetaData->slug,
             imovelTypeData: Lazy::whenLoaded(
                 'tipoDeImovel',
                 $hotelMetaData,

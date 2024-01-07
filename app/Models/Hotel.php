@@ -6,6 +6,7 @@ use App\Data\HotelData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Str;
 use Pricecurrent\LaravelEloquentFilters\Filterable;
 use Spatie\LaravelData\WithData;
@@ -74,5 +75,13 @@ class Hotel extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('hotels')->withResponsiveImages()->singleFile();
+    }
+
+    /**
+     * Get all the tags for the post.
+     */
+    public function attributes(): MorphToMany
+    {
+        return $this->morphToMany(Attribute::class, 'attributable');
     }
 }

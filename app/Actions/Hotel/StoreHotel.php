@@ -25,7 +25,7 @@ class StoreHotel
         ];
     }
 
-    public function AsController(ActionRequest $actionRequest)
+    public function asController(ActionRequest $actionRequest): \Illuminate\Http\RedirectResponse
     {
 
         try {

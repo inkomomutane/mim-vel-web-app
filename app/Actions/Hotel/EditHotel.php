@@ -20,7 +20,7 @@ class EditHotel
 
     use AsAction; #
 
-    public function asController(HotelMetaData $hotel)
+    public function asController(HotelMetaData $hotel): \Inertia\Response
     {
         $hotel->loadMissing('hotels.media');
         return Inertia::render('Hotel/EditHotel', [
