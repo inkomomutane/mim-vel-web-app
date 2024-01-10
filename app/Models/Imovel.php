@@ -92,7 +92,6 @@ use Vite;
  * @property-read int|null $tags_count
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
- *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static Builder|Imovel newModelQuery()
@@ -144,7 +143,6 @@ use Vite;
  * @method static Builder|Imovel withoutApproved()
  * @method static Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static Builder|Imovel withoutTrashed()
- *
  * @mixin \Eloquent
  */
 class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapable
@@ -327,19 +325,17 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
             description: Str::Ucfirst(strip_tags($this->descricao)),
             author: Str::Ucfirst($this->corretor->name),
             image: $this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : null,
-            type: 'article',
-            canonical_url: route('post.imovel.show', ['imovel' => $this->slug]),
+            imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl('social-media')) : null,
             published_time: $this->created_at,
             modified_time: $this->updated_at,
             section: Str::Ucfirst($this->tipo_de_imovel->nome ?? ''),
-            imageMeta: $this->hasMedia('posts') ? new ImageMeta($this->getFirstMedia('posts')->getUrl('social-media')) : null,
             schema: SchemaCollection::initialize()->addArticle()->addBreadcrumbs(
-                function (BreadcrumbListSchema $breadcrumbs): BreadcrumbListSchema {
-                    return $breadcrumbs->prependBreadcrumbs([
-                        'Homepage' => route('welcome'),
-                    ]);
-                }
+                fn(BreadcrumbListSchema $breadcrumbs): BreadcrumbListSchema => $breadcrumbs->prependBreadcrumbs([
+                    'Homepage' => route('welcome'),
+                ])
             ),
+            type: 'article',
+            canonical_url: route('post.imovel.show', ['imovel' => $this->slug]),
         );
     }
 

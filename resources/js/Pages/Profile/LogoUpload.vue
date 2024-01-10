@@ -5,11 +5,11 @@ import UploadImage from "@/Components/UploadImage.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    user : {
+    user: {
         type: Object as PropType<App.Data.UserData>,
-        required : true
-    }
-})
+        required: true,
+    },
+});
 
 const uploadLogos = ref(false);
 const uploadLogosProgress = ref(false);
@@ -26,17 +26,20 @@ const closeUloadLogosModal = () => {
 };
 
 const uploadImges = () => {
-    if(props.user.id){
-        form.post(route("profile.logo.update",{
-        user : props.user.id
-    }), {
-        forceFormData: true,
-        onProgress: () => (uploadLogosProgress.value = true),
-        onSuccess: () => {
-            closeUloadLogosModal();
-            form.reset();
-        },
-    })
+    if (props.user.id) {
+        form.post(
+            route("profile.logo.update", {
+                user: props.user.id,
+            }),
+            {
+                forceFormData: true,
+                onProgress: () => (uploadLogosProgress.value = true),
+                onSuccess: () => {
+                    closeUloadLogosModal();
+                    form.reset();
+                },
+            }
+        );
     }
 };
 </script>

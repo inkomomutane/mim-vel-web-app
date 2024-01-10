@@ -163,6 +163,32 @@ class GetCondicaos
 class UpdateCondicao
 {
 }
+namespace App\Actions\Hotel;
+
+/**
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(?string $term, \App\Models\User $user)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, ?string $term, \App\Models\User $user)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, ?string $term, \App\Models\User $user)
+ * @method static dispatchSync(?string $term, \App\Models\User $user)
+ * @method static dispatchNow(?string $term, \App\Models\User $user)
+ * @method static dispatchAfterResponse(?string $term, \App\Models\User $user)
+ * @method static mixed run(?string $term, \App\Models\User $user)
+ */
+class GetHotels
+{
+}
+/**
+ */
+class CreateHotel
+{
+}
+/**
+ */
+class StoreHotel
+{
+}
 namespace App\Actions\Imovel;
 
 /**
@@ -928,6 +954,11 @@ class GetImovelsApi
 }
 namespace App\Actions\Commands;
 
+/**
+ */
+class BackupEmptyGoogleTrash
+{
+}
 /**
  */
 class SeedUsersTree

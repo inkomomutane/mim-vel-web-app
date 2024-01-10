@@ -34,7 +34,7 @@ const form = useForm({
                 {{ user.role?.name }}
             </p>
 
-            <LogoUpload  :user="user"/>
+            <LogoUpload :user="user" />
         </header>
 
         <form

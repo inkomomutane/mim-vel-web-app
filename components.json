@@ -1,0 +1,15 @@
+{
+  "style": "new-york",
+  "typescript": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "resources/css/app.css",
+    "baseColor": "slate",
+    "cssVariables": false
+  },
+  "framework": "laravel",
+  "aliases": {
+    "components": "@/Components",
+    "utils": "@/lib/utils"
+  }
+}

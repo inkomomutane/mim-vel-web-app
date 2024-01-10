@@ -35,7 +35,7 @@ const filterImovels = () =>
 </script>
 
 <template>
-    <Head title="Todos imoveis"/>
+    <Head title="Todos imoveis" />
     <GuestLayout :show-footer="true">
         <section
             class="border-t sticky top-0 z-30 bg-white dark:bg-gray-900 selection:bg-primary-500 selection:text-white"
@@ -402,11 +402,8 @@ const filterImovels = () =>
             itemscope
             itemtype="http://schema.org/ItemList"
         >
-            <div>
-
-            </div>
             <ul
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  justify-between"
+                class="grid grid-cols-1 sm:grid-cols-2  justify-between"
             >
                 <li
                     class="p-5 group"
@@ -449,30 +446,30 @@ const filterImovels = () =>
                                 class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3"
                             >
                                 <div class="grid justify-between">
-                                    <div class="w-full  flex flex-row flex-wrap gap-2 mx-0 px-0">
-                                        <span class="bg-orange-500 font-medium  py-0 m-0 rounded-[1px] text-white px-2 text-sm flex-auto w-fit">
+                                    <div class="w-full inline-flex items-baseline h-fit">
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
                                             {{  imovel.tipo_de_imovel.name }}
-                                        </span>
+                                        </div>
 
-                                        <span class="bg-orange-500 font-medium py-0 m-0 rounded-[1px] text-white px-2 text-sm flex-auto">
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
                                             {{  imovel.condicao?.nome }}
-                                        </span>
+                                        </div>
 
-                                        <span class="bg-orange-500 font-medium  py-0 m-0 rounded-[1px] text-white px-2 text-sm flex-auto ">
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
                                             {{  imovel.bairro?.nome }}
-                                        </span>
-                                        <div class="bg-orange-500 font-medium  py-0 m-0 rounded-[1px] text-white px-2 text-sm flex-auto ">
+                                        </div>
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
                                             {{  imovel.bairro?.city?.nome }}
                                         </div>
 
-                                        <div class="bg-orange-500 font-medium py-0 m-0 rounded-[1px] text-white px-2 text-sm flex-auto">
+                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
                                             {{  imovel.bairro?.city?.province?.name }}
                                         </div>
                                     </div>
 
                                     <div class="w-full">
                                         <h1
-                                        class="w-full  text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase"
+                                        class="w-full  text-lg font-semibold line-clamp-1 normal-case py-1"
                                     >
                                         {{
                                             (imovel.imovel_for?.slug_text ??
@@ -482,20 +479,13 @@ const filterImovels = () =>
                                         }}
                                     </h1>
                                     </div>
-
                                 </div>
 
                                 <div class="grid grid-cols-3 gap-8 mt-2">
 
 
                                 <button
-                                    class="
-flex
-                                       bg-orange-950  items-center justify-center
-                                       text-center  rounded-sm text-orange-50
-                                       py-0 font-medium text-sm transition-transform duration-300 transform-gpu
-                                        hover:z-10 hover:text-orange-100 uppercase
-                                        col-span-1"
+                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
                                 >
                                     Ver mais
                                 </button>

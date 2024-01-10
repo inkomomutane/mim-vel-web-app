@@ -30,6 +30,12 @@ export enum OrderDataBy {
     desc = "desc",
 }
 
+export interface RoomHotel {
+    id: string;
+    price: number;
+    images: Array<File>;
+}
+
 export interface Provinces extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.ProvinceData>;
 }
@@ -82,6 +88,13 @@ export interface Imovels extends Omit<PaginatedData, "data"> {
 }
 export interface ImovelImages extends Omit<PaginatedData, "data"> {
     data: Array<App.Data.MediaData>;
+}
+
+export interface Hotels extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.HotelMetaDataDtoData>;
+}
+export interface Attributes extends Omit<PaginatedData, "data"> {
+    data: Array<App.Data.AttributeData>;
 }
 
 export type PageProps<

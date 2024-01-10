@@ -459,7 +459,8 @@ const storeImovel = () =>
                         <label
                             for="Mapa"
                             class="block mb-2 text-sm font-medium bg-orange-300 text-gray-900 dark:text-white"
-                            >Link do mapa google (Só para o corretor do imóvel)</label
+                            >Link do mapa google (Só para o corretor do
+                            imóvel)</label
                         >
                         <textarea
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"

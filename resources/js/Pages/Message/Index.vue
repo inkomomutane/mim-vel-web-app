@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, router,useForm } from "@inertiajs/vue3";
+import { Head, Link, router, useForm } from "@inertiajs/vue3";
 import { Mails } from "@/types/index";
 import { PropType } from "vue";
 import { ref, watch } from "vue";
@@ -56,11 +56,11 @@ const showViewingMessage = (mail: App.Data.AgendaData) => {
     loadedMessage.value = mail;
 };
 
-const form  = useForm({
-    agenda : null
+const form = useForm({
+    agenda: null,
 });
 
-const deleteMessage = ( mail: App.Data.AgendaData ) => {
+const deleteMessage = (mail: App.Data.AgendaData) => {
     form.delete(
         route("message.delete", {
             agenda: mail.id as number,
@@ -74,7 +74,7 @@ const deleteMessage = ( mail: App.Data.AgendaData ) => {
             onFinish: () => form.reset(),
         }
     );
-}
+};
 </script>
 <template>
     <Head title="Messanges do website" />
@@ -447,7 +447,7 @@ const deleteMessage = ( mail: App.Data.AgendaData ) => {
                                 </svg>
                             </a>
                             <button
-                                class="px-2 py-2 border-r-2 "
+                                class="px-2 py-2 border-r-2"
                                 v-if="
                                     loadedMessage?.email != undefined ||
                                     loadedMessage?.email != null
@@ -456,7 +456,15 @@ const deleteMessage = ( mail: App.Data.AgendaData ) => {
                                 v-tooltip.value="tooltip('Apagar mensagem')"
                                 v-tooltip.bottom="true"
                             >
-                                <svg   class="w-5 h-5 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"></path></svg>
+                                <svg
+                                    class="w-5 h-5 fill-current text-red-500"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
+                                    ></path>
+                                </svg>
                             </button>
                             <button
                                 class="px-2 py-2"

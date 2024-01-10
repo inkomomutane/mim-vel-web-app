@@ -9,6 +9,12 @@ declare namespace App.Data {
         dataHora: any;
         url: string | null;
     };
+    export type AttributeData = {
+        id: number | null;
+        name: string;
+        description: string;
+        image: any | App.Data.MediaData | null;
+    };
     export type BairroData = {
         id: number | null;
         nome: string;
@@ -23,6 +29,24 @@ declare namespace App.Data {
     export type CondicaoData = {
         id: number | null;
         nome: string | null;
+    };
+    export type HotelData = {
+        id: number | null;
+        price: string | null;
+        hotelMetaData: any | App.Data.HotelMetaDataDtoData | null;
+        media: App.Data.MediaData | null;
+    };
+    export type HotelMetaDataDtoData = {
+        id: number | null;
+        title: string | null;
+        address: string | null;
+        description: string | null;
+        slug: string | null;
+        imovelTypeData: any | App.Data.ImovelTypeData;
+        condicaoData: any | App.Data.CondicaoData | null;
+        statusData: any | App.Data.StatusData | null;
+        bairroData: any | App.Data.BairroData | null;
+        hotels: Array<App.Data.HotelData> | null;
     };
     export type ImovelData = {
         id: any | number | null;

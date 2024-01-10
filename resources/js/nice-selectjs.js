@@ -23,6 +23,3 @@ let bairrosOptions = {
 if (document.getElementById("bairros-select")) {
     NiceSelect.bind(document.getElementById("bairros-select"), bairrosOptions);
 }
-
-
-

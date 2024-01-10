@@ -119,6 +119,15 @@
                     </li>
                     <li>
                         <a
+                            href=" {{ Request::url() }}"
+                            class="{{ Request::routeIs('post.hotel.show')
+                            ? $activeLinkCss
+                            : $linkCss}}"
+                        >Hotel</a
+                        >
+                    </li>
+                    <li>
+                        <a
                             href="{{ route('website.about') }}"
                             class="{{ Request::routeIs('website.about')
                             ? $activeLinkCss
