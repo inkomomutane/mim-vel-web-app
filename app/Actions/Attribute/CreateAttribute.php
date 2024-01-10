@@ -13,20 +13,7 @@ class CreateAttribute
     use AsAction;
     use AsController;
 
-    /**
-     *
-     * @throws \Throwable
-     */
-    public function handle(array $attribute): void
-    {
-        \DB::beginTransaction();
-         $attribute =    Attribute::create([
-             'name' => $attribute['name'],
-             'description' => $attribute['description']
-         ]);
-                $attribute->addMedia($attribute['image'])->toMediaCollection('attributes', 'attributes');
-         \DB::commit();
-    }
+
 
     public function rules(): array
     {
@@ -40,9 +27,17 @@ class CreateAttribute
     public function asController(ActionRequest $request): RedirectResponse
     {
         try {
-            $this->handle($request->validated());
+            \DB::beginTransaction();
+            $attribute =    Attribute::create([
+                'name' => $request->name,
+                'description' => $request->description
+            ]);
+            if ($request->hasFile('image') && count($request->image) > 0) {
+                $attribute->addMedia($request->image[0])->toMediaCollection('attributes', 'attributes');
+            }
+            \DB::commit();
             flash()->addSuccess('Attributo criado com sucesso.');
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             flash()->addError('Erro ao criar attributo.');
         }
         return \redirect()->back();

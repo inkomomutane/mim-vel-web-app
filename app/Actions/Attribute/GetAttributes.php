@@ -18,9 +18,9 @@ class GetAttributes
 
         $attributes = Attribute::query()
             ->when($term, function ($query, $search) {
-                $query->where('name', 'like', '%'.$search.'%')
-                ->orWhere('description','like', '%'.$search.'%')
-                ->with('media');
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->with('media');
             })->with('media')->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
         return AttributeData::collection(

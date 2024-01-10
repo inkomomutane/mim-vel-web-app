@@ -11,11 +11,12 @@ class UpdateAttribute
 {
     use AsController;
 
-    public function asController(Attribute $attribute,ActionRequest $actionRequest): \Illuminate\Http\RedirectResponse
+    public function asController(Attribute $attribute, ActionRequest $actionRequest): \Illuminate\Http\RedirectResponse
     {
         $validated = request()->validate([
             'name' => ['required', Rule::unique(Attribute::class, 'name')->ignore($attribute->id, 'id')],
-            'description' => 'required|numeric',
+            'description' => 'required|string',
+            'image' => 'nullable'
         ]);
 
         try {
@@ -23,8 +24,8 @@ class UpdateAttribute
             $attribute->name = $validated['name'];
             $attribute->description = $validated['description'];
             $attribute->save();
-            if($actionRequest->hasFile('image')) {
-                $attribute->addMedia($actionRequest->image)->toMediaCollection('attributes','attributes');
+            if ($actionRequest->hasFile('image')) {
+                $attribute->addMedia($actionRequest->image)->toMediaCollection('attributes', 'attributes');
             }
 
             flash()->addSuccess('Attributo actualizado com sucesso.');

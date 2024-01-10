@@ -6,9 +6,11 @@
 
 namespace App\Models;
 
+use App\Data\AttributeData;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -29,8 +31,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Attribute extends Model  implements HasMedia
 {
     use InteractsWithMedia;
+    use WithData;
 
 	protected $table = 'attributes';
+    protected $dataClass = AttributeData::class;
+
 
 	protected $fillable = [
 		'name',

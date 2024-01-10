@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" :class="className">
         <FileUpload
             customUpload
             @uploader="uploader"
@@ -349,6 +349,10 @@ export default {
             required: true,
         },
         progressUploadImage: Boolean,
+        className: {
+            type: String,
+            default: "w-full",
+        },
     },
     emits: ["update:images"],
     components: {
