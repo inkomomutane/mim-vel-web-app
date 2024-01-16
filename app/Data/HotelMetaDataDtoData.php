@@ -20,12 +20,11 @@ class HotelMetaDataDtoData extends Data
         public readonly Lazy|CondicaoData|null $condicaoData,
         public readonly Lazy|StatusData|null $statusData,
         public readonly Lazy|BairroData|null $bairroData,
-        /** @var HotelData[] $hotels  */
+        /** @var HotelData[] $hotels */
         public readonly Lazy|null|DataCollection $hotels,
 
     ) {
     }
-
 
     public static function fromModel(HotelMetaData $hotelMetaData): self
     {
@@ -60,6 +59,7 @@ class HotelMetaDataDtoData extends Data
                 $hotelMetaData,
                 fn () => $hotelMetaData->hotels->map(function ($hotel) {
                     $hotel->loadMissing('media');
+
                     return $hotel->getData();
                 })
             ),

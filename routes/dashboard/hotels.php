@@ -11,5 +11,5 @@ Route::prefix('dashboard/')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/hotel/create', CreateHotel::class)->name('hotel.create');
     Route::get('/hotel/edit/pas/{hotel}', EditHotel::class)->name('hotel.edit');
     Route::post('/hotel/store', StoreHotel::class)->name('hotel.store');
-    Route::delete('/hotel/delete/{hotel}',DeleteHotel::class)->name('hotel.delete');
+    Route::delete('/hotel/delete/{hotel}', DeleteHotel::class)->name('hotel.delete');
 });

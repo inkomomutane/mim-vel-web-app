@@ -12,8 +12,8 @@ use Lorisleiva\Actions\Concerns\AsController;
 
 class GetImovelTypes
 {
-    use AsController;
     use AsAction;
+    use AsController;
 
     public function authorize(ActionRequest $request): bool
     {
@@ -26,7 +26,7 @@ class GetImovelTypes
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
 
         $bairros = TipoDeImovel::query()

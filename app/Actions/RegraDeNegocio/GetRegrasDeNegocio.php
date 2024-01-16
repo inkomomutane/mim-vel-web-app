@@ -26,7 +26,7 @@ class GetRegrasDeNegocio
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
         return RegraDeNegocioData::collection(
             RegraDeNegocio::query()

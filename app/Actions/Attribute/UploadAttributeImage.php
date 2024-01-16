@@ -43,7 +43,7 @@ class UploadAttributeImage
 
             flash()->addSuccess('Imagem carregada com sucesso');
         } catch (\Throwable $th) {
-          
+
             flash()->addError('Erro ao carregar imagem');
         }
 

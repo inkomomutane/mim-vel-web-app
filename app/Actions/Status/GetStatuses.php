@@ -26,7 +26,7 @@ class GetStatuses
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
         return StatusData::collection(
             Status::query()

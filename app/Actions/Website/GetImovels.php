@@ -37,9 +37,9 @@ class GetImovels
             'imovelTypes' => ImovelTypeData::collection(TipoDeImovel::all()),
             'bairros' => BairroData::collection(Bairro::all()),
             'filters' => new RequestFiltersData(
-                imovelTypes: collect($actionRequest->imovel_types)->map(fn($number) => (int) $number)->toArray(),
+                imovelTypes: collect($actionRequest->imovel_types)->map(fn ($number) => (int) $number)->toArray(),
                 title: $actionRequest->title,
-                bairros: collect($actionRequest->bairros)->map(fn($number) => (int) $number)->toArray(),
+                bairros: collect($actionRequest->bairros)->map(fn ($number) => (int) $number)->toArray(),
             ),
         ]);
     }

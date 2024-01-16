@@ -33,6 +33,10 @@ export enum OrderDataBy {
 export interface RoomHotel {
     id: string;
     price: number;
+    title: string;
+    description: string;
+    email:string;
+    contact:string;
     images: Array<File>;
 }
 

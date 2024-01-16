@@ -18,6 +18,7 @@ use Spatie\LaravelData\WithData;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $term
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Termo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Termo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Termo query()
@@ -25,6 +26,7 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Termo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Termo whereTermos($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Termo whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Termo extends Model

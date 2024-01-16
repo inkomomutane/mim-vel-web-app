@@ -21,7 +21,7 @@ class StoreHotel
             'bairro_id' => 'required|numeric',
             'condicao_id' => 'required|numeric',
             'tipo_de_imovel_id' => 'required|numeric',
-            'status_id' => 'numeric|required'
+            'status_id' => 'numeric|required',
         ];
     }
 
@@ -30,16 +30,19 @@ class StoreHotel
 
         try {
 
-
             DB::beginTransaction();
 
-            $hotelData =   HotelMetaData::create($actionRequest->validated());
+            $hotelData = HotelMetaData::create($actionRequest->validated());
             foreach ($actionRequest->rooms as $room) {
 
-                $roomUpdated =  Hotel::create(
+                $roomUpdated = Hotel::create(
                     [
                         'price' => $room['price'],
-                        'hotel_meta_data_id' => $hotelData->id
+                        'title' => $room['title'],
+                        'description' => $room['description'],
+                        'email' => $room['email'],
+                        'contact' => $room['contact'],
+                        'hotel_meta_data_id' => $hotelData->id,
                     ]
                 );
 
@@ -58,6 +61,7 @@ class StoreHotel
         } catch (\Throwable $e) {
             throw $e;
             flash()->addError('Erro na criação do quarto.');
+
             return back();
         }
     }

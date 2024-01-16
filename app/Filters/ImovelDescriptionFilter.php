@@ -7,7 +7,7 @@ use Pricecurrent\LaravelEloquentFilters\AbstractEloquentFilter;
 
 class ImovelDescriptionFilter extends AbstractEloquentFilter
 {
-    protected String $description;
+    protected string $description;
 
     public function __construct(string $description)
     {

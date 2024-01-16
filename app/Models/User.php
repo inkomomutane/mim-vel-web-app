@@ -57,6 +57,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $sent_messages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsAndSelf($id, array $columns = [])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsOf($id, array $columns = [])
@@ -119,13 +120,16 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Kalnoy\Nestedset\QueryBuilder|User whereUpdatedAt($value)
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withDepth(string $as = 'depth')
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withoutRoot()
+ * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
+ * @method static \Kalnoy\Nestedset\Collection<int, static> get($columns = ['*'])
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
-    use WithData;
+    use HasApiTokens, HasFactory, HasRoles, InteractsWithMedia, Notifiable;
     use NodeTrait;
+    use WithData;
 
     /**
      * The attributes that are mass assignable.
@@ -142,9 +146,8 @@ class User extends Authenticatable implements HasMedia
         'created_by_id',
     ];
 
-
     protected $appends = [
-        'avatar'
+        'avatar',
     ];
 
     protected $dataClass = UserData::class;
@@ -188,7 +191,7 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Message::class, 'from_id');
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width('200')->nonQueued();
     }
@@ -212,8 +215,6 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(User::class, 'created_by_id');
     }
-
-
 
     public function createdUsers()
     {

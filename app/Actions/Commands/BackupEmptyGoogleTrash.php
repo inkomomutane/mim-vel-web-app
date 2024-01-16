@@ -3,7 +3,6 @@
 namespace App\Actions\Commands;
 
 use Illuminate\Console\Command;
-use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsCommand;
 use Storage;
 

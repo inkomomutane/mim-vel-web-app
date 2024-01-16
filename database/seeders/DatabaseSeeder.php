@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoDeImovelSeeder::class);
 
         $admin = \App\Models\User::updateOrInsert([
-            'email' => 'Administrator@mimovel.com'
-        ],[
+            'email' => 'Administrator@mimovel.com',
+        ], [
             'name' => 'Administrator',
             'email' => 'Administrator@mimovel.com',
             'email_verified_at' => now(),

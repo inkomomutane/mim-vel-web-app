@@ -15,7 +15,7 @@ class GetBairros
     use AsAction;
     use AsController;
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
 
         $bairros = Bairro::query()

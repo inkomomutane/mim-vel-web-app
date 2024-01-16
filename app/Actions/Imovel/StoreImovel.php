@@ -9,8 +9,8 @@ use Lorisleiva\Actions\Concerns\AsController;
 
 class StoreImovel
 {
-    use AsController;
     use AsAction;
+    use AsController;
 
     public function rules(): array
     {

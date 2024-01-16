@@ -16,7 +16,7 @@ class UpdateAttribute
         $validated = request()->validate([
             'name' => ['required', Rule::unique(Attribute::class, 'name')->ignore($attribute->id, 'id')],
             'description' => 'required|string',
-            'image' => 'nullable'
+            'image' => 'nullable',
         ]);
 
         try {
@@ -33,6 +33,7 @@ class UpdateAttribute
             throw $th;
             flash()->addError('Erro na actualização do attributo.');
         }
+
         return \redirect()->back();
     }
 }

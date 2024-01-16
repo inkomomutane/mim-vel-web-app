@@ -17,7 +17,7 @@ class CreateHotel
 {
     use AsController;
 
-    public function AsController()
+    public function AsController(): \Inertia\Response
     {
         return Inertia::render('Hotel/CreateHotel', [
             'provinces' => MultilevelProvinceData::collection(Province::with('cidades.bairros')->get()),

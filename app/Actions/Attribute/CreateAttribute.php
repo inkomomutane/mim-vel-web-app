@@ -13,14 +13,12 @@ class CreateAttribute
     use AsAction;
     use AsController;
 
-
-
     public function rules(): array
     {
         return [
             'name' => 'required|unique:attributes,name',
             'description' => 'required|string',
-            'image' => 'required'
+            'image' => 'required',
         ];
     }
 
@@ -28,9 +26,9 @@ class CreateAttribute
     {
         try {
             \DB::beginTransaction();
-            $attribute =    Attribute::create([
+            $attribute = Attribute::create([
                 'name' => $request->name,
-                'description' => $request->description
+                'description' => $request->description,
             ]);
             if ($request->hasFile('image') && count($request->image) > 0) {
                 $attribute->addMedia($request->image[0])->toMediaCollection('attributes', 'attributes');
@@ -40,6 +38,7 @@ class CreateAttribute
         } catch (\Exception $exception) {
             flash()->addError('Erro ao criar attributo.');
         }
+
         return \redirect()->back();
     }
 }

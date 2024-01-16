@@ -31,7 +31,7 @@ class GetUsers
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
 
         if (Auth::user()->hasRole(SystemRoles::SUPERADMIN)) {

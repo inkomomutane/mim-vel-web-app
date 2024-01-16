@@ -35,7 +35,7 @@ class GetDeletedImovels
      * @return Collection<Imovel>
      *
      **/
-    private function getTrashedImovels(string $term = null)
+    private function getTrashedImovels(?string $term = null)
     {
         return Imovel::query()
             ->when($term, function ($query, $search) {

@@ -11,8 +11,8 @@ use Lorisleiva\Actions\Concerns\AsController;
 
 class GetPage
 {
-    use AsController;
     use AsAction;
+    use AsController;
 
     public function authorize(ActionRequest $request): bool
     {

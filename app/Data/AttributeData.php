@@ -17,13 +17,13 @@ class AttributeData extends Data
     ) {
     }
 
-    public  static  function  fromModel(Attribute $attribute): AttributeData
+    public static function fromModel(Attribute $attribute): AttributeData
     {
         return new self(
             id: $attribute->id,
             name: $attribute->name,
             description: $attribute->description,
-            image: Lazy::whenLoaded('media', $attribute, fn () => !is_null($attribute->getFirstMedia('attributes')) ?
+            image: Lazy::whenLoaded('media', $attribute, fn () => ! is_null($attribute->getFirstMedia('attributes')) ?
                 MediaData::fromModel($attribute->getFirstMedia('attributes')) :
                 null)
         );

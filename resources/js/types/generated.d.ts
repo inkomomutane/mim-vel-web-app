@@ -32,6 +32,11 @@ declare namespace App.Data {
     };
     export type HotelData = {
         id: number | null;
+        slug: string | null;
+        title: string | null;
+        contact: string | null;
+        email: string | null;
+        description: string | null;
         price: string | null;
         hotelMetaData: any | App.Data.HotelMetaDataDtoData | null;
         media: App.Data.MediaData | null;

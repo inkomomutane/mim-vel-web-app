@@ -13,6 +13,7 @@ use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * App\Models\Hotel
@@ -25,6 +26,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read \App\Models\HotelMetaData $hotelMetaData
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Hotel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static \Illuminate\Database\Eloquent\Builder|Hotel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Hotel newQuery()
@@ -34,34 +36,53 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hotel wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereUpdatedAt($value)
+ *
+ * @property string|null $email
+ * @property string|null $title
+ * @property string|null $description
+ * @property string|null $contact
+ * @property string|null $slug
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Attribute> $attributes
+ * @property-read int|null $attributes_count
+ * @property-read mixed $preco
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereContact($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hotel whereTitle($value)
+ *
  * @mixin \Eloquent
  */
 class Hotel extends Model implements HasMedia
 {
+    use Filterable;
     use HasFactory;
     use InteractsWithMedia;
-    use Filterable;
     use WithData;
-
 
     protected string $dataClass = HotelData::class;
 
     protected $fillable = [
         'price',
-        'hotel_meta_data_id'
+        'title',
+        'description',
+        'contact',
+        'email',
+        'hotel_meta_data_id',
     ];
-
 
     public function hotelMetaData(): BelongsTo
     {
         return $this->belongsTo(HotelMetaData::class);
     }
+
     public function getPrecoAttribute()
     {
         return Str::currencyFormat($this->price, 'MZN ', 2);
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width('200')
@@ -83,5 +104,15 @@ class Hotel extends Model implements HasMedia
     public function attributes(): MorphToMany
     {
         return $this->morphToMany(Attribute::class, 'attributable');
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }

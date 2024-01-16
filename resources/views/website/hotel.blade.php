@@ -74,12 +74,12 @@
                                     {{ $hotelWithRoom->getFirstMedia('hotels')
                                         ?->img()->attributes([
                                             'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 w-full object-cover rounded-t',
-                                            'alt' => $hotel->title ?? '',
+                                            'alt' => $hotelWithRoom->title ?? '',
                                         ])->lazy() }}
                                 @else
                                     <img class="col-span-1 sm:col-span-3  h-72 sm:h-40 md:h-64 object-cover rounded-t"
                                          src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
-                                         alt="{{ $hotel->title ?? '' }}">
+                                         alt="{{ $hotelWithRoom->title ?? '' }}">
                                 @endif
 
                             </header>
@@ -87,7 +87,7 @@
                             <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
                                 <div class="flex justify-between">
                                     <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
-                                        {{$hotel->title }}
+                                        {{$hotelWithRoom->title }}
                                     </h1>
                                 </div>
 

@@ -26,7 +26,6 @@ import Flasher from "@/helprs";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import collect from "collect.js";
 import {RoomHotel} from "@/types";
-
 const props = defineProps({
     provinces: Array<App.Data.MultilevelProvinceData>,
     imovelsTypes: Array<App.Data.ImovelTypeData>,
@@ -107,11 +106,19 @@ const storeHotel = () =>
 
 const roomPrice = ref<number>(0);
 const roomPictures = ref<Array<File>>([]);
+const title = ref<string>('')
+const description = ref<string>('')
+const email = ref<string>('')
+const contact = ref<string>('')
 
 const addRoomToHotel  = () => {
     const rooms = collect<RoomHotel>(form.rooms);
     rooms.push({
         id: ulid(),
+        title : title.value,
+        description : description.value,
+        email: email.value,
+        contact : contact.value,
         price : roomPrice.value,
         images: roomPictures.value
     });
@@ -466,7 +473,26 @@ const removeImageFromRoom = (id :string,index:number)  => {
                                         >
                                     </DialogTitle>
                                 </DialogHeader>
-                                <div>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            for="title"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        >Título</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            v-model="title"
+                                            required
+                                            id="title"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="Título"
+                                        />
+
+                                    </div>
+
+                                  <div>
                                     <label
                                         for="roomPrice"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -486,6 +512,54 @@ const removeImageFromRoom = (id :string,index:number)  => {
                                     />
 
                                 </div>
+                                    <div class="md:col-span-2">
+                                        <label
+                                            for="description"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        >Descrição</label
+                                        >
+                                        <ckeditor
+                                            :editor="ClassicEditor"
+                                            v-model="description"
+                                            :config="{}"
+                                        ></ckeditor>
+
+                                    </div>
+                                    <div>
+                                        <label
+                                            for="email"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        >Email</label
+                                        >
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            v-model="email"
+                                            required
+                                            id="email"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="Email"
+                                        />
+
+                                    </div>
+                                    <div>
+                                        <label
+                                            for="contact"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        >Contacto</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="contact"
+                                            v-model="contact"
+                                            required
+                                            id="contact"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="Contacto"
+                                        />
+                                    </div>
+                                </div>
+
                                 <div>
                                     <UploadImage
                                         @update:images="

@@ -17,6 +17,7 @@ class DeleteAttribute
             try {
                 $attribute->delete();
                 flash()->addSuccess('Attributo deletado com sucesso.');
+
                 return true;
             } catch (\Throwable $e) {
                 flash()->addError('Erro ao deletar attributo.');

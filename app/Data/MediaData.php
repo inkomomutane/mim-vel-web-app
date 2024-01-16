@@ -22,7 +22,7 @@ class MediaData extends Data
     ) {
     }
 
-    public static function fromModel(Media $media = null)
+    public static function fromModel(?Media $media = null)
     {
 
         if (is_null($media)) {

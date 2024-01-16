@@ -4,7 +4,6 @@
         "dev": "vite",
         "serve": "php artisan serve",
         "build": "vite build",
-        "serve" : "php artisan serve",
         "format": "prettier --write resources/"
     },
     "devDependencies": {
@@ -39,6 +38,7 @@
         "@types/aos": "^3.0.4",
         "@vueuse/core": "^10.2.1",
         "aos": "^2.3.4",
+        "caniuse-lite": "^1.0.30001577",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "collect.js": "^4.36.1",

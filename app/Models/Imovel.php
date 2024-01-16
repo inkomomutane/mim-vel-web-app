@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use NumberFormatter;
 use Pricecurrent\LaravelEloquentFilters\Filterable;
 use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
@@ -34,7 +33,6 @@ use Spatie\Sitemap\Tags\Url;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
-
 use Vite;
 
 /**
@@ -92,6 +90,7 @@ use Vite;
  * @property-read int|null $tags_count
  * @property-read \App\Models\TipoDeImovel $tipo_de_imovel
  * @property-read int|null $views_count
+ *
  * @method static \Database\Factories\ImovelFactory factory($count = null, $state = [])
  * @method static Builder|Imovel filter(\Pricecurrent\LaravelEloquentFilters\EloquentFilters $filters)
  * @method static Builder|Imovel newModelQuery()
@@ -143,19 +142,20 @@ use Vite;
  * @method static Builder|Imovel withoutApproved()
  * @method static Builder|Imovel withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static Builder|Imovel withoutTrashed()
+ *
  * @mixin \Eloquent
  */
-class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapable
+class Imovel extends Model implements HasMedia, Searchable, Sitemapable, Viewable
 {
-    use InteractsWithMedia;
-    use HasTags;
-    use HasSlug;
-    use HasSEO;
+    use Filterable;
     use HasFactory;
-    use WithData;
+    use HasSEO;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithMedia;
     use InteractsWithViews;
     use SoftDeletes;
-    use Filterable;
+    use WithData;
 
     protected $table = 'imovels';
 
@@ -301,7 +301,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
         return 'slug';
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width('200')
@@ -330,7 +330,7 @@ class Imovel extends Model implements HasMedia, Searchable, Viewable, Sitemapabl
             modified_time: $this->updated_at,
             section: Str::Ucfirst($this->tipo_de_imovel->nome ?? ''),
             schema: SchemaCollection::initialize()->addArticle()->addBreadcrumbs(
-                fn(BreadcrumbListSchema $breadcrumbs): BreadcrumbListSchema => $breadcrumbs->prependBreadcrumbs([
+                fn (BreadcrumbListSchema $breadcrumbs): BreadcrumbListSchema => $breadcrumbs->prependBreadcrumbs([
                     'Homepage' => route('welcome'),
                 ])
             ),

@@ -1,4 +1,5 @@
 <?php
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/attributes', \App\Actions\Attribute\GetAttributes::class)->name('attributes.all');
     Route::post('/dashboard/attribute', \App\Actions\Attribute\CreateAttribute::class)->name('attribute.store');

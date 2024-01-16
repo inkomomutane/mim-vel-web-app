@@ -12,8 +12,8 @@ use Lorisleiva\Actions\Concerns\AsController;
 
 class GetIntermediationRules
 {
-    use AsController;
     use AsAction;
+    use AsController;
 
     public function authorize(ActionRequest $request): bool
     {
@@ -26,7 +26,7 @@ class GetIntermediationRules
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
         $intermediations = IntermediationRule::query()
             ->when($term, function ($query, $search) {

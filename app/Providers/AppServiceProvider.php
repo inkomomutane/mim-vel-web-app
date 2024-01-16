@@ -84,7 +84,8 @@ class AppServiceProvider extends ServiceProvider
 
         Str::macro('currencyFormat', function ($amount, $currencySymbol = 'MZN ', $decimals = 2) {
             $formattedAmount = number_format($amount, $decimals);
-            $formattedAmount = $currencySymbol . $formattedAmount;
+            $formattedAmount = $currencySymbol.$formattedAmount;
+
             return $formattedAmount;
         });
     }

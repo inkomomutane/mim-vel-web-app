@@ -4,7 +4,6 @@ namespace App\Actions\Website;
 
 use App\Actions\Page\GetPage;
 use App\Models\Banner;
-use App\Models\Hotel;
 use App\Models\HotelMetaData;
 use App\Models\Imovel;
 use App\Support\Enums\Pages;
@@ -38,12 +37,14 @@ class Welcome
                 canonical_url: route('welcome'),
             ),
             'imovels_count' => Imovel::count(),
-            'hotels_count' => HotelMetaData::whereHas('hotels')->count()
+            'hotels_count' => HotelMetaData::whereHas('hotels')->count(),
         ]);
     }
-    private function getRelevantHotelsRooms () {
 
-      return HotelMetaData::with('hotels.media')->whereHas('hotels')->get();
+    private function getRelevantHotelsRooms()
+    {
+
+        return HotelMetaData::with('hotels.media')->whereHas('hotels')->get();
 
     }
 

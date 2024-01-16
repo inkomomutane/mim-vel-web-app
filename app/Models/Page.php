@@ -33,6 +33,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property array|null $contacts
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ *
  * @method static \Database\Factories\PageFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
@@ -50,12 +51,19 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereTiktok($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereWhatsapp($value)
+ *
+ * @property string|null $route
+ * @property string|null $url
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereRoute($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUrl($value)
+ *
  * @mixin \Eloquent
  */
 class Page extends Model implements HasMedia
 {
-    use InteractsWithMedia;
     use HasFactory;
+    use InteractsWithMedia;
     use WithData;
 
     protected $table = 'pages';

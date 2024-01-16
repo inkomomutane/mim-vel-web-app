@@ -13,13 +13,13 @@ class GetAttributes
     use AsAction;
     use AsController;
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
 
         $attributes = Attribute::query()
             ->when($term, function ($query, $search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%')
+                $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('description', 'like', '%'.$search.'%')
                     ->with('media');
             })->with('media')->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
@@ -31,7 +31,7 @@ class GetAttributes
     public function AsController(): \Inertia\Response
     {
         return Inertia::render('Attribute/Index', [
-            'attributes' => $this->handle(request()->search)
+            'attributes' => $this->handle(request()->search),
         ]);
     }
 }

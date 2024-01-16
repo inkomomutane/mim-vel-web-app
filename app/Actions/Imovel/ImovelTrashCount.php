@@ -15,7 +15,7 @@ class ImovelTrashCount
     /**
      * @return int
      */
-    public function handle(User $user = null)
+    public function handle(?User $user = null)
     {
         if (is_null($user)) {
             return 0;

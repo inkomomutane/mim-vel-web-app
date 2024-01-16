@@ -23,33 +23,44 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string $description
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Attributable $attributable
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Hotel> $hotels
+ * @property-read int|null $hotels_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
  *
- * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereUpdatedAt($value)
+ *
+ * @mixin \Eloquent
  */
-class Attribute extends Model  implements HasMedia
+class Attribute extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use WithData;
 
-	protected $table = 'attributes';
+    protected $table = 'attributes';
+
     protected $dataClass = AttributeData::class;
 
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
-	protected $fillable = [
-		'name',
-		'description'
-	];
-
-	public function hotels(): MorphToMany
+    public function hotels(): MorphToMany
     {
-		return $this->morphedByMany(Hotel::class,'attributable');
-	}
+        return $this->morphedByMany(Hotel::class, 'attributable');
+    }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('attributes')->singleFile();
     }
-
 }

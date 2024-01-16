@@ -26,7 +26,7 @@ class GetTransactionTypes
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
         return TransactionTypeData::collection(
             ImovelFor::query()

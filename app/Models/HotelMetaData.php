@@ -34,6 +34,7 @@ use Vite;
  * @property-read int|null $hotels_count
  * @property-read \App\Models\Status $status
  * @property-read \App\Models\TipoDeImovel $tipoDeImovel
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData query()
@@ -47,14 +48,26 @@ use Vite;
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereTipoDeImovelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereUpdatedAt($value)
+ *
+ * @property string|null $slug
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\Tags\Tag> $tags
+ * @property-read int|null $tags_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAllTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAnyTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ *
  * @mixin \Eloquent
  */
 class HotelMetaData extends Model
 {
     use HasFactory;
-    use WithData;
-    use HasTags;
     use HasSlug;
+    use HasTags;
+    use WithData;
 
     protected $fillable = [
         'title',
@@ -64,30 +77,27 @@ class HotelMetaData extends Model
         'condicao_id',
         'status_id',
         'bairro_id',
-        'slug'
+        'slug',
     ];
 
     protected $dataClass = HotelMetaDataDtoData::class;
-    protected $table = 'hotel_meta_datas';
 
+    protected $table = 'hotel_meta_datas';
 
     public function tipoDeImovel(): BelongsTo
     {
         return $this->belongsTo(TipoDeImovel::class);
     }
 
-
     public function condicao(): BelongsTo
     {
         return $this->belongsTo(Condicao::class);
     }
 
-
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }
-
 
     public function bairro(): BelongsTo
     {
@@ -95,7 +105,6 @@ class HotelMetaData extends Model
             Bairro::class
         );
     }
-
 
     public function hotels(): HasMany
     {
@@ -112,14 +121,14 @@ class HotelMetaData extends Model
             ->saveSlugsTo('slug');
     }
 
-//    public function toSitemapTag(): Url|string|array
-//    {
-//        return Url::create(route('post.imovel.show', $this))
-//            ->setLastModificationDate(Carbon::create($this->updated_at))
-//            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-//            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg'))
-//            ->setPriority(0.1);
-//    }
+    //    public function toSitemapTag(): Url|string|array
+    //    {
+    //        return Url::create(route('post.imovel.show', $this))
+    //            ->setLastModificationDate(Carbon::create($this->updated_at))
+    //            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+    //            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg'))
+    //            ->setPriority(0.1);
+    //    }
 
     /**
      * Get the route key for the model.

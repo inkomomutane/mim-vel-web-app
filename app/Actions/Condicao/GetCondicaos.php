@@ -26,7 +26,7 @@ class GetCondicaos
         );
     }
 
-    public function handle(string $term = null)
+    public function handle(?string $term = null)
     {
         return CondicaoData::collection(
             Condicao::query()
