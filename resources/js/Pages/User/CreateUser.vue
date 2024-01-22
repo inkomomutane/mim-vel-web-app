@@ -72,7 +72,6 @@ const createUser = () => {
         </svg>
         <span class="mx-4">Novo usuário</span>
     </button>
-
     <Modal :show="addUser" @close="closeCreateUserModal">
         <div class="relative bg-white rounded shadow dark:bg-gray-700">
             <button

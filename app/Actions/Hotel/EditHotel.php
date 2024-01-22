@@ -20,7 +20,7 @@ class EditHotel
 
     public function asController(HotelMetaData $hotel): \Inertia\Response
     {
-        $hotel->loadMissing('hotels.media');
+        $hotel->loadMissing(['hotels.media','bairro.cidade.province','status','tipoDeImovel','condicao']);
 
         return Inertia::render('Hotel/EditHotel', [
             'hotel' => $hotel->getData(),

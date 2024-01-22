@@ -188,7 +188,7 @@ const removeImageFromRoom = (id :string,index:number)  => {
                         <label
                             for="titulo"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Títuto do Quarto</label
+                        >Título do Hotel</label
                         >
                         <input
                             type="text"
@@ -202,22 +202,19 @@ const removeImageFromRoom = (id :string,index:number)  => {
                     </div>
                     <div>
                         <label
-                            for="Preço"
+                            for="endereco"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Preço do Quarto</label
+                        >Endereço</label
                         >
                         <input
-                            v-maska
-                            data-maska="000000000000000000"
-                            data-maska-tokens="0:\d:optional|9:\d:optional"
                             type="text"
-                            name="preco"
-                            v-model="form.price"
-                            id="preco"
+                            name="endereco"
+                            v-model="form.address"
+                            id="endereco"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Preço do Quarto"
+                            placeholder="Endereço"
                         />
-                        <InputError :message="form.errors.price" />
+                        <InputError :message="form.errors.address" />
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
@@ -225,7 +222,7 @@ const removeImageFromRoom = (id :string,index:number)  => {
                         <label
                             for="province_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Província</label
+                        >Província</label
                         >
                         <Dropdown
                             v-model="province"
@@ -252,7 +249,7 @@ const removeImageFromRoom = (id :string,index:number)  => {
                         <label
                             for="province_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Cidade</label
+                        >Cidade</label
                         >
                         <Dropdown
                             v-model="city"
@@ -279,7 +276,7 @@ const removeImageFromRoom = (id :string,index:number)  => {
                         <label
                             for="bairro_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Bairro</label
+                        >Bairro</label
                         >
                         <Dropdown
                             v-model="form.bairro_id"
@@ -293,7 +290,7 @@ const removeImageFromRoom = (id :string,index:number)  => {
                                 <div
                                     class="bg-slate-100 dark:bg-slate-600 dark:text-slate-200 px-4 py-2 hover:bg-slate-600 dark:hover:bg-slate-800 hover:text-white"
                                     :class="
-                                        city == slotProps.option
+                                        bairro == slotProps.option
                                             ? 'bg-slate-800 dark:bg-slate-900 text-white'
                                             : ''
                                     "
@@ -305,32 +302,12 @@ const removeImageFromRoom = (id :string,index:number)  => {
                         <InputError :message="form.errors.bairro_id ?? ''" />
                     </div>
                 </div>
-
-                <div class="grid grid-cols-1 gap-2">
-                    <div>
-                        <label
-                            for="endereco"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Endereço</label
-                        >
-                        <input
-                            type="text"
-                            name="endereco"
-                            v-model="form.address"
-                            id="endereco"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Endereço"
-                        />
-                        <InputError :message="form.errors.address" />
-                    </div>
-                </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
                     <div>
                         <label
                             for="descricao"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Descrição</label
+                        >Descrição</label
                         >
                         <ckeditor
                             :editor="ClassicEditor"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, watch, ref } from "vue";
+import {PropType, watch, ref, onMounted} from "vue";
 import { Hotels } from "@/types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {Head, Link, router, useForm} from "@inertiajs/vue3";
@@ -48,6 +48,8 @@ watch(
                 element.notification.message
             );
         });
+    },{
+        immediate :true
     }
 );
 
@@ -164,6 +166,9 @@ const deleteHotel = (hotel : App.Data.HotelMetaDataDtoData) => useForm({}).delet
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3">
+                                        Quartos
+                                    </th>
+                                    <th scope="col" class="px-4 py-3">
                                         Editar
                                     </th>
                                     <th scope="col" class="px-4 py-3">
@@ -195,6 +200,42 @@ const deleteHotel = (hotel : App.Data.HotelMetaDataDtoData) => useForm({}).delet
                                     <td class="px-4 py-3">
                                         {{ hotel.bairroData.nome }}
                                     </td>
+                                    <td class="px-4 py-3 w-32">
+                                        <Link
+                                            v-tooltip.bottom="
+                                                tooltip('Quartos', 'mt-1 ')
+                                            "
+                                            :href="
+                                                route('hotel.rooms.list', {hotel: hotel.slug ?? '' })
+                                            "
+                                            class="w-fit flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
+                                        >
+                                            <svg
+                                                height="20"
+                                                width="20"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 32 32"
+                                                fill="currentColor"
+                                            >
+                                                <defs></defs>
+                                                <title>hotel</title>
+                                                <path
+                                                    d="M9.5,15A1.5,1.5,0,1,1,8,16.5,1.5,1.5,0,0,1,9.5,15m0-2A3.5,3.5,0,1,0,13,16.5,3.5,3.5,0,0,0,9.5,13Z"
+                                                ></path>
+                                                <path
+                                                    d="M25,14H17a2,2,0,0,0-2,2v6H4V10.6L16,4.14l12.53,6.74.94-1.76-13-7a1,1,0,0,0-.94,0l-13,7A1,1,0,0,0,2,10V30H4V24H28v6h2V19A5,5,0,0,0,25,14Zm-8,8V16h8a3,3,0,0,1,3,3v3Z"
+                                                ></path>
+                                                <rect
+                                                    id="_Transparent_Rectangle_"
+                                                    data-name="<Transparent Rectangle>"
+                                                    class="cls-1"
+                                                    width="32"
+                                                    height="32"
+                                                    style="fill: none"
+                                                ></rect>
+                                            </svg>
+                                        </Link>
+                                    </td>
 
                                     <td class="px-4 py-3 w-32">
                                         <Link
@@ -202,7 +243,7 @@ const deleteHotel = (hotel : App.Data.HotelMetaDataDtoData) => useForm({}).delet
                                                 tooltip('Editar hotel', 'mt-1 ')
                                             "
                                             :href="
-                                                route('hotel.edit', {hotel: hotel.slug })
+                                                route('hotel.edit', {hotel: hotel.slug ?? '' })
                                             "
                                             class="w-fit flex items-center justify-center text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded text-sm px-4 py-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
                                         >
