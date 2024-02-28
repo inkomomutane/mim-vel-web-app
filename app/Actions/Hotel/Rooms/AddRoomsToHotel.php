@@ -19,7 +19,7 @@ class AddRoomsToHotel
     public  function asController(HotelMetaData $hotel, ActionRequest $actionRequest): \Inertia\Response
     {
         return  Inertia::render('Hotel/Room/AddRoomsToHotel',[
-            'hotel' => $hotel->load('hotels')->getData()
+            'hotel' => $hotel->load(['hotels','media'])->getData()
         ]);
     }
 }

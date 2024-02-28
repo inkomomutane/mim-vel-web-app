@@ -22,6 +22,8 @@ class HotelMetaDataDtoData extends Data
         public readonly Lazy|BairroData|null $bairroData,
         /** @var HotelData[] $hotels */
         public readonly Lazy|null|DataCollection $hotels,
+        /** @var MediaData * */
+        public Lazy|null|MediaData $media,
 
     ) {
     }
@@ -62,6 +64,13 @@ class HotelMetaDataDtoData extends Data
 
                     return $hotel->getData();
                 })
+            ),
+            media: Lazy::whenLoaded(
+                'media',
+                $hotelMetaData,
+                static fn () => !is_null($hotelMetaData->getFirstMedia('main_hotels')) ?
+                    MediaData::fromModel($hotelMetaData->getFirstMedia('main_hotels')) :
+                    null
             ),
         );
     }

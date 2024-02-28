@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Spatie\LaravelData\WithData;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -62,12 +65,13 @@ use Vite;
  *
  * @mixin \Eloquent
  */
-class HotelMetaData extends Model
+class HotelMetaData extends Model implements HasMedia
 {
     use HasFactory;
     use HasSlug;
     use HasTags;
     use WithData;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'title',
@@ -109,6 +113,22 @@ class HotelMetaData extends Model
     public function hotels(): HasMany
     {
         return $this->hasMany(Hotel::class);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width('200')
+            ->nonQueued();
+
+        $this->addMediaConversion('social-media')
+            ->width('720')
+            ->nonQueued();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('main_hotels')->withResponsiveImages()->singleFile();
     }
 
     /**

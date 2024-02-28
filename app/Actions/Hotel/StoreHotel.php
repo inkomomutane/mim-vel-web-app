@@ -59,6 +59,7 @@ class StoreHotel
 
             return to_route('hotel.all');
         } catch (\Throwable $e) {
+            throw $e;
             flash()->addError('Erro na criação do quarto.');
             return back();
         }

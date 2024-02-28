@@ -26,6 +26,7 @@ import Flasher from "@/helprs";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import collect from "collect.js";
 import { RoomHotel } from "@/types";
+import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 
 const props = defineProps({
     provinces: Array<App.Data.MultilevelProvinceData>,
@@ -39,7 +40,8 @@ const hotelRefs = ref(props.hotel);
 const provinces = ref(props.provinces);
 const province = ref<App.Data.MultilevelProvinceData | null>(
     provinces.value?.findLast(
-        (prov) => prov.id == hotelRefs.value?.bairroData?.city?.province?.id ?? -1
+        (prov) =>
+            prov.id == hotelRefs.value?.bairroData?.city?.province?.id ?? -1
     ) ?? null
 );
 const cities = ref<Array<App.Data.CityData> | null>(
@@ -58,6 +60,8 @@ const bairro = ref<App.Data.BairroData | null>(
         (bairro) => bairro.id == hotelRefs.value?.bairroData?.id ?? -1
     ) ?? null
 );
+const roomPictures = ref<Array<File>>([]);
+
 
 const form = useForm({
     title: props.hotel?.title ?? "",
@@ -67,7 +71,21 @@ const form = useForm({
     condicao_id: props.hotel?.condicaoData.id,
     tipo_de_imovel_id: props.hotel?.imovelTypeData.id,
     status_id: props.hotel?.statusData.id,
+    images: <any>[],
 });
+
+
+
+watch(
+    () => roomPictures,
+    () => {
+        form.images = roomPictures.value;
+    },
+    {
+        deep: true,
+        immediate: true,
+    }
+);
 
 watch(
     () => province.value,
@@ -112,14 +130,17 @@ watch(
 );
 
 const updateHotel = () =>
-    form.patch(route("hotel.update",{
-        hotel : props.hotel?.slug ?? ''
-    }), {
-        preserveScroll: true,
-        onSuccess: () => {
-            form.reset();
-        },
-    });
+    form.post(
+        route("hotel.update", {
+            hotel: props.hotel?.slug ?? "",
+        }),
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                form.reset();
+            },
+        }
+    );
 </script>
 
 <template>
@@ -151,7 +172,7 @@ const updateHotel = () =>
                     <span class="mx-4">Actualizar informação Hotel</span>
                 </button>
             </div>
-            <div
+            <form  @submit.prevent
                 class="p-8 bg-white rounded overflow-auto dark:bg-slate-700 dark:text-slate-50"
             >
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -175,7 +196,7 @@ const updateHotel = () =>
                         <label
                             for="endereco"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Endereço</label
+                            >Endereço</label
                         >
                         <input
                             type="text"
@@ -380,7 +401,91 @@ const updateHotel = () =>
                         <InputError :message="form.errors.status_id ?? ''" />
                     </div>
                 </div>
-            </div>
+                <div class="grid gap-2 py-2">
+                    <UploadImage
+                            @update:images="
+                                (files:any) => (roomPictures = files)
+                            "
+                            :multiple="false"
+                            :disabledUpload="true"
+                            :disabledCancel="true"
+                            label-text="Fotos do hotel"
+                            mediaType="image/*"
+                            :progressUploadImage="false"
+                        >
+                            <template v-slot:files> </template>
+                        </UploadImage>
+                </div>
+                <div>
+                        <ul class="max-h-96 overflow-y-auto">
+                            <li v-if="(form.images.length == 0) && (props.hotel?.media != null)"
+
+                                class="rounded border border-dashed border-green-700 bg-green-100 dark:bg-green-950 flex flex-wrap p-0 mb-4 gap-0 w-full"
+                            >
+                            <div   class="flex items-center space-x-4 w-full">
+                                    <div class="flex-shrink-0">
+                                        <ResponsiveImage
+                                            :responsive="props.hotel?.media"
+                                            class-name="w-[100px] shadow-2 h-16 object-cover"
+                                        />
+                                    </div>
+                                    <div class="flex-1 hidden sm:block sm:w-64">
+                                        <p
+                                            class="text-sm font-medium text-justify text-gray-900 truncate dark:text-white"
+                                        >
+                                            {{ props.hotel?.media.name }}
+                                        </p>
+                                    </div>
+                                    <div class="flex-1 min-w-fit">
+                                        <p
+                                            class="text-sm font-medium text-gray-900 truncate dark:text-white"
+                                        >
+                                            {{ props.hotel?.media.size }} KB
+                                        </p>
+                                    </div>
+                                    <div class="flex-1 min-w-0"></div>
+
+                                    <div
+                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+                                    >
+                                        <div role="status">
+                                            <svg
+                                                class="w-6 h-6 mr-2 text-gray-200 dark:text-green-50 fill-green-500"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    d="M0 0h24v24H0V0z"
+                                                    fill="none"
+                                                ></path>
+                                                <path
+                                                    d="M17.3 6.3c-.39-.39-1.02-.39-1.41 0l-5.64 5.64 1.41 1.41L17.3 7.7c.38-.38.38-1.02 0-1.4zm4.24-.01l-9.88 9.88-3.48-3.47c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L22.95 7.71c.39-.39.39-1.02 0-1.41h-.01c-.38-.4-1.01-.4-1.4-.01zM1.12 14.12L5.3 18.3c.39.39 1.02.39 1.41 0l.7-.7-4.88-4.9c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.03 0 1.42z"
+                                                ></path>
+                                            </svg>
+                                            <span class="sr-only">Done</span>
+                                        </div>
+                                    </div>
+                                    <button class="px-4">
+                                        <svg
+                                            aria-hidden="true"
+                                            class="w-5 h-5 text-gray-500 hover:text-red-500"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+            </form>
         </template>
     </AuthenticatedLayout>
 </template>
