@@ -29,7 +29,7 @@ class UploadAttributeImage
         ];
     }
 
-    public function asController(Attribute $attribute, ActionRequest $actionRequest)
+    public function asController(Attribute $attribute, ActionRequest $actionRequest): \Illuminate\Http\RedirectResponse
     {
 
         try {

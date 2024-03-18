@@ -28,7 +28,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read int|null $hotels_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Attribute newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Attribute newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Attribute query()
@@ -37,7 +36,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attribute whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Attribute extends Model implements HasMedia
@@ -47,7 +45,7 @@ class Attribute extends Model implements HasMedia
 
     protected $table = 'attributes';
 
-    protected $dataClass = AttributeData::class;
+    protected string $dataClass = AttributeData::class;
 
     protected $fillable = [
         'name',
@@ -61,6 +59,6 @@ class Attribute extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('attributes')->singleFile();
+        $this->addMediaCollection('attributes')->withResponsiveImages()->singleFile();
     }
 }

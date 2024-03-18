@@ -142,7 +142,7 @@ const createRoom = () => {
                             @update:images="
                                 (files:any) => (roomPictures = files)
                             "
-                            :multiple="false"
+                            :multiple="true"
                             :disabledUpload="true"
                             :disabledCancel="true"
                             label-text="Fotos do quarto"

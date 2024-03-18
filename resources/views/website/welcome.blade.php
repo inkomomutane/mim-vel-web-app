@@ -88,11 +88,11 @@
                                             @if ($imovel->getFirstMedia('posts'))
                                                 {{ $imovel->getFirstMedia('posts')
                                                     ?->img()->attributes([
-                                                        'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 object-cover rounded-t',
+                                                        'class' => 'col-span-1 sm:col-span-3  h-64 w-full xl:h-72 object-cover rounded-t',
                                                         'alt' => $imovel->titulo ?? '',
                                                     ])->lazy() }}
                                             @else
-                                                <img class="col-span-1 sm:col-span-3  h-72 sm:h-40 md:h-64 object-cover rounded-t"
+                                                <img class="col-span-1 sm:col-span-3  h-64 xl:h-72 object-cover rounded-t"
                                                      src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
                                                      alt="{{ $imovel->titulo ?? '' }}">
                                             @endif
@@ -189,10 +189,10 @@
                                     class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
                                     <header class="bg-gray-500">
                                         <a href="{{ route('post.hotel.show',['hotel' => $hotelWithRoom->slug]) }}">
-                                            @if ($hotelWithRoom->hotels->first()->getFirstMedia('hotels'))
-                                                {{ $hotelWithRoom->hotels->first()->getFirstMedia('hotels')
+                                            @if ($hotelWithRoom->getFirstMedia('main_hotels'))
+                                                {{ $hotelWithRoom->getFirstMedia('main_hotels')
                                                     ?->img()->attributes([
-                                                        'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 object-cover rounded-t',
+                                                        'class' => 'col-span-1 sm:col-span-3  w-full h-64 xl:h-72 object-cover rounded-t',
                                                         'alt' => $hotelWithRoom->title ?? '',
                                                     ])->lazy() }}
                                             @else
@@ -297,7 +297,7 @@
                                             @if ($imovel->getFirstMedia('posts'))
                                                 {{ $imovel->getFirstMedia('posts')
                                                     ?->img()->attributes([
-                                                        'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 object-cover rounded-t',
+                                                        'class' => 'col-span-1 sm:col-span-3 w-full h-64 xl:h-72 object-cover rounded-t',
                                                         'alt' => $imovel->titulo ?? '',
                                                     ])->lazy() }}
                                             @else

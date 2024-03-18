@@ -13,7 +13,7 @@ class UpdateAttribute
 
     public function asController(Attribute $attribute, ActionRequest $actionRequest): \Illuminate\Http\RedirectResponse
     {
-        $validated = request()->validate([
+        $validated = request()?->validate([
             'name' => ['required', Rule::unique(Attribute::class, 'name')->ignore($attribute->id, 'id')],
             'description' => 'required|string',
             'image' => 'nullable',
@@ -30,7 +30,6 @@ class UpdateAttribute
 
             flash()->addSuccess('Attributo actualizado com sucesso.');
         } catch (\Throwable $th) {
-            throw $th;
             flash()->addError('Erro na actualização do attributo.');
         }
 

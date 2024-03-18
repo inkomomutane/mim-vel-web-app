@@ -62,6 +62,13 @@ return [
             'visibility' => 'public',
             'throw' => true,
         ],
+        'hotels_metadata' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/hotels_metadata'),
+            'url' => env('APP_URL').'/storage/hotels_metadata',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
         'attributes' => [
             'driver' => 'local',
             'root' => storage_path('app/public/attributes'),

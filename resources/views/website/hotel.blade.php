@@ -3,122 +3,153 @@
     <x-website-header solidBg="true" />
 @endsection
 @section('hero')
-    <x-website-hero>
-        <x-slot:coverImage>
-            @if (!is_null($hotel->hotels->first()->getFirstMedia('hotels')))
-                {{ $hotel->hotels->first()->getFirstMedia('hotels')->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
-            @else
-                <img src="{{Vite::asset('resources/js/images/placeholder.svg')}}"
-                     alt="{{ $hotel->title }}"  class="absolute object-cover inset-0 w-full h-full">
-            @endif
-        </x-slot:coverImage>
-        <x-slot:content>
-            <div
-                class="px-4 align-middle max-w-screen-xl text-center lg:py-16 lg:px-12"
-            >
-                <div
-                    class="pt-32 text-left m-auto font-extrabold text-4xl text-white md:text-5xl sm:px-16 xl:px-48 dark:text-gray-400"
-                >
-                    {{$hotel->title}}
+    @if($hotel->hasMedia('main_hotels'))
+        <section class="relative bg-gray-950 pt-14 px-0  ">
+            <div class="splide default " data-splide='{"type":"loop","autoplay":true,"pagination":false}'>
+                <div class="splide__track w-full">
+                    <ul class="splide__list">
+                        @foreach ($hotel->getMedia('main_hotels') as $banner)
+                            <li class="splide__slide !w-screen" data-splide-interval="3000">
+                                <!-- Hero -->
+                                <div class="w-full" style="background-image: url('{{ $banner->responsiveImages()->getPlaceholderSvg() }}')
+                        ;background-repeat: no-repeat;  background-size: cover; ">
+                                    <div class="bg-gradient-to-b from-violet-600/[.15] via-transparent ">
+                                        <div
+                                            class="!w-screen mx-auto h-72 md:h-80 lg:h-96 sm:px-6 lg:px-8  grid justify-items-center">
+                                            {{ $banner->img()->attributes(['class' => 'h-72 md:h-80 lg:h-96 object-contain w-auto'])->lazy() }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Hero -->
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div
-                    class="flex  items-center . p-2 text-left m-auto text-lg text-white md:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
-                >
-                    <svg  width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
-                        <path d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>  {{$hotel->address}}
-
             </div>
+        </section>
+        <section class="!max-h-16">
+            <div    id="thumbnail-slide"    class="relative splide "
+                    aria-label="Carousel thumbs"
+            >
+                <div class="splide__track !h-16 w-full">
+                    <ul class="splide__list  justify-center items-center">
+                        @foreach ($hotel->getMedia('main_hotels') as $thumb)
+                            <li class="splide__slide w-28 h-12 my-auto ">
+                                {{ $thumb->img()->attributes(['class' => 'h-full w-full   object-fill '])->lazy() }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-        </x-slot:content>
-    </x-website-hero>
+        </section>
+    @else
+            <x-website-hero>
+                <x-slot:coverImage>
+                    @if (!is_null($hotel->getFirstMedia('main_hotels')))
+                        {{ $hotel->getFirstMedia('main_hotels')->img()->attributes(['class' => 'absolute object-cover inset-0 w-full h-full']) }}
+                    @else
+                        <img src="{{Vite::asset('resources/js/images/placeholder.svg')}}"
+                             alt="{{ $hotel->title }}"  class="absolute object-cover inset-0 w-full h-full">
+                    @endif
+                </x-slot:coverImage>
+            </x-website-hero>
+    @endif
 @endsection
 @section('content')
     <section class="py-8 px-2 sm:px-6 lg:px-24 bg-gradient-to-b  from-gray-200 to-slate-100  grid grid-cols-12 gap-8 text-gray-700">
         <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="bg-white rounded-sm p-4 px-8 mb-2 w-full" >
                 <h1 class="text-2xl font-semibold py-2 first-letter:uppercase lowercase">
-                    {{ $hotel->title }}
+                   Attributos
                 </h1>
-                <div class="flex flex-col mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" itemprop="address"
-                     itemscope itemtype="http://schema.org/PostalAddress">
-                   <div class="flex align-middle">
-                       <svg class="text-gray-400" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                           <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"
-                                   stroke-linecap="round" stroke-linejoin="round"></circle>
-                           <path
-                               d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z"
-                               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                       </svg>
-                       <p class="flex font-medium">
-                           &nbsp;{{ $hotel->address }}
-                       </p>
-                   </div>
-                    <div class="flex font-medium">
-                        {!! $hotel->description !!}
+                <div class="flex flex-col mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" >
+                    <div class="flex flex-wrap font-medium gap-3">
+                        @foreach($hotel->attributes as  $attribute)
+                            <div class="">
+                                <span class="font-semibold text-gray-500">{{ $attribute->name }}:</span>
+                                <span class="text-gray-500">
+                                    {{ $attribute->getFirstMedia('attributes')->img()->attributes([
+                                            'class' => 'w-10 h-10 rounded'
+                                        ]) }}
+                                </span>
+                            </div>
+                        @endforeach
                     </div>
-
                 </div>
             </div>
             <!-- Start::Relevant Hotels -->
-            <ul class="grid md:grid-cols-2 gap-10 py-8">
+            <ul class="grid  gap-10 py-8">
                 @foreach ($hotel->hotels as $hotelWithRoom)
-                    <li class="splide__slide  group mr-0 grid " itemprop="itemListElement"
+                    <li class="group mr-0 grid  " itemprop="itemListElement"
                         itemscope itemtype="https://schema.org/ListItem">
                         <article
-                            class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-95 hover:shadow-none hover:shadow-gray-400 hover:rounded">
-                            <header class="bg-gray-500">
-                                @if ($hotelWithRoom->getFirstMedia('hotels'))
-                                    {{ $hotelWithRoom->getFirstMedia('hotels')
-                                        ?->img()->attributes([
-                                            'class' => 'col-span-1 sm:col-span-3  h-64 xl:h-72 w-full object-cover rounded-t',
-                                            'alt' => $hotelWithRoom->title ?? '',
-                                        ])->lazy() }}
+                            class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300
+                            transform-gpu  hover:shadow-none hover:shadow-gray-400 rounded-xl
+
+                            sm:flex sm:flex-row
+                            ">
+                            <header class="bg-gray-500 sm:basis-2/3  md:basis-2/4 lg:basis-1/3 rounded-xl">
+                                @if ($hotelWithRoom->hasMedia('hotels'))
+                                    <div class="splide hotel-slider"  data-splide='{"type":"loop","autoplay":true,"pagination":true}'>
+                                        <div class="splide__track">
+                                            <!-- Slides -->
+                                            <ul class="splide__list">
+                                                @foreach($hotelWithRoom->getMedia('hotels') as $hotelMedia)
+                                                    <li class="splide__slide">
+                                                        {{$hotelMedia->img()->attributes([
+                                           'class' => 'col-span-1 sm:col-span-3  h-64 md:h-72 w-full object-cover  rounded-t-xl sm:rounded-l-xl sm:rounded-t-none',
+                                           'alt' => $hotelWithRoom->title ?? '',
+                                       ])->lazy() }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 @else
-                                    <img class="col-span-1 sm:col-span-3  h-72 sm:h-40 md:h-64 object-cover rounded-t"
+                                    <img class="col-span-1 sm:col-span-3  h-72 sm:h-40 md:h-64 object-cover rounded-t sm:rounded-l sm:rounded-t-none"
                                          src="{{ Vite::asset('resources/js/images/placeholder.svg') }}"
                                          alt="{{ $hotelWithRoom->title ?? '' }}">
                                 @endif
 
                             </header>
+                            <div class=" p-8 pb-4 font-['Jost'] text-gray-500 grid justify-items-stretch
+                            sm:basis-2/3 md:basis-2/4 lg:basis-2/3
+                            ">
 
-                            <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
+
                                 <div class="flex justify-between">
-                                    <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
+                                    <h1 class="text-xl font-bold line-clamp-1 normal-case py-1 first-letter:uppercase">
                                         {{$hotelWithRoom->title }}
                                     </h1>
                                 </div>
-
-                                <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1"
-                                     itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                                    <svg class="text-gray-400" width="20" height="20"
-                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                         stroke="currentColor">
-                                        <circle cx="12" cy="10" r="3" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                <div class="flex align-middle">
+                                    <svg class="text-gray-400" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"></circle>
                                         <path
                                             d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="line-clamp-1">
-                                        &nbsp;
-                                        {{ $hotel->address }}
+                                    <p class="flex font-medium">
+                                        &nbsp;{{ $hotel->address .', '.  $hotel?->bairro?->nome . ', ' . $hotel->bairro?->cidade?->nome . ', ' . $hotel->bairro?->cidade?->province->name  }}
                                     </p>
-
                                 </div>
-                                <div class="grid grid-cols-3 gap-8 mt-2">
+                                <div class=" justify-between">
+                                    <div class="normal-case first-letter:uppercase line-clamp-3">
+                                        {!! $hotelWithRoom->description !!}
+                                    </div>
+                                </div>
 
-                                    <div class="my-2 flex text-gray-500 col-span-2">
+                                <div class="grid  gap-8 mt-2">
+
+                                    <div class="my-2 flex text-gray-500 text-2xl font-base">
                                         &nbsp; <strong>{{ $hotelWithRoom->preco }}</strong>
                                     </div>
                                 </div>
 
                             </div>
                         </article>
-
                     </li>
                 @endforeach
             </ul>
@@ -209,18 +240,14 @@
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-2 justify-items-stretch">
                                 <div class="mb-2">
                                     <label for="nome_do_cliente">Teu nome <strong class="-order-2 text-red-500">*</strong></label>
-                                    <input type="text" name="nome_do_cliente" id="nome_do_cliente" class="h-10 border mt-1 focus:ring-1
-                           focus:ring-gray-500 border-gray-500 focus:border-gray-500 rounded p-6
-                           px-4 w-full " value="" placeholder="Teu nome" />
+                                    <input type="text" name="nome_do_cliente" id="nome_do_cliente" class="h-10 border mt-1 focus:ring-1  focus:ring-gray-500 border-gray-500 focus:border-gray-500 rounded p-6 px-4 w-full " value="" placeholder="Teu nome" />
                                     @error('nome_do_cliente')
                                     <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="mb-2">
                                     <label for="email">Teu email</label>
-                                    <input type="text" name="email" id="email" class="h-10 border mt-1
-                           rounded p-6 px-4 w-full  focus:ring-1
-                          focus:ring-gray-500 border-gray-500 focus:border-gray-500" value="" placeholder="Exemplo@mimovel.com" />
+                                    <input type="text" name="email" id="email" class="h-10 border mt-1  rounded p-6 px-4 w-full  focus:ring-1 focus:ring-gray-500 border-gray-500 focus:border-gray-500" value="" placeholder="Exemplo@mimovel.com" />
                                     @error('email')
                                     <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
                                     @enderror
@@ -228,9 +255,7 @@
                                 </div>
                                 <div class="md:col-span-2 mb-2">
                                     <label for="contacto">Contacto</label>
-                                    <input type="text" name="contacto" id="contacto" class="h-10 border mt-1 rounded p-6 px-4 w-full
-                            focus:ring-1 border-gray-500
-                           focus:ring-gray-400 focus:border-gray-500" value="" placeholder="Contacto" />
+                                    <input type="text" name="contacto" id="contacto" class="h-10 border mt-1 rounded p-6 px-4 w-full  focus:ring-1 border-gray-500  focus:ring-gray-400 focus:border-gray-500" value="" placeholder="Contacto" />
                                     @error('contacto')
                                     <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>
                                     @enderror
@@ -238,9 +263,7 @@
                                 <div class="md:col-span-2 mb-2">
                                     <label for="mensagem">Mensagem</label>
                                     <div class=" flex  items-center mt-1">
-                              <textarea name="mensagem" id="mensagem" cols="10" rows="5" class=" px-4 appearance-none outline-none
-                              text-gray-800 w-full bg-transparent focus:ring-1 border-gray-500
-                              focus:ring-gray-500 focus:border-gray-500 rounded" placeholder="Mensagem..." ></textarea>
+                              <textarea name="mensagem" id="mensagem" cols="10" rows="5" class=" px-4 appearance-none outline-none  focus:ring-gray-500 focus:border-gray-500 rounded" placeholder="Mensagem..." ></textarea>
                                     </div>
                                     @error('mensagem')
                                     <span class="text-red-500 text-sm font-semibold ">{{ $message }}</span>

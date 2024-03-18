@@ -57,7 +57,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $sent_messages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- *
  * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsAndSelf($id, array $columns = [])
  * @method static \Kalnoy\Nestedset\QueryBuilder|User ancestorsOf($id, array $columns = [])
@@ -122,7 +121,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Kalnoy\Nestedset\QueryBuilder|User withoutRoot()
  * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
  * @method static \Kalnoy\Nestedset\Collection<int, static> get($columns = ['*'])
- *
+ * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
+ * @method static \Kalnoy\Nestedset\Collection<int, static> get($columns = ['*'])
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements HasMedia

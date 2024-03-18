@@ -33,6 +33,11 @@ class UpdateHotel
                     $hotel->addMedia($image)->toMediaCollection('main_hotels', 'hotels');
                 }
             }
+
+            if ($actionRequest['attributes'] && is_array($actionRequest['attributes'])) {
+                $hotel->attributes()->sync($actionRequest['attributes']);
+            }
+
             DB::commit();
             flash()->addSuccess('Hotel actualizado com sucesso.');
             return to_route('hotel.all');

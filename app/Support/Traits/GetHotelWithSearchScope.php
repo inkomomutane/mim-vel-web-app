@@ -29,6 +29,7 @@ trait GetHotelWithSearchScope
                 'condicao',
                 'status',
                 'bairro',
+                 'attributes'
             ]);
 
         return $query->orderBy('updated_at', 'desc')->get();

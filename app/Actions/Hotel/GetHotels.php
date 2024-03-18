@@ -28,9 +28,9 @@ class GetHotels
 
                     ->paginate(5)->withQueryString()
             );
-        } else {
-            return abort(401);
         }
+
+        return abort(401);
     }
 
     public function AsController(): \Inertia\Response

@@ -27,14 +27,23 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import collect from "collect.js";
 import { RoomHotel } from "@/types";
 import ResponsiveImage from "@/Components/ResponsiveImage.vue";
+import DeleteImage from "@/Pages/Image/DeleteImage.vue";
 
 const props = defineProps({
     provinces: Array<App.Data.MultilevelProvinceData>,
     imovelsTypes: Array<App.Data.ImovelTypeData>,
     imovelConditions: Array<App.Data.CondicaoData>,
+    attributes: {
+        type: Array<App.Data.AttributeData>,
+        required: true,
+    },
     statuses: Array<App.Data.StatusData>,
     messages: Object as PropType<FlasherResponse>,
-    hotel: Object as PropType<App.Data.HotelMetaDataDtoData>,
+    hotel: {
+        type: Object as PropType<App.Data.HotelMetaDataDtoData>,
+        required: true
+    },
+
 });
 const hotelRefs = ref(props.hotel);
 const provinces = ref(props.provinces);
@@ -72,6 +81,7 @@ const form = useForm({
     tipo_de_imovel_id: props.hotel?.imovelTypeData.id,
     status_id: props.hotel?.statusData.id,
     images: <any>[],
+    attributes: props.hotel?.attributes?.map((attr) => attr.id) ?? [],
 });
 
 
@@ -141,6 +151,21 @@ const updateHotel = () =>
             },
         }
     );
+
+
+
+const deleteImageTrigger = ref(false);
+const imageToDelete = ref<App.Data.MediaData | null>(null);
+const openDeleteImageModal = (image : App.Data.MediaData) => {
+    deleteImageTrigger.value = true;
+    imageToDelete.value = image;
+
+};
+const closeDeleteImageModal = () => {
+    deleteImageTrigger.value = false;
+    imageToDelete.value = null;
+};
+
 </script>
 
 <template>
@@ -309,6 +334,37 @@ const updateHotel = () =>
                         <InputError :message="form.errors.description ?? ''" />
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
+                    <div>
+                        <label
+                            for="attributes"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Attributos</label
+                        >
+                        <div class="flex flex-wrap gap-2">
+                            <div v-for="(attribute,index) in props.attributes" class="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    :id="attribute.id ?? `${index}`"
+                                    :value="attribute.id"
+                                    v-model="form.attributes"
+                                    class="rounded border-gray-300 text-slate-500 shadow-sm focus:border-slate-300 focus:ring focus:ring-slate-200 focus:ring-opacity-50"
+                                />
+                                <label
+                                    :for="attribute.id ?? `${index}` "
+                                    class="text-sm font-medium text-gray-900 dark:text-white flex items-center space-x-2 gap-x-2"
+                                >
+                                    <ResponsiveImage class-name="w-8 h-8 rounded" :responsive="attribute.image" />
+                                    {{ attribute.name }}
+                                </label
+                                >
+                            </div>
+                        </div>
+                        <InputError :message="form.errors.attributes ?? ''" />
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
                     <div>
                         <label
@@ -406,7 +462,7 @@ const updateHotel = () =>
                             @update:images="
                                 (files:any) => (roomPictures = files)
                             "
-                            :multiple="false"
+                            :multiple="true"
                             :disabledUpload="true"
                             :disabledCancel="true"
                             label-text="Fotos do hotel"
@@ -418,14 +474,14 @@ const updateHotel = () =>
                 </div>
                 <div>
                         <ul class="max-h-96 overflow-y-auto">
-                            <li v-if="(form.images.length == 0) && (props.hotel?.media != null)"
-
+                            <li
+                                v-for="image in (props.hotel.media)"
                                 class="rounded border border-dashed border-green-700 bg-green-100 dark:bg-green-950 flex flex-wrap p-0 mb-4 gap-0 w-full"
                             >
                             <div   class="flex items-center space-x-4 w-full">
                                     <div class="flex-shrink-0">
                                         <ResponsiveImage
-                                            :responsive="props.hotel?.media"
+                                            :responsive="image"
                                             class-name="w-[100px] shadow-2 h-16 object-cover"
                                         />
                                     </div>
@@ -433,14 +489,14 @@ const updateHotel = () =>
                                         <p
                                             class="text-sm font-medium text-justify text-gray-900 truncate dark:text-white"
                                         >
-                                            {{ props.hotel?.media.name }}
+                                            {{ image.name }}
                                         </p>
                                     </div>
                                     <div class="flex-1 min-w-fit">
                                         <p
                                             class="text-sm font-medium text-gray-900 truncate dark:text-white"
                                         >
-                                            {{ props.hotel?.media.size }} KB
+                                            {{ image.size }} KB
                                         </p>
                                     </div>
                                     <div class="flex-1 min-w-0"></div>
@@ -466,7 +522,7 @@ const updateHotel = () =>
                                             <span class="sr-only">Done</span>
                                         </div>
                                     </div>
-                                    <button class="px-4">
+                                    <button  @click="openDeleteImageModal(image)" class="px-4">
                                         <svg
                                             aria-hidden="true"
                                             class="w-5 h-5 text-gray-500 hover:text-red-500"
@@ -486,6 +542,8 @@ const updateHotel = () =>
                         </ul>
                     </div>
             </form>
+            <DeleteImage v-if="imageToDelete" :open-modal="deleteImageTrigger" :close="closeDeleteImageModal" :image="imageToDelete" />
+
         </template>
     </AuthenticatedLayout>
 </template>

@@ -2,10 +2,12 @@
 
 namespace App\Actions\Hotel;
 
+use App\Data\AttributeData;
 use App\Data\CondicaoData;
 use App\Data\ImovelTypeData;
 use App\Data\MultilevelProvinceData;
 use App\Data\StatusData;
+use App\Models\Attribute;
 use App\Models\Condicao;
 use App\Models\Province;
 use App\Models\Status;
@@ -24,6 +26,7 @@ class CreateHotel
             'imovelsTypes' => ImovelTypeData::collection(TipoDeImovel::all()),
             'imovelConditions' => CondicaoData::collection(Condicao::all()),
             'statuses' => StatusData::collection(Status::all()),
+            'attributes' => AttributeData::collection(Attribute::with('media')->get()),
         ]);
     }
 }

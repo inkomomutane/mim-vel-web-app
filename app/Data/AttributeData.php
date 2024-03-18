@@ -23,7 +23,7 @@ class AttributeData extends Data
             id: $attribute->id,
             name: $attribute->name,
             description: $attribute->description,
-            image: Lazy::whenLoaded('media', $attribute, fn () => ! is_null($attribute->getFirstMedia('attributes')) ?
+            image: Lazy::whenLoaded('media', $attribute, static fn () => ! is_null($attribute->getFirstMedia('attributes')) ?
                 MediaData::fromModel($attribute->getFirstMedia('attributes')) :
                 null)
         );

@@ -3,19 +3,23 @@
 namespace App\Models;
 
 use App\Data\HotelMetaDataDtoData;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Carbon;
 use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+use Spatie\Tags\Tag;
 use Vite;
 
 /**
@@ -29,15 +33,14 @@ use Vite;
  * @property int $condicao_id
  * @property int $status_id
  * @property int $bairro_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Bairro $bairro
- * @property-read \App\Models\Condicao $condicao
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Hotel> $hotels
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Bairro $bairro
+ * @property-read Condicao $condicao
+ * @property-read Collection<int, \App\Models\Hotel> $hotels
  * @property-read int|null $hotels_count
- * @property-read \App\Models\Status $status
- * @property-read \App\Models\TipoDeImovel $tipoDeImovel
- *
+ * @property-read Status $status
+ * @property-read TipoDeImovel $tipoDeImovel
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData query()
@@ -51,18 +54,21 @@ use Vite;
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereTipoDeImovelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereUpdatedAt($value)
- *
  * @property string|null $slug
- * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\Tags\Tag> $tags
+ * @property Collection<int, Tag> $tags
  * @property-read int|null $tags_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAllTags(\ArrayAccess|Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAllTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAnyTags(\ArrayAccess|Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- *
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData withoutTags(\ArrayAccess|Tag|array|string $tags, ?string $type = null)
+ * @property float $price
+ * @property-read Collection<int, Attribute> $attributes
+ * @property-read int|null $attributes_count
+ * @property-read MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelMetaData wherePrice($value)
  * @mixin \Eloquent
  */
 class HotelMetaData extends Model implements HasMedia
@@ -128,7 +134,7 @@ class HotelMetaData extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('main_hotels')->withResponsiveImages()->singleFile();
+        $this->addMediaCollection('main_hotels')->withResponsiveImages();
     }
 
     /**
@@ -155,8 +161,16 @@ class HotelMetaData extends Model implements HasMedia
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * Get all the attributes for the hotel metadata.
+     */
+    public function attributes(): MorphToMany
+    {
+        return $this->morphToMany(Attribute::class, 'attributable');
     }
 }

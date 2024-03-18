@@ -22,8 +22,10 @@ class HotelMetaDataDtoData extends Data
         public readonly Lazy|BairroData|null $bairroData,
         /** @var HotelData[] $hotels */
         public readonly Lazy|null|DataCollection $hotels,
-        /** @var MediaData * */
-        public Lazy|null|MediaData $media,
+        /** @var MediaData[] * */
+        public Lazy|null|DataCollection $media,
+        /** @var AttributeData[] $attributes */
+        public readonly DataCollection|Lazy|null $attributes,
 
     ) {
     }
@@ -39,27 +41,27 @@ class HotelMetaDataDtoData extends Data
             imovelTypeData: Lazy::whenLoaded(
                 'tipoDeImovel',
                 $hotelMetaData,
-                fn () => $hotelMetaData->tipoDeImovel->getData()
+                static   fn () => $hotelMetaData->tipoDeImovel->getData()
             ),
             condicaoData: Lazy::whenLoaded(
                 'condicao',
                 $hotelMetaData,
-                fn () => $hotelMetaData->condicao->getData()
+                static   fn () => $hotelMetaData->condicao->getData()
             ),
             statusData: Lazy::whenLoaded(
                 'status',
                 $hotelMetaData,
-                fn () => $hotelMetaData->status->getData()
+                static   fn () => $hotelMetaData->status->getData()
             ),
             bairroData: Lazy::whenLoaded(
                 'bairro',
                 $hotelMetaData,
-                fn () => $hotelMetaData->bairro->getData()
+                static fn () => $hotelMetaData->bairro->getData()
             ),
             hotels: Lazy::whenLoaded(
                 'hotels',
                 $hotelMetaData,
-                fn () => $hotelMetaData->hotels->map(function ($hotel) {
+                static fn () => $hotelMetaData->hotels->map(function ($hotel) {
                     $hotel->loadMissing('media');
 
                     return $hotel->getData();
@@ -68,9 +70,12 @@ class HotelMetaDataDtoData extends Data
             media: Lazy::whenLoaded(
                 'media',
                 $hotelMetaData,
-                static fn () => !is_null($hotelMetaData->getFirstMedia('main_hotels')) ?
-                    MediaData::fromModel($hotelMetaData->getFirstMedia('main_hotels')) :
-                    null
+                static fn () => $hotelMetaData->getMedia('main_hotels')->map(fn ($media) => MediaData::fromModel($media))
+            ),
+            attributes: Lazy::whenLoaded(
+                'attributes',
+                $hotelMetaData,
+                static fn () => AttributeData::collection($hotelMetaData->attributes)
             ),
         );
     }

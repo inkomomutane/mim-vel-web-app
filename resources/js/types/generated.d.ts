@@ -54,7 +54,8 @@ declare namespace App.Data {
         statusData: any | App.Data.StatusData | null;
         bairroData: any | App.Data.BairroData | null;
         hotels: Array<App.Data.HotelData> | null;
-        media: App.Data.MediaData | null;
+        media: Array<App.Data.MediaData> | null;
+        attributes: Array<App.Data.AttributeData> | null;
     };
     export type ImovelData = {
         id: any | number | null;

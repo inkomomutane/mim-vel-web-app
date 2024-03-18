@@ -7,6 +7,43 @@ window.addEventListener("load", function () {
     const relatedHouses  = this.document.getElementById("relatedHouses");
     const relevantHotels = this.document.getElementById("relevantHotels");
 
+
+    /** Slider for hotels */
+
+    const hotelSlider = this.document.getElementsByClassName('hotel-slider') ?? [];
+    if(hotelSlider.length > 0){
+        for (let index = 0; index < hotelSlider.length; index++) {
+            const element = hotelSlider[index] as HTMLElement;
+            const hotelSliderLoop = new Splide(element, {
+                arrows: false,
+                perPage: 1,
+                gap: 5,
+                breakpoints: {
+                    768: {
+                        perPage: 1,
+                        width: 768,
+                        mediaQuery: 'max'
+                    },
+                    1280 : {
+                        perPage: 1,
+                        width: 1280,
+                        mediaQuery: 'max'
+                    },
+                    1536 : {
+                        perPage: 1,
+                        width: 1536,
+                        mediaQuery: 'max'
+                    }
+                }
+            });
+            hotelSliderLoop.mount();
+        }
+    }
+
+    /** End slider for hotels */
+
+
+
     if (relevantImovels != null) {
         const relevantImovelsSlide = new Splide("#relevant-imovels", {
             arrows: false,
@@ -108,7 +145,6 @@ window.addEventListener("load", function () {
         relevantHotelsSlide.mount();
     }
 
-
     if (thumb != null) {
         const splide = new Splide(".default", {
             arrows: false,
@@ -131,7 +167,6 @@ window.addEventListener("load", function () {
         const splide = new Splide(".default", {
             arrows: false,
         });
-
         splide.mount();
     }
 });

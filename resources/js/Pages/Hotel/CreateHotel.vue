@@ -26,10 +26,15 @@ import Flasher from "@/helprs";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import collect from "collect.js";
 import {RoomHotel} from "@/types";
+import ResponsiveImage from "@/Components/ResponsiveImage.vue";
 const props = defineProps({
     provinces: Array<App.Data.MultilevelProvinceData>,
     imovelsTypes: Array<App.Data.ImovelTypeData>,
     imovelConditions: Array<App.Data.CondicaoData>,
+    attributes: {
+        type: Array<App.Data.AttributeData>,
+        required: true,
+    },
     statuses: Array<App.Data.StatusData>,
     messages: Object as PropType<FlasherResponse>,
 });
@@ -51,6 +56,7 @@ const form = useForm({
     tipo_de_imovel_id: null,
     status_id: null,
     rooms: [],
+    attributes: [],
 });
 
 watch(
@@ -315,6 +321,35 @@ const removeImageFromRoom = (id :string,index:number)  => {
                             :config="{}"
                         ></ckeditor>
                         <InputError :message="form.errors.description ?? ''" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 py-2">
+                    <div>
+                        <label
+                            for="attributes"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Attributos</label
+                        >
+                        <div class="flex flex-wrap gap-2">
+                            <div v-for="(attribute,index) in props.attributes" class="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    :id="attribute.id ?? `${index}`"
+                                    :value="attribute.id"
+                                    v-model="form.attributes"
+                                    class="rounded border-gray-300 text-slate-500 shadow-sm focus:border-slate-300 focus:ring focus:ring-slate-200 focus:ring-opacity-50"
+                                />
+                                <label
+                                    :for="attribute.id ?? `${index}` "
+                                    class="text-sm font-medium text-gray-900 dark:text-white flex items-center space-x-2 gap-x-2"
+                                >
+                                    <ResponsiveImage class-name="w-8 h-8 rounded" :responsive="attribute.image" />
+                                    {{ attribute.name }}
+                                </label
+                                >
+                            </div>
+                        </div>
+                        <InputError :message="form.errors.attributes ?? ''" />
                     </div>
                 </div>
 

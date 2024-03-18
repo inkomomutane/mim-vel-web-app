@@ -51,6 +51,10 @@ class StoreHotel
                         $roomUpdated->addMedia($image)->toMediaCollection('hotels', 'hotels');
                     }
                 }
+
+                if ($room['attributes'] && is_array($room['attributes'])) {
+                    $roomUpdated->attributes()->sync($room['attributes']);
+                }
             }
 
             DB::commit();
