@@ -50,7 +50,9 @@ watch(() => roomPictures,()=> {
 const createRoom = () => {
         return form.post(route('hotel.rooms.create.new-room',{
             hotel : props.hotel
-        }))
+        }),{
+            onSuccess : () => closeCreateRoomModal()
+        })
 }
 </script>
 

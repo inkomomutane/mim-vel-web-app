@@ -400,17 +400,17 @@ const filterImovels = () =>
         <section
             class="py-16 px-1 sm:px-2 lg:px-24 bg-zinc-100 dark:bg-gray-700 font-['Open_Sans']"
             itemscope
-            itemtype="http://schema.org/ItemList"
+            itemtype="https://schema.org/ItemList"
         >
             <ul
-                class="grid grid-cols-1 sm:grid-cols-2  justify-between"
+                class="grid  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-between"
             >
                 <li
                     class="p-5 group"
                     v-for="(imovel, index) in imovels?.data"
                     itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem"
+                    itemtype="https://schema.org/ListItem"
                     data-aos-offset="50"
                     data-aos="fade-up"
                     :data-aos-duration="200 + index * 100"
@@ -420,18 +420,13 @@ const filterImovels = () =>
                             route('post.imovel.show', { imovel: imovel.slug })
                         "
                     >
-                        <article
-                            class="w-full bg-white dark:bg-gray-700 dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-gray-200 hover:rounded"
-                        >
-                            <header>
-                                <a
-                                    :href="
-                                        route('post.imovel.show', {
-                                            imovel: imovel.slug,
-                                        })
-                                    "
-                                    itemprop="url"
-                                >
+                        <article class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300 transform-gpu hover:scale-105 hover:shadow-none hover:shadow-gray-400 hover:rounded">
+                            <a :href="route('post.imovel.show',{imovel: imovel.slug})" itemprop="url">
+
+                        </a>
+                            <header class="bg-gray-500"><a :href="route('post.imovel.show',{imovel: imovel.slug})" itemprop="url">
+                        </a>
+                                <a :href="route('post.imovel.show',{imovel: imovel.slug})">
                                     <ResponsiveImage
                                         :alt="imovel.titulo"
                                         :responsive="imovel.media ?? undefined"
@@ -440,59 +435,58 @@ const filterImovels = () =>
 
                                 rounded-t "
                                     />
-                                </a>
-                            </header>
-                            <div
-                                class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3"
-                            >
-                                <div class="grid justify-between">
-                                    <div class="w-full inline-flex items-baseline h-fit">
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.tipo_de_imovel.name }}
-                                        </div>
+                        </a>
+                        </header>
 
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.condicao?.nome }}
-                                        </div>
-
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.bairro?.nome }}
-                                        </div>
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.bairro?.city?.nome }}
-                                        </div>
-
-                                        <div class="bg-green-400 font-medium mx-1 py-0 m-0 rounded text-white px-2 text-sm  w-fit">
-                                            {{  imovel.bairro?.city?.province?.name }}
-                                        </div>
-                                    </div>
-
-                                    <div class="w-full">
-                                        <h1
-                                        class="w-full  text-lg font-semibold line-clamp-1 normal-case py-1"
-                                    >
-                                        {{
-                                            (imovel.imovel_for?.slug_text ??
-                                                "") +
+                            <div class="w-full p-4 pb-6 font-['Jost'] text-gray-500 grid justify-items-stretch col-span-3">
+                                <div class="flex justify-between">
+                                    <a :href="route('post.imovel.show',{imovel: imovel.slug})">
+                                        <h1 class="text-lg font-semibold line-clamp-1 normal-case py-1 first-letter:uppercase">
+                                            {{
+                                                (imovel.imovel_for?.slug_text ??
+                                                    "") +
                                                 " " +
                                                 imovel.titulo ?? ""
-                                        }}
-                                    </h1>
-                                    </div>
+                                            }}
+                                        </h1>
+                                    </a>
                                 </div>
 
+                                <div class="flex mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" itemprop="address"  itemtype="https://schema.org/PostalAddress">
+                                    <svg class="text-gray-400" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                        <path d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <p class="line-clamp-1">
+                                        &nbsp;
+                                        {{  imovel.bairro?.nome + ', ' + imovel.bairro?.city?.nome + ', ' + imovel.bairro?.city?.province?.name  }}
+                                    </p>
+
+                                </div>
+                                <div class="font-semibold text-sm text-gray-600 grid grid-cols-2">
+                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1">
+                                        {{  imovel.tipo_de_imovel.name }}</p>
+                                    <p class="bg-orange-100 p-1 px-2 rounded-sm mr-2 line-clamp-1 ">
+                                        {{  imovel.condicao?.nome }}</p>
+
+                                </div>
                                 <div class="grid grid-cols-3 gap-8 mt-2">
 
+                                    <a  :href="route('post.imovel.show', { imovel: imovel.slug })" class="flex
+                                       bg-orange-950  items-center justify-center
+                                       text-center  rounded-sm text-orange-50
+                                       py-0 font-medium text-sm transition-transform duration-300 transform-gpu
+                                        hover:z-10 hover:text-orange-100 uppercase
+                                        col-span-1
+                                        ">
 
-                                <button
-                                    class="text-center  rounded-sm text-orange-400  py-1 font-medium text-sm transition-transform duration-300 transform-gpu hover:z-10 hover:text-orange-500 first-letter:uppercase"
-                                >
-                                    Ver mais
-                                </button>
+                                        Ver mais
+                                    </a>
                                     <div class="my-2 flex text-gray-500 col-span-2">
                                         &nbsp; <strong>{{ imovel.price }}</strong>
                                     </div>
                                 </div>
+
                             </div>
                         </article>
                     </a>
