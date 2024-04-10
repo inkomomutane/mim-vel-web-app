@@ -415,7 +415,7 @@
             Veja por categorias
         </h2>
         <div class="flex p-5">
-            <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full justify-between">
+            <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-5 xl:grid-cols-6 w-full justify-between">
 
                 @foreach ($imovelTypes as $type)
                     <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">

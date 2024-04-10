@@ -19,6 +19,7 @@ import LegalPoliciesLink from "./Links/LegalPoliciesLink.vue";
 import LegaltermsLink from "./Links/LegaltermsLink.vue";
 import MessagesLink from "./Links/MessagesLink.vue";
 import AttributesLink from "./Links/AttributesLink.vue";
+import HotelsLink from "@/Layouts/partials/Links/HotelsLink.vue";
 </script>
 <template>
     <div class="space-y-8">
@@ -37,6 +38,7 @@ import AttributesLink from "./Links/AttributesLink.vue";
             <ul class="mt-3">
                 <ProfileLink />
                 <ImovelsLink />
+                <HotelsLink/>
                 <NotAprrovedImovelsLink />
                 <ImovelsTrashLink />
                 <AttributesLink />

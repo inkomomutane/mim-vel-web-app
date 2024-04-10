@@ -60,7 +60,7 @@
         <div class=" col-span-12 md:col-span-8 relative h-fit " >
             <div class="bg-white rounded-sm p-4 px-8 mb-2 w-full" >
                 <h1 class="text-2xl font-semibold py-2 first-letter:uppercase lowercase">
-                   Attributos
+                   Atributos
                 </h1>
                 <div class="flex flex-col mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" >
                     <div class="flex flex-wrap font-medium gap-3">
@@ -80,15 +80,15 @@
             <!-- Start::Relevant Hotels -->
             <ul class="grid  gap-10 py-8">
                 @foreach ($hotel->hotels as $hotelWithRoom)
-                    <li class="group mr-0 grid  " itemprop="itemListElement"
+                    <li class="group mr-0 grid  rounded-l-xl " itemprop="itemListElement"
                         itemscope itemtype="https://schema.org/ListItem">
                         <article
                             class="!w-full bg-white dark:bg-gray-700  dark:border-gray-700 transition-transform duration-300
                             transform-gpu  hover:shadow-none hover:shadow-gray-400 rounded-xl
 
-                            sm:flex sm:flex-row
+                            flex flex-row
                             ">
-                            <header class="bg-gray-500 sm:basis-2/3  md:basis-2/4 lg:basis-1/3 rounded-xl">
+                            <header class="bg-gray-500 basis-1/3  md:basis-2/4 lg:basis-1/3 rounded-l-xl ">
                                 @if ($hotelWithRoom->hasMedia('hotels'))
                                     <div class="splide hotel-slider"  data-splide='{"type":"loop","autoplay":true,"pagination":true}'>
                                         <div class="splide__track">
@@ -97,7 +97,7 @@
                                                 @foreach($hotelWithRoom->getMedia('hotels') as $hotelMedia)
                                                     <li class="splide__slide">
                                                         {{$hotelMedia->img()->attributes([
-                                           'class' => 'col-span-1 sm:col-span-3  h-64 md:h-72 w-full object-cover  rounded-t-xl sm:rounded-l-xl sm:rounded-t-none',
+                                           'class' => 'col-span-1 sm:col-span-3  h-64 md:h-72 w-full object-cover  rounded-l-xl',
                                            'alt' => $hotelWithRoom->title ?? '',
                                        ])->lazy() }}
                                                     </li>
@@ -113,7 +113,7 @@
 
                             </header>
                             <div class=" p-8 pb-4 font-['Jost'] text-gray-500 grid justify-items-stretch
-                            sm:basis-2/3 md:basis-2/4 lg:basis-2/3
+                            basis-2/3 md:basis-2/4 lg:basis-2/3
                             ">
 
 
@@ -143,7 +143,7 @@
 
                                 <div class="grid  gap-8 mt-2">
 
-                                    <div class="my-2 flex text-gray-500 text-2xl font-base">
+                                    <div class="my-2 flex text-gray-500 font-bold md:text-2xl font-base">
                                         &nbsp; <strong>{{ $hotelWithRoom->preco }}</strong>
                                     </div>
                                 </div>
@@ -154,6 +154,18 @@
                 @endforeach
             </ul>
             <!--- Start::Latest-Imovels-Slide-that shown only on small screens -->
+            @if($hotel->description)
+                <div class="bg-white rounded-sm p-4 px-8 mb-2 w-full" >
+                    <h1 class="text-xl font-semibold py-2 first-letter:uppercase lowercase">
+                        Descrição do hotel
+                    </h1>
+                    <div class="flex flex-col mb-1 font-normal text-sm text-gray-700 dark:text-gray-400 line-clamp-1" >
+                        <div class="flex flex-wrap font-medium gap-3">
+                            {!!  $hotel->description !!}
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
         <div class=" col-span-12 md:col-span-4 h-fit md:sticky md:top-20  ">
             <div class=" bg-white p-4 px-4 lg:p-8  lg:py-2 w-full grid  ">
