@@ -88,7 +88,7 @@
 
                             flex flex-row
                             ">
-                            <header class="bg-gray-500 basis-1/3  md:basis-2/4 lg:basis-1/3 rounded-l-xl ">
+                            <header class="bg-gray-950 basis-1/2  md:basis-2/4 lg:basis-1/3 rounded-l-xl ">
                                 @if ($hotelWithRoom->hasMedia('hotels'))
                                     <div class="splide hotel-slider"  data-splide='{"type":"loop","autoplay":true,"pagination":true}'>
                                         <div class="splide__track">
@@ -97,7 +97,7 @@
                                                 @foreach($hotelWithRoom->getMedia('hotels') as $hotelMedia)
                                                     <li class="splide__slide">
                                                         {{$hotelMedia->img()->attributes([
-                                           'class' => 'col-span-1 sm:col-span-3  h-64 md:h-72 w-full object-cover  rounded-l-xl',
+                                           'class' => 'col-span-1 sm:col-span-3  h-64 md:h-72 w-full object-contain  rounded-l-xl',
                                            'alt' => $hotelWithRoom->title ?? '',
                                        ])->lazy() }}
                                                     </li>
@@ -113,30 +113,17 @@
 
                             </header>
                             <div class=" p-8 pb-4 font-['Jost'] text-gray-500 grid justify-items-stretch
-                            basis-2/3 md:basis-2/4 lg:basis-2/3
+                            basis-1/2 md:basis-2/4 lg:basis-2/3
                             ">
 
 
                                 <div class="flex justify-between">
-                                    <h1 class="text-xl font-bold line-clamp-1 normal-case py-1 first-letter:uppercase">
+                                    <h1 class="text-xl font-bold normal-case py-1 first-letter:uppercase">
                                         {{$hotelWithRoom->title }}
                                     </h1>
                                 </div>
-                                <div class="flex align-middle">
-                                    <svg class="text-gray-400" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"></circle>
-                                        <path
-                                            d="M12 2C7.58172 2 4 5.58172 4 10C4 11.8919 4.40209 13.1304 5.5 14.5L12 22L18.5 14.5C19.5979 13.1304 20 11.8919 20 10C20 5.58172 16.4183 2 12 2Z"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    <p class="flex font-medium">
-                                        &nbsp;{{ $hotel->address .', '.  $hotel?->bairro?->nome . ', ' . $hotel->bairro?->cidade?->nome . ', ' . $hotel->bairro?->cidade?->province->name  }}
-                                    </p>
-                                </div>
                                 <div class=" justify-between">
-                                    <div class="normal-case first-letter:uppercase line-clamp-3">
+                                    <div class="normal-case text-xs sm:text-base  first-letter:uppercase line-clamp-5">
                                         {!! $hotelWithRoom->description !!}
                                     </div>
                                 </div>
