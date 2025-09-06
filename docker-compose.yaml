@@ -1,0 +1,43 @@
+services:
+  application:
+    build:
+      dockerfile: docker/dev/php/Dockerfile
+    depends_on:
+      - database
+    volumes:
+      - app_data:/var/www/html
+  web_server:
+    image: nginx:latest
+    volumes:
+      - ./docker/dev/nginx:/etc/nginx
+      -  app_data:/var/www/html   # <-- Add this line
+    ports:
+      - "80:80"
+    depends_on:
+      - application
+  database:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    expose:
+      - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+  database_manager:
+     image: phpmyadmin/phpmyadmin
+     restart: always
+     environment:
+        PMA_HOST: database
+        PMA_USER: "${DB_USERNAME}"
+        PMA_PASSWORD: "${DB_PASSWORD}"
+     ports:
+        - "8080:80"
+     depends_on:
+       - database
+volumes:
+    db_data:
+    app_data:

@@ -1,0 +1,12 @@
+/app/node_modules
+/app/vendor
+.env
+.env.*
+.git
+.gitignore
+.DS_Store
+.github
+Dockerfile
+Dockerfile.*
+docker-compose.yaml
+docker-compose.*.yaml
