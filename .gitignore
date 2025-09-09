@@ -20,4 +20,7 @@ yarn-error.log
 /.vscode
 /.tinkerun/
 composer.lock
+/backup
+/.infrastructure/volume_data/*
+!/.infrastructure/volume_data/.gitignore
 

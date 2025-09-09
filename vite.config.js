@@ -35,6 +35,12 @@ export default defineConfig({
         watch: {
           ignored: ["**/storage/**","**/vendor/**"],
         },
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+          host: 'localhost',
+        },
+        https: false,
       },
     resolve: {
         alias: {
