@@ -4,3 +4,10 @@
 /node_modules
 .github
 .git
+.env
+.env.production
+.env.local
+.Dstore
+.DS_Store
+.idea
+.vscode

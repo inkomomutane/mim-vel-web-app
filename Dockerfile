@@ -67,9 +67,19 @@ COPY --from=node /usr/local/bin /usr/local/bin
 
 COPY --chown=www-data:www-data . /var/www/html
 
-RUN composer install --no-dev --optimize-autoloader && \
-    npm install && \
-    npm run build && \
-    rm -rf /var/www/html/node_modules /var/www/html/.npm /var/www/html/.cache /var/www/html/.git /var/www/html/public/hot
+RUN composer install --no-dev --optimize-autoloader
 
+RUN npm install
+
+RUN npm run build && \
+    rm -rf /var/www/html/node_modules && \
+    rm -rf /var/www/html/public/hot && \
+    rm -rf /var/www/html/.github && \
+    rm -rf /var/www/html/.gitignore && \
+    rm -rf /var/www/html/.gitattributes && \
+    rm -rf /var/www/html/docker-compose*.yml && \
+    rm -rf /var/www/html/Dockerfile* && \
+    rm -rf /var/www/html/README.md \
+    rm -rf /var/www/html/.env.example \
+    rm -rf /var/www/html/.env
 USER www-data

@@ -1,9 +1,7 @@
-name: ci
-
+name: image build and push
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 jobs:
   docker:
     runs-on: ubuntu-22.04
