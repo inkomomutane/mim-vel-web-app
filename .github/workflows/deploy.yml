@@ -5,6 +5,8 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-22.04
+    permissions:
+      packages: write
     steps:
       -
         name: Checkout
@@ -15,7 +17,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-          registry: 'ghcr.io'
+          registry: ghcr.io
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -28,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: inkomomutane/mimovel:latest
+          tags: ghcr.io/inkomomutane/mimovel:${{ github.ref_name }}, ghcr.io/inkomomutane/mimovel:latest
