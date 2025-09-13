@@ -67,6 +67,7 @@ COPY --from=node /usr/local/bin /usr/local/bin
 COPY --chown=www-data:www-data . /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
+RUN composer dump-autoload
 
 RUN npm install
 
@@ -80,8 +81,9 @@ RUN npm run build && \
     rm -rf /var/www/html/Dockerfile* && \
     rm -rf /var/www/html/README.md && \
     rm -rf /var/www/html/.env.example && \
-    rm -rf /var/www/html/.env
+    rm -rf /var/www/html/.env &&\
+    rm -rf /var/www/html/bootstrap/cache/*.php
 
 USER www-data
 
-
+COPY --chown=www-data:www-data . /var/www/html

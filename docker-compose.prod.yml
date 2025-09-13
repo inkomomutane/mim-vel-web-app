@@ -1,22 +1,24 @@
 services:
   php:
-    image: ghcr.io/inkommutane/mimovel/website:latest
+    image: ghcr.io/inkommutane/mimovel:latest
+    depends_on:
+      - database
     environment:
       PHP_OPCACHE_ENABLE: "1"
       AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
       HEALTHCHECK_PATH: "/up" # Use Laravel's built-in health route
       SSL_MODE: full
     networks:
-      - web-public
+      - traefik_public
     volumes:
       - "storage_private:/var/www/html/storage/app/private/"
-      - "./storage/public:/var/www/html/storage/app/public/"
+      - "./storage:/var/www/html/storage/app/public/"
       - "storage_sessions:/var/www/html/storage/framework/sessions"
       - "storage_logs:/var/www/html/storage/logs"
       - "storage_svg:/var/www/html/storage/app/svg"
       - "./.env:/var/www/html/.env"
     deploy:
-      replicas: 1
+      replicas: 3
       update_config:
         failure_action: rollback
         parallelism: 1
@@ -43,6 +45,38 @@ services:
         - "traefik.http.services.my-php-app.loadbalancer.healthcheck.interval=30s"
         - "traefik.http.services.my-php-app.loadbalancer.healthcheck.timeout=5s"
         - "traefik.http.services.my-php-app.loadbalancer.healthcheck.scheme=http"
+  workers:
+    image: ghcr.io/inkommutane/mimovel:latest
+    command: ["php", "/var/www/html/artisan", "queue:work", "--tries=3"]
+    depends_on:
+      - php
+    stop_signal: SIGTERM
+    networks:
+      - traefik_public
+    volumes:
+      - "storage_private:/var/www/html/storage/app/private/"
+      - "./storage:/var/www/html/storage/app/public/"
+      - "storage_sessions:/var/www/html/storage/framework/sessions"
+      - "storage_logs:/var/www/html/storage/logs"
+      - "storage_svg:/var/www/html/storage/app/svg"
+      - "./.env:/var/www/html/.env"
+    deploy:
+      replicas: 2
+      update_config:
+        failure_action: rollback
+        parallelism: 1
+        delay: 5s
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - "traefik.enable=false"
   database:
     image: mysql:8.0
     environment:

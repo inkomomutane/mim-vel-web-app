@@ -11,3 +11,17 @@
 .DS_Store
 .idea
 .vscode
+_ide_helper.php
+.phpstorm.meta.php
+*.log
+_ide_helper_actions.php
+bootstrap/cache/*.php
+storage/*.key
+storage/logs/*.log
+storage/debugbar/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+public/hot
+public/storage
+public/mix-manifest.json
