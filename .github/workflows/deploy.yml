@@ -28,4 +28,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: inkomomutane/mimovel:${{ github.ref_name }}, inkomomutane/mimovel:latest
+          tags: inkomomutane/mimovel:latest

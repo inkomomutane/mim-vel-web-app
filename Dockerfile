@@ -84,3 +84,8 @@ RUN npm run build && \
     rm -rf /var/www/html/.env \
 
 USER www-data
+
+LABEL maintainer="Nelson Alexandre Mutane"
+LABEL description="Mimóvel - Real Estate Platform - containerized with Docker"
+LABEL email="nelsonmutane@gmail.com"
+LABEL repository="github.com/inkomomutane/mim-vel-web-app"
