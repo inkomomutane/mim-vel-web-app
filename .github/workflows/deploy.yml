@@ -11,8 +11,8 @@ jobs:
         uses: serversideup/github-action-docker-build@v5
         with:
           tags: mimovel:latest,mimovel:v4.0.0-beta
-          context: '../../'
-          dockerfile: './Dockerfile'
+          context: '.'
+          dockerfile: 'Dockerfile'
           registry: 'ghcr.io'
           registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
           registry-token: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
