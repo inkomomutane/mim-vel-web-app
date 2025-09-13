@@ -13,9 +13,7 @@ services:
       - ./.infrastructure/conf/traefik/dev/traefik-certs.yml:/traefik-certs.yml
       - ./.infrastructure/conf/traefik/dev/certificates/:/certificates
   php:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/inkomomutane/mimovel:latest
     environment:
       PHP_OPCACHE_ENABLE: "1"
       AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
