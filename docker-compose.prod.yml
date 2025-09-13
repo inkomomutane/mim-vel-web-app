@@ -1,13 +1,14 @@
 services:
   php:
-    image: ghcr.io/inkommutane/mimovel:latest
+    image: ghcr.io/inkomomutane/mimovel:latest
     depends_on:
       - database
     environment:
       PHP_OPCACHE_ENABLE: "1"
       AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
       HEALTHCHECK_PATH: "/up" # Use Laravel's built-in health route
-      SSL_MODE: full
+      SSL_MODE: off
+      LOG_OUTPUT_LEVEL: debug
     networks:
       - traefik_public
     volumes:
@@ -33,20 +34,35 @@ services:
         max_attempts: 3
         window: 120s
       labels:
+        # Enable Traefik
         - "traefik.enable=true"
-        - "traefik.http.routers.my-php-app.rule=Host(`mimovel.com`) || Host(`www.mimovel.com`) || Host(`web.mimovel.com`) || Host(`m.mimovel.com`)"
-        - "traefik.http.routers.my-php-app.entrypoints=websecure"
-        - "traefik.http.routers.my-php-app.tls=true"
-        - "traefik.http.routers.my-php-app.tls.certresolver=le"
-        - "traefik.http.services.my-php-app.loadbalancer.server.port=8443"
-        - "traefik.http.services.my-php-app.loadbalancer.server.scheme=https"
-        # Health check
-        - "traefik.http.services.my-php-app.loadbalancer.healthcheck.path=/up"
-        - "traefik.http.services.my-php-app.loadbalancer.healthcheck.interval=30s"
-        - "traefik.http.services.my-php-app.loadbalancer.healthcheck.timeout=5s"
-        - "traefik.http.services.my-php-app.loadbalancer.healthcheck.scheme=http"
+
+        # HTTPS Router
+        - "traefik.http.routers.php.rule=Host(`mimovel.com`) || Host(`www.mimovel.com`) || Host(`m.mimovel.com`) || Host(`web.mimovel.com`)"
+        - "traefik.http.routers.php.entrypoints=websecure"
+        - "traefik.http.routers.php.tls=true"
+        - "traefik.http.routers.php.tls.certresolver=le"
+        #- "traefik.http.services.php.loadbalancer.server.scheme=https"
+        - "traefik.http.services.php.loadbalancer.server.scheme=http"
+
+
+        # URL replacement middleware
+        - "traefik.http.middlewares.https-replace.replacepathregex.regex=http://([^/]+)"
+        - "traefik.http.middlewares.https-replace.replacepathregex.replacement=https://$$1"
+        # Headers middleware
+        - "traefik.http.middlewares.php-headers.headers.customrequestheaders.X-Forwarded-Proto=https"
+        # Chain middlewares
+        - "traefik.http.routers.php.middlewares=php-headers,https-replace"
+        # Service port (THIS IS WHAT WAS MISSING!)
+        - "traefik.http.services.php.loadbalancer.server.port=8080"
+
+        # Optional: HTTP to HTTPS redirect
+        - "traefik.http.routers.php-http.rule=Host(`mimovel.com`) || Host(`www.mimovel.com`) || Host(`m.mimovel.com`) || Host(`web.mimovel.com`)"
+        - "traefik.http.routers.php-http.entrypoints=web"
+        - "traefik.http.routers.php-http.middlewares=php-https-redirect"
+        - "traefik.http.middlewares.php-https-redirect.redirectscheme.scheme=https"
   workers:
-    image: ghcr.io/inkommutane/mimovel:latest
+    image: ghcr.io/inkomomutane/mimovel:latest
     command: ["php", "/var/www/html/artisan", "queue:work", "--tries=3"]
     depends_on:
       - php
@@ -79,11 +95,13 @@ services:
         - "traefik.enable=false"
   database:
     image: mysql:8.0
+    secrets:
+      - db_password
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_DATABASE: mimovel
+      MYSQL_USER: mimovel_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -111,4 +129,7 @@ volumes:
   db_data:
 networks:
   traefik_public:
-     external: true
+    external: true
+secrets:
+  db_password:
+    external: true

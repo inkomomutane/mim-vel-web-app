@@ -24,3 +24,5 @@ composer.lock
 /.infrastructure/volume_data/*
 !/.infrastructure/volume_data/.gitignore
 .spin.yml
+.env.local
+.env.testing
