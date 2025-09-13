@@ -1,0 +1,6 @@
+/backup
+!.dockerignore
+/vendor
+/node_modules
+.github
+.git

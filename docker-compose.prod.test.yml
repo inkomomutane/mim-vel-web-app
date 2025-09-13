@@ -1,0 +1,79 @@
+services:
+  traefik:
+    image: traefik:v3.5
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      traefik_public:
+    volumes:
+      # Mount the Docker socket as read-only so Traefik can listen to events
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./.infrastructure/conf/traefik/dev/traefik.yml:/traefik.yml:ro
+      - ./.infrastructure/conf/traefik/dev/traefik-certs.yml:/traefik-certs.yml
+      - ./.infrastructure/conf/traefik/dev/certificates/:/certificates
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PHP_OPCACHE_ENABLE: "1"
+      AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
+      HEALTHCHECK_PATH: "/up" # Use Laravel's built-in health route
+      SSL_MODE: off
+    networks:
+      - traefik_public
+    depends_on:
+      - database
+    volumes:
+      - "storage_private:/var/www/html/storage/app/private/"
+      - "./backup/public:/var/www/html/storage/app/public/"
+      - "storage_sessions:/var/www/html/storage/framework/sessions"
+      - "storage_logs:/var/www/html/storage/logs"
+      - "storage_svg:/var/www/html/storage/app/svg"
+      - "./.env:/var/www/html/.env"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php.rule=Host(`localhost`)"
+      - "traefik.http.services.php.loadbalancer.server.port=8080"
+      - "traefik.http.routers.php.entrypoints=web"
+      #- "traefik.http.routers.php.tls=true"
+  database:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - traefik_public
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: database
+      PMA_PORT: ${DB_PORT}
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./.infrastructure/conf/phpmyadmin/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    depends_on:
+      - database
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+      - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+      - "traefik.http.routers.phpmyadmin.tls=true"
+    networks:
+        - traefik_public
+volumes:
+  storage_private:
+  storage_sessions:
+  storage_logs:
+  storage_svg:
+  db_data:
+networks:
+  traefik_public:
+     external: true

@@ -21,3 +21,9 @@ Route::get('todos-imoveis', GetImovels::class)->name('imoveis');
 foreach (new FilesystemIterator(__DIR__.'/dashboard') as $fileinfo) {
     require $fileinfo->getPathname();
 }
+
+
+// Health check route
+Route::get('/up', static function () {
+    return response()->json(['status' => 'OK']);
+});

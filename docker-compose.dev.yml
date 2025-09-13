@@ -1,0 +1,99 @@
+services:
+  traefik:
+    ports:
+    - "80:80"
+    - "443:443"
+    networks:
+      development:
+    volumes:
+      # Mount the Docker socket as read-only so Traefik can listen to events
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./.infrastructure/conf/traefik/dev/traefik.yml:/traefik.yml:ro
+      - ./.infrastructure/conf/traefik/dev/traefik-certs.yml:/traefik-certs.yml
+      - ./.infrastructure/conf/traefik/dev/certificates/:/certificates
+  php:
+    build:
+      target: development
+      args:
+        USER_ID: ${SPIN_USER_ID}
+        GROUP_ID: ${SPIN_GROUP_ID}
+    environment:
+      AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
+    volumes:
+      - .:/var/www/html/
+      - ./backup/public:/var/www/html/storage/app/public
+    networks:
+      - development
+    depends_on:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.laravel.rule=HostRegexp(`localhost`)"
+      - "traefik.http.routers.laravel.entrypoints=web"
+      - "traefik.http.services.laravel.loadbalancer.server.port=8080"
+      - "traefik.http.services.laravel.loadbalancer.server.scheme=http"
+  node:
+    image: node:22
+    volumes:
+      - .:/usr/src/app/
+    working_dir: /usr/src/app/
+    networks:
+      - development
+  vite:
+    image: node:22
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    volumes:
+      - .:/usr/src/app/
+    working_dir: /usr/src/app/
+    networks:
+      - development
+    depends_on:
+      - node
+    ports:
+      - "5173:5173"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.vite.rule=Host(`localhost`)"
+    - "traefik.http.services.vite.loadbalancer.server.port=5173"
+    - "traefik.http.routers.vite.entrypoints=web"
+  mailpit:
+      image: axllent/mailpit
+      networks:
+        - development
+      ports:
+        - "8025:8025"
+  database:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./.infrastructure/conf/volume_data/mysql:/var/lib/mysql
+    networks:
+      - development
+    expose:
+      - "3306"
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: database
+      PMA_PORT: ${DB_PORT}
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./.infrastructure/conf/phpmyadmin/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    depends_on:
+      - database
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=web"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+    networks:
+      - development
+networks:
+  development:
