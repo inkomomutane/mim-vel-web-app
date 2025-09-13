@@ -1,8 +1,8 @@
 name: Push container image to github container registry
 on:
-  release:
-    types:
-      - published
+    push:
+        branches:
+        - main
 jobs:
   docker-publish:
     runs-on: ubuntu-22.04
@@ -10,7 +10,7 @@ jobs:
       - name: docker-build-action
         uses: serversideup/github-action-docker-build@v5
         with:
-          tags: mimovel:latest,mimovel:${{ github.ref_name }}
+          tags: mimovel:latest,mimovel:v4.0.0-beta
           context: '.'
           dockerfile: './Dockerfile'
           registry: 'ghcr.io'
