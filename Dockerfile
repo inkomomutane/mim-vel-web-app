@@ -79,7 +79,8 @@ RUN npm run build && \
     rm -rf /var/www/html/.gitattributes && \
     rm -rf /var/www/html/docker-compose*.yml && \
     rm -rf /var/www/html/Dockerfile* && \
-    rm -rf /var/www/html/README.md \
-    rm -rf /var/www/html/.env.example \
-    rm -rf /var/www/html/.env
+    rm -rf /var/www/html/README.md && \
+    rm -rf /var/www/html/.env.example && \
+    rm -rf /var/www/html/.env \
+
 USER www-data
