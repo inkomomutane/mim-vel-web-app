@@ -1,19 +1,16 @@
 name: Push container image to github container registry
 on:
-    push:
-        branches:
-        - main
+  push:
+    branches:
+      - main
 jobs:
-  docker-publish:
+  publish_image:
     runs-on: ubuntu-22.04
     steps:
-      - name: docker-build-action
-        uses: serversideup/github-action-docker-build@v5
-        with:
-          tags: mimovel:latest
-          context: '.'
-          dockerfile: './Dockerfile'
-          registry: 'ghcr.io'
-          registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          registry-token: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-          platforms: "linux/amd64,linux/arm/v7,linux/arm64/v8"
+      - uses: actions/checkout@v5
+      - name: image_build_and_push
+        run: |
+         docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} ghcr.io
+         docker build . --tag ghcr.io/inkomomutane/mimovel:latest   --tag  --tag ghcr.io/inkomomutane/mimovel:{{ github.ref_name }} --platform linux/amd64,linux/arm/v7,linux/arm64/v8
+         docker push ghcr.io/inkomomutane/mimovel:latest
+         docker push ghcr.io/inkomomutane/mimovel:{{ github.ref_name }}
