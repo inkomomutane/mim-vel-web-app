@@ -5,7 +5,6 @@ FROM node:22 AS node
 
 RUN npm install -g npm
 
-
 ############################################
 # Base Image
 ############################################
@@ -81,11 +80,8 @@ RUN npm run build && \
     rm -rf /var/www/html/Dockerfile* && \
     rm -rf /var/www/html/README.md && \
     rm -rf /var/www/html/.env.example && \
-    rm -rf /var/www/html/.env \
+    rm -rf /var/www/html/.env
 
 USER www-data
 
-LABEL maintainer="Nelson Alexandre Mutane"
-LABEL description="Mimóvel - Real Estate Platform - containerized with Docker"
-LABEL email="nelsonmutane@gmail.com"
-LABEL repository="github.com/inkomomutane/mim-vel-web-app"
+

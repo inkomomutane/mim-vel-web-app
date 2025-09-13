@@ -13,12 +13,13 @@ services:
       - ./.infrastructure/conf/traefik/dev/traefik-certs.yml:/traefik-certs.yml
       - ./.infrastructure/conf/traefik/dev/certificates/:/certificates
   php:
-    image: ghcr.io/inkomomutane/mimovel:latest
+    image: ghcr.io/inkomomutane/mimovel:v4.0.0-beta-13
     environment:
       PHP_OPCACHE_ENABLE: "1"
       AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
       HEALTHCHECK_PATH: "/up" # Use Laravel's built-in health route
       SSL_MODE: off
+      LOG_OUTPUT_LEVEL: debug
     networks:
       - traefik_public
     depends_on:
