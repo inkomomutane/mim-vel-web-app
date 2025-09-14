@@ -26,7 +26,7 @@ jobs:
           context: .
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ghcr.io/inkomomutane/mimovel:${{ github.ref_name }}, ghcr.io/inkomomutane/mimovel:latest
+          tags: ghcr.io/inkomomutane/mimovel:latest
 
   deploy_image_to_server:
     needs: image_builder
