@@ -47,7 +47,18 @@ jobs:
         with:
           command: |
             cd ~/mimovel
-            docker stack deploy -c docker-compose.prod.yml mimovel
+            
+            docker image prune -f
+
+            # Pull the latest image
+
+            docker pull ghcr.io/inkomomutane/mimovel:latest
+
+            docker stack deploy -c docker-compose.prod.yml mimovel -d 
+
+            # Optional: Clean up unused images 
+             docker image prune -f
+
           host: ${{ secrets.PRODUCTION_SSH_REMOTE_HOSTNAME }}
           user: ${{ secrets.SSH_DEPLOY_USENAME }}
           key: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}
