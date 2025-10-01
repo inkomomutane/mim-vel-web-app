@@ -1,7 +1,8 @@
 name: image build and push
 on:
-  release:
-    types: [ published ]
+  push:
+    branches:
+      - main
 jobs:
   image_builder:
     runs-on: ubuntu-22.04
@@ -26,7 +27,7 @@ jobs:
           context: .
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ghcr.io/inkomomutane/mimovel:${{ github.ref_name }}, ghcr.io/inkomomutane/mimovel:latest
+          tags: ghcr.io/inkomomutane/mimovel:latest
 
   deploy_image_to_server:
     needs: image_builder
