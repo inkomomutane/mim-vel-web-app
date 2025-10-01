@@ -7,7 +7,7 @@ services:
       PHP_OPCACHE_ENABLE: "1"
       AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
       HEALTHCHECK_PATH: "/up" # Use Laravel's built-in health route
-      SSL_MODE: off
+      SSL_MODE: "full"
       LOG_OUTPUT_LEVEL: debug
     networks:
       - traefik_public
