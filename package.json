@@ -14,7 +14,7 @@
         "@types/ziggy-js": "^1.3.2",
         "@vitejs/plugin-vue": "^4.2.3",
         "autoprefixer": "^10.4.12",
-        "axios": "^1.6.0",
+        "axios": "^1.12.2",
         "laravel-vite-plugin": "^0.7.2",
         "postcss": "^8.4.31",
         "rollup-obfuscator": "^3.0.2",
