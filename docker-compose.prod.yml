@@ -1,18 +1,13 @@
 services:
   php:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        user_id: 1000
-        group_id: 1000
+    image: localhost:5000/mimovel:latest
     depends_on:
       - database
     environment:
       PHP_OPCACHE_ENABLE: "1"
       AUTORUN_ENABLED: "true" # 👈 Remove this line if you don't want Laravel Automations
       HEALTHCHECK_PATH: "/up" # Use Laravel's built-in health route
-      SSL_MODE: "full"
+      SSL_MODE: off
       LOG_OUTPUT_LEVEL: debug
     networks:
       - traefik_public
