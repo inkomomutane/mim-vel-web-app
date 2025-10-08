@@ -4,52 +4,9 @@ on:
     branches:
       - main
 jobs:
-  compile_assets:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v5
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: none
-      - name: Run composer install
-        run: composer install -n --prefer-dist
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: 20
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-      - name: compile assets for production
-        run: |
-          npm dedupe
-          npm run build
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: app_build_assets
-          path: ./public/build
-      - name: Download production-ready build files
-        uses: actions/download-artifact@v5
-        with:
-          name: app_build_assets
-          path: ./public/build
-      - name: Copy artifact to server
-        uses: appleboy/scp-action@v1
-        with:
-          host: ${{ secrets.PRODUCTION_SSH_REMOTE_HOSTNAME }}
-          username: ${{ secrets.SSH_DEPLOY_USENAME }}
-          key: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}
-          source: ./public/build
-          target: /mimovel/public/build
   buildApp:
     name: Build app to server
     runs-on: ubuntu-latest
-    needs: compile_assets
     steps:
       - name: install dependencies via composer
         uses: fifsky/ssh-action@master
@@ -60,6 +17,9 @@ jobs:
             docker image prune -f
             # Pull the latest image
             docker build --no-cache -f Dockerfile -t mimovel:latest .
+            docker tag mimovel:latest localhost:5000/mimovel:latest
+            docker push localhost:5000/mimovel:latest
+            # Deploy the stack
             docker stack deploy -c docker-compose.prod.yml mimovel -d
             # Optional: Clean up unused images
             docker image prune -f
