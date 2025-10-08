@@ -12,17 +12,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd ~/mimovel
-            git pull origin main
-            docker image prune -f
-            # Pull the latest image
-            docker build --no-cache -f Dockerfile -t mimovel:latest .
-            docker tag mimovel:latest localhost:5000/mimovel:latest
-            docker push localhost:5000/mimovel:latest
-            # Deploy the stack
-            docker stack deploy -c docker-compose.prod.yml mimovel -d
-            # Optional: Clean up unused images
-            docker image prune -f
+            ${{ secrets.SSH_DEPLOY_COMMANDS }}
           host: ${{ secrets.PRODUCTION_SSH_REMOTE_HOSTNAME }}
           user: ${{ secrets.SSH_DEPLOY_USENAME }}
           key: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}
