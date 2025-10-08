@@ -1,6 +1,11 @@
 services:
   php:
-    image: ghcr.io/inkomomutane/mimovel:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        user_id: 1000
+        group_id: 1000
     depends_on:
       - database
     environment:
@@ -71,7 +76,7 @@ services:
       - traefik_public
     volumes:
       - "storage_private:/var/www/html/storage/app/private/"
-      - "./storage:/var/www/html/storage/app/public/"
+      - "./backup:/var/www/html/storage/app/public/"
       - "storage_sessions:/var/www/html/storage/framework/sessions"
       - "storage_logs:/var/www/html/storage/logs"
       - "storage_svg:/var/www/html/storage/app/svg"
