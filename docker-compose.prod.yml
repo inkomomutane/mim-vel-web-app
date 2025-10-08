@@ -64,6 +64,10 @@ services:
   workers:
     image: localhost:5000/mimovel:latest
     command: ["php", "/var/www/html/artisan", "queue:work", "--tries=3"]
+    healthcheck:
+        # This is our native healthcheck script for the queue
+      test: [ "CMD", "healthcheck-queue" ]
+      start_period: 10s
     depends_on:
       - php
     stop_signal: SIGTERM
