@@ -3,7 +3,7 @@
 namespace App\Actions\TranstionType;
 
 use App\Data\TransactionTypeData;
-use App\Models\ImovelFor;
+use App\Models\PropertyFor;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -29,7 +29,7 @@ class GetTransactionTypes
     public function handle(?string $term = null)
     {
         return TransactionTypeData::collection(
-            ImovelFor::query()
+            PropertyFor::query()
                 ->when($term, function ($query, $search) {
                     $query->where('name', 'like', '%'.$search.'%');
                 })->

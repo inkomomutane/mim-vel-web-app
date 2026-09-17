@@ -2,7 +2,6 @@
 
 namespace App\Actions\Hotel;
 
-use App\Models\Hotel;
 use App\Models\HotelMetaData;
 use DB;
 use Illuminate\Validation\Rule;

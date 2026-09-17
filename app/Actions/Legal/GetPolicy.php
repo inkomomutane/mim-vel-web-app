@@ -2,7 +2,7 @@
 
 namespace App\Actions\Legal;
 
-use App\Models\Politica;
+use App\Models\Policy;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -27,13 +27,13 @@ class GetPolicy
 
     public function handle()
     {
-        if (Politica::first() == null) {
-            Politica::create([
+        if (Policy::first() == null) {
+            Policy::create([
                 'politicas' => '',
             ]);
         }
 
-        return Politica::first()->getData();
+        return Policy::first()->getData();
     }
 
     public function asController()

@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
@@ -45,7 +45,7 @@ class ImovelData extends Data
     ) {
     }
 
-    public static function fromModel(Imovel $imovel)
+    public static function fromModel(Property $imovel)
     {
         return new self(
             id: $imovel->id,

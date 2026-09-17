@@ -3,7 +3,7 @@
 namespace App\Actions\RegraDeNegocio;
 
 use App\Data\RegraDeNegocioData;
-use App\Models\RegraDeNegocio;
+use App\Models\BusinessRule;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -29,7 +29,7 @@ class GetRegrasDeNegocio
     public function handle(?string $term = null)
     {
         return RegraDeNegocioData::collection(
-            RegraDeNegocio::query()
+            BusinessRule::query()
                 ->when($term, function ($query, $search) {
                     $query->where('name', 'like', '%'.$search.'%');
                 })->

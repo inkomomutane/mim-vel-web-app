@@ -2,7 +2,7 @@
 
 namespace App\Actions\City;
 
-use App\Models\Cidade;
+use App\Models\City;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -14,7 +14,7 @@ class CreateCity
 
     public function handle(array $city)
     {
-        return Cidade::create($city);
+        return City::create($city);
     }
 
     public function rules()

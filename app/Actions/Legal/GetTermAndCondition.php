@@ -2,7 +2,7 @@
 
 namespace App\Actions\Legal;
 
-use App\Models\Termo;
+use App\Models\Term;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -27,13 +27,13 @@ class GetTermAndCondition
 
     public function handle()
     {
-        if (Termo::first() == null) {
-            Termo::create([
+        if (Term::first() == null) {
+            Term::create([
                 'termos' => '',
             ]);
         }
 
-        return Termo::first()->getData();
+        return Term::first()->getData();
     }
 
     public function AsController()

@@ -3,7 +3,7 @@
 namespace App\Actions\ImovelType;
 
 use App\Data\ImovelTypeData;
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -29,7 +29,7 @@ class GetImovelTypes
     public function handle(?string $term = null)
     {
 
-        $bairros = TipoDeImovel::query()
+        $bairros = PropertyType::query()
             ->when($term, function ($query, $search) {
                 $query->where('nome', 'like', '%'.$search.'%');
             })->with('media')->orderBy('created_at', 'desc')->paginate(5)->withQueryString();

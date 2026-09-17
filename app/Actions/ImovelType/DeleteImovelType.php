@@ -2,7 +2,7 @@
 
 namespace App\Actions\ImovelType;
 
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -24,7 +24,7 @@ class DeleteImovelType
         );
     }
 
-    public function handle(TipoDeImovel $tipoDeImovel): bool
+    public function handle(PropertyType $tipoDeImovel): bool
     {
         if ($tipoDeImovel->imovels->isEmpty()) {
             try {
@@ -44,7 +44,7 @@ class DeleteImovelType
         }
     }
 
-    public function AsController(TipoDeImovel $imovelType)
+    public function AsController(PropertyType $imovelType)
     {
         $this->handle($imovelType);
 

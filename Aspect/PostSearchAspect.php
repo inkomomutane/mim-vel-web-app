@@ -2,7 +2,7 @@
 
 namespace App\Aspect;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\Searchable\SearchAspect;
 
@@ -10,7 +10,7 @@ class PostSearchAspect extends SearchAspect
 {
     public function getResults(string $term): Collection
     {
-        return Imovel::with([
+        return Property::with([
             'bairro',
             'bairro.cidade',
             'condicao',

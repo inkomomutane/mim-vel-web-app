@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
@@ -16,7 +16,7 @@ class ImovelTypeData extends Data
     ) {
     }
 
-    public static function fromModel(TipoDeImovel $tipoDeImovel)
+    public static function fromModel(PropertyType $tipoDeImovel)
     {
         return new self(
             id: $tipoDeImovel->id,

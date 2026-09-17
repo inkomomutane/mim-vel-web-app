@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Illuminate\Console\Command;
 use Lorisleiva\Actions\Concerns\AsCommand;
 use Spatie\Sitemap\Sitemap;
@@ -23,7 +23,7 @@ class SitemapGeneratorCommand
             ->add(Url::create(route('website.contact'))->addImage(Vite::asset('resources/js/images/logo/logo.png')))
             ->add(Url::create(route('website.policy'))->addImage(Vite::asset('resources/js/images/logo/logo.png')))
             ->add(Url::create(route('website.terms'))->addImage(Vite::asset('resources/js/images/logo/logo.png')))
-            ->add(Imovel::all())
+            ->add(Property::all())
             ->add(Url::create(config('app.url').'/sitemap.xml'))
             ->writeToFile(public_path('sitemap.xml'));
     }

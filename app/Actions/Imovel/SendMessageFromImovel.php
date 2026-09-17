@@ -4,7 +4,7 @@ namespace App\Actions\Imovel;
 
 use App\Actions\Website\SendMessage;
 use App\Models\Agenda;
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -24,7 +24,7 @@ class SendMessageFromImovel
         ];
     }
 
-    public function asController(Imovel $imovel, ActionRequest $actionRequest)
+    public function asController(Property $imovel, ActionRequest $actionRequest)
     {
         $message = collect($actionRequest->all())
             ->put('corretor_id', $imovel->corretor_id)

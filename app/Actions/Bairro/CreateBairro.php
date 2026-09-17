@@ -2,7 +2,7 @@
 
 namespace App\Actions\Bairro;
 
-use App\Models\Bairro;
+use App\Models\Neighborhood;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -14,7 +14,7 @@ class CreateBairro
 
     public function handle(array $city)
     {
-        return Bairro::create($city);
+        return Neighborhood::create($city);
     }
 
     public function rules()

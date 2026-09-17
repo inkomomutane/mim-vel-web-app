@@ -2,7 +2,7 @@
 
 namespace App\Actions\ImovelType;
 
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -31,7 +31,7 @@ class UpdateImovelType
         ];
     }
 
-    public function asController(TipoDeImovel $imovelType, ActionRequest $actionRequest)
+    public function asController(PropertyType $imovelType, ActionRequest $actionRequest)
     {
 
         $imovelType->nome = $actionRequest->nome;

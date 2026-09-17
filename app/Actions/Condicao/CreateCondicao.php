@@ -3,7 +3,7 @@
 namespace App\Actions\Condicao;
 
 use App\Data\CondicaoData;
-use App\Models\Condicao;
+use App\Models\PropertyCondition;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -27,7 +27,7 @@ class CreateCondicao
 
     public function handle(CondicaoData $condicaoData)
     {
-        return Condicao::create($condicaoData->all());
+        return PropertyCondition::create($condicaoData->all());
     }
 
     public function rules()

@@ -2,7 +2,7 @@
 
 namespace App\Actions\RegraDeNegocio;
 
-use App\Models\RegraDeNegocio;
+use App\Models\BusinessRule;
 use App\Support\Enums\SystemRoles;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
@@ -23,10 +23,10 @@ class UpdateRegraDeNegocio
         );
     }
 
-    public function asController(RegraDeNegocio $regraDeNegocio)
+    public function asController(BusinessRule $regraDeNegocio)
     {
         $validated = request()->validate([
-            'name' => ['required', Rule::unique(RegraDeNegocio::class, 'name')->ignore($regraDeNegocio->id, 'id')],
+            'name' => ['required', Rule::unique(BusinessRule::class, 'name')->ignore($regraDeNegocio->id, 'id')],
         ]);
 
         try {

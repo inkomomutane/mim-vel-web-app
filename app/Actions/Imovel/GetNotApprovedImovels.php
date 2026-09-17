@@ -4,7 +4,7 @@ namespace App\Actions\Imovel;
 
 use App\Actions\UserTreeInIdArray;
 use App\Data\ImovelData;
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Models\User;
 use App\Support\Enums\SystemRoles;
 use App\Support\Traits\GetImovelsWithSearchScope;
@@ -39,7 +39,7 @@ class GetNotApprovedImovels
                 $this->getImovels(term: $term, approved: false)->paginate(5)->withQueryString()
             );
         } else {
-            /** @var Collection<Imovel> $imovels */
+            /** @var Collection<Property> $imovels */
             $imovels = $this->getImovels(term: $term, approved: false);
 
             return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());

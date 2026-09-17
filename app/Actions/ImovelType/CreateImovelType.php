@@ -2,7 +2,7 @@
 
 namespace App\Actions\ImovelType;
 
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -34,7 +34,7 @@ class CreateImovelType
     public function asController(ActionRequest $actionRequest)
     {
 
-        $imovelType = TipoDeImovel::create([
+        $imovelType = PropertyType::create([
             'nome' => $actionRequest->nome,
         ]);
 

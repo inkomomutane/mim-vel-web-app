@@ -2,7 +2,7 @@
 
 namespace App\Actions\City;
 
-use App\Models\Cidade;
+use App\Models\City;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -10,10 +10,10 @@ class UpdateCity
 {
     use AsController;
 
-    public function asController(Cidade $city)
+    public function asController(City $city)
     {
         $validated = request()->validate([
-            'nome' => ['required', Rule::unique(Cidade::class, 'nome')->ignore($city->id, 'id')],
+            'nome' => ['required', Rule::unique(City::class, 'nome')->ignore($city->id, 'id')],
             'province_id' => 'required|numeric',
         ]);
 

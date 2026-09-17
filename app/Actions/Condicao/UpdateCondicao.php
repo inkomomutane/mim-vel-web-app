@@ -2,7 +2,7 @@
 
 namespace App\Actions\Condicao;
 
-use App\Models\Condicao;
+use App\Models\PropertyCondition;
 use App\Support\Enums\SystemRoles;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
@@ -23,10 +23,10 @@ class UpdateCondicao
         );
     }
 
-    public function asController(Condicao $condicao)
+    public function asController(PropertyCondition $condicao)
     {
         $validated = request()->validate([
-            'nome' => ['required', Rule::unique(Condicao::class, 'nome')->ignore($condicao->id, 'id')],
+            'nome' => ['required', Rule::unique(PropertyCondition::class, 'nome')->ignore($condicao->id, 'id')],
         ]);
 
         try {

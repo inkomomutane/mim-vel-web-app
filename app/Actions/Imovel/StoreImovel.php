@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -50,7 +50,7 @@ class StoreImovel
             ->put('published_at', now())
             ->except('images')->toArray();
         try {
-            $imovel = Imovel::create($data);
+            $imovel = Property::create($data);
             if (request()->hasFile('images')) {
                 foreach ($actionRequest->images as $image) {
                     $imovel->addMedia($image)->toMediaCollection('posts', 'posts');

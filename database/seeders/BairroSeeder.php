@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bairro;
-use App\Models\Cidade;
+use App\Models\Neighborhood;
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class BairroSeeder extends Seeder
@@ -15,82 +15,82 @@ class BairroSeeder extends Seeder
      */
     public function run()
     {
-        Cidade::where('nome', 'Beira')->first()->bairros()->saveMany(
+        City::where('nome', 'Beira')->first()->bairros()->saveMany(
             [
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Macuti',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Palmeiras',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Ponta-Gêa',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Chaimite',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Pioneiros',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Esturro',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Matacuane',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Macurungo',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Munhava-Central',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Mananga',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Vaz',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Maraza',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Chota',
-                ]), new Bairro([
+                ]), new Neighborhood([
                     'nome' => 'Alto da Manga',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Nhaconjua',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Chingussura',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Vila Massane',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Inhamízua',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Matadouro',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Mungassa',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Ndunda',
-                ]), new Bairro([
+                ]), new Neighborhood([
                     'nome' => 'Manga Mascarenha',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Muave',
                 ]),
 
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Nhangau',
-                ]), new Bairro([
+                ]), new Neighborhood([
                     'nome' => 'Nhangoma',
                 ]),
-                new Bairro([
+                new Neighborhood([
                     'nome' => 'Tchonja',
                 ]),
 

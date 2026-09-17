@@ -5,7 +5,7 @@ namespace App\Actions\Website;
 use App\Actions\Page\GetPage;
 use App\Models\Banner;
 use App\Models\HotelMetaData;
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Support\Enums\Pages;
 use Lorisleiva\Actions\Concerns\AsController;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
@@ -24,7 +24,7 @@ class Welcome
             'hotels' => $this->getRelevantHotelsRooms(),
             'thumb' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME)?->responsiveImages()?->getPlaceholderSvg(),
             'relevantImovels' => $this->getRelevantImovels(),
-            'lastestImovels' => Imovel::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(10),
+            'lastestImovels' => Property::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(10),
             'banners' => Banner::with('media')->first(),
             'logo' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::LOGO),
             'seoData' => new SEOData(
@@ -36,7 +36,7 @@ class Welcome
                 favicon: Vite::asset('resources/js/images/logo/favicon.ico'),
                 canonical_url: route('welcome'),
             ),
-            'imovels_count' => Imovel::count(),
+            'imovels_count' => Property::count(),
             'hotels_count' => HotelMetaData::whereHas('hotels')->count(),
         ]);
     }
@@ -50,6 +50,6 @@ class Welcome
 
     private function getRelevantImovels()
     {
-        return Imovel::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->orderByUniqueViews()->get()->take(10);
+        return Property::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->orderByUniqueViews()->get()->take(10);
     }
 }

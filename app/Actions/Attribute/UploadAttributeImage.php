@@ -33,7 +33,6 @@ class UploadAttributeImage
     {
 
         try {
-
             if ($actionRequest->hasFile('image') && count($actionRequest->image) > 0) {
 
                 $attribute->addMedia($actionRequest->image[0])

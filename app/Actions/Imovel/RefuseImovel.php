@@ -2,14 +2,14 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class RefuseImovel
 {
     use AsAction;
 
-    public function handle(Imovel $imovel): bool
+    public function handle(Property $imovel): bool
     {
         try {
             $imovel->delete();

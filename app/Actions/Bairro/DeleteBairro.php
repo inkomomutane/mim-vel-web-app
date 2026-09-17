@@ -2,7 +2,7 @@
 
 namespace App\Actions\Bairro;
 
-use App\Models\Bairro;
+use App\Models\Neighborhood;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -11,7 +11,7 @@ class DeleteBairro
     use AsAction;
     use AsController;
 
-    public function handle(Bairro $bairro): bool
+    public function handle(Neighborhood $bairro): bool
     {
         if ($bairro->imovels->isEmpty()) {
             try {
@@ -31,7 +31,7 @@ class DeleteBairro
         }
     }
 
-    public function AsController(Bairro $bairro)
+    public function AsController(Neighborhood $bairro)
     {
         $this->handle($bairro);
 

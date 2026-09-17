@@ -3,7 +3,7 @@
 namespace App\Actions\TranstionType;
 
 use App\Data\TransactionTypeData;
-use App\Models\ImovelFor;
+use App\Models\PropertyFor;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -27,7 +27,7 @@ class CreateTransactionType
 
     public function handle(TransactionTypeData $transactionTypeData)
     {
-        return ImovelFor::create($transactionTypeData->all());
+        return PropertyFor::create($transactionTypeData->all());
     }
 
     public function rules()

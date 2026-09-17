@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -27,7 +27,7 @@ class UpdateImovelRequest extends FormRequest
     {
 
         return [
-            'titulo' => ['required', 'string', Rule::unique(Imovel::class, 'titulo')->ignore($this->imovel->id, 'id')],
+            'titulo' => ['required', 'string', Rule::unique(Property::class, 'titulo')->ignore($this->imovel->id, 'id')],
             'descricao' => 'string|nullable',
             'details' => 'string|nullable',
             'slug' => 'string|nullable',

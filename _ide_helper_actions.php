@@ -33,15 +33,15 @@ class CreateBairro
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Bairro $bairro)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Bairro $bairro)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Bairro $bairro)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Bairro $bairro)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Bairro $bairro)
- * @method static dispatchSync(\App\Models\Bairro $bairro)
- * @method static dispatchNow(\App\Models\Bairro $bairro)
- * @method static dispatchAfterResponse(\App\Models\Bairro $bairro)
- * @method static bool run(\App\Models\Bairro $bairro)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Neighborhood $bairro)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Neighborhood $bairro)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Neighborhood $bairro)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Neighborhood $bairro)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Neighborhood $bairro)
+ * @method static dispatchSync(\App\Models\Neighborhood $bairro)
+ * @method static dispatchNow(\App\Models\Neighborhood $bairro)
+ * @method static dispatchAfterResponse(\App\Models\Neighborhood $bairro)
+ * @method static bool run(\App\Models\Neighborhood $bairro)
  */
 class DeleteBairro
 {
@@ -82,15 +82,15 @@ class CreateCity
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Cidade $city)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Cidade $city)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Cidade $city)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Cidade $city)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Cidade $city)
- * @method static dispatchSync(\App\Models\Cidade $city)
- * @method static dispatchNow(\App\Models\Cidade $city)
- * @method static dispatchAfterResponse(\App\Models\Cidade $city)
- * @method static bool run(\App\Models\Cidade $city)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\City $city)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\City $city)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\City $city)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\City $city)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\City $city)
+ * @method static dispatchSync(\App\Models\City $city)
+ * @method static dispatchNow(\App\Models\City $city)
+ * @method static dispatchAfterResponse(\App\Models\City $city)
+ * @method static bool run(\App\Models\City $city)
  */
 class DeleteCity
 {
@@ -131,15 +131,15 @@ class CreateCondicao
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Condicao $condicao)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Condicao $condicao)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Condicao $condicao)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Condicao $condicao)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Condicao $condicao)
- * @method static dispatchSync(\App\Models\Condicao $condicao)
- * @method static dispatchNow(\App\Models\Condicao $condicao)
- * @method static dispatchAfterResponse(\App\Models\Condicao $condicao)
- * @method static bool run(\App\Models\Condicao $condicao)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\PropertyCondition $condicao)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\PropertyCondition $condicao)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\PropertyCondition $condicao)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\PropertyCondition $condicao)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\PropertyCondition $condicao)
+ * @method static dispatchSync(\App\Models\PropertyCondition $condicao)
+ * @method static dispatchNow(\App\Models\PropertyCondition $condicao)
+ * @method static dispatchAfterResponse(\App\Models\PropertyCondition $condicao)
+ * @method static bool run(\App\Models\PropertyCondition $condicao)
  */
 class DeleteCondicao
 {
@@ -192,15 +192,15 @@ class StoreHotel
 namespace App\Actions\Imovel;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Imovel $imovel)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Imovel $imovel)
- * @method static dispatchSync(\App\Models\Imovel $imovel)
- * @method static dispatchNow(\App\Models\Imovel $imovel)
- * @method static dispatchAfterResponse(\App\Models\Imovel $imovel)
- * @method static bool run(\App\Models\Imovel $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Property $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Property $imovel)
+ * @method static dispatchSync(\App\Models\Property $imovel)
+ * @method static dispatchNow(\App\Models\Property $imovel)
+ * @method static dispatchAfterResponse(\App\Models\Property $imovel)
+ * @method static bool run(\App\Models\Property $imovel)
  */
 class ApproveImovel
 {
@@ -276,15 +276,15 @@ class ImovelTrashCount
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Imovel $imovel)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Imovel $imovel)
- * @method static dispatchSync(\App\Models\Imovel $imovel)
- * @method static dispatchNow(\App\Models\Imovel $imovel)
- * @method static dispatchAfterResponse(\App\Models\Imovel $imovel)
- * @method static bool run(\App\Models\Imovel $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Property $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Property $imovel)
+ * @method static dispatchSync(\App\Models\Property $imovel)
+ * @method static dispatchNow(\App\Models\Property $imovel)
+ * @method static dispatchAfterResponse(\App\Models\Property $imovel)
+ * @method static bool run(\App\Models\Property $imovel)
  */
 class RefuseImovel
 {
@@ -352,15 +352,15 @@ class AddImovelImages
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Imovel $imovel)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Imovel $imovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Imovel $imovel)
- * @method static dispatchSync(\App\Models\Imovel $imovel)
- * @method static dispatchNow(\App\Models\Imovel $imovel)
- * @method static dispatchAfterResponse(\App\Models\Imovel $imovel)
- * @method static mixed run(\App\Models\Imovel $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\Property $imovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\Property $imovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\Property $imovel)
+ * @method static dispatchSync(\App\Models\Property $imovel)
+ * @method static dispatchNow(\App\Models\Property $imovel)
+ * @method static dispatchAfterResponse(\App\Models\Property $imovel)
+ * @method static mixed run(\App\Models\Property $imovel)
  */
 class GetImovelImages
 {
@@ -373,15 +373,15 @@ class DeleteImovelImages
 namespace App\Actions\ImovelType;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\TipoDeImovel $tipoDeImovel)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\TipoDeImovel $tipoDeImovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\TipoDeImovel $tipoDeImovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\TipoDeImovel $tipoDeImovel)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\TipoDeImovel $tipoDeImovel)
- * @method static dispatchSync(\App\Models\TipoDeImovel $tipoDeImovel)
- * @method static dispatchNow(\App\Models\TipoDeImovel $tipoDeImovel)
- * @method static dispatchAfterResponse(\App\Models\TipoDeImovel $tipoDeImovel)
- * @method static bool run(\App\Models\TipoDeImovel $tipoDeImovel)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\PropertyType $tipoDeImovel)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\PropertyType $tipoDeImovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\PropertyType $tipoDeImovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\PropertyType $tipoDeImovel)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\PropertyType $tipoDeImovel)
+ * @method static dispatchSync(\App\Models\PropertyType $tipoDeImovel)
+ * @method static dispatchNow(\App\Models\PropertyType $tipoDeImovel)
+ * @method static dispatchAfterResponse(\App\Models\PropertyType $tipoDeImovel)
+ * @method static bool run(\App\Models\PropertyType $tipoDeImovel)
  */
 class DeleteImovelType
 {
@@ -675,15 +675,15 @@ class CreateRegraDeNegocio
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static dispatchSync(\App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static dispatchNow(\App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static dispatchAfterResponse(\App\Models\RegraDeNegocio $regraDeNegocio)
- * @method static bool run(\App\Models\RegraDeNegocio $regraDeNegocio)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\BusinessRule $regraDeNegocio)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\BusinessRule $regraDeNegocio)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\BusinessRule $regraDeNegocio)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\BusinessRule $regraDeNegocio)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\BusinessRule $regraDeNegocio)
+ * @method static dispatchSync(\App\Models\BusinessRule $regraDeNegocio)
+ * @method static dispatchNow(\App\Models\BusinessRule $regraDeNegocio)
+ * @method static dispatchAfterResponse(\App\Models\BusinessRule $regraDeNegocio)
+ * @method static bool run(\App\Models\BusinessRule $regraDeNegocio)
  */
 class DeleteRegraDeNegocio
 {
@@ -773,15 +773,15 @@ class CreateTransactionType
 {
 }
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\ImovelFor $imovelFor)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\ImovelFor $imovelFor)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\ImovelFor $imovelFor)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\ImovelFor $imovelFor)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\ImovelFor $imovelFor)
- * @method static dispatchSync(\App\Models\ImovelFor $imovelFor)
- * @method static dispatchNow(\App\Models\ImovelFor $imovelFor)
- * @method static dispatchAfterResponse(\App\Models\ImovelFor $imovelFor)
- * @method static bool run(\App\Models\ImovelFor $imovelFor)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Models\PropertyFor $imovelFor)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Models\PropertyFor $imovelFor)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Models\PropertyFor $imovelFor)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Models\PropertyFor $imovelFor)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Models\PropertyFor $imovelFor)
+ * @method static dispatchSync(\App\Models\PropertyFor $imovelFor)
+ * @method static dispatchNow(\App\Models\PropertyFor $imovelFor)
+ * @method static dispatchAfterResponse(\App\Models\PropertyFor $imovelFor)
+ * @method static bool run(\App\Models\PropertyFor $imovelFor)
  */
 class DeleteTransactionType
 {

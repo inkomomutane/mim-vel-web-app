@@ -10,8 +10,8 @@ use App\Data\RequestFiltersData;
 use App\Filters\ImovelBairroFilter;
 use App\Filters\ImovelTipoDeImovelFilter;
 use App\Filters\ImovelTitleFilter;
-use App\Models\Bairro;
-use App\Models\TipoDeImovel;
+use App\Models\Neighborhood;
+use App\Models\PropertyType;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -34,8 +34,8 @@ class GetImovels
     {
         return Inertia::render('Website/Imovels', [
             'imovels' => $this->handle($actionRequest),
-            'imovelTypes' => ImovelTypeData::collection(TipoDeImovel::all()),
-            'bairros' => BairroData::collection(Bairro::all()),
+            'imovelTypes' => ImovelTypeData::collection(PropertyType::all()),
+            'bairros' => BairroData::collection(Neighborhood::all()),
             'filters' => new RequestFiltersData(
                 imovelTypes: collect($actionRequest->imovel_types)->map(fn ($number) => (int) $number)->toArray(),
                 title: $actionRequest->title,

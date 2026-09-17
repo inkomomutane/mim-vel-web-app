@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -30,7 +30,7 @@ class ImovelApprovement
         ];
     }
 
-    public function asController(Imovel $imovel, ActionRequest $actionRequest)
+    public function asController(Property $imovel, ActionRequest $actionRequest)
     {
         if ($actionRequest->approve) {
             ApproveImovel::run($imovel);

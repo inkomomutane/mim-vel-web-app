@@ -3,7 +3,7 @@
 namespace App\Actions\Imovel;
 
 use App\Actions\UserTreeInIdArray;
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -21,8 +21,8 @@ class ImovelTrashCount
             return 0;
         }
 
-        /** @var Collection<Imovel> $imovels */
-        $imovels = Imovel::onlyTrashed();
+        /** @var Collection<Property> $imovels */
+        $imovels = Property::onlyTrashed();
         if ($user->hasAnyRole('Super-Admin', 'Admin')) {
             return $imovels->count();
         }

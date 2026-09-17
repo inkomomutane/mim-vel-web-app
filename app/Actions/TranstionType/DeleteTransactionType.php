@@ -2,7 +2,7 @@
 
 namespace App\Actions\TranstionType;
 
-use App\Models\ImovelFor;
+use App\Models\PropertyFor;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -24,7 +24,7 @@ class DeleteTransactionType
         );
     }
 
-    public function handle(ImovelFor $imovelFor): bool
+    public function handle(PropertyFor $imovelFor): bool
     {
         if ($imovelFor->imovels->isEmpty()) {
             try {
@@ -44,7 +44,7 @@ class DeleteTransactionType
         }
     }
 
-    public function AsController(ImovelFor $transactionType)
+    public function AsController(PropertyFor $transactionType)
     {
         $this->handle($transactionType);
 

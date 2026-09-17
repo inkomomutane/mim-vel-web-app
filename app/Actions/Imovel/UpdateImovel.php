@@ -3,14 +3,14 @@
 namespace App\Actions\Imovel;
 
 use App\Http\Requests\UpdateImovelRequest;
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class UpdateImovel
 {
     use AsController;
 
-    public function AsController(Imovel $imovel, UpdateImovelRequest $actionRequest)
+    public function AsController(Property $imovel, UpdateImovelRequest $actionRequest)
     {
         $data = collect($actionRequest->all())
             ->put('published_at', now())

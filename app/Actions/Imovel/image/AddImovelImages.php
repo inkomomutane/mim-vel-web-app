@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imovel\image;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -20,7 +20,7 @@ class AddImovelImages
         ];
     }
 
-    public function asController(ActionRequest $actionRequest, Imovel $imovel)
+    public function asController(ActionRequest $actionRequest, Property $imovel)
     {
 
         try {

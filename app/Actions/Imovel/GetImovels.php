@@ -4,7 +4,7 @@ namespace App\Actions\Imovel;
 
 use App\Actions\UserTreeInIdArray;
 use App\Data\ImovelData;
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Models\User;
 use App\Support\Enums\SystemRoles;
 use App\Support\Traits\GetImovelsWithSearchScope;
@@ -28,7 +28,7 @@ class GetImovels
             );
         } else {
 
-            /** @var Collection<Imovel> $imovels */
+            /** @var Collection<Property> $imovels */
             $imovels = $this->getImovels($term);
 
             return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());

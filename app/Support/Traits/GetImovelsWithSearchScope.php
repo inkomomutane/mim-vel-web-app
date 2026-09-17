@@ -2,19 +2,19 @@
 
 namespace App\Support\Traits;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait GetImovelsWithSearchScope
 {
     /**
-     * @return Collection<Imovel>
+     * @return Collection<Property>
      *
      **/
     private function getImovels(?string $term = null, bool $approved = true)
     {
 
-        $query = Imovel::query()->when($term, function ($query, $search) {
+        $query = Property::query()->when($term, function ($query, $search) {
             $query->where('titulo', 'like', '%'.$search.'%')
                 ->orWhereRelation('bairro', 'nome', 'like', '%'.$search.'%')
                 ->orWhereRelation('bairro.cidade', 'nome', 'like', '%'.$search.'%')

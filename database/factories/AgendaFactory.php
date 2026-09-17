@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Agenda;
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -29,7 +29,7 @@ class AgendaFactory extends Factory
             'corretor_id' => User::all()->random(1)->first(),
             'mensagem' => $this->faker->text(125),
             'email' => $this->faker->safeEmail,
-            'imovel_id' => Imovel::all()->random(3)->first(),
+            'imovel_id' => Property::all()->random(3)->first(),
         ];
     }
 }

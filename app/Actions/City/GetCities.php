@@ -4,7 +4,7 @@ namespace App\Actions\City;
 
 use App\Data\CityData;
 use App\Data\ProvinceData;
-use App\Models\Cidade;
+use App\Models\City;
 use App\Models\Province;
 use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -18,7 +18,7 @@ class GetCities
     public function handle(?string $term = null)
     {
         return CityData::collection(
-            Cidade::query()
+            City::query()
                 ->when($term, function ($query, $search) {
                     $query->where('nome', 'like', '%'.$search.'%');
                     $query->with('province');

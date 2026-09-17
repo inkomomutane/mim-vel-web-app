@@ -2,7 +2,7 @@
 
 namespace App\Actions\RegraDeNegocio;
 
-use App\Models\RegraDeNegocio;
+use App\Models\BusinessRule;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -24,7 +24,7 @@ class DeleteRegraDeNegocio
         );
     }
 
-    public function handle(RegraDeNegocio $regraDeNegocio): bool
+    public function handle(BusinessRule $regraDeNegocio): bool
     {
         if ($regraDeNegocio->imovels->isEmpty()) {
             try {
@@ -44,7 +44,7 @@ class DeleteRegraDeNegocio
         }
     }
 
-    public function AsController(RegraDeNegocio $regraDeNegocio)
+    public function AsController(BusinessRule $regraDeNegocio)
     {
         $this->handle($regraDeNegocio);
 

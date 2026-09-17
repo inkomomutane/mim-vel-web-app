@@ -4,7 +4,7 @@ namespace App\Actions\Imovel;
 
 use App\Actions\UserTreeInIdArray;
 use App\Data\ImovelData;
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,7 @@ class GetDeletedImovels
                 $this->getTrashedImovels($term)->paginate(5)->withQueryString()
             );
         } else {
-            /** @var Collection<Imovel> $imovels */
+            /** @var Collection<Property> $imovels */
             $imovels = $this->getTrashedImovels($term);
 
             return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
@@ -32,12 +32,12 @@ class GetDeletedImovels
     }
 
     /**
-     * @return Collection<Imovel>
+     * @return Collection<Property>
      *
      **/
     private function getTrashedImovels(?string $term = null)
     {
-        return Imovel::query()
+        return Property::query()
             ->when($term, function ($query, $search) {
                 $query->where('titulo', 'like', '%'.$search.'%');
                 $query->with(['corretor', 'regraDeNegocio', 'intermediationRule', 'bairro.cidade.province', 'media' => function (MorphMany $query) {

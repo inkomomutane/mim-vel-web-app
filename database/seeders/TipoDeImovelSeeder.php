@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use Illuminate\Database\Seeder;
 
 class TipoDeImovelSeeder extends Seeder
@@ -14,7 +14,7 @@ class TipoDeImovelSeeder extends Seeder
      */
     public function run()
     {
-        TipoDeImovel::insert([
+        PropertyType::insert([
             [
                 'nome' => 'Geminada',
                 'created_at' => now(),

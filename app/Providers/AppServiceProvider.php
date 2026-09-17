@@ -3,15 +3,15 @@
 namespace App\Providers;
 
 use App\Actions\Page\GetPage;
-use App\Models\TipoDeImovel;
+use App\Models\PropertyType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         view()->share([
             'globals' => GetPage::run()?->getData(),
-            'imovelTypes' => TipoDeImovel::all(),
+            'imovelTypes' => PropertyType::all(),
         ]);
 
         Builder::macro('whereLike', function ($attributes, string $searchTerm) {

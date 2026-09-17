@@ -3,7 +3,7 @@
 namespace App\Actions\Legal;
 
 use App\Data\TermAndConditionData;
-use App\Models\Termo;
+use App\Models\Term;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -28,7 +28,7 @@ class UpdateTermAndCondition
     public function handle(TermAndConditionData $term)
     {
         try {
-            $termo = Termo::first();
+            $termo = Term::first();
             $termo->termos = $term->term;
             $termo->save();
             flash()->addSuccess('Termos e condiçõs actualizadas com sucesso.');

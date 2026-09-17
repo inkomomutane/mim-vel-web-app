@@ -3,7 +3,7 @@
 namespace App\Actions\Legal;
 
 use App\Data\PolicyData;
-use App\Models\Politica;
+use App\Models\Policy;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -28,7 +28,7 @@ class UpdatePolicy
     public function handle(PolicyData $policy)
     {
         try {
-            $politica = Politica::first();
+            $politica = Policy::first();
             $politica->politicas = $policy->politicas;
             $politica->save();
             flash()->addSuccess('Politicas de privacidade actualizadas com sucesso.');

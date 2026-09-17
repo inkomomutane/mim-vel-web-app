@@ -4,8 +4,8 @@ namespace App\Actions\Bairro;
 
 use App\Data\BairroData;
 use App\Data\CityData;
-use App\Models\Bairro;
-use App\Models\Cidade;
+use App\Models\Neighborhood;
+use App\Models\City;
 use Inertia\Inertia;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
@@ -18,7 +18,7 @@ class GetBairros
     public function handle(?string $term = null)
     {
 
-        $bairros = Bairro::query()
+        $bairros = Neighborhood::query()
             ->when($term, function ($query, $search) {
                 $query->where('nome', 'like', '%'.$search.'%');
                 $query->with('cidade');
@@ -34,7 +34,7 @@ class GetBairros
     {
         return Inertia::render('Bairro/Index', [
             'bairros' => $this->handle(request()->search),
-            'cities' => CityData::collection(Cidade::all()),
+            'cities' => CityData::collection(City::all()),
         ]);
     }
 }

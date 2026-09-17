@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use App\Support\Enums\SystemRoles;
 use Illuminate\Console\Command;
 use Lorisleiva\Actions\ActionRequest;
@@ -28,7 +28,7 @@ class ApproveAllImovels
 
     public function handle()
     {
-        Imovel::withoutApproved()->update([
+        Property::withoutApproved()->update([
             'approved' => true,
             'approved_at' => now(),
             'approved_by_id' => 1,

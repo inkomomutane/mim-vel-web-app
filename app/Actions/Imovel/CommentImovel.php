@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -18,7 +18,7 @@ class CommentImovel
         ];
     }
 
-    public function asController(Imovel $imovel, ActionRequest $actionRequest)
+    public function asController(Property $imovel, ActionRequest $actionRequest)
     {
         try {
             $imovel->comentarios()->create($actionRequest->all());

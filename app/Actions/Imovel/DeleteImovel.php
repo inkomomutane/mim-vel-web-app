@@ -2,14 +2,14 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class DeleteImovel
 {
     use AsController;
 
-    public function AsController(Imovel $imovel)
+    public function AsController(Property $imovel)
     {
         if (! is_null($imovel)) {
             try {

@@ -2,7 +2,7 @@
 
 namespace App\Actions\City;
 
-use App\Models\Cidade;
+use App\Models\City;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
@@ -11,7 +11,7 @@ class DeleteCity
     use AsAction;
     use AsController;
 
-    public function handle(Cidade $city): bool
+    public function handle(City $city): bool
     {
         if ($city->bairros->isEmpty()) {
             try {
@@ -31,7 +31,7 @@ class DeleteCity
         }
     }
 
-    public function AsController(Cidade $city)
+    public function AsController(City $city)
     {
         $this->handle($city);
 

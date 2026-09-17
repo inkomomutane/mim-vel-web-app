@@ -2,8 +2,8 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Comentario;
-use App\Models\Imovel;
+use App\Models\Comment;
+use App\Models\Property;
 use App\Models\Rating;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
@@ -28,13 +28,13 @@ class ApproveImovelDeletion
 
     public function AsController(int $imovel)
     {
-        /** @var Imovel $imovel */
-        $imovel = Imovel::onlyTrashed()->whereId($imovel)->first();
+        /** @var Property $imovel */
+        $imovel = Property::onlyTrashed()->whereId($imovel)->first();
 
         if (! is_null($imovel) && $imovel->trashed()) {
             try {
                 Rating::whereIn('id', $imovel->ratings->pluck('id'))->delete();
-                Comentario::whereIn('id', $imovel->comentarios->pluck('id'))->delete();
+                Comment::whereIn('id', $imovel->comentarios->pluck('id'))->delete();
                 $imovel->forceDelete();
                 flash()->addSuccess('Imovel deletado permanentemente com sucesso.');
 

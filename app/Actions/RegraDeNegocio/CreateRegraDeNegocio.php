@@ -3,7 +3,7 @@
 namespace App\Actions\RegraDeNegocio;
 
 use App\Data\RegraDeNegocioData;
-use App\Models\RegraDeNegocio;
+use App\Models\BusinessRule;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -27,7 +27,7 @@ class CreateRegraDeNegocio
 
     public function handle(RegraDeNegocioData $regraDeNegocioData)
     {
-        return RegraDeNegocio::create($regraDeNegocioData->all());
+        return BusinessRule::create($regraDeNegocioData->all());
     }
 
     public function rules()

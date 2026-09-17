@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use App\Models\Bairro;
+use App\Models\Neighborhood;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
@@ -16,7 +16,7 @@ class BairroData extends Data
     ) {
     }
 
-    public static function fromModel(Bairro $bairro)
+    public static function fromModel(Neighborhood $bairro)
     {
 
         return new self(

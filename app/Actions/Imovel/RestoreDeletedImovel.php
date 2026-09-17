@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class RestoreDeletedImovel
@@ -11,8 +11,8 @@ class RestoreDeletedImovel
 
     public function AsController(int $imovel)
     {
-        /** @var Imovel $imovel */
-        $imovel = Imovel::onlyTrashed()->whereId($imovel)->first();
+        /** @var Property $imovel */
+        $imovel = Property::onlyTrashed()->whereId($imovel)->first();
 
         if (! is_null($imovel) && $imovel->trashed()) {
             try {

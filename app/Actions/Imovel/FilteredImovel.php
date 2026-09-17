@@ -2,7 +2,7 @@
 
 namespace App\Actions\Imovel;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Pricecurrent\LaravelEloquentFilters\EloquentFilters;
 
@@ -12,7 +12,7 @@ class FilteredImovel
 
     public function handle(EloquentFilters $filters)
     {
-        return Imovel::filter($filters)
+        return Property::filter($filters)
             ->withApproved()
             ->with(
                 [

@@ -2,7 +2,7 @@
 
 namespace App\Actions\Condicao;
 
-use App\Models\Condicao;
+use App\Models\PropertyCondition;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -24,7 +24,7 @@ class DeleteCondicao
         );
     }
 
-    public function handle(Condicao $condicao): bool
+    public function handle(PropertyCondition $condicao): bool
     {
         if ($condicao->imovels->isEmpty()) {
             try {
@@ -44,7 +44,7 @@ class DeleteCondicao
         }
     }
 
-    public function AsController(Condicao $condicao)
+    public function AsController(PropertyCondition $condicao)
     {
         $this->handle($condicao);
 

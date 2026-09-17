@@ -3,7 +3,7 @@
 namespace App\Actions\Condicao;
 
 use App\Data\CondicaoData;
-use App\Models\Condicao;
+use App\Models\PropertyCondition;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
 use Lorisleiva\Actions\ActionRequest;
@@ -29,7 +29,7 @@ class GetCondicaos
     public function handle(?string $term = null)
     {
         return CondicaoData::collection(
-            Condicao::query()
+            PropertyCondition::query()
                 ->when($term, function ($query, $search) {
                     $query->where('nome', 'like', '%'.$search.'%');
                 })->

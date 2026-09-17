@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use App\Models\Cidade;
+use App\Models\City;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Lazy;
@@ -19,7 +19,7 @@ class CityData extends Data
     ) {
     }
 
-    public static function fromModel(Cidade $cidade)
+    public static function fromModel(City $cidade)
     {
         return new self(
             id: $cidade->id,

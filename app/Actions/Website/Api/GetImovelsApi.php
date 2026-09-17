@@ -12,7 +12,7 @@ class GetImovelsApi
     public function handle()
     {
         return \App\Data\ImovelData::collection(
-            \App\Models\Imovel::with(['bairro.cidade', 'condicao', 'imovelFor', 'media' => function (MorphMany $query) {
+            \App\Models\Property::with(['bairro.cidade', 'condicao', 'imovelFor', 'media' => function (MorphMany $query) {
                 $query->where('collection_name', 'posts');
             }, ])->paginate(12));
     }

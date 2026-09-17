@@ -3,7 +3,7 @@
 namespace App\Actions\Website;
 
 use App\Actions\Page\GetPage;
-use App\Models\Politica;
+use App\Models\Policy;
 use App\Support\Enums\Pages;
 use Lorisleiva\Actions\Concerns\AsController;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
@@ -16,7 +16,7 @@ class GetPolicies
     public function asController()
     {
         return view('website.policy', [
-            'policy' => Politica::first(),
+            'policy' => Policy::first(),
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::POLICY),
             'seoData' => new SEOData(
                 title: 'Políticas de privacidade',

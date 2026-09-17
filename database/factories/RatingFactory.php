@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Imovel;
+use App\Models\Property;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +21,7 @@ class RatingFactory extends Factory
             'rating' => rand(1, 5),
             'ip' => '127.0.0.1',
             'nome' => $this->faker->name(),
-            'imovel_id' => Imovel::all()->random(5)->first(),
+            'imovel_id' => Property::all()->random(5)->first(),
         ];
     }
 }

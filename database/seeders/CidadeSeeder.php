@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cidade;
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class CidadeSeeder extends Seeder
@@ -14,7 +14,7 @@ class CidadeSeeder extends Seeder
      */
     public function run()
     {
-        Cidade::insert([
+        City::insert([
             [
                 'nome' => 'Maputo (Província)',
                 'created_at' => now(),
