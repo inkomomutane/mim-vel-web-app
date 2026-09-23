@@ -14,7 +14,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
-use Spatie\Tags\Tag;
 
 class HotelMetaData extends Model implements HasMedia
 {
@@ -91,14 +90,6 @@ class HotelMetaData extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
-    //    public function toSitemapTag(): Url|string|array
-    //    {
-    //        return Url::create(route('post.imovel.show', $this))
-    //            ->setLastModificationDate(Carbon::create($this->updated_at))
-    //            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-    //            ->addImage($this->hasMedia('posts') ? $this->getFirstMedia('posts')->getUrl('social-media') : Vite::asset('resources/js/images/placeholder.svg'))
-    //            ->setPriority(0.1);
-    //    }
 
     /**
      * Get the route key for the model.

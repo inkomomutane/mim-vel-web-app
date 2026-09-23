@@ -7,33 +7,11 @@
 namespace App\Models;
 
 use App\Data\CityData;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
-/**
- * App\Models\Cidade
- *
- * @property int $id
- * @property string|null $nome
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int|null $province_id
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Neighborhood> $bairros
- * @property-read int|null $bairros_count
- * @property-read \App\Models\Province|null $province
- * @method static \Illuminate\Database\Eloquent\Builder|City newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|City newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|City query()
- * @method static \Illuminate\Database\Eloquent\Builder|City whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|City whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|City whereNome($value)
- * @method static \Illuminate\Database\Eloquent\Builder|City whereProvinceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|City whereUpdatedAt($value)
- * @mixin \Eloquent
- */
 class City extends Model implements Searchable
 {
 

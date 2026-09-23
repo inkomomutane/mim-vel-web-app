@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use App\Data\BairroData;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
