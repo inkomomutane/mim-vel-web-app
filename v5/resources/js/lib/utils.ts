@@ -3,6 +3,10 @@ import type { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import PT from "../../../lang/pt.json";
 import { createI18n } from 'vue-i18n'
+import type { MessageSchema } from '../../../lang/pt.json';
+import type { Ref } from 'vue';
+import { ref } from 'vue';
+import type { Updater } from 'vue';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
