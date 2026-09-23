@@ -3,7 +3,7 @@
 
 namespace App\Models;
 
-use App\Data\CondicaoData;
+use App\Data\PropertyConditionData;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
@@ -13,7 +13,7 @@ class PropertyCondition extends Model
 
     protected $table = 'condicaos';
 
-    protected $dataClass = CondicaoData::class;
+    protected $dataClass = PropertyConditionData::class;
 
     protected $fillable = [
         'nome',

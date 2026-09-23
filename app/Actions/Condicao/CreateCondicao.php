@@ -2,7 +2,7 @@
 
 namespace App\Actions\Condicao;
 
-use App\Data\CondicaoData;
+use App\Data\PropertyConditionData;
 use App\Models\PropertyCondition;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
@@ -25,7 +25,7 @@ class CreateCondicao
         );
     }
 
-    public function handle(CondicaoData $condicaoData)
+    public function handle(PropertyConditionData $condicaoData)
     {
         return PropertyCondition::create($condicaoData->all());
     }
@@ -39,7 +39,7 @@ class CreateCondicao
 
     public function AsController(ActionRequest $request)
     {
-        $this->handle(CondicaoData::from($request->validated()));
+        $this->handle(PropertyConditionData::from($request->validated()));
         flash()->addSuccess('Condição do imóvel criada com sucesso.');
 
         return \redirect()->back();

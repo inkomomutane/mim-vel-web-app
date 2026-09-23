@@ -11,21 +11,21 @@ use Spatie\LaravelData\Lazy;
 class HotelMetaDataDtoData extends Data
 {
     public function __construct(
-        public readonly ?int $id,
-        public readonly ?string $title,
-        public readonly ?string $address,
-        public readonly ?string $description,
-        public readonly ?string $slug,
-        public readonly Lazy|ImovelTypeData $imovelTypeData,
-        public readonly Lazy|CondicaoData|null $condicaoData,
-        public readonly Lazy|StatusData|null $statusData,
-        public readonly Lazy|BairroData|null $bairroData,
+        public readonly ?int                            $id,
+        public readonly ?string                         $title,
+        public readonly ?string                         $address,
+        public readonly ?string                         $description,
+        public readonly ?string                         $slug,
+        public readonly Lazy|ImovelTypeData             $imovelTypeData,
+        public readonly Lazy|PropertyConditionData|null $condicaoData,
+        public readonly Lazy|StatusData|null            $statusData,
+        public readonly Lazy|BairroData|null            $bairroData,
         /** @var HotelData[] $hotels */
-        public readonly Lazy|null|DataCollection $hotels,
+        public readonly Lazy|null|DataCollection        $hotels,
         /** @var MediaData[] * */
-        public Lazy|null|DataCollection $media,
+        public Lazy|null|DataCollection                 $media,
         /** @var AttributeData[] $attributes */
-        public readonly DataCollection|Lazy|null $attributes,
+        public readonly DataCollection|Lazy|null        $attributes,
 
     ) {
     }

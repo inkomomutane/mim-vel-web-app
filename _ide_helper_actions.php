@@ -117,15 +117,15 @@ class UpdateCity
 namespace App\Actions\Condicao;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\CondicaoData $condicaoData)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\CondicaoData $condicaoData)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\CondicaoData $condicaoData)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\CondicaoData $condicaoData)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\CondicaoData $condicaoData)
- * @method static dispatchSync(\App\Data\CondicaoData $condicaoData)
- * @method static dispatchNow(\App\Data\CondicaoData $condicaoData)
- * @method static dispatchAfterResponse(\App\Data\CondicaoData $condicaoData)
- * @method static mixed run(\App\Data\CondicaoData $condicaoData)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\PropertyConditionData $condicaoData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\PropertyConditionData $condicaoData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\PropertyConditionData $condicaoData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\PropertyConditionData $condicaoData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\PropertyConditionData $condicaoData)
+ * @method static dispatchSync(\App\Data\PropertyConditionData $condicaoData)
+ * @method static dispatchNow(\App\Data\PropertyConditionData $condicaoData)
+ * @method static dispatchAfterResponse(\App\Data\PropertyConditionData $condicaoData)
+ * @method static mixed run(\App\Data\PropertyConditionData $condicaoData)
  */
 class CreateCondicao
 {
