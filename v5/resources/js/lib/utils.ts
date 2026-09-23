@@ -18,7 +18,9 @@ export const i18n = createI18n({
 export const t = (key: keyof MessageSchema): string => {
     return i18n.global.t(key as string);
 };
-
+export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref) {
+    ref.value = typeof updaterOrValue === 'function' ? updaterOrValue(ref.value) : updaterOrValue;
+}
 export function crudManager<T>() {
     const isModalOpen = ref(false);
     const model = ref<T | null>();
