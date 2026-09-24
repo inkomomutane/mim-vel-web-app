@@ -27,13 +27,13 @@ interface  Props {
     }
 }
 const props = defineProps<Props>()
-
 </script>
 
 <template>
     <Sidebar collapsible="icon" class="z-50">
         <SidebarHeader
-            class="h-14 border-b   flex items-center  w-full p-2 group-data-[collapsible=icon]:justify-center "
+
+            class="h-14 border-b   flex items-center  w-full p-2 group-data-[collapsible=icon]:justify-center"
         >
             <div
                 type="button"
@@ -58,15 +58,14 @@ const props = defineProps<Props>()
             </div>
         </SidebarHeader>
 
-        <SidebarContent>
+        <SidebarContent >
             <NavTeamCollapsible :nav-main="navItems" />
-
         </SidebarContent>
-
         <SidebarFooter
+
             class="h-14 border-t py-1 group-data-[collapsible=icon]:justify-center"
         >
-            <NavFooter :user="user" />
+            <NavFooter  :user="user" />
         </SidebarFooter>
         <SidebarRail />
     </Sidebar>

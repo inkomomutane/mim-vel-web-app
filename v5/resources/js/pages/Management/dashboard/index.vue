@@ -21,7 +21,6 @@ const defaultTab = tabs[0].value
     <BasicPage
         title="workspace"
         description="workspace description"
-        sticky
     >
         <template #actions>
             <Button
