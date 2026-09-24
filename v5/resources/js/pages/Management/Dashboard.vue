@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import {
     Head,
-    Link,
+    Link, usePage,
 } from '@inertiajs/vue3';
 import AppLayout from "@/pages/Management/layouts/AppLayout.vue";
+import IconPicker from "@/components/app/IconPicker.vue";
+
+const form = usePage({
+     icon_id: null
+})
 </script>
 
 <template>
@@ -11,8 +16,8 @@ import AppLayout from "@/pages/Management/layouts/AppLayout.vue";
     <AppLayout>
         <h1>Dashboard</h1>
 
-        <Link :href="route('home')">
-            About
-        </Link>
+        <IconPicker
+            v-model="form.icon_id"
+        />
     </AppLayout>
 </template>

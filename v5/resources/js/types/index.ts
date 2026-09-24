@@ -19,3 +19,21 @@ export interface SharedData {
         routes: Record<string, string>;
     };
 }
+
+export type IconSource = 'lucide' | 'lab';
+
+export type LucideIconNode = Array<
+    [
+        string,
+        Record<string, string | number>
+    ]
+>;
+
+export interface IconData {
+    id: number;
+    name: string;
+    slug: string;
+    source: IconSource;
+    icon_node: LucideIconNode;
+    tags: string[];
+}

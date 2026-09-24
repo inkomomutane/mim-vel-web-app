@@ -85,3 +85,20 @@ Route::prefix('management')
                     ->name('json');
             });
     });
+
+
+
+Route::prefix('core')
+    ->name('core.')
+    ->group(function (){
+        Route::prefix('icons')
+            ->name('icons.')
+            ->controller(\App\Http\Controllers\IconController::class)
+            ->group(function () {
+                Route::get('/{icon}/json', 'show')
+                    ->name('json');
+                Route::get('/json/list', 'index')
+                    ->name('list.json');
+            });
+
+    });
