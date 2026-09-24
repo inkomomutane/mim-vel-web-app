@@ -1,8 +1,17 @@
 <script setup lang="ts">
+import {
+    SidebarProvider,
+} from '@/components/ui/sidebar';
 </script>
 
 <template>
-    <div  class="flex min-h-screen w-full flex-col bg-slate-100  dark:bg-zinc-900 selection:bg-primary-500" >
+    <SidebarProvider
+        class="
+            min-h-screen
+            bg-[#f7f7f7]
+            dark:bg-zinc-900
+        "
+    >
         <slot />
-    </div>
+    </SidebarProvider>
 </template>

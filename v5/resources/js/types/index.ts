@@ -1,10 +1,19 @@
 export * from './auth';
+import type { LucideIcon } from '@lucide/vue';
+
 export interface NavItem {
     title: string;
-    href: string;
+    href?: string;
+
     icon?: LucideIcon;
+
+    routeName?: string;
+    activePattern?: string;
+
     isActive?: boolean;
     adminOnly?: boolean;
+
+    children?: NavItem[];
 }
 
 export interface SharedData {

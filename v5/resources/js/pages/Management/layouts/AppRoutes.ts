@@ -1,34 +1,56 @@
 import type { NavItem } from '@/types';
-import { GraduationCap, LayoutGrid, Users,ListCheck,ListChecks, FileText, DollarSign, CheckSquare } from '@lucide/vue';
-import {t} from "@/lib/utils"
 
+import {
+    CircleDotDashed,
+    LayoutDashboard,
+    MapPinned,
+    Settings2,
+    SlidersHorizontal,
+} from '@lucide/vue';
 
+import { t } from '@/lib/utils';
 
-export const AppRoutes: NavItem[]  = [
+export const AppRoutes: NavItem[] = [
     {
         title: t('Dashboard'),
         href: route('dashboard'),
-        icon: LayoutGrid,
+        icon: LayoutDashboard,
         routeName: 'dashboard',
         adminOnly: false,
     },
+
     {
-        title: t('Provinces'),
-        href: route('management.province.list'),
-        icon: ListCheck,
-        routeName: 'management.province.list',
+        title: t('Settings'),
+        icon: Settings2,
         adminOnly: false,
-    }, {
-        title: t('Property conditions'),
-        href: route('management.property-condition.list'),
-        icon: ListChecks,
-        routeName: 'management.property-condition.list',
-        adminOnly: false,
-    },{
-      title: t('Status')
-        , href: route('management.status.list'),
-        icon: CheckSquare,
-        routeName: 'management.status.list',
-        adminOnly: false,
-    }
+
+        children: [
+            {
+                title: t('Provinces'),
+                href: route('management.province.list'),
+                icon: MapPinned,
+                routeName: 'management.province.list',
+                activePattern: 'management.province.*',
+                adminOnly: false,
+            },
+
+            {
+                title: t('Property conditions'),
+                href: route('management.property-condition.list'),
+                icon: SlidersHorizontal,
+                routeName: 'management.property-condition.list',
+                activePattern: 'management.property-condition.*',
+                adminOnly: false,
+            },
+
+            {
+                title: t('Status'),
+                href: route('management.status.list'),
+                icon: CircleDotDashed,
+                routeName: 'management.status.list',
+                activePattern: 'management.status.*',
+                adminOnly: false,
+            },
+        ],
+    },
 ];

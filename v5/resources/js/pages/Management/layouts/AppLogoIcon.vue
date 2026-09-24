@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue';
-import logo from  "@/images/logo/logo.jpg";
+import type {
+    HTMLAttributes,
+} from 'vue';
+
+import logo from '@/images/logo/logo.jpg';
+
 defineOptions({
     inheritAttrs: false,
 });
 
 interface Props {
-    className?: HTMLAttributes['class'];
+    class?: HTMLAttributes['class'];
 }
 
 defineProps<Props>();
 </script>
 
 <template>
-    <img :src="logo" :class="className" v-bind="$attrs" alt="logo">
+    <img
+        :src="logo"
+        :class="$props.class"
+        v-bind="$attrs"
+        alt="Logo"
+    />
 </template>

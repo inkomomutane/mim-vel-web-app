@@ -22,6 +22,7 @@ class Attribute extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
+        'icon_id',
     ];
 
     public function hotels(): MorphToMany

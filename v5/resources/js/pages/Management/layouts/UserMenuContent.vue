@@ -4,6 +4,7 @@ import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSep
 import type { User } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { LogOut, Settings } from '@lucide/vue';
+import { t } from '@/lib/utils';
 
 interface Props {
     user: User;
@@ -23,7 +24,7 @@ defineProps<Props>();
     <DropdownMenuItem :as-child="true">
         <a class="block w-full" :href="route('logout')">
             <LogOut class="mr-2 h-4 w-4" />
-            {{ $t('Log out') }}
+            {{ t('Log out') }}
         </a>
     </DropdownMenuItem>
 </template>

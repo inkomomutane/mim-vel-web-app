@@ -2,46 +2,81 @@
 import AppContent from './AppContent.vue';
 import AppHeader from './AppHeader.vue';
 import AppShell from './AppShell.vue';
-import type { BreadcrumbItemType } from '@/types';
-import {Toaster} from "@/components/ui/sonner";
-import { usePage } from '@inertiajs/vue3';import { h,watch,ref } from 'vue'
-import { AlertDto } from '@/types/generated';
+import AppSidebar from './AppSidebar.vue';
 
+import {
+    SidebarInset,
+} from '@/components/ui/sidebar';
+
+import {
+    Toaster,
+} from '@/components/ui/sonner';
+
+import type {
+    BreadcrumbItemType,
+} from '@/types';
+
+import { usePage } from '@inertiajs/vue3';
+
+import { watch } from 'vue';
+
+import { toast } from 'vue-sonner';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
 }
-const props = withDefaults(defineProps<Props>(), {
-    breadcrumbs: () => [],
-});
 
+const props = withDefaults(
+    defineProps<Props>(),
+    {
+        breadcrumbs: () => [],
+    },
+);
 
+const page = usePage();
 
+watch(
+    () => page.props.messages,
+    (value) => {
+        if (!value) {
+            return;
+        }
 
-
-const page  = usePage();
-
-watch(() => page.props.messages, (value) => {
-    if (value) {
-        toast(value?.message ?? '',{
+        toast(value?.message ?? '', {
             description: '',
             action: {
                 label: 'Close',
                 onClick: () => {
                     toast.dismiss();
                 },
-            }
+            },
         });
-    }
-});
+    },
+);
 </script>
 
 <template>
     <Toaster />
-    <AppShell class="flex-col" variant="header">
-        <AppHeader :breadcrumbs="props.breadcrumbs" />
-        <AppContent>
-            <slot />
-        </AppContent>
+
+    <AppShell>
+
+        <AppSidebar />
+
+        <SidebarInset
+            class="
+                min-w-0
+                bg-[#f7f7f7]
+                dark:bg-zinc-900
+            "
+        >
+            <AppHeader
+                :breadcrumbs="props.breadcrumbs"
+            />
+
+            <AppContent>
+                <slot />
+            </AppContent>
+        </SidebarInset>
+
     </AppShell>
 </template>
