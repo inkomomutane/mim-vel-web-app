@@ -1,4 +1,9 @@
-import '../css/app.css';
+import '../css/index.css';
+import  '../css/scrollbar.css'
+import '../css/themes.css'
+import '../css/chart-theme.css'
+import 'vue-sonner/style.css'
+
 
 import {
     createInertiaApp,

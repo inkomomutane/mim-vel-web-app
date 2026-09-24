@@ -1,82 +1,49 @@
 <script setup lang="ts">
-import AppContent from './AppContent.vue';
-import AppHeader from './AppHeader.vue';
-import AppShell from './AppShell.vue';
-import AppSidebar from './AppSidebar.vue';
+import { useCookies } from '@vueuse/integrations/useCookies'
+import { storeToRefs } from 'pinia'
 
-import {
-    SidebarInset,
-} from '@/components/ui/sidebar';
+import AppSidebar from '@/components/app-sidebar/index.vue'
+import CommandMenuPanel from '@/components/command-menu-panel/index.vue'
+import ThemePopover from '@/components/custom-theme/theme-popover.vue'
+import LanguageChange from '@/components/language-change.vue'
+import ToggleTheme from '@/components/toggle-theme.vue'
+import { Separator } from '@/components/ui/separator'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { SIDEBAR_COOKIE_NAME } from '@/components/ui/sidebar/utils'
+import { cn } from '@/lib/utils'
+import { useThemeStore } from '@/stores/theme'
 
-import {
-    Toaster,
-} from '@/components/ui/sonner';
-
-import type {
-    BreadcrumbItemType,
-} from '@/types';
-
-import { usePage } from '@inertiajs/vue3';
-
-import { watch } from 'vue';
-
-import { toast } from 'vue-sonner';
-
-interface Props {
-    breadcrumbs?: BreadcrumbItemType[];
-}
-
-const props = withDefaults(
-    defineProps<Props>(),
-    {
-        breadcrumbs: () => [],
-    },
-);
-
-const page = usePage();
-
-watch(
-    () => page.props.messages,
-    (value) => {
-        if (!value) {
-            return;
-        }
-
-        toast(value?.message ?? '', {
-            description: '',
-            action: {
-                label: 'Close',
-                onClick: () => {
-                    toast.dismiss();
-                },
-            },
-        });
-    },
-);
+const defaultOpen = useCookies([SIDEBAR_COOKIE_NAME])
+const themeStore = useThemeStore()
+const { contentLayout } = storeToRefs(themeStore)
 </script>
 
 <template>
-    <Toaster />
-
-    <AppShell>
-
+    <SidebarProvider :default-open="defaultOpen.get(SIDEBAR_COOKIE_NAME)">
         <AppSidebar />
+        <SidebarInset class="w-full max-w-full peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)] peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]">
+            <header
+                class="flex items-center gap-3 sm:gap-4 h-14 p-4 shrink-0 transition-[width,height] ease-linear border-b sticky top-0 z-40 bg-background"
+            >
+                <SidebarTrigger class="-ml-1" />
+                <Separator orientation="vertical" />
+                <CommandMenuPanel />
+                <div class="flex-1" />
+                <div class="ml-auto flex items-center space-x-2">
+                    <LanguageChange />
+                    <ToggleTheme />
+                    <ThemePopover />
+                </div>
+            </header>
 
-        <SidebarInset
-            class="
-                min-w-0
-                bg-[#f7f7f7]
-                dark:bg-zinc-900
-            "
-        >
-            <AppHeader
-                :breadcrumbs="props.breadcrumbs"
-            />
-
-            <AppContent>
+            <main
+                :class="cn(
+          'p-4 grow relative',
+          contentLayout === 'centered' ? 'container mx-auto ' : '',
+        )"
+            >
                 <slot />
-            </AppContent>
+            </main>
         </SidebarInset>
-
-    </AppShell>
+    </SidebarProvider>
 </template>

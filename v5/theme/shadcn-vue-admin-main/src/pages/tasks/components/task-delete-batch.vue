@@ -1,0 +1,79 @@
+<script setup lang="ts">
+import { toast } from 'vue-sonner'
+
+import type { DataTableInstance } from '@/components/data-table'
+
+import ConfirmDialog from '@/components/confirm-dialog.vue'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
+import type { Task } from '../data/schema'
+
+const { table } = defineProps<{
+  table: DataTableInstance<Task>
+}>()
+
+const openModel = defineModel<boolean>('open', {
+  default: false,
+})
+
+const CONFIRM_WORD = 'DELETE'
+
+const confirmValue = shallowRef('')
+
+const selectedRows = computed(() => table.getSelectedRowModel().rows)
+const selectedCount = computed(() => selectedRows.value.length || 0)
+function handleConfirm() {
+  if (confirmValue.value !== CONFIRM_WORD) {
+    toast.error(`Please type "${CONFIRM_WORD}" to confirm deletion.`)
+    return
+  }
+
+  openModel.value = false
+
+  toast.promise(new Promise(resolve => setTimeout(resolve, 2000)), {
+    loading: 'Deleting tasks...',
+    success: () => {
+      table.resetRowSelection()
+      return `Successfully deleted ${selectedRows.value.length} tasks.`
+    },
+    error: 'Failed to delete tasks.',
+  })
+}
+</script>
+
+<template>
+  <ConfirmDialog
+    v-model:open="openModel"
+    confirm-button-text="Delete"
+    destructive
+    :disabled="confirmValue.trim() !== CONFIRM_WORD"
+    @confirm="handleConfirm"
+  >
+    <template #title>
+      Delete {{ selectedCount }} tasks?
+    </template>
+    <template #description>
+      Are you sure you want to delete the selected tasks? <br>
+      This action cannot be undone.
+    </template>
+
+    <template #default>
+      <Label class="my-4 flex flex-col items-start gap-1.5">
+        <span>Confirm by typing {{ CONFIRM_WORD }}:</span>
+        <Input
+          v-model="confirmValue"
+          :placeholder="`Type &quot;${CONFIRM_WORD}&quot; to confirm.`"
+        />
+      </Label>
+
+      <Alert variant="destructive">
+        <AlertTitle>Warning!</AlertTitle>
+        <AlertDescription>
+          Please be careful, this operation can not be rolled back.
+        </AlertDescription>
+      </Alert>
+    </template>
+  </ConfirmDialog>
+</template>

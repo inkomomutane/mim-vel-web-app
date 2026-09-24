@@ -72,7 +72,7 @@ export default defineConfig({
         ],
         sortTailwindcss: {
             functions: ['clsx', 'cn', 'cva'],
-            entryPoint: 'resources/css/app.css',
+            entryPoint: 'resources/css/index.css',
         },
     },
     resolve: {
