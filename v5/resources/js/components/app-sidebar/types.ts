@@ -1,37 +1,66 @@
 import type { LucideProps } from '@lucide/vue'
 import type { FunctionalComponent } from 'vue'
 
-type NavIcon = FunctionalComponent<LucideProps, Record<any, any>, any, Record<any, any>>
 
-interface BaseNavItem {
-  title: string
-  icon?: NavIcon
+export type NavIcon = FunctionalComponent<LucideProps>
+
+export interface BaseNavItem {
+    title: string
+    icon?: NavIcon
+
+    /**
+     * Explicit Ziggy route pattern(s) used to determine
+     * whether this item is active.
+     *
+     * Examples:
+     * management.users.*
+     * management.roles.index
+     */
+    active?: string | string[]
 }
 
-export type NavItem
-  = | BaseNavItem & {
-    items: NavSubItem[]
-    url?: never
-    isActive?: boolean
-  } | BaseNavItem & {
-    url: string
+export interface NavLinkItem extends BaseNavItem {
+    /**
+     * Laravel named route.
+     *
+     * Example:
+     * management.users.index
+     */
+    route?: string
+
+    /**
+     * Route parameters for Ziggy.
+     *
+     * Example:
+     * { user: 10 }
+     */
+    params?: Record<string, unknown>
+
+    /**
+     * Use only for external/non-Laravel URLs.
+     */
+    url?: string
+
     items?: never
-  }
-
-/**
- * A navigation entry as exposed by `useSidebarNavigation()`.
- * Covers top-level items and nested sub-items (whose `url` is optional).
- */
-export type NavSubItem = BaseNavItem & {
-  url?: string
-  items?: NavSubItem[]
-  isActive?: boolean
 }
+
+export interface NavParentItem extends BaseNavItem {
+    items: NavSubItem[]
+
+    route?: never
+    params?: never
+    url?: never
+}
+
+export type NavSubItem = NavLinkItem | NavParentItem
 
 export interface NavGroup {
-  title: string
-  items: NavItem[]
+    title: string
+    items: NavSubItem[]
 }
+
+export type NavItem = NavSubItem
+
 
 export interface User {
   name: string

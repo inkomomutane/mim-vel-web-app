@@ -14,8 +14,8 @@ const { navMain } = defineProps<{
   navMain: NavGroup[]
 }>()
 
-const route = useRoute()
-const initialPath = route.path
+
+const initialPath = ''
 
 const { state, isMobile } = useSidebar()
 
@@ -26,11 +26,7 @@ function isCollapsed(menu: NavItem): boolean {
 }
 
 function isActive(menu: NavItem): boolean {
-  const pathname = route.path
-  if (menu.url) {
-    return pathname === menu.url
-  }
-  return !!menu.items?.some(item => item.url === pathname)
+    return  true;
 }
 </script>
 
@@ -75,10 +71,10 @@ function isActive(menu: NavItem): boolean {
                       <span>{{ subItem.title }}</span>
                       <ExternalLinkIcon class="w-4 h-4 ml-auto" />
                     </a>
-                    <router-link v-else :to="subItem?.url || '/'">
+                    <a v-else :href="subItem?.url || '/'">
                       <component :is="subItem.icon" v-if="subItem.icon" />
                       <span>{{ subItem.title }}</span>
-                    </router-link>
+                    </a>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               </SidebarMenuSub>

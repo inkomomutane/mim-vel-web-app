@@ -22,6 +22,9 @@ import {
     ZiggyVue,
 } from 'ziggy-js';
 import { i18n } from '@/lib/utils';
+import { createPinia } from 'pinia';
+
+const pinia = createPinia()
 
 void createInertiaApp({
     resolve: (name) =>
@@ -43,6 +46,7 @@ void createInertiaApp({
             ),
         })
             .use(plugin)
+            .use(pinia)
             .use(i18n)
             .use(ZiggyVue)
             .mount(el);

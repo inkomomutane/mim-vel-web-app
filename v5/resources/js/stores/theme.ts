@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 
 import type { ContentLayout, Radius, Theme } from '@/constants/themes'
+import { shallowRef } from 'vue'
 
 export const useThemeStore = defineStore('system-config', () => {
-    const radius = shallowRef(0.5)
+    const radius = shallowRef(0.25)
     function setRadius(newRadius: Radius) {
         radius.value = newRadius
     }

@@ -30,6 +30,5 @@ const effectiveMode = computed(() => {
 </script>
 
 <template>
-  <NavTeamVercel v-if="effectiveMode === 'vercel'" :nav-main="navMain" />
-  <NavTeamCollapsible v-else :nav-main="navMain" />
+  <NavTeamCollapsible :nav-main="navMain" />
 </template>

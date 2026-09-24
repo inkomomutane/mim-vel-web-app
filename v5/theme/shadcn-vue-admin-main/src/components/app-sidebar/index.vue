@@ -3,8 +3,8 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } fr
 
 import { sidebarData } from './data/sidebar-data'
 import NavFooter from './nav-footer.vue'
-import NavTeam from './nav-team.vue'
 import TeamSwitcher from './team-switcher.vue'
+import NavTeamCollapsible from "../../../../../resources/js/components/app-sidebar/nav-team-collapsible.vue";
 </script>
 
 <template>
@@ -14,13 +14,12 @@ import TeamSwitcher from './team-switcher.vue'
     </SidebarHeader>
 
     <SidebarContent>
-      <NavTeam :nav-main="sidebarData.navMain" />
+        <NavTeamCollapsible :nav-main="sidebarData.navMain" />
     </SidebarContent>
 
     <SidebarFooter class="border-t h-14 py-1 group-data-[collapsible=icon]:justify-center">
       <NavFooter :user="sidebarData.user" />
     </SidebarFooter>
-
     <SidebarRail />
   </Sidebar>
 </template>

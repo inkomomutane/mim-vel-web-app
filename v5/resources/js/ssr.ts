@@ -21,6 +21,9 @@ import {
     ZiggyVue,
 } from 'ziggy-js';
 import { i18n } from '@/lib/utils';
+import { createPinia } from 'pinia';
+
+const pinia = createPinia()
 
 createServer((page) =>
     createInertiaApp({
@@ -55,6 +58,7 @@ createServer((page) =>
             })
                 .use(plugin)
                 .use(i18n)
+                .use(pinia)
                 .use(
                     ZiggyVue,
                     ziggy,

@@ -4,15 +4,19 @@ import { BadgeCheckIcon, BellIcon, ChevronsUpDownIcon, CreditCardIcon, LogOutIco
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
-
+import { useAuth } from '@/composables/use-auth'
 import type { User } from './types'
+import {getInitials} from "@/composables/useInitials";
+import { t } from "@/lib/utils";
 
 const { user } = defineProps<
   { user: User }
 >()
 
-const { logout } = useAuth()
-const { isMobile } = useSidebar()
+const logout = () => {
+     // open a new a link request to /logout with a GET method
+    window.location.href = '/logout'
+}
 </script>
 
 <template>
@@ -27,11 +31,11 @@ const { isMobile } = useSidebar()
             <Avatar class="size-8 rounded-lg">
               <AvatarImage :src="user.avatar" :alt="user.name" />
               <AvatarFallback class="rounded-lg">
-                CN
+                 {{ getInitials(user.name) }}
               </AvatarFallback>
             </Avatar>
             <div class="grid flex-1 text-sm leading-tight text-left">
-              <span class="font-semibold truncate">{{ user.name }}</span>
+              <span class="font-semibold truncate capitalize">{{ user.name }}</span>
               <span class="text-xs truncate">{{ user.email }}</span>
             </div>
             <ChevronsUpDownIcon class="ml-auto size-4" />
@@ -47,53 +51,20 @@ const { isMobile } = useSidebar()
             <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
               <Avatar class="size-8 rounded-lg">
                 <AvatarImage :src="user.avatar" :alt="user.name" />
-                <AvatarFallback class="rounded-lg">
-                  CN
+                <AvatarFallback class="rounded-lg capitalize">
+                    {{ getInitials(user.name) }}
                 </AvatarFallback>
               </Avatar>
               <div class="grid flex-1 text-sm leading-tight text-left">
-                <span class="font-semibold truncate">{{ user.name }}</span>
+                <span class="font-semibold truncate capitalize">{{ user.name }}</span>
                 <span class="text-xs truncate">{{ user.email }}</span>
               </div>
             </div>
           </DropdownMenuLabel>
-
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem @click="$router.push('/billing/')">
-              <SparklesIcon />
-              Upgrade to Pro
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem @click="$router.push('/billing?type=billing')">
-              <CreditCardIcon />
-              Billing
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem @click="$router.push('/settings/')">
-              <UserRoundCogIcon />
-              Profile
-            </DropdownMenuItem>
-            <DropdownMenuItem @click="$router.push('/settings/account')">
-              <BadgeCheckIcon />
-              Account
-            </DropdownMenuItem>
-            <DropdownMenuItem @click="$router.push('/settings/notifications')">
-              <BellIcon />
-              Notifications
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-
           <DropdownMenuSeparator />
           <DropdownMenuItem @click="logout">
             <LogOutIcon />
-            {{ $t('logout') }}
+            {{ t('logout') }}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -2,15 +2,12 @@
 import type { AcceptableValue } from 'reka-ui'
 
 import { Icon } from '@iconify/vue'
-import { useI18n } from 'vue-i18n'
-
 
 
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { appLocale, DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/plugins/i18n'
 
-const { locale } = useI18n()
+
 
 
 
@@ -38,7 +35,6 @@ function handleLocaleChange(val: AcceptableValue) {
         @update:model-value="handleLocaleChange"
       >
         <DropdownMenuRadioItem value="en">
-          <Icon icon="flag:us-4x3" />
           <span>English</span>
         </DropdownMenuRadioItem>
       </DropdownMenuRadioGroup>

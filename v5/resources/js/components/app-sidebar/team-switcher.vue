@@ -6,6 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
 
 import type { Team } from './types'
+import { defineAsyncComponent, ref, shallowRef } from 'vue'
 
 const { teams } = defineProps<{
   teams: Team[]
