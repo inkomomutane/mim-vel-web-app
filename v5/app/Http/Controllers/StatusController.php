@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Data\AlertDto;
+use App\Data\SelectQueryData;
 use App\Data\StatusData;
 use App\Data\StatusRequestFilters;
 use App\Models\Status;
@@ -164,52 +165,65 @@ class StatusController
     }
 
     public function listJson(
-        Request $request,
+        SelectQueryData $request,
     ): JsonResponse {
+        $selectedKey = in_array(
+            $request->selectedKey,
+            ['id', 'nome'],
+            true,
+        )
+            ? $request->selectedKey
+            : 'id';
+
         $query = Status::query()
             ->when(
-                $request->filled('search'),
-                function (
-                    Builder $query,
-                ) use ($request) {
-                    $search = trim(
-                        (string) $request->input(
-                            'search',
-                        ),
-                    );
-
-                    $query->whereAny(
-                        ['nome'],
-                        'ilike',
-                        '%' . $search . '%',
-                    );
-                },
+                $request->search !== '',
+                fn (Builder $query) => $query->whereAny(
+                    ['nome'],
+                    'like',
+                    '%' . $request->search . '%',
+                ),
             )
             ->orderBy('nome')
-            ->limit(25);
+            ->orderBy('id');
 
-        $items = $query->get();
+        $paginator = $query->paginate(
+            perPage: 25,
+            page: max(1, $request->page),
+        );
 
-        $selected =
-            $this->getSelectedItem(
-                $request,
-            );
+        $items = $paginator->getCollection();
 
         if (
-            $selected instanceof Status
-            && !$items->contains(
-                'id',
-                $selected->id,
-            )
+            $request->page === 1
+            && !empty($request->selectedValues)
         ) {
-            $items->prepend($selected);
+            $selectedItems = Status::query()
+                ->whereIn(
+                    $selectedKey,
+                    $request->selectedValues,
+                )
+                ->get();
+
+            $items = $selectedItems
+                ->concat($items)
+                ->unique(
+                    fn (Status $status) =>
+                    $status->getAttribute($selectedKey),
+                )
+                ->values();
         }
 
-        return response()->json(
-            StatusData::collect($items)
-                ->sortBy('nome')
+        $paginator->setCollection(
+            $items
+                ->map(
+                    fn (Status $status) =>
+                    StatusData::from($status),
+                )
                 ->values(),
         );
+
+        return response()->json($paginator);
     }
 
     private static function handleCreate(
@@ -292,7 +306,7 @@ class StatusController
 
         $query->whereAny(
             ['nome'],
-            'ilike',
+            'like',
             '%' . $search . '%',
         );
     }

@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import type {
-    IconData,
-    LucideIconNode,
-} from '@/types';
+import type { IconData, LucideIconNode } from "@/types";
 
-import { Icon } from '@lucide/vue';
+import { Icon } from "@lucide/vue";
 
 defineOptions({
     inheritAttrs: false,
@@ -26,14 +23,10 @@ const props = withDefaults(
 );
 
 const node = computed(() => {
-    return (
-        props.iconNode ??
-        props.icon?.icon_node ??
-        null
-    );
+    return props.iconNode ?? props.icon?.icon_node ?? null;
 });
 
-import { computed } from 'vue';
+import { computed } from "vue";
 </script>
 
 <template>

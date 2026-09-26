@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
+import InputError from "@/components/InputError.vue";
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogFooter,
     DialogHeader,
     DialogScrollContent,
     DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { t } from '@/lib/utils';
-import { useForm } from '@inertiajs/vue3';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { t } from "@/lib/utils";
+import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     close: {
@@ -26,11 +26,11 @@ const props = defineProps({
 });
 
 const form = useForm({
-    name: '',
+    name: "",
 });
 
 const createProvince = () => {
-    form.post(route('management.province.store'), {
+    form.post(route("management.province.store"), {
         preserveScroll: true,
 
         onSuccess: () => {
@@ -43,24 +43,18 @@ const createProvince = () => {
 </script>
 
 <template>
-    <Dialog
-        :open="openModal"
-        @update:open="close"
-    >
+    <Dialog :open="openModal" @update:open="close">
         <DialogScrollContent class="sm:max-w-lg">
             <DialogHeader>
                 <DialogTitle>
-                    {{ t('New Province') }}
+                    {{ t("New Province") }}
                 </DialogTitle>
             </DialogHeader>
 
-            <form
-                class="space-y-4"
-                @submit.prevent="createProvince"
-            >
+            <form class="space-y-4" @submit.prevent="createProvince">
                 <div class="space-y-2">
                     <Label for="name">
-                        {{ t('Name') }}
+                        {{ t("Name") }}
                     </Label>
 
                     <Input
@@ -70,18 +64,13 @@ const createProvince = () => {
                         autocomplete="off"
                     />
 
-                    <InputError
-                        :message="form.errors.name"
-                    />
+                    <InputError :message="form.errors.name" />
                 </div>
             </form>
 
             <DialogFooter>
-                <Button
-                    :disabled="form.processing"
-                    @click="createProvince"
-                >
-                    {{ t('Save') }}
+                <Button :disabled="form.processing" @click="createProvince">
+                    {{ t("Save") }}
                 </Button>
             </DialogFooter>
         </DialogScrollContent>

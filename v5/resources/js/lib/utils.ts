@@ -1,29 +1,35 @@
-import { clsx } from 'clsx';
-import type { ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { clsx } from "clsx";
+import type { ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 import PT from "../../../lang/pt.json";
-import { createI18n } from 'vue-i18n'
-import type { MessageSchema } from '../../../lang/pt.json';
-import type { Ref } from 'vue';
-import { ref } from 'vue';
-import type { Updater } from 'vue';
+import { createI18n } from "vue-i18n";
+import type { MessageSchema } from "../../../lang/pt.json";
+import type { Ref } from "vue";
+import { ref } from "vue";
+import type { Updater } from "vue";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 export const i18n = createI18n({
     legacy: false,
-    locale: 'PT',
+    locale: "PT",
     messages: {
         PT: PT,
     },
-})
+});
 
 export const t = (key: keyof MessageSchema): string => {
     return i18n.global.t(key as string);
 };
-export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref) {
-    ref.value = typeof updaterOrValue === 'function' ? updaterOrValue(ref.value) : updaterOrValue;
+export function valueUpdater<T extends Updater<any>>(
+    updaterOrValue: T,
+    ref: Ref,
+) {
+    ref.value =
+        typeof updaterOrValue === "function"
+            ? updaterOrValue(ref.value)
+            : updaterOrValue;
 }
 export function crudManager<T>() {
     const isModalOpen = ref(false);
@@ -44,4 +50,12 @@ export function crudManager<T>() {
         open,
         close,
     };
+}
+
+export const toSentence = (text: string) => {
+   // Capitalize the first letter of the string and add a period at the end if it doesn't already have one
+   if (!text) return "";
+   text = text.toLowerCase();
+   const capitalized = text.charAt(0).toUpperCase() + text.slice(1);
+   return capitalized.endsWith(".") ? capitalized : capitalized + ".";
 }

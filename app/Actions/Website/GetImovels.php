@@ -3,8 +3,8 @@
 namespace App\Actions\Website;
 
 use App\Actions\Imovel\FilteredImovel;
-use App\Data\BairroData;
-use App\Data\ImovelData;
+use App\Data\NeighborhoodData;
+use App\Data\CardPropertyData;
 use App\Data\ImovelTypeData;
 use App\Data\RequestFiltersData;
 use App\Filters\ImovelBairroFilter;
@@ -25,7 +25,7 @@ class GetImovels
 
     public function handle(ActionRequest $actionRequest)
     {
-        return ImovelData::collection(FilteredImovel::run(
+        return CardPropertyData::collection(FilteredImovel::run(
             EloquentFilters::make($this->FiltersBinder($actionRequest))
         )->paginate(12)->withQueryString());
     }
@@ -35,7 +35,7 @@ class GetImovels
         return Inertia::render('Website/Imovels', [
             'imovels' => $this->handle($actionRequest),
             'imovelTypes' => ImovelTypeData::collection(PropertyType::all()),
-            'bairros' => BairroData::collection(Neighborhood::all()),
+            'bairros' => NeighborhoodData::collection(Neighborhood::all()),
             'filters' => new RequestFiltersData(
                 imovelTypes: collect($actionRequest->imovel_types)->map(fn ($number) => (int) $number)->toArray(),
                 title: $actionRequest->title,

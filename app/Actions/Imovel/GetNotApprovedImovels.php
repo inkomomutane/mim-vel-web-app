@@ -3,7 +3,7 @@
 namespace App\Actions\Imovel;
 
 use App\Actions\UserTreeInIdArray;
-use App\Data\ImovelData;
+use App\Data\CardPropertyData;
 use App\Models\Property;
 use App\Models\User;
 use App\Support\Enums\SystemRoles;
@@ -35,14 +35,14 @@ class GetNotApprovedImovels
     public function handle(?string $term, User $user)
     {
         if ($user->hasAnyRole(SystemRoles::SUPERADMIN, SystemRoles::ADMIN)) {
-            return ImovelData::collection(
+            return CardPropertyData::collection(
                 $this->getImovels(term: $term, approved: false)->paginate(5)->withQueryString()
             );
         } else {
             /** @var Collection<Property> $imovels */
             $imovels = $this->getImovels(term: $term, approved: false);
 
-            return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
+            return CardPropertyData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
         }
     }
 

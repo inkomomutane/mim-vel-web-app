@@ -6,7 +6,7 @@ use App\Data\ImovelTypeData;
 use App\Data\IntermediationRuleData;
 use App\Data\MultilevelProvinceData;
 use App\Data\PropertyConditionData;
-use App\Data\RegraDeNegocioData;
+use App\Data\BusinessRuleData;
 use App\Data\StatusData;
 use App\Data\TransactionTypeData;
 use App\Models\BusinessRule;
@@ -44,7 +44,7 @@ class EditImovel
 
         return Inertia::render('Imovel/EditImovel', [
             'imovel' => $imovel->getData(),
-            'regrasDeNegocio' => RegraDeNegocioData::collection(BusinessRule::all()),
+            'regrasDeNegocio' => BusinessRuleData::collection(BusinessRule::all()),
             'transactionTypes' => TransactionTypeData::collection(PropertyFor::all()),
             'provinces' => MultilevelProvinceData::collection(Province::with('cidades.bairros')->get()),
             'imovelsTypes' => ImovelTypeData::collection(PropertyType::all()),

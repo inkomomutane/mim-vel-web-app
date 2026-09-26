@@ -1,10 +1,189 @@
 <?php
 
 
+use App\Http\Controllers\BusinessRuleController;
+use App\Http\Controllers\IntermediationRuleController;
 use App\Http\Controllers\PropertyConditionController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PropertyForController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\NeighborhoodController;
+
+Route::prefix('management')
+    ->name('management.')
+    ->group(function () {
+        Route::prefix('neighborhood')
+            ->name('neighborhood.')
+            ->controller(
+                NeighborhoodController::class
+            )
+            ->group(function () {
+                Route::get(
+                    '/',
+                    'index',
+                )->name('list');
+
+                Route::post(
+                    '/',
+                    'store',
+                )->name('store');
+
+                Route::get(
+                    '/json/list',
+                    'listJson',
+                )->name('list.json');
+
+                Route::get(
+                    '/{neighborhood}/json',
+                    'showJson',
+                )->name('json');
+
+                Route::patch(
+                    '/{neighborhood}',
+                    'update',
+                )->name('update');
+
+                Route::delete(
+                    '/{neighborhood}',
+                    'delete',
+                )->name('delete');
+            });
+    });
+
+Route::prefix('management')
+    ->name('management.')
+    ->group(function () {
+        Route::prefix('city')
+            ->name('city.')
+            ->controller(CityController::class)
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('list');
+
+                Route::post('/', 'store')
+                    ->name('store');
+
+                Route::get('/json/list', 'listJson')
+                    ->name('list.json');
+
+                Route::get('/{city}/json', 'showJson')
+                    ->name('json');
+
+                Route::patch('/{city}', 'update')
+                    ->name('update');
+
+                Route::delete('/{city}', 'delete')
+                    ->name('delete');
+            });
+    });
+
+Route::prefix('management')
+    ->name('management.')
+    ->group(function () {
+        Route::prefix('business-rule')
+            ->name('business-rule.')
+            ->controller(BusinessRuleController::class)
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('list');
+
+                Route::post('/', 'store')
+                    ->name('store');
+
+                Route::patch(
+                    '/{businessRule}',
+                    'update'
+                )->name('update');
+
+                Route::delete(
+                    '/{businessRule}',
+                    'delete'
+                )->name('delete');
+
+                Route::get(
+                    '/json/list',
+                    'listJson'
+                )->name('list.json');
+
+                Route::get(
+                    '/{businessRule}/json',
+                    'showJson'
+                )->name('json');
+            });
+    });
+
+Route::prefix('management')
+    ->name('management.')
+    ->group(function () {
+        Route::prefix('intermediation-rule')
+            ->name('intermediation-rule.')
+            ->controller(IntermediationRuleController::class)
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('list');
+
+                Route::post('/', 'store')
+                    ->name('store');
+
+                Route::patch(
+                    '/{intermediationRule}',
+                    'update'
+                )->name('update');
+
+                Route::delete(
+                    '/{intermediationRule}',
+                    'delete'
+                )->name('delete');
+
+                Route::get(
+                    '/json/list',
+                    'listJson'
+                )->name('list.json');
+
+                Route::get(
+                    '/{intermediationRule}/json',
+                    'showJson'
+                )->name('json');
+            });
+    });
+
+Route::prefix('management')
+    ->name('management.')
+    ->group(function () {
+        Route::prefix('property-for')
+            ->name('property-for.')
+            ->controller(PropertyForController::class)
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('list');
+
+                Route::post('/', 'store')
+                    ->name('store');
+
+                Route::patch(
+                    '/{propertyFor}',
+                    'update'
+                )->name('update');
+
+                Route::delete(
+                    '/{propertyFor}',
+                    'delete'
+                )->name('delete');
+
+                Route::get(
+                    '/json/list',
+                    'listJson'
+                )->name('list.json');
+
+                Route::get(
+                    '/{propertyFor}/json',
+                    'showJson'
+                )->name('json');
+            });
+    });
+
 
 Route::prefix('management')
     ->name('management.')

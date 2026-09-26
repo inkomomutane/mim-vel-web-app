@@ -3,7 +3,7 @@
 namespace App\Actions\Imovel;
 
 use App\Actions\UserTreeInIdArray;
-use App\Data\ImovelData;
+use App\Data\CardPropertyData;
 use App\Models\Property;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -20,14 +20,14 @@ class GetDeletedImovels
     public function handle(?string $term, User $user)
     {
         if ($user->hasAnyRole('Super-Admin', 'Admin')) {
-            return ImovelData::collection(
+            return CardPropertyData::collection(
                 $this->getTrashedImovels($term)->paginate(5)->withQueryString()
             );
         } else {
             /** @var Collection<Property> $imovels */
             $imovels = $this->getTrashedImovels($term);
 
-            return ImovelData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
+            return CardPropertyData::collection($imovels->whereIn('corretor_id', UserTreeInIdArray::run($user))->paginate(5)->withQueryString());
         }
     }
 

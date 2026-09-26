@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
+import type { HTMLAttributes } from "vue";
 
-import { useModal } from './use-modal'
+import { useModal } from "./use-modal";
 
 interface Props {
-  class?: HTMLAttributes['class']
+    class?: HTMLAttributes["class"];
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
-const { Modal } = useModal()
+const { Modal } = useModal();
 </script>
 
 <template>
-  <component
-    :is="Modal.Footer"
-    v-bind="props"
-  >
-    <slot />
-  </component>
+    <component :is="Modal.Footer" v-bind="props">
+        <slot />
+    </component>
 </template>

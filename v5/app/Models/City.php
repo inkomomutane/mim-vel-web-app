@@ -1,18 +1,13 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
 
 namespace App\Models;
 
 use App\Data\CityData;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
 
-class City extends Model implements Searchable
+class City extends Model
 {
 
     use WithData;
@@ -25,21 +20,13 @@ class City extends Model implements Searchable
         'nome', 'province_id',
     ];
 
-    public function bairros()
+    public function neighborhood()
     {
         return $this->hasMany(Neighborhood::class);
     }
 
     public function province()
     {
-        return $this->belongsTo(Province::class);
-    }
-
-    public function getSearchResult(): SearchResult
-    {
-        return new \Spatie\Searchable\SearchResult(
-            $this,
-            $this->nome,
-        );
+        return $this->belongsTo(Province::class,'province_id');
     }
 }

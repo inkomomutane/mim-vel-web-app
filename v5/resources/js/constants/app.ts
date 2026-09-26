@@ -6,9 +6,9 @@
  */
 
 // ── Pagination ────────────────────────────────────────────
-export const DEFAULT_PAGE_SIZE = 10 as const
-export const PAGE_SIZES = [10, 20, 50, 100] as const
+export const DEFAULT_PAGE_SIZE = 10 as const;
+export const PAGE_SIZES = [10, 20, 50, 100] as const;
 
 // ── Routing ───────────────────────────────────────────────
-export const HOME_PATH = '/dashboard' as const
-export const LOGIN_PATH = '/auth/sign-in' as const
+export const HOME_PATH = "/dashboard" as const;
+export const LOGIN_PATH = "/auth/sign-in" as const;

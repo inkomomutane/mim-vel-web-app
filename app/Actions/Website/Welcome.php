@@ -23,9 +23,12 @@ class Welcome
             'page' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME),
             'hotels' => $this->getRelevantHotelsRooms(),
             'thumb' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::HOME)?->responsiveImages()?->getPlaceholderSvg(),
+
             'relevantImovels' => $this->getRelevantImovels(),
             'lastestImovels' => Property::withApproved()->with(['bairro.cidade', 'media', 'intermediationRule', 'imovelFor', 'tipo_de_imovel', 'status', 'comentarios', 'ratings'])->latest('created_at')->get()->take(10),
+
             'banners' => Banner::with('media')->first(),
+
             'logo' => GetPage::run()->with('media')->first()?->getFirstMedia(Pages::LOGO),
             'seoData' => new SEOData(
                 title: $page->name,

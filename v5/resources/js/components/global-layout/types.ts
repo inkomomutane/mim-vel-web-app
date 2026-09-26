@@ -1,13 +1,13 @@
-import type { Component } from 'vue'
+import type { Component } from "vue";
 
 export interface LayoutHeaderProps {
-  title: string
-  description: string
-  sticky?: boolean
+    title: string;
+    description: string;
+    sticky?: boolean;
 }
 
 export interface TwoColAsideNavItem {
-  title: string
-  url: string
-  icon?: Component
+    title: string;
+    url: string;
+    icon?: Component;
 }

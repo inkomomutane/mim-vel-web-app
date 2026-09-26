@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Data\RegraDeNegocioData;
+use App\Data\BusinessRuleData;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
@@ -11,11 +11,13 @@ class BusinessRule extends Model
 {
     use WithData;
 
+    protected $table = 'regra_de_negocios';
+
     protected $fillable = [
         'name',
     ];
 
-    protected $dataClass = RegraDeNegocioData::class;
+    protected $dataClass = BusinessRuleData::class;
 
     public function imovels()
     {

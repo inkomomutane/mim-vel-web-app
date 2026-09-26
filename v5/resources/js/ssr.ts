@@ -1,29 +1,18 @@
-import {
-    createInertiaApp,
-} from '@inertiajs/vue3';
+import { createInertiaApp } from "@inertiajs/vue3";
 
-import createServer from '@inertiajs/vue3/server';
+import createServer from "@inertiajs/vue3/server";
 
-import {
-    resolvePageComponent,
-} from 'laravel-vite-plugin/inertia-helpers';
+import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
-import {
-    renderToString,
-} from '@vue/server-renderer';
+import { renderToString } from "@vue/server-renderer";
 
-import {
-    createSSRApp,
-    h,
-} from 'vue';
+import { createSSRApp, h } from "vue";
 
-import {
-    ZiggyVue,
-} from 'ziggy-js';
-import { i18n } from '@/lib/utils';
-import { createPinia } from 'pinia';
+import { ZiggyVue } from "ziggy-js";
+import { i18n } from "@/lib/utils";
+import { createPinia } from "pinia";
 
-const pinia = createPinia()
+
 
 createServer((page) =>
     createInertiaApp({
@@ -34,35 +23,22 @@ createServer((page) =>
         resolve: (name) =>
             resolvePageComponent(
                 `./pages/${name}.vue`,
-                import.meta.glob('./pages/**/*.vue'),
+                import.meta.glob("./pages/**/*.vue"),
             ),
 
-        setup({
-                  App,
-                  props,
-                  plugin,
-              }) {
+        setup({ App, props, plugin }) {
             const ziggy = {
                 ...page.props.ziggy,
 
-                location: new URL(
-                    page.props.ziggy.location as string,
-                ),
+                location: new URL(page.props.ziggy.location as string),
             };
 
             return createSSRApp({
-                render: () => h(
-                    App,
-                    props,
-                ),
+                render: () => h(App, props),
             })
                 .use(plugin)
                 .use(i18n)
-                .use(pinia)
-                .use(
-                    ZiggyVue,
-                    ziggy,
-                );
+                .use(ZiggyVue, ziggy);
         },
     }),
 );

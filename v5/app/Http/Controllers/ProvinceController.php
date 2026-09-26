@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Data\AlertDto;
 use App\Data\ProvinceData;
 use App\Data\ProvinceRequestFilters;
+use App\Data\SelectQueryData;
 use App\Models\Province;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -133,42 +134,66 @@ class ProvinceController
         );
     }
 
-    /**
-     * Return provinces for select components.
-     */
-    public function listJson(Request $request): JsonResponse
-    {
+    public function listJson(
+        SelectQueryData $request
+    ): JsonResponse {
+        $selectedKey = in_array(
+            $request->selectedKey,
+            ['id', 'name'],
+            true
+        )
+            ? $request->selectedKey
+            : 'id';
+
         $query = Province::query()
             ->when(
-                $request->filled('search'),
-                function (Builder $query) use ($request) {
-                    $search = trim((string) $request->input('search'));
-
-                    $query->whereAny(
-                        ['name'],
-                        'like',
-                        '%' . $search . '%'
-                    );
-                }
+                $request->search !== '',
+                fn (Builder $query) => $query->whereAny(
+                    ['name'],
+                    'like',
+                    '%' . $request->search . '%'
+                )
             )
             ->orderBy('name')
-            ->limit(25);
+            ->orderBy('id');
 
-        $items = $query->get();
+        $paginator = $query->paginate(
+            perPage: 25,
+            page: max(1, $request->page),
+        );
 
-        $selected = $this->getSelectedItem($request);
+        $items = $paginator->getCollection();
 
-        if ($selected instanceof Province) {
-            if (!$items->contains('id', $selected->id)) {
-                $items->prepend($selected);
-            }
+        if (
+            $request->page === 1 &&
+            !empty($request->selectedValues)
+        ) {
+            $selectedItems = Province::query()
+                ->whereIn(
+                    $selectedKey,
+                    $request->selectedValues
+                )
+                ->get();
+
+            $items = $selectedItems
+                ->concat($items)
+                ->unique(
+                    fn (Province $province) =>
+                    $province->getAttribute($selectedKey)
+                )
+                ->values();
         }
 
-        return response()->json(
-            ProvinceData::collect($items)
-                ->sortBy('name')
+        $paginator->setCollection(
+            $items
+                ->map(
+                    fn (Province $province) =>
+                    ProvinceData::from($province)
+                )
                 ->values()
         );
+
+        return response()->json($paginator);
     }
 
     /**

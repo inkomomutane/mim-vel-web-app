@@ -19,7 +19,7 @@ class HotelMetaDataDtoData extends Data
         public readonly Lazy|ImovelTypeData             $imovelTypeData,
         public readonly Lazy|PropertyConditionData|null $condicaoData,
         public readonly Lazy|StatusData|null            $statusData,
-        public readonly Lazy|BairroData|null            $bairroData,
+        public readonly Lazy|NeighborhoodData|null      $bairroData,
         /** @var HotelData[] $hotels */
         public readonly Lazy|null|DataCollection        $hotels,
         /** @var MediaData[] * */

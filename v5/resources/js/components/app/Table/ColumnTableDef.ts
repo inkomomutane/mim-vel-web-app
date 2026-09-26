@@ -1,5 +1,5 @@
-import type { ColumnDef } from '@tanstack/vue-table';
-import type { Component } from 'vue';
+import type { ColumnDef } from "@tanstack/vue-table";
+import type { Component } from "vue";
 
 export type ColumnTableConfig<T> = {
     header: string;

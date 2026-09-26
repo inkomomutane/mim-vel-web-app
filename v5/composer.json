@@ -11,13 +11,14 @@
     "require": {
         "php": "^8.3",
         "auth0/login": "^7.22",
-        "guzzlehttp/psr7": "^3.1",
+        "cyrildewit/eloquent-viewable": "^7.1",
         "inertiajs/inertia-laravel": "^3.3",
         "kalnoy/nestedset": "^7.0",
         "laravel-lang/common": "^6.8",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
         "nyholm/psr7": "^1.8",
+        "ralphjsmit/laravel-seo": "^1.8",
         "spatie/enum": "^3.13",
         "spatie/laravel-data": "^4.23",
         "spatie/laravel-medialibrary": "^11.23",
@@ -108,7 +109,6 @@
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
     },
-
     "extra": {
         "laravel": {
             "dont-discover": []

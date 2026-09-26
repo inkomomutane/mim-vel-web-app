@@ -661,15 +661,15 @@ class UpdateProvince
 namespace App\Actions\RegraDeNegocio;
 
 /**
- * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static dispatchSync(\App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static dispatchNow(\App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static dispatchAfterResponse(\App\Data\RegraDeNegocioData $regraDeNegocioData)
- * @method static mixed run(\App\Data\RegraDeNegocioData $regraDeNegocioData)
+ * @method static \Lorisleiva\Actions\Decorators\JobDecorator|\Lorisleiva\Actions\Decorators\UniqueJobDecorator makeJob(\App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static \Lorisleiva\Actions\Decorators\UniqueJobDecorator makeUniqueJob(\App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch dispatch(\App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchIf(bool $boolean, \App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static \Illuminate\Foundation\Bus\PendingDispatch|\Illuminate\Support\Fluent dispatchUnless(bool $boolean, \App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static dispatchSync(\App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static dispatchNow(\App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static dispatchAfterResponse(\App\Data\BusinessRuleData $regraDeNegocioData)
+ * @method static mixed run(\App\Data\BusinessRuleData $regraDeNegocioData)
  */
 class CreateRegraDeNegocio
 {

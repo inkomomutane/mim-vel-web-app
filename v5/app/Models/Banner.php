@@ -13,6 +13,14 @@ class Banner extends Model implements HasMedia
 
     protected $table = 'banners';
 
+    protected $fillable =[
+        'ads_title',
+        'ads_subtitle',
+        'type',
+        'ads_link',
+    ];
+
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')

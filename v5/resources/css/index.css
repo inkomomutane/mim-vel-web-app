@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -143,16 +143,16 @@
 
 /* shimmer */
 @property --shimmer-angle {
-    syntax: '<angle>';
+    syntax: "<angle>";
     inherits: true;
     initial-value: 20deg;
 }
 @property --shimmer-image {
-    syntax: '*';
+    syntax: "*";
     inherits: false;
 }
 @property --shimmer-text-fill {
-    syntax: '*';
+    syntax: "*";
     inherits: false;
 }
 
@@ -170,16 +170,21 @@
 @utility shimmer {
     --_spread: var(--shimmer-spread, calc(3ch + 40px));
     --_base: currentColor;
-    --_highlight: var(--shimmer-color, oklch(from currentColor l c h / calc(alpha* 0.2)));
+    --_highlight: var(
+        --shimmer-color,
+        oklch(from currentColor l c h / calc(alpha* 0.2))
+    );
 
     background-image: var(
         --shimmer-image,
         linear-gradient(
             calc(90deg + var(--shimmer-angle)),
             var(--_base) calc(50% - var(--_spread)),
-            color-mix(in oklch, var(--_highlight), var(--_base) 50%) calc(50% - var(--_spread) * 0.5),
+            color-mix(in oklch, var(--_highlight), var(--_base) 50%)
+                calc(50% - var(--_spread) * 0.5),
             var(--_highlight) 50%,
-            color-mix(in oklch, var(--_highlight), var(--_base) 50%) calc(50% + var(--_spread) * 0.5),
+            color-mix(in oklch, var(--_highlight), var(--_base) 50%)
+                calc(50% + var(--_spread) * 0.5),
             var(--_base) calc(50% + var(--_spread))
         )
     );
@@ -192,10 +197,16 @@
     animation: tw-shimmer var(--shimmer-duration, 2s) linear infinite;
 
     @variant dark {
-        --_highlight: var(--shimmer-color, oklch(from currentColor max(0.8, calc(l + 0.4)) c h / calc(alpha + 0.4)));
+        --_highlight: var(
+            --shimmer-color,
+            oklch(
+                from currentColor max(0.8, calc(l + 0.4)) c h /
+                    calc(alpha + 0.4)
+            )
+        );
     }
 
-    &:where([dir='rtl'], [dir='rtl'] *) {
+    &:where([dir="rtl"], [dir="rtl"] *) {
         animation-direction: reverse;
     }
 }
@@ -215,7 +226,11 @@
 
 @utility shimmer-color-* {
     --shimmer-color: --value(--color, [color]);
-    --shimmer-color: color-mix(in oklch, --value(--color, [color]) calc(--modifier(integer) * 1%), transparent);
+    --shimmer-color: color-mix(
+        in oklch,
+        --value(--color, [color]) calc(--modifier(integer) * 1%),
+        transparent
+    );
 }
 
 @utility shimmer-duration-* {

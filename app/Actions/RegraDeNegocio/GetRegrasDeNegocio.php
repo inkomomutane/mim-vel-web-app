@@ -2,7 +2,7 @@
 
 namespace App\Actions\RegraDeNegocio;
 
-use App\Data\RegraDeNegocioData;
+use App\Data\BusinessRuleData;
 use App\Models\BusinessRule;
 use App\Support\Enums\SystemRoles;
 use Inertia\Inertia;
@@ -28,7 +28,7 @@ class GetRegrasDeNegocio
 
     public function handle(?string $term = null)
     {
-        return RegraDeNegocioData::collection(
+        return BusinessRuleData::collection(
             BusinessRule::query()
                 ->when($term, function ($query, $search) {
                     $query->where('name', 'like', '%'.$search.'%');

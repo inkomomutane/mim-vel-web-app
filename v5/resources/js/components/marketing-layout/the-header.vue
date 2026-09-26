@@ -1,42 +1,45 @@
 <script setup lang="ts">
-import { useColorMode } from '@vueuse/core'
+import { useColorMode } from "@vueuse/core";
 
-import LanguageChange from '@/components/language-change.vue'
-import SignInButton from '@/components/sign-in-button.vue'
-import SignUpButton from '@/components/sign-up-button.vue'
-import ToggleTheme from '@/components/toggle-theme.vue'
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { SITE_CONFIG } from '@/config/site'
+import LanguageChange from "@/components/language-change.vue";
+import SignInButton from "@/components/sign-in-button.vue";
+import SignUpButton from "@/components/sign-up-button.vue";
+import ToggleTheme from "@/components/toggle-theme.vue";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { SITE_CONFIG } from "@/config/site";
 
-const mode = useColorMode()
+const mode = useColorMode();
 </script>
 
 <template>
-  <header class="h-14 flex items-center marketing-header sticky top-0 z-99">
-    <router-link to="/" class="flex items-center gap-2">
-      <Avatar>
-        <AvatarImage :src="`${mode === 'dark' ? SITE_CONFIG.logo.dark : SITE_CONFIG.logo.light}`" alt="Logo" />
-      </Avatar>
-      <span class="text-base font-bold">Shadcn Vue Admin</span>
-    </router-link>
+    <header class="marketing-header sticky top-0 z-99 flex h-14 items-center">
+        <router-link to="/" class="flex items-center gap-2">
+            <Avatar>
+                <AvatarImage
+                    :src="`${mode === 'dark' ? SITE_CONFIG.logo.dark : SITE_CONFIG.logo.light}`"
+                    alt="Logo"
+                />
+            </Avatar>
+            <span class="text-base font-bold">Shadcn Vue Admin</span>
+        </router-link>
 
-    <div class="flex-1" />
+        <div class="flex-1" />
 
-    <div class="mr-2 hidden lg:flex lg:gap-2">
-      <SignInButton />
-      <SignUpButton />
-    </div>
+        <div class="mr-2 hidden lg:flex lg:gap-2">
+            <SignInButton />
+            <SignUpButton />
+        </div>
 
-    <div class="flex gap-2">
-      <LanguageChange />
-      <ToggleTheme />
-    </div>
-  </header>
+        <div class="flex gap-2">
+            <LanguageChange />
+            <ToggleTheme />
+        </div>
+    </header>
 </template>
 
 <style scoped>
 .marketing-header {
-  backdrop-filter: saturate(50%) blur(4px);
-  background-size: 4px 4px;
+    backdrop-filter: saturate(50%) blur(4px);
+    background-size: 4px 4px;
 }
 </style>

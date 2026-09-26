@@ -11,7 +11,7 @@ class GetImovelsApi
 
     public function handle()
     {
-        return \App\Data\ImovelData::collection(
+        return \App\Data\CardPropertyData::collection(
             \App\Models\Property::with(['bairro.cidade', 'condicao', 'imovelFor', 'media' => function (MorphMany $query) {
                 $query->where('collection_name', 'posts');
             }, ])->paginate(12));

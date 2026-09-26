@@ -1,52 +1,55 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { useColorMode } from '@vueuse/core'
+import { Icon } from "@iconify/vue";
+import { useColorMode } from "@vueuse/core";
 
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { SITE_CONFIG } from '@/config/site'
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { SITE_CONFIG } from "@/config/site";
 
-const mode = useColorMode()
+const mode = useColorMode();
 
 const links = [
-  {
-    name: 'bluesky',
-    icon: 'simple-icons:bluesky',
-    url: 'https://bsky.app/profile/bitmc.bsky.social',
-  },
-  {
-    name: 'github',
-    icon: 'simple-icons:github',
-    url: 'https://www.github.com/whbbit1999/shadcn-vue-admin',
-  },
-  {
-    name: 'bilibili',
-    icon: 'simple-icons:bilibili',
-    url: 'https://space.bilibili.com/104376935',
-  },
-]
+    {
+        name: "bluesky",
+        icon: "simple-icons:bluesky",
+        url: "https://bsky.app/profile/bitmc.bsky.social",
+    },
+    {
+        name: "github",
+        icon: "simple-icons:github",
+        url: "https://www.github.com/whbbit1999/shadcn-vue-admin",
+    },
+    {
+        name: "bilibili",
+        icon: "simple-icons:bilibili",
+        url: "https://space.bilibili.com/104376935",
+    },
+];
 </script>
 
 <template>
-  <footer class="min-h-18 flex items-center justify-between">
-    <Avatar>
-      <AvatarImage :src="`${mode === 'dark' ? SITE_CONFIG.logo.dark : SITE_CONFIG.logo.light}`" alt="Logo" />
-    </Avatar>
+    <footer class="flex min-h-18 items-center justify-between">
+        <Avatar>
+            <AvatarImage
+                :src="`${mode === 'dark' ? SITE_CONFIG.logo.dark : SITE_CONFIG.logo.light}`"
+                alt="Logo"
+            />
+        </Avatar>
 
-    <div>© 2025 Whbbit1999</div>
+        <div>© 2025 Whbbit1999</div>
 
-    <div class="flex items-center gap-2">
-      <Button
-        v-for="link in links"
-        :key="link.name"
-        variant="outline"
-        size="icon"
-        as="a"
-        :href="link.url"
-        target="_blank"
-      >
-        <Icon :icon="link.icon" />
-      </Button>
-    </div>
-  </footer>
+        <div class="flex items-center gap-2">
+            <Button
+                v-for="link in links"
+                :key="link.name"
+                variant="outline"
+                size="icon"
+                as="a"
+                :href="link.url"
+                target="_blank"
+            >
+                <Icon :icon="link.icon" />
+            </Button>
+        </div>
+    </footer>
 </template>

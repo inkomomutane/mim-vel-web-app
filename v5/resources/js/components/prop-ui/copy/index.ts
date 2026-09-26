@@ -1,1 +1,1 @@
-export { default as Copy } from './Copy.vue'
+export { default as Copy } from "./Copy.vue";

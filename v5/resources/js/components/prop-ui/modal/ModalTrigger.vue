@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import type { DialogTriggerProps } from 'reka-ui'
-import type { DrawerTriggerProps } from 'vaul-vue'
+import type { DialogTriggerProps } from "reka-ui";
+import type { DrawerTriggerProps } from "vaul-vue";
 
-import { useModal } from './use-modal'
+import { useModal } from "./use-modal";
 
-type Props = DialogTriggerProps | DrawerTriggerProps
+type Props = DialogTriggerProps | DrawerTriggerProps;
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
-const { Modal } = useModal()
+const { Modal } = useModal();
 </script>
 
 <template>
-  <component
-    :is="Modal.Trigger"
-    v-bind="props"
-  >
-    <slot />
-  </component>
+    <component :is="Modal.Trigger" v-bind="props">
+        <slot />
+    </component>
 </template>

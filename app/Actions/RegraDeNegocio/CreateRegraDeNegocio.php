@@ -2,7 +2,7 @@
 
 namespace App\Actions\RegraDeNegocio;
 
-use App\Data\RegraDeNegocioData;
+use App\Data\BusinessRuleData;
 use App\Models\BusinessRule;
 use App\Support\Enums\SystemRoles;
 use Lorisleiva\Actions\ActionRequest;
@@ -25,7 +25,7 @@ class CreateRegraDeNegocio
         );
     }
 
-    public function handle(RegraDeNegocioData $regraDeNegocioData)
+    public function handle(BusinessRuleData $regraDeNegocioData)
     {
         return BusinessRule::create($regraDeNegocioData->all());
     }
@@ -39,7 +39,7 @@ class CreateRegraDeNegocio
 
     public function AsController(ActionRequest $request)
     {
-        $this->handle(RegraDeNegocioData::from($request->validated()));
+        $this->handle(BusinessRuleData::from($request->validated()));
         flash()->addSuccess('Regra de negóciação criada com sucesso.');
 
         return \redirect()->back();

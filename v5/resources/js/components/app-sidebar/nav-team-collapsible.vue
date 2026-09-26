@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import {
-    ChevronRightIcon,
-} from '@lucide/vue'
+import { ChevronRightIcon } from "@lucide/vue";
 
-import { Link } from '@inertiajs/vue3'
-import { route } from 'ziggy-js'
+import { Link } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
 
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from '@/components/ui/collapsible'
+} from "@/components/ui/collapsible";
 
 import {
     DropdownMenu,
@@ -19,7 +17,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 
 import {
     SidebarGroup,
@@ -31,15 +29,15 @@ import {
     SidebarMenuSubButton,
     SidebarMenuSubItem,
     useSidebar,
-} from '@/components/ui/sidebar'
+} from "@/components/ui/sidebar";
 
-import type { NavItem } from '@/types'
+import type { NavItem } from "@/types";
 
 defineProps<{
-    navMain: NavItem[]
-}>()
+    navMain: NavItem[];
+}>();
 
-const { state, isMobile } = useSidebar()
+const { state, isMobile } = useSidebar();
 
 /**
  * Checks whether this specific navigation item
@@ -47,14 +45,14 @@ const { state, isMobile } = useSidebar()
  */
 function isExactActive(menu: NavItem): boolean {
     if (menu.activePattern) {
-        return Boolean(route().current(menu.activePattern))
+        return Boolean(route().current(menu.activePattern));
     }
 
     if (menu.routeName) {
-        return Boolean(route().current(menu.routeName))
+        return Boolean(route().current(menu.routeName));
     }
 
-    return false
+    return false;
 }
 
 /**
@@ -63,17 +61,17 @@ function isExactActive(menu: NavItem): boolean {
  */
 function containsActiveItem(menu: NavItem): boolean {
     if (isExactActive(menu)) {
-        return true
+        return true;
     }
 
-    return menu.children?.some(child => containsActiveItem(child)) ?? false
+    return menu.children?.some((child) => containsActiveItem(child)) ?? false;
 }
 
 /**
  * Open parent menus automatically when a child is active.
  */
 function isExpanded(menu: NavItem): boolean {
-    return menu.children?.some(child => containsActiveItem(child)) ?? false
+    return menu.children?.some((child) => containsActiveItem(child)) ?? false;
 }
 
 /**
@@ -109,7 +107,7 @@ function activeItemClass(active: boolean) {
             text-sidebar-foreground
             hover:bg-sidebar-accent/60
             hover:text-sidebar-accent-foreground
-        `
+        `;
 }
 </script>
 
@@ -164,12 +162,7 @@ function activeItemClass(active: boolean) {
                                 <CollapsibleTrigger as-child>
                                     <SidebarMenuButton
                                         :tooltip="menu.title"
-                                        class="
-                                            relative
-                                            text-sidebar-foreground
-                                            hover:bg-sidebar-accent/60
-                                            hover:text-sidebar-accent-foreground
-                                        "
+                                        class="text-sidebar-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground relative"
                                     >
                                         <component
                                             :is="menu.icon"
@@ -182,14 +175,7 @@ function activeItemClass(active: boolean) {
                                         </span>
 
                                         <ChevronRightIcon
-                                            class="
-                                                ml-auto
-                                                size-4
-                                                shrink-0
-                                                transition-transform
-                                                duration-200
-                                                group-data-[state=open]/collapsible:rotate-90
-                                            "
+                                            class="ml-auto size-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
                                         />
                                     </SidebarMenuButton>
                                 </CollapsibleTrigger>
@@ -198,13 +184,18 @@ function activeItemClass(active: boolean) {
                                     <SidebarMenuSub>
                                         <SidebarMenuSubItem
                                             v-for="subItem in menu.children"
-                                            :key="subItem.routeName ?? subItem.title"
+                                            :key="
+                                                subItem.routeName ??
+                                                subItem.title
+                                            "
                                         >
                                             <SidebarMenuSubButton
                                                 as-child
-                                                :class="activeItemClass(
-                                                    isExactActive(subItem),
-                                                )"
+                                                :class="
+                                                    activeItemClass(
+                                                        isExactActive(subItem),
+                                                    )
+                                                "
                                             >
                                                 <Link
                                                     :href="subItem.href ?? '#'"
@@ -260,10 +251,7 @@ function activeItemClass(active: boolean) {
 
                                 <DropdownMenuItem
                                     v-for="subItem in menu.children"
-                                    :key="
-                                        subItem.routeName ??
-                                        subItem.title
-                                    "
+                                    :key="subItem.routeName ?? subItem.title"
                                     as-child
                                 >
                                     <Link
@@ -271,21 +259,12 @@ function activeItemClass(active: boolean) {
                                         :class="[
                                             'relative flex w-full items-center gap-2 rounded-sm',
                                             isExactActive(subItem) &&
-                                                'bg-accent font-medium text-accent-foreground',
+                                                'bg-accent text-accent-foreground font-medium',
                                         ]"
                                     >
                                         <span
                                             v-if="isExactActive(subItem)"
-                                            class="
-                                                absolute
-                                                -left-2
-                                                top-1/2
-                                                h-4
-                                                w-[3px]
-                                                -translate-y-1/2
-                                                rounded-r-full
-                                                bg-orange-500
-                                            "
+                                            class="absolute top-1/2 -left-2 h-4 w-[3px] -translate-y-1/2 rounded-r-full bg-orange-500"
                                         />
 
                                         <component

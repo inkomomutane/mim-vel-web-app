@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Data\ImovelData;
+use App\Data\CardPropertyData;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -20,7 +19,6 @@ use Spatie\LaravelData\WithData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
@@ -30,7 +28,7 @@ use Spatie\Tags\HasTags;
 use Vite;
 
 
-class Property extends Model implements HasMedia, Searchable, Sitemapable, Viewable
+class Property extends Model implements HasMedia, Sitemapable, Viewable
 {
     use HasSEO;
     use HasSlug;
@@ -42,7 +40,6 @@ class Property extends Model implements HasMedia, Searchable, Sitemapable, Viewa
 
     protected $table = 'imovels';
 
-    protected $dataClass = ImovelData::class;
 
     protected $removeViewsOnDelete = true;
 
@@ -68,11 +65,9 @@ class Property extends Model implements HasMedia, Searchable, Sitemapable, Viewa
         'corretor_id' => 'int',
         'price' => 'float',
         'approved' => 'bool',
+        'published_at' => 'datetime',
     ];
 
-    protected $dates = [
-        'published_at',
-    ];
 
     protected $fillable = [
         'titulo',
@@ -147,7 +142,7 @@ class Property extends Model implements HasMedia, Searchable, Sitemapable, Viewa
 
     public function ratings()
     {
-        return $this->hasMany(Rating::class);
+        return $this->hasMany(Rating::class,'imovel_id');
     }
 
     public function intermediationRule()

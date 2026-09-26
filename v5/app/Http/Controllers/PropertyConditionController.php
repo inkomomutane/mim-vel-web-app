@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Data\AlertDto;
 use App\Data\PropertyConditionData;
 use App\Data\PropertyConditionRequestFilters;
+use App\Data\SelectQueryData;
 use App\Models\PropertyCondition;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -149,48 +150,66 @@ class PropertyConditionController
         );
     }
 
-    /**
-     * Return property conditions for selects.
-     */
     public function listJson(
-        Request $request,
+        SelectQueryData $request,
     ): JsonResponse {
+        $selectedKey = in_array(
+            $request->selectedKey,
+            ['id', 'nome'],
+            true
+        )
+            ? $request->selectedKey
+            : 'id';
+
         $query = PropertyCondition::query()
             ->when(
-                $request->filled('search'),
-                function (Builder $query) use ($request) {
-                    $search = trim(
-                        (string) $request->input('search')
-                    );
-
-                    $query->whereAny(
-                        ['nome'],
-                        'ilike',
-                        '%' . $search . '%'
-                    );
-                }
+                $request->search !== '',
+                fn (Builder $query) => $query->whereAny(
+                    ['nome'],
+                    'like',
+                    '%' . $request->search . '%'
+                )
             )
             ->orderBy('nome')
-            ->limit(25);
+            ->orderBy('id');
 
-        $items = $query->get();
-
-        $selected = $this->getSelectedItem(
-            $request
+        $paginator = $query->paginate(
+            perPage: 25,
+            page: max(1, $request->page),
         );
+
+        $items = $paginator->getCollection();
 
         if (
-            $selected instanceof PropertyCondition
-            && !$items->contains('id', $selected->id)
+            $request->page === 1 &&
+            !empty($request->selectedValues)
         ) {
-            $items->prepend($selected);
+            $selectedItems = PropertyCondition::query()
+                ->whereIn(
+                    $selectedKey,
+                    $request->selectedValues
+                )
+                ->get();
+
+            $items = $selectedItems
+                ->concat($items)
+                ->unique(
+                    fn (PropertyCondition $condition) =>
+                    $condition->getAttribute($selectedKey)
+                )
+                ->values();
         }
 
-        return response()->json(
-            PropertyConditionData::collect($items)
-                ->sortBy('nome')
+        $paginator->setCollection(
+            $items
+                ->map(
+                    fn (PropertyCondition $condition) =>
+                    PropertyConditionData::from($condition)
+                )
                 ->values()
         );
+
+        return response()->json($paginator);
     }
 
     /**
@@ -279,7 +298,7 @@ class PropertyConditionController
 
         $query->whereAny(
             ['nome'],
-            'ilike',
+            'like',
             '%' . $search . '%'
         );
     }

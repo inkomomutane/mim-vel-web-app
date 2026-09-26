@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import type { PropType } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogFooter,
     DialogHeader,
     DialogScrollContent,
     DialogTitle,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 
-import { t } from '@/lib/utils';
-import type { ProvinceData } from '@/types/generated';
+import { t } from "@/lib/utils";
+import type { ProvinceData } from "@/types/generated";
 
 const props = defineProps({
     province: {
@@ -35,7 +35,7 @@ const form = useForm({});
 
 const deleteProvince = () => {
     form.delete(
-        route('management.province.delete', {
+        route("management.province.delete", {
             province: props.province.id,
         }),
         {
@@ -50,26 +50,23 @@ const deleteProvince = () => {
 </script>
 
 <template>
-    <Dialog
-        :open="openModal"
-        @update:open="close"
-    >
+    <Dialog :open="openModal" @update:open="close">
         <DialogScrollContent class="sm:max-w-lg">
             <DialogHeader>
                 <DialogTitle>
-                    {{ t('Delete Province') }}
+                    {{ t("Delete Province") }}
                 </DialogTitle>
             </DialogHeader>
 
-            <div class="py-2 text-sm text-muted-foreground">
+            <div class="text-muted-foreground py-2 text-sm">
                 {{
                     t(
-                        'This action will permanently remove the province from the system. Are you sure you want to proceed?',
+                        "This action will permanently remove the province from the system. Are you sure you want to proceed?",
                     )
                 }}
             </div>
 
-            <div class="rounded-md border bg-muted/30 p-3">
+            <div class="bg-muted/30 rounded-md border p-3">
                 <span class="text-sm font-medium">
                     {{ province.name }}
                 </span>
@@ -81,7 +78,7 @@ const deleteProvince = () => {
                     :disabled="form.processing"
                     @click="deleteProvince"
                 >
-                    {{ t('Delete') }}
+                    {{ t("Delete") }}
                 </Button>
             </DialogFooter>
         </DialogScrollContent>

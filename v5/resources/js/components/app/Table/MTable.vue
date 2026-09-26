@@ -1,13 +1,13 @@
 <script setup lang="ts" generic="T">
-import type { ColumnTableConfig } from '@/components/Table/ColumnTableDef';
+import type { ColumnTableConfig } from "@/components/Table/ColumnTableDef";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
 import {
     Table,
@@ -16,40 +16,35 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
-import { cn, t } from '@/lib/utils';
+import { cn, t } from "@/lib/utils";
 
-import { ChevronDown, Columns3Cog } from '@lucide/vue';
+import { ChevronDown, Columns3Cog } from "@lucide/vue";
 
 import {
     FlexRender,
-
     columnFilteringFeature,
     columnPinningFeature,
     columnSizingFeature,
     columnVisibilityFeature,
-
     createExpandedRowModel,
     createFilteredRowModel,
     createSortedRowModel,
-
     rowExpandingFeature,
     rowPaginationFeature,
     rowSelectionFeature,
     rowSortingFeature,
-
     tableFeatures,
     useTable,
-
     type Column,
     type ColumnDef,
     type ColumnVisibilityState,
     type Row,
-} from '@tanstack/vue-table';
+} from "@tanstack/vue-table";
 
-import type { CSSProperties } from 'vue';
-import { watch } from 'vue';
+import type { CSSProperties } from "vue";
+import { watch } from "vue";
 
 /*
 |--------------------------------------------------------------------------
@@ -143,7 +138,7 @@ const model = defineModel<T[]>({
 */
 
 const disabledStyle =
-    'bg-muted text-muted-foreground border-b dark:border-zinc-700';
+    "bg-muted text-muted-foreground border-b dark:border-zinc-700";
 
 /*
 |--------------------------------------------------------------------------
@@ -276,13 +271,11 @@ function isRowDisabled(row: Row<typeof features, T>): boolean {
 |--------------------------------------------------------------------------
 */
 
-function isColumnDisabled(
-    column: Column<typeof features, T>,
-): boolean {
+function isColumnDisabled(column: Column<typeof features, T>): boolean {
     const meta = column.columnDef.meta as
         | {
-        disabled?: boolean;
-    }
+              disabled?: boolean;
+          }
         | undefined;
 
     return Boolean(meta?.disabled);
@@ -294,10 +287,7 @@ function isColumnDisabled(
 |--------------------------------------------------------------------------
 */
 
-function handleRowClick(
-    event: MouseEvent,
-    row: Row<typeof features, T>,
-): void {
+function handleRowClick(event: MouseEvent, row: Row<typeof features, T>): void {
     event.stopPropagation();
 
     if (isRowDisabled(row)) {
@@ -323,9 +313,7 @@ function handleRowClick(
 |
 */
 
-function getPinningStyles(
-    column: Column<typeof features, T>,
-): CSSProperties {
+function getPinningStyles(column: Column<typeof features, T>): CSSProperties {
     const pinned = column.getIsPinned();
 
     if (!pinned) {
@@ -333,35 +321,28 @@ function getPinningStyles(
     }
 
     const isLastStartColumn =
-        pinned === 'start' &&
-        column.getIsLastColumn('start');
+        pinned === "start" && column.getIsLastColumn("start");
 
-    const isFirstEndColumn =
-        pinned === 'end' &&
-        column.getIsFirstColumn('end');
+    const isFirstEndColumn = pinned === "end" && column.getIsFirstColumn("end");
 
     return {
-        position: 'sticky',
+        position: "sticky",
 
         insetInlineStart:
-            pinned === 'start'
-                ? `${column.getStart('start')}px`
-                : undefined,
+            pinned === "start" ? `${column.getStart("start")}px` : undefined,
 
         insetInlineEnd:
-            pinned === 'end'
-                ? `${column.getAfter('end')}px`
-                : undefined,
+            pinned === "end" ? `${column.getAfter("end")}px` : undefined,
 
         width: `${column.getSize()}px`,
 
         zIndex: 20,
 
         boxShadow: isLastStartColumn
-            ? '-4px 0 4px -4px rgb(0 0 0 / 0.15) inset'
+            ? "-4px 0 4px -4px rgb(0 0 0 / 0.15) inset"
             : isFirstEndColumn
-                ? '4px 0 4px -4px rgb(0 0 0 / 0.15) inset'
-                : undefined,
+              ? "4px 0 4px -4px rgb(0 0 0 / 0.15) inset"
+              : undefined,
     };
 }
 </script>
@@ -373,20 +354,14 @@ function getPinningStyles(
     |--------------------------------------------------------------------------
     -->
 
-    <slot
-        name="fields_visibility"
-        :table="table"
-    >
+    <slot name="fields_visibility" :table="table">
         <div
             v-if="showFieldsVisibility"
             class="mb-2 flex items-center justify-between px-2"
         >
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                    <Button
-                        variant="outline"
-                        class="ml-auto"
-                    >
+                    <Button variant="outline" class="ml-auto">
                         <Columns3Cog />
 
                         <ChevronDown class="ml-2 h-4 w-4" />
@@ -440,15 +415,11 @@ function getPinningStyles(
                     :style="getPinningStyles(header.column)"
                     :class="
                         cn({
-                            'bg-background':
-                                header.column.getIsPinned(),
+                            'bg-background': header.column.getIsPinned(),
                         })
                     "
                 >
-                    <FlexRender
-                        v-if="!header.isPlaceholder"
-                        :header="header"
-                    />
+                    <FlexRender v-if="!header.isPlaceholder" :header="header" />
                 </TableHead>
             </TableRow>
         </TableHeader>
@@ -461,39 +432,23 @@ function getPinningStyles(
 
         <TableBody>
             <template v-if="table.getRowModel().rows.length">
-                <template
-                    v-for="row in table.getRowModel().rows"
-                    :key="row.id"
-                >
+                <template v-for="row in table.getRowModel().rows" :key="row.id">
                     <!-- Main row -->
 
                     <TableRow
                         :data-state="
-                            row.getIsSelected()
-                                ? 'selected'
-                                : undefined
+                            row.getIsSelected() ? 'selected' : undefined
                         "
-                        :class="
-                            cn(
-                                isRowDisabled(row) &&
-                                    disabledStyle,
-                            )
-                        "
-                        @click="
-                            (event) =>
-                                handleRowClick(event, row)
-                        "
+                        :class="cn(isRowDisabled(row) && disabledStyle)"
+                        @click="(event) => handleRowClick(event, row)"
                     >
                         <TableCell
                             v-for="cell in row.getVisibleCells()"
                             :key="cell.id"
                             :data-pinned="
-                                cell.column.getIsPinned() ||
-                                undefined
+                                cell.column.getIsPinned() || undefined
                             "
-                            :style="
-                                getPinningStyles(cell.column)
-                            "
+                            :style="getPinningStyles(cell.column)"
                             :class="
                                 cn(
                                     'items-center p-1 text-sm',
@@ -503,9 +458,8 @@ function getPinningStyles(
                                             cell.column.getIsPinned(),
                                     },
 
-                                    isColumnDisabled(
-                                        cell.column,
-                                    ) && disabledStyle,
+                                    isColumnDisabled(cell.column) &&
+                                        disabledStyle,
                                 )
                             "
                         >
@@ -515,24 +469,12 @@ function getPinningStyles(
 
                     <!-- Expanded content -->
 
-                    <TableRow
-                        v-if="row.getIsExpanded()"
-                    >
+                    <TableRow v-if="row.getIsExpanded()">
                         <TableCell
-                            :colspan="
-                                Math.max(
-                                    row.getVisibleCells()
-                                        .length,
-                                    1,
-                                )
-                            "
+                            :colspan="Math.max(row.getVisibleCells().length, 1)"
                             class="p-0"
                         >
-                            <slot
-                                name="expanded"
-                                :row="row"
-                                :table="table"
-                            />
+                            <slot name="expanded" :row="row" :table="table" />
                         </TableCell>
                     </TableRow>
                 </template>
@@ -546,16 +488,10 @@ function getPinningStyles(
 
             <TableRow v-else>
                 <TableCell
-                    :colspan="
-                        Math.max(
-                            table.getVisibleLeafColumns()
-                                .length,
-                            1,
-                        )
-                    "
+                    :colspan="Math.max(table.getVisibleLeafColumns().length, 1)"
                     class="h-14 text-center"
                 >
-                    {{ t('No items found.') }}
+                    {{ t("No items found.") }}
                 </TableCell>
             </TableRow>
 
@@ -565,10 +501,7 @@ function getPinningStyles(
             |--------------------------------------------------------------------------
             -->
 
-            <slot
-                name="footer"
-                :table="table"
-            />
+            <slot name="footer" :table="table" />
 
             <!-- Keep legacy spacing row -->
 

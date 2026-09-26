@@ -6,7 +6,7 @@
 
 namespace App\Models;
 
-use App\Data\BairroData;
+use App\Data\NeighborhoodData;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\WithData;
 
@@ -17,7 +17,7 @@ class Neighborhood extends Model
 
     protected $table = 'bairros';
 
-    protected $dataClass = BairroData::class;
+    protected $dataClass = NeighborhoodData::class;
 
     protected $casts = [
         'cidade_id' => 'int',
@@ -28,12 +28,12 @@ class Neighborhood extends Model
         'cidade_id',
     ];
 
-    public function cidade()
+    public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class,'cidade_id');
     }
 
-    public function imovels()
+    public function properties()
     {
         return $this->hasMany(Property::class);
     }

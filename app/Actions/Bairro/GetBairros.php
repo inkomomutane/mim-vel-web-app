@@ -2,7 +2,7 @@
 
 namespace App\Actions\Bairro;
 
-use App\Data\BairroData;
+use App\Data\NeighborhoodData;
 use App\Data\CityData;
 use App\Models\Neighborhood;
 use App\Models\City;
@@ -25,7 +25,7 @@ class GetBairros
             })->with('cidade')->
        orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
-        return BairroData::collection(
+        return NeighborhoodData::collection(
             $bairros
         );
     }

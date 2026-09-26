@@ -16,7 +16,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Page extends Model implements HasMedia
 {
-    use HasFactory;
     use InteractsWithMedia;
     use WithData;
 

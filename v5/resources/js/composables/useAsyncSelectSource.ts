@@ -1,25 +1,16 @@
-import {
-    QueryClient,
-    useInfiniteQuery,
-} from '@tanstack/vue-query';
+import { QueryClient, useInfiniteQuery } from "@tanstack/vue-query";
 
-import type {
-    Ref,
-} from 'vue';
+import type { Ref } from "vue";
 
-import type {
-    ValidRouteName,
-} from 'ziggy-js';
+import type { ValidRouteName } from "ziggy-js";
 
 /* ============================================================================
  * CONFIG
  * ========================================================================== */
 
-export const DEFAULT_ASYNC_SELECT_STALE_TIME =
-    30_000;
+export const DEFAULT_ASYNC_SELECT_STALE_TIME = 30_000;
 
-export const DEFAULT_ASYNC_SELECT_GC_TIME =
-    5 * 60_000;
+export const DEFAULT_ASYNC_SELECT_GC_TIME = 5 * 60_000;
 
 /**
  * Shared only by AsyncSelect components.
@@ -27,20 +18,17 @@ export const DEFAULT_ASYNC_SELECT_GC_TIME =
  * Therefore 20 AsyncSelect instances using the same
  * resource/search share exactly the same query cache.
  */
-export const asyncSelectQueryClient =
-    new QueryClient({
-        defaultOptions: {
-            queries: {
-                retry: 1,
+export const asyncSelectQueryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: 1,
 
-                refetchOnReconnect:
-                    true,
+            refetchOnReconnect: true,
 
-                refetchOnWindowFocus:
-                    true,
-            },
+            refetchOnWindowFocus: true,
         },
-    });
+    },
+});
 
 /* ============================================================================
  * TYPES
@@ -75,280 +63,154 @@ export interface PaginationResponse<T> {
 }
 
 interface AsyncSelectSourceOptions<T> {
-    routeName:
-        () => ValidRouteName;
+    routeName: () => ValidRouteName;
 
-    routeParams:
-        () => Record<
-            string,
-            any
-        >;
+    routeParams: () => Record<string, any>;
 
-    selectedKey:
-        () => string;
+    selectedKey: () => string;
 
-    reduce:
-        (
-            item: T,
-        ) => any;
+    reduce: (item: T) => any;
 
-    search:
-        Ref<string>;
+    search: Ref<string>;
 
-    enabled:
-        Ref<boolean>;
+    enabled: Ref<boolean>;
 
-    staleTime?:
-        () => number;
+    staleTime?: () => number;
 
-    gcTime?:
-        () => number;
+    gcTime?: () => number;
 }
 
 interface HydrationWaiter {
-    resolve:
-        () => void;
+    resolve: () => void;
 
-    reject:
-        (
-            error: unknown,
-        ) => void;
+    reject: (error: unknown) => void;
 }
 
 interface HydrationBatch {
-    values:
-        Map<
-            string,
-            any
-        >;
+    values: Map<string, any>;
 
-    waiters:
-        HydrationWaiter[];
+    waiters: HydrationWaiter[];
 
-    timer:
-        | ReturnType<
-        typeof setTimeout
-    >
-        | null;
+    timer: ReturnType<typeof setTimeout> | null;
 }
 
 /* ============================================================================
  * SHARED SELECTED-VALUE BATCHING
  * ========================================================================== */
 
-const hydrationBatches =
-    new Map<
-        string,
-        HydrationBatch
-    >();
+const hydrationBatches = new Map<string, HydrationBatch>();
 
 /* ============================================================================
  * HELPERS
  * ========================================================================== */
 
-const stableStringify = (
-    value: any,
-): string => {
-    if (
-        value ===
-        undefined
-    ) {
-        return 'undefined';
+const stableStringify = (value: any): string => {
+    if (value === undefined) {
+        return "undefined";
     }
 
-    if (
-        value === null ||
-        typeof value !==
-        'object'
-    ) {
-        return (
-            JSON.stringify(
-                value,
-            ) ??
-            String(
-                value,
-            )
-        );
+    if (value === null || typeof value !== "object") {
+        return JSON.stringify(value) ?? String(value);
     }
 
-    if (
-        Array.isArray(
-            value,
-        )
-    ) {
-        return `[${value
-            .map(
-                stableStringify,
-            )
-            .join(',')}]`;
+    if (Array.isArray(value)) {
+        return `[${value.map(stableStringify).join(",")}]`;
     }
 
-    const keys =
-        Object.keys(
-            value,
-        ).sort();
+    const keys = Object.keys(value).sort();
 
     return `{${keys
-        .map(
-            key =>
-                `${JSON.stringify(
-                    key,
-                )}:${stableStringify(
-                    value[key],
-                )}`,
-        )
-        .join(',')}}`;
+        .map((key) => `${JSON.stringify(key)}:${stableStringify(value[key])}`)
+        .join(",")}}`;
 };
 
 /* ============================================================================
  * COMPOSABLE
  * ========================================================================== */
 
-export const useAsyncSelectSource = <
-    T extends Record<string, any>,
->(
-    options:
-    AsyncSelectSourceOptions<T>,
+export const useAsyncSelectSource = <T extends Record<string, any>>(
+    options: AsyncSelectSourceOptions<T>,
 ) => {
     /* ========================================================================
      * RESOURCE IDENTITY
      * ====================================================================== */
 
-    const resourceKey =
-        (): string => {
-            return [
-                String(
-                    options.routeName(),
-                ),
+    const resourceKey = (): string => {
+        return [
+            String(options.routeName()),
 
-                options.selectedKey(),
+            options.selectedKey(),
 
-                stableStringify(
-                    options.routeParams(),
-                ),
-            ].join('::');
-        };
+            stableStringify(options.routeParams()),
+        ].join("::");
+    };
 
-    const rootQueryKey =
-        () => [
-            'async-select',
+    const rootQueryKey = () => ["async-select", resourceKey()] as const;
+
+    const itemQueryKey = (value: any) =>
+        [
+            "async-select",
             resourceKey(),
+            "item",
+            stableStringify(value),
         ] as const;
 
-    const itemQueryKey =
-        (
-            value: any,
-        ) => [
-            'async-select',
-            resourceKey(),
-            'item',
-            stableStringify(
-                value,
-            ),
-        ] as const;
+    const getStaleTime = (): number => {
+        return Math.max(
+            0,
 
-    const getStaleTime =
-        (): number => {
-            return Math.max(
-                0,
+            options.staleTime?.() ?? DEFAULT_ASYNC_SELECT_STALE_TIME,
+        );
+    };
 
-                options
-                    .staleTime?.() ??
-                DEFAULT_ASYNC_SELECT_STALE_TIME,
-            );
-        };
+    const getGcTime = (): number => {
+        return Math.max(
+            0,
 
-    const getGcTime =
-        (): number => {
-            return Math.max(
-                0,
-
-                options
-                    .gcTime?.() ??
-                DEFAULT_ASYNC_SELECT_GC_TIME,
-            );
-        };
+            options.gcTime?.() ?? DEFAULT_ASYNC_SELECT_GC_TIME,
+        );
+    };
 
     /* ========================================================================
      * ITEM CACHE
      * ====================================================================== */
 
-    const remember = (
-        items: T[],
-    ): void => {
-        for (
-            const item of items
-            ) {
-            const value =
-                options.reduce(
-                    item,
-                );
+    const remember = (items: T[]): void => {
+        for (const item of items) {
+            const value = options.reduce(item);
 
-            asyncSelectQueryClient
-                .setQueryData(
-                    itemQueryKey(
-                        value,
-                    ),
+            asyncSelectQueryClient.setQueryData(
+                itemQueryKey(value),
 
-                    item,
-                );
+                item,
+            );
         }
     };
 
-    const getCachedItem = (
-        value: any,
-    ): T | null => {
+    const getCachedItem = (value: any): T | null => {
         return (
-            asyncSelectQueryClient
-                .getQueryData<T>(
-                    itemQueryKey(
-                        value,
-                    ),
-                ) ??
-            null
+            asyncSelectQueryClient.getQueryData<T>(itemQueryKey(value)) ?? null
         );
     };
 
-    const isCachedItemFresh = (
-        value: any,
-    ): boolean => {
-        const state =
-            asyncSelectQueryClient
-                .getQueryState(
-                    itemQueryKey(
-                        value,
-                    ),
-                );
+    const isCachedItemFresh = (value: any): boolean => {
+        const state = asyncSelectQueryClient.getQueryState(itemQueryKey(value));
 
-        if (
-            !state ||
-            state.data ===
-            undefined
-        ) {
+        if (!state || state.data === undefined) {
             return false;
         }
 
-        if (
-            state.isInvalidated
-        ) {
+        if (state.isInvalidated) {
             return false;
         }
 
-        const staleTime =
-            getStaleTime();
+        const staleTime = getStaleTime();
 
-        if (
-            staleTime ===
-            Number.POSITIVE_INFINITY
-        ) {
+        if (staleTime === Number.POSITIVE_INFINITY) {
             return true;
         }
 
-        return (
-            Date.now() -
-            state.dataUpdatedAt <
-            staleTime
-        );
+        return Date.now() - state.dataUpdatedAt < staleTime;
     };
 
     /* ========================================================================
@@ -362,403 +224,259 @@ export const useAsyncSelectSource = <
 
         selectedValues: any[],
 
-        signal?:
-        AbortSignal,
-    ): Promise<
-        PaginationResponse<T>
-    > => {
-        const url =
-            route(
-                options.routeName(),
+        signal?: AbortSignal,
+    ): Promise<PaginationResponse<T>> => {
+        const url = route(
+            options.routeName(),
 
-                {
-                    ...options
-                        .routeParams(),
+            {
+                ...options.routeParams(),
 
-                    search,
+                search,
 
-                    page,
+                page,
 
-                    selectedKey:
-                        options.selectedKey(),
+                selectedKey: options.selectedKey(),
 
-                    selectedValues,
+                selectedValues,
+            },
+        );
+
+        const response = await fetch(
+            url,
+
+            {
+                signal,
+
+                headers: {
+                    Accept: "application/json",
                 },
-            );
 
-        const response =
-            await fetch(
-                url,
+                /**
+                 * TanStack owns the cache.
+                 */
+                cache: "no-store",
+            },
+        );
 
-                {
-                    signal,
-
-                    headers: {
-                        Accept:
-                            'application/json',
-                    },
-
-                    /**
-                     * TanStack owns the cache.
-                     */
-                    cache:
-                        'no-store',
-                },
-            );
-
-        if (
-            !response.ok
-        ) {
-            throw new Error(
-                `AsyncSelect HTTP error ${response.status}`,
-            );
+        if (!response.ok) {
+            throw new Error(`AsyncSelect HTTP error ${response.status}`);
         }
 
-        return (
-            await response.json()
-        ) as PaginationResponse<T>;
+        return (await response.json()) as PaginationResponse<T>;
     };
 
     /* ========================================================================
      * INFINITE QUERY
      * ====================================================================== */
 
-    const query =
-        useInfiniteQuery(
-            () => ({
-                queryKey: [
-                    'async-select',
+    const query = useInfiniteQuery(
+        () => ({
+            queryKey: [
+                "async-select",
 
-                    resourceKey(),
+                resourceKey(),
 
-                    'list',
+                "list",
 
+                options.search.value,
+            ],
+
+            enabled: options.enabled.value,
+
+            staleTime: getStaleTime(),
+
+            gcTime: getGcTime(),
+
+            initialPageParam: 1,
+
+            queryFn: async ({ pageParam, signal }) => {
+                const result = await request(
                     options.search.value,
-                ],
 
-                enabled:
-                options.enabled.value,
+                    Number(pageParam),
 
-                staleTime:
-                    getStaleTime(),
+                    /**
+                     * Selected-value hydration
+                     * is separate.
+                     */
+                    [],
 
-                gcTime:
-                    getGcTime(),
+                    signal,
+                );
 
-                initialPageParam:
-                    1,
+                remember(result.data);
 
-                queryFn:
-                    async ({
-                               pageParam,
-                               signal,
-                           }) => {
-                        const result =
-                            await request(
-                                options
-                                    .search
-                                    .value,
+                return result;
+            },
 
-                                Number(
-                                    pageParam,
-                                ),
+            /**
+             * Laravel numbered pagination.
+             */
+            getNextPageParam: (lastPage) => {
+                if (lastPage.current_page >= lastPage.last_page) {
+                    return undefined;
+                }
 
-                                /**
-                                 * Selected-value hydration
-                                 * is separate.
-                                 */
-                                [],
+                return lastPage.current_page + 1;
+            },
+        }),
 
-                                signal,
-                            );
-
-                        remember(
-                            result.data,
-                        );
-
-                        return result;
-                    },
-
-                /**
-                 * Laravel numbered pagination.
-                 */
-                getNextPageParam:
-                    lastPage => {
-                        if (
-                            lastPage
-                                .current_page >=
-                            lastPage
-                                .last_page
-                        ) {
-                            return undefined;
-                        }
-
-                        return (
-                            lastPage
-                                .current_page +
-                            1
-                        );
-                    },
-            }),
-
-            asyncSelectQueryClient,
-        );
+        asyncSelectQueryClient,
+    );
 
     /* ========================================================================
      * SELECTED VALUE HYDRATION
      * ====================================================================== */
 
     const hydrateValues = async (
-        values:
-        any[],
+        values: any[],
 
-        force =
-        false,
+        force = false,
     ): Promise<void> => {
-        if (
-            values.length ===
-            0
-        ) {
+        if (values.length === 0) {
             return;
         }
 
-        const uniqueValues =
-            Array.from(
-                new Map(
-                    values.map(
-                        value => [
-                            stableStringify(
-                                value,
-                            ),
+        const uniqueValues = Array.from(
+            new Map(
+                values.map((value) => [stableStringify(value), value]),
+            ).values(),
+        );
 
-                            value,
-                        ],
-                    ),
-                ).values(),
-            );
+        const valuesToLoad = uniqueValues.filter(
+            (value) => force || !isCachedItemFresh(value),
+        );
 
-        const valuesToLoad =
-            uniqueValues.filter(
-                value =>
-                    force ||
-                    !isCachedItemFresh(
-                        value,
-                    ),
-            );
-
-        if (
-            valuesToLoad.length ===
-            0
-        ) {
+        if (valuesToLoad.length === 0) {
             return;
         }
 
-        const key =
-            resourceKey();
+        const key = resourceKey();
 
-        let batch =
-            hydrationBatches.get(
-                key,
-            );
+        let batch = hydrationBatches.get(key);
 
-        if (
-            !batch
-        ) {
+        if (!batch) {
             batch = {
-                values:
-                    new Map(),
+                values: new Map(),
 
-                waiters:
-                    [],
+                waiters: [],
 
-                timer:
-                    null,
+                timer: null,
             };
 
-            hydrationBatches.set(
-                key,
-                batch,
-            );
+            hydrationBatches.set(key, batch);
         }
 
-        for (
-            const value of
-            valuesToLoad
-            ) {
+        for (const value of valuesToLoad) {
             batch.values.set(
-                stableStringify(
-                    value,
-                ),
+                stableStringify(value),
 
                 value,
             );
         }
 
-        return new Promise<void>(
-            (
+        return new Promise<void>((resolve, reject) => {
+            batch!.waiters.push({
                 resolve,
+
                 reject,
-            ) => {
-                batch!.waiters.push({
-                    resolve,
+            });
 
-                    reject,
-                });
+            if (batch!.timer) {
+                return;
+            }
 
-                if (
-                    batch!.timer
-                ) {
-                    return;
-                }
+            /**
+             * Allow sibling AsyncSelect
+             * instances one event loop
+             * turn to register their IDs.
+             */
+            batch!.timer = setTimeout(
+                async () => {
+                    const currentBatch = hydrationBatches.get(key);
 
-                /**
-                 * Allow sibling AsyncSelect
-                 * instances one event loop
-                 * turn to register their IDs.
-                 */
-                batch!.timer =
-                    setTimeout(
-                        async () => {
-                            const currentBatch =
-                                hydrationBatches
-                                    .get(
-                                        key,
-                                    );
+                    if (!currentBatch) {
+                        return;
+                    }
 
-                            if (
-                                !currentBatch
-                            ) {
-                                return;
-                            }
-
-                            const selectedValues =
-                                Array.from(
-                                    currentBatch
-                                        .values
-                                        .values(),
-                                );
-
-                            const waiters =
-                                [
-                                    ...currentBatch
-                                        .waiters,
-                                ];
-
-                            hydrationBatches.delete(
-                                key,
-                            );
-
-                            try {
-                                const result =
-                                    await request(
-                                        '',
-
-                                        1,
-
-                                        selectedValues,
-                                    );
-
-                                const returnedValues =
-                                    new Set(
-                                        result
-                                            .data
-                                            .map(
-                                                item =>
-                                                    stableStringify(
-                                                        options.reduce(
-                                                            item,
-                                                        ),
-                                                    ),
-                                            ),
-                                    );
-
-                                /**
-                                 * Record deleted from
-                                 * backend?
-                                 *
-                                 * Remove stale cached item.
-                                 */
-                                for (
-                                    const value of
-                                    selectedValues
-                                    ) {
-                                    if (
-                                        returnedValues.has(
-                                            stableStringify(
-                                                value,
-                                            ),
-                                        )
-                                    ) {
-                                        continue;
-                                    }
-
-                                    asyncSelectQueryClient
-                                        .removeQueries({
-                                            queryKey:
-                                                itemQueryKey(
-                                                    value,
-                                                ),
-
-                                            exact:
-                                                true,
-                                        });
-                                }
-
-                                remember(
-                                    result.data,
-                                );
-
-                                for (
-                                    const waiter of
-                                    waiters
-                                    ) {
-                                    waiter.resolve();
-                                }
-                            } catch (
-                                error
-                                ) {
-                                for (
-                                    const waiter of
-                                    waiters
-                                    ) {
-                                    waiter.reject(
-                                        error,
-                                    );
-                                }
-                            }
-                        },
-
-                        0,
+                    const selectedValues = Array.from(
+                        currentBatch.values.values(),
                     );
-            },
-        );
+
+                    const waiters = [...currentBatch.waiters];
+
+                    hydrationBatches.delete(key);
+
+                    try {
+                        const result = await request(
+                            "",
+
+                            1,
+
+                            selectedValues,
+                        );
+
+                        const returnedValues = new Set(
+                            result.data.map((item) =>
+                                stableStringify(options.reduce(item)),
+                            ),
+                        );
+
+                        /**
+                         * Record deleted from
+                         * backend?
+                         *
+                         * Remove stale cached item.
+                         */
+                        for (const value of selectedValues) {
+                            if (returnedValues.has(stableStringify(value))) {
+                                continue;
+                            }
+
+                            asyncSelectQueryClient.removeQueries({
+                                queryKey: itemQueryKey(value),
+
+                                exact: true,
+                            });
+                        }
+
+                        remember(result.data);
+
+                        for (const waiter of waiters) {
+                            waiter.resolve();
+                        }
+                    } catch (error) {
+                        for (const waiter of waiters) {
+                            waiter.reject(error);
+                        }
+                    }
+                },
+
+                0,
+            );
+        });
     };
 
     /* ========================================================================
      * INVALIDATE
      * ====================================================================== */
 
-    const invalidate =
-        async () => {
-            await asyncSelectQueryClient
-                .invalidateQueries({
-                    queryKey:
-                        rootQueryKey(),
-                });
-        };
+    const invalidate = async () => {
+        await asyncSelectQueryClient.invalidateQueries({
+            queryKey: rootQueryKey(),
+        });
+    };
 
     /* ========================================================================
      * CLEAR
      * ====================================================================== */
 
-    const clear =
-        () => {
-            asyncSelectQueryClient
-                .removeQueries({
-                    queryKey:
-                        rootQueryKey(),
-                });
-        };
+    const clear = () => {
+        asyncSelectQueryClient.removeQueries({
+            queryKey: rootQueryKey(),
+        });
+    };
 
     return {
         query,

@@ -7,14 +7,14 @@ import {
     shallowRef,
     watch,
     type PropType,
-} from 'vue';
-import { useDebounceFn, useInfiniteScroll } from '@vueuse/core';
-import { Check, ChevronDown, Loader2, Plus, X } from '@lucide/vue';
-import { ListboxItem } from 'reka-ui';
-import { ulid } from 'ulidx';
-import type { ValidRouteName } from 'ziggy-js';
+} from "vue";
+import { useDebounceFn, useInfiniteScroll } from "@vueuse/core";
+import { Check, ChevronDown, Loader2, Plus, X } from "@lucide/vue";
+import { ListboxItem } from "reka-ui";
+import { ulid } from "ulidx";
+import type { ValidRouteName } from "ziggy-js";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
     Command,
     CommandEmpty,
@@ -22,22 +22,22 @@ import {
     CommandInput,
     CommandList,
     CommandSeparator,
-} from '@/components/ui/command';
+} from "@/components/ui/command";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
-import { Skeleton } from '@/components/ui/skeleton';
+} from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
-import SelectOption from './partial/SelectOption.vue';
-import type { SelectOptionType } from './partial/SelectOptionType';
+import SelectOption from "./partial/SelectOption.vue";
+import type { SelectOptionType } from "./partial/SelectOptionType";
 import {
     DEFAULT_ASYNC_SELECT_STALE_TIME,
     useAsyncSelectSource,
-} from '@/composables/useAsyncSelectSource';
-import { cn ,t} from '@/lib/utils';
+} from "@/composables/useAsyncSelectSource";
+import { cn, t } from "@/lib/utils";
 
 type InternalOption<T> = T & {
     _uniqueKey: string;
@@ -46,7 +46,7 @@ type InternalOption<T> = T & {
 const props = defineProps({
     placeholder: {
         type: String,
-        default: () => t('Select'),
+        default: () => t("Select"),
     },
     routeName: {
         type: Object as PropType<ValidRouteName>,
@@ -66,35 +66,35 @@ const props = defineProps({
     },
     class: {
         type: String,
-        default: '',
+        default: "",
     },
     disabled: {
         type: Boolean,
         default: false,
     },
     align: {
-        type: String as PropType<'start' | 'center' | 'end'>,
-        default: 'start',
+        type: String as PropType<"start" | "center" | "end">,
+        default: "start",
     },
     mapper: {
         type: Function as PropType<(item: T) => SelectOptionType>,
         default: (item: T): SelectOptionType => ({
             id: item.id,
             title: item.title,
-            subtitle: item.subtitle ?? '',
-            slug: item.slug ?? '',
-            notes: item.notes ?? '',
+            subtitle: item.subtitle ?? "",
+            slug: item.slug ?? "",
+            notes: item.notes ?? "",
             trailer: item.trailer,
         }),
     },
     selectedKey: {
         type: String,
-        default: 'id',
+        default: "id",
     },
     createNew: {
         type: Function,
         required: false,
-        default: () => console.warn('Create new function not provided'),
+        default: () => console.warn("Create new function not provided"),
     },
     canCreateNew: {
         type: Boolean,
@@ -112,15 +112,12 @@ const props = defineProps({
 
 const model = defineModel<any>();
 
-const emit = defineEmits([
-    'value:selected',
-    'value:deselected',
-]);
+const emit = defineEmits(["value:selected", "value:deselected"]);
 
 // State
 const open = ref(false);
-const searchQuery = ref('');
-const activeSearch = ref('');
+const searchQuery = ref("");
+const activeSearch = ref("");
 const selectedOptions = shallowRef<T[]>([]);
 const hydratingSelected = ref(false);
 
@@ -158,7 +155,7 @@ const modelValues = computed<any[]>(() => {
     if (
         model.value === null ||
         model.value === undefined ||
-        model.value === ''
+        model.value === ""
     ) {
         return [];
     }
@@ -189,7 +186,7 @@ const valuesEqual = (first: any, second: any): boolean =>
 const isSelected = (item: T): boolean => {
     const value = reducedValue(item);
 
-    return modelValues.value.some(selected => valuesEqual(selected, value));
+    return modelValues.value.some((selected) => valuesEqual(selected, value));
 };
 
 // Result normalisation
@@ -207,9 +204,7 @@ const normaliseOption = (item: T): InternalOption<T> => {
     } as InternalOption<T>;
 };
 
-const deduplicate = (
-    values: InternalOption<T>[],
-): InternalOption<T>[] => {
+const deduplicate = (values: InternalOption<T>[]): InternalOption<T>[] => {
     const result = new Map<any, InternalOption<T>>();
 
     for (const item of values) {
@@ -222,9 +217,7 @@ const deduplicate = (
 const options = computed<InternalOption<T>[]>(() => {
     const pages = infiniteQuery.data.value?.pages ?? [];
 
-    return deduplicate(
-        pages.flatMap(page => page.data.map(normaliseOption)),
-    );
+    return deduplicate(pages.flatMap((page) => page.data.map(normaliseOption)));
 });
 
 // Selected-value hydration
@@ -249,17 +242,14 @@ const syncSelectedOptions = async (force = false) => {
         }
 
         selectedOptions.value = values
-            .map(value => source.getCachedItem(value))
+            .map((value) => source.getCachedItem(value))
             .filter((item): item is T => item !== null);
     } catch (error) {
         if (generation !== selectedGeneration) {
             return;
         }
 
-        console.error(
-            'AsyncSelect selected-value hydration failed:',
-            error,
-        );
+        console.error("AsyncSelect selected-value hydration failed:", error);
     } finally {
         // An older request must never hide a newer hydration loader.
         if (generation === selectedGeneration) {
@@ -281,12 +271,12 @@ const resultOptions = computed(() => {
         return options.value;
     }
 
-    return options.value.filter(option => !isSelected(option));
+    return options.value.filter((option) => !isSelected(option));
 });
 
 const triggerLabel = computed(() => {
     if (modelValues.value.length > 0 && hydratingSelected.value) {
-        return t('Loading...');
+        return t("Loading...");
     }
 
     if (!props.multiple) {
@@ -305,7 +295,7 @@ const triggerLabel = computed(() => {
         return props.getLabel(selectedOptions.value[0]);
     }
 
-    return `${count} ${t('selected')}`;
+    return `${count} ${t("selected")}`;
 });
 
 // Query state
@@ -313,17 +303,11 @@ const loading = computed(
     () => infiniteQuery.isPending.value && options.value.length === 0,
 );
 
-const loadingMore = computed(
-    () => infiniteQuery.isFetchingNextPage.value,
-);
+const loadingMore = computed(() => infiniteQuery.isFetchingNextPage.value);
 
-const hasMore = computed(
-    () => infiniteQuery.hasNextPage.value === true,
-);
+const hasMore = computed(() => infiniteQuery.hasNextPage.value === true);
 
-const isError = computed(
-    () => infiniteQuery.isError.value,
-);
+const isError = computed(() => infiniteQuery.isError.value);
 
 // Pagination
 const loadNextPage = async () => {
@@ -336,23 +320,19 @@ const loadNextPage = async () => {
 
 // Infinite scroll must observe CommandList.$el because CommandList owns
 // scrollTop/clientHeight/scrollHeight.
-const {
-    reset: resetInfiniteScroll,
-    isLoading: infiniteScrollLoading,
-} = useInfiniteScroll(
-    commandListElement,
-    async () => {
-        await loadNextPage();
-    },
-    {
-        distance: 120,
-        interval: 100,
-        canLoadMore: () =>
-            open.value &&
-            hasMore.value &&
-            !infiniteQuery.isFetching.value,
-    },
-);
+const { reset: resetInfiniteScroll, isLoading: infiniteScrollLoading } =
+    useInfiniteScroll(
+        commandListElement,
+        async () => {
+            await loadNextPage();
+        },
+        {
+            distance: 120,
+            interval: 100,
+            canLoadMore: () =>
+                open.value && hasMore.value && !infiniteQuery.isFetching.value,
+        },
+    );
 
 // Search
 const debouncedSearch = useDebounceFn(async (value: string) => {
@@ -367,7 +347,7 @@ const debouncedSearch = useDebounceFn(async (value: string) => {
     resetInfiniteScroll();
 }, 250);
 
-watch(searchQuery, value => {
+watch(searchQuery, (value) => {
     debouncedSearch(value);
 });
 
@@ -387,7 +367,7 @@ watch(
 
 watch(
     () => infiniteQuery.isFetching.value,
-    async isFetching => {
+    async (isFetching) => {
         if (isFetching || !open.value) {
             return;
         }
@@ -398,7 +378,7 @@ watch(
 );
 
 // Popover content mounts lazily, so CommandList.$el may appear after setup.
-watch(commandListElement, async element => {
+watch(commandListElement, async (element) => {
     if (!element || !open.value) {
         return;
     }
@@ -412,24 +392,23 @@ const selectSingle = (item: T) => {
     const value = reducedValue(item);
     const previous = selectedValue.value;
     const deselecting =
-        previous !== null &&
-        valuesEqual(reducedValue(previous), value);
+        previous !== null && valuesEqual(reducedValue(previous), value);
 
     source.remember([item]);
 
     if (deselecting) {
         model.value = null;
-        emit('value:deselected', previous);
+        emit("value:deselected", previous);
     } else {
         model.value = value;
-        emit('value:selected', item, previous);
+        emit("value:selected", item, previous);
     }
 
     open.value = false;
 
     setTimeout(() => {
-        searchQuery.value = '';
-        activeSearch.value = '';
+        searchQuery.value = "";
+        activeSearch.value = "";
     }, 150);
 };
 
@@ -438,24 +417,20 @@ const selectMultiple = (item: T) => {
 
     source.remember([item]);
 
-    const current = Array.isArray(model.value)
-        ? [...model.value]
-        : [];
+    const current = Array.isArray(model.value) ? [...model.value] : [];
 
-    const index = current.findIndex(selected =>
-        valuesEqual(selected, value),
-    );
+    const index = current.findIndex((selected) => valuesEqual(selected, value));
 
     if (index >= 0) {
         current.splice(index, 1);
         model.value = current;
-        emit('value:deselected', item);
+        emit("value:deselected", item);
         return;
     }
 
     current.push(value);
     model.value = current;
-    emit('value:selected', item);
+    emit("value:selected", item);
 };
 
 const handleSelect = (item: T, event?: Event) => {
@@ -477,27 +452,23 @@ const removeSelected = (item: T, event?: Event) => {
     }
 
     const value = reducedValue(item);
-    const current = Array.isArray(model.value)
-        ? [...model.value]
-        : [];
+    const current = Array.isArray(model.value) ? [...model.value] : [];
 
-    model.value = current.filter(selected =>
-        !valuesEqual(selected, value),
-    );
+    model.value = current.filter((selected) => !valuesEqual(selected, value));
 
-    emit('value:deselected', item);
+    emit("value:deselected", item);
 };
 
 // Lifecycle / synchronisation
-watch(open, async isOpen => {
+watch(open, async (isOpen) => {
     if (!isOpen) {
         return;
     }
 
-    if (searchQuery.value !== '') {
+    if (searchQuery.value !== "") {
         debouncedSearch.cancel?.();
-        searchQuery.value = '';
-        activeSearch.value = '';
+        searchQuery.value = "";
+        activeSearch.value = "";
     }
 
     await syncSelectedOptions();
@@ -529,11 +500,7 @@ watch(
 );
 
 watch(
-    [
-        () => props.routeName,
-        () => props.selectedKey,
-        () => props.routeParams,
-    ],
+    [() => props.routeName, () => props.selectedKey, () => props.routeParams],
     async () => {
         selectedGeneration++;
         selectedOptions.value = [];
@@ -596,7 +563,7 @@ onBeforeUnmount(() => {
                         role="combobox"
                         :disabled="disabled"
                         :aria-expanded="open"
-                        class="w-full min-w-40 cursor-pointer justify-between bg-background px-3 font-normal transition-colors hover:bg-accent"
+                        class="bg-background hover:bg-accent w-full min-w-40 cursor-pointer justify-between px-3 font-normal transition-colors"
                     >
                         <span
                             :class="
@@ -611,7 +578,7 @@ onBeforeUnmount(() => {
                         </span>
 
                         <div
-                            class="flex shrink-0 items-center gap-2 text-muted-foreground/80"
+                            class="text-muted-foreground/80 flex shrink-0 items-center gap-2"
                         >
                             <Loader2
                                 v-if="hydratingSelected"
@@ -619,10 +586,7 @@ onBeforeUnmount(() => {
                                 class="animate-spin opacity-50"
                             />
 
-                            <ChevronDown
-                                :size="16"
-                                :stroke-width="2"
-                            />
+                            <ChevronDown :size="16" :stroke-width="2" />
                         </div>
                     </Button>
                 </slot>
@@ -634,9 +598,7 @@ onBeforeUnmount(() => {
             :align="align"
         >
             <Command class="w-full">
-                <div
-                    class="relative flex items-center border-b px-3"
-                >
+                <div class="relative flex items-center border-b px-3">
                     <CommandInput
                         v-model="searchQuery"
                         :placeholder="placeholder"
@@ -644,58 +606,41 @@ onBeforeUnmount(() => {
                     />
 
                     <Loader2
-                        v-if="
-                            infiniteQuery.isFetching.value &&
-                            !loadingMore
-                        "
+                        v-if="infiniteQuery.isFetching.value && !loadingMore"
                         :size="16"
-                        class="absolute right-3 animate-spin text-muted-foreground"
+                        class="text-muted-foreground absolute right-3 animate-spin"
                     />
                 </div>
 
                 <CommandGroup v-if="canCreateNew">
                     <Button
                         variant="ghost"
-                        class="w-full cursor-pointer justify-start rounded-xs font-normal transition-colors hover:bg-primary/10 hover:text-primary"
+                        class="hover:bg-primary/10 hover:text-primary w-full cursor-pointer justify-start rounded-xs font-normal transition-colors"
                         @click="createNew"
                     >
-                        <Plus
-                            :size="16"
-                            class="me-2 opacity-60"
-                        />
+                        <Plus :size="16" class="me-2 opacity-60" />
 
-                        {{ t('Add new') }}
+                        {{ t("Add new") }}
                     </Button>
                 </CommandGroup>
 
                 <CommandSeparator v-if="canCreateNew" />
 
                 <CommandList ref="commandListRef">
-                    <template
-                        v-if="
-                            multiple &&
-                            selectedOptions.length > 0
-                        "
-                    >
+                    <template v-if="multiple && selectedOptions.length > 0">
                         <CommandGroup :heading="t('Selected')">
                             <ListboxItem
                                 v-for="option in selectedOptions"
                                 :key="`selected-${reducedValue(option)}`"
-                                class="relative flex cursor-pointer items-center gap-2 rounded-sm text-sm outline-none data-[highlighted]:bg-accent"
-                                @select="
-                                    event =>
-                                        handleSelect(
-                                            option,
-                                            event,
-                                        )
-                                "
+                                class="data-[highlighted]:bg-accent relative flex cursor-pointer items-center gap-2 rounded-sm text-sm outline-none"
+                                @select="(event) => handleSelect(option, event)"
                             >
                                 <div
                                     class="flex min-w-0 flex-1 items-center gap-2"
                                 >
                                     <Check
                                         :size="16"
-                                        class="shrink-0 text-primary"
+                                        class="text-primary shrink-0"
                                     />
 
                                     <SelectOption
@@ -710,11 +655,7 @@ onBeforeUnmount(() => {
                                     size="icon"
                                     class="size-7 shrink-0"
                                     @click="
-                                        event =>
-                                            removeSelected(
-                                                option,
-                                                event,
-                                            )
+                                        (event) => removeSelected(option, event)
                                     "
                                 >
                                     <X :size="14" />
@@ -727,9 +668,9 @@ onBeforeUnmount(() => {
 
                     <div
                         v-if="isError"
-                        class="p-4 text-center text-sm text-destructive"
+                        class="text-destructive p-4 text-center text-sm"
                     >
-                        {{ t('Unable to load results.') }}
+                        {{ t("Unable to load results.") }}
                     </div>
 
                     <CommandEmpty
@@ -740,7 +681,7 @@ onBeforeUnmount(() => {
                             selectedOptions.length === 0
                         "
                     >
-                        {{ t('No items found.') }}
+                        {{ t("No items found.") }}
                     </CommandEmpty>
 
                     <ListboxItem
@@ -748,62 +689,24 @@ onBeforeUnmount(() => {
                         :key="option._uniqueKey"
                         :class="
                             cn(
-                                `
-                                    relative
-                                    flex
-                                    cursor-default
-                                    items-center
-                                    gap-2
-                                    rounded-sm
-                                    text-sm
-                                    outline-hidden
-                                    select-none
-
-                                    data-[disabled=true]:pointer-events-none
-                                    data-[disabled=true]:opacity-50
-
-                                    data-[highlighted]:bg-accent
-                                    data-[highlighted]:text-accent-foreground
-
-                                    transition-colors
-                                    duration-75
-
-                                    [&_svg]:pointer-events-none
-                                    [&_svg]:shrink-0
-                                `,
+                                `data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm text-sm outline-hidden transition-colors duration-75 select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0`,
                                 props.class,
                             )
                         "
-                        @select="
-                            event =>
-                                handleSelect(
-                                    option,
-                                    event,
-                                )
-                        "
+                        @select="(event) => handleSelect(option, event)"
                     >
                         <SelectOption
                             :option="mapper(option)"
                             :selected="isSelected(option)"
                         >
-                            <template
-                                #trailer="{
-                                    option: scopedOption,
-                                }"
-                            >
-                                <slot
-                                    name="trailer"
-                                    :option="scopedOption"
-                                />
+                            <template #trailer="{ option: scopedOption }">
+                                <slot name="trailer" :option="scopedOption" />
                             </template>
                         </SelectOption>
                     </ListboxItem>
 
                     <div
-                        v-if="
-                            loading &&
-                            options.length === 0
-                        "
+                        v-if="loading && options.length === 0"
                         class="flex w-full flex-col gap-4 p-4"
                     >
                         <div class="w-full space-y-2">
@@ -822,19 +725,13 @@ onBeforeUnmount(() => {
                         class="flex min-h-10 w-full items-center justify-center p-2"
                     >
                         <Loader2
-                            v-if="
-                                loadingMore ||
-                                infiniteScrollLoading
-                            "
+                            v-if="loadingMore || infiniteScrollLoading"
                             :size="14"
-                            class="animate-spin text-muted-foreground"
+                            class="text-muted-foreground animate-spin"
                         />
 
-                        <span
-                            v-else
-                            class="text-xs text-muted-foreground/60"
-                        >
-                            {{ t('Scroll for more') }}
+                        <span v-else class="text-muted-foreground/60 text-xs">
+                            {{ t("Scroll for more") }}
                         </span>
                     </div>
 
@@ -848,13 +745,9 @@ onBeforeUnmount(() => {
                     >
                         <Separator />
 
-                        <div
-                            class="flex items-center justify-center p-3"
-                        >
-                            <span
-                                class="text-xs text-muted-foreground/60"
-                            >
-                                {{ t('End of results.') }}
+                        <div class="flex items-center justify-center p-3">
+                            <span class="text-muted-foreground/60 text-xs">
+                                {{ t("End of results.") }}
                             </span>
                         </div>
                     </template>
