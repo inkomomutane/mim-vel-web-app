@@ -2,99 +2,63 @@
 
 namespace App\Providers;
 
-use App\Actions\Page\GetPage;
-use App\Models\PropertyType;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\URL;
+use App\Models\Property;
+use App\Services\CustomUserRepository;
+use Auth0\Laravel\UserRepositoryContract;
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
-use Laravel\Sanctum\Sanctum;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        Schema::defaultStringLength(125);
-        Sanctum::ignoreMigrations();
+        $this->app->bind(UserRepositoryContract::class, CustomUserRepository::class);
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-
-
-        if ($this->app->environment('production')) {
-                URL::forceScheme('https');
-                $this->app['request']->server->set('HTTPS','on');
-            }
-
-        Paginator::useBootstrapFive();
-        view()->share([
-            'globals' => GetPage::run()?->getData(),
-            'imovelTypes' => PropertyType::all(),
-        ]);
-
-        Builder::macro('whereLike', function ($attributes, string $searchTerm) {
-            $this->where(function (Builder $query) use ($attributes, $searchTerm) {
-                foreach (Arr::wrap($attributes) as $attribute) {
-                    $query->when(
-                        str_contains($attribute, '.'),
-                        function (Builder $query) use ($attribute, $searchTerm) {
-                            [$relationName, $relationAttribute] = explode('.', $attribute);
-
-                            $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerm) {
-                                $query->where($relationAttribute, 'LIKE', "%{$searchTerm}%");
-                            });
-                        },
-                        function (Builder $query) use ($attribute, $searchTerm) {
-                            $query->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
-                        }
-                    );
-                }
-            });
-
-            return $this;
-        });
-        try {
-            \Storage::extend('google', function ($app, $config) {
-                $options = [];
-
-                if (! empty($config['teamDriveId'] ?? null)) {
-                    $options['teamDriveId'] = $config['teamDriveId'];
-                }
-
-                $client = new \Google\Client();
-                $client->setClientId($config['clientId']);
-                $client->setClientSecret($config['clientSecret']);
-                $client->refreshToken($config['refreshToken']);
-
-                $service = new \Google\Service\Drive($client);
-                $adapter = new \Masbug\Flysystem\GoogleDriveAdapter($service, $config['folder'] ?? '/', $options);
-                $driver = new \League\Flysystem\Filesystem($adapter);
-
-                return new \Illuminate\Filesystem\FilesystemAdapter($driver, $adapter);
-            });
-        } catch (\Exception $e) {
-            throw $e;
+        $this->configureDefaults();
+        if ($this->app->runningInConsole()) {
+            $mainPath = database_path('migrations');
+            $subDirectories = glob($mainPath . '/*', GLOB_ONLYDIR);
+            $paths = array_merge([$mainPath], $subDirectories);
+            $this->loadMigrationsFrom($paths);
         }
 
-        Str::macro('currencyFormat', function ($amount, $currencySymbol = 'MZN ', $decimals = 2) {
-            $formattedAmount = number_format($amount, $decimals);
-            $formattedAmount = $currencySymbol.$formattedAmount;
+        Relation::morphMap([
+            'App\\Models\\Imovel' => Property::class,
+        ]);
+    }
 
-            return $formattedAmount;
-        });
+    /**
+     * Configure default behaviors for production-ready applications.
+     */
+    protected function configureDefaults(): void
+    {
+        Date::use(CarbonImmutable::class);
+
+        DB::prohibitDestructiveCommands(
+            app()->isProduction(),
+        );
+
+        Password::defaults(fn (): ?Password => app()->isProduction()
+            ? Password::min(12)
+                ->mixedCase()
+                ->letters()
+                ->numbers()
+                ->symbols()
+                ->uncompromised()
+            : null,
+        );
     }
 }

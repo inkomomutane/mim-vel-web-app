@@ -1,15 +1,24 @@
 {
-  "style": "new-york",
-  "typescript": true,
-  "tailwind": {
-    "config": "tailwind.config.js",
-    "css": "resources/css/app.css",
-    "baseColor": "slate",
-    "cssVariables": false
-  },
-  "framework": "laravel",
-  "aliases": {
-    "components": "@/Components",
-    "utils": "@/lib/utils"
-  }
+    "$schema": "https://shadcn-vue.com/schema.json",
+    "style": "new-york",
+    "typescript": true,
+    "tailwind": {
+        "config": "",
+        "css": "resources/css/app.css",
+        "darkMode": "class",
+        "defaultTheme": "light",
+        "baseColor": "neutral",
+        "cssVariables": true,
+        "prefix": ""
+    },
+    "aliases": {
+        "components": "@/components",
+        "composables": "@/composables",
+        "utils": "@/lib/utils",
+        "ui": "@/components/ui",
+        "lib": "@/lib"
+    },
+    "iconLibrary": "lucide",
+    "pointer": false,
+    "rtl": false
 }

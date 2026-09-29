@@ -64,7 +64,7 @@ COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
 
-COPY --chown=www-data:www-data . /var/www/html
+COPY --chown=www-data:www-data .. /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
 RUN composer dump-autoload
@@ -86,4 +86,4 @@ RUN npm run build && \
 
 USER www-data
 
-COPY --chown=www-data:www-data . /var/www/html
+COPY --chown=www-data:www-data .. /var/www/html

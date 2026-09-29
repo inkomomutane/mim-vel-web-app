@@ -1,35 +1,33 @@
-import "./bootstrap";
-import "primevue/resources/primevue.min.css";
-import "../css/app.css";
+import "../css/index.css";
+import "../css/scrollbar.css";
+import "../css/themes.css";
+import "../css/chart-theme.css";
+import "vue-sonner/style.css";
 
-import { createApp, h, DefineComponent } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
-import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
-import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
-import PrimeVue from "primevue/config";
-import Tooltip from "primevue/tooltip";
-import CKEditor from "@ckeditor/ckeditor5-vue";
-import ConfirmationService from "primevue/confirmationservice";
-import.meta.glob(["../errors/svgs/**", "../js/images/**"]);
 
-createInertiaApp({
-    title: (title) => `${title}`,
+import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+
+import { createSSRApp, h } from "vue";
+
+import { ZiggyVue } from "ziggy-js";
+import { i18n } from "@/lib/utils";
+
+
+void createInertiaApp({
     resolve: (name) =>
         resolvePageComponent(
-            `./Pages/${name}.vue`,
-            import.meta.glob<DefineComponent>("./Pages/**/*.vue")
+            `./pages/${name}.vue`,
+            import.meta.glob("./pages/**/*.vue"),
         ),
+
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        createSSRApp({
+            render: () => h(App, props),
+        })
             .use(plugin)
-            .use(PrimeVue)
-            .directive("tooltip", Tooltip)
-            .use(CKEditor)
-            .use(ZiggyVue, Ziggy)
-            .use(ConfirmationService)
+            .use(i18n)
+            .use(ZiggyVue)
             .mount(el);
-    },
-    progress: {
-        color: "#ff6b01",
     },
 });

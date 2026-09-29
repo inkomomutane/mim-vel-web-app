@@ -2,34 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(RolesTableSeeder::class);
-        $this->call(CidadeSeeder::class);
-        $this->call(BairroSeeder::class);
-        $this->call(StatusSeeder::class);
-        $this->call(TipoDeImovelSeeder::class);
 
-        $admin = \App\Models\User::updateOrInsert([
-            'email' => 'Administrator@mimovel.com',
-        ], [
-            'name' => 'Administrator',
-            'email' => 'Administrator@mimovel.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('#mimovel@2021@project#'), // password
-            'remember_token' => '92IXUNpkjO0rOQ5byMi',
-        ]);
-        $admin->assignRole('Super-Admin');
     }
 }

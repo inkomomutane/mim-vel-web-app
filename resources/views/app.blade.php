@@ -1,29 +1,20 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => 'dark'])>--}}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{{ url('/favicon.ico') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script>
-        window.addEventListener('load', () => {
-            const preloader = document.querySelector('.preloader');
-            preloader?.classList.add('hidden');
-        });
-    </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    @fonts
     @routes
-    @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
+    @vite('resources/js/app.ts')
     @inertiaHead
 </head>
-
-<body class="font-sans  antialiased scroll-smooth ">
-    <x-preloader />
-    @include('website.layouts.translator')
-    @inertia
+<body class="font-sans antialiased" >
+@inertia
 </body>
-
 </html>

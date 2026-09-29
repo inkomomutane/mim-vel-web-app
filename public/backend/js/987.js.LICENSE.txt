@@ -1,5 +1,0 @@
-/*! DateTime picker for DataTables.net v1.1.2
- *
- * © SpryMedia Ltd, all rights reserved.
- * License: MIT datatables.net/license/mit
- */

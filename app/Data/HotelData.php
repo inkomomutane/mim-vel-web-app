@@ -3,60 +3,90 @@
 namespace App\Data;
 
 use App\Models\Hotel;
+use App\Models\HotelMetaData;
+use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Lazy;
 
-/** @typescript */
+/**
+ * @typescript
+ */
 class HotelData extends Data
 {
     public function __construct(
-        public readonly ?int $id,
-        public readonly ?string $slug,
-        public readonly ?string $title,
-        public readonly ?string $contact,
-        public readonly ?string $email,
-        public readonly ?string $description,
-        public readonly ?string $price,
-        public readonly ?float $preco,
-        public readonly Lazy|HotelMetaDataDtoData|null $hotelMetaData,
-        /** @var MediaData[] $images */
-        public readonly Lazy|DataCollection|null $images,
-        /** @var MediaData * */
-        public Lazy|null|MediaData $media,
+        public ?int $id,
+        public ?float $price,
+        public ?string $title,
+        public ?string $description,
+        public ?string $contact,
+        public ?string $email,
+        public ?string $slug,
+        public int $hotel_meta_data_id,
     ) {
     }
 
-    public static function fromModel(Hotel $hotel): self
-    {
-
+    public static function fromModel(
+        Hotel $hotel,
+    ): self {
         return new self(
             id: $hotel->id,
-            slug: $hotel->slug,
+            price: $hotel->price,
             title: $hotel->title,
-            contact: $hotel->contact, email: $hotel->email,
             description: $hotel->description,
-            price: $hotel->preco,
-            preco: $hotel->price,
-            hotelMetaData: Lazy::whenLoaded(
-                'hotelMetaData',
-                $hotel,
-                static fn () => $hotel->hotelMetaData->getData()
-            ),
-            images: Lazy::whenLoaded(
-                'media',
-                $hotel,
-                static fn () => ! is_null($hotel->getMedia('hotels')) ?
-                    MediaData::collection($hotel->getMedia('hotels')) :
-                    null
-            ),
-            media: Lazy::whenLoaded(
-                'media',
-                $hotel,
-                static fn () => ! is_null($hotel->getFirstMedia('hotels')) ?
-                    MediaData::fromModel($hotel->getFirstMedia('hotels')) :
-                    null
-            ),
+            contact: $hotel->contact,
+            email: $hotel->email,
+            slug: $hotel->slug,
+            hotel_meta_data_id: $hotel->hotel_meta_data_id,
         );
+    }
+
+    public static function rules(): array
+    {
+        return [
+            'id' => [
+                'nullable',
+                'integer',
+            ],
+
+            'price' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+
+            'title' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'description' => [
+                'nullable',
+                'string',
+            ],
+
+            'contact' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'email' => [
+                'nullable',
+                'email',
+                'max:255',
+            ],
+
+            'slug' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'hotel_meta_data_id' => [
+                'required',
+                'integer',
+                Rule::exists(HotelMetaData::class, 'id'),
+            ],
+        ];
     }
 }

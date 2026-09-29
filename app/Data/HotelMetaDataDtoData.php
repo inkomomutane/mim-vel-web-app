@@ -3,80 +3,133 @@
 namespace App\Data;
 
 use App\Models\HotelMetaData;
+use App\Models\Neighborhood;
+use App\Models\PropertyCondition;
+use App\Models\PropertyType;
+use App\Models\Status;
+use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Lazy;
 
-/** @typescript */
+/**
+ * @typescript
+ */
 class HotelMetaDataDtoData extends Data
 {
     public function __construct(
-        public readonly ?int                            $id,
-        public readonly ?string                         $title,
-        public readonly ?string                         $address,
-        public readonly ?string                         $description,
-        public readonly ?string                         $slug,
-        public readonly Lazy|ImovelTypeData             $imovelTypeData,
-        public readonly Lazy|PropertyConditionData|null $condicaoData,
-        public readonly Lazy|StatusData|null            $statusData,
-        public readonly Lazy|NeighborhoodData|null      $bairroData,
-        /** @var HotelData[] $hotels */
-        public readonly Lazy|null|DataCollection        $hotels,
-        /** @var MediaData[] * */
-        public Lazy|null|DataCollection                 $media,
-        /** @var AttributeData[] $attributes */
-        public readonly DataCollection|Lazy|null        $attributes,
-
+        public ?string $title,
+        public ?string $address,
+        public ?string $description,
+        public int $property_type_id,
+        public int $property_condition_id,
+        public int $status_id,
+        public int $neighborhood_id,
+        public ?string $slug = null,
+        public ?int $id = null,
+        public ?string $property_type_name = null,
+        public ?string $property_condition_name = null,
+        public ?string $status_name = null,
+        public ?string $neighborhood_name = null,
     ) {
     }
 
-    public static function fromModel(HotelMetaData $hotelMetaData): self
-    {
+    public static function fromModel(
+        HotelMetaData $hotelMetaData,
+    ): self {
         return new self(
-            id: $hotelMetaData->id,
             title: $hotelMetaData->title,
             address: $hotelMetaData->address,
             description: $hotelMetaData->description,
+            property_type_id: $hotelMetaData->property_type_id,
+            property_condition_id: $hotelMetaData->property_condition_id,
+            status_id: $hotelMetaData->status_id,
+            neighborhood_id: $hotelMetaData->neighborhood_id,
             slug: $hotelMetaData->slug,
-            imovelTypeData: Lazy::whenLoaded(
-                'tipoDeImovel',
-                $hotelMetaData,
-                static   fn () => $hotelMetaData->tipoDeImovel->getData()
-            ),
-            condicaoData: Lazy::whenLoaded(
-                'condicao',
-                $hotelMetaData,
-                static   fn () => $hotelMetaData->condicao->getData()
-            ),
-            statusData: Lazy::whenLoaded(
-                'status',
-                $hotelMetaData,
-                static   fn () => $hotelMetaData->status->getData()
-            ),
-            bairroData: Lazy::whenLoaded(
-                'bairro',
-                $hotelMetaData,
-                static fn () => $hotelMetaData->bairro->getData()
-            ),
-            hotels: Lazy::whenLoaded(
-                'hotels',
-                $hotelMetaData,
-                static fn () => $hotelMetaData->hotels->map(function ($hotel) {
-                    $hotel->loadMissing('media');
-
-                    return $hotel->getData();
-                })
-            ),
-            media: Lazy::whenLoaded(
-                'media',
-                $hotelMetaData,
-                static fn () => $hotelMetaData->getMedia('main_hotels')->map(fn ($media) => MediaData::fromModel($media))
-            ),
-            attributes: Lazy::whenLoaded(
-                'attributes',
-                $hotelMetaData,
-                static fn () => AttributeData::collection($hotelMetaData->attributes)
-            ),
+            id: $hotelMetaData->id,
+            property_type_name: $hotelMetaData->propertyType?->name,
+            property_condition_name: $hotelMetaData->condition?->name,
+            status_name: $hotelMetaData->status?->name,
+            neighborhood_name: $hotelMetaData->neighborhood?->name,
         );
+    }
+
+    public static function rules(): array
+    {
+        return [
+            'id' => [
+                'nullable',
+                'integer',
+            ],
+
+            'title' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'address' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'description' => [
+                'nullable',
+                'string',
+            ],
+
+            'property_type_id' => [
+                'required',
+                'integer',
+                Rule::exists(PropertyType::class, 'id'),
+            ],
+
+            'property_condition_id' => [
+                'required',
+                'integer',
+                Rule::exists(PropertyCondition::class, 'id'),
+            ],
+
+            'status_id' => [
+                'required',
+                'integer',
+                Rule::exists(Status::class, 'id'),
+            ],
+
+            'neighborhood_id' => [
+                'required',
+                'integer',
+                Rule::exists(Neighborhood::class, 'id'),
+            ],
+
+            'slug' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'property_type_name' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'property_condition_name' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'status_name' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'neighborhood_name' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+        ];
     }
 }

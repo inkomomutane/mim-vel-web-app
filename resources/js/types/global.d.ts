@@ -1,23 +1,33 @@
-import { PageProps as InertiaPageProps } from "@inertiajs/core";
-import { AxiosInstance } from "axios";
-import ziggyRoute, { Config as ZiggyConfig } from "ziggy-js";
-import { PageProps as AppPageProps } from "./";
+import type { Auth } from "@/types/auth";
 
-declare global {
-    interface Window {
-        axios: AxiosInstance;
+// Extend ImportMeta interface for Vite...
+declare module "vite/client" {
+    interface ImportMetaEnv {
+        readonly VITE_APP_NAME: string;
+        [key: string]: string | boolean | undefined;
     }
 
-    var route: typeof ziggyRoute;
-    var Ziggy: ZiggyConfig;
-}
-
-declare module "vue" {
-    interface ComponentCustomProperties {
-        route: typeof ziggyRoute;
+    interface ImportMeta {
+        readonly env: ImportMetaEnv;
+        readonly glob: <T>(pattern: string) => Record<string, () => Promise<T>>;
     }
 }
 
 declare module "@inertiajs/core" {
-    interface PageProps extends InertiaPageProps, AppPageProps {}
+    export interface InertiaConfig {
+        sharedPageProps: {
+            name: string;
+            auth: Auth;
+            sidebarOpen: boolean;
+            [key: string]: unknown;
+        };
+    }
+}
+
+declare module "vue" {
+    interface ComponentCustomProperties {
+        $inertia: typeof Router;
+        $page: Page;
+        $headManager: ReturnType<typeof createHeadManager>;
+    }
 }
