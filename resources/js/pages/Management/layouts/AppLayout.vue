@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useCookies } from "@vueuse/integrations/useCookies";
+import { usePage } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
 
 import AppSidebar from "@/components/app-sidebar/index.vue";
 import LanguageChange from "@/components/language-change.vue";
 import ToggleTheme from "@/components/toggle-theme.vue";
+
 import { Separator } from "@/components/ui/separator";
 import {
     SidebarInset,
@@ -11,79 +14,96 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { SIDEBAR_COOKIE_NAME } from "@/components/ui/sidebar/utils";
-import { cn } from "@/lib/utils";
-import { usePage } from "@inertiajs/vue3";
-import { route } from "ziggy-js";
-import { LayoutGrid, MapPinned, ShieldQuestionMark , CheckSquare } from "@lucide/vue";
+
+import { cn, t } from "@/lib/utils";
+
+import {
+    BadgeCheck,
+    Building2,
+    Handshake,
+    House,
+    LayoutDashboard,
+    MapPinHouse,
+    MapPinned,
+    ScrollText,
+    Tags,
+} from "@lucide/vue";
 
 const defaultOpen = useCookies([SIDEBAR_COOKIE_NAME]);
 const page = usePage().props?.auth?.user;
-import { t } from "@/lib/utils";
+
 const routes = [
     {
         title: "Dashboard",
-        icon: LayoutGrid,
+        icon: LayoutDashboard,
         routeName: "dashboard",
         href: route("dashboard"),
         isActive: (routeName: string) => routeName === "dashboard",
     },
     {
         title: t("Provinces"),
-        href: route("management.province.list"),
         icon: MapPinned,
         routeName: "management.province.list",
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.province.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.province."),
     },
     {
         title: t("Property conditions"),
-        href: route("management.property-condition.list"),
-        icon: ShieldQuestionMark ,
+        icon: House,
         routeName: "management.property-condition.list",
-
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.property-condition.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.property-condition."),
     },
     {
         title: t("Status"),
-        href: route("management.status.list"),
-        icon: CheckSquare,
+        icon: BadgeCheck,
         routeName: "management.status.list",
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.status.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.status."),
     },
     {
         title: t("Property for"),
-        href: route("management.property-for.list"),
-        icon: CheckSquare,
+        icon: Tags,
         routeName: "management.property-for.list",
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.property-for.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.property-for."),
     },
     {
         title: t("Intermediation rules"),
-        href: route("management.intermediation-rule.list"),
-        icon: CheckSquare,
+        icon: Handshake,
         routeName: "management.intermediation-rule.list",
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.intermediation-rule.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.intermediation-rule."),
     },
     {
         title: t("Business rules"),
-        href: route("management.business-rule.list"),
-        icon: CheckSquare,
+        icon: ScrollText,
         routeName: "management.business-rule.list",
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.business-rule.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.business-rule."),
     },
     {
-        title: t('City'),
-        href: route("management.city.list"),
-        icon: CheckSquare,
+        title: t("City"),
+        icon: Building2,
         routeName: "management.city.list",
-        isActive: (routeName: string) => routeName === "dashboard",
+        href: route("management.city.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.city."),
     },
     {
-        title: t('Neighborhood'),
-        href: route("management.neighborhood.list"),
-        icon: CheckSquare,
+        title: t("Neighbourhood"),
+        icon: MapPinHouse,
         routeName: "management.neighborhood.list",
-        isActive: (routeName: string) => routeName === "dashboard",
-    }
+        href: route("management.neighborhood.list"),
+        isActive: (routeName: string) =>
+            routeName.startsWith("management.neighborhood."),
+    },
 ];
 </script>
 
@@ -97,6 +117,7 @@ const routes = [
             :nav-items="routes"
             :user="page"
         />
+
         <SidebarInset
             class="w-full max-w-full bg-slate-100 peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)] peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))] dark:bg-zinc-950"
         >
@@ -105,7 +126,9 @@ const routes = [
             >
                 <SidebarTrigger class="-ml-1" />
                 <Separator orientation="vertical" />
+
                 <div class="flex-1" />
+
                 <div class="ml-auto flex items-center space-x-2">
                     <LanguageChange />
                     <ToggleTheme />
@@ -115,7 +138,7 @@ const routes = [
             <main
                 :class="
                     cn(
-                        'relative grow p-4 container mx-auto',
+                        'relative container mx-auto grow p-4',
                     )
                 "
             >

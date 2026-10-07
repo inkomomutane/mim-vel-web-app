@@ -12,13 +12,14 @@ import {
 } from '@/components/ui/carousel'
 
 import PropertyCard from './PropertyCard.vue'
+import {CardPropertyData} from "@/types/App/Data";
 
 withDefaults(
     defineProps<{
         id?: string
         title: string
         href?: string | null
-        properties: App.Data.CardPropertyData[]
+        properties: CardPropertyData[]
         locale?: string
     }>(),
     {
@@ -29,7 +30,7 @@ withDefaults(
 )
 
 const emit = defineEmits<{
-    favourite: [property: App.Data.CardPropertyData]
+    favourite: [property: CardPropertyData]
 }>()
 </script>
 

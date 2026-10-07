@@ -47,7 +47,7 @@ class SplitLegacyAds extends Command
         }
 
         try {
-            DB::transaction(function () use ($ads): void {
+            DB::transaction(static function () use ($ads): void {
                 $ids = $ads->pluck('id')->all();
 
                 foreach ($ads as $ad) {

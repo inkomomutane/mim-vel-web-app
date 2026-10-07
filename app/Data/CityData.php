@@ -17,6 +17,7 @@ class CityData extends Data
         public ?int $province_id,
         public ?string $province_name = null,
         public ?int $id = null,
+        public ?string $slug = null,
     ) {
     }
 
@@ -28,6 +29,7 @@ class CityData extends Data
             province_id: $city->province_id,
             province_name: $city->province?->name,
             id: $city->id,
+            slug: $city->slug,
         );
     }
 

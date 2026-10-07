@@ -22,11 +22,16 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
+use Spatie\Sluggable\Attributes\Sluggable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 use Vite;
-
+#[Sluggable(
+    from: 'name',
+    to: 'slug',
+    selfHealing: true,
+)]
 class Property extends Model implements HasMedia, Sitemapable, Viewable
 {
     use HasSEO;
@@ -36,6 +41,8 @@ class Property extends Model implements HasMedia, Sitemapable, Viewable
     use InteractsWithViews;
     use SoftDeletes;
     use WithData;
+
+    protected $table = 'properties';
 
     protected string $dataClass = CardPropertyData::class;
 
@@ -201,7 +208,7 @@ class Property extends Model implements HasMedia, Sitemapable, Viewable
     {
         return Url::create(
             route(
-                'post.imovel.show',
+                'website.property.show',
                 $this,
             ),
         )
@@ -299,9 +306,9 @@ class Property extends Model implements HasMedia, Sitemapable, Viewable
             type: 'article',
 
             canonical_url: route(
-                'post.imovel.show',
+                'website.property.show',
                 [
-                    'imovel' => $this->slug,
+                    'property' => $this->slug,
                 ],
             ),
         );

@@ -44,4 +44,5 @@ Route::get('imavel/show/{imovel}',function (){
 
 Route::get('/me', function () { dd(auth()->user());})->name('me')->middleware('auth');
 require_once  'settings.php';
+require_once  'website.php';
 

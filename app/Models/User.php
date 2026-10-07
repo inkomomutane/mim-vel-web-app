@@ -37,11 +37,6 @@ class User extends Authenticatable implements HasMedia
         'created_by_id',
         'auth0_id'
     ];
-
-    protected $appends = [
-        'avatar',
-    ];
-
     protected string $dataClass = UserData::class;
 
     /**

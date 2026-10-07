@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {computed, PropType} from 'vue'
 
 import { Star } from '@lucide/vue'
 
@@ -7,35 +7,41 @@ import MoneyAmount from '@/components/MoneyAmount.vue'
 
 import ImageCarousel from '../ImageCarousel.vue'
 import {toSentence} from "@/lib/utils";
+import {CardPropertyData} from "@/types/App/Data";
 
-const props = withDefaults(
-    defineProps<{
-        property: App.Data.CardPropertyData
-        priority?: boolean
-        favourite?: boolean
-        locale?: string
-    }>(),
-    {
-        priority: false,
-        favourite: false,
-        locale: 'pt-MZ',
+
+
+const props = defineProps({
+    property: {
+        type: Object as PropType<CardPropertyData>,
+        required: true,
     },
-)
+    priority: {
+        type: Boolean,
+        default: false,
+    },
+    favourite: {
+        type: Boolean,
+        default: false,
+    },
+    locale: {
+        type: String,
+        default: 'pt-MZ',
+    },
+})
 
 const emit = defineEmits<{
-    favourite: [property: App.Data.CardPropertyData]
+    favourite: [property: CardPropertyData]
 }>()
 
-const location = computed(() => {
-    return [
+const location =  [
+    props.property.city_name,
+    props.property.neighborhood_name,
+    props.property.address,
 
-        props.property.neighbourhood_name,
-        props.property.city_name,
-
-    ]
-        .filter(Boolean)
-        .join(', ')
-})
+]
+    .filter(Boolean)
+    .join(', ');
 
 const rating = computed(() => {
     if (
@@ -51,6 +57,7 @@ const rating = computed(() => {
 </script>
 
 <template>
+
     <article
         class="
             group/card
@@ -71,7 +78,6 @@ const rating = computed(() => {
             :likeble="true"
             @favourite="emit('favourite', $event)"
         />
-
         <div
             class="
                 mt-2.5
@@ -90,16 +96,15 @@ const rating = computed(() => {
                 "
             >
                 <p
-                    v-if="location"
+                    v-if="property.title"
                     class="
-                        truncate
                         text-sm
                         font-semibold
 
                         dark:text-zinc-50
                     "
                 >
-                    {{ location }}
+                    {{ toSentence(property.title) }}
                 </p>
 
                 <div
@@ -128,10 +133,11 @@ const rating = computed(() => {
 
             <h3
                 class="
-                    truncate
+                   line-clamp-2
+
                     text-sm
                     font-normal
-                    truncate text-sm text-muted-foreground
+                    text-sm text-muted-foreground
                     dark:text-zinc-300
                 "
             >
@@ -145,28 +151,16 @@ const rating = computed(() => {
                         focus-visible:ring-zinc-950
                         dark:hover:text-white
                         dark:focus-visible:ring-white
-
                     "
                 >
-                    {{ toSentence(property.title) }}
+                    {{ location }}
                 </a>
             </h3>
 
-            <p
-                v-if="property.subtitle"
-                class="
-                    truncate
-                    text-sm
-                    text-zinc-600
-                    dark:text-zinc-400
-                "
-            >
-                {{ property.subtitle }}
-            </p>
 
             <p class="mt-1 text-sm">
                 <MoneyAmount
-                    :amount="property.price_amount"
+                    :amount="property.price"
                     :currency="property.currency_code"
                     :locale="locale"
                 />

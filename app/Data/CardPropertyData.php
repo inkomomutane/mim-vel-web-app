@@ -14,9 +14,6 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
 
-/**
- * @typescript
- */
 class CardPropertyData extends Data
 {
     public function __construct(
@@ -59,6 +56,7 @@ class CardPropertyData extends Data
         public ?string $approved_at = null,
 
         public ?string $neighborhood_name = null,
+        public ?string $city_name = null,
         public ?string $property_condition_name = null,
         public ?string $property_type_name = null,
         public ?string $status_name = null,
@@ -67,6 +65,11 @@ class CardPropertyData extends Data
         public ?string $property_for_name = null,
 
         public ?int $id = null,
+        /**
+         * @var array<int, ImageData>|ImageData[] $images
+         */
+        public mixed $images = [],
+        public ?string $url = null,
     ) {
     }
 
@@ -315,6 +318,9 @@ class CardPropertyData extends Data
     public static function fromModel(
         Property $property,
     ): self {
+
+
+
         return new self(
             title: $property->title,
             price: $property->price,
@@ -363,6 +369,10 @@ class CardPropertyData extends Data
             neighborhood_name: $property
                 ->neighborhood
                 ?->name,
+            city_name: $property
+                ->neighborhood
+                ?->city
+                ?->name,
 
             property_condition_name: $property
                 ->condition
@@ -389,6 +399,17 @@ class CardPropertyData extends Data
                 ?->name,
 
             id: $property->id,
+            images: ImageData::collect(
+                $property->getMedia('posts'),
+            ),
+            url: route('website.property.show',
+            [
+                'province' => $property->neighborhood?->city?->province?->slug,
+                'city' => $property->neighborhood?->city?->slug,
+                'neighborhood' => $property->neighborhood?->slug,
+                'property' => $property->slug,
+            ]
+            )
         );
     }
 }

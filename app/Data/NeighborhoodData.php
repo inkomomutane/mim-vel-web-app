@@ -18,6 +18,7 @@ class NeighborhoodData extends Data
         public ?string $city_name = null,
         public ?string $province_name = null,
         public ?int $id = null,
+        public ?string $slug = null,
     ) {
     }
 
@@ -75,6 +76,7 @@ class NeighborhoodData extends Data
                 ?->name,
 
             id: $neighborhood->id,
+            slug: $neighborhood->slug
         );
     }
 }
