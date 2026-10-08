@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/dialog";
 
 import { t } from "@/lib/utils";
-import type { TransactionTypeData } from "@/types/generated";
+import type { PropertyForData } from "@/types/generated";
 
 const props = defineProps({
     propertyFor: {
-        type: Object as PropType<TransactionTypeData>,
+        type: Object as PropType<PropertyForData>,
         required: true,
     },
 
@@ -85,7 +85,7 @@ const deletePropertyFor = () => {
                 <span
                     class="text-muted-foreground ml-2 text-xs"
                 >
-                    {{ propertyFor.slug_text }}
+                    {{ propertyFor.slug }}
                 </span>
             </div>
 

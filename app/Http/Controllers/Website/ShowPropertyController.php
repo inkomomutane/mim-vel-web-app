@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Neighborhood;
 use App\Models\Property;
 use App\Models\Province;
+use Inertia\Inertia;
 
 class ShowPropertyController
 {
@@ -16,6 +17,6 @@ class ShowPropertyController
          Property $property
      )
      {
-         dd($province, $city, $neighborhood, $property);
+         return Inertia::render('Web/Property/Show');
      }
 }

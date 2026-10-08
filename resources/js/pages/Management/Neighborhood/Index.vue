@@ -157,7 +157,7 @@ const form = useForm({
 
     sort:
         props.request?.sort ??
-        "nome",
+        "name",
 });
 
 const performSearchAndFilter =
@@ -333,7 +333,7 @@ const columns =
         ),
 
         columnHelper.accessor(
-            "nome",
+            "name",
             {
                 enableSorting:
                     true,
@@ -353,9 +353,9 @@ const columns =
                                 () => {
                                     form.sort =
                                         form.sort ===
-                                        "nome"
-                                            ? "-nome"
-                                            : "nome";
+                                        "name"
+                                            ? "-name"
+                                            : "name";
                                 },
                         },
 
@@ -374,7 +374,7 @@ const columns =
                         },
 
                         row.original
-                            .nome,
+                            .name,
                     ),
 
                 meta: {

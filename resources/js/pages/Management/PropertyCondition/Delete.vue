@@ -71,7 +71,7 @@ const deletePropertyCondition = () => {
 
             <div class="bg-muted/30 rounded-md border p-3">
                 <span class="text-sm font-medium">
-                    {{ propertyCondition.nome }}
+                    {{ propertyCondition.name }}
                 </span>
             </div>
 

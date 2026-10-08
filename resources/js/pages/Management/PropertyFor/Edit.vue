@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { t } from "@/lib/utils";
-import type { TransactionTypeData } from "@/types/generated";
+import type { PropertyForData } from "@/types/generated";
 
 const props = defineProps({
     propertyFor: {
@@ -43,10 +43,10 @@ const props = defineProps({
 
 const loaded = ref(false);
 
-const form = useForm<TransactionTypeData>({
+const form = useForm<PropertyForData>({
     id: null,
     name: "",
-    slug_text: "",
+    slug: "",
 });
 
 watchEffect(() => {
@@ -60,7 +60,7 @@ const loadPropertyFor = async () => {
 
     try {
         const response =
-            await axios.get<TransactionTypeData>(
+            await axios.get<PropertyForData>(
                 route(
                     "management.property-for.json",
                     {
@@ -76,8 +76,8 @@ const loadPropertyFor = async () => {
         form.name =
             response.data.name ?? "";
 
-        form.slug_text =
-            response.data.slug_text ?? "";
+        form.slug =
+            response.data.slug ?? "";
     } catch (error) {
         console.error(
             "Error loading transaction type:",
@@ -148,18 +148,18 @@ const updatePropertyFor = () => {
                 </div>
 
                 <div class="space-y-2">
-                    <Label for="slug_text">
+                    <Label for="slug">
                         {{ t("Slug") }}
                     </Label>
 
                     <Input
-                        id="slug_text"
-                        v-model="form.slug_text"
+                        id="slug"
+                        v-model="form.slug"
                         :placeholder="t('Slug')"
                     />
 
                     <InputError
-                        :message="form.errors.slug_text"
+                        :message="form.errors.slug"
                     />
                 </div>
             </form>

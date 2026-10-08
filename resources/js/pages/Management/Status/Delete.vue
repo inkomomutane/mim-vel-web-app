@@ -71,7 +71,7 @@ const deleteStatus = () => {
 
             <div class="bg-muted/30 rounded-md border p-3">
                 <span class="text-sm font-medium">
-                    {{ status.nome }}
+                    {{ status.name }}
                 </span>
             </div>
 

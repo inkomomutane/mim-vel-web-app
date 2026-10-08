@@ -38,7 +38,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    nome: "",
+    name: "",
 
     city_id:
         null as number | null,
@@ -87,14 +87,14 @@ const createNeighborhood = () => {
                 "
             >
                 <div class="space-y-2">
-                    <Label for="nome">
+                    <Label for="name">
                         {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
+                        id="name"
                         v-model="
-                            form.nome
+                            form.name
                         "
                         :placeholder="
                             t(
@@ -106,7 +106,7 @@ const createNeighborhood = () => {
 
                     <InputError
                         :message="
-                            form.errors.nome
+                            form.errors.name
                         "
                     />
                 </div>
@@ -127,7 +127,7 @@ const createNeighborhood = () => {
                                         item.id,
 
                                     title:
-                                        item.nome,
+                                        item.name,
 
                                     subtitle:
                                         item.province_name ||
@@ -151,8 +151,8 @@ const createNeighborhood = () => {
                                 city: CityData,
                             ) =>
                                 city.province_name
-                                    ? `${city.nome} - ${city.province_name}`
-                                    : city.nome
+                                    ? `${city.name} - ${city.province_name}`
+                                    : city.name
                         "
                         :reduce="
                             (

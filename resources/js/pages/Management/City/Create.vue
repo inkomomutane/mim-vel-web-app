@@ -35,7 +35,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    nome: "",
+    name: "",
     province_id: null as number | null,
 });
 
@@ -74,19 +74,19 @@ const createCity = () => {
                 @submit.prevent="createCity"
             >
                 <div class="space-y-2">
-                    <Label for="nome">
+                    <Label for="name">
                         {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
-                        v-model="form.nome"
+                        id="name"
+                        v-model="form.name"
                         :placeholder="t('City name')"
                         autocomplete="off"
                     />
 
                     <InputError
-                        :message="form.errors.nome"
+                        :message="form.errors.name"
                     />
                 </div>
 

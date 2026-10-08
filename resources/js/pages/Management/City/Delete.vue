@@ -91,7 +91,7 @@ const deleteCity = () => {
                 class="bg-muted/30 rounded-md border p-3"
             >
                 <div class="text-sm font-medium">
-                    {{ city.nome }}
+                    {{ city.name }}
                 </div>
 
                 <div

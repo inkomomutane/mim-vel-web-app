@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Management\PropertyFor;
 
 use App\Data\AlertDto;
-use App\Data\TransactionTypeData;
+use App\Data\PropertyForData;
 use App\Models\PropertyFor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -12,13 +12,13 @@ use Throwable;
 class StorePropertyForController
 {
     public function __invoke(
-        TransactionTypeData $data,
+        PropertyForData $data,
     ): RedirectResponse {
         try {
             DB::transaction(
                 fn () => PropertyFor::create([
                     'name' => $data->name,
-                    'slug' => $data->slug_text,
+                    'slug' => $data->slug,
                 ])
             );
 

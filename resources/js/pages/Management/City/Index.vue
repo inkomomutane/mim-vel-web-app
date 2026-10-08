@@ -145,7 +145,7 @@ const form = useForm({
         props.request?.per_page ?? "12",
 
     sort:
-        props.request?.sort ?? "nome",
+        props.request?.sort ?? "name",
 });
 
 const performSearchAndFilter =
@@ -285,7 +285,7 @@ const columns = computed(() => [
     ),
 
     columnHelper.accessor(
-        "nome",
+        "name",
         {
             enableSorting: true,
 
@@ -300,9 +300,9 @@ const columns = computed(() => [
 
                         onClick: () => {
                             form.sort =
-                                form.sort === "nome"
-                                    ? "-nome"
-                                    : "nome";
+                                form.sort === "name"
+                                    ? "-name"
+                                    : "name";
                         },
                     },
 
@@ -317,7 +317,7 @@ const columns = computed(() => [
                             "ps-4 text-sm font-medium",
                     },
 
-                    row.original.nome,
+                    row.original.name,
                 ),
 
             meta: {

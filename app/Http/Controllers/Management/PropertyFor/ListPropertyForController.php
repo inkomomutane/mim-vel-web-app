@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Management\PropertyFor;
 
 use App\Data\PropertyForRequestFilters;
-use App\Data\TransactionTypeData;
+use App\Data\PropertyForData;
 use App\Models\PropertyFor;
 use Illuminate\Database\Eloquent\Builder;
 use Inertia\Inertia;
@@ -36,7 +36,7 @@ class ListPropertyForController
 
         $propertyFors->through(
             fn (PropertyFor $propertyFor) =>
-            TransactionTypeData::from(
+            PropertyForData::from(
                 $propertyFor
             )
         );

@@ -52,7 +52,7 @@ const loaded = ref(false);
 
 const form = useForm<CityData>({
     id: null,
-    nome: "",
+    name: "",
     province_id: null,
     province_name: null,
 });
@@ -80,8 +80,8 @@ const loadCity = async () => {
         form.id =
             response.data.id ?? null;
 
-        form.nome =
-            response.data.nome ?? "";
+        form.name =
+            response.data.name ?? "";
 
         form.province_id =
             response.data.province_id ?? null;
@@ -141,18 +141,18 @@ const updateCity = () => {
                 @submit.prevent="updateCity"
             >
                 <div class="space-y-2">
-                    <Label for="nome">
+                    <Label for="name">
                         {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
-                        v-model="form.nome"
+                        id="name"
+                        v-model="form.name"
                         :placeholder="t('City name')"
                     />
 
                     <InputError
-                        :message="form.errors.nome"
+                        :message="form.errors.name"
                     />
                 </div>
 

@@ -224,9 +224,9 @@ export type TermAndConditionData = {
     content: string | null;
     id: number | null;
 };
-export type TransactionTypeData = {
+export type PropertyForData = {
     name: string;
-    slug_text: string;
+    slug: string;
     id: number | null;
 };
 export type UserData = {

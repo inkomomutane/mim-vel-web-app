@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::table('property_fors', function (Blueprint $table) {
             $table->renameColumn(
-                'slug_text',
+                'slug',
                 'slug',
             );
         });
@@ -26,7 +26,7 @@ return new class extends Migration
         Schema::table('property_fors', function (Blueprint $table) {
             $table->renameColumn(
                 'slug',
-                'slug_text',
+                'slug',
             );
         });
 

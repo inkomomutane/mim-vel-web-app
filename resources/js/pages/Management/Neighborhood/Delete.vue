@@ -104,7 +104,7 @@ const deleteNeighborhood =
                     class="text-sm font-medium"
                 >
                     {{
-                        neighborhood.nome
+                        neighborhood.name
                     }}
                 </div>
 

@@ -104,7 +104,7 @@ const form = useForm({
 
     per_page: props.request?.per_page ?? "12",
 
-    sort: props.request?.sort ?? "nome",
+    sort: props.request?.sort ?? "name",
 });
 
 const performSearchAndFilter = useDebounceFn(
@@ -205,7 +205,7 @@ const columns = computed(() => [
         },
     }),
 
-    columnHelper.accessor("nome", {
+    columnHelper.accessor("name", {
         enableSorting: true,
 
         header: () =>
@@ -217,10 +217,10 @@ const columns = computed(() => [
                     class: "px-4 text-left text-xs font-medium",
 
                     onClick: () => {
-                        form.sort = form.sort === "nome" ? "-nome" : "nome";
+                        form.sort = form.sort === "name" ? "-name" : "name";
                     },
                 },
-                t("Nome"),
+                t("Name"),
             ),
 
         cell: ({ row }) =>
@@ -229,11 +229,11 @@ const columns = computed(() => [
                 {
                     class: "ps-4 text-sm font-medium",
                 },
-                row.original.nome ?? "",
+                row.original.name ?? "",
             ),
 
         meta: {
-            label: t("Nome"),
+            label: t("Name"),
         },
     }),
 

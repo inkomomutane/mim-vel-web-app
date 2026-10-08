@@ -28,7 +28,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    nome: "",
+    name: "",
 });
 
 const createStatus = () => {
@@ -55,18 +55,18 @@ const createStatus = () => {
 
             <form class="space-y-4" @submit.prevent="createStatus">
                 <div class="space-y-2">
-                    <Label for="nome">
-                        {{ t("Nome") }}
+                    <Label for="name">
+                        {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
-                        v-model="form.nome"
+                        id="name"
+                        v-model="form.name"
                         :placeholder="t('Status name')"
                         autocomplete="off"
                     />
 
-                    <InputError :message="form.errors.nome" />
+                    <InputError :message="form.errors.name" />
                 </div>
             </form>
 

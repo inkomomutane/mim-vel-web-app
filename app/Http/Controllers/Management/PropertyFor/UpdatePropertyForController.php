@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Management\PropertyFor;
 
 use App\Data\AlertDto;
-use App\Data\TransactionTypeData;
+use App\Data\PropertyForData;
 use App\Models\PropertyFor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -13,13 +13,13 @@ class UpdatePropertyForController
 {
     public function __invoke(
         PropertyFor $propertyFor,
-        TransactionTypeData $data,
+        PropertyForData $data,
     ): RedirectResponse {
         try {
             DB::transaction(
                 fn () => $propertyFor->update([
                     'name' => $data->name,
-                    'slug' => $data->slug_text,
+                    'slug' => $data->slug,
                 ])
             );
 

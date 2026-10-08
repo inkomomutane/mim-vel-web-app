@@ -43,7 +43,7 @@ const loaded = ref(false);
 
 const form = useForm<StatusData>({
     id: null,
-    nome: "",
+    name: "",
 });
 
 watchEffect(() => {
@@ -64,7 +64,7 @@ const loadStatus = async () => {
 
         form.id = response.data.id ?? null;
 
-        form.nome = response.data.nome ?? "";
+        form.name = response.data.name ?? "";
     } catch (error) {
         console.error("Error loading status:", error);
     } finally {
@@ -105,17 +105,17 @@ const updateStatus = () => {
 
             <form v-else class="space-y-4" @submit.prevent="updateStatus">
                 <div class="space-y-2">
-                    <Label for="nome">
-                        {{ t("Nome") }}
+                    <Label for="name">
+                        {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
-                        v-model="form.nome"
+                        id="name"
+                        v-model="form.name"
                         :placeholder="t('Status name')"
                     />
 
-                    <InputError :message="form.errors.nome" />
+                    <InputError :message="form.errors.name" />
                 </div>
             </form>
 

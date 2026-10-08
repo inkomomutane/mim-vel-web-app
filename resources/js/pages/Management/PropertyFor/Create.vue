@@ -30,7 +30,7 @@ const props = defineProps({
 
 const form = useForm({
     name: "",
-    slug_text: "",
+    slug: "",
 });
 
 const createPropertyFor = () => {
@@ -85,19 +85,19 @@ const createPropertyFor = () => {
                 </div>
 
                 <div class="space-y-2">
-                    <Label for="slug_text">
+                    <Label for="slug">
                         {{ t("Slug") }}
                     </Label>
 
                     <Input
-                        id="slug_text"
-                        v-model="form.slug_text"
+                        id="slug"
+                        v-model="form.slug"
                         :placeholder="t('Slug')"
                         autocomplete="off"
                     />
 
                     <InputError
-                        :message="form.errors.slug_text"
+                        :message="form.errors.slug"
                     />
                 </div>
             </form>

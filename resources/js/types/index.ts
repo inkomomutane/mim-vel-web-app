@@ -94,3 +94,21 @@ export interface PropertyFilterMeta {
 
     count: number
 }
+
+export interface PropertyPhoto { id: string; url: string; alt: string; roomId?: string }
+export interface Bedroom { id: string; name: string; beds: string; photo: PropertyPhoto }
+export interface Amenity { id: string; label: string; icon: string }
+export interface PropertyReview { id: string; author: string; avatar?: string; rating: number; date: string; body: string }
+export interface PropertyRule { id: string; label: string; icon: string }
+export interface PropertyLocation { address: string; latitude: number; longitude: number; description: string }
+export interface BookingQuote { currency: string; total: number; nights: number; competitor?: { name: string; total: number }; minDate?: string }
+export interface PropertyDetails {
+    id: string; slug: string; title: string; kind: string; locality: string; rating: number; reviewCount: number;
+    bedroomsCount: number; bedsCount: number; bathrooms: number; maxGuests: number;
+    highlight: string; operator: string; operatorSubtitle: string; description: string;
+    photos: PropertyPhoto[]; bedrooms: Bedroom[]; amenities: Amenity[]; reviews: PropertyReview[];
+    location: PropertyLocation; rules: PropertyRule[]; cancellationPolicy: string;
+    checkInAfter: string; checkOutBefore: string; quote: BookingQuote;
+}
+export interface BookingSelection { checkIn: string; checkOut: string; guests: number }
+

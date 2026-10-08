@@ -69,7 +69,7 @@ const form =
     useForm<NeighborhoodData>({
         id: null,
 
-        nome: "",
+        name: "",
 
         city_id: null,
 
@@ -106,8 +106,8 @@ const loadNeighborhood =
                 response.data.id ??
                 null;
 
-            form.nome =
-                response.data.nome ??
+            form.name =
+                response.data.name ??
                 "";
 
             form.city_id =
@@ -188,14 +188,14 @@ const updateNeighborhood =
                 "
             >
                 <div class="space-y-2">
-                    <Label for="nome">
+                    <Label for="name">
                         {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
+                        id="name"
                         v-model="
-                            form.nome
+                            form.name
                         "
                         :placeholder="
                             t(
@@ -206,7 +206,7 @@ const updateNeighborhood =
 
                     <InputError
                         :message="
-                            form.errors.nome
+                            form.errors.name
                         "
                     />
                 </div>
@@ -227,7 +227,7 @@ const updateNeighborhood =
                                         item.id,
 
                                     title:
-                                        item.nome,
+                                        item.name,
 
                                     subtitle:
                                         item.province_name ||
@@ -251,8 +251,8 @@ const updateNeighborhood =
                                 city: CityData,
                             ) =>
                                 city.province_name
-                                    ? `${city.nome} - ${city.province_name}`
-                                    : city.nome
+                                    ? `${city.name} - ${city.province_name}`
+                                    : city.name
                         "
                         :reduce="
                             (

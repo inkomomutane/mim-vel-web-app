@@ -43,7 +43,7 @@ const loaded = ref(false);
 
 const form = useForm<PropertyConditionData>({
     id: null,
-    nome: "",
+    name: "",
 });
 
 watchEffect(() => {
@@ -64,7 +64,7 @@ const loadPropertyCondition = async () => {
 
         form.id = response.data.id ?? null;
 
-        form.nome = response.data.nome ?? "";
+        form.name = response.data.name ?? "";
     } catch (error) {
         console.error("Error loading property condition:", error);
     } finally {
@@ -109,17 +109,17 @@ const updatePropertyCondition = () => {
                 @submit.prevent="updatePropertyCondition"
             >
                 <div class="space-y-2">
-                    <Label for="nome">
-                        {{ t("Nome") }}
+                    <Label for="name">
+                        {{ t("Name") }}
                     </Label>
 
                     <Input
-                        id="nome"
-                        v-model="form.nome"
+                        id="name"
+                        v-model="form.name"
                         :placeholder="t('Property condition name')"
                     />
 
-                    <InputError :message="form.errors.nome" />
+                    <InputError :message="form.errors.name" />
                 </div>
             </form>
 

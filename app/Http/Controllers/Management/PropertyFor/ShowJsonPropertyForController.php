@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Management\PropertyFor;
 
-use App\Data\TransactionTypeData;
+use App\Data\PropertyForData;
 use App\Models\PropertyFor;
 use Illuminate\Http\JsonResponse;
 
@@ -12,7 +12,7 @@ class ShowJsonPropertyForController
         PropertyFor $propertyFor,
     ): JsonResponse {
         return response()->json(
-            TransactionTypeData::from(
+            PropertyForData::from(
                 $propertyFor
             )
         );

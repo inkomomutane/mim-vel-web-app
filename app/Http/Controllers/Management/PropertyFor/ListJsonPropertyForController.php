@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Management\PropertyFor;
 
 use App\Data\SelectQueryData;
-use App\Data\TransactionTypeData;
+use App\Data\PropertyForData;
 use App\Models\PropertyFor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -77,7 +77,7 @@ class ListJsonPropertyForController
             $items
                 ->map(
                     fn (PropertyFor $propertyFor) =>
-                    TransactionTypeData::from(
+                    PropertyForData::from(
                         $propertyFor
                     )
                 )

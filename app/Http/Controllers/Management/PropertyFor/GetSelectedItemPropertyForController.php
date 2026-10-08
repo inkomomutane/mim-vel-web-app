@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Management\PropertyFor;
 
-use App\Data\TransactionTypeData;
+use App\Data\PropertyForData;
 use App\Models\PropertyFor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class GetSelectedItemPropertyForController
 
         return response()->json(
             $propertyFor
-                ? TransactionTypeData::from(
+                ? PropertyForData::from(
                 $propertyFor
             )
                 : null

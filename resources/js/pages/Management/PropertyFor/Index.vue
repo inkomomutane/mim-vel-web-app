@@ -43,14 +43,14 @@ import {
 
 import type {
     PropertyForRequestFilters,
-    TransactionTypeData,
+    PropertyForData,
 } from "@/types/generated";
 
 import AppLayout from "@/pages/Management/layouts/AppLayout.vue";
 
 interface PropertyForPagination {
     current_page: number;
-    data: TransactionTypeData[];
+    data: PropertyForData[];
 
     first_page_url: string;
     from: number | null;
@@ -103,15 +103,15 @@ const props = defineProps({
 const loading = ref(false);
 
 const createCrudManager = ref(
-    crudManager<TransactionTypeData>(),
+    crudManager<PropertyForData>(),
 );
 
 const editCrudManager = ref(
-    crudManager<TransactionTypeData>(),
+    crudManager<PropertyForData>(),
 );
 
 const deleteCrudManager = ref(
-    crudManager<TransactionTypeData>(),
+    crudManager<PropertyForData>(),
 );
 
 const form = useForm({
@@ -179,10 +179,10 @@ const tableData = computed(
 );
 
 const columnHelper =
-    createColumnHelper<TransactionTypeData>();
+    createColumnHelper<PropertyForData>();
 
 const buildActions = (
-    propertyFor: TransactionTypeData,
+    propertyFor: PropertyForData,
 ) => [
     {
         label: t("Edit"),
@@ -297,7 +297,7 @@ const columns = computed(() => [
     ),
 
     columnHelper.accessor(
-        "slug_text",
+        "slug",
         {
             enableSorting: true,
 
@@ -313,9 +313,9 @@ const columns = computed(() => [
                         onClick: () => {
                             form.sort =
                                 form.sort ===
-                                "slug_text"
-                                    ? "-slug_text"
-                                    : "slug_text";
+                                "slug"
+                                    ? "-slug"
+                                    : "slug";
                         },
                     },
                     t("Slug"),
@@ -328,7 +328,7 @@ const columns = computed(() => [
                         class:
                             "ps-4 text-sm text-muted-foreground",
                     },
-                    row.original.slug_text,
+                    row.original.slug,
                 ),
 
             meta: {
